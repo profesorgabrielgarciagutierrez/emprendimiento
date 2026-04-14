@@ -1,0 +1,767 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --gold:#C9A84C;--gold-light:#f0d898;--gold-dark:#8a6820;
+    --dark:#1a1a1a;--dark2:#242424;--dark3:#2e2e2e;
+    --text:#1a1a1a;--text2:#444;--text3:#666;
+    --bg:#fff;--bg2:#f7f6f2;--bg3:#efefea;
+    --border:#e0ddd5;--radius:10px;
+  }
+  body{font-family:'Georgia',serif;color:var(--text);background:var(--bg);font-size:16px;line-height:1.7}
+  
+  /* HERO */
+  .hero{background:var(--dark);color:#fff;padding:0;position:relative;overflow:hidden}
+  .hero-inner{max-width:900px;margin:0 auto;padding:52px 32px 44px}
+  .hero-tag{font-family:'Arial',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:400;margin-bottom:14px}
+  .hero-title{font-size:clamp(22px,4vw,34px);font-weight:400;line-height:1.25;color:#fff;margin-bottom:10px}
+  .hero-title span{color:var(--gold)}
+  .hero-sub{font-family:'Arial',sans-serif;font-size:14px;color:#b0a898;max-width:640px;line-height:1.6;margin-bottom:28px}
+  .hero-bar{height:2px;background:var(--gold);width:60px;margin-bottom:22px}
+  .hero-meta{font-family:'Arial',sans-serif;font-size:12px;color:#888;letter-spacing:1px}
+
+  /* NAV TABS */
+  .tabs-wrap{background:var(--dark2);position:sticky;top:0;z-index:100;border-bottom:2px solid var(--gold)}
+  .tabs{display:flex;max-width:900px;margin:0 auto;overflow-x:auto;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{flex-shrink:0;font-family:'Arial',sans-serif;font-size:12px;letter-spacing:.5px;color:#aaa;padding:14px 18px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap;background:none;border-top:none;border-left:none;border-right:none}
+  .tab:hover{color:var(--gold-light)}
+  .tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+
+  /* CONTENT */
+  .content{max-width:900px;margin:0 auto;padding:0 24px 60px}
+  .panel{display:none;padding-top:36px}
+  .panel.active{display:block}
+
+  /* TYPOGRAPHY */
+  h2{font-size:22px;font-weight:400;color:var(--dark);margin-bottom:6px;line-height:1.3}
+  h3{font-size:17px;font-weight:400;color:var(--dark);margin:28px 0 10px}
+  h4{font-family:'Arial',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold-dark);margin:22px 0 8px}
+  p{margin-bottom:14px;color:var(--text2);line-height:1.75}
+  .lead{font-size:18px;color:var(--text);line-height:1.65;margin-bottom:20px;font-style:italic}
+  .section-rule{height:1px;background:var(--border);margin:28px 0}
+
+  /* CAPSULA */
+  .capsule{background:var(--dark);color:#fff;border-left:4px solid var(--gold);padding:22px 24px;margin:24px 0;border-radius:0 var(--radius) var(--radius) 0}
+  .capsule-label{font-family:'Arial',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+  .capsule h3{color:#fff;margin:0 0 10px;font-size:17px}
+  .capsule p{color:#c8c0b0;font-size:15px;margin-bottom:8px}
+
+  /* CARDS GRID */
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:20px 0}
+  .card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:20px;position:relative}
+  .card-num{font-family:'Arial',sans-serif;font-size:28px;font-weight:700;color:var(--gold);display:block;line-height:1}
+  .card-label{font-family:'Arial',sans-serif;font-size:12px;color:var(--text3);margin-top:4px;display:block}
+  .card-desc{font-size:14px;color:var(--text2);margin-top:10px;line-height:1.55}
+  .card-tag{display:inline-block;font-family:'Arial',sans-serif;font-size:10px;letter-spacing:1px;background:var(--gold);color:#fff;padding:2px 8px;border-radius:20px;margin-bottom:8px}
+
+  /* STAT HIGHLIGHT */
+  .stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:20px 0}
+  .stat{background:var(--dark);color:#fff;padding:18px;border-radius:var(--radius);text-align:center}
+  .stat-n{font-family:'Arial',sans-serif;font-size:30px;font-weight:700;color:var(--gold);display:block}
+  .stat-t{font-family:'Arial',sans-serif;font-size:11px;color:#b0a898;margin-top:4px;display:block}
+
+  /* TIMELINE */
+  .timeline{position:relative;padding-left:28px;margin:20px 0}
+  .timeline::before{content:'';position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:var(--gold)}
+  .tl-item{position:relative;margin-bottom:24px}
+  .tl-dot{position:absolute;left:-24px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--gold);border:2px solid var(--bg)}
+  .tl-year{font-family:'Arial',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;color:var(--gold-dark);margin-bottom:4px}
+  .tl-text{font-size:15px;color:var(--text2)}
+
+  /* COMPARISON */
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}
+  .compare-col{padding:18px;border-radius:var(--radius);border:1px solid var(--border)}
+  .compare-col.pro{border-top:3px solid #3a9a5c;background:#f0faf4}
+  .compare-col.con{border-top:3px solid #c0392b;background:#fdf0f0}
+  .compare-title{font-family:'Arial',sans-serif;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px}
+  .compare-col.pro .compare-title{color:#2d7a48}
+  .compare-col.con .compare-title{color:#a02020}
+  .compare-item{font-size:14px;color:var(--text2);padding:5px 0;border-bottom:1px solid #e8e8e8;line-height:1.4}
+  .compare-item:last-child{border-bottom:none}
+
+  /* ECOSISTEMA ACTORES */
+  .actor-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:20px 0}
+  .actor{border-radius:var(--radius);padding:16px;border:1px solid var(--border);background:var(--bg2)}
+  .actor-icon{font-size:22px;margin-bottom:8px;display:block}
+  .actor-name{font-family:'Arial',sans-serif;font-size:13px;font-weight:700;color:var(--dark);margin-bottom:6px}
+  .actor-desc{font-size:13px;color:var(--text3);line-height:1.5}
+  .actor-ej{font-family:'Arial',sans-serif;font-size:11px;color:var(--gold-dark);margin-top:6px;font-style:italic}
+
+  /* AVISO */
+  .aviso{background:#fffbef;border:1px solid var(--gold-light);border-radius:var(--radius);padding:16px 20px;margin:18px 0;font-size:14px;color:#6b5010}
+  .aviso strong{color:#8a6820}
+
+  /* FUENTE */
+  .fuente{font-family:'Arial',sans-serif;font-size:11px;color:var(--text3);background:var(--bg3);padding:10px 14px;border-radius:6px;margin-top:10px}
+  .fuente a{color:var(--gold-dark);text-decoration:underline}
+
+  /* STARTUP TOOL */
+  .startup-wrap{background:var(--dark);border-radius:12px;overflow:hidden;margin-top:16px}
+  .startup-header{padding:22px 24px;border-bottom:2px solid var(--gold)}
+  .startup-header h3{color:var(--gold);font-size:19px;margin:0 0 4px}
+  .startup-header p{color:#b0a898;font-size:13px;font-family:'Arial',sans-serif;margin:0}
+  .startup-body{padding:24px}
+  .startup-step{display:none}
+  .startup-step.active{display:block}
+  .step-indicator{display:flex;gap:8px;margin-bottom:22px;flex-wrap:wrap}
+  .step-dot{width:8px;height:8px;border-radius:50%;background:#444;cursor:pointer;transition:all .2s}
+  .step-dot.done{background:var(--gold)}
+  .step-dot.current{background:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,.35)}
+  .step-label{font-family:'Arial',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+  .step-title{font-size:20px;color:#fff;margin-bottom:6px;font-weight:400}
+  .step-desc{font-size:14px;color:#b0a898;margin-bottom:18px;font-family:'Arial',sans-serif;line-height:1.6}
+  .step-question{font-size:16px;color:#fff;margin-bottom:12px;font-style:italic;border-left:3px solid var(--gold);padding-left:14px;line-height:1.5}
+  .step-sub{font-family:'Arial',sans-serif;font-size:12px;color:#888;margin-bottom:14px}
+  textarea,input[type=text]{width:100%;background:#111;border:1px solid #444;border-radius:8px;color:#fff;padding:12px 14px;font-family:'Georgia',serif;font-size:15px;line-height:1.6;resize:vertical;margin-bottom:8px;transition:border .2s}
+  textarea:focus,input[type=text]:focus{outline:none;border-color:var(--gold)}
+  .step-hint{font-family:'Arial',sans-serif;font-size:11px;color:#666;margin-bottom:18px;line-height:1.5}
+  .btn-row{display:flex;gap:10px;margin-top:8px;flex-wrap:wrap}
+  .btn{font-family:'Arial',sans-serif;font-size:13px;padding:10px 22px;border-radius:8px;cursor:pointer;transition:all .2s;border:none}
+  .btn-gold{background:var(--gold);color:#1a1a1a;font-weight:700}
+  .btn-gold:hover{background:var(--gold-light)}
+  .btn-outline{background:none;color:var(--gold);border:1px solid var(--gold)}
+  .btn-outline:hover{background:rgba(201,168,76,.1)}
+  .btn-ghost{background:none;color:#888;border:1px solid #444}
+  .btn-ghost:hover{border-color:#888;color:#ccc}
+  .progress-bar{height:3px;background:#333;border-radius:2px;margin-bottom:20px}
+  .progress-fill{height:100%;background:var(--gold);border-radius:2px;transition:width .4s}
+  
+  /* RESUMEN FINAL */
+  .summary-card{background:#111;border:1px solid #333;border-radius:10px;padding:20px;margin-bottom:14px}
+  .summary-card h4{font-family:'Arial',sans-serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+  .summary-card p{color:#c8c0b0;font-size:14px;line-height:1.6;font-family:'Arial',sans-serif;white-space:pre-wrap}
+  .hidden{display:none}
+
+  /* NOTA APA */
+  .apa{font-family:'Arial',sans-serif;font-size:12px;color:var(--text3);background:var(--bg3);border-left:3px solid var(--gold);padding:12px 16px;margin-top:16px;line-height:1.6}
+
+  @media(max-width:600px){
+    .hero-inner{padding:36px 20px 32px}
+    .compare{grid-template-columns:1fr}
+    .content{padding:0 16px 48px}
+    .tab{padding:12px 12px;font-size:11px}
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Emprendimiento e Innovación · Semana 3</div>
+    <div class="hero-bar"></div>
+    <h1 class="hero-title">El Emprendimiento en el Mundo<br><span>y en el Ecuador</span></h1>
+    <p class="hero-sub">Desde la teoría que ya conoces hasta el ecosistema real que te rodea. Esta semana conectamos ideas con acción: entiendes dónde estás parado, y empiezas a construir desde ahí.</p>
+    <div class="hero-meta">Contabilidad y Auditoría · Educación Virtual · 3 horas de trabajo</div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs-wrap">
+  <div class="tabs">
+    <button class="tab active" onclick="showTab('recap')">Cápsula resumen</button>
+    <button class="tab" onclick="showTab('mundial')">Mundo emprendedor</button>
+    <button class="tab" onclick="showTab('ecuador')">Ecuador hoy</button>
+    <button class="tab" onclick="showTab('actores')">¿Quiénes apoyan?</button>
+    <button class="tab" onclick="showTab('auditor')">Tú como auditor</button>
+    <button class="tab" onclick="showTab('startup')">Actividad Startup</button>
+    <button class="tab" onclick="showTab('referencias')">Referencias APA</button>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- PANEL 1: CÁPSULA RESUMEN -->
+  <div id="panel-recap" class="panel active">
+    <h2>Antes de avanzar: ¿qué ya sabemos?</h2>
+    <p class="lead">Las semanas 1 y 2 te mostraron de dónde vienen las palabras "emprender" e "innovar", quiénes son los grandes pensadores del tema, y qué tipo de emprendedor podrías ser tú. Aquí va un resumen rápido antes de ir al mundo real.</p>
+
+    <div class="capsule">
+      <div class="capsule-label">Cápsula · Semanas 1 y 2</div>
+      <h3>Lo que ya deberías saber</h3>
+      <p><strong style="color:var(--gold)">Emprender</strong> viene del latín <em>imprehendere</em>: tomar algo, lanzarse a algo. No es un concepto moderno. Los comerciantes medievales ya lo practicaban.</p>
+      <p><strong style="color:var(--gold)">Innovar</strong> viene del latín <em>innovare</em>: renovar, cambiar algo que ya existe. Innovar no es inventar de cero; es mejorar, adaptar o aplicar de forma diferente.</p>
+      <p><strong style="color:var(--gold)">Emprendimiento no es solo crear empresas.</strong> Es también crear proyectos sociales, mejorar procesos dentro de una organización ya existente, o proponer soluciones nuevas a problemas viejos.</p>
+    </div>
+
+    <h3>La cadena de conceptos que une todo</h3>
+    <p>Estos temas no están sueltos. Se conectan como eslabones:</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <span class="card-tag">Concepto base</span>
+        <span class="card-num">01</span>
+        <span class="card-label">Emprendedor</span>
+        <p class="card-desc">Persona que identifica una oportunidad y toma el riesgo de actuar sobre ella, con o sin recursos propios al inicio.</p>
+      </div>
+      <div class="card">
+        <span class="card-tag">Proceso</span>
+        <span class="card-num">02</span>
+        <span class="card-label">Emprendimiento</span>
+        <p class="card-desc">El proceso completo: desde que nace la idea, hasta que se convierte en algo concreto con valor para otras personas.</p>
+      </div>
+      <div class="card">
+        <span class="card-tag">Motor</span>
+        <span class="card-num">03</span>
+        <span class="card-label">Innovación</span>
+        <p class="card-desc">Lo que diferencia un emprendimiento ordinario de uno extraordinario. No siempre es tecnología; puede ser una forma nueva de hacer algo conocido.</p>
+      </div>
+      <div class="card">
+        <span class="card-tag">Contexto</span>
+        <span class="card-num">04</span>
+        <span class="card-label">Ecosistema</span>
+        <p class="card-desc">El ambiente que rodea al emprendedor: personas, instituciones, leyes, cultura, dinero disponible. Puede facilitar o frenar el emprendimiento.</p>
+      </div>
+    </div>
+
+    <div class="aviso">
+      <strong>¿Por qué importa esto para un estudiante de Contabilidad y Auditoría?</strong> Porque los auditores y contadores de hoy ya no solo "llevan libros". Son los primeros en ver si un negocio es viable, si las cuentas van bien, si hay riesgo financiero. Entender el ecosistema emprendedor te convierte en un profesional más valioso y más completo.
+    </div>
+
+    <div class="section-rule"></div>
+    <h4>Pensadores clave que ya conociste</h4>
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">Siglo XVIII — Richard Cantillon</div><div class="tl-text">Fue el primero en usar la palabra "emprendedor" en economía. Lo definió como quien compra a precio cierto y vende a precio incierto. Es decir: quien asume el riesgo.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">1911 — Joseph Schumpeter</div><div class="tl-text">Dijo que el emprendedor es el motor del capitalismo porque destruye lo viejo para crear algo nuevo. Llamó a esto "destrucción creativa". Ejemplo: Netflix destruyó los videoclubs.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">1970s — Peter Drucker</div><div class="tl-text">Popularizó la idea de que innovar no es solo inventar. Es identificar qué cambió en el entorno y aprovecharlo. "La innovación es el instrumento específico del espíritu emprendedor."</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">1983 — Howard Stevenson (Harvard)</div><div class="tl-text">Redefinió el emprendimiento como "la búsqueda de oportunidades más allá de los recursos que controlas en este momento". Es decir: no necesitas tener todo para empezar.</div></div>
+    </div>
+
+    <p style="margin-top:20px">Con ese mapa en la cabeza, ahora vamos al siguiente paso: ¿cómo está el emprendimiento en el mundo hoy?</p>
+  </div>
+
+  <!-- PANEL 2: MUNDO EMPRENDEDOR -->
+  <div id="panel-mundial" class="panel">
+    <h2>La situación mundial del emprendimiento</h2>
+    <p class="lead">El emprendimiento no es igual en todos los países ni en todos los momentos. Hay años buenos y años difíciles. Entender el panorama global te ayuda a leer mejor lo que pasa en tu propio país.</p>
+
+    <h4>El termómetro del emprendimiento: ¿qué es el GEM?</h4>
+    <p>Para saber cuánto se emprende en el mundo, existe un estudio llamado <strong>GEM</strong>, que significa <em>Global Entrepreneurship Monitor</em> (en español: Monitor Global del Emprendimiento). Es el estudio más grande y confiable del mundo sobre este tema.</p>
+    <p>Cada año, el GEM encuesta a más de 150.000 personas en más de 50 países, desde universitarios hasta adultos mayores, y pregunta: ¿estás emprendiendo? ¿tienes miedo de fracasar? ¿crees que hay oportunidades? Los resultados se publican en un informe que los gobiernos, universidades y empresas usan para tomar decisiones.</p>
+    <p>El GEM existe desde 1999. Ecuador participa oficialmente desde 2004. En Ecuador lo lideran la Universidad Técnica Particular de Loja (UTPL), la Universidad de Especialidades Espíritu Santo (UEES) y la Pontificia Universidad Católica del Ecuador sede Ibarra (PUCESI).</p>
+
+    <div class="fuente">Fuente verificada: GEM Global (2025). <em>GEM 2024/2025 Global Report: Entrepreneurship Reality Check.</em> London: GEM. Disponible en: <a href="https://www.gemconsortium.org/report" target="_blank">www.gemconsortium.org/report</a></div>
+
+    <div class="section-rule"></div>
+    <h4>¿Qué dice el GEM mundial 2024-2025?</h4>
+
+    <div class="stat-row">
+      <div class="stat">
+        <span class="stat-n">20%</span>
+        <span class="stat-t">de adultos en el mundo están involucrados en alguna actividad emprendedora</span>
+      </div>
+      <div class="stat">
+        <span class="stat-n">51</span>
+        <span class="stat-t">países participaron en el estudio GEM 2024 (más del 63% de la población mundial)</span>
+      </div>
+      <div class="stat">
+        <span class="stat-n">49%</span>
+        <span class="stat-t">de personas en el mundo tiene miedo de fracasar al emprender (subió del 44% en 2023)</span>
+      </div>
+      <div class="stat">
+        <span class="stat-n">43/51</span>
+        <span class="stat-t">países donde más del 40% de personas con buenas ideas NO emprenden por miedo al fracaso</span>
+      </div>
+    </div>
+
+    <div class="aviso">
+      <strong>Ojo con este dato:</strong> El miedo al fracaso está creciendo en todo el mundo. Antes (en 2019) afectaba a 34 de 50 países; en 2024 afecta a 43 de 51. Esto no significa que las personas sean más cobardes. Significa que el entorno económico global es más incierto y que falta más apoyo para quienes quieren emprender.
+    </div>
+
+    <div class="section-rule"></div>
+    <h4>Tres grandes tendencias que están cambiando el emprendimiento mundial</h4>
+
+    <div class="card-grid">
+      <div class="card">
+        <span class="card-tag">Tendencia 1</span>
+        <h3 style="font-size:16px;margin:10px 0 6px">Digitalización e inteligencia artificial</h3>
+        <p class="card-desc">Las nuevas tecnologías están creando negocios que antes eran imposibles. Una persona sola puede hoy tener una tienda que vende a todo el mundo, sin local físico. Sin embargo, también genera desigualdad: quien no tiene acceso a tecnología queda atrás.</p>
+      </div>
+      <div class="card">
+        <span class="card-tag">Tendencia 2</span>
+        <h3 style="font-size:16px;margin:10px 0 6px">Sostenibilidad y responsabilidad social</h3>
+        <p class="card-desc">El 35% de emprendedores a nivel mundial está alineando sus negocios con los Objetivos de Desarrollo Sostenible de la ONU. Ser emprendedor hoy implica pensar no solo en dinero, sino en el impacto que tu negocio tiene en las personas y el planeta.</p>
+      </div>
+      <div class="card">
+        <span class="card-tag">Tendencia 3</span>
+        <h3 style="font-size:16px;margin:10px 0 6px">Ecosistemas de apoyo y colaboración</h3>
+        <p class="card-desc">Los emprendedores ya no trabajan solos. Las incubadoras, aceleradoras, redes de mentores e inversores se están convirtiendo en piezas clave del éxito. El emprendimiento moderno es un deporte de equipo.</p>
+      </div>
+    </div>
+
+    <div class="fuente">Fuente: GEM (2025). GEM 2024/2025 Global Report. Disponible (resumen en español) en: <a href="https://www.entnerd.com/informe-gem-2024-2025-temor-al-fracaso-e-irrupcion-de-la-ia-entre-los-factores-en-la-caida-del-emprendimiento/" target="_blank">entnerd.com — análisis GEM 2024/2025</a></div>
+
+    <div class="section-rule"></div>
+    <h4>¿Quién lidera el emprendimiento en el mundo?</h4>
+    <p>Según el GEM 2024, los <strong>Emiratos Árabes Unidos</strong> encabezan el ranking global de actividad emprendedora entre los países de altos ingresos. En América Latina, los países con mayor actividad emprendedora inicial son consistentemente Ecuador, Chile y Colombia.</p>
+    <p>Un dato que te puede sorprender: los países con <em>más</em> emprendimiento no son siempre los más ricos. Muchas veces el emprendimiento surge de la necesidad. En países pobres o en desarrollo, la gente emprende porque no tiene otra opción de empleo. Esto se llama <strong>emprendimiento por necesidad</strong>, y es diferente al <strong>emprendimiento por oportunidad</strong>, donde alguien elige emprender porque vio una buena idea aunque tenga trabajo estable.</p>
+
+    <div class="compare" style="margin-top:18px">
+      <div class="compare-col pro">
+        <div class="compare-title">Emprendimiento por oportunidad</div>
+        <div class="compare-item">Nace de detectar una necesidad del mercado</div>
+        <div class="compare-item">El emprendedor elige emprender libremente</div>
+        <div class="compare-item">Mayor probabilidad de éxito a largo plazo</div>
+        <div class="compare-item">Más común en países desarrollados</div>
+        <div class="compare-item">Ejemplo: crear una app porque viste que hacía falta</div>
+      </div>
+      <div class="compare-col con">
+        <div class="compare-title">Emprendimiento por necesidad</div>
+        <div class="compare-item">Nace de la falta de empleo o ingresos</div>
+        <div class="compare-item">El emprendedor emprende porque no tiene otra salida</div>
+        <div class="compare-item">Mayor riesgo de abandono cuando aparece empleo formal</div>
+        <div class="compare-item">Más común en países en desarrollo</div>
+        <div class="compare-item">Ejemplo: poner un puesto de comida para sobrevivir</div>
+      </div>
+    </div>
+    <p style="margin-top:14px">Ambos tipos son válidos y respetables. Pero conocer la diferencia ayuda a entender por qué algunos negocios crecen y otros no: no es solo cuestión de esfuerzo, también es cuestión de contexto y motivación.</p>
+  </div>
+
+  <!-- PANEL 3: ECUADOR -->
+  <div id="panel-ecuador" class="panel">
+    <h2>El ecosistema emprendedor ecuatoriano</h2>
+    <p class="lead">Ecuador tiene algo que pocos países pueden presumir: es uno de los países con mayor actividad emprendedora de América Latina. Pero tener muchos emprendedores no es lo mismo que tener emprendimientos exitosos. Ahí está el desafío.</p>
+
+    <h4>Los datos más recientes: GEM Ecuador 2024</h4>
+    <p>El informe GEM Ecuador 2024, publicado en abril de 2025, fue elaborado por la UTPL, la UEES y la PUCESI. Aquí están sus hallazgos más importantes:</p>
+
+    <div class="stat-row">
+      <div class="stat">
+        <span class="stat-n">33,4%</span>
+        <span class="stat-t">TEA: Tasa de Actividad Emprendedora Temprana — la más alta de América Latina en 2024</span>
+      </div>
+      <div class="stat">
+        <span class="stat-n">83%</span>
+        <span class="stat-t">de emprendedores ecuatorianos cree tener las habilidades para iniciar un negocio</span>
+      </div>
+      <div class="stat">
+        <span class="stat-n">38%</span>
+        <span class="stat-t">intención de emprender en 2024 — bajó desde el 56% que había en 2023</span>
+      </div>
+      <div class="stat">
+        <span class="stat-n">40%</span>
+        <span class="stat-t">tiene miedo al fracaso — subió 2 puntos respecto al año anterior</span>
+      </div>
+    </div>
+
+    <div class="aviso">
+      <strong>¿Qué significa "TEA"?</strong> La Tasa de Actividad Emprendedora Temprana (TEA) mide qué porcentaje de adultos está iniciando o ya tiene un negocio de menos de 3 años y medio de antigüedad. Un 33,4% quiere decir que aproximadamente uno de cada tres adultos ecuatorianos está involucrado en un emprendimiento nuevo. Es un número altísimo para cualquier país.
+    </div>
+
+    <div class="fuente">Fuentes verificadas:<br>
+    • UEES, UTPL y PUCESI (2025). <em>Informe GEM Ecuador 2024.</em> Disponible en: <a href="https://uees.edu.ec/academia-presento-resultados-del-gem-2024-sobre-el-emprendimiento-en-ecuador/" target="_blank">uees.edu.ec — GEM Ecuador 2024</a><br>
+    • El Universo (30 abril 2025). Nota periodística del lanzamiento del informe: <a href="https://www.eluniverso.com/noticias/economia/emprendedores-actividad-global-entrepreneurship-monitor-gem-ecuador-2024-uess-utpl-ecuador-2025-nota/" target="_blank">eluniverso.com — GEM 2024 Ecuador</a>
+    </div>
+
+    <div class="section-rule"></div>
+    <h4>El gran problema: muchos arrancan, pocos se consolidan</h4>
+    <p>Ecuador tiene la TEA más alta de América Latina. Pero hay otro indicador que preocupa: la <strong>tasa de negocios establecidos</strong>, es decir, negocios que ya tienen más de 3 años y medio. Esa tasa bajó al <strong>13,26%</strong> en el informe GEM 2024, y otros datos del mismo período la sitúan incluso más baja.</p>
+    <p>Esto revela una brecha enorme: Ecuador tiene <em>muchos</em> emprendedores que arrancan, pero <em>pocos</em> que logran mantenerse. Es como una carrera donde casi todos salen corriendo, pero muy pocos llegan a la meta.</p>
+
+    <div class="compare">
+      <div class="compare-col pro">
+        <div class="compare-title">Fortalezas del ecosistema</div>
+        <div class="compare-item">TEA más alta de América Latina (33,4%)</div>
+        <div class="compare-item">83% cree tener habilidades para emprender</div>
+        <div class="compare-item">Creciente adopción de redes sociales para negocios (7 de 10 emprendedores)</div>
+        <div class="compare-item">Puesto 94 mundial y 7° en Latinoamérica en el índice StartupBlink</div>
+        <div class="compare-item">Cultura emprendedora arraigada en la población</div>
+        <div class="compare-item">Red creciente de universidades, incubadoras y aceleradoras</div>
+      </div>
+      <div class="compare-col con">
+        <div class="compare-title">Debilidades y desafíos</div>
+        <div class="compare-item">Tasa de negocios establecidos muy baja (13,26%)</div>
+        <div class="compare-item">Intención de emprender bajó 18 puntos en un año (de 56% a 38%)</div>
+        <div class="compare-item">Miedo al fracaso en aumento (40%)</div>
+        <div class="compare-item">Uso de herramientas digitales avanzadas por debajo del promedio regional</div>
+        <div class="compare-item">Acceso a financiamiento limitado y difícil</div>
+        <div class="compare-item">Brechas de género: menos mujeres logran escalar sus emprendimientos</div>
+      </div>
+    </div>
+
+    <div class="fuente">Fuente: Dialoguemos / UCuenca (septiembre 2025). Disponible en: <a href="https://dialoguemos.ec/2025/09/universidades-del-ecuador-reafirman-su-compromiso-con-la-investigacion-en-emprendimiento-a-traves-del-proyecto-gem-2025/" target="_blank">dialoguemos.ec — GEM 2025</a></div>
+
+    <div class="section-rule"></div>
+    <h4>¿Por qué fallan los emprendimientos en Ecuador?</h4>
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">Razón 1 — Falta de mercado</div><div class="tl-text">Muchos emprendedores crean algo sin verificar antes si alguien lo quiere comprar. El producto puede ser muy bueno, pero si no hay clientes suficientes dispuestos a pagar por él, el negocio no sobrevive.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">Razón 2 — Falta de capital (dinero)</div><div class="tl-text">En Ecuador es difícil conseguir préstamos para emprendimientos nuevos. Los bancos piden garantías que los emprendedores jóvenes no tienen. Sin dinero para crecer, muchos negocios se quedan pequeños o cierran.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">Razón 3 — Falta de gestión</div><div class="tl-text">Saber hacer algo (cocinar, coser, programar) no es lo mismo que saber administrar un negocio. Muchos emprendedores son expertos en su oficio pero no en contabilidad, marketing o manejo de personal.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">Razón 4 — Entorno inestable</div><div class="tl-text">La inseguridad jurídica, los cambios frecuentes en leyes tributarias, y la inestabilidad económica del Ecuador hacen más difícil planificar a largo plazo. Un emprendedor necesita cierta predictibilidad para invertir.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">Razón 5 — Poca innovación</div><div class="tl-text">Muchos emprendimientos ecuatorianos copian modelos ya existentes sin diferenciarse. Si diez personas venden lo mismo, nadie gana bien. La innovación —hacer algo diferente o mejor— es lo que permite sobresalir.</div></div>
+    </div>
+
+    <div class="fuente">Fuente: AEI Ecuador (2025). <em>Análisis del GEM y GEIAL 2023–2024.</em> Disponible en: <a href="https://www.aei.ec/analisis-del-gem-y-geial-2023-2024/" target="_blank">aei.ec — análisis ecosistema emprendedor</a></div>
+  </div>
+
+  <!-- PANEL 4: ACTORES -->
+  <div id="panel-actores" class="panel">
+    <h2>¿Quiénes forman el ecosistema emprendedor?</h2>
+    <p class="lead">Un ecosistema emprendedor no es solo el emprendedor con su idea. Es todo lo que lo rodea: las personas, las instituciones, las reglas, los recursos. Como un árbol que necesita suelo, agua, luz y aire, un emprendimiento necesita varios apoyos para crecer.</p>
+
+    <h4>Los actores del ecosistema en Ecuador</h4>
+    <div class="actor-grid">
+      <div class="actor">
+        <span class="actor-icon">🎓</span>
+        <div class="actor-name">Universidades</div>
+        <p class="actor-desc">Forman emprendedores, investigan el ecosistema y crean incubadoras y centros de emprendimiento.</p>
+        <p class="actor-ej">Ejemplos en Ecuador: ESPOL (Centro de Emprendimiento EMPRENDO), UTPL, UEES, PUCE, U. de Cuenca</p>
+      </div>
+      <div class="actor">
+        <span class="actor-icon">🏛️</span>
+        <div class="actor-name">Gobierno</div>
+        <p class="actor-desc">Crea leyes, políticas y programas para facilitar o dificultar el emprendimiento. También financia algunos proyectos.</p>
+        <p class="actor-ej">Ejemplos: Ministerio de Producción, Ministerio de Economía, municipios con programas locales</p>
+      </div>
+      <div class="actor">
+        <span class="actor-icon">🏦</span>
+        <div class="actor-name">Sistema financiero</div>
+        <p class="actor-desc">Bancos, cooperativas y fondos de inversión que pueden (o no) prestar dinero a emprendimientos.</p>
+        <p class="actor-ej">En Ecuador: Banco Nacional de Fomento, BanEcuador, cooperativas de ahorro, capital de riesgo privado</p>
+      </div>
+      <div class="actor">
+        <span class="actor-icon">💼</span>
+        <div class="actor-name">Sector privado</div>
+        <p class="actor-desc">Empresas grandes que pueden ser clientes, socios o inversores de emprendimientos pequeños.</p>
+        <p class="actor-ej">Cámaras de comercio, gremios empresariales, empresas ancla que compran a proveedores locales</p>
+      </div>
+      <div class="actor">
+        <span class="actor-icon">🚀</span>
+        <div class="actor-name">Incubadoras y aceleradoras</div>
+        <p class="actor-desc">Una <strong>incubadora</strong> ayuda a un emprendimiento en sus primeras etapas: lo orienta, le da espacio y contactos. Una <strong>aceleradora</strong> toma un negocio que ya funciona y lo ayuda a crecer rápido.</p>
+        <p class="actor-ej">Ejemplos: Centro Eureka (Guayaquil), EMPRENDO (ESPOL), Impaqto</p>
+      </div>
+      <div class="actor">
+        <span class="actor-icon">👥</span>
+        <div class="actor-name">Comunidad emprendedora</div>
+        <p class="actor-desc">Otros emprendedores, mentores y redes de apoyo. En el mundo actual, la comunidad puede ser tan importante como el dinero.</p>
+        <p class="actor-ej">Grupos locales de emprendimiento, eventos como Startup Weekend, redes de exalumnos</p>
+      </div>
+      <div class="actor">
+        <span class="actor-icon">📊</span>
+        <div class="actor-name">Alianza para el Emprendimiento e Innovación (AEI)</div>
+        <p class="actor-desc">Organización ecuatoriana que une al sector público, privado y académico para mejorar las condiciones del ecosistema emprendedor del país.</p>
+        <p class="actor-ej">Sitio web: <a href="https://www.aei.ec" target="_blank" style="color:var(--gold-dark)">www.aei.ec</a></p>
+      </div>
+      <div class="actor">
+        <span class="actor-icon">🌐</span>
+        <div class="actor-name">StartupBlink</div>
+        <p class="actor-desc">Organización internacional que mapea y clasifica los ecosistemas de startups del mundo. Ecuador ocupa el puesto 94 mundial y el 7° en América Latina.</p>
+        <p class="actor-ej">Mapa global: <a href="https://www.startupblink.com" target="_blank" style="color:var(--gold-dark)">www.startupblink.com</a></p>
+      </div>
+    </div>
+
+    <div class="fuente">Fuente: Equinoccio Digital (2025). <em>Ecuador: tecnología y emprendimiento, claves para un futuro sostenible.</em> Disponible en: <a href="https://equinocciodigital.com/ecuador-tecnologia-emprendimiento-transformacion-digital-2025/" target="_blank">equinocciodigital.com</a></div>
+
+    <div class="section-rule"></div>
+    <h4>El ciclo virtuoso del ecosistema</h4>
+    <p>Cuando todos estos actores funcionan bien juntos, crean un círculo positivo: las universidades forman emprendedores, el gobierno crea condiciones favorables, el sistema financiero presta dinero, las incubadoras orientan, las empresas compran y contratan, la comunidad apoya. El resultado: más negocios exitosos, más empleo, más impuestos, y con eso más recursos para volver a invertir en educación.</p>
+    <p>Cuando uno o varios de estos actores falla, el círculo se rompe. En Ecuador, el eslabón más débil históricamente ha sido el acceso al financiamiento y la estabilidad del entorno legal y económico.</p>
+  </div>
+
+  <!-- PANEL 5: AUDITOR -->
+  <div id="panel-auditor" class="panel">
+    <h2>Tú, como futuro auditor o contador, en este ecosistema</h2>
+    <p class="lead">Quizás te preguntes: "¿Para qué necesito saber de emprendimiento si yo voy a ser contador o auditor?" La respuesta es más clara de lo que crees.</p>
+
+    <div class="capsule">
+      <div class="capsule-label">Reflexión profesional</div>
+      <h3>El auditor ya no es solo el que revisa números</h3>
+      <p>El auditor moderno es un aliado estratégico del emprendedor. Antes de que un negocio pida un préstamo, antes de que un inversionista ponga dinero, antes de que el gobierno otorgue un permiso: alguien tiene que verificar que las cuentas están bien y que el negocio es viable. Ese alguien eres tú.</p>
+    </div>
+
+    <h4>Roles concretos del contador/auditor en el ecosistema emprendedor</h4>
+
+    <div class="card-grid">
+      <div class="card">
+        <h3 style="font-size:15px;margin-bottom:8px">Asesor financiero inicial</h3>
+        <p class="card-desc">Muchos emprendedores no saben cuánto cuesta realmente montar su negocio, ni cuándo empezarán a ganar. Tú puedes hacer esas proyecciones y ayudarlos a no quedarse sin dinero en los primeros meses.</p>
+      </div>
+      <div class="card">
+        <h3 style="font-size:15px;margin-bottom:8px">Auditor de viabilidad</h3>
+        <p class="card-desc">Antes de que un banco o inversionista preste dinero a un emprendimiento, quiere saber si el negocio es sólido. Un auditor revisa los números y da una opinión independiente sobre si el emprendimiento es creíble.</p>
+      </div>
+      <div class="card">
+        <h3 style="font-size:15px;margin-bottom:8px">Detector de fraude interno</h3>
+        <p class="card-desc">Los emprendimientos crecen rápido y a veces sin controles. Ahí pueden aparecer malversaciones, errores contables o fraudes. El auditor forense (una especialidad de la auditoría) investiga exactamente eso.</p>
+      </div>
+      <div class="card">
+        <h3 style="font-size:15px;margin-bottom:8px">Cumplimiento tributario</h3>
+        <p class="card-desc">En Ecuador, el SRI (Servicio de Rentas Internas) exige que los negocios declaren correctamente sus impuestos. Un error puede costar multas enormes. El contador es quien protege al emprendedor de esos riesgos.</p>
+      </div>
+    </div>
+
+    <div class="aviso">
+      <strong>Dato para reflexionar:</strong> Según el GEM Ecuador 2024, una de las principales razones por las que los emprendimientos fracasan es la falta de gestión financiera adecuada. Tú, como futuro profesional de contabilidad o auditoría, puedes ser exactamente la persona que le falta a muchos emprendedores para no caer en ese error.
+    </div>
+
+    <div class="section-rule"></div>
+    <h4>¿Y si tú mismo quisieras emprender?</h4>
+    <p>Tienes una ventaja enorme frente a otros emprendedores: ya sabes (o aprenderás) a leer estados financieros, a calcular costos, a entender impuestos, a detectar irregularidades. Eso no lo sabe cualquiera que tiene una idea de negocio.</p>
+    <p>El contador emprendedor, o el emprendedor con formación contable, toma mejores decisiones financieras y comete menos errores en las etapas críticas de un negocio. Considera esa formación como un activo, no solo como un título.</p>
+  </div>
+
+  <!-- PANEL 6: STARTUP TOOL -->
+  <div id="panel-startup" class="panel">
+    <div class="startup-wrap">
+      <div class="startup-header">
+        <h3>Taller Startup — Primera Hora de Trabajo</h3>
+        <p>Esta actividad te lleva paso a paso para que definas la semilla de un emprendimiento o una innovación posible. No es necesario que sea perfecta: es necesario que sea tuya. Puedes guardarlo o exportarlo al finalizar.</p>
+      </div>
+      <div class="startup-body">
+        <div class="progress-bar"><div class="progress-fill" id="progBar" style="width:12.5%"></div></div>
+        <div class="step-indicator" id="stepDots"></div>
+
+        <!-- PASO 1 -->
+        <div class="startup-step active" id="step-1">
+          <div class="step-label">Paso 1 de 8 · Punto de partida</div>
+          <div class="step-title">¿Qué te molesta?</div>
+          <div class="step-desc">Todo emprendimiento comienza con un problema real que alguien vive. Antes de pensar en negocios o dinero, piensa en lo que te frustra, lo que ves que no funciona, lo que hace falta.</div>
+          <div class="step-question">"¿Qué problema, necesidad o incomodidad has notado en tu comunidad, trabajo, familia o entorno que nadie ha resuelto bien todavía?"</div>
+          <div class="step-sub">No tiene que ser algo grande ni tecnológico. Puede ser algo cotidiano y simple.</div>
+          <textarea id="r1" rows="4" placeholder="Escribe aquí el problema que identificas..."></textarea>
+          <div class="step-hint">Ejemplo: "En mi barrio no hay un lugar donde llevar la ropa a reparar. La gente tiene que ir al centro o simplemente bota la ropa rota."</div>
+          <div class="btn-row"><button class="btn btn-gold" onclick="nextStep(2)">Continuar →</button></div>
+        </div>
+
+        <!-- PASO 2 -->
+        <div class="startup-step" id="step-2">
+          <div class="step-label">Paso 2 de 8 · ¿A quién afecta?</div>
+          <div class="step-title">Define a las personas afectadas</div>
+          <div class="step-desc">Un negocio sin clientes no es un negocio. Antes de saber qué vas a vender, debes saber <em>a quién</em> le interesa lo que ofreces y por qué les importa.</div>
+          <div class="step-question">"¿Quiénes son las personas que sufren el problema que identificaste? ¿Cuántos podrían ser? ¿Qué tienen en común?"</div>
+          <div class="step-sub">Intenta ser específico: no digas "todo el mundo". Describe a esa persona concreta.</div>
+          <textarea id="r2" rows="4" placeholder="Describe quiénes son las personas afectadas..."></textarea>
+          <div class="step-hint">Ejemplo: "Madres de familia de clase media-baja, entre 30 y 50 años, que valoran el ahorro y no quieren botar la ropa pero no saben coser."</div>
+          <div class="btn-row"><button class="btn btn-gold" onclick="nextStep(3)">Continuar →</button><button class="btn btn-ghost" onclick="nextStep(1)">← Atrás</button></div>
+        </div>
+
+        <!-- PASO 3 -->
+        <div class="startup-step" id="step-3">
+          <div class="step-label">Paso 3 de 8 · Tu propuesta</div>
+          <div class="step-title">¿Qué propones como solución?</div>
+          <div class="step-desc">Ahora describe tu idea de solución. No tiene que ser perfecta ni definitiva. Puede ser un producto, un servicio, una app, un proceso diferente, o incluso una forma nueva de hacer algo que ya existe.</div>
+          <div class="step-question">"¿Qué ofrecerías para resolver ese problema? Descríbelo en términos simples, como si se lo explicaras a un familiar."</div>
+          <div class="step-sub">No uses lenguaje técnico. Si no puedes explicarlo simple, aún no está del todo claro.</div>
+          <textarea id="r3" rows="4" placeholder="Describe tu idea de solución..."></textarea>
+          <div class="step-hint">Ejemplo: "Un servicio de costura y reparación a domicilio o con punto de recepción en el barrio, con WhatsApp para coordinar y precios bajos."</div>
+          <div class="btn-row"><button class="btn btn-gold" onclick="nextStep(4)">Continuar →</button><button class="btn btn-ghost" onclick="nextStep(2)">← Atrás</button></div>
+        </div>
+
+        <!-- PASO 4 -->
+        <div class="startup-step" id="step-4">
+          <div class="step-label">Paso 4 de 8 · ¿Por qué tú?</div>
+          <div class="step-title">Tu ventaja o diferencia</div>
+          <div class="step-desc">¿Por qué alguien escogería tu solución y no la de otro? En el mundo de los negocios esto se llama <strong>propuesta de valor diferencial</strong>: lo que te hace distinto o mejor.</div>
+          <div class="step-question">"¿Qué tiene tu propuesta que no tienen las soluciones actuales? ¿Qué sabes, conoces o puedes hacer tú que otros no pueden?"</div>
+          <div class="step-sub">Puede ser la velocidad, el precio, la cercanía, la confianza, la calidad, la personalización… No tiene que ser tecnología.</div>
+          <textarea id="r4" rows="4" placeholder="¿Cuál es tu ventaja o diferencia?"></textarea>
+          <div class="step-hint">Ejemplo: "Conozco el barrio, la gente me conoce a mí, y soy contador, entonces puedo llevar bien los costos y ofrecer precios justos sin perder dinero."</div>
+          <div class="btn-row"><button class="btn btn-gold" onclick="nextStep(5)">Continuar →</button><button class="btn btn-ghost" onclick="nextStep(3)">← Atrás</button></div>
+        </div>
+
+        <!-- PASO 5 -->
+        <div class="startup-step" id="step-5">
+          <div class="step-label">Paso 5 de 8 · El dinero</div>
+          <div class="step-title">¿Cómo generaría ingresos?</div>
+          <div class="step-desc">Un emprendimiento necesita ser sostenible económicamente. Esto no significa que sea malo o mercantil: significa que para seguir ayudando a otras personas, primero tienes que poder pagar tus propios gastos.</div>
+          <div class="step-question">"¿Cómo obtendría dinero este negocio o proyecto? ¿Quién paga, cuánto, cuándo y por qué estaría dispuesto a pagar?"</div>
+          <div class="step-sub">Piensa en el precio que cobrarías y en si eso alcanza para cubrir tus gastos y ganarte algo.</div>
+          <textarea id="r5" rows="4" placeholder="¿Cómo generaría ingresos tu emprendimiento?"></textarea>
+          <div class="step-hint">Ejemplo: "Cobraría $5 por arreglos básicos (botones, costuras) y $15 por arreglos más complejos. Si atiendo 10 clientes a la semana, genero $70 a $150 semanales."</div>
+          <div class="btn-row"><button class="btn btn-gold" onclick="nextStep(6)">Continuar →</button><button class="btn btn-ghost" onclick="nextStep(4)">← Atrás</button></div>
+        </div>
+
+        <!-- PASO 6 -->
+        <div class="startup-step" id="step-6">
+          <div class="step-label">Paso 6 de 8 · Los riesgos</div>
+          <div class="step-title">¿Qué podría salir mal?</div>
+          <div class="step-desc">Todo emprendimiento tiene riesgos. Reconocerlos no significa ser negativo: significa ser inteligente. El auditor y el contador son expertos precisamente en identificar y gestionar riesgos.</div>
+          <div class="step-question">"¿Cuáles son los tres principales riesgos o problemas que podrías enfrentar al poner en marcha tu idea?"</div>
+          <div class="step-sub">Piensa en riesgos financieros (falta de dinero), de mercado (que nadie compre), operativos (que no puedas cumplir), o del entorno (competencia, leyes, etc.).</div>
+          <textarea id="r6" rows="4" placeholder="Describe los principales riesgos..."></textarea>
+          <div class="step-hint">Ejemplo: "1. Que los vecinos no confíen al inicio. 2. Que llegue una empresa grande de lavandería. 3. Que no tenga suficiente capital para comprar máquinas al inicio."</div>
+          <div class="btn-row"><button class="btn btn-gold" onclick="nextStep(7)">Continuar →</button><button class="btn btn-ghost" onclick="nextStep(5)">← Atrás</button></div>
+        </div>
+
+        <!-- PASO 7 -->
+        <div class="startup-step" id="step-7">
+          <div class="step-label">Paso 7 de 8 · ¿Es emprendimiento o innovación?</div>
+          <div class="step-title">Clasifica tu idea</div>
+          <div class="step-desc">Recuerda la diferencia entre emprendimiento e innovación. Un nuevo negocio puede ser emprendimiento sin ser innovación (si hace lo mismo que ya existe). Pero si introduces algo nuevo o diferente, es ambos.</div>
+          <div class="step-question">"¿Tu idea es principalmente un emprendimiento nuevo, una innovación sobre algo que ya existe, o una combinación de ambas? ¿Por qué?"</div>
+          <div class="step-sub">No hay una respuesta "correcta". Lo importante es que puedas justificarlo.</div>
+          <textarea id="r7" rows="4" placeholder="Clasifica y justifica tu idea..."></textarea>
+          <div class="step-hint">Ejemplo: "Es una combinación: el servicio de costura ya existe (emprendimiento), pero usar WhatsApp para coordinar y ofrecer recogida a domicilio en el barrio es una innovación en la forma de entregarlo."</div>
+          <div class="btn-row"><button class="btn btn-gold" onclick="nextStep(8)">Continuar →</button><button class="btn btn-ghost" onclick="nextStep(6)">← Atrás</button></div>
+        </div>
+
+        <!-- PASO 8 -->
+        <div class="startup-step" id="step-8">
+          <div class="step-label">Paso 8 de 8 · El primer paso real</div>
+          <div class="step-title">¿Qué harías esta semana?</div>
+          <div class="step-desc">La diferencia entre una idea y un emprendimiento es la acción. No hace falta hacer todo de una vez: hace falta dar un primer paso concreto. El más pequeño posible, pero real.</div>
+          <div class="step-question">"Si tuvieras que hacer <em>una sola cosa esta semana</em> para acercarte a hacer realidad tu idea, ¿qué sería? ¿A quién hablarías? ¿Qué investigarías? ¿Qué probarías?"</div>
+          <div class="step-sub">Sé específico. "Investigar más" no cuenta. "Hablar con tres vecinos el sábado" sí cuenta.</div>
+          <textarea id="r8" rows="4" placeholder="¿Cuál es tu primer paso concreto esta semana?"></textarea>
+          <div class="step-hint">Ejemplo: "Esta semana le preguntaría a diez personas de mi barrio si estarían dispuestas a pagar por reparación de ropa y cuánto pagarían."</div>
+          <div class="btn-row"><button class="btn btn-gold" onclick="showSummary()">Ver mi resumen completo →</button><button class="btn btn-ghost" onclick="nextStep(7)">← Atrás</button></div>
+        </div>
+
+        <!-- RESUMEN -->
+        <div id="summary" class="hidden">
+          <div class="step-label" style="margin-bottom:16px">Tu Startup Canvas — Resumen personal</div>
+          <div id="summaryCards"></div>
+          <div style="margin-top:20px">
+            <p style="color:#b0a898;font-family:'Arial',sans-serif;font-size:13px;margin-bottom:14px">Guarda este resumen copiándolo o tomando una captura de pantalla. En las próximas semanas lo iremos completando y refinando.</p>
+            <div class="btn-row">
+              <button class="btn btn-outline" onclick="copyAll()">Copiar todo el texto</button>
+              <button class="btn btn-ghost" onclick="resetTool()">Volver a empezar</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL 7: REFERENCIAS -->
+  <div id="panel-referencias" class="panel">
+    <h2>Referencias bibliográficas</h2>
+    <p class="lead">Todas las fuentes utilizadas en este material están citadas en formato APA 7, el estándar académico que usamos en esta materia. Aprende a leerlas: son la forma en que los académicos le dicen al mundo de dónde viene la información.</p>
+
+    <h4>¿Cómo leer una cita APA 7?</h4>
+    <p>Una referencia en formato APA tiene siempre este orden: <strong>Quién escribió → Cuándo → Qué dice → Dónde se puede encontrar.</strong></p>
+
+    <div class="section-rule"></div>
+    <h4>Referencias del material de esta semana</h4>
+
+    <div class="apa">
+      GEM (Global Entrepreneurship Monitor). (2025). <em>GEM 2024/2025 Global Report: Entrepreneurship Reality Check.</em> Global Entrepreneurship Research Association. https://www.gemconsortium.org/report
+    </div>
+
+    <div class="apa">
+      Universidad de Especialidades Espíritu Santo (UEES), Universidad Técnica Particular de Loja (UTPL), y Pontificia Universidad Católica del Ecuador sede Ibarra (PUCESI). (2025). <em>Informe GEM Ecuador 2024: resultados del ecosistema emprendedor ecuatoriano.</em> UEES. https://uees.edu.ec/academia-presento-resultados-del-gem-2024-sobre-el-emprendimiento-en-ecuador/
+    </div>
+
+    <div class="apa">
+      Alianza para el Emprendimiento e Innovación del Ecuador (AEI). (2025). <em>Análisis del GEM y GEIAL 2023-2024: desafíos y oportunidades del ecosistema emprendedor ecuatoriano.</em> AEI. https://www.aei.ec/analisis-del-gem-y-geial-2023-2024/
+    </div>
+
+    <div class="apa">
+      Universidad de Cuenca (UCuenca). (2025, septiembre). Universidades del Ecuador firman convenio del Proyecto GEM 2025. <em>Noticias UCuenca.</em> https://www.ucuenca.edu.ec/noticias/universidades-del-ecuador-firman-convenio-del-proyecto-gem-2025/
+    </div>
+
+    <div class="apa">
+      El Universo. (2025, 30 de abril). Tasa de emprendimientos tempranos en Ecuador sigue siendo alta a pesar de que la intención de emprender cayó 18% y miedo al fracaso creció 2%. <em>El Universo — Economía.</em> https://www.eluniverso.com/noticias/economia/emprendedores-actividad-global-entrepreneurship-monitor-gem-ecuador-2024-uess-utpl-ecuador-2025-nota/
+    </div>
+
+    <div class="apa">
+      Equinoccio Digital. (2025, mayo). Ecuador se transforma: tecnología y emprendimiento, claves para un futuro sostenible. <em>Equinoccio Digital.</em> https://equinocciodigital.com/ecuador-tecnologia-emprendimiento-transformacion-digital-2025/
+    </div>
+
+    <div class="apa">
+      Tecnológico de Monterrey. (2025, marzo). Con participación Tec, publican reporte global de emprendimiento 2024. <em>Conecta — Tec de Monterrey.</em> https://conecta.tec.mx/es/noticias/nacional/emprendedores/con-participacion-tec-publican-reporte-global-de-emprendimiento
+    </div>
+
+    <div class="section-rule"></div>
+    <h4>Referencias teóricas base (semanas anteriores)</h4>
+
+    <div class="apa">
+      Cantillon, R. (1755). <em>Essai sur la nature du commerce en général.</em> Fletcher Gyles. (Obra clásica; edición moderna disponible a través de colecciones digitales universitarias.)
+    </div>
+
+    <div class="apa">
+      Schumpeter, J. A. (1934). <em>The theory of economic development: An inquiry into profits, capital, credit, interest, and the business cycle.</em> Harvard University Press. (Publicación original en alemán: 1911.)
+    </div>
+
+    <div class="apa">
+      Drucker, P. F. (1985). <em>Innovation and entrepreneurship: Practice and principles.</em> Harper & Row.
+    </div>
+
+    <div class="apa">
+      Stevenson, H. H., y Jarillo, J. C. (1990). A paradigm of entrepreneurship: Entrepreneurial management. <em>Strategic Management Journal, 11</em>(Número especial verano), 17–27. https://doi.org/10.1002/smj.4250110 (Artículo originalmente presentado en la Harvard Business School, 1983.)
+    </div>
+  </div>
+
+</div><!-- /content -->
+
+<script>
+  // TABS
+  function showTab(id) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('panel-'+id).classList.add('active');
+    event.currentTarget.classList.add('active');
+    window.scrollTo(0,0);
+  }
+
+  // STARTUP STEPS
+  var totalSteps = 8;
+  var currentStep = 1;
+
+  function buildDots(){
+    var c = document.getElementById('stepDots');
+    c.innerHTML='';
+    for(var i=1;i<=totalSteps;i++){
+      var d=document.createElement('div');
+      d.className='step-dot'+(i<currentStep?' done':i===currentStep?' current':'');
+      (function(step){d.onclick=function(){if(step<=currentStep)nextStep(step);};})(i);
+      c.appendChild(d);
+    }
+  }
+
+  function nextStep(n){
+    document.getElementById('step-'+currentStep).classList.remove('active');
+    currentStep=n;
+    document.getElementById('step-'+n).classList.add('active');
+    document.getElementById('progBar').style.width=(n/totalSteps*100)+'%';
+    buildDots();
+    document.getElementById('summary').classList.add('hidden');
+  }
+
+  function showSummary(){
+    document.getElementById('step-8').classList.remove('active');
+    document.getElementById('progBar').style.width='100%';
+    var labels=['El problema que identificaste','Las personas afectadas','Tu solución propuesta','Tu ventaja o diferencia','¿Cómo genera ingresos?','Riesgos principales','¿Emprendimiento, innovación o ambos?','Tu primer paso esta semana'];
+    var ids=['r1','r2','r3','r4','r5','r6','r7','r8'];
+    var html='';
+    for(var i=0;i<8;i++){
+      var val=document.getElementById(ids[i]).value.trim()||'(Sin respuesta)';
+      html+='<div class="summary-card"><h4>'+(i+1)+'. '+labels[i]+'</h4><p>'+val+'</p></div>';
+    }
+    document.getElementById('summaryCards').innerHTML=html;
+    document.getElementById('summary').classList.remove('hidden');
+    buildDots();
+  }
+
+  function copyAll(){
+    var labels=['El problema que identificaste','Las personas afectadas','Tu solución propuesta','Tu ventaja o diferencia','¿Cómo genera ingresos?','Riesgos principales','¿Emprendimiento, innovación o ambos?','Tu primer paso esta semana'];
+    var ids=['r1','r2','r3','r4','r5','r6','r7','r8'];
+    var txt='MI STARTUP CANVAS — SEMANA 3\n\n';
+    for(var i=0;i<8;i++){
+      var val=document.getElementById(ids[i]).value.trim()||'(Sin respuesta)';
+      txt+=(i+1)+'. '+labels[i]+'\n'+val+'\n\n';
+    }
+    navigator.clipboard.writeText(txt).then(function(){alert('Texto copiado. Pégalo en un documento Word o en tus notas.');});
+  }
+
+  function resetTool(){
+    if(!confirm('¿Seguro que quieres borrar todo y empezar de nuevo?'))return;
+    ['r1','r2','r3','r4','r5','r6','r7','r8'].forEach(function(id){document.getElementById(id).value='';});
+    nextStep(1);
+    document.getElementById('summary').classList.add('hidden');
+    document.getElementById('step-1').classList.add('active');
+  }
+
+  buildDots();
+</script>
+</body>
+</html>

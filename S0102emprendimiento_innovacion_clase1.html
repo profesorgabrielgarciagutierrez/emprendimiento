@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --gold:#C9A84C;--gold-light:#F2D98A;--dark:#1A1A2E;--dark2:#16213E;
+    --accent:#E94560;--teal:#0F3460;--white:#F8F6F0;
+    --text-main:#1A1A2E;--text-muted:#5A5A7A;--text-light:#8A8AA0;
+    --border:#E2DDD5;--card-bg:#FFFFFF;--section-bg:#FAF9F6;
+  }
+  @media(prefers-color-scheme:dark){
+    :root{
+      --text-main:#F0EDE4;--text-muted:#A8A5B8;--text-light:#6A6A8A;
+      --border:#2A2A4A;--card-bg:#1E1E38;--section-bg:#16162E;--white:#F0EDE4;
+    }
+  }
+
+  body{
+    font-family:'Georgia',serif;
+    color:var(--text-main);
+    background:transparent;
+    line-height:1.75;
+    font-size:16px;
+  }
+
+  /* HERO */
+  .hero{
+    background:linear-gradient(135deg,#0F3460 0%,#1A1A2E 50%,#16213E 100%);
+    padding:3rem 2rem 2.5rem;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(ellipse at 30% 50%,rgba(201,168,76,0.15) 0%,transparent 60%),
+               radial-gradient(ellipse at 70% 30%,rgba(233,69,96,0.1) 0%,transparent 50%);
+  }
+  .hero-eyebrow{
+    font-family:'Georgia',serif;
+    color:var(--gold);letter-spacing:.25em;font-size:.75rem;
+    text-transform:uppercase;margin-bottom:.75rem;position:relative;
+  }
+  .hero-title{
+    font-size:2.6rem;font-weight:700;color:#F8F6F0;
+    line-height:1.15;margin-bottom:.5rem;position:relative;
+  }
+  .hero-title span{color:var(--gold);}
+  .hero-sub{
+    font-size:1.05rem;color:rgba(248,246,240,0.7);
+    font-style:italic;margin-bottom:1.5rem;position:relative;
+  }
+  .hero-meta{
+    display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;position:relative;
+  }
+  .hero-badge{
+    background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.4);
+    color:var(--gold-light);font-size:.78rem;padding:.3rem .85rem;border-radius:20px;
+    font-family:sans-serif;letter-spacing:.05em;
+  }
+
+  /* NAV TABS */
+  .nav-tabs{
+    display:flex;overflow-x:auto;background:var(--section-bg);
+    border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;
+    scrollbar-width:none;
+  }
+  .nav-tabs::-webkit-scrollbar{display:none;}
+  .tab-btn{
+    flex-shrink:0;padding:.75rem 1.25rem;font-size:.82rem;font-family:sans-serif;
+    letter-spacing:.05em;color:var(--text-muted);background:none;border:none;
+    cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;
+    white-space:nowrap;font-weight:500;
+  }
+  .tab-btn.active{color:var(--gold);border-bottom-color:var(--gold);}
+  .tab-btn:hover:not(.active){color:var(--text-main);}
+
+  /* SECTIONS */
+  .section{display:none;padding:2rem 1.5rem 3rem;max-width:900px;margin:0 auto;}
+  .section.active{display:block;}
+
+  /* TYPOGRAPHY */
+  .section-title{
+    font-size:1.6rem;font-weight:700;color:var(--text-main);
+    margin-bottom:.25rem;line-height:1.2;
+  }
+  .section-title span{color:var(--gold);}
+  .section-eyebrow{
+    font-family:sans-serif;font-size:.72rem;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;
+  }
+  .divider{
+    width:48px;height:2px;background:var(--gold);margin:1rem 0 1.5rem;
+  }
+  p{margin-bottom:1rem;color:var(--text-main);line-height:1.8;}
+  .lead{font-size:1.1rem;font-style:italic;color:var(--text-muted);margin-bottom:1.5rem;}
+
+  /* QUOTE */
+  .blockquote{
+    border-left:3px solid var(--gold);padding:1rem 1.5rem;
+    margin:1.5rem 0;background:var(--section-bg);border-radius:0 8px 8px 0;
+  }
+  .blockquote p{font-style:italic;font-size:1.05rem;margin:0 0 .5rem;}
+  .blockquote cite{font-size:.82rem;font-family:sans-serif;color:var(--text-muted);}
+
+  /* ETYMOLOGY BOX */
+  .etym-box{
+    background:var(--dark);color:#F0EDE4;
+    border-radius:12px;padding:1.5rem;margin:1.5rem 0;
+    border:1px solid rgba(201,168,76,0.3);
+  }
+  .etym-box h4{color:var(--gold);font-family:sans-serif;font-size:.82rem;
+    letter-spacing:.15em;text-transform:uppercase;margin-bottom:1rem;}
+  .etym-root{
+    display:flex;align-items:center;gap:1rem;flex-wrap:wrap;
+    font-size:1rem;
+  }
+  .etym-word{
+    font-size:1.4rem;font-weight:700;color:var(--gold-light);
+    font-family:'Georgia',serif;
+  }
+  .etym-arrow{color:rgba(240,237,228,0.4);font-size:1.2rem;}
+  .etym-meaning{color:rgba(240,237,228,0.8);font-size:.9rem;}
+
+  /* TIMELINE */
+  .timeline{position:relative;margin:2rem 0;padding-left:0;}
+  .timeline::before{
+    content:'';position:absolute;left:20px;top:0;bottom:0;width:1px;
+    background:linear-gradient(to bottom,transparent,var(--gold),var(--gold),transparent);
+  }
+  .tl-item{
+    display:flex;gap:1.5rem;margin-bottom:1.75rem;position:relative;
+  }
+  .tl-dot{
+    flex-shrink:0;width:40px;height:40px;border-radius:50%;
+    background:var(--dark);border:2px solid var(--gold);
+    display:flex;align-items:center;justify-content:center;
+    font-size:.7rem;font-family:sans-serif;font-weight:700;
+    color:var(--gold);z-index:1;
+  }
+  .tl-content{padding-top:.25rem;}
+  .tl-period{
+    font-family:sans-serif;font-size:.7rem;letter-spacing:.15em;
+    text-transform:uppercase;color:var(--gold);margin-bottom:.25rem;
+  }
+  .tl-title{font-weight:700;font-size:1rem;margin-bottom:.25rem;color:var(--text-main);}
+  .tl-text{font-size:.9rem;color:var(--text-muted);line-height:1.7;}
+
+  /* CONCEPT CARDS */
+  .cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin:1.5rem 0;}
+  .concept-card{
+    background:var(--card-bg);border:1px solid var(--border);
+    border-radius:12px;padding:1.25rem;
+    border-top:3px solid var(--gold);
+    transition:transform .2s;cursor:default;
+  }
+  .concept-card:hover{transform:translateY(-2px);}
+  .concept-card h4{font-size:.95rem;font-weight:700;margin-bottom:.4rem;color:var(--text-main);}
+  .concept-card p{font-size:.85rem;color:var(--text-muted);margin:0;line-height:1.6;}
+  .concept-icon{font-size:1.4rem;margin-bottom:.6rem;}
+
+  /* ALERT / HIGHLIGHT */
+  .highlight-box{
+    background:linear-gradient(135deg,rgba(201,168,76,0.08),rgba(201,168,76,0.03));
+    border:1px solid rgba(201,168,76,0.3);border-radius:12px;
+    padding:1.25rem 1.5rem;margin:1.5rem 0;
+  }
+  .highlight-box h4{color:var(--gold);font-family:sans-serif;font-size:.82rem;
+    letter-spacing:.12em;text-transform:uppercase;margin-bottom:.75rem;}
+  .highlight-box p{font-size:.92rem;margin:0;}
+
+  /* VALUES */
+  .values-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.85rem;margin:1.5rem 0;}
+  .value-pill{
+    display:flex;align-items:flex-start;gap:.6rem;
+    background:var(--card-bg);border:1px solid var(--border);
+    border-radius:10px;padding:.9rem 1rem;
+  }
+  .value-pill .icon{font-size:1.1rem;flex-shrink:0;margin-top:.1rem;}
+  .value-pill .label{font-size:.88rem;font-weight:700;color:var(--text-main);margin-bottom:.1rem;}
+  .value-pill .desc{font-size:.78rem;color:var(--text-muted);line-height:1.5;}
+
+  /* SPECTRUM BAR */
+  .spectrum{
+    background:var(--card-bg);border:1px solid var(--border);
+    border-radius:12px;padding:1.5rem;margin:1.5rem 0;
+  }
+  .spectrum h4{font-family:sans-serif;font-size:.82rem;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
+  .spectrum-bar{
+    display:flex;border-radius:8px;overflow:hidden;height:12px;margin-bottom:1.25rem;
+  }
+  .spectrum-bar div{height:100%;}
+  .spectrum-labels{display:flex;justify-content:space-between;gap:.5rem;flex-wrap:wrap;}
+  .spectrum-item{
+    flex:1;min-width:100px;padding:.6rem .75rem;border-radius:8px;
+    border:1px solid var(--border);
+  }
+  .spectrum-item h5{font-size:.78rem;font-weight:700;color:var(--text-main);margin-bottom:.2rem;}
+  .spectrum-item p{font-size:.72rem;color:var(--text-muted);margin:0;line-height:1.5;}
+
+  /* COMPARISON TABLE */
+  .compare-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.88rem;}
+  .compare-table th{
+    text-align:left;padding:.7rem 1rem;font-family:sans-serif;font-size:.72rem;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);
+    border-bottom:1px solid var(--border);font-weight:500;
+  }
+  .compare-table td{padding:.7rem 1rem;border-bottom:1px solid var(--border);
+    vertical-align:top;color:var(--text-main);}
+  .compare-table tr:last-child td{border-bottom:none;}
+  .compare-table tr:hover td{background:var(--section-bg);}
+  .badge-yes{
+    display:inline-block;background:#E6F4EA;color:#2D7A4F;
+    font-size:.7rem;padding:.15rem .5rem;border-radius:4px;font-family:sans-serif;
+    font-weight:600;
+  }
+  @media(prefers-color-scheme:dark){
+    .badge-yes{background:#1A3A2A;color:#6FBA8F;}
+  }
+
+  /* PROCESS STEPS */
+  .process{display:flex;flex-direction:column;gap:.75rem;margin:1.5rem 0;}
+  .process-step{
+    display:flex;align-items:flex-start;gap:1rem;
+    background:var(--card-bg);border:1px solid var(--border);
+    border-radius:10px;padding:1rem 1.25rem;
+  }
+  .step-num{
+    flex-shrink:0;width:32px;height:32px;border-radius:50%;
+    background:var(--gold);color:var(--dark);font-weight:700;font-size:.85rem;
+    font-family:sans-serif;display:flex;align-items:center;justify-content:center;
+  }
+  .step-content h5{font-size:.95rem;font-weight:700;color:var(--text-main);margin-bottom:.2rem;}
+  .step-content p{font-size:.85rem;color:var(--text-muted);margin:0;line-height:1.6;}
+
+  /* REF */
+  .ref-list{list-style:none;margin:1.5rem 0;}
+  .ref-list li{
+    font-size:.82rem;color:var(--text-muted);line-height:1.65;
+    margin-bottom:.6rem;padding-left:1.25rem;position:relative;
+    font-family:sans-serif;
+  }
+  .ref-list li::before{content:'—';position:absolute;left:0;color:var(--gold);}
+
+  /* MYTH BOX */
+  .myth-box{
+    background:var(--card-bg);border:1px solid var(--border);
+    border-radius:12px;overflow:hidden;margin:1.5rem 0;
+  }
+  .myth-header{
+    display:flex;align-items:center;gap:.75rem;padding:.85rem 1.25rem;
+    background:var(--section-bg);border-bottom:1px solid var(--border);
+    cursor:pointer;
+  }
+  .myth-header h5{font-size:.92rem;font-weight:700;color:var(--text-main);margin:0;flex:1;}
+  .myth-icon{color:var(--accent);font-size:1rem;}
+  .myth-body{padding:.85rem 1.25rem;}
+  .myth-body p{font-size:.88rem;color:var(--text-muted);margin:0;line-height:1.7;}
+
+  /* FOCUS */
+  .focus-person{
+    display:flex;gap:1.5rem;align-items:flex-start;
+    background:var(--card-bg);border:1px solid var(--border);
+    border-radius:12px;padding:1.25rem;margin:1rem 0;
+  }
+  .focus-avatar{
+    flex-shrink:0;width:48px;height:48px;border-radius:50%;
+    background:linear-gradient(135deg,var(--gold),var(--accent));
+    display:flex;align-items:center;justify-content:center;
+    font-weight:700;font-size:.85rem;color:#fff;font-family:sans-serif;
+  }
+  .focus-name{font-weight:700;font-size:.95rem;color:var(--text-main);margin-bottom:.15rem;}
+  .focus-role{font-size:.78rem;font-family:sans-serif;color:var(--gold);margin-bottom:.3rem;}
+  .focus-text{font-size:.84rem;color:var(--text-muted);line-height:1.65;}
+
+  /* APA REF SECTION */
+  .apa-section{
+    background:var(--section-bg);border-top:1px solid var(--border);
+    padding:2rem 1.5rem;margin-top:3rem;
+  }
+  .apa-title{font-family:sans-serif;font-size:.72rem;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
+  .apa-entry{font-size:.8rem;color:var(--text-muted);line-height:1.7;
+    margin-bottom:.6rem;font-family:sans-serif;}
+
+  /* RESPONSIVE */
+  @media(max-width:600px){
+    .hero-title{font-size:1.8rem;}
+    .section{padding:1.5rem 1rem 2.5rem;}
+    .timeline::before{left:16px;}
+    .tl-dot{width:32px;height:32px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Unidad I · Emprendimiento e Innovación</div>
+  <div class="hero-title">Teoría y Concepto del<br><span>Emprendimiento e Innovación</span></div>
+  <div class="hero-sub">Carrera de Contabilidad y Auditoría · Primer Encuentro</div>
+  <div class="hero-meta">
+    <span class="hero-badge">3 horas académicas</span>
+    <span class="hero-badge">Fundamentos teóricos</span>
+    <span class="hero-badge">Historia · Concepto · Valores</span>
+  </div>
+</div>
+
+<!-- NAVIGATION -->
+<div class="nav-tabs" role="tablist">
+  <button class="tab-btn active" onclick="showTab('origen')" role="tab">1. Origen</button>
+  <button class="tab-btn" onclick="showTab('emprender')" role="tab">2. Emprender</button>
+  <button class="tab-btn" onclick="showTab('espectro')" role="tab">3. Espectro</button>
+  <button class="tab-btn" onclick="showTab('valores')" role="tab">4. Valores</button>
+  <button class="tab-btn" onclick="showTab('innovar')" role="tab">5. Innovar</button>
+  <button class="tab-btn" onclick="showTab('evolucion')" role="tab">6. Evolución</button>
+  <button class="tab-btn" onclick="showTab('contabilidad')" role="tab">7. Tu Campo</button>
+  <button class="tab-btn" onclick="showTab('referencias')" role="tab">Referencias</button>
+</div>
+
+<!-- SECCIÓN 1: ORIGEN -->
+<div id="tab-origen" class="section active">
+  <div class="section-eyebrow">Punto de partida</div>
+  <h2 class="section-title">El Origen de las <span>Palabras</span></h2>
+  <div class="divider"></div>
+
+  <p class="lead">Antes de definir un concepto, debemos conocer su historia. Las palabras guardan en su raíz la esencia de lo que nombran.</p>
+
+  <div class="etym-box">
+    <h4>Etimología · Emprender</h4>
+    <div class="etym-root">
+      <div>
+        <div style="font-size:.72rem;color:rgba(240,237,228,0.5);font-family:sans-serif;margin-bottom:.2rem">Latín clásico</div>
+        <div class="etym-word">in + prehendere</div>
+        <div style="font-size:.82rem;color:rgba(240,237,228,0.6);margin-top:.2rem">"tomar hacia adentro" / "asir con decisión"</div>
+      </div>
+      <div class="etym-arrow">→</div>
+      <div>
+        <div style="font-size:.72rem;color:rgba(240,237,228,0.5);font-family:sans-serif;margin-bottom:.2rem">Español antiguo (s. XIII)</div>
+        <div class="etym-word">entreprendre</div>
+        <div style="font-size:.82rem;color:rgba(240,237,228,0.6);margin-top:.2rem">Del francés: "ponerse entre" · "acometer"</div>
+      </div>
+      <div class="etym-arrow">→</div>
+      <div>
+        <div style="font-size:.72rem;color:rgba(240,237,228,0.5);font-family:sans-serif;margin-bottom:.2rem">Hoy</div>
+        <div class="etym-word">Emprender</div>
+        <div style="font-size:.82rem;color:rgba(240,237,228,0.6);margin-top:.2rem">Acometer y llevar adelante una obra o empresa</div>
+      </div>
+    </div>
+  </div>
+
+  <p>La palabra <em>entreprendre</em> en francés medieval significaba literalmente <em>"ponerse entre"</em>: entre la situación existente y la que se desea crear. El emprendedor siempre ha sido un <strong>intermediario entre dos mundos</strong>: el que es y el que podría ser (Burnett, 2016).</p>
+
+  <div class="etym-box">
+    <h4>Etimología · Innovar</h4>
+    <div class="etym-root">
+      <div>
+        <div style="font-size:.72rem;color:rgba(240,237,228,0.5);font-family:sans-serif;margin-bottom:.2rem">Latín</div>
+        <div class="etym-word">in + novare</div>
+        <div style="font-size:.82rem;color:rgba(240,237,228,0.6);margin-top:.2rem">"hacia lo nuevo" · "renovar desde adentro"</div>
+      </div>
+      <div class="etym-arrow">→</div>
+      <div>
+        <div style="font-size:.72rem;color:rgba(240,237,228,0.5);font-family:sans-serif;margin-bottom:.2rem">Latín tardío</div>
+        <div class="etym-word">innovatio, -onis</div>
+        <div style="font-size:.82rem;color:rgba(240,237,228,0.6);margin-top:.2rem">Acción y efecto de renovar algo existente</div>
+      </div>
+      <div class="etym-arrow">→</div>
+      <div>
+        <div style="font-size:.72rem;color:rgba(240,237,228,0.5);font-family:sans-serif;margin-bottom:.2rem">Siglo XX</div>
+        <div class="etym-word">Innovation</div>
+        <div style="font-size:.82rem;color:rgba(240,237,228,0.6);margin-top:.2rem">Schumpeter le da sentido económico preciso</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <h4>Reflexión inicial para la clase</h4>
+    <p>Nótese que <em>innovar</em> no significa "inventar de cero" sino <strong>renovar algo que ya existe</strong>. Esta distinción es fundamental: la raíz <em>novare</em> implica siempre un punto de partida previo que se transforma. Innovar sin contexto no es posible.</p>
+  </div>
+
+  <p style="font-size:.82rem;color:var(--text-muted);font-family:sans-serif;margin-top:1.5rem">
+    <strong>Fuentes:</strong> Burnett, J. (2016). <em>Entreprendre: L'étymologie d'un mot qui a changé le monde</em>. PUF. · Real Academia Española (2023). <em>Diccionario de la lengua española</em> (23.ª ed.). https://dle.rae.es/emprender
+  </p>
+</div>
+
+<!-- SECCIÓN 2: EMPRENDER -->
+<div id="tab-emprender" class="section">
+  <div class="section-eyebrow">Teoría central</div>
+  <h2 class="section-title">¿Qué es <span>Emprender</span>?</h2>
+  <div class="divider"></div>
+
+  <p class="lead">Emprender es uno de los conceptos más usados y menos comprendidos de nuestro tiempo. Comencemos desde su esencia.</p>
+
+  <div class="blockquote">
+    <p>"El emprendedor siempre busca el cambio, responde a él, y lo explota como una oportunidad."</p>
+    <cite>Drucker, P. F. (1985). <em>Innovation and Entrepreneurship</em>. Harper & Row, p. 28.</cite>
+  </div>
+
+  <p>La definición académica más sólida proviene de la articulación entre la teoría de Schumpeter (1934) y la perspectiva cognitiva de Shane & Venkataraman (2000). Emprender implica <strong>tres elementos inseparables</strong>: (1) la identificación de una oportunidad que otros no ven, (2) la movilización de recursos —humanos, materiales, financieros— para aprovecharla, y (3) la aceptación consciente del riesgo que eso conlleva.</p>
+
+  <div class="cards-grid">
+    <div class="concept-card">
+      <div class="concept-icon">🔍</div>
+      <h4>Identificar la oportunidad</h4>
+      <p>No toda idea es una oportunidad. Una oportunidad emprendedora es aquella que responde a una necesidad real, está anclada en el tiempo correcto, y posee un mercado que la valide (Shane & Venkataraman, 2000).</p>
+    </div>
+    <div class="concept-card">
+      <div class="concept-icon">⚙️</div>
+      <h4>Movilizar recursos</h4>
+      <p>El emprendedor rara vez tiene todos los recursos al inicio. Su habilidad está en conseguirlos: alianzas, financiamiento, talento. Sahlman (1999) lo llama "hacer más con menos".</p>
+    </div>
+    <div class="concept-card">
+      <div class="concept-icon">⚖️</div>
+      <h4>Aceptar el riesgo calculado</h4>
+      <p>Knight (1921) distingue entre riesgo (medible) e incertidumbre (no medible). El emprendedor no teme al riesgo: lo analiza, lo gestiona y convierte la incertidumbre en ventaja.</p>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <h4>¿Emprender es solo crear una empresa?</h4>
+    <p>No. Esta es la confusión más frecuente. Emprender es una <em>actitud ante la realidad</em>: la disposición a ver lo que falta, a proponer soluciones, y a actuar para materializarlas. Una funcionaria contable que propone un nuevo sistema de control interno que ahorra el 40% de tiempo operativo <strong>está emprendiendo</strong>, aunque no haya creado ningún negocio. Un médico rural que organiza a los campesinos para implementar botiquines comunitarios <strong>está emprendiendo</strong>.</p>
+  </div>
+
+  <div class="blockquote">
+    <p>"El emprendimiento no es un rasgo de personalidad ni una condición de nacimiento. Es una disciplina que puede aprenderse."</p>
+    <cite>Drucker, P. F. (1985). <em>Innovation and Entrepreneurship</em>. Harper & Row, p. 17.</cite>
+  </div>
+
+  <h3 style="font-size:1.15rem;margin:1.5rem 0 .75rem;color:var(--text-main)">Los mitos que paralizan</h3>
+
+  <div class="myth-box">
+    <div class="myth-header">
+      <span class="myth-icon">✗</span>
+      <h5>"Emprender es solo para los que tienen dinero"</h5>
+    </div>
+    <div class="myth-body">
+      <p>Estudio de Kauffman Foundation (2019): el 70% de los emprendedores exitosos comenzó con capital propio menor a $10.000 USD. Lo que marca la diferencia es la <em>claridad del problema</em> y la <em>disciplina de ejecución</em>, no el capital inicial.</p>
+    </div>
+  </div>
+
+  <div class="myth-box">
+    <div class="myth-header">
+      <span class="myth-icon">✗</span>
+      <h5>"Hay que tener una idea genial para emprender"</h5>
+    </div>
+    <div class="myth-body">
+      <p>Blank & Dorf (2012) en <em>The Startup Owner's Manual</em> demuestran que las mejores empresas del mundo no nacieron de ideas "geniales" sino de <em>observar problemas ordinarios con ojos extraordinarios</em>. Netflix no inventó el entretenimiento; resolvió la molestia de las multas por retraso en el videoclub.</p>
+    </div>
+  </div>
+
+  <div class="myth-box">
+    <div class="myth-header">
+      <span class="myth-icon">✗</span>
+      <h5>"Emprender es un asunto de ganas"</h5>
+    </div>
+    <div class="myth-body">
+      <p>Las ganas son el combustible, pero sin dirección no hay destino. Baron & Shane (2008) documentan que la mayoría de fracasos empresariales se deben a déficits en planificación, gestión financiera y lectura del mercado; no a falta de entusiasmo. La vocación sin conocimiento es ingenuidad.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECCIÓN 3: ESPECTRO -->
+<div id="tab-espectro" class="section">
+  <div class="section-eyebrow">Del mínimo a lo complejo</div>
+  <h2 class="section-title">El Espectro del <span>Emprendimiento</span></h2>
+  <div class="divider"></div>
+
+  <p class="lead">Emprender existe en todos los niveles de la vida humana. Aquí la ruta que necesitas ver como estudiante.</p>
+
+  <div class="spectrum">
+    <h4>Espectro de complejidad emprendedora</h4>
+    <div class="spectrum-bar">
+      <div style="width:20%;background:#2D7A4F;"></div>
+      <div style="width:20%;background:#C9A84C;"></div>
+      <div style="width:20%;background:#E07B39;"></div>
+      <div style="width:20%;background:#C04848;"></div>
+      <div style="width:20%;background:#6B3FA0;"></div>
+    </div>
+    <div class="spectrum-labels">
+      <div class="spectrum-item" style="border-top:2px solid #2D7A4F">
+        <h5 style="color:#2D7A4F">Nivel 1 · Personal</h5>
+        <p>Organizas tu vida, cambias un hábito, inicias un proyecto de mejora personal.</p>
+      </div>
+      <div class="spectrum-item" style="border-top:2px solid #C9A84C">
+        <h5 style="color:#C9A84C">Nivel 2 · Intraempresarial</h5>
+        <p>Propones mejoras dentro de una organización en la que ya trabajas.</p>
+      </div>
+      <div class="spectrum-item" style="border-top:2px solid #E07B39">
+        <h5 style="color:#E07B39">Nivel 3 · MIPYME</h5>
+        <p>Creas un negocio pequeño o mediano que responde a una necesidad local.</p>
+      </div>
+      <div class="spectrum-item" style="border-top:2px solid #C04848">
+        <h5 style="color:#C04848">Nivel 4 · Startup</h5>
+        <p>Empresa diseñada para crecer rápido y operar en mercados de alta incertidumbre.</p>
+      </div>
+      <div class="spectrum-item" style="border-top:2px solid #6B3FA0">
+        <h5 style="color:#6B3FA0">Nivel 5 · Sistémico</h5>
+        <p>Emprendimiento social o tecnológico que busca transformar sistemas completos.</p>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-size:1.1rem;margin:2rem 0 1rem;color:var(--text-main)">Ejemplos desde la raíz: ¿Por qué son emprendimientos?</h3>
+
+  <div class="process">
+    <div class="process-step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h5>La señora Rosa y su puesto de tamales</h5>
+        <p>Rosa identificó una oportunidad (personas hambrientas en la mañana frente al colegio), movilizó recursos (su cocina, sus manos, $20 iniciales), aceptó riesgo (podría no vender nada), y creó un sistema de valor. Esto es emprendimiento en estado puro. No por el tamaño, sino por la estructura de su acción.</p>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h5>El contador que propone un sistema de alerta temprana</h5>
+        <p>Un Contador Auditor detecta que el sistema de cuentas por cobrar de su empresa genera mora del 35%. Propone, diseña e implementa un proceso de alerta automatizada. Resultado: mora baja al 8%. No fundó una empresa. Pero identificó, movilizó y asumió riesgo profesional. Es un intraemprendedor.</p>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h5>Grupo de jóvenes que crea una app de trueque local</h5>
+        <p>Observan que en su barrio hay exceso de alimentos en temporada alta y escasez en temporada baja. Crean una plataforma digital de intercambio. Sin grandes inversiones. Con una comprensión profunda del problema. Emprendimiento tecnológico de nivel comunitario.</p>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h5>Banco de desarrollo que rediseña su sistema de crédito rural</h5>
+        <p>Una institución financiera identifica que su modelo de crédito excluye al 60% de los agricultores de su provincia. Diseña un producto financiero adaptado (garantías alternativas, periodos de gracia). Emprendimiento institucional de impacto sistémico.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <h4>La pregunta que une todos los niveles</h4>
+    <p>En todos los casos anteriores existe la misma pregunta fundacional: <em>"¿Qué situación injusta, ineficiente o insatisfecha puedo transformar en valor para otros?"</em> Cuando logras responderla con acción, estás emprendiendo.</p>
+  </div>
+</div>
+
+<!-- SECCIÓN 4: VALORES -->
+<div id="tab-valores" class="section">
+  <div class="section-eyebrow">El carácter del emprendedor</div>
+  <h2 class="section-title">Virtudes y <span>Valores</span> del Emprendedor</h2>
+  <div class="divider"></div>
+
+  <p class="lead">No basta con querer. Emprender requiere una arquitectura interior. Estas son las virtudes documentadas por la investigación.</p>
+
+  <div class="blockquote">
+    <p>"El carácter del emprendedor precede y sostiene a todas sus estrategias. Sin virtud, la habilidad técnica se convierte en oportunismo."</p>
+    <cite>Dees, J. G. (1998). The Meaning of Social Entrepreneurship. <em>Kauffman Foundation Working Papers</em>.</cite>
+  </div>
+
+  <div class="values-grid">
+    <div class="value-pill">
+      <div class="icon">🔥</div>
+      <div>
+        <div class="label">Tolerancia a la ambigüedad</div>
+        <div class="desc">Capacidad de actuar sin tener toda la información. El emprendedor sabe que la certeza total llega tarde o nunca (Sarasvathy, 2001).</div>
+      </div>
+    </div>
+    <div class="value-pill">
+      <div class="icon">🎯</div>
+      <div>
+        <div class="label">Persistencia disciplinada</div>
+        <div class="desc">No es terquedad: es la capacidad de mantener el rumbo mientras se ajusta el camino. Duckworth (2016) la llama "grit".</div>
+      </div>
+    </div>
+    <div class="value-pill">
+      <div class="icon">👁</div>
+      <div>
+        <div class="label">Perspicacia (oportunidades)</div>
+        <div class="desc">Ver lo que otros no ven. Shane & Venkataraman (2000): la oportunidad existe, pero no es visible para todos.</div>
+      </div>
+    </div>
+    <div class="value-pill">
+      <div class="icon">🤝</div>
+      <div>
+        <div class="label">Inteligencia relacional</div>
+        <div class="desc">Construir redes de confianza. El 85% del capital emprendedor llega por relaciones, no por currículos (Aldrich & Zimmer, 1986).</div>
+      </div>
+    </div>
+    <div class="value-pill">
+      <div class="icon">🔄</div>
+      <div>
+        <div class="label">Flexibilidad cognitiva</div>
+        <div class="desc">Cambiar de estrategia sin perder el propósito. Blank (2013): "No hay plan de negocios que sobreviva al primer contacto con el cliente."</div>
+      </div>
+    </div>
+    <div class="value-pill">
+      <div class="icon">⚖️</div>
+      <div>
+        <div class="label">Ética e integridad</div>
+        <div class="desc">El emprendedor ético construye reputación. Covey (1989): la confianza es el activo más valioso de cualquier organización.</div>
+      </div>
+    </div>
+    <div class="value-pill">
+      <div class="icon">💡</div>
+      <div>
+        <div class="label">Creatividad aplicada</div>
+        <div class="desc">No creatividad artística, sino capacidad de recombinar recursos de formas nuevas para generar valor (Schumpeter, 1934).</div>
+      </div>
+    </div>
+    <div class="value-pill">
+      <div class="icon">🌿</div>
+      <div>
+        <div class="label">Responsabilidad social</div>
+        <div class="desc">El emprendedor sostenible considera su impacto en la comunidad y el entorno. Porter & Kramer (2011): "valor compartido".</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <h4>Por qué las ganas solas no alcanzan</h4>
+    <p>Las ganas son combustible, pero un motor sin dirección no lleva a ningún lado. La investigación de CBInsights (2021) sobre 101 fracasos empresariales muestra que el <strong>42% falló por no resolver un problema real del mercado</strong> y el <strong>29% por problemas de equipo</strong>. Ninguna de esas causas tiene que ver con falta de entusiasmo. Emprender requiere conocimiento, habilidades y virtud.</p>
+  </div>
+</div>
+
+<!-- SECCIÓN 5: INNOVAR -->
+<div id="tab-innovar" class="section">
+  <div class="section-eyebrow">Más allá de la tecnología</div>
+  <h2 class="section-title">¿Qué es <span>Innovar</span>?</h2>
+  <div class="divider"></div>
+
+  <p class="lead">Innovar no es sinónimo de tecnología. Es la capacidad humana de transformar el conocimiento existente en algo que genera nuevo valor.</p>
+
+  <div class="blockquote">
+    <p>"La innovación es el instrumento específico del espíritu emprendedor. Es el acto que dota a los recursos de una nueva capacidad de crear riqueza."</p>
+    <cite>Drucker, P. F. (1985). <em>Innovation and Entrepreneurship</em>. Harper & Row, p. 33.</cite>
+  </div>
+
+  <p>La OCDE y Eurostat (2018) en el <em>Manual de Oslo</em> —el estándar internacional de medición de innovación— definen: <em>"Una innovación es un producto o proceso nuevo o mejorado (o una combinación de ellos) que difiere significativamente de los productos o procesos anteriores de la unidad y que se ha puesto a disposición de los usuarios potenciales o ha sido adoptado por la unidad."</em> Esta definición es radical: no exige tecnología. Exige <strong>diferencia significativa</strong> y <strong>adopción real</strong>.</p>
+
+  <h3 style="font-size:1.1rem;margin:1.5rem 0 1rem;color:var(--text-main)">Tipos de innovación (Manual de Oslo, 4.ª ed.)</h3>
+
+  <table class="compare-table">
+    <tr>
+      <th>Tipo</th>
+      <th>Definición</th>
+      <th>Ejemplo sin tecnología</th>
+      <th>Ejemplo con tecnología</th>
+    </tr>
+    <tr>
+      <td><strong>De producto</strong></td>
+      <td>Bien o servicio nuevo o significativamente mejorado</td>
+      <td>Panadería que lanza pan sin gluten elaborado artesanalmente</td>
+      <td>Plataforma de streaming que personaliza contenido con IA</td>
+    </tr>
+    <tr>
+      <td><strong>De proceso</strong></td>
+      <td>Método nuevo o mejorado de producción o distribución</td>
+      <td>Sistema de turnos que elimina filas en una clínica</td>
+      <td>Automatización del ciclo contable en ERP</td>
+    </tr>
+    <tr>
+      <td><strong>Organizacional</strong></td>
+      <td>Nuevo método en prácticas empresariales, organización del trabajo</td>
+      <td>Empresa que implementa trabajo por objetivos en vez de horario</td>
+      <td>Red de trabajo distribuido asistida por plataformas digitales</td>
+    </tr>
+    <tr>
+      <td><strong>De comercialización</strong></td>
+      <td>Nuevo método de marketing o posicionamiento</td>
+      <td>Frutería que adopta suscripción semanal con entrega a domicilio</td>
+      <td>E-commerce que usa remarketing personalizado</td>
+    </tr>
+  </table>
+
+  <div class="highlight-box">
+    <h4>La persona al centro: por qué la innovación no es tecnología</h4>
+    <p>La tecnología es un <em>medio</em>, nunca un <em>fin</em>. La innovación existe únicamente cuando una persona adopta algo nuevo que transforma su realidad de manera significativa. Un sistema blockchain que nadie usa no es innovación; es invención sin aplicación. Una señora que reorganizó su cocina para servir 50 almuerzos en vez de 20, cambiando el orden de preparación, <strong>innovó en proceso</strong> sin tocar ningún dispositivo digital.</p>
+  </div>
+
+  <div class="blockquote">
+    <p>"La innovación centrada en el ser humano comienza por entender profundamente a las personas a quienes se pretende servir."</p>
+    <cite>Brown, T. (2009). <em>Change by Design: How Design Thinking Transforms Organizations and Inspires Innovation</em>. HarperBusiness, p. 3.</cite>
+  </div>
+
+  <div class="cards-grid">
+    <div class="concept-card">
+      <div class="concept-icon">🏥</div>
+      <h4>Innovación en salud rural (sin app)</h4>
+      <p>Médicos rurales en Bolivia que reorganizaron visitas comunitarias por microsistemas de salud preventiva. Redujeron hospitalización en 34%. Innovación organizacional pura (OPS, 2018).</p>
+    </div>
+    <div class="concept-card">
+      <div class="concept-icon">📚</div>
+      <h4>Innovación pedagógica</h4>
+      <p>Maestros finlandeses que eliminaron la separación por asignaturas y enseñan por fenómenos (Phenomenon-Based Learning). Finlandia mantiene los primeros lugares en PISA sin ser el país con más tecnología.</p>
+    </div>
+    <div class="concept-card">
+      <div class="concept-icon">📊</div>
+      <h4>Innovación contable</h4>
+      <p>El surgimiento del modelo de contabilidad por partida doble en el s. XV (Pacioli, 1494) fue una innovación que transformó el comercio mundial. No hubo computadoras; hubo un nuevo método de pensar.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECCIÓN 6: EVOLUCIÓN HISTÓRICA -->
+<div id="tab-evolucion" class="section">
+  <div class="section-eyebrow">Línea del tiempo</div>
+  <h2 class="section-title">Evolución del Concepto: <span>Emprendimiento e Innovación</span></h2>
+  <div class="divider"></div>
+
+  <p class="lead">El concepto no siempre fue como lo conocemos. Su evolución refleja los cambios de cada época histórica.</p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot">XII</div>
+      <div class="tl-content">
+        <div class="tl-period">Siglos XII–XV · Europa medieval</div>
+        <div class="tl-title">El "entrepreneur" como contratista</div>
+        <div class="tl-text">El término aparece en el francés medieval para designar a quien recibe un encargo del Estado (construir un puente, organizar una expedición militar) y asume la responsabilidad de ejecutarlo. No arriesga capital propio; solo gestión. Su habilidad: coordinar personas y recursos hacia un objetivo externo (Hoselitz, 1960).</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">XVII</div>
+      <div class="tl-content">
+        <div class="tl-period">Siglo XVII · Richard Cantillon (1680–1734)</div>
+        <div class="tl-title">Primera teoría económica del emprendimiento</div>
+        <div class="tl-text">Cantillon es el primero en usar el término emprendedor con sentido económico preciso: aquel que compra a precio cierto y vende a precio incierto, asumiendo el riesgo como núcleo de su función. Su obra póstuma <em>Essai sur la Nature du Commerce en Général</em> (1755) inaugura la economía del emprendimiento (Murphy & Callaway, 2012).</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">XIX</div>
+      <div class="tl-content">
+        <div class="tl-period">Siglo XIX · Jean-Baptiste Say (1767–1832)</div>
+        <div class="tl-title">El emprendedor como combinador de recursos</div>
+        <div class="tl-text">Say es el primero en distinguir al emprendedor del capitalista: el emprendedor no es necesariamente quien posee el dinero, sino quien <em>combina los factores de producción</em> de manera eficiente y creativa. Introduce la idea del valor creado por organización (Hébert & Link, 2009).</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">1934</div>
+      <div class="tl-content">
+        <div class="tl-period">1934 · Joseph Schumpeter (1883–1950)</div>
+        <div class="tl-title">Destrucción creativa e innovación como motor económico</div>
+        <div class="tl-text">Schumpeter es el hito más importante. En <em>The Theory of Economic Development</em> (1934) articula que el emprendedor es el agente del cambio económico; su función es la <em>destrucción creativa</em>: reemplazar el orden existente por combinaciones nuevas. Define cinco formas de innovación: nuevo producto, nuevo proceso, nuevo mercado, nueva fuente de insumos, nueva organización industrial. Su legado persiste en toda la teoría moderna de innovación.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">1985</div>
+      <div class="tl-content">
+        <div class="tl-period">1985 · Peter Drucker</div>
+        <div class="tl-title">El emprendimiento como disciplina sistemática</div>
+        <div class="tl-text">Drucker demuestra en <em>Innovation and Entrepreneurship</em> que el emprendimiento no es una habilidad innata sino una práctica aprendible y aplicable en cualquier contexto institucional, incluyendo organizaciones grandes, hospitales, escuelas y gobiernos. Democratiza el concepto.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">2000</div>
+      <div class="tl-content">
+        <div class="tl-period">Año 2000 · Shane & Venkataraman</div>
+        <div class="tl-title">Emprendimiento como campo de estudio autónomo</div>
+        <div class="tl-text">En su artículo seminal en <em>Academy of Management Review</em>, proponen el marco de "oportunidad emprendedora" como eje del campo: el emprendimiento estudia por qué, cuándo y cómo ciertos individuos descubren, evalúan y explotan oportunidades que crean bienes y servicios futuros.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">2010</div>
+      <div class="tl-content">
+        <div class="tl-period">Siglo XXI · Ecosistemas y emprendimiento social</div>
+        <div class="tl-title">De individuo a ecosistema</div>
+        <div class="tl-text">Isenberg (2011) propone el modelo de ecosistemas emprendedores: el emprendedor no opera solo; necesita un entorno de política, mercados, capital, talento, cultura e instituciones de soporte. Dees (1998) amplía el concepto hacia el emprendimiento social: la generación de valor no medido solo en términos monetarios sino en impacto humano y social.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">HOY</div>
+      <div class="tl-content">
+        <div class="tl-period">2020–2026 · Post-pandemia y digitalización acelerada</div>
+        <div class="tl-title">Emprendimiento de impacto y economía circular</div>
+        <div class="tl-text">El informe del Foro Económico Mundial (2023) destaca que los emprendimientos más valorados son aquellos que integran sostenibilidad, equidad e impacto social. La era post-pandemia mostró que emprender es también reconstruir y reinventar modelos que se creían permanentes. El contador auditor del siglo XXI es un actor central de este proceso.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECCIÓN 7: TU CAMPO -->
+<div id="tab-contabilidad" class="section">
+  <div class="section-eyebrow">Para Contabilidad y Auditoría</div>
+  <h2 class="section-title">El Emprendimiento en <span>Tu Campo</span></h2>
+  <div class="divider"></div>
+
+  <p class="lead">El Contador Auditor no solo registra la realidad económica: tiene el conocimiento técnico para transformarla. Esta es tu ventaja competitiva.</p>
+
+  <div class="blockquote">
+    <p>"La contabilidad no es el lenguaje del pasado; es el mapa del futuro. Quien sabe leer los números sabe dónde están las oportunidades."</p>
+    <cite>Penman, S. H. (2013). <em>Financial Statement Analysis and Security Valuation</em> (5th ed.). McGraw-Hill Education, p. 1.</cite>
+  </div>
+
+  <h3 style="font-size:1.1rem;margin:1.5rem 0 1rem;color:var(--text-main)">El Contador como intraemprendedor</h3>
+
+  <div class="focus-person">
+    <div class="focus-avatar">CP</div>
+    <div>
+      <div class="focus-name">Caso: Control de costos en empresa textil</div>
+      <div class="focus-role">Intraemprendimiento contable · Nivel 2</div>
+      <div class="focus-text">Una Contadora detecta que el 18% de los materiales se desperdicia en el proceso de corte. Diseña un sistema de control de inventario por lote que permite identificar en tiempo real los puntos de pérdida. Presenta el proyecto a gerencia con proyección de ahorro. Aprobado. En 6 meses la empresa reduce su costo de producción en un 11%. <strong>No fundó nada. Emprendió dentro de su organización.</strong></div>
+    </div>
+  </div>
+
+  <div class="focus-person">
+    <div class="focus-avatar">AU</div>
+    <div>
+      <div class="focus-name">Caso: Firma de Auditoría Forense Especializada</div>
+      <div class="focus-role">Emprendimiento empresarial · Nivel 3-4</div>
+      <div class="focus-text">Un Auditor identifica que en su región no existe ninguna firma especializada en auditoría forense para casos de lavado de activos en el sector público. Crea una firma boutique con tres colegas. En tres años se convierte en referencia regional para organismos de control. <strong>Identificó una brecha, movilizó recursos humanos y especializó un servicio.</strong></div>
+    </div>
+  </div>
+
+  <h3 style="font-size:1.1rem;margin:1.5rem 0 1rem;color:var(--text-main)">Áreas de innovación directa para Contabilidad</h3>
+
+  <div class="cards-grid">
+    <div class="concept-card">
+      <div class="concept-icon">📋</div>
+      <h4>Sistemas de control interno</h4>
+      <p>Diseñar controles que prevengan el fraude antes de que ocurra es innovación de proceso. El COSO actualizado (2013) es un marco de innovación organizacional en gobernanza.</p>
+    </div>
+    <div class="concept-card">
+      <div class="concept-icon">📊</div>
+      <h4>Contabilidad de gestión</h4>
+      <p>Transformar el reporting estándar en información estratégica para decisiones es innovar el proceso contable. El Cuadro de Mando Integral (Kaplan & Norton, 1996) fue innovación pura.</p>
+    </div>
+    <div class="concept-card">
+      <div class="concept-icon">🔍</div>
+      <h4>Auditoría de datos</h4>
+      <p>La analítica de datos en auditoría (Data Analytics) transforma la revisión muestral en análisis de universos completos. Es innovación de proceso en la función auditora.</p>
+    </div>
+    <div class="concept-card">
+      <div class="concept-icon">🌿</div>
+      <h4>Contabilidad ambiental</h4>
+      <p>Reportar el impacto ambiental de las empresas es una innovación en el reporte financiero que ya exigen mercados internacionales (GRI Standards, IFRS S1/S2).</p>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <h4>El emprendimiento recae sobre ti directamente</h4>
+    <p>En tus cuentas contables está la salud financiera de una organización. En tus informes de auditoría está la confianza del mercado. El Contador Auditor que entiende el emprendimiento <strong>diseña sistemas que previenen el quiebre</strong>, que detectan oportunidades antes que el mercado, y que aseguran que los recursos lleguen a donde crean valor real. Tu profesión es, por definición, una profesión de impacto emprendedor.</p>
+  </div>
+</div>
+
+<!-- SECCIÓN 8: REFERENCIAS -->
+<div id="tab-referencias" class="section">
+  <div class="section-eyebrow">Bibliografía completa</div>
+  <h2 class="section-title">Referencias <span>Académicas</span></h2>
+  <div class="divider"></div>
+  <p class="lead" style="font-size:.9rem">Todas las referencias siguen el formato APA 7.ª edición.</p>
+
+  <ul class="ref-list">
+    <li>Aldrich, H., & Zimmer, C. (1986). Entrepreneurship through social networks. En D. Sexton & R. Smilor (Eds.), <em>The art and science of entrepreneurship</em> (pp. 3–23). Ballinger Publishing.</li>
+
+    <li>Baron, R. A., & Shane, S. A. (2008). <em>Entrepreneurship: A process perspective</em> (2nd ed.). Thomson/South-Western.</li>
+
+    <li>Blank, S. G. (2013). Why the lean start-up changes everything. <em>Harvard Business Review, 91</em>(5), 63–72.</li>
+
+    <li>Blank, S. G., & Dorf, B. (2012). <em>The startup owner's manual: The step-by-step guide for building a great company</em>. K & S Ranch Press.</li>
+
+    <li>Brown, T. (2009). <em>Change by design: How design thinking transforms organizations and inspires innovation</em>. HarperBusiness.</li>
+
+    <li>Burnett, J. (2016). <em>Entreprendre: L'étymologie d'un mot qui a changé le monde</em>. Presses Universitaires de France.</li>
+
+    <li>Cantillon, R. (1755). <em>Essai sur la nature du commerce en général</em>. Fletcher Gyles. (Edición moderna: Hébert, R. F., & Thornton, M. (Eds.). (2010). Ludwig von Mises Institute.)</li>
+
+    <li>CBInsights. (2021). <em>The top 12 reasons startups fail</em>. https://www.cbinsights.com/research/report/startup-failure-reasons-top/</li>
+
+    <li>Covey, S. R. (1989). <em>The 7 habits of highly effective people: Powerful lessons in personal change</em>. Free Press.</li>
+
+    <li>Dees, J. G. (1998). The meaning of social entrepreneurship. <em>Kauffman Center for Entrepreneurial Leadership Working Papers</em>. Duke University. https://entrepreneurship.duke.edu/news-item/the-meaning-of-social-entrepreneurship/</li>
+
+    <li>Drucker, P. F. (1985). <em>Innovation and entrepreneurship: Practice and principles</em>. Harper & Row.</li>
+
+    <li>Duckworth, A. (2016). <em>Grit: The power of passion and perseverance</em>. Scribner.</li>
+
+    <li>Foro Económico Mundial. (2023). <em>The global risks report 2023</em> (18th ed.). World Economic Forum. https://www.weforum.org/reports/global-risks-report-2023/</li>
+
+    <li>Hébert, R. F., & Link, A. N. (2009). <em>A history of entrepreneurship</em>. Routledge.</li>
+
+    <li>Hoselitz, B. F. (1960). The early history of entrepreneurial theory. En J. T. Lambie & R. V. Clemence (Eds.), <em>Economic change in America</em> (pp. 234–258). Stackpole Books.</li>
+
+    <li>Isenberg, D. (2011). The entrepreneurship ecosystem strategy as a new paradigm for economic policy: Principles for cultivating entrepreneurship. <em>Institute of International and European Affairs, 1</em>(1), 1–13.</li>
+
+    <li>Kaplan, R. S., & Norton, D. P. (1996). <em>The balanced scorecard: Translating strategy into action</em>. Harvard Business School Press.</li>
+
+    <li>Kauffman Foundation. (2019). <em>The state of entrepreneurship 2019</em>. Ewing Marion Kauffman Foundation. https://www.kauffman.org/entrepreneurship/reports/kauffman-indicators/</li>
+
+    <li>Knight, F. H. (1921). <em>Risk, uncertainty and profit</em>. Houghton Mifflin. (Reimpr. University of Chicago Press, 1971.)</li>
+
+    <li>Murphy, A. E., & Callaway, R. (Eds.). (2012). <em>Richard Cantillon: Entrepreneur and economist</em>. Oxford University Press.</li>
+
+    <li>OCDE & Eurostat. (2018). <em>Oslo Manual 2018: Guidelines for collecting, reporting and using data on innovation</em> (4th ed.). OECD Publishing. https://doi.org/10.1787/9789264304604-en</li>
+
+    <li>Organización Panamericana de la Salud. (2018). <em>Informe de salud rural en Bolivia: Innovación en atención primaria</em>. OPS/OMS.</li>
+
+    <li>Pacioli, L. (1494). <em>Summa de arithmetica, geometria, proportioni et proportionalità</em>. Paganino de Paganini. (Trad. moderna: Cripps, J. B. (1924). ICB-IVSC.)</li>
+
+    <li>Penman, S. H. (2013). <em>Financial statement analysis and security valuation</em> (5th ed.). McGraw-Hill Education.</li>
+
+    <li>Porter, M. E., & Kramer, M. R. (2011). Creating shared value. <em>Harvard Business Review, 89</em>(1–2), 62–77.</li>
+
+    <li>Real Academia Española. (2023). Emprender. En <em>Diccionario de la lengua española</em> (23.ª ed.). https://dle.rae.es/emprender</li>
+
+    <li>Sahlman, W. A. (1999). The entrepreneurial venture. En W. A. Sahlman, H. H. Stevenson, M. J. Roberts, & A. Bhidé (Eds.), <em>The entrepreneurial venture</em> (2nd ed., pp. 1–20). Harvard Business School Press.</li>
+
+    <li>Sarasvathy, S. D. (2001). Causation and effectuation: Toward a theoretical shift from economic inevitability to entrepreneurial contingency. <em>Academy of Management Review, 26</em>(2), 243–263. https://doi.org/10.5465/amr.2001.4378020</li>
+
+    <li>Say, J. B. (1803). <em>Traité d'économie politique</em>. Deterville. (Trad. inglesa de C. R. Prinsep: Treatise on political economy. Grigg & Elliot, 1836.)</li>
+
+    <li>Schumpeter, J. A. (1934). <em>The theory of economic development: An inquiry into profits, capital, credit, interest, and the business cycle</em> (R. Opie, Trans.). Harvard University Press. (Obra original publicada en 1911.)</li>
+
+    <li>Shane, S., & Venkataraman, S. (2000). The promise of entrepreneurship as a field of research. <em>Academy of Management Review, 25</em>(1), 217–226. https://doi.org/10.5465/amr.2000.2791611</li>
+  </ul>
+</div>
+
+<script>
+function showTab(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>

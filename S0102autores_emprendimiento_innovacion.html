@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#B8860B;--gold-bg:#FDF8EC;--gold-border:#E8D5A0;
+  --dark:#1C1C2E;--accent:#7B3FA0;
+  --text:var(--color-text-primary);--muted:var(--color-text-secondary);
+  --bg:var(--color-background-primary);--bg2:var(--color-background-secondary);
+  --border:var(--color-border-tertiary);
+}
+body{font-family:var(--font-sans,sans-serif);color:var(--text);background:transparent;font-size:15px;line-height:1.7;}
+
+.page-header{padding:1.75rem 1.5rem 1rem;border-bottom:0.5px solid var(--border);}
+.page-eyebrow{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.35rem;font-weight:500;}
+.page-title{font-size:1.45rem;font-weight:500;color:var(--text);margin-bottom:.3rem;}
+.page-sub{font-size:.88rem;color:var(--muted);}
+
+.filter-bar{display:flex;gap:.5rem;padding:.85rem 1.5rem;border-bottom:0.5px solid var(--border);flex-wrap:wrap;background:var(--bg2);}
+.filter-btn{padding:.3rem .85rem;border-radius:20px;border:0.5px solid var(--border);background:var(--bg);font-size:.75rem;cursor:pointer;color:var(--muted);transition:all .15s;font-family:inherit;}
+.filter-btn.on{background:var(--dark);color:#fff;border-color:var(--dark);}
+@media(prefers-color-scheme:dark){.filter-btn.on{background:#E8D5A0;color:#1C1C2E;border-color:#E8D5A0;}}
+
+.authors-list{padding:0 1.5rem 2rem;}
+
+.author-card{border:0.5px solid var(--border);border-radius:var(--border-radius-lg,12px);margin:1rem 0;overflow:hidden;background:var(--bg);}
+.author-header{display:flex;align-items:flex-start;gap:1rem;padding:1.1rem 1.25rem;cursor:pointer;user-select:none;}
+.author-header:hover{background:var(--bg2);}
+.author-avatar{flex-shrink:0;width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:500;font-size:.82rem;letter-spacing:.03em;}
+.author-meta{flex:1;min-width:0;}
+.author-name{font-weight:500;font-size:1rem;color:var(--text);margin-bottom:.15rem;}
+.author-dates{font-size:.75rem;color:var(--muted);margin-bottom:.3rem;}
+.author-tags{display:flex;gap:.4rem;flex-wrap:wrap;}
+.tag{font-size:.68rem;padding:.15rem .55rem;border-radius:12px;font-weight:500;}
+.tag-eco{background:#EAF3DE;color:#27500A;} .tag-mgmt{background:#E6F1FB;color:#0C447C;}
+.tag-soc{background:#FBEAF0;color:#72243E;} .tag-psy{background:#FAEEDA;color:#633806;}
+.tag-his{background:#F1EFE8;color:#444441;} .tag-aud{background:#EEEDFE;color:#3C3489;}
+@media(prefers-color-scheme:dark){
+  .tag-eco{background:#1A3A04;color:#C0DD97;} .tag-mgmt{background:#042C53;color:#B5D4F4;}
+  .tag-soc{background:#4B1528;color:#F4C0D1;} .tag-psy{background:#412402;color:#FAC775;}
+  .tag-his{background:#2C2C2A;color:#D3D1C7;} .tag-aud{background:#26215C;color:#CECBF6;}
+}
+.expand-icon{flex-shrink:0;width:20px;height:20px;border-radius:50%;border:0.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--muted);transition:transform .2s;margin-top:.2rem;}
+.author-card.open .expand-icon{transform:rotate(45deg);}
+
+.author-body{display:none;border-top:0.5px solid var(--border);}
+.author-card.open .author-body{display:block;}
+
+.body-section{padding:1rem 1.25rem;border-bottom:0.5px solid var(--border);}
+.body-section:last-child{border-bottom:none;}
+.body-label{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:.5rem;}
+.body-text{font-size:.88rem;color:var(--muted);line-height:1.75;}
+.body-text strong{color:var(--text);font-weight:500;}
+
+.obra-box{background:var(--bg2);border-radius:var(--border-radius-md,8px);padding:.85rem 1rem;margin:.6rem 0;border-left:2px solid var(--gold);}
+.obra-title{font-weight:500;font-size:.9rem;color:var(--text);margin-bottom:.2rem;}
+.obra-ref{font-size:.74rem;color:var(--muted);font-family:var(--font-mono,monospace);margin-bottom:.4rem;}
+.obra-desc{font-size:.85rem;color:var(--muted);line-height:1.7;}
+
+.quote-box{background:var(--gold-bg);border-left:2px solid var(--gold);padding:.85rem 1rem;margin:.75rem 0;border-radius:0 var(--border-radius-md,8px) var(--border-radius-md,8px) 0;}
+@media(prefers-color-scheme:dark){.quote-box{background:#2A2200;}}
+.quote-box p{font-size:.9rem;font-style:italic;color:var(--text);margin-bottom:.3rem;line-height:1.7;}
+.quote-box cite{font-size:.73rem;color:var(--muted);}
+
+.aula-box{background:var(--bg2);border-radius:var(--border-radius-md,8px);padding:.85rem 1rem;border:0.5px solid var(--border);}
+.aula-intro{font-size:.75rem;font-weight:500;color:var(--accent);margin-bottom:.4rem;letter-spacing:.05em;}
+.aula-text{font-size:.88rem;color:var(--text);line-height:1.75;}
+
+.apa-text{font-size:.78rem;color:var(--muted);line-height:1.65;font-family:var(--font-mono,monospace);background:var(--bg2);padding:.6rem .85rem;border-radius:var(--border-radius-md,8px);}
+
+.no-results{padding:2.5rem;text-align:center;color:var(--muted);font-size:.9rem;}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="page-eyebrow">Guía docente · Emprendimiento e Innovación</div>
+  <div class="page-title">Quién es quién: los autores de tu clase</div>
+  <div class="page-sub">Haz clic en cada autor para ver su obra, su idea clave y cómo presentarlo en el aula. Filtra por área.</div>
+</div>
+
+<div class="filter-bar">
+  <button class="filter-btn on" onclick="filter('all',this)">Todos</button>
+  <button class="filter-btn" onclick="filter('eco',this)">Economía</button>
+  <button class="filter-btn" onclick="filter('mgmt',this)">Gestión</button>
+  <button class="filter-btn" onclick="filter('soc',this)">Social</button>
+  <button class="filter-btn" onclick="filter('psy',this)">Psicología</button>
+  <button class="filter-btn" onclick="filter('his',this)">Historia</button>
+  <button class="filter-btn" onclick="filter('aud',this)">Contabilidad</button>
+</div>
+
+<div class="authors-list" id="list">
+
+<!-- ===== CANTILLON ===== -->
+<div class="author-card" data-cats="eco his">
+  <div class="author-header" onclick="toggle(this)">
+    <div class="author-avatar" style="background:#EAF3DE;color:#27500A">RC</div>
+    <div class="author-meta">
+      <div class="author-name">Richard Cantillon</div>
+      <div class="author-dates">c. 1680 – 1734 · Economista irlandés-francés</div>
+      <div class="author-tags">
+        <span class="tag tag-eco">Economía</span>
+        <span class="tag tag-his">Historia</span>
+      </div>
+    </div>
+    <div class="expand-icon">+</div>
+  </div>
+  <div class="author-body">
+    <div class="body-section">
+      <div class="body-label">¿Quién fue?</div>
+      <div class="body-text">Banquero y economista de origen irlandés que vivió en Francia. Murió en circunstancias misteriosas —probablemente asesinado— y su única obra fue publicada veinte años después de su muerte. Nadie en su época supo que estaba leyendo al padre de la teoría económica del emprendimiento.</div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Su obra principal y la idea que lo hizo inmortal</div>
+      <div class="obra-box">
+        <div class="obra-title">Essai sur la Nature du Commerce en Général</div>
+        <div class="obra-ref">Cantillon, R. (1755). Essai sur la nature du commerce en général. Fletcher Gyles.</div>
+        <div class="obra-desc">En este libro, Cantillon fue el primero en usar la palabra "entrepreneur" con sentido económico riguroso. Su definición: el emprendedor es quien <strong>compra a precio cierto y vende a precio incierto</strong>. Es decir, quien asume el riesgo de la incertidumbre de mercado como su función esencial. Separó por primera vez al emprendedor del asalariado y del terrateniente: el emprendedor no tiene ingreso garantizado. Vive de su juicio sobre el futuro.</div>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">La cita que puedes usar</div>
+      <div class="quote-box">
+        <p>"El empresario es quien compra a precio seguro y vende a precio inseguro, por lo cual su ganancia o pérdida depende de su habilidad para juzgar el mercado."</p>
+        <cite>Paráfrasis de Cantillon (1755), citado en Murphy & Callaway (2012, p. 45)</cite>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Cómo llevarlo al aula de Contabilidad y Auditoría</div>
+      <div class="aula-box">
+        <div class="aula-intro">Para tus estudiantes:</div>
+        <div class="aula-text">Pregunta a tus estudiantes: <em>"¿Cuándo fue la última vez que compraron algo sin saber si lo podrían revender o usar bien?"</em> Ese momento de incertidumbre —esa apuesta calculada— es exactamente lo que Cantillon describía en 1755. El contador que acepta un cliente nuevo sin saber si va a pagar, el auditor que asume un encargo con información incompleta: ambos viven en el territorio de Cantillon. La incertidumbre no es el problema; es el oficio.</div>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Referencia APA 7</div>
+      <div class="apa-text">Cantillon, R. (1755). Essai sur la nature du commerce en général. Fletcher Gyles. (Ed. moderna: Murphy, A. E., & Thornton, M. (Eds.). (2010). Ludwig von Mises Institute.)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SAY ===== -->
+<div class="author-card" data-cats="eco his">
+  <div class="author-header" onclick="toggle(this)">
+    <div class="author-avatar" style="background:#E6F1FB;color:#0C447C">JBS</div>
+    <div class="author-meta">
+      <div class="author-name">Jean-Baptiste Say</div>
+      <div class="author-dates">1767 – 1832 · Economista francés</div>
+      <div class="author-tags">
+        <span class="tag tag-eco">Economía</span>
+        <span class="tag tag-his">Historia</span>
+      </div>
+    </div>
+    <div class="expand-icon">+</div>
+  </div>
+  <div class="author-body">
+    <div class="body-section">
+      <div class="body-label">¿Quién fue?</div>
+      <div class="body-text">Economista liberal francés, empresario él mismo, contemporáneo de Napoleón. Fue el primero en enseñar economía política en una institución pública de Francia. Combinó teoría y práctica porque vivió ambas: fundó una hilandería antes de escribir sobre economía.</div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Su obra principal y la idea que lo hizo inmortal</div>
+      <div class="obra-box">
+        <div class="obra-title">Traité d'Économie Politique</div>
+        <div class="obra-ref">Say, J. B. (1803). Traité d'économie politique. Deterville.</div>
+        <div class="obra-desc">Say hizo algo que ningún economista había hecho antes: <strong>separar al emprendedor del capitalista</strong>. Hasta Say, se asumía que quien ponía el dinero también emprendía. Say demostró que son funciones distintas: el capitalista aporta el capital; el emprendedor aporta el juicio, la organización y la combinación creativa de los factores productivos (tierra, trabajo, capital). El emprendedor crea valor a través de la organización, no solo del dinero.</div>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Cómo llevarlo al aula de Contabilidad y Auditoría</div>
+      <div class="aula-box">
+        <div class="aula-intro">Para tus estudiantes:</div>
+        <div class="aula-text">Di a tus estudiantes: <em>"Según Say, no necesitas ser rico para emprender. Necesitas saber combinar lo que ya existe de manera más inteligente."</em> Un contador no necesita millones para crear una firma de servicios; necesita organizar su conocimiento, el tiempo de sus colegas y la confianza de sus clientes. Eso es combinación de factores. Eso es lo que Say llamaba emprendimiento.</div>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Referencia APA 7</div>
+      <div class="apa-text">Say, J. B. (1803). Traité d'économie politique. Deterville. (Trad. inglesa de C. R. Prinsep: Treatise on political economy. Grigg & Elliot, 1836.)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SCHUMPETER ===== -->
+<div class="author-card" data-cats="eco his">
+  <div class="author-header" onclick="toggle(this)">
+    <div class="author-avatar" style="background:#FAEEDA;color:#633806">JAS</div>
+    <div class="author-meta">
+      <div class="author-name">Joseph A. Schumpeter</div>
+      <div class="author-dates">1883 – 1950 · Economista austro-estadounidense</div>
+      <div class="author-tags">
+        <span class="tag tag-eco">Economía</span>
+        <span class="tag tag-his">Historia</span>
+      </div>
+    </div>
+    <div class="expand-icon">+</div>
+  </div>
+  <div class="author-body">
+    <div class="body-section">
+      <div class="body-label">¿Quién fue?</div>
+      <div class="body-text">Considerado el padre del emprendimiento moderno como campo de estudio. Fue ministro de finanzas de Austria, fundó un banco que quebró, y luego se convirtió en uno de los economistas más influyentes del siglo XX en Harvard. Su vida fue ella misma un proceso de destrucción creativa.</div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Su obra principal y las ideas que lo hicieron inmortal</div>
+      <div class="obra-box">
+        <div class="obra-title">The Theory of Economic Development (1911/1934)</div>
+        <div class="obra-ref">Schumpeter, J. A. (1934). The theory of economic development. Harvard University Press.</div>
+        <div class="obra-desc">Schumpeter introdujo dos conceptos que siguen siendo el núcleo de toda teoría de emprendimiento e innovación: <strong>(1) La destrucción creativa</strong>: el capitalismo avanza destruyendo el orden existente para crear uno nuevo. El emprendedor es el agente de esa destrucción. <strong>(2) Las cinco combinaciones nuevas</strong> —innovación de producto, proceso, mercado, fuente de insumos y organización industrial— que siguen siendo el estándar del Manual de Oslo de la OCDE. Para Schumpeter, el emprendedor no es el que trabaja más duro; es el que piensa diferente.</div>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">La cita que puedes usar</div>
+      <div class="quote-box">
+        <p>"La función del emprendedor es reformar o revolucionar el patrón de producción, explotando una invención o, más generalmente, una posibilidad técnica no probada."</p>
+        <cite>Schumpeter, J. A. (1942). Capitalism, socialism and democracy. Harper & Bros., p. 132.</cite>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Cómo llevarlo al aula de Contabilidad y Auditoría</div>
+      <div class="aula-box">
+        <div class="aula-intro">Para tus estudiantes:</div>
+        <div class="aula-text">Pregunta: <em>"¿Conocen a alguien que haya perdido su trabajo porque apareció una app o un sistema que hacía lo mismo más barato?"</em> Eso es destrucción creativa de Schumpeter en tiempo real. La contabilidad manual fue destruida creativamente por los ERP. La auditoría de muestras está siendo destruida por la analítica de datos masivos. La pregunta no es si esto pasará: <strong>ya está pasando.</strong> La pregunta es si van a ser los destruidos o los que destruyen creativamente.</div>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Referencia APA 7</div>
+      <div class="apa-text">Schumpeter, J. A. (1934). The theory of economic development: An inquiry into profits, capital, credit, interest, and the business cycle (R. Opie, Trans.). Harvard University Press. (Obra original publicada en 1911.)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DRUCKER ===== -->
+<div class="author-card" data-cats="mgmt eco">
+  <div class="author-header" onclick="toggle(this)">
+    <div class="author-avatar" style="background:#EEEDFE;color:#3C3489">PD</div>
+    <div class="author-meta">
+      <div class="author-name">Peter F. Drucker</div>
+      <div class="author-dates">1909 – 2005 · Consultor y pensador de gestión austro-estadounidense</div>
+      <div class="author-tags">
+        <span class="tag tag-mgmt">Gestión</span>
+        <span class="tag tag-eco">Economía</span>
+      </div>
+    </div>
+    <div class="expand-icon">+</div>
+  </div>
+  <div class="author-body">
+    <div class="body-section">
+      <div class="body-label">¿Quién fue?</div>
+      <div class="body-text">El pensador de gestión más influyente del siglo XX. Asesoró a General Motors, IBM, Intel, Procter & Gamble, la Cruz Roja, el Ejército de EE.UU. y gobiernos de todo el mundo. Escribió 39 libros. Vivió 95 años y escribió hasta los 94. Su trabajo democratizó la idea de que la gestión —y el emprendimiento— son disciplinas que cualquiera puede aprender con rigor.</div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Su obra clave para esta clase</div>
+      <div class="obra-box">
+        <div class="obra-title">Innovation and Entrepreneurship (1985)</div>
+        <div class="obra-ref">Drucker, P. F. (1985). Innovation and entrepreneurship: Practice and principles. Harper & Row.</div>
+        <div class="obra-desc">Este libro tiene dos tesis fundamentales. Primera: <strong>el emprendimiento no es un rasgo de carácter</strong>; es una disciplina sistemática que puede aprenderse. Segunda: <strong>la innovación tiene fuentes identificables</strong>. Drucker catalogó siete fuentes de oportunidad innovadora: (1) lo inesperado, (2) incongruencias en el mercado, (3) necesidades de proceso, (4) cambios en la industria, (5) cambios demográficos, (6) cambios en percepción, y (7) conocimiento nuevo. Esta taxonomía convierte la innovación de un acto de genialidad en un proceso metodológico.</div>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Las citas que puedes usar</div>
+      <div class="quote-box">
+        <p>"El emprendimiento no es ni ciencia ni arte. Es una práctica."</p>
+        <cite>Drucker, P. F. (1985). Innovation and entrepreneurship. Harper & Row, p. 17.</cite>
+      </div>
+      <div class="quote-box">
+        <p>"La innovación es el instrumento específico del espíritu emprendedor. Es el acto que dota a los recursos de una nueva capacidad de crear riqueza."</p>
+        <cite>Drucker, P. F. (1985). Innovation and entrepreneurship. Harper & Row, p. 33.</cite>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Cómo llevarlo al aula de Contabilidad y Auditoría</div>
+      <div class="aula-box">
+        <div class="aula-intro">Para tus estudiantes:</div>
+        <div class="aula-text">Drucker diría a sus estudiantes: <em>"No esperen que la innovación los golpee como un rayo. Vayan a buscar las incongruencias."</em> En contabilidad, una incongruencia es cuando el informe financiero dice que la empresa va bien pero los flujos de caja dicen lo contrario. Eso es una señal de oportunidad para un auditor que sabe ver. Drucker enseñó que los mejores emprendedores no son los más creativos, sino los más <strong>atentos a lo que no funciona</strong>.</div>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Referencia APA 7</div>
+      <div class="apa-text">Drucker, P. F. (1985). Innovation and entrepreneurship: Practice and principles. Harper & Row.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SHANE & VENKATARAMAN ===== -->
+<div class="author-card" data-cats="mgmt eco">
+  <div class="author-header" onclick="toggle(this)">
+    <div class="author-avatar" style="background:#FAECE7;color:#712B13">S&V</div>
+    <div class="author-meta">
+      <div class="author-name">Scott Shane & S. Venkataraman</div>
+      <div class="author-dates">Artículo 2000 · Economistas del comportamiento emprendedor</div>
+      <div class="author-tags">
+        <span class="tag tag-mgmt">Gestión</span>
+        <span class="tag tag-eco">Economía</span>
+      </div>
+    </div>
+    <div class="expand-icon">+</div>
+  </div>
+  <div class="author-body">
+    <div class="body-section">
+      <div class="body-label">¿Quiénes fueron?</div>
+      <div class="body-text">Scott Shane (Case Western Reserve University) y Sankaran Venkataraman (University of Virginia) publicaron en el año 2000 el artículo académico más citado en la historia del estudio del emprendimiento. Con ese artículo convirtieron el emprendimiento en un campo de investigación científico autónomo, con su propio objeto de estudio.</div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Su obra clave</div>
+      <div class="obra-box">
+        <div class="obra-title">The Promise of Entrepreneurship as a Field of Research (2000)</div>
+        <div class="obra-ref">Shane, S., & Venkataraman, S. (2000). The promise of entrepreneurship as a field of research. Academy of Management Review, 25(1), 217–226.</div>
+        <div class="obra-desc">La tesis central: el emprendimiento es el estudio de <strong>cómo, por quién y con qué efectos se descubren, evalúan y explotan oportunidades para crear bienes y servicios futuros</strong>. Esta definición tiene tres implicaciones revolucionarias: (1) La oportunidad existe independientemente de que alguien la vea. (2) No todos pueden ver la misma oportunidad —hay factores cognitivos, informativos y motivacionales que determinan quién la descubre. (3) El emprendedor no crea la oportunidad: la <em>descubre</em> o la <em>construye</em> mediante información que otros no tienen.</div>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Cómo llevarlo al aula de Contabilidad y Auditoría</div>
+      <div class="aula-box">
+        <div class="aula-intro">Para tus estudiantes:</div>
+        <div class="aula-text">Di a tus estudiantes: <em>"¿Por qué dos personas que viven en el mismo barrio, con el mismo nivel educativo, ven oportunidades completamente diferentes?"</em> Shane y Venkataraman respondieron esa pregunta: porque la información que cada uno ha acumulado —su experiencia, sus contactos, su conocimiento técnico— actúa como un filtro que revela distintas realidades. Su formación en contabilidad y auditoría les da un <strong>filtro privilegiado</strong>: ven lo que otros no pueden ver porque no saben leer los números.</div>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Referencia APA 7</div>
+      <div class="apa-text">Shane, S., & Venkataraman, S. (2000). The promise of entrepreneurship as a field of research. Academy of Management Review, 25(1), 217–226. https://doi.org/10.5465/amr.2000.2791611</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== KNIGHT ===== -->
+<div class="author-card" data-cats="eco his">
+  <div class="author-header" onclick="toggle(this)">
+    <div class="author-avatar" style="background:#EAF3DE;color:#27500A">FK</div>
+    <div class="author-meta">
+      <div class="author-name">Frank H. Knight</div>
+      <div class="author-dates">1885 – 1972 · Economista estadounidense, Universidad de Chicago</div>
+      <div class="author-tags">
+        <span class="tag tag-eco">Economía</span>
+        <span class="tag tag-his">Historia</span>
+      </div>
+    </div>
+    <div class="expand-icon">+</div>
+  </div>
+  <div class="author-body">
+    <div class="body-section">
+      <div class="body-label">¿Quién fue?</div>
+      <div class="body-text">Fundador de la Escuela de Chicago de Economía. Su disertación doctoral de 1921 se convirtió en uno de los libros más importantes de la historia económica. Knight distinguió algo que nadie antes había separado con tanta claridad: riesgo e incertidumbre.</div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Su obra clave</div>
+      <div class="obra-box">
+        <div class="obra-title">Risk, Uncertainty and Profit (1921)</div>
+        <div class="obra-ref">Knight, F. H. (1921). Risk, uncertainty and profit. Houghton Mifflin.</div>
+        <div class="obra-desc"><strong>Riesgo</strong>: situaciones cuya probabilidad puede calcularse (como los seguros). <strong>Incertidumbre</strong>: situaciones donde ni siquiera se puede calcular la probabilidad (como lanzar un producto nuevo). Knight argumentó que la ganancia del emprendedor es la recompensa por asumir incertidumbre verdadera, no riesgo calculable. El emprendedor no es quien apuesta ciegamente; es quien convierte la incertidumbre en juicio.</div>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Cómo llevarlo al aula de Contabilidad y Auditoría</div>
+      <div class="aula-box">
+        <div class="aula-intro">Para tus estudiantes:</div>
+        <div class="aula-text">Un auditor trabaja exactamente en el territorio de Knight todos los días: evalúa riesgos (auditables, medibles) e incertidumbres (fraudes no detectados aún, contingencias no reveladas). La formación contable es, en esencia, la formación para <strong>convertir incertidumbre en estimaciones razonables</strong>. Cuando emiten un dictamen de auditoría, están haciendo exactamente lo que Knight describía como la función central del emprendedor.</div>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Referencia APA 7</div>
+      <div class="apa-text">Knight, F. H. (1921). Risk, uncertainty and profit. Houghton Mifflin. (Reimpr. University of Chicago Press, 1971.)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SARASVATHY ===== -->
+<div class="author-card" data-cats="mgmt psy">
+  <div class="author-header" onclick="toggle(this)">
+    <div class="author-avatar" style="background:#FBEAF0;color:#72243E">SS</div>
+    <div class="author-meta">
+      <div class="author-name">Saras D. Sarasvathy</div>
+      <div class="author-dates">Artículo 2001 · Investigadora de emprendimiento, University of Virginia</div>
+      <div class="author-tags">
+        <span class="tag tag-mgmt">Gestión</span>
+        <span class="tag tag-psy">Psicología</span>
+      </div>
+    </div>
+    <div class="expand-icon">+</div>
+  </div>
+  <div class="author-body">
+    <div class="body-section">
+      <div class="body-label">¿Quién fue?</div>
+      <div class="body-text">Profesora en la Darden School of Business (University of Virginia). Hizo algo pionero: estudió cómo piensan realmente los emprendedores expertos, no cómo deberían pensar según la teoría. Entrevistó a 27 fundadores de empresas que habían llevado compañías a salidas a bolsa. Lo que encontró cambió la teoría del emprendimiento.</div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Su obra clave</div>
+      <div class="obra-box">
+        <div class="obra-title">Causation and Effectuation (2001)</div>
+        <div class="obra-ref">Sarasvathy, S. D. (2001). Causation and effectuation: Toward a theoretical shift from economic inevitability to entrepreneurial contingency. Academy of Management Review, 26(2), 243–263.</div>
+        <div class="obra-desc">Sarasvathy descubrió que los emprendedores expertos no piensan como los libros de texto dicen: no empiezan con un objetivo fijo y buscan los medios para lograrlo (causalidad). En cambio, usan <strong>efectuación</strong>: parten de los medios que tienen disponibles (quiénes son, qué saben, a quién conocen) y construyen el objetivo a medida que avanzan. La tolerancia a la ambigüedad es una habilidad entrenada, no un rasgo de carácter.</div>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Cómo llevarlo al aula de Contabilidad y Auditoría</div>
+      <div class="aula-box">
+        <div class="aula-intro">Para tus estudiantes:</div>
+        <div class="aula-text"><em>"¿Qué tengo disponible ahora mismo para emprender algo?"</em> Tienen conocimiento contable (nadie que no lo haya estudiado lo tiene), están en una universidad (red de contactos), y viven en un país con problemas reales de transparencia financiera (oportunidad). Sarasvathy diría: <strong>no esperen tener el plan perfecto; empiecen con lo que tienen</strong>. El plan se construye en el camino.</div>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Referencia APA 7</div>
+      <div class="apa-text">Sarasvathy, S. D. (2001). Causation and effectuation: Toward a theoretical shift from economic inevitability to entrepreneurial contingency. Academy of Management Review, 26(2), 243–263. https://doi.org/10.5465/amr.2001.4378020</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== BLANK ===== -->
+<div class="author-card" data-cats="mgmt">
+  <div class="author-header" onclick="toggle(this)">
+    <div class="author-avatar" style="background:#EEEDFE;color:#3C3489">SB</div>
+    <div class="author-meta">
+      <div class="author-name">Steve Blank</div>
+      <div class="author-dates">Artículo 2013 · Emprendedor serial y académico, Stanford / Berkeley</div>
+      <div class="author-tags">
+        <span class="tag tag-mgmt">Gestión</span>
+      </div>
+    </div>
+    <div class="expand-icon">+</div>
+  </div>
+  <div class="author-body">
+    <div class="body-section">
+      <div class="body-label">¿Quién fue?</div>
+      <div class="body-text">Fundó y co-fundó ocho empresas en Silicon Valley, cuatro de las cuales llegaron a salidas a bolsa. Hoy es profesor en Stanford y Berkeley. No es solo académico: es alguien que construyó, fracasó y volvió a construir. Inventó la metodología de Desarrollo de Clientes que está en la base del movimiento Lean Startup.</div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Sus obras clave</div>
+      <div class="obra-box">
+        <div class="obra-title">Why the Lean Start-Up Changes Everything (2013)</div>
+        <div class="obra-ref">Blank, S. G. (2013). Why the lean start-up changes everything. Harvard Business Review, 91(5), 63–72.</div>
+        <div class="obra-desc">Blank demostró que el modelo tradicional de plan de negocios —escribir un plan detallado y ejecutarlo— es letal para startups porque asume que se conoce al cliente antes de hablar con él. Su solución: <strong>salir a la calle a verificar hipótesis</strong> antes de construir nada. "No hay hechos dentro del edificio, así que sal afuera." Esta filosofía transformó cómo se enseña emprendimiento en el mundo.</div>
+      </div>
+      <div class="obra-box">
+        <div class="obra-title">The Startup Owner's Manual (2012)</div>
+        <div class="obra-ref">Blank, S. G., & Dorf, B. (2012). The startup owner's manual. K & S Ranch Press.</div>
+        <div class="obra-desc">El manual más práctico jamás escrito sobre cómo construir una empresa desde cero. Introduce el concepto de <strong>Producto Mínimo Viable (MVP)</strong> como herramienta para aprender rápido con el mínimo recurso.</div>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">La cita que puedes usar</div>
+      <div class="quote-box">
+        <p>"Ningún plan de negocios sobrevive al primer contacto con el cliente."</p>
+        <cite>Blank, S. G. (2013). Why the lean start-up changes everything. Harvard Business Review, 91(5), 64.</cite>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Cómo llevarlo al aula de Contabilidad y Auditoría</div>
+      <div class="aula-box">
+        <div class="aula-intro">Para tus estudiantes:</div>
+        <div class="aula-text">En auditoría existe el mismo principio de Blank sin llamarlo así: la <strong>planificación de auditoría</strong> es una hipótesis sobre los riesgos de la empresa. Cuando el auditor llega al campo, esa hipótesis se verifica, se ajusta o se rechaza. Blank simplemente llevó esa lógica al emprendimiento: no construyas el producto completo antes de verificar que alguien lo quiere. El contador emprendedor que va a lanzar un servicio de asesoría debería primero hablar con 10 potenciales clientes antes de alquilar una oficina.</div>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Referencia APA 7</div>
+      <div class="apa-text">Blank, S. G. (2013). Why the lean start-up changes everything. Harvard Business Review, 91(5), 63–72.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DUCKWORTH ===== -->
+<div class="author-card" data-cats="psy">
+  <div class="author-header" onclick="toggle(this)">
+    <div class="author-avatar" style="background:#FAEEDA;color:#633806">AD</div>
+    <div class="author-meta">
+      <div class="author-name">Angela Duckworth</div>
+      <div class="author-dates">Libro 2016 · Psicóloga, University of Pennsylvania</div>
+      <div class="author-tags">
+        <span class="tag tag-psy">Psicología</span>
+      </div>
+    </div>
+    <div class="expand-icon">+</div>
+  </div>
+  <div class="author-body">
+    <div class="body-section">
+      <div class="body-label">¿Quién fue?</div>
+      <div class="body-text">Psicóloga ganadora de la Beca MacArthur (conocida como el "Premio Genio"). Antes de dedicarse a la investigación, fue maestra de matemáticas en escuelas públicas. Su pregunta de vida: ¿por qué algunos estudiantes con menos talento innato superan a los más brillantes? La respuesta la llevó a una investigación de 10 años.</div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Su obra clave</div>
+      <div class="obra-box">
+        <div class="obra-title">Grit: The Power of Passion and Perseverance (2016)</div>
+        <div class="obra-ref">Duckworth, A. (2016). Grit: The power of passion and perseverance. Scribner.</div>
+        <div class="obra-desc">Duckworth estudió cadetes de West Point, vendedores nacionales, participantes del concurso de deletreo nacional, y equipos de la NFL. Su hallazgo: el factor predictivo del éxito a largo plazo no es el talento ni la inteligencia sino el <strong>"grit"</strong> —una combinación de pasión sostenida y perseverancia ante el fracaso. Definición precisa: grit es la disposición a trabajar con intensidad y persistencia en el mismo objetivo a largo plazo, incluso ante el fracaso, el adversario y la falta de progreso.</div>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Cómo llevarlo al aula de Contabilidad y Auditoría</div>
+      <div class="aula-box">
+        <div class="aula-intro">Para tus estudiantes:</div>
+        <div class="aula-text">Duckworth encontró que el predictor número uno del éxito en contextos de alta exigencia no es el CI ni el talento: es el grit. Para un estudiante de Contabilidad que enfrenta normativa tributaria, NIIF, y Normas de Auditoría que cambian cada año, esto tiene un mensaje concreto: <strong>el que persiste con dirección supera al que tiene talento sin disciplina.</strong> Emprender requiere grit porque el camino incluye clientes que no pagan, proyectos que fallan y mercados que cambian.</div>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Referencia APA 7</div>
+      <div class="apa-text">Duckworth, A. (2016). Grit: The power of passion and perseverance. Scribner.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DEES ===== -->
+<div class="author-card" data-cats="soc mgmt">
+  <div class="author-header" onclick="toggle(this)">
+    <div class="author-avatar" style="background:#FBEAF0;color:#72243E">JD</div>
+    <div class="author-meta">
+      <div class="author-name">J. Gregory Dees</div>
+      <div class="author-dates">Artículo 1998 · Padre del emprendimiento social, Duke University</div>
+      <div class="author-tags">
+        <span class="tag tag-soc">Social</span>
+        <span class="tag tag-mgmt">Gestión</span>
+      </div>
+    </div>
+    <div class="expand-icon">+</div>
+  </div>
+  <div class="author-body">
+    <div class="body-section">
+      <div class="body-label">¿Quién fue?</div>
+      <div class="body-text">Profesor en Harvard Business School y Duke University. Es considerado el fundador del emprendimiento social como disciplina académica. Su artículo de 1998 —distribuido originalmente como documento de trabajo de la Kauffman Foundation— se convirtió en la referencia canónica del campo. Murió en 2013 pero su marco teórico sigue siendo el estándar global.</div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Su obra clave</div>
+      <div class="obra-box">
+        <div class="obra-title">The Meaning of Social Entrepreneurship (1998)</div>
+        <div class="obra-ref">Dees, J. G. (1998). The meaning of social entrepreneurship. Kauffman Foundation Working Papers.</div>
+        <div class="obra-desc">Dees combinó la teoría de Schumpeter con la de Say y la de Drucker para definir el emprendedor social como alguien que actúa como un agente de cambio en el sector social: adopta una misión de creación de valor social, reconoce oportunidades que sirven a esa misión, involucra a otros en su visión, y actúa con audacia sin limitarse a los recursos disponibles. Su aportación más radical: <strong>el valor no se mide solo en dinero</strong>; se mide en impacto humano, ambiental e institucional.</div>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Cómo llevarlo al aula de Contabilidad y Auditoría</div>
+      <div class="aula-box">
+        <div class="aula-intro">Para tus estudiantes:</div>
+        <div class="aula-text">La contabilidad social y ambiental —y los reportes de sostenibilidad (GRI, IFRS S1/S2)— son la respuesta técnica a la visión de Dees: que las empresas deben rendir cuentas no solo a sus accionistas sino a la sociedad. Un contador que diseña sistemas de reporte de impacto social <strong>está haciendo emprendimiento social</strong> desde su función técnica. No necesita fundar una ONG.</div>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Referencia APA 7</div>
+      <div class="apa-text">Dees, J. G. (1998). The meaning of social entrepreneurship. Kauffman Center for Entrepreneurial Leadership Working Papers. Duke University.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PORTER & KRAMER ===== -->
+<div class="author-card" data-cats="mgmt soc">
+  <div class="author-header" onclick="toggle(this)">
+    <div class="author-avatar" style="background:#E6F1FB;color:#0C447C">P&K</div>
+    <div class="author-meta">
+      <div class="author-name">Michael Porter & Mark Kramer</div>
+      <div class="author-dates">Artículo 2011 · Harvard Business School</div>
+      <div class="author-tags">
+        <span class="tag tag-mgmt">Gestión</span>
+        <span class="tag tag-soc">Social</span>
+      </div>
+    </div>
+    <div class="expand-icon">+</div>
+  </div>
+  <div class="author-body">
+    <div class="body-section">
+      <div class="body-label">¿Quiénes fueron?</div>
+      <div class="body-text">Michael Porter es el estratega empresarial más citado de la historia; creó el modelo de las Cinco Fuerzas y la teoría de la ventaja competitiva. Mark Kramer es su colaborador en temas de responsabilidad social. Juntos publicaron uno de los artículos más leídos de Harvard Business Review en el siglo XXI.</div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Su obra clave para esta clase</div>
+      <div class="obra-box">
+        <div class="obra-title">Creating Shared Value (2011)</div>
+        <div class="obra-ref">Porter, M. E., & Kramer, M. R. (2011). Creating shared value. Harvard Business Review, 89(1–2), 62–77.</div>
+        <div class="obra-desc">Porter y Kramer argumentaron que el capitalismo está en crisis precisamente porque las empresas maximizan beneficios a corto plazo ignorando el bienestar de la sociedad que las sostiene. Propusieron el concepto de <strong>Valor Compartido (CSV)</strong>: las empresas crean valor económico de manera que simultáneamente crean valor para la sociedad. No es filantropía; es estrategia. El emprendedor que diseña su modelo de negocio creando valor compartido tiene una ventaja competitiva estructural.</div>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Cómo llevarlo al aula de Contabilidad y Auditoría</div>
+      <div class="aula-box">
+        <div class="aula-intro">Para tus estudiantes:</div>
+        <div class="aula-text">Los informes de sostenibilidad, la contabilidad de triple resultado (económico, social, ambiental), y los estándares GRI son la operacionalización contable del Valor Compartido de Porter y Kramer. Cuando un auditor certifica un reporte de sostenibilidad, está validando que una empresa <strong>genera valor para sus accionistas y para la sociedad al mismo tiempo</strong>. Eso es una función emprendedora de alto impacto.</div>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Referencia APA 7</div>
+      <div class="apa-text">Porter, M. E., & Kramer, M. R. (2011). Creating shared value. Harvard Business Review, 89(1–2), 62–77.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== BROWN ===== -->
+<div class="author-card" data-cats="mgmt">
+  <div class="author-header" onclick="toggle(this)">
+    <div class="author-avatar" style="background:#EEEDFE;color:#3C3489">TB</div>
+    <div class="author-meta">
+      <div class="author-name">Tim Brown</div>
+      <div class="author-dates">Libro 2009 · CEO de IDEO, pionero del Design Thinking</div>
+      <div class="author-tags">
+        <span class="tag tag-mgmt">Gestión</span>
+      </div>
+    </div>
+    <div class="expand-icon">+</div>
+  </div>
+  <div class="author-body">
+    <div class="body-section">
+      <div class="body-label">¿Quién fue?</div>
+      <div class="body-text">CEO de IDEO, la firma de diseño e innovación más influyente del mundo. Ha trabajado con Apple, Bank of America, la Fundación Gates y el gobierno de Singapur. Su aportación: sistematizar cómo las personas, no las tecnologías, deben estar al centro de cualquier proceso de innovación.</div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Su obra clave</div>
+      <div class="obra-box">
+        <div class="obra-title">Change by Design (2009)</div>
+        <div class="obra-ref">Brown, T. (2009). Change by design: How design thinking transforms organizations and inspires innovation. HarperBusiness.</div>
+        <div class="obra-desc">Brown popularizó el <strong>Design Thinking</strong> como metodología de innovación centrada en el ser humano. Sus tres etapas: (1) Empatizar profundamente con el usuario. (2) Definir el problema real (no el aparente). (3) Idear, prototipar y testear soluciones. Su mensaje central: la innovación que no parte de entender a las personas está destinada a fallar, independientemente de la tecnología disponible.</div>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Cómo llevarlo al aula de Contabilidad y Auditoría</div>
+      <div class="aula-box">
+        <div class="aula-intro">Para tus estudiantes:</div>
+        <div class="aula-text">Un sistema contable que nadie en la empresa entiende o usa correctamente no es una solución; es un problema nuevo. Brown diría: antes de diseñar cualquier sistema de control interno, <strong>entiende profundamente a quienes van a usarlo</strong>. ¿Qué les resulta confuso? ¿Qué les toma demasiado tiempo? ¿Dónde cometen errores? Esa empatía es el primer paso de la innovación contable.</div>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Referencia APA 7</div>
+      <div class="apa-text">Brown, T. (2009). Change by design: How design thinking transforms organizations and inspires innovation. HarperBusiness.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== OCDE / OSLO ===== -->
+<div class="author-card" data-cats="eco aud">
+  <div class="author-header" onclick="toggle(this)">
+    <div class="author-avatar" style="background:#EAF3DE;color:#27500A">OS</div>
+    <div class="author-meta">
+      <div class="author-name">OCDE & Eurostat — Manual de Oslo</div>
+      <div class="author-dates">4.ª edición 2018 · Estándar internacional de medición de innovación</div>
+      <div class="author-tags">
+        <span class="tag tag-eco">Economía</span>
+        <span class="tag tag-aud">Contabilidad</span>
+      </div>
+    </div>
+    <div class="expand-icon">+</div>
+  </div>
+  <div class="author-body">
+    <div class="body-section">
+      <div class="body-label">¿Qué es?</div>
+      <div class="body-text">El Manual de Oslo es el estándar internacional para definir, medir y comparar la innovación en las economías. Fue desarrollado conjuntamente por la OCDE (Organización para la Cooperación y el Desarrollo Económicos) y Eurostat (la oficina de estadística de la Unión Europea). Su 4.ª edición de 2018 es la versión vigente y es la referencia obligatoria para cualquier política pública o investigación académica sobre innovación en el mundo.</div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Su aportación central</div>
+      <div class="obra-box">
+        <div class="obra-title">Oslo Manual 2018 (4.ª edición)</div>
+        <div class="obra-ref">OCDE & Eurostat. (2018). Oslo Manual 2018: Guidelines for collecting, reporting and using data on innovation (4th ed.). OECD Publishing.</div>
+        <div class="obra-desc">Define cuatro tipos de innovación: <strong>de producto, de proceso, organizacional y de comercialización</strong>. La definición clave: una innovación es un producto o proceso nuevo o significativamente mejorado que difiere de los anteriores y ha sido puesto a disposición de usuarios potenciales o adoptado por la unidad. Dos criterios insoslayables: novedad significativa y adopción real. Sin adopción, no hay innovación; solo hay invención.</div>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Cómo llevarlo al aula de Contabilidad y Auditoría</div>
+      <div class="aula-box">
+        <div class="aula-intro">Para tus estudiantes:</div>
+        <div class="aula-text">El Manual de Oslo es el equivalente de las NIIF para la innovación: define los términos, establece los criterios, y permite la comparación internacional. Cuando un contador trabaja en un informe de I+D (Investigación y Desarrollo) para efectos tributarios o financieros, los criterios del Manual de Oslo determinan qué puede clasificarse como gasto o activo de innovación. Conocer este manual es conocer <strong>el lenguaje contable de la innovación</strong>.</div>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Referencia APA 7</div>
+      <div class="apa-text">OCDE & Eurostat. (2018). Oslo Manual 2018: Guidelines for collecting, reporting and using data on innovation (4th ed.). OECD Publishing. https://doi.org/10.1787/9789264304604-en</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== KAPLAN & NORTON ===== -->
+<div class="author-card" data-cats="aud mgmt">
+  <div class="author-header" onclick="toggle(this)">
+    <div class="author-avatar" style="background:#EEEDFE;color:#3C3489">KN</div>
+    <div class="author-meta">
+      <div class="author-name">Robert Kaplan & David Norton</div>
+      <div class="author-dates">Libro 1996 · Harvard Business School</div>
+      <div class="author-tags">
+        <span class="tag tag-aud">Contabilidad</span>
+        <span class="tag tag-mgmt">Gestión</span>
+      </div>
+    </div>
+    <div class="expand-icon">+</div>
+  </div>
+  <div class="author-body">
+    <div class="body-section">
+      <div class="body-label">¿Quiénes fueron?</div>
+      <div class="body-text">Robert Kaplan, profesor de Harvard Business School y uno de los contadores académicos más influyentes de la historia. David Norton, consultor. Juntos crearon una de las herramientas de gestión más adoptadas en el mundo corporativo: el Balanced Scorecard (BSC) o Cuadro de Mando Integral.</div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Su obra clave</div>
+      <div class="obra-box">
+        <div class="obra-title">The Balanced Scorecard (1996)</div>
+        <div class="obra-ref">Kaplan, R. S., & Norton, D. P. (1996). The balanced scorecard: Translating strategy into action. Harvard Business School Press.</div>
+        <div class="obra-desc">El BSC fue una innovación contable de primer orden: demostró que medir una organización solo con indicadores financieros (el modelo tradicional) era insuficiente. Propusieron cuatro perspectivas integradas: <strong>financiera, clientes, procesos internos, y aprendizaje y crecimiento</strong>. El BSC transformó la contabilidad de gestión de un sistema de registro histórico a un sistema de navegación estratégica.</div>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Cómo llevarlo al aula de Contabilidad y Auditoría</div>
+      <div class="aula-box">
+        <div class="aula-intro">Para tus estudiantes:</div>
+        <div class="aula-text">El BSC es emprendimiento contable puro: Kaplan y Norton identificaron un problema (la contabilidad financiera no captura el valor intangible), propusieron una solución innovadora (cuatro perspectivas de medición), y transformaron la práctica global. Hoy, un auditor que solo revisa los estados financieros y no los indicadores de clientes, procesos y aprendizaje <strong>está viendo la mitad del cuadro</strong>. El BSC enseñó eso.</div>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Referencia APA 7</div>
+      <div class="apa-text">Kaplan, R. S., & Norton, D. P. (1996). The balanced scorecard: Translating strategy into action. Harvard Business School Press.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ISENBERG ===== -->
+<div class="author-card" data-cats="mgmt eco">
+  <div class="author-header" onclick="toggle(this)">
+    <div class="author-avatar" style="background:#FAECE7;color:#712B13">DI</div>
+    <div class="author-meta">
+      <div class="author-name">Daniel Isenberg</div>
+      <div class="author-dates">Artículo 2011 · Harvard Business School</div>
+      <div class="author-tags">
+        <span class="tag tag-mgmt">Gestión</span>
+        <span class="tag tag-eco">Economía</span>
+      </div>
+    </div>
+    <div class="expand-icon">+</div>
+  </div>
+  <div class="author-body">
+    <div class="body-section">
+      <div class="body-label">¿Quién fue?</div>
+      <div class="body-text">Profesor de Harvard Business School y experto en ecosistemas emprendedores. Asesor de políticas de emprendimiento en más de 40 países. Su modelo de ecosistemas emprendedores es hoy el marco de referencia para las políticas públicas de fomento al emprendimiento en la OCDE, el BID y el Banco Mundial.</div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Su obra clave</div>
+      <div class="obra-box">
+        <div class="obra-title">The Entrepreneurship Ecosystem Strategy (2011)</div>
+        <div class="obra-ref">Isenberg, D. (2011). The entrepreneurship ecosystem strategy as a new paradigm for economic policy. Institute of International and European Affairs, 1(1), 1–13.</div>
+        <div class="obra-desc">Isenberg argumentó que el emprendimiento no depende solo del individuo sino del entorno completo que lo rodea. Identificó seis dominios del ecosistema emprendedor: <strong>política, mercados, capital humano, financiación, instituciones de soporte y cultura</strong>. Sin el ecosistema adecuado, incluso el emprendedor más brillante fracasa. Con un ecosistema sólido, emprendedores mediocres prosperan.</div>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Cómo llevarlo al aula de Contabilidad y Auditoría</div>
+      <div class="aula-box">
+        <div class="aula-intro">Para tus estudiantes:</div>
+        <div class="aula-text">Pregunta a tus estudiantes: <em>"¿Qué elementos del ecosistema emprendedor de Ecuador están bien desarrollados y cuáles faltan?"</em> Esa conversación es estratégica: los contadores y auditores son parte del ecosistema —son el capital humano técnico que da confianza al capital financiero. Sin profesionales contables íntegros, <strong>no hay ecosistema emprendedor posible</strong>: ningún inversionista pone dinero donde no hay transparencia financiera.</div>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Referencia APA 7</div>
+      <div class="apa-text">Isenberg, D. (2011). The entrepreneurship ecosystem strategy as a new paradigm for economic policy: Principles for cultivating entrepreneurship. Institute of International and European Affairs, 1(1), 1–13.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PACIOLI ===== -->
+<div class="author-card" data-cats="aud his">
+  <div class="author-header" onclick="toggle(this)">
+    <div class="author-avatar" style="background:#EEEDFE;color:#3C3489">LP</div>
+    <div class="author-meta">
+      <div class="author-name">Luca Pacioli</div>
+      <div class="author-dates">1447 – 1517 · Matemático y fraile franciscano italiano</div>
+      <div class="author-tags">
+        <span class="tag tag-aud">Contabilidad</span>
+        <span class="tag tag-his">Historia</span>
+      </div>
+    </div>
+    <div class="expand-icon">+</div>
+  </div>
+  <div class="author-body">
+    <div class="body-section">
+      <div class="body-label">¿Quién fue?</div>
+      <div class="body-text">Fraile franciscano, matemático, colaborador de Leonardo da Vinci. En 1494 publicó la <em>Summa de arithmetica</em>, una enciclopedia matemática que incluía un tratado sobre la contabilidad por partida doble que los mercaderes venecianos ya usaban. Pacioli no la inventó; la sistematizó y la publicó, haciéndola accesible para el mundo.</div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Su aportación clave</div>
+      <div class="obra-box">
+        <div class="obra-title">Summa de Arithmetica (1494)</div>
+        <div class="obra-ref">Pacioli, L. (1494). Summa de arithmetica, geometria, proportioni et proportionalità. Paganino de Paganini.</div>
+        <div class="obra-desc">El tratado <em>De computis et scripturis</em>, incluido en la Summa, describió por primera vez en forma impresa y sistemática la <strong>contabilidad por partida doble</strong>: por cada débito existe un crédito de igual valor. Este principio —tan simple en su enunciado, tan profundo en sus consecuencias— transformó el comercio medieval en capitalismo moderno. Sin partida doble, no hay estados financieros. Sin estados financieros, no hay inversión. Sin inversión, no hay emprendimiento a escala.</div>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Cómo llevarlo al aula de Contabilidad y Auditoría</div>
+      <div class="aula-box">
+        <div class="aula-intro">Para tus estudiantes:</div>
+        <div class="aula-text">Di a tus estudiantes: <em>"La partida doble fue la innovación más importante de la historia del comercio mundial. No hubo computadora. No hubo app. Hubo un fraile franciscano que organizó el conocimiento existente de manera nueva y lo publicó."</em> Eso es innovación. Eso es emprendimiento intelectual. Y el campo en que ocurrió es exactamente el suyo. <strong>La contabilidad nació de un acto emprendedor.</strong></div>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Referencia APA 7</div>
+      <div class="apa-text">Pacioli, L. (1494). Summa de arithmetica, geometria, proportioni et proportionalità. Paganino de Paganini. (Trad. moderna: Cripps, J. B. (1924). ICB-IVSC.)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CBINSIGHTS ===== -->
+<div class="author-card" data-cats="mgmt eco">
+  <div class="author-header" onclick="toggle(this)">
+    <div class="author-avatar" style="background:#F1EFE8;color:#444441">CBI</div>
+    <div class="author-meta">
+      <div class="author-name">CBInsights</div>
+      <div class="author-dates">Informe 2021 · Firma global de inteligencia de negocios</div>
+      <div class="author-tags">
+        <span class="tag tag-mgmt">Gestión</span>
+        <span class="tag tag-eco">Economía</span>
+      </div>
+    </div>
+    <div class="expand-icon">+</div>
+  </div>
+  <div class="author-body">
+    <div class="body-section">
+      <div class="body-label">¿Qué es?</div>
+      <div class="body-text">CBInsights es una de las plataformas de inteligencia empresarial más respetadas del mundo, especializada en el análisis del ecosistema de startups, capital de riesgo e innovación. Su informe sobre causas de fracaso de startups —basado en análisis de autopsias de empresas y entrevistas a fundadores— es el estudio más citado sobre el tema a nivel mundial.</div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">El dato que usas en clase</div>
+      <div class="obra-box">
+        <div class="obra-title">The Top 12 Reasons Startups Fail (2021)</div>
+        <div class="obra-ref">CBInsights. (2021). The top 12 reasons startups fail. https://www.cbinsights.com/research/report/startup-failure-reasons-top/</div>
+        <div class="obra-desc">Las tres causas principales de fracaso documentadas: <strong>42% falló porque no había necesidad real en el mercado</strong> (construyeron lo que querían, no lo que el mercado necesitaba), <strong>29% por problemas de equipo</strong> (conflictos, desequilibrio de habilidades, rotación), y 23% por falta de capital. Ninguna de las causas principales fue falta de entusiasmo o de "ganas". El fracaso emprendedor es técnico, no emocional.</div>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Cómo llevarlo al aula de Contabilidad y Auditoría</div>
+      <div class="aula-box">
+        <div class="aula-intro">Para tus estudiantes:</div>
+        <div class="aula-text">El 42% de fracasos por falta de demanda real es exactamente lo que un contador puede prevenir: el análisis financiero de viabilidad, el estudio de mercado, la proyección de flujos de caja. <strong>Los contadores tienen las herramientas para diagnosticar si un emprendimiento tiene mercado antes de que invierta un solo dólar.</strong> Ese es un servicio emprendedor de enorme valor: salvar a alguien del fracaso evitable.</div>
+      </div>
+    </div>
+    <div class="body-section">
+      <div class="body-label">Referencia APA 7</div>
+      <div class="apa-text">CBInsights. (2021). The top 12 reasons startups fail. https://www.cbinsights.com/research/report/startup-failure-reasons-top/</div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+function toggle(header){
+  const card=header.closest('.author-card');
+  card.classList.toggle('open');
+}
+function filter(cat,btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  const cards=document.querySelectorAll('.author-card');
+  let any=false;
+  cards.forEach(c=>{
+    if(cat==='all'||c.dataset.cats.includes(cat)){
+      c.style.display=''; any=true;
+    } else {
+      c.style.display='none';
+    }
+  });
+  const el=document.getElementById('list');
+  const nr=el.querySelector('.no-results');
+  if(!any){
+    if(!nr){const d=document.createElement('div');d.className='no-results';d.textContent='No hay autores en esta categoría.';el.appendChild(d);}
+  } else {
+    if(nr)nr.remove();
+  }
+}
+</script>
+</body>
+</html>

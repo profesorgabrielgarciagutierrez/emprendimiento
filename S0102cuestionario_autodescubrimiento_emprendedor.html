@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans,sans-serif);color:var(--color-text-primary);background:transparent;font-size:15px;line-height:1.7;}
+
+.hero{padding:2.5rem 1.75rem 2rem;border-bottom:0.5px solid var(--color-border-tertiary);}
+.eyebrow{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:.4rem;font-weight:500;}
+.hero h1{font-size:1.5rem;font-weight:500;line-height:1.25;margin-bottom:.5rem;}
+.hero p{font-size:.9rem;color:var(--color-text-secondary);max-width:560px;line-height:1.7;}
+
+.progress-bar-wrap{background:var(--color-background-secondary);padding:.75rem 1.75rem;border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;gap:1rem;}
+.progress-track{flex:1;height:3px;background:var(--color-border-tertiary);border-radius:2px;overflow:hidden;}
+.progress-fill{height:100%;background:var(--color-text-primary);border-radius:2px;transition:width .4s ease;}
+.progress-label{font-size:.75rem;color:var(--color-text-secondary);white-space:nowrap;min-width:80px;text-align:right;}
+
+.phase-label{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;padding:.6rem 1.75rem;background:var(--color-background-secondary);border-bottom:0.5px solid var(--color-border-tertiary);color:var(--color-text-secondary);}
+
+.q-container{padding:1.5rem 1.75rem;max-width:680px;}
+
+.q-card{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg,12px);margin-bottom:1.25rem;overflow:hidden;background:var(--color-background-primary);}
+.q-header{padding:1rem 1.25rem;background:var(--color-background-secondary);border-bottom:0.5px solid var(--color-border-tertiary);display:flex;gap:.75rem;align-items:flex-start;}
+.q-num{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--color-background-primary);border:0.5px solid var(--color-border-secondary);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:500;color:var(--color-text-secondary);}
+.q-text{font-size:.97rem;font-weight:500;color:var(--color-text-primary);line-height:1.5;flex:1;}
+.q-why{padding:.6rem 1.25rem;font-size:.78rem;color:var(--color-text-secondary);line-height:1.6;border-bottom:0.5px solid var(--color-border-tertiary);font-style:italic;}
+.q-input{padding:.85rem 1.25rem;}
+
+textarea{width:100%;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md,8px);padding:.65rem .85rem;font-size:.88rem;font-family:inherit;color:var(--color-text-primary);background:var(--color-background-primary);resize:vertical;min-height:72px;line-height:1.6;transition:border-color .15s;}
+textarea:focus{outline:none;border-color:var(--color-text-primary);}
+
+.radio-group{display:flex;flex-direction:column;gap:.5rem;}
+.radio-opt{display:flex;align-items:center;gap:.65rem;padding:.5rem .65rem;border-radius:var(--border-radius-md,8px);border:0.5px solid var(--color-border-tertiary);cursor:pointer;transition:background .15s;}
+.radio-opt:hover{background:var(--color-background-secondary);}
+.radio-opt.selected{border-color:var(--color-text-primary);background:var(--color-background-secondary);}
+.radio-opt input{accent-color:var(--color-text-primary);}
+.radio-opt span{font-size:.88rem;color:var(--color-text-primary);}
+
+.scale-wrap{padding:.25rem 0;}
+.scale-labels{display:flex;justify-content:space-between;font-size:.72rem;color:var(--color-text-secondary);margin-bottom:.5rem;}
+.scale-opts{display:flex;gap:.4rem;}
+.scale-btn{flex:1;padding:.5rem .25rem;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md,8px);background:var(--color-background-primary);cursor:pointer;font-size:.85rem;text-align:center;color:var(--color-text-secondary);transition:all .15s;font-family:inherit;}
+.scale-btn:hover{background:var(--color-background-secondary);}
+.scale-btn.sel{background:var(--color-text-primary);color:var(--color-background-primary);border-color:var(--color-text-primary);}
+
+.check-group{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.45rem;}
+.check-opt{display:flex;align-items:center;gap:.55rem;padding:.5rem .65rem;border-radius:var(--border-radius-md,8px);border:0.5px solid var(--color-border-tertiary);cursor:pointer;transition:background .15s;}
+.check-opt:hover{background:var(--color-background-secondary);}
+.check-opt.selected{border-color:var(--color-text-primary);background:var(--color-background-secondary);}
+.check-opt input{accent-color:var(--color-text-primary);}
+.check-opt span{font-size:.85rem;color:var(--color-text-primary);}
+
+.phase-divider{border-top:0.5px solid var(--color-border-tertiary);margin:1.5rem 0 1rem;display:flex;align-items:center;gap:.75rem;}
+.phase-divider span{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;color:var(--color-text-secondary);white-space:nowrap;}
+.phase-divider::before,.phase-divider::after{content:'';flex:1;height:0.5px;background:var(--color-border-tertiary);}
+.phase-divider::before{display:none;}
+
+.nav-bar{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 1.75rem;border-top:0.5px solid var(--color-border-tertiary);background:var(--color-background-secondary);gap:1rem;}
+.btn-primary{padding:.6rem 1.5rem;background:var(--color-text-primary);color:var(--color-background-primary);border:none;border-radius:var(--border-radius-md,8px);font-size:.88rem;cursor:pointer;font-family:inherit;font-weight:500;transition:opacity .15s;}
+.btn-primary:hover{opacity:.85;}
+.btn-secondary{padding:.6rem 1.25rem;background:transparent;color:var(--color-text-secondary);border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md,8px);font-size:.88rem;cursor:pointer;font-family:inherit;transition:background .15s;}
+.btn-secondary:hover{background:var(--color-background-primary);}
+.nav-hint{font-size:.78rem;color:var(--color-text-secondary);}
+
+.results-wrap{display:none;padding:1.5rem 1.75rem 2.5rem;max-width:720px;}
+.results-title{font-size:1.25rem;font-weight:500;margin-bottom:.25rem;}
+.results-sub{font-size:.88rem;color:var(--color-text-secondary);margin-bottom:1.5rem;}
+
+.profile-card{border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-lg,12px);margin-bottom:1rem;overflow:hidden;}
+.profile-head{padding:.85rem 1.1rem;border-bottom:0.5px solid var(--color-border-tertiary);display:flex;gap:.75rem;align-items:center;}
+.profile-icon{width:36px;height:36px;border-radius:var(--border-radius-md,8px);display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;}
+.profile-name{font-weight:500;font-size:.95rem;}
+.profile-sub{font-size:.78rem;color:var(--color-text-secondary);}
+.profile-body{padding:.85rem 1.1rem;font-size:.88rem;color:var(--color-text-secondary);line-height:1.75;}
+.profile-body strong{color:var(--color-text-primary);font-weight:500;}
+
+.score-bar-wrap{margin:.5rem 0;}
+.score-label{display:flex;justify-content:space-between;font-size:.75rem;color:var(--color-text-secondary);margin-bottom:.3rem;}
+.score-track{height:6px;background:var(--color-border-tertiary);border-radius:3px;overflow:hidden;}
+.score-fill{height:100%;border-radius:3px;background:var(--color-text-primary);transition:width .6s ease;}
+
+.next-step{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md,8px);padding:.85rem 1rem;margin:.5rem 0;display:flex;gap:.75rem;}
+.next-step-icon{font-size:1rem;flex-shrink:0;margin-top:.1rem;}
+.next-step-text{font-size:.86rem;color:var(--color-text-secondary);line-height:1.65;}
+.next-step-text strong{color:var(--color-text-primary);font-weight:500;}
+
+.reflection-box{background:var(--color-background-secondary);border-radius:var(--border-radius-md,8px);padding:1rem 1.1rem;margin:1rem 0;font-size:.88rem;color:var(--color-text-secondary);line-height:1.75;font-style:italic;border-left:2px solid var(--color-border-secondary);}
+
+.restart-btn{margin-top:1.5rem;padding:.6rem 1.5rem;background:transparent;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md,8px);font-size:.85rem;cursor:pointer;color:var(--color-text-secondary);font-family:inherit;}
+.restart-btn:hover{background:var(--color-background-secondary);}
+</style>
+</head>
+<body>
+
+<div id="form-view">
+  <div class="hero">
+    <div class="eyebrow">Emprendimiento e Innovación · Autoconocimiento</div>
+    <h1>¿Quién eres tú cuando nadie te está mirando?</h1>
+    <p>No hay respuestas correctas ni incorrectas. No se califica. Escribe lo primero que te venga a la mente — eso suele ser lo más verdadero. Este cuestionario es tuyo.</p>
+  </div>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-track"><div class="progress-fill" id="prog" style="width:0%"></div></div>
+    <div class="progress-label" id="prog-label">0 de 20</div>
+  </div>
+
+  <div class="q-container" id="qc">
+
+    <!-- FASE 1: SUPERFICIE — LO QUE CREEN SABER DE SÍ MISMOS -->
+    <div class="phase-divider"><span>Fase 1 · Lo que ya sabes de ti</span></div>
+
+    <div class="q-card" data-q="1">
+      <div class="q-header">
+        <div class="q-num">1</div>
+        <div class="q-text">¿Qué haces cuando tienes tiempo libre y nadie te pide nada?</div>
+      </div>
+      <div class="q-why">Las actividades que elegimos en libertad revelan nuestros intereses reales, no los impuestos.</div>
+      <div class="q-input"><textarea placeholder="Escribe con honestidad..." data-id="q1"></textarea></div>
+    </div>
+
+    <div class="q-card" data-q="2">
+      <div class="q-header">
+        <div class="q-num">2</div>
+        <div class="q-text">¿En qué momento del día o de la semana sientes que "el tiempo vuela"? ¿Qué estás haciendo en ese momento?</div>
+      </div>
+      <div class="q-why">El "flujo" o estado de flow (Csikszentmihalyi, 1990) es la señal más fiable de que estás haciendo algo para lo que tienes aptitud natural.</div>
+      <div class="q-input"><textarea placeholder="Sé específico: ¿dónde estás, qué haces, con quién?" data-id="q2"></textarea></div>
+    </div>
+
+    <div class="q-card" data-q="3">
+      <div class="q-header">
+        <div class="q-num">3</div>
+        <div class="q-text">Si tuvieras que enseñarle algo a alguien que no sabe nada del tema, ¿qué le enseñarías? ¿Qué dominas tan bien que podrías explicarlo con facilidad?</div>
+      </div>
+      <div class="q-why">Lo que somos capaces de enseñar es aquello que hemos interiorizado profundamente — y rara vez es lo que estudiamos formalmente.</div>
+      <div class="q-input"><textarea placeholder="Puede ser cualquier cosa: cocinar, reparar bicicletas, escuchar a la gente..." data-id="q3"></textarea></div>
+    </div>
+
+    <div class="q-card" data-q="4">
+      <div class="q-header">
+        <div class="q-num">4</div>
+        <div class="q-text">¿Qué estarías haciendo ahora mismo si no estuvieras en clase?</div>
+      </div>
+      <div class="q-why">No es una pregunta de evasión. Es una pregunta de honestidad: lo que haríamos sin obligación revela prioridades reales.</div>
+      <div class="q-input"><textarea placeholder="Sin filtros. Nadie te juzga aquí." data-id="q4"></textarea></div>
+    </div>
+
+    <!-- FASE 2: LO QUE SIENTEN -->
+    <div class="phase-divider"><span>Fase 2 · Lo que sientes (aunque no lo digas en voz alta)</span></div>
+
+    <div class="q-card" data-q="5">
+      <div class="q-header">
+        <div class="q-num">5</div>
+        <div class="q-text">¿Hay algo que te apasiona y que en algún momento alguien descartó con una frase como "eso no sirve", "con eso no se gana dinero" o "estás perdiendo el tiempo"?</div>
+      </div>
+      <div class="q-why">Las pasiones suprimidas son frecuentemente las más auténticas. La investigación de Duckworth (2016) muestra que el grit —el motor del emprendedor— se activa con pasiones genuinas, no impuestas.</div>
+      <div class="q-input"><textarea placeholder="Si hay algo dormido ahí, este es el momento de nombrarlo." data-id="q5"></textarea></div>
+    </div>
+
+    <div class="q-card" data-q="6">
+      <div class="q-header">
+        <div class="q-num">6</div>
+        <div class="q-text">¿Qué problema del mundo —de tu ciudad, tu barrio, tu familia— te molesta tanto que sientes ganas de arreglarlo?</div>
+      </div>
+      <div class="q-why">Shane & Venkataraman (2000) demostraron que las mejores oportunidades emprendedoras nacen de la indignación ante algo que no funciona. La molestia sostenida es combustible.</div>
+      <div class="q-input"><textarea placeholder="No tiene que ser un problema global. Puede ser algo muy concreto y cercano." data-id="q6"></textarea></div>
+    </div>
+
+    <div class="q-card" data-q="7">
+      <div class="q-header">
+        <div class="q-num">7</div>
+        <div class="q-text">¿Cuándo fue la última vez que sentiste que le hiciste un bien real a alguien? ¿Qué hiciste?</div>
+      </div>
+      <div class="q-why">Los actos de servicio espontáneos revelan valores genuinos y, frecuentemente, el tipo de impacto social hacia el que tiende nuestro perfil emprendedor (Dees, 1998).</div>
+      <div class="q-input"><textarea placeholder="Puede ser algo pequeño. Lo pequeño también cuenta." data-id="q7"></textarea></div>
+    </div>
+
+    <div class="q-card" data-q="8">
+      <div class="q-header">
+        <div class="q-num">8</div>
+        <div class="q-text">¿Qué te da miedo intentar? ¿Qué has pensado hacer pero algo te detiene?</div>
+      </div>
+      <div class="q-why">El miedo emprendedor casi siempre apunta hacia algo que importa profundamente. Lo que no nos importa no nos da miedo. (Knight, 1921: la incertidumbre solo paraliza cuando el resultado nos importa.)</div>
+      <div class="q-input"><textarea placeholder="Nadie más va a leer esto si tú no quieres." data-id="q8"></textarea></div>
+    </div>
+
+    <!-- FASE 3: CAPACIDADES Y CONDUCTAS -->
+    <div class="phase-divider"><span>Fase 3 · Cómo actúas (tu conducta real)</span></div>
+
+    <div class="q-card" data-q="9">
+      <div class="q-header">
+        <div class="q-num">9</div>
+        <div class="q-text">Cuando hay un problema en un grupo o equipo, ¿qué sueles hacer tú?</div>
+      </div>
+      <div class="q-why">La conducta espontánea en situaciones grupales revela el rol natural: organizador, ejecutor, mediador, creativo, analista. Estos roles son la base del perfil conductual (Belbin, 1981).</div>
+      <div class="q-input">
+        <div class="radio-group">
+          <label class="radio-opt"><input type="radio" name="q9" value="a" onchange="selRadio(this)"><span>Tomo la iniciativa y propongo soluciones antes que los demás</span></label>
+          <label class="radio-opt"><input type="radio" name="q9" value="b" onchange="selRadio(this)"><span>Escucho a todos y busco el punto en común que satisfaga a todos</span></label>
+          <label class="radio-opt"><input type="radio" name="q9" value="c" onchange="selRadio(this)"><span>Me enfoco en hacer la parte que me toca lo mejor posible</span></label>
+          <label class="radio-opt"><input type="radio" name="q9" value="d" onchange="selRadio(this)"><span>Analizo el problema con calma antes de hacer nada</span></label>
+          <label class="radio-opt"><input type="radio" name="q9" value="e" onchange="selRadio(this)"><span>Suelo quedarme en un segundo plano, prefiero apoyar que liderar</span></label>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" data-q="10">
+      <div class="q-header">
+        <div class="q-num">10</div>
+        <div class="q-text">Cuando algo no sale como esperabas, ¿cuál es tu reacción más honesta?</div>
+      </div>
+      <div class="q-why">La tolerancia al fracaso es uno de los predictores más sólidos del éxito emprendedor. No se busca la respuesta "correcta"; se busca la respuesta honesta (Sarasvathy, 2001).</div>
+      <div class="q-input">
+        <div class="radio-group">
+          <label class="radio-opt"><input type="radio" name="q10" value="a" onchange="selRadio(this)"><span>Me frustro, pero enseguida busco cómo arreglarlo</span></label>
+          <label class="radio-opt"><input type="radio" name="q10" value="b" onchange="selRadio(this)"><span>Me afecta bastante, necesito tiempo para recuperarme</span></label>
+          <label class="radio-opt"><input type="radio" name="q10" value="c" onchange="selRadio(this)"><span>Lo analizo para entender qué salió mal antes de moverme</span></label>
+          <label class="radio-opt"><input type="radio" name="q10" value="d" onchange="selRadio(this)"><span>Busco a alguien de confianza para pensar juntos qué hacer</span></label>
+          <label class="radio-opt"><input type="radio" name="q10" value="e" onchange="selRadio(this)"><span>Tiendo a evitar situaciones parecidas en el futuro</span></label>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" data-q="11">
+      <div class="q-header">
+        <div class="q-num">11</div>
+        <div class="q-text">¿Qué tan cómodo/a te sientes con la incertidumbre? (No saber el resultado de algo antes de hacerlo)</div>
+      </div>
+      <div class="q-why">Knight (1921) identificó la tolerancia a la incertidumbre como la capacidad distintiva del emprendedor. No es una virtud moral — es una habilidad que también se entrena.</div>
+      <div class="q-input">
+        <div class="scale-wrap">
+          <div class="scale-labels"><span>Me paraliza</span><span>Me es indiferente</span><span>Me energiza</span></div>
+          <div class="scale-opts">
+            <button class="scale-btn" onclick="selScale(this,'q11',1)">1</button>
+            <button class="scale-btn" onclick="selScale(this,'q11',2)">2</button>
+            <button class="scale-btn" onclick="selScale(this,'q11',3)">3</button>
+            <button class="scale-btn" onclick="selScale(this,'q11',4)">4</button>
+            <button class="scale-btn" onclick="selScale(this,'q11',5)">5</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" data-q="12">
+      <div class="q-header">
+        <div class="q-num">12</div>
+        <div class="q-text">Cuando tienes una idea nueva, ¿qué haces con ella?</div>
+      </div>
+      <div class="q-why">La relación entre idea y acción define si el perfil es más conceptual (pensador de ideas) o ejecutor — ambos son válidos y necesarios en un equipo emprendedor.</div>
+      <div class="q-input">
+        <div class="radio-group">
+          <label class="radio-opt"><input type="radio" name="q12" value="a" onchange="selRadio(this)"><span>La pienso mucho, la desarrollo internamente y rara vez la comparto</span></label>
+          <label class="radio-opt"><input type="radio" name="q12" value="b" onchange="selRadio(this)"><span>La comparto de inmediato con alguien para ver qué piensa</span></label>
+          <label class="radio-opt"><input type="radio" name="q12" value="c" onchange="selRadio(this)"><span>Busco cómo ponerla en práctica rápidamente, aunque sea en pequeño</span></label>
+          <label class="radio-opt"><input type="radio" name="q12" value="d" onchange="selRadio(this)"><span>La anoto o registro para no olvidarla y la retomo después</span></label>
+          <label class="radio-opt"><input type="radio" name="q12" value="e" onchange="selRadio(this)"><span>La descarto rápido porque me parece que ya alguien lo habrá pensado</span></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- FASE 4: VISIÓN Y PROYECCIÓN -->
+    <div class="phase-divider"><span>Fase 4 · Lo que imaginas (aunque te parezca imposible)</span></div>
+
+    <div class="q-card" data-q="13">
+      <div class="q-header">
+        <div class="q-num">13</div>
+        <div class="q-text">Si tuvieras dinero ilimitado y no necesitaras trabajar para sobrevivir, ¿qué harías con tu tiempo?</div>
+      </div>
+      <div class="q-why">Esta pregunta rompe el vínculo entre vocación y necesidad económica, permitiendo acceder al propósito más profundo. Lo que haríamos "gratis" revela nuestra misión (Frankl, 1946).</div>
+      <div class="q-input"><textarea placeholder="No te autocensures. Si aparece algo que te sorprenda, es exactamente lo que necesitas ver." data-id="q13"></textarea></div>
+    </div>
+
+    <div class="q-card" data-q="14">
+      <div class="q-header">
+        <div class="q-num">14</div>
+        <div class="q-text">¿Cómo quieres que te recuerden las personas que conociste en tu vida? ¿Qué quieres que digan de ti cuando ya no estés?</div>
+      </div>
+      <div class="q-why">La respuesta a esta pregunta es, según Covey (1989), la declaración de misión personal más auténtica que existe. Define el tipo de valor que queremos crear en el mundo.</div>
+      <div class="q-input"><textarea placeholder="Piénsalo de verdad. No es una pregunta retórica." data-id="q14"></textarea></div>
+    </div>
+
+    <div class="q-card" data-q="15">
+      <div class="q-header">
+        <div class="q-num">15</div>
+        <div class="q-text">¿Qué tipo de vida quieres tener en 10 años? No "qué quieres lograr" — sino ¿cómo quieres que sea tu vida cotidiana?</div>
+      </div>
+      <div class="q-why">La distinción entre metas (logros puntuales) y vida cotidiana deseada es fundamental para elegir si emprender de manera independiente o intraemprendedora es el camino correcto.</div>
+      <div class="q-input"><textarea placeholder="¿Dónde vives? ¿Con quién? ¿A qué hora te despiertas? ¿Qué haces a las 10 de la mañana un martes?" data-id="q15"></textarea></div>
+    </div>
+
+    <!-- FASE 5: PERFIL EMPRENDEDOR ESPECÍFICO -->
+    <div class="phase-divider"><span>Fase 5 · Tu mapa emprendedor</span></div>
+
+    <div class="q-card" data-q="16">
+      <div class="q-header">
+        <div class="q-num">16</div>
+        <div class="q-text">¿Cuál de estas frases describe mejor cómo te sientes con la idea de crear tu propio negocio o proyecto?</div>
+      </div>
+      <div class="q-why">El punto de partida actitudinal define el tipo de acompañamiento emprendedor que necesita cada perfil (Blank & Dorf, 2012).</div>
+      <div class="q-input">
+        <div class="radio-group">
+          <label class="radio-opt"><input type="radio" name="q16" value="a" onchange="selRadio(this)"><span>Lo he pensado muchas veces y hay algo concreto dando vueltas en mi cabeza</span></label>
+          <label class="radio-opt"><input type="radio" name="q16" value="b" onchange="selRadio(this)"><span>Me llama la atención pero no sé por dónde empezar</span></label>
+          <label class="radio-opt"><input type="radio" name="q16" value="c" onchange="selRadio(this)"><span>Preferiría trabajar para una buena empresa y crecer desde adentro</span></label>
+          <label class="radio-opt"><input type="radio" name="q16" value="d" onchange="selRadio(this)"><span>No lo he pensado seriamente, pero esta clase me está haciendo pensar</span></label>
+          <label class="radio-opt"><input type="radio" name="q16" value="e" onchange="selRadio(this)"><span>Me genera más ansiedad que entusiasmo la idea de emprender solo/a</span></label>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" data-q="17">
+      <div class="q-header">
+        <div class="q-num">17</div>
+        <div class="q-text">¿En qué áreas de la vida cotidiana crees que hay problemas que nadie está resolviendo bien? Marca todas las que sientas.</div>
+      </div>
+      <div class="q-why">La percepción de brechas es el primer paso de la identificación de oportunidades. Schumpeter (1934) llamaba a esto "ver la combinación nueva antes que los demás".</div>
+      <div class="q-input">
+        <div class="check-group">
+          <label class="check-opt"><input type="checkbox" value="educacion" onchange="selCheck(this)"><span>Educación</span></label>
+          <label class="check-opt"><input type="checkbox" value="salud" onchange="selCheck(this)"><span>Salud</span></label>
+          <label class="check-opt"><input type="checkbox" value="finanzas" onchange="selCheck(this)"><span>Finanzas personales</span></label>
+          <label class="check-opt"><input type="checkbox" value="alimentacion" onchange="selCheck(this)"><span>Alimentación</span></label>
+          <label class="check-opt"><input type="checkbox" value="transporte" onchange="selCheck(this)"><span>Transporte</span></label>
+          <label class="check-opt"><input type="checkbox" value="medioambiente" onchange="selCheck(this)"><span>Medioambiente</span></label>
+          <label class="check-opt"><input type="checkbox" value="trabajo" onchange="selCheck(this)"><span>Empleo justo</span></label>
+          <label class="check-opt"><input type="checkbox" value="vivienda" onchange="selCheck(this)"><span>Vivienda</span></label>
+          <label class="check-opt"><input type="checkbox" value="arte" onchange="selCheck(this)"><span>Arte y cultura</span></label>
+          <label class="check-opt"><input type="checkbox" value="tecnologia" onchange="selCheck(this)"><span>Tecnología accesible</span></label>
+          <label class="check-opt"><input type="checkbox" value="agricultura" onchange="selCheck(this)"><span>Campo y agricultura</span></label>
+          <label class="check-opt"><input type="checkbox" value="corrupcion" onchange="selCheck(this)"><span>Transparencia pública</span></label>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" data-q="18">
+      <div class="q-header">
+        <div class="q-num">18</div>
+        <div class="q-text">¿Cómo prefieres trabajar? Ubícate en esta escala.</div>
+      </div>
+      <div class="q-why">La preferencia de trabajo (independiente vs. colaborativo, estructura vs. libertad) es determinante para elegir entre emprendimiento independiente e intraemprendimiento (Isenberg, 2011).</div>
+      <div class="q-input">
+        <div class="scale-wrap" style="margin-bottom:.75rem">
+          <div class="scale-labels"><span>Solo/a, con autonomía total</span><span>En equipo, con roles claros</span></div>
+          <div class="scale-opts">
+            <button class="scale-btn" onclick="selScale(this,'q18a',1)">1</button>
+            <button class="scale-btn" onclick="selScale(this,'q18a',2)">2</button>
+            <button class="scale-btn" onclick="selScale(this,'q18a',3)">3</button>
+            <button class="scale-btn" onclick="selScale(this,'q18a',4)">4</button>
+            <button class="scale-btn" onclick="selScale(this,'q18a',5)">5</button>
+          </div>
+        </div>
+        <div class="scale-wrap">
+          <div class="scale-labels"><span>Estructura y procesos definidos</span><span>Libertad e improvisación</span></div>
+          <div class="scale-opts">
+            <button class="scale-btn" onclick="selScale(this,'q18b',1)">1</button>
+            <button class="scale-btn" onclick="selScale(this,'q18b',2)">2</button>
+            <button class="scale-btn" onclick="selScale(this,'q18b',3)">3</button>
+            <button class="scale-btn" onclick="selScale(this,'q18b',4)">4</button>
+            <button class="scale-btn" onclick="selScale(this,'q18b',5)">5</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" data-q="19">
+      <div class="q-header">
+        <div class="q-num">19</div>
+        <div class="q-text">¿Cuál de estas habilidades sientes que es tu punto más fuerte? (Elige solo una, la que más te define)</div>
+      </div>
+      <div class="q-why">La identificación del punto fuerte dominante orienta el tipo de rol emprendedor: visionario, ejecutor, conector, analista o comunicador (Sarasvathy, 2001; Drucker, 1985).</div>
+      <div class="q-input">
+        <div class="radio-group">
+          <label class="radio-opt"><input type="radio" name="q19" value="vision" onchange="selRadio(this)"><span>Ver el panorama grande: el futuro, las posibilidades, lo que podría ser</span></label>
+          <label class="radio-opt"><input type="radio" name="q19" value="ejecucion" onchange="selRadio(this)"><span>Hacer que las cosas pasen: organizar, ejecutar, cumplir</span></label>
+          <label class="radio-opt"><input type="radio" name="q19" value="relaciones" onchange="selRadio(this)"><span>Conectar personas: construir relaciones, generar confianza</span></label>
+          <label class="radio-opt"><input type="radio" name="q19" value="analisis" onchange="selRadio(this)"><span>Analizar y entender: datos, patrones, causa y efecto</span></label>
+          <label class="radio-opt"><input type="radio" name="q19" value="comunicacion" onchange="selRadio(this)"><span>Comunicar y persuadir: explicar, convencer, inspirar</span></label>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" data-q="20">
+      <div class="q-header">
+        <div class="q-num">20</div>
+        <div class="q-text">Completa esta frase de la manera más honesta que puedas: "El mundo estaría mejor si alguien hiciera..."</div>
+      </div>
+      <div class="q-why">Esta pregunta de cierre sintetiza todo: el problema que el estudiante ve (oportunidad), el valor que quiere crear (propósito), y el tipo de emprendimiento hacia el que gravita naturalmente.</div>
+      <div class="q-input"><textarea placeholder="...escribe aquí tu respuesta." data-id="q20"></textarea></div>
+    </div>
+
+    <div class="nav-bar">
+      <span class="nav-hint">Responde con honestidad. No hay respuestas buenas ni malas.</span>
+      <button class="btn-primary" onclick="showResults()">Ver mi perfil</button>
+    </div>
+  </div>
+</div>
+
+<!-- RESULTADOS -->
+<div class="results-wrap" id="results-view">
+  <div class="eyebrow" style="margin-bottom:.4rem">Tu perfil emprendedor</div>
+  <div class="results-title" id="res-title">Resultado</div>
+  <div class="results-sub" id="res-sub"></div>
+
+  <div id="res-profiles"></div>
+
+  <div id="res-scores" style="margin:1.5rem 0;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg,12px);padding:1rem 1.25rem;">
+    <div style="font-size:.8rem;font-weight:500;margin-bottom:.85rem;color:var(--color-text-secondary);letter-spacing:.1em;text-transform:uppercase;">Dimensiones de tu perfil</div>
+  </div>
+
+  <div style="font-size:.88rem;font-weight:500;margin:1.5rem 0 .5rem;color:var(--color-text-secondary);letter-spacing:.1em;text-transform:uppercase;">Próximos pasos sugeridos</div>
+  <div id="res-steps"></div>
+
+  <div class="reflection-box" id="res-reflection"></div>
+
+  <div style="font-size:.75rem;color:var(--color-text-secondary);margin-top:1.25rem;line-height:1.7;font-style:italic;">
+    Este perfil es un punto de partida, no un destino. Los perfiles emprendedores son dinámicos y cambian con la experiencia, la formación y las decisiones. Lo que importa no es el resultado: es que hayas respondido con honestidad.
+  </div>
+
+  <button class="restart-btn" onclick="restart()">Volver a empezar</button>
+</div>
+
+<script>
+const answers={};
+let filled=0;
+
+function updateProgress(){
+  const total=20;
+  const f=Object.keys(answers).length;
+  const pct=Math.round((f/total)*100);
+  document.getElementById('prog').style.width=pct+'%';
+  document.getElementById('prog-label').textContent=f+' de '+total;
+}
+
+function selRadio(inp){
+  const name=inp.name;
+  document.querySelectorAll('input[name="'+name+'"]').forEach(r=>{
+    r.closest('.radio-opt').classList.remove('selected');
+  });
+  inp.closest('.radio-opt').classList.add('selected');
+  answers[name]=inp.value;
+  updateProgress();
+}
+
+function selScale(btn,id,val){
+  btn.closest('.scale-opts').querySelectorAll('.scale-btn').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+  answers[id]=val;
+  updateProgress();
+}
+
+function selCheck(inp){
+  inp.closest('.check-opt').classList.toggle('selected',inp.checked);
+  if(!answers['q17'])answers['q17']=[];
+  if(inp.checked){
+    if(!answers['q17'].includes(inp.value))answers['q17'].push(inp.value);
+  } else {
+    answers['q17']=answers['q17'].filter(v=>v!==inp.value);
+  }
+  updateProgress();
+}
+
+document.querySelectorAll('textarea').forEach(ta=>{
+  ta.addEventListener('input',function(){
+    const id=this.dataset.id;
+    if(this.value.trim().length>2){
+      if(!answers[id]){answers[id]=true;updateProgress();}
+      answers[id]=this.value.trim();
+    }
+  });
+});
+
+function showResults(){
+  const q9=answers['q9']||'b';
+  const q10=answers['q10']||'c';
+  const q11=answers['q11']||3;
+  const q12=answers['q12']||'d';
+  const q16=answers['q16']||'b';
+  const q18a=answers['q18a']||3;
+  const q18b=answers['q18b']||3;
+  const q19=answers['q19']||'analisis';
+
+  let tipo='';
+  let tipoLabel='';
+  let tipoDesc='';
+  let tipoColor='';
+
+  const indScore=([q9==='a'?2:0]+[q16==='a'?3:q16==='b'?1:0]+[q18a<=2?2:0]+[q18b>=4?2:0]+[q11>=4?2:0]).reduce((a,b)=>a+b,0);
+  const intraScore=([q9==='c'||q9==='d'?2:0]+[q16==='c'||q16==='d'?2:0]+[q18a>=4?2:0]+[q18b<=2?2:0]).reduce((a,b)=>a+b,0);
+  const socialScore=([answers['q7']&&answers['q7'].length>5?2:0]+[answers['q6']&&answers['q6'].length>5?2:0]+['corrupcion','educacion','salud'].some(v=>answers['q17']&&answers['q17'].includes(v))?2:0]).reduce((a,b)=>a+b,0);
+
+  if(socialScore>=4){
+    tipo='social'; tipoLabel='Emprendedor/a de impacto social';
+    tipoDesc='Tu perfil gravita hacia crear valor en la comunidad. Los problemas que te indignan son el origen de tus oportunidades. No buscas solo rentabilidad: buscas que algo mejore para otros.';
+    tipoColor='#1D9E75';
+  } else if(indScore>intraScore){
+    tipo='ind'; tipoLabel='Emprendedor/a independiente';
+    tipoDesc='Tienes una inclinación natural hacia la autonomía y hacia crear desde cero. La incertidumbre no te paraliza — o al menos estás aprendiendo a usarla. Tu camino más probable es construir algo tuyo.';
+    tipoColor='#534AB7';
+  } else {
+    tipo='intra'; tipoLabel='Intraemprendedor/a';
+    tipoDesc='Tu perfil emprendedor se activa mejor dentro de estructuras. No es una limitación: es inteligencia estratégica. Los intraemprendedores transforman organizaciones desde adentro y su impacto suele ser enorme y sostenido.';
+    tipoColor='#C9A84C';
+  }
+
+  const rolMap={
+    'vision':'Visionario/a — ves el futuro antes que los demás. Tu rol en un equipo emprendedor es el de norte y propósito.',
+    'ejecucion':'Ejecutor/a — haces que las cosas pasen. Sin alguien como tú, las ideas quedan en papel. Eres imprescindible.',
+    'relaciones':'Conector/a — construyes puentes entre personas. El 85% del capital emprendedor llega por relaciones (Aldrich & Zimmer, 1986). Eres el activo más escaso.',
+    'analisis':'Analista — ves lo que los demás no ven en los datos y los procesos. En contabilidad, eso es una ventaja competitiva extraordinaria.',
+    'comunicacion':'Comunicador/a — puedes traducir ideas complejas en mensajes que mueven a las personas. Es la habilidad más escasa y más valorada en equipos emprendedores.'
+  };
+
+  const resienteScore=answers['q5']&&answers['q5'].length>8?1:0;
+  const flowScore=answers['q2']&&answers['q2'].length>8?1:0;
+  const miedoScore=answers['q8']&&answers['q8'].length>8?1:0;
+
+  const dims=[
+    {label:'Tolerancia a la incertidumbre',val:Math.round(((parseInt(q11)||3)/5)*100)},
+    {label:'Orientación al impacto social',val:Math.min(100,socialScore*20+30)},
+    {label:'Disposición a liderar',val:q9==='a'?90:q9==='b'?65:q9==='d'?55:45},
+    {label:'Claridad de autoconocimiento',val:Math.min(100,(resienteScore+flowScore+miedoScore)*28+25)},
+    {label:'Perfil ejecutor vs. conceptual',val:q12==='c'?85:q12==='b'?70:q12==='d'?50:35}
+  ];
+
+  document.getElementById('res-title').textContent=tipoLabel;
+  document.getElementById('res-sub').textContent='Basado en tus respuestas, este es tu punto de partida emprendedor. No es un destino — es una brújula.';
+
+  const pDiv=document.getElementById('res-profiles');
+  pDiv.innerHTML=`
+    <div class="profile-card">
+      <div class="profile-head">
+        <div class="profile-icon" style="background:${tipoColor}22;color:${tipoColor}">E</div>
+        <div><div class="profile-name">${tipoLabel}</div><div class="profile-sub">Perfil dominante</div></div>
+      </div>
+      <div class="profile-body">${tipoDesc}</div>
+    </div>
+    <div class="profile-card">
+      <div class="profile-head">
+        <div class="profile-icon" style="background:var(--color-background-secondary)">R</div>
+        <div><div class="profile-name">Tu rol natural en un equipo</div><div class="profile-sub">Fortaleza dominante</div></div>
+      </div>
+      <div class="profile-body">${rolMap[q19]||rolMap['analisis']}</div>
+    </div>
+  `;
+
+  const sDiv=document.getElementById('res-scores');
+  sDiv.innerHTML='<div style="font-size:.8rem;font-weight:500;margin-bottom:.85rem;color:var(--color-text-secondary);letter-spacing:.1em;text-transform:uppercase;">Dimensiones de tu perfil</div>';
+  dims.forEach(d=>{
+    sDiv.innerHTML+=`
+      <div class="score-bar-wrap">
+        <div class="score-label"><span>${d.label}</span><span>${d.val}%</span></div>
+        <div class="score-track"><div class="score-fill" style="width:${d.val}%"></div></div>
+      </div>`;
+  });
+
+  const stepsMap={
+    'ind':[
+      {t:'Valida antes de construir',d:'Antes de invertir tiempo o dinero en tu idea, habla con 10 personas que podrían ser tus clientes. <strong>Blank (2013)</strong>: ningún plan de negocios sobrevive al primer contacto con el cliente.'},
+      {t:'Empieza con lo que tienes',d:'<strong>Sarasvathy (2001)</strong>: no esperes tener todos los recursos. Parte de tus medios actuales: tu conocimiento contable, tu red, tu tiempo. Eso ya es suficiente para un primer paso.'},
+      {t:'Encuentra tu co-emprendedor',d:'El perfil que te falta es el que más necesitas. Si eres visionario/a, busca un ejecutor/a. Si eres analista, busca un comunicador/a.'}
+    ],
+    'intra':[
+      {t:'Propón, no esperes permiso',d:'El intraemprendedor no pide permiso para ver el problema. Lo documenta, propone la solución con datos y presenta el caso de negocio. Tu formación contable te da exactamente las herramientas para hacer eso.'},
+      {t:'Construye reputación técnica',d:'Tu activo más valioso dentro de una organización es que confíen en tu criterio. <strong>Drucker (1985)</strong>: la innovación más sostenida viene de quien conoce el sistema desde adentro.'},
+      {t:'Identifica la ineficiencia más costosa',d:'En cada organización hay un proceso que consume más tiempo o dinero del que debería. Encontrarlo, cuantificarlo y proponer la solución: eso es intraemprendimiento contable puro.'}
+    ],
+    'social':[
+      {t:'Define el problema con precisión',d:'La indignación es el combustible. La precisión es el motor. Escribe en una sola oración el problema que quieres resolver y quiénes son las personas afectadas.'},
+      {t:'Mide el impacto desde el inicio',d:'El emprendimiento social sin métricas de impacto no escala. Tu formación en contabilidad te permite diseñar indicadores de impacto social desde el inicio — eso es una ventaja que muy pocos tienen.'},
+      {t:'Busca aliados institucionales',d:'<strong>Isenberg (2011)</strong>: ningún emprendedor opera solo. Identifica universidades, ONGs, organismos públicos o empresas que compartan tu causa y podrían ser aliados, no solo clientes.'}
+    ]
+  };
+
+  const steps=stepsMap[tipo]||stepsMap['intra'];
+  const stDiv=document.getElementById('res-steps');
+  stDiv.innerHTML='';
+  steps.forEach(s=>{
+    stDiv.innerHTML+=`<div class="next-step"><div class="next-step-icon">→</div><div class="next-step-text"><strong>${s.t}:</strong> ${s.d}</div></div>`;
+  });
+
+  const q20=answers['q20']||'';
+  const q14=answers['q14']||'';
+  let reflection='';
+  if(q20.length>5){
+    reflection=`Escribiste que el mundo estaría mejor si alguien hiciera: "<em>${q20}</em>". Eso no es solo una respuesta a una pregunta. Es el núcleo de tu propuesta de valor al mundo. Guárdala. Vuelve a leerla cuando sientas que no tienes dirección.`;
+  } else if(q14.length>5){
+    reflection=`Dijiste que quieres que te recuerden como alguien que: "<em>${q14}</em>". Esa es tu declaración de misión personal. Todo lo que emprendas —sea como empleado o como fundador— debería servir a esa imagen.`;
+  } else {
+    reflection='Algo en ti ya sabe hacia dónde quieres ir. Este cuestionario solo fue un espejo. La imagen que viste en él es tuya — y vale la pena seguir mirando.';
+  }
+  document.getElementById('res-reflection').innerHTML=reflection;
+
+  document.getElementById('form-view').style.display='none';
+  document.getElementById('results-view').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function restart(){
+  document.getElementById('form-view').style.display='block';
+  document.getElementById('results-view').style.display='none';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
