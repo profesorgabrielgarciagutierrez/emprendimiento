@@ -1,0 +1,544 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#C9A84C;--gold-bg:#fdf8ec;--gold-border:#e8d08a;--gold-text:#6b4f10;
+  --dark:#1a1a1a;--dark2:#2a2a2a;
+  --radius:12px;--radius-sm:8px;
+}
+body{font-family:var(--font-sans,Arial,sans-serif);color:var(--color-text-primary);background:transparent;font-size:15px;line-height:1.65}
+
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+
+.hero{background:var(--dark);color:#fff;padding:36px 28px 30px;border-radius:var(--radius);margin-bottom:0}
+.hero-tag{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.hero-bar{width:48px;height:2px;background:var(--gold);margin-bottom:14px}
+.hero h1{font-size:clamp(20px,3.5vw,28px);font-weight:500;color:#fff;line-height:1.2;margin-bottom:10px}
+.hero h1 span{color:var(--gold)}
+.hero p{font-size:14px;color:#b0a898;max-width:580px;line-height:1.6;margin-bottom:18px}
+.hero-chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{font-size:11px;padding:4px 12px;border-radius:20px;border:1px solid #444;color:#aaa}
+.chip.active{border-color:var(--gold);color:var(--gold)}
+
+.nav-steps{display:flex;gap:0;border-bottom:1px solid var(--color-border-tertiary);margin-bottom:0;overflow-x:auto;scrollbar-width:none}
+.nav-steps::-webkit-scrollbar{display:none}
+.nav-btn{flex-shrink:0;font-size:12px;padding:12px 16px;color:var(--color-text-secondary);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;transition:all .2s;position:relative}
+.nav-btn:hover{color:var(--color-text-primary)}
+.nav-btn.active{color:var(--gold-text);border-bottom-color:var(--gold);font-weight:500}
+.nav-btn.done::after{content:'';position:absolute;top:10px;right:8px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+
+.panel{display:none;padding:28px 0 0}
+.panel.active{display:block}
+
+.warmup-intro{background:var(--gold-bg);border:1px solid var(--gold-border);border-radius:var(--radius);padding:20px 22px;margin-bottom:20px}
+.warmup-intro .wi-tag{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold-text);margin-bottom:8px;font-weight:500}
+.warmup-intro h2{font-size:17px;font-weight:500;color:var(--gold-text);margin-bottom:6px}
+.warmup-intro p{font-size:14px;color:var(--gold-text);line-height:1.6}
+
+.question-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-secondary);border-radius:var(--radius);padding:20px 22px;margin-bottom:14px}
+.q-num{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--color-text-tertiary);margin-bottom:8px}
+.q-text{font-size:16px;font-weight:500;color:var(--color-text-primary);margin-bottom:6px;line-height:1.4}
+.q-hint{font-size:13px;color:var(--color-text-secondary);margin-bottom:14px;font-style:italic;line-height:1.5}
+.q-example{background:var(--color-background-secondary);border-left:3px solid var(--gold-border);padding:10px 14px;border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:13px;color:var(--color-text-secondary);margin-bottom:14px;line-height:1.5}
+.q-example strong{color:var(--gold-text);font-weight:500}
+textarea{width:100%;border:0.5px solid var(--color-border-secondary);border-radius:var(--radius-sm);padding:12px 14px;font-size:14px;color:var(--color-text-primary);background:var(--color-background-primary);resize:vertical;line-height:1.6;font-family:inherit;transition:border-color .2s}
+textarea:focus{outline:none;border-color:var(--gold)}
+.char-hint{font-size:11px;color:var(--color-text-tertiary);margin-top:4px;text-align:right}
+
+.choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:14px}
+.choice-btn{border:0.5px solid var(--color-border-secondary);border-radius:var(--radius-sm);padding:14px 16px;cursor:pointer;background:var(--color-background-primary);text-align:left;font-size:14px;color:var(--color-text-secondary);line-height:1.4;transition:all .2s}
+.choice-btn:hover{border-color:var(--gold-border);background:var(--gold-bg)}
+.choice-btn.selected{border-color:var(--gold);background:var(--gold-bg);color:var(--gold-text);font-weight:500}
+.choice-label{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--color-text-tertiary);display:block;margin-bottom:4px}
+.choice-btn.selected .choice-label{color:var(--gold-text)}
+
+.reveal-box{background:var(--color-background-secondary);border-radius:var(--radius-sm);padding:16px 18px;margin-top:10px;font-size:14px;color:var(--color-text-secondary);line-height:1.6;border-left:3px solid var(--gold)}
+.reveal-box strong{color:var(--color-text-primary);font-weight:500}
+.reveal-box h4{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold-text);margin-bottom:8px}
+
+.btn-row{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;align-items:center}
+.btn-primary{background:var(--gold);color:#1a1a1a;border:none;padding:11px 24px;border-radius:var(--radius-sm);font-size:14px;font-weight:500;cursor:pointer;transition:opacity .2s}
+.btn-primary:hover{opacity:.88}
+.btn-secondary{background:none;color:var(--color-text-secondary);border:0.5px solid var(--color-border-secondary);padding:11px 20px;border-radius:var(--radius-sm);font-size:14px;cursor:pointer;transition:all .2s}
+.btn-secondary:hover{border-color:var(--color-border-primary);color:var(--color-text-primary)}
+.btn-ghost{background:none;color:var(--color-text-tertiary);border:none;padding:11px 16px;font-size:14px;cursor:pointer}
+
+.progress-strip{display:flex;gap:4px;margin-bottom:20px;align-items:center}
+.prog-seg{height:4px;flex:1;border-radius:2px;background:var(--color-border-tertiary);transition:background .3s}
+.prog-seg.done{background:var(--gold)}
+.prog-seg.current{background:var(--gold);opacity:.5}
+.prog-label{font-size:12px;color:var(--color-text-tertiary);white-space:nowrap;margin-left:8px}
+
+.canvas-preview{background:var(--color-background-primary);border:0.5px solid var(--color-border-secondary);border-radius:var(--radius);overflow:hidden;margin-top:20px}
+.canvas-header{background:var(--dark);padding:14px 18px;display:flex;align-items:center;gap:10px}
+.canvas-header span{font-size:13px;font-weight:500;color:#fff}
+.canvas-header .ch-tag{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-right:auto}
+.canvas-row{padding:14px 18px;border-bottom:0.5px solid var(--color-border-tertiary);display:grid;grid-template-columns:140px 1fr;gap:12px;align-items:start}
+.canvas-row:last-child{border-bottom:none}
+.cr-label{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--color-text-tertiary);font-weight:500;padding-top:2px}
+.cr-value{font-size:14px;color:var(--color-text-primary);line-height:1.55;font-style:italic}
+.cr-value.empty{color:var(--color-text-tertiary);font-style:normal}
+
+.concept-pill{display:inline-block;font-size:12px;padding:3px 10px;border-radius:20px;border:0.5px solid var(--color-border-secondary);color:var(--color-text-secondary);margin:3px 3px 3px 0;background:var(--color-background-secondary)}
+.concept-pill.highlight{border-color:var(--gold-border);color:var(--gold-text);background:var(--gold-bg)}
+
+.celebration{text-align:center;padding:32px 20px}
+.cel-icon{font-size:40px;margin-bottom:16px}
+.cel-title{font-size:22px;font-weight:500;color:var(--color-text-primary);margin-bottom:8px}
+.cel-sub{font-size:15px;color:var(--color-text-secondary);margin-bottom:24px;line-height:1.6}
+.cel-canvas{background:var(--dark);border-radius:var(--radius);padding:24px;margin:0 auto 24px;max-width:560px;text-align:left}
+.cel-canvas h3{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.cel-item{margin-bottom:14px;padding-bottom:14px;border-bottom:0.5px solid #333}
+.cel-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.cel-item-label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#888;margin-bottom:4px}
+.cel-item-val{font-size:14px;color:#e8e0d0;line-height:1.5;font-family:var(--font-serif,Georgia,serif)}
+
+@media(max-width:560px){
+  .hero{padding:24px 18px 22px}
+  .canvas-row{grid-template-columns:1fr;gap:4px}
+  .cr-label{font-size:10px}
+}
+</style>
+
+<h2 class="sr-only">Taller de cierre de semana 3: construye tu primer Canvas de emprendimiento paso a paso</h2>
+
+<div class="hero">
+  <div class="hero-tag">Clase de hoy · Hora de cierre · Semana 3</div>
+  <div class="hero-bar"></div>
+  <h1>Hoy <span>construyes tu idea</span><br>desde cero y con tus propias palabras</h1>
+  <p>No hay respuestas buenas ni malas. No hay ideas ridículas. Lo único que importa es que sea tuya, que la pienses, y que la escribas. Eso ya es emprender.</p>
+  <div class="hero-chips">
+    <span class="chip active">Duración: ~50 minutos</span>
+    <span class="chip">6 pasos</span>
+    <span class="chip">Trabajo individual</span>
+    <span class="chip">Sin nota hoy — solo pensar</span>
+  </div>
+</div>
+
+<div class="nav-steps" id="navSteps">
+  <button class="nav-btn active" onclick="goTo(0,this)">Arranque</button>
+  <button class="nav-btn" onclick="goTo(1,this)">Mi problema</button>
+  <button class="nav-btn" onclick="goTo(2,this)">Mi solución</button>
+  <button class="nav-btn" onclick="goTo(3,this)">Mi cliente</button>
+  <button class="nav-btn" onclick="goTo(4,this)">El dinero</button>
+  <button class="nav-btn" onclick="goTo(5,this)">Mi canvas</button>
+</div>
+
+<div id="panels">
+
+<!-- PANEL 0: ARRANQUE -->
+<div class="panel active" id="p0">
+
+  <div class="warmup-intro">
+    <div class="wi-tag">Para empezar la clase</div>
+    <h2>Tres preguntas para romper el hielo</h2>
+    <p>Antes de escribir, piensa. Estas preguntas no se entregan, no se califica nada. Son solo para calentar la cabeza y recordar lo que trabajamos esta semana.</p>
+  </div>
+
+  <div class="question-card">
+    <div class="q-num">Pregunta 1 de 3 · Para reflexionar</div>
+    <div class="q-text">¿Qué es lo que más te quedó de esta semana?</div>
+    <div class="q-hint">Puede ser un dato, una idea, algo que te sorprendió, algo que no sabías sobre Ecuador o sobre el mundo del emprendimiento.</div>
+    <div class="q-example"><strong>Si no sabes por dónde empezar,</strong> piensa: ¿Qué fue lo más impactante del material? ¿El número de ecuatorianos que emprenden? ¿La diferencia entre emprender por necesidad y por oportunidad? ¿Los motivos por los que fallan los negocios?</div>
+    <textarea id="w1" rows="3" placeholder="Escribe aquí lo que más te quedó esta semana..."></textarea>
+  </div>
+
+  <div class="question-card">
+    <div class="q-num">Pregunta 2 de 3 · Para reflexionar</div>
+    <div class="q-text">¿Conoces a alguien que haya intentado emprender y no lo logró? ¿Qué crees que pasó?</div>
+    <div class="q-hint">Puede ser un familiar, un vecino, alguien del barrio, o incluso tú mismo. Si no conoces a nadie, puedes inventar un caso imaginario.</div>
+    <div class="q-example"><strong>Recuerda lo que vimos:</strong> Los negocios en Ecuador fallan principalmente por falta de clientes, falta de dinero, falta de conocimiento en gestión, entorno inestable, o porque ofrecen lo mismo que ya hay sin diferenciarse.</div>
+    <textarea id="w2" rows="3" placeholder="Describe el caso y qué crees que salió mal..."></textarea>
+  </div>
+
+  <div class="question-card">
+    <div class="q-num">Pregunta 3 de 3 · Para reflexionar</div>
+    <div class="q-text">¿Qué tiene que ver todo esto con ser contador o auditor?</div>
+    <div class="q-hint">No busques la respuesta perfecta. Di lo que piensas tú, con tus palabras.</div>
+    <div class="q-example"><strong>Pista si te quedas en blanco:</strong> Un contador/auditor es la persona que puede decirle a un emprendedor si su negocio va bien o mal. Puede detectar errores antes de que sea tarde. Puede ayudar a conseguir financiamiento. Puede proteger el negocio del fisco (la autoridad de impuestos). ¿Eso te parece importante?</div>
+    <textarea id="w3" rows="3" placeholder="¿Qué relación ves entre el emprendimiento y tu carrera?"></textarea>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn-primary" onclick="goTo(1,document.querySelectorAll('.nav-btn')[1])">Continuar al paso 1 →</button>
+    <span style="font-size:13px;color:var(--color-text-tertiary)">No hay que entregar estas respuestas. Son para ti.</span>
+  </div>
+</div>
+
+<!-- PANEL 1: PROBLEMA -->
+<div class="panel" id="p1">
+
+  <div class="progress-strip" id="prog1"></div>
+
+  <div class="warmup-intro">
+    <div class="wi-tag">Paso 1 de 4 del canvas · El problema</div>
+    <h2>Todo empieza con algo que no funciona bien</h2>
+    <p>Antes de hablar de negocios, de dinero o de marcas, necesitas identificar un problema real. Un problema que tú hayas vivido, visto, o que alguien de tu entorno viva. Sin problema real, no hay negocio verdadero.</p>
+  </div>
+
+  <div class="question-card">
+    <div class="q-num">¿Qué es un problema de negocio?</div>
+    <div class="q-text">Es algo que le molesta, falta o no funciona bien a un grupo de personas, y por lo que estarían dispuestas a pagar si alguien lo resolviera.</div>
+    <div class="q-hint">Ejemplos cotidianos de problemas reales que se convirtieron en negocios:</div>
+    <div class="choice-grid" style="margin-bottom:16px">
+      <div style="background:var(--color-background-secondary);border-radius:var(--radius-sm);padding:12px 14px;font-size:13px;color:var(--color-text-secondary);line-height:1.4">
+        <strong style="display:block;margin-bottom:4px;color:var(--color-text-primary)">Problema:</strong> Las personas no tenían tiempo de ir al banco a pagar sus facturas.<br><strong style="color:var(--gold-text)">Solución:</strong> Banca en línea.
+      </div>
+      <div style="background:var(--color-background-secondary);border-radius:var(--radius-sm);padding:12px 14px;font-size:13px;color:var(--color-text-secondary);line-height:1.4">
+        <strong style="display:block;margin-bottom:4px;color:var(--color-text-primary)">Problema:</strong> Los taxistas no llegaban a tiempo y no sabías cuánto ibas a pagar.<br><strong style="color:var(--gold-text)">Solución:</strong> Uber, inDriver.
+      </div>
+      <div style="background:var(--color-background-secondary);border-radius:var(--radius-sm);padding:12px 14px;font-size:13px;color:var(--color-text-secondary);line-height:1.4">
+        <strong style="display:block;margin-bottom:4px;color:var(--color-text-primary)">Problema:</strong> Los pequeños negocios no podían llevar sus cuentas sin contratar un contador de tiempo completo.<br><strong style="color:var(--gold-text)">Solución:</strong> Aplicaciones de contabilidad sencilla.
+      </div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-num">Tu turno — Identifica tu problema</div>
+    <div class="q-text">¿Qué problema, necesidad o incomodidad has notado en tu vida, tu barrio, tu trabajo, tu familia, o tu entorno más cercano que nadie ha resuelto bien todavía?</div>
+    <div class="q-hint">No tiene que ser algo tecnológico ni grande. Puede ser algo muy sencillo del día a día. Lo importante es que sea real: que tú lo hayas vivido o visto.</div>
+    <textarea id="c1" rows="5" placeholder="Describe el problema con tus propias palabras, como se lo contarías a un amigo..." oninput="updateCanvas()"></textarea>
+    <div class="char-hint">Sé específico: ¿cuándo ocurre? ¿dónde? ¿a quién le pasa?</div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-num">Para ayudarte a pensar</div>
+    <div class="q-text">¿Tu problema es por necesidad o por oportunidad?</div>
+    <div class="q-hint">Recuerda la diferencia que vimos esta semana. Elige la opción que más se acerca a tu caso:</div>
+    <div class="choice-grid">
+      <div class="choice-btn" id="opt-nec" onclick="selectType('nec')">
+        <span class="choice-label">Emprendimiento por necesidad</span>
+        Nace porque hay algo que falta y la gente lo necesita para vivir mejor o más fácil.
+      </div>
+      <div class="choice-btn" id="opt-op" onclick="selectType('op')">
+        <span class="choice-label">Emprendimiento por oportunidad</span>
+        Nace porque vi una oportunidad de negocio que todavía nadie está aprovechando bien.
+      </div>
+      <div class="choice-btn" id="opt-amb" onclick="selectType('amb')">
+        <span class="choice-label">Ambos a la vez</span>
+        Es un problema real que la gente tiene (necesidad) y también es una oportunidad de mercado que yo puedo aprovechar.
+      </div>
+    </div>
+    <div id="reveal-type" style="display:none" class="reveal-box">
+      <h4>¿Qué significa tu elección?</h4>
+      <p id="reveal-type-text"></p>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn-primary" onclick="goTo(2,document.querySelectorAll('.nav-btn')[2])">Continuar al paso 2 →</button>
+    <button class="btn-ghost" onclick="goTo(0,document.querySelectorAll('.nav-btn')[0])">← Atrás</button>
+  </div>
+</div>
+
+<!-- PANEL 2: SOLUCIÓN -->
+<div class="panel" id="p2">
+
+  <div class="progress-strip" id="prog2"></div>
+
+  <div class="warmup-intro">
+    <div class="wi-tag">Paso 2 de 4 del canvas · Tu solución</div>
+    <h2>¿Qué propones? La idea de solución</h2>
+    <p>Ahora viene la parte creativa. Tienes un problema identificado. ¿Qué harías tú para resolverlo? No busques la solución perfecta. Busca una solución posible, real, que tú puedas imaginar llevando a cabo.</p>
+  </div>
+
+  <div class="question-card">
+    <div class="q-num">Antes de escribir — Lee esto</div>
+    <div class="q-text">Una buena idea de solución tiene tres características</div>
+    <div class="choice-grid">
+      <div style="background:var(--color-background-secondary);border-radius:var(--radius-sm);padding:14px;font-size:13px;color:var(--color-text-secondary);line-height:1.4;border-top:3px solid #639922">
+        <strong style="color:#27500a;display:block;margin-bottom:4px">1. Es concreta</strong>
+        Se puede describir en pocas palabras. Si no puedes explicarla en menos de dos frases, todavía no está clara.
+      </div>
+      <div style="background:var(--color-background-secondary);border-radius:var(--radius-sm);padding:14px;font-size:13px;color:var(--color-text-secondary);line-height:1.4;border-top:3px solid #378ADD">
+        <strong style="color:#0C447C;display:block;margin-bottom:4px">2. Resuelve el problema</strong>
+        Hay una conexión directa entre el problema que identificaste y lo que tú ofreces. Pregúntate: ¿si alguien usa mi solución, el problema desaparece o mejora?
+      </div>
+      <div style="background:var(--color-background-secondary);border-radius:var(--radius-sm);padding:14px;font-size:13px;color:var(--color-text-secondary);line-height:1.4;border-top:3px solid var(--gold)">
+        <strong style="color:var(--gold-text);display:block;margin-bottom:4px">3. Tiene algo diferente</strong>
+        No hace exactamente lo mismo que ya existe. Puede ser el precio, la cercanía, la velocidad, la personalización, el público al que va dirigida, o cómo se entrega.
+      </div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-num">Tu solución</div>
+    <div class="q-text">¿Qué producto, servicio, proceso o herramienta propones para resolver el problema que identificaste?</div>
+    <div class="q-hint">Descríbelo como si se lo explicaras a un familiar que no sabe nada del tema. Sin tecnicismos, sin palabras complicadas.</div>
+    <div class="q-example"><strong>Formato sugerido para pensar:</strong> "Mi solución es [qué ofreces] para [quién] que tiene el problema de [cuál]. Lo diferente es que [qué tiene de especial]."</div>
+    <textarea id="c2" rows="5" placeholder="Escribe tu idea de solución aquí..." oninput="updateCanvas()"></textarea>
+  </div>
+
+  <div class="question-card">
+    <div class="q-num">Reflexión importante</div>
+    <div class="q-text">¿Es tu idea un emprendimiento, una innovación, o ambas cosas a la vez?</div>
+    <div class="q-hint">Recuerda las definiciones que estudiamos. Un emprendimiento es crear algo nuevo en el mercado. Una innovación es cambiar, mejorar o aplicar de forma diferente algo que ya existe. ¿En cuál categoría cae tu idea?</div>
+    <textarea id="c2b" rows="3" placeholder="Explica si es emprendimiento, innovación o ambas. Justifica con una razón." oninput="updateCanvas()"></textarea>
+    <div class="reveal-box" style="margin-top:12px">
+      <h4>Para ayudarte a clasificar</h4>
+      <p><strong>Emprendimiento nuevo:</strong> creas algo que no existía antes en ese mercado. Ejemplo: el primer delivery de comida en tu ciudad.<br><br><strong>Innovación:</strong> ya existe algo parecido, pero tú lo haces diferente, mejor, o para un público distinto. Ejemplo: delivery de comida saludable para diabéticos, cuando el delivery normal no lo hacía.<br><br><strong>Ambas:</strong> creas algo nuevo (emprendimiento) que además introduce una forma diferente de hacerlo (innovación).</p>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn-primary" onclick="goTo(3,document.querySelectorAll('.nav-btn')[3])">Continuar al paso 3 →</button>
+    <button class="btn-ghost" onclick="goTo(1,document.querySelectorAll('.nav-btn')[1])">← Atrás</button>
+  </div>
+</div>
+
+<!-- PANEL 3: CLIENTE -->
+<div class="panel" id="p3">
+
+  <div class="progress-strip" id="prog3"></div>
+
+  <div class="warmup-intro">
+    <div class="wi-tag">Paso 3 de 4 del canvas · Tu cliente</div>
+    <h2>¿Para quién es tu solución?</h2>
+    <p>Un negocio sin clientes no existe. Esta es quizás la parte más importante y la que más se pasa por alto. Tienes que conocer a la persona que tiene el problema mejor que ella misma.</p>
+  </div>
+
+  <div class="question-card">
+    <div class="q-num">¿Qué es un "perfil de cliente"?</div>
+    <div class="q-text">Es la descripción detallada de la persona real que compraría tu solución.</div>
+    <div class="q-hint">No digas "todo el mundo" ni "las personas en general". Cuanto más específico seas, mejor. Un negocio que le habla a todos termina llegando a nadie.</div>
+    <div class="q-example">
+      <strong>Ejemplo de perfil vago (no sirve):</strong> "Mi cliente son las personas que tienen ese problema."<br><br>
+      <strong>Ejemplo de perfil útil:</strong> "Mi cliente típico es una mujer de entre 28 y 45 años, con hijos, que trabaja fuera de casa, vive en un sector urbano de ingresos medios-bajos, usa WhatsApp todos los días, y busca soluciones prácticas y económicas que le ahorren tiempo."
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-num">Describe a tu cliente ideal</div>
+    <div class="q-text">¿Quién sufre el problema que identificaste? Descríbelo con la mayor cantidad de detalles que puedas.</div>
+    <div class="q-hint">Piensa en: ¿cuántos años tiene? ¿hombre, mujer, o cualquiera? ¿dónde vive? ¿trabaja? ¿tiene familia? ¿qué usa en su día a día? ¿cuánto dinero tiene aproximadamente para gastar?</div>
+    <textarea id="c3" rows="5" placeholder="Describe aquí a la persona que compraría tu solución..." oninput="updateCanvas()"></textarea>
+  </div>
+
+  <div class="question-card">
+    <div class="q-num">Estimación del tamaño del mercado</div>
+    <div class="q-text">El "mercado" es el conjunto de todas las personas que podrían ser tus clientes. ¿Aproximadamente cuántas personas con ese perfil crees que hay en tu ciudad o zona?</div>
+    <div class="q-hint">No necesitas ser exacto. Usa rangos: ¿cientos, miles, decenas de miles? ¿Solo en Guayaquil, en todo Ecuador, o en otro lugar?</div>
+    <textarea id="c3b" rows="3" placeholder="¿Cuántas personas aproximadamente podrían ser tus clientes? ¿Por qué?" oninput="updateCanvas()"></textarea>
+    <div class="reveal-box" style="margin-top:12px">
+      <h4>¿Por qué importa esto?</h4>
+      <p>Si tu mercado es muy pequeño, puede que el negocio no sea sostenible (no genere suficiente dinero). Si es muy grande, quizás necesites más recursos para llegar a todos. Conocer el tamaño del mercado te ayuda a saber si tu idea tiene futuro real.</p>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn-primary" onclick="goTo(4,document.querySelectorAll('.nav-btn')[4])">Continuar al paso 4 →</button>
+    <button class="btn-ghost" onclick="goTo(2,document.querySelectorAll('.nav-btn')[2])">← Atrás</button>
+  </div>
+</div>
+
+<!-- PANEL 4: DINERO -->
+<div class="panel" id="p4">
+
+  <div class="progress-strip" id="prog4"></div>
+
+  <div class="warmup-intro">
+    <div class="wi-tag">Paso 4 de 4 del canvas · El modelo financiero básico</div>
+    <h2>¿Cómo gana dinero este negocio?</h2>
+    <p>Todo negocio necesita ingresos para existir. No hay nada de malo en eso. Sin dinero, no puedes pagar materiales, no puedes crecer, no puedes ayudar a nadie. Esta parte es donde tu carrera de Contabilidad y Auditoría entra en acción.</p>
+  </div>
+
+  <div class="question-card">
+    <div class="q-num">Concepto clave — El "modelo de ingresos"</div>
+    <div class="q-text">El modelo de ingresos explica cómo, cuándo y por qué alguien te paga.</div>
+    <div class="choice-grid">
+      <div style="background:var(--color-background-secondary);border-radius:var(--radius-sm);padding:12px;font-size:13px;color:var(--color-text-secondary);line-height:1.4">
+        <strong style="color:var(--color-text-primary);display:block;margin-bottom:3px">Venta directa</strong>
+        Cobras cada vez que alguien usa o compra tu producto/servicio. El más común.
+      </div>
+      <div style="background:var(--color-background-secondary);border-radius:var(--radius-sm);padding:12px;font-size:13px;color:var(--color-text-secondary);line-height:1.4">
+        <strong style="color:var(--color-text-primary);display:block;margin-bottom:3px">Suscripción</strong>
+        El cliente paga una cantidad fija cada mes o año para tener acceso continuo.
+      </div>
+      <div style="background:var(--color-background-secondary);border-radius:var(--radius-sm);padding:12px;font-size:13px;color:var(--color-text-secondary);line-height:1.4">
+        <strong style="color:var(--color-text-primary);display:block;margin-bottom:3px">Comisión o porcentaje</strong>
+        No cobras precio fijo, sino un % de cada transacción que facilitas.
+      </div>
+      <div style="background:var(--color-background-secondary);border-radius:var(--radius-sm);padding:12px;font-size:13px;color:var(--color-text-secondary);line-height:1.4">
+        <strong style="color:var(--color-text-primary);display:block;margin-bottom:3px">Freemium</strong>
+        Una parte del servicio es gratis y se cobra por funciones adicionales o premium.
+      </div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-num">¿Cómo genera ingresos tu idea?</div>
+    <div class="q-text">Describe el modelo de ingresos de tu emprendimiento. ¿Quién te paga, cuánto, y con qué frecuencia?</div>
+    <div class="q-hint">Intenta hacer un cálculo simple: si atiendes a X clientes por semana y cobras $Y por servicio, ¿cuánto recibirías al mes?</div>
+    <textarea id="c4" rows="5" placeholder="Explica cómo generaría dinero tu negocio. Incluye precios estimados si puedes." oninput="updateCanvas()"></textarea>
+  </div>
+
+  <div class="question-card">
+    <div class="q-num">Visión de futuro</div>
+    <div class="q-text">¿Qué necesitarías para arrancar? Y si este negocio creciera, ¿a dónde podría llegar en 3 años?</div>
+    <div class="q-hint">Piensa en lo mínimo que necesitas para empezar (tiempo, dinero, personas, herramientas). Y luego imagina el escenario ideal si las cosas salen bien.</div>
+    <div class="q-example">
+      <strong>Para el arranque,</strong> muchos emprendedores necesitan solo tres cosas: una habilidad, un cliente, y una forma de cobrar. ¿Tienes alguna de esas ya?
+    </div>
+    <textarea id="c4b" rows="4" placeholder="¿Qué necesitas para empezar? ¿A dónde podría llegar en 3 años?" oninput="updateCanvas()"></textarea>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn-primary" onclick="goTo(5,document.querySelectorAll('.nav-btn')[5]);buildFinalCanvas()">Ver mi Canvas completo →</button>
+    <button class="btn-ghost" onclick="goTo(3,document.querySelectorAll('.nav-btn')[3])">← Atrás</button>
+  </div>
+</div>
+
+<!-- PANEL 5: CANVAS FINAL -->
+<div class="panel" id="p5">
+
+  <div class="celebration">
+    <div style="font-size:36px;margin-bottom:12px">★</div>
+    <div class="cel-title">Completaste tu primer Canvas de emprendimiento</div>
+    <div class="cel-sub">Lo que tienes abajo es la semilla de una idea. No es perfecta, y no tiene que serlo. Pero es tuya, y existe porque tú pensaste en ella.<br>Guárdala. En las próximas semanas vamos a seguir desarrollándola.</div>
+  </div>
+
+  <div class="canvas-preview">
+    <div class="canvas-header">
+      <span class="ch-tag">Canvas de emprendimiento</span>
+      <span>Mi primera idea</span>
+    </div>
+    <div class="canvas-row">
+      <div class="cr-label">El problema que identifiqué</div>
+      <div class="cr-value" id="cv1">—</div>
+    </div>
+    <div class="canvas-row">
+      <div class="cr-label">Mi solución propuesta</div>
+      <div class="cr-value" id="cv2">—</div>
+    </div>
+    <div class="canvas-row">
+      <div class="cr-label">¿Emprendimiento, innovación, o ambas?</div>
+      <div class="cr-value" id="cv2b">—</div>
+    </div>
+    <div class="canvas-row">
+      <div class="cr-label">Mi cliente ideal</div>
+      <div class="cr-value" id="cv3">—</div>
+    </div>
+    <div class="canvas-row">
+      <div class="cr-label">Tamaño del mercado</div>
+      <div class="cr-value" id="cv3b">—</div>
+    </div>
+    <div class="canvas-row">
+      <div class="cr-label">Modelo de ingresos</div>
+      <div class="cr-value" id="cv4">—</div>
+    </div>
+    <div class="canvas-row">
+      <div class="cr-label">Para arrancar y crecer</div>
+      <div class="cr-value" id="cv4b">—</div>
+    </div>
+  </div>
+
+  <div style="margin-top:20px;padding:20px;background:var(--color-background-secondary);border-radius:var(--radius);border:0.5px solid var(--color-border-tertiary)">
+    <p style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:10px">Conceptos que aplicaste hoy:</p>
+    <div>
+      <span class="concept-pill highlight">Problema de mercado</span>
+      <span class="concept-pill highlight">Propuesta de solución</span>
+      <span class="concept-pill highlight">Emprendimiento vs. innovación</span>
+      <span class="concept-pill highlight">Perfil de cliente</span>
+      <span class="concept-pill highlight">Modelo de ingresos</span>
+      <span class="concept-pill">Ecosistema emprendedor</span>
+      <span class="concept-pill">TEA (Tasa de Actividad Emprendedora Temprana)</span>
+      <span class="concept-pill">Emprendimiento por necesidad vs. oportunidad</span>
+      <span class="concept-pill">Canvas de emprendimiento</span>
+    </div>
+  </div>
+
+  <div style="margin-top:16px;background:var(--color-background-secondary);border-radius:var(--radius);padding:18px 20px;border:0.5px solid var(--color-border-tertiary)">
+    <p style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:8px">¿Qué sigue la próxima semana?</p>
+    <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.6">Este Canvas es solo el punto de partida. En las próximas semanas vamos a profundizar en cada bloque: cómo investigar si el problema realmente existe, cómo saber si hay suficientes clientes, cómo calcular costos y ganancias, y cómo presentar la idea para que otros la entiendan y confíen en ella.</p>
+    <p style="font-size:13px;color:var(--color-text-tertiary);margin-top:10px;line-height:1.5"><strong style="color:var(--color-text-secondary)">Para guardar tu trabajo:</strong> Copia y pega el contenido de arriba en un documento de Word o Google Docs. También puedes tomar una captura de pantalla.</p>
+  </div>
+
+  <div class="btn-row" style="margin-top:16px">
+    <button class="btn-primary" onclick="copyCanvas()">Copiar mi canvas como texto</button>
+    <button class="btn-secondary" onclick="goTo(0,document.querySelectorAll('.nav-btn')[0])">Volver al inicio</button>
+  </div>
+
+</div>
+
+</div>
+
+<script>
+var stepNames=['Arranque','Mi problema','Mi solución','Mi cliente','El dinero','Mi canvas'];
+var stepCount=4;
+
+function goTo(i,btn){
+  document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active')});
+  document.getElementById('p'+i).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(function(b,idx){
+    b.classList.remove('active');
+    if(idx<i) b.classList.add('done');
+  });
+  btn.classList.add('active');
+  [1,2,3,4].forEach(function(n){buildProgress(n)});
+  window.scrollTo(0,0);
+}
+
+function buildProgress(panel){
+  var el=document.getElementById('prog'+panel);
+  if(!el)return;
+  el.innerHTML='';
+  for(var i=1;i<=stepCount;i++){
+    var s=document.createElement('div');
+    s.className='prog-seg'+(i<panel?' done':i===panel?' current':'');
+    el.appendChild(s);
+  }
+  var lbl=document.createElement('span');
+  lbl.className='prog-label';
+  lbl.textContent='Paso '+panel+' de '+stepCount;
+  el.appendChild(lbl);
+}
+[1,2,3,4].forEach(buildProgress);
+
+var selectedType='';
+var typeTexts={
+  nec:'Has identificado un emprendimiento por necesidad. En Ecuador, muchos de los emprendimientos exitosos nacen exactamente así: alguien detecta que hace falta algo básico que la gente no puede acceder fácilmente, y lo ofrece. El desafío con este tipo de emprendimiento es encontrar formas de hacerlo sostenible a largo plazo.',
+  op:'Has identificado un emprendimiento por oportunidad. Esto significa que hay una ventana de mercado que todavía no está siendo aprovechada, o que está siendo aprovechada mal. Los emprendimientos por oportunidad tienen mayor probabilidad de convertirse en negocios sólidos y escalables.',
+  amb:'Has identificado ambas: un problema real de la gente (necesidad) y una oportunidad de mercado. Esta combinación es muy poderosa: el problema te asegura que hay demanda, y la oportunidad te da espacio para diferenciarte y crecer.'
+};
+function selectType(t){
+  selectedType=t;
+  ['nec','op','amb'].forEach(function(o){
+    var el=document.getElementById('opt-'+o);
+    if(el) el.classList.toggle('selected',o===t);
+  });
+  var rev=document.getElementById('reveal-type');
+  var txt=document.getElementById('reveal-type-text');
+  if(rev&&txt){rev.style.display='block';txt.textContent=typeTexts[t]||'';}
+}
+
+function updateCanvas(){
+  var fields={cv1:'c1',cv2:'c2',cv2b:'c2b',cv3:'c3',cv3b:'c3b',cv4:'c4',cv4b:'c4b'};
+  Object.keys(fields).forEach(function(cv){
+    var el=document.getElementById(cv);
+    var src=document.getElementById(fields[cv]);
+    if(!el||!src)return;
+    var val=src.value.trim();
+    if(val){el.textContent=val;el.classList.remove('empty');}
+    else{el.textContent='(Sin completar)';el.classList.add('empty');}
+  });
+}
+
+function buildFinalCanvas(){updateCanvas();}
+
+function copyCanvas(){
+  var labels=['El problema que identifiqué','Mi solución propuesta','¿Emprendimiento, innovación o ambas?','Mi cliente ideal','Tamaño del mercado','Modelo de ingresos','Para arrancar y crecer'];
+  var ids=['c1','c2','c2b','c3','c3b','c4','c4b'];
+  var txt='MI CANVAS DE EMPRENDIMIENTO — SEMANA 3\n';
+  txt+='==========================================\n\n';
+  for(var i=0;i<labels.length;i++){
+    var el=document.getElementById(ids[i]);
+    var val=el?el.value.trim():'(Sin completar)';
+    txt+=labels[i].toUpperCase()+'\n'+val+'\n\n';
+  }
+  txt+='==========================================\n';
+  txt+='Elaborado como actividad de clase de Emprendimiento e Innovación · Semana 3';
+  navigator.clipboard.writeText(txt).then(function(){
+    alert('Listo. Tu canvas fue copiado al portapapeles. Ahora pégalo en Word o en tus notas.');
+  }).catch(function(){alert('Para copiar: selecciona el texto de tu canvas en pantalla y usa Ctrl+C.');});
+}
+</script>
