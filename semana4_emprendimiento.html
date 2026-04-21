@@ -1,0 +1,1806 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 4 · Emprendimiento e Innovación · Universidad de Guayaquil</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --azul-oscuro: #0a3d6b;
+    --azul-medio: #1565C0;
+    --azul-vivo: #1976D2;
+    --celeste: #29B6F6;
+    --turquesa: #00ACC1;
+    --turquesa-suave: #E0F7FA;
+    --celeste-suave: #E3F2FD;
+    --azul-suave: #EEF4FB;
+    --blanco: #ffffff;
+    --gris-texto: #2d3748;
+    --gris-suave: #f7f9fc;
+    --gris-borde: #e2e8f0;
+    --acento: #0097A7;
+    --sombra: 0 4px 24px rgba(10,61,107,0.10);
+    --sombra-hover: 0 8px 32px rgba(10,61,107,0.18);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: #f0f6ff;
+    color: var(--gris-texto);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: linear-gradient(135deg, var(--azul-oscuro) 0%, var(--azul-medio) 60%, var(--turquesa) 100%);
+    padding: 36px 40px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    right: -60px; top: -60px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    right: 80px; bottom: -80px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(0,172,193,0.15);
+  }
+  .header-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.30);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+  }
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    color: #fff;
+    font-size: clamp(22px, 3.5vw, 34px);
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .header p {
+    color: rgba(255,255,255,0.80);
+    font-size: 14px;
+    font-weight: 300;
+    max-width: 640px;
+  }
+  .header-meta {
+    display: flex;
+    gap: 24px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+  .header-meta span {
+    color: rgba(255,255,255,0.75);
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .header-meta span::before {
+    content: '●';
+    color: var(--celeste);
+    font-size: 8px;
+  }
+
+  /* ── TABS NAV ── */
+  .tabs-nav {
+    background: var(--blanco);
+    border-bottom: 2px solid var(--gris-borde);
+    display: flex;
+    overflow-x: auto;
+    padding: 0 20px;
+    gap: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(10,61,107,0.07);
+  }
+  .tabs-nav::-webkit-scrollbar { height: 3px; }
+  .tabs-nav::-webkit-scrollbar-thumb { background: var(--celeste); border-radius: 2px; }
+
+  .tab-btn {
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    padding: 16px 18px 14px;
+    cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #718096;
+    white-space: nowrap;
+    transition: all 0.25s;
+    letter-spacing: 0.3px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: -2px;
+  }
+  .tab-btn:hover { color: var(--azul-medio); background: var(--azul-suave); }
+  .tab-btn.active {
+    color: var(--azul-oscuro);
+    border-bottom-color: var(--turquesa);
+    background: var(--turquesa-suave);
+  }
+  .tab-num {
+    background: var(--gris-borde);
+    color: #718096;
+    font-size: 10px;
+    font-weight: 700;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.25s;
+  }
+  .tab-btn.active .tab-num {
+    background: var(--turquesa);
+    color: #fff;
+  }
+
+  /* ── CONTENT ── */
+  .content-area {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 36px 24px 60px;
+  }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; animation: fadeUp 0.35s ease; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTION TITLE ── */
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 3vw, 28px);
+    color: var(--azul-oscuro);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .section-sub {
+    color: #718096;
+    font-size: 14px;
+    margin-bottom: 30px;
+    font-weight: 400;
+    border-left: 3px solid var(--turquesa);
+    padding-left: 12px;
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--blanco);
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-bottom: 22px;
+    box-shadow: var(--sombra);
+    border: 1px solid var(--gris-borde);
+    transition: box-shadow 0.2s;
+  }
+  .card:hover { box-shadow: var(--sombra-hover); }
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--azul-oscuro);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .card-icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .ci-azul { background: var(--celeste-suave); }
+  .ci-turquesa { background: var(--turquesa-suave); }
+  .ci-oscuro { background: #E8EEF6; }
+
+  .card p { font-size: 15px; line-height: 1.75; color: #4a5568; margin-bottom: 10px; }
+  .card p:last-child { margin-bottom: 0; }
+
+  /* ── HIGHLIGHT BOX ── */
+  .highlight-box {
+    background: linear-gradient(135deg, var(--celeste-suave), var(--turquesa-suave));
+    border-left: 4px solid var(--turquesa);
+    border-radius: 0 10px 10px 0;
+    padding: 18px 22px;
+    margin: 16px 0;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--azul-oscuro);
+  }
+  .highlight-box strong { color: var(--azul-oscuro); }
+
+  /* ── GRID 2 ── */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 22px;
+  }
+
+  /* ── CONCEPTO CARD ── */
+  .concepto-card {
+    background: var(--blanco);
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: var(--sombra);
+    border: 1px solid var(--gris-borde);
+    border-top: 4px solid var(--turquesa);
+  }
+  .concepto-card.azul { border-top-color: var(--azul-vivo); }
+  .concepto-card.celeste { border-top-color: var(--celeste); }
+  .concepto-etiqueta {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--turquesa);
+    margin-bottom: 6px;
+  }
+  .concepto-card.azul .concepto-etiqueta { color: var(--azul-vivo); }
+  .concepto-card.celeste .concepto-etiqueta { color: #0288D1; }
+  .concepto-nombre {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    color: var(--azul-oscuro);
+    margin-bottom: 10px;
+  }
+  .concepto-def { font-size: 14px; line-height: 1.7; color: #4a5568; margin-bottom: 8px; }
+  .concepto-autor { font-size: 12px; color: #718096; font-style: italic; }
+  .concepto-ug {
+    margin-top: 12px;
+    background: var(--azul-suave);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--azul-oscuro);
+    border-left: 3px solid var(--azul-vivo);
+  }
+  .concepto-ug strong { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 3px; color: var(--azul-vivo); }
+
+  /* ── ACCORDION ── */
+  .accordion { margin-bottom: 10px; }
+  .acc-header {
+    background: var(--blanco);
+    border: 1px solid var(--gris-borde);
+    border-radius: 10px;
+    padding: 16px 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--azul-oscuro);
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .acc-header:hover { background: var(--azul-suave); border-color: var(--azul-vivo); }
+  .acc-header.open { background: var(--celeste-suave); border-color: var(--azul-vivo); border-radius: 10px 10px 0 0; }
+  .acc-arrow { transition: transform 0.3s; font-size: 12px; color: var(--azul-vivo); }
+  .acc-header.open .acc-arrow { transform: rotate(180deg); }
+  .acc-body {
+    display: none;
+    background: var(--blanco);
+    border: 1px solid var(--azul-vivo);
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    padding: 20px 24px;
+    font-size: 14px;
+    line-height: 1.75;
+    color: #4a5568;
+  }
+  .acc-body.open { display: block; animation: fadeUp 0.2s ease; }
+
+  /* ── SEMANA BADGE ── */
+  .semana-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--azul-oscuro);
+    color: #fff;
+    border-radius: 20px;
+    padding: 4px 14px 4px 8px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .semana-dot { width: 10px; height: 10px; background: var(--celeste); border-radius: 50%; }
+
+  /* ── PREGUNTAS PEDAGOGICAS ── */
+  .pregunta-card {
+    background: var(--blanco);
+    border-radius: 14px;
+    padding: 24px 28px;
+    margin-bottom: 18px;
+    box-shadow: var(--sombra);
+    border: 1px solid var(--gris-borde);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+  .pregunta-num {
+    width: 44px; height: 44px;
+    background: linear-gradient(135deg, var(--azul-vivo), var(--turquesa));
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .pregunta-texto { font-size: 15px; font-weight: 700; color: var(--azul-oscuro); margin-bottom: 10px; font-style: italic; }
+  .pregunta-analisis { font-size: 14px; line-height: 1.7; color: #4a5568; margin-bottom: 8px; }
+  .pregunta-perspectiva {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .persp-box {
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .persp-ped { background: var(--turquesa-suave); border-left: 3px solid var(--turquesa); }
+  .persp-prof { background: var(--celeste-suave); border-left: 3px solid var(--celeste); }
+  .persp-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px; }
+  .persp-ped .persp-label { color: var(--turquesa); }
+  .persp-prof .persp-label { color: #0288D1; }
+
+  /* ── TIPOS DE EMPRENDEDOR ── */
+  .tipo-card {
+    background: var(--blanco);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--sombra);
+    border: 1px solid var(--gris-borde);
+    margin-bottom: 24px;
+  }
+  .tipo-header {
+    padding: 20px 28px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .tipo-emoji { font-size: 32px; }
+  .tipo-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: #fff;
+    margin-bottom: 2px;
+  }
+  .tipo-subtitulo { font-size: 13px; color: rgba(255,255,255,0.8); }
+  .t1 .tipo-header { background: linear-gradient(135deg, #0a3d6b, #1565C0); }
+  .t2 .tipo-header { background: linear-gradient(135deg, #006064, #00ACC1); }
+  .t3 .tipo-header { background: linear-gradient(135deg, #01579B, #29B6F6); }
+  .t4 .tipo-header { background: linear-gradient(135deg, #004D40, #26A69A); }
+  .t5 .tipo-header { background: linear-gradient(135deg, #1A237E, #3949AB); }
+  .tipo-body { padding: 24px 28px; }
+  .tipo-body p { font-size: 14px; line-height: 1.75; color: #4a5568; margin-bottom: 12px; }
+  .tipo-rasgos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 12px 0;
+  }
+  .rasgo-tag {
+    background: var(--azul-suave);
+    color: var(--azul-oscuro);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--gris-borde);
+  }
+  .tipo-cita {
+    background: var(--gris-suave);
+    border-left: 3px solid var(--turquesa);
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    font-size: 13px;
+    font-style: italic;
+    color: #4a5568;
+    margin-top: 14px;
+  }
+  .tipo-ug {
+    background: var(--celeste-suave);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-top: 14px;
+    font-size: 14px;
+    color: var(--azul-oscuro);
+  }
+  .tipo-ug strong { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--azul-medio); margin-bottom: 4px; }
+  .tipo-ref { font-size: 11px; color: #718096; margin-top: 8px; font-style: italic; }
+
+  /* ── PROCESO / PASOS ── */
+  .steps-container { display: flex; flex-direction: column; gap: 0; position: relative; }
+  .step-item {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 20px;
+    position: relative;
+  }
+  .step-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 29px; top: 60px;
+    width: 2px;
+    height: calc(100% - 20px);
+    background: linear-gradient(to bottom, var(--turquesa), var(--celeste));
+  }
+  .step-circle {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    font-size: 20px;
+    color: #fff;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(135deg, var(--azul-vivo), var(--turquesa));
+    box-shadow: 0 4px 14px rgba(21,101,192,0.25);
+  }
+  .step-content {
+    padding: 8px 0 32px;
+  }
+  .step-title { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--azul-oscuro); margin-bottom: 8px; }
+  .step-desc { font-size: 14px; line-height: 1.75; color: #4a5568; }
+
+  /* ── TABLA ── */
+  .tabla-contenedor { overflow-x: auto; margin-bottom: 22px; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+    background: var(--blanco);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--sombra);
+  }
+  thead { background: linear-gradient(135deg, var(--azul-oscuro), var(--azul-vivo)); color: #fff; }
+  th { padding: 14px 18px; font-weight: 700; text-align: left; font-size: 12px; letter-spacing: 0.5px; text-transform: uppercase; }
+  td { padding: 13px 18px; border-bottom: 1px solid var(--gris-borde); color: #4a5568; line-height: 1.6; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: var(--gris-suave); }
+
+  /* ── GUIA PRÁCTICA / PLANTILLA ── */
+  .plantilla {
+    background: var(--blanco);
+    border-radius: 16px;
+    border: 2px solid var(--azul-vivo);
+    overflow: hidden;
+    box-shadow: var(--sombra);
+    margin-bottom: 24px;
+  }
+  .plantilla-header {
+    background: linear-gradient(135deg, var(--azul-oscuro), var(--azul-vivo));
+    padding: 18px 28px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .plantilla-header h3 { font-family: 'Playfair Display', serif; font-size: 18px; margin: 0; }
+  .plantilla-header p { font-size: 12px; color: rgba(255,255,255,0.75); margin: 0; }
+  .plantilla-body { padding: 28px; }
+  .campo-grupo { margin-bottom: 22px; }
+  .campo-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--turquesa);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .campo-desc { font-size: 13.5px; color: #4a5568; line-height: 1.65; margin-bottom: 8px; }
+  .campo-ejemplo {
+    background: var(--gris-suave);
+    border: 1px dashed var(--gris-borde);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #718096;
+    font-style: italic;
+  }
+  .campo-ejemplo strong { color: var(--azul-oscuro); font-style: normal; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px; }
+  .campo-linea {
+    border: none;
+    border-bottom: 1.5px solid var(--gris-borde);
+    background: transparent;
+    width: 100%;
+    padding: 8px 0;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 14px;
+    color: var(--gris-texto);
+    outline: none;
+    transition: border-color 0.2s;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .campo-linea:focus { border-bottom-color: var(--turquesa); }
+  .campo-area {
+    width: 100%;
+    border: 1.5px solid var(--gris-borde);
+    border-radius: 8px;
+    padding: 12px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 14px;
+    color: var(--gris-texto);
+    outline: none;
+    resize: vertical;
+    min-height: 80px;
+    transition: border-color 0.2s;
+  }
+  .campo-area:focus { border-color: var(--turquesa); }
+
+  /* ── TENDENCIAS ── */
+  .tendencia-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 16px;
+    align-items: start;
+    margin-bottom: 18px;
+  }
+  .tend-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+    background: var(--celeste-suave);
+  }
+  .tend-content h4 { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--azul-oscuro); margin-bottom: 6px; }
+  .tend-content p { font-size: 14px; line-height: 1.7; color: #4a5568; }
+  .tend-content .contable { font-size: 13px; background: var(--turquesa-suave); border-radius: 6px; padding: 8px 12px; margin-top: 8px; color: var(--azul-oscuro); border-left: 3px solid var(--turquesa); }
+
+  /* ── QUIZ ── */
+  .quiz-container { }
+  .quiz-pregunta {
+    background: var(--blanco);
+    border-radius: 14px;
+    padding: 28px;
+    margin-bottom: 22px;
+    box-shadow: var(--sombra);
+    border: 1px solid var(--gris-borde);
+  }
+  .quiz-num-badge {
+    background: var(--azul-oscuro);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 12px;
+  }
+  .quiz-enunciado {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--azul-oscuro);
+    line-height: 1.6;
+    margin-bottom: 18px;
+  }
+  .quiz-opciones { display: flex; flex-direction: column; gap: 10px; }
+  .quiz-opcion {
+    border: 2px solid var(--gris-borde);
+    border-radius: 10px;
+    padding: 14px 18px;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #4a5568;
+    transition: all 0.2s;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    user-select: none;
+    background: var(--blanco);
+  }
+  .quiz-opcion:hover { border-color: var(--celeste); background: var(--celeste-suave); }
+  .quiz-opcion.correcta { border-color: #2e7d32; background: #f1f8e9; color: #1b5e20; }
+  .quiz-opcion.incorrecta { border-color: #c62828; background: #ffebee; color: #b71c1c; }
+  .opcion-letra {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: var(--gris-borde);
+    color: #718096;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+  .quiz-opcion.correcta .opcion-letra { background: #2e7d32; color: #fff; }
+  .quiz-opcion.incorrecta .opcion-letra { background: #c62828; color: #fff; }
+  .quiz-feedback {
+    display: none;
+    margin-top: 16px;
+    padding: 16px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .quiz-feedback.show { display: block; animation: fadeUp 0.3s ease; }
+  .quiz-feedback.correcto { background: #f1f8e9; border-left: 4px solid #2e7d32; color: #1b5e20; }
+  .quiz-feedback.incorrecto { background: #ffebee; border-left: 4px solid #c62828; color: #b71c1c; }
+  .feedback-titulo { font-weight: 700; margin-bottom: 6px; font-size: 15px; }
+  .quiz-resultado {
+    background: linear-gradient(135deg, var(--azul-oscuro), var(--azul-vivo));
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+    color: #fff;
+    display: none;
+    margin-top: 24px;
+  }
+  .quiz-resultado.show { display: block; animation: fadeUp 0.5s ease; }
+  .resultado-score { font-size: 60px; font-weight: 700; font-family: 'Playfair Display', serif; }
+  .resultado-label { font-size: 18px; margin-bottom: 16px; opacity: 0.9; }
+  .resultado-msg { font-size: 15px; opacity: 0.8; max-width: 500px; margin: 0 auto 20px; line-height: 1.6; }
+  .btn-reiniciar {
+    background: #fff;
+    color: var(--azul-oscuro);
+    border: none;
+    padding: 12px 28px;
+    border-radius: 25px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .btn-reiniciar:hover { transform: scale(1.05); }
+
+  /* ── UTIL ── */
+  .ref-apa { font-size: 12px; color: #718096; font-style: italic; margin-top: 6px; border-top: 1px solid var(--gris-borde); padding-top: 8px; }
+  .info-box {
+    background: var(--azul-suave);
+    border: 1px solid #bee3f8;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 18px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--azul-oscuro);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .info-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+
+  @media (max-width: 600px) {
+    .pregunta-perspectiva { grid-template-columns: 1fr; }
+    .tipo-body .grid-2 { grid-template-columns: 1fr; }
+    .header { padding: 24px 20px; }
+    .content-area { padding: 20px 14px 40px; }
+    .card { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-badge">Universidad de Guayaquil · Emprendimiento e Innovación</div>
+  <h1>Semana 4: La Capacidad para Emprender<br>Tipos de Emprendedor · Análisis de Tendencias</h1>
+  <p>Material de estudio autónomo para la clase virtual. Todo el contenido está diseñado para ser comprensible sin la presencia del docente.</p>
+  <div class="header-meta">
+    <span>Carrera de Contabilidad y Auditoría</span>
+    <span>Unidad 1 continúa</span>
+    <span>Cuestionario interactivo incluido</span>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs-nav">
+  <button class="tab-btn active" onclick="openTab(event,'tab0')"><span class="tab-num">0</span> Repaso Semanas 1–3</button>
+  <button class="tab-btn" onclick="openTab(event,'tab1')"><span class="tab-num">1</span> Capacidad Emprendedora</button>
+  <button class="tab-btn" onclick="openTab(event,'tab2')"><span class="tab-num">2</span> Tipos de Emprendedor</button>
+  <button class="tab-btn" onclick="openTab(event,'tab3')"><span class="tab-num">3</span> Identificación de Problemas</button>
+  <button class="tab-btn" onclick="openTab(event,'tab4')"><span class="tab-num">4</span> Análisis de Tendencias</button>
+  <button class="tab-btn" onclick="openTab(event,'tab5')"><span class="tab-num">5</span> Guías Prácticas</button>
+  <button class="tab-btn" onclick="openTab(event,'tab6')"><span class="tab-num">6</span> Cuestionario</button>
+</div>
+
+<!-- CONTENT -->
+<div class="content-area">
+
+<!-- ═══════════════════════════════════════════════════ TAB 0: REPASO -->
+<div id="tab0" class="tab-panel active">
+  <div class="semana-badge"><div class="semana-dot"></div>Semanas 1 a 3 · Resumen y Análisis Pedagógico</div>
+  <h2 class="section-title">¿De dónde venimos? Consolidando los fundamentos</h2>
+  <p class="section-sub">Este repaso no es una repetición vacía. Es el mapa conceptual que te permite entender por qué cada semana tuvo el orden que tuvo, qué pregunta movía cada clase y cómo todo apunta al mismo norte: tu rol como profesional contable con mentalidad emprendedora.</p>
+
+  <div class="info-box">
+    <span class="info-icon">💡</span>
+    <span><strong>¿Por qué es importante releer lo que ya estudiamos?</strong> En pedagogía constructivista, el aprendizaje significativo ocurre cuando el estudiante conecta el conocimiento nuevo con estructuras previas ya consolidadas. Este repaso te ayuda a anclar lo que aprenderás hoy.</span>
+  </div>
+
+  <!-- CONCEPTOS CLAVE -->
+  <h3 style="font-family:'Playfair Display',serif;font-size:20px;color:var(--azul-oscuro);margin-bottom:18px;margin-top:10px;">Conceptos fundamentales abordados</h3>
+  <div class="grid-2">
+
+    <div class="concepto-card">
+      <div class="concepto-etiqueta">Semana 1 · Etimología</div>
+      <div class="concepto-nombre">Emprendimiento</div>
+      <div class="concepto-def">Del francés antiguo <em>entreprendre</em> (siglo XII): «ponerse entre», «tomar en mano» una tarea que implica riesgo e incertidumbre. En español, arraiga en el latín <em>in</em> + <em>prendere</em>: «atrapar», «asir» una oportunidad. El emprendimiento es, por tanto, la acción deliberada de asumir el riesgo de crear valor donde antes no existía.</div>
+      <div class="concepto-autor">Cantillon (1730/1755) · Say (1803) · Drucker (1985)</div>
+      <div class="concepto-ug">
+        <strong>¿Por qué importa al auditor/contador?</strong>
+        Un auditor que «toma en mano» los problemas de sus clientes, que propone soluciones en lugar de solo señalar errores, ya está practicando la esencia del emprendimiento dentro de su rol profesional.
+      </div>
+    </div>
+
+    <div class="concepto-card azul">
+      <div class="concepto-etiqueta">Semana 1 · Etimología</div>
+      <div class="concepto-nombre">Innovación</div>
+      <div class="concepto-def">Del latín <em>innovare</em>: «renovar», «introducir novedad» (in + novus). Joseph Schumpeter (1934) la definió como la introducción de un nuevo producto, proceso, método de organización o mercado. No toda innovación requiere invención; puede ser una combinación nueva de elementos existentes. La innovación en auditoría puede ser de proceso, de servicio o de modelo de negocio.</div>
+      <div class="concepto-autor">Schumpeter (1934) · OCDE — Manual de Oslo (2018)</div>
+      <div class="concepto-ug">
+        <strong>¿Por qué importa al auditor/contador?</strong>
+        La digitalización de los estados financieros, el uso de IA en auditoría forense o la automatización de conciliaciones bancarias son innovaciones de proceso que el contador moderno debe dominar.
+      </div>
+    </div>
+
+    <div class="concepto-card celeste">
+      <div class="concepto-etiqueta">Semana 2 · Teoría</div>
+      <div class="concepto-nombre">El Proceso Emprendedor</div>
+      <div class="concepto-def">Conjunto estructurado de fases que van desde la identificación de una oportunidad hasta la creación y consolidación de un emprendimiento. El proceso no es lineal: incluye ciclos de prueba, error y ajuste. Timmons (1999) identificó tres fuerzas centrales: oportunidad, equipo y recursos, en equilibrio dinámico.</div>
+      <div class="concepto-autor">Timmons (1999) · Shane y Venkataraman (2000)</div>
+      <div class="concepto-ug">
+        <strong>¿Por qué importa al auditor/contador?</strong>
+        Comprender el proceso emprendedor permite al contador asesorar a clientes en cada fase: estructuración jurídica, análisis financiero de viabilidad, planificación tributaria y auditoría de proyectos nuevos.
+      </div>
+    </div>
+
+    <div class="concepto-card">
+      <div class="concepto-etiqueta">Semana 2 · Valores</div>
+      <div class="concepto-nombre">Valores y Virtudes del Emprendedor</div>
+      <div class="concepto-def">Angela Duckworth (2016) demostró que el éxito emprendedor se correlaciona más con <em>grit</em> (perseverancia apasionada) que con el talento. Baron y Ensley (2006) identificaron que los emprendedores exitosos tienen mayor tolerancia a la ambigüedad, pensamiento causal-efectual y orientación proactiva al mercado.</div>
+      <div class="concepto-autor">Duckworth (2016) · Baron y Ensley (2006) · Sarasvathy (2001)</div>
+      <div class="concepto-ug">
+        <strong>¿Por qué importa al auditor/contador?</strong>
+        La integridad, el rigor y la perseverancia no son solo virtudes éticas del contador: son también competencias emprendedoras que diferencian a un profesional excepcional de uno promedio.
+      </div>
+    </div>
+
+    <div class="concepto-card azul">
+      <div class="concepto-etiqueta">Semana 3 · Tipología</div>
+      <div class="concepto-nombre">Tipos de Innovación (OCDE)</div>
+      <div class="concepto-def">El Manual de Oslo (OCDE, 2018) clasifica la innovación en cuatro tipos: (1) Innovación de producto/servicio, (2) Innovación de proceso, (3) Innovación organizacional, (4) Innovación de mercadotecnia. Esta tipología es la referencia mundial en política de ciencia y tecnología.</div>
+      <div class="concepto-autor">OCDE — Manual de Oslo (2018, 4.ª ed.)</div>
+      <div class="concepto-ug">
+        <strong>¿Por qué importa al auditor/contador?</strong>
+        Cuando una empresa introduce un nuevo sistema ERP (innovación de proceso) o reestructura su área contable (innovación organizacional), el auditor debe evaluar el impacto en los controles internos.
+      </div>
+    </div>
+
+    <div class="concepto-card celeste">
+      <div class="concepto-etiqueta">Semana 3 · Historia</div>
+      <div class="concepto-nombre">Línea de Tiempo del Emprendimiento</div>
+      <div class="concepto-def">Desde Luca Pacioli (1494) —quien sistematizó la partida doble como herramienta para controlar negocios— hasta la economía de plataformas del siglo XXI, el emprendimiento y la contabilidad han evolucionado de forma paralela e interdependiente. El contador fue históricamente el primer asesor del emprendedor.</div>
+      <div class="concepto-autor">Pacioli (1494) · Cantillon (1755) · Schumpeter (1934) · Drucker (1985)</div>
+      <div class="concepto-ug">
+        <strong>¿Por qué importa al auditor/contador?</strong>
+        Conocer la historia permite al estudiante comprender que su carrera no es solo técnica: nació del emprendimiento y sigue siendo esencial para sostenerlo.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ANÁLISIS DE PREGUNTAS -->
+  <h3 style="font-family:'Playfair Display',serif;font-size:20px;color:var(--azul-oscuro);margin:30px 0 18px;">Análisis pedagógico de las preguntas que se hicieron</h3>
+  <p style="font-size:14px;line-height:1.75;color:#4a5568;margin-bottom:22px;">Las preguntas de cada semana no fueron al azar. Cada una fue diseñada con un propósito pedagógico preciso y un propósito profesional asociado. Analizar la pregunta es aprender el método de pensar, no solo la respuesta.</p>
+
+  <div class="pregunta-card">
+    <div class="pregunta-num">1</div>
+    <div>
+      <div class="pregunta-texto">«¿Qué imagen mental tienes cuando escuchas la palabra 'emprendedor'?»</div>
+      <div class="pregunta-analisis">Esta pregunta de apertura activó los esquemas cognitivos previos del estudiante antes de introducir cualquier definición académica. Forzó la introspección y reveló sesgos culturales: la mayoría imagina al emprendedor como alguien que «crea una empresa» o «tiene su propio negocio», dejando fuera la figura del intraemprendedor y el emprendedor social.</div>
+      <div class="pregunta-perspectiva">
+        <div class="persp-box persp-ped">
+          <div class="persp-label">📚 Perspectiva Pedagógica</div>
+          Activar conocimientos previos (aprendizaje significativo de Ausubel). Al confrontar la imagen mental del estudiante con la definición académica, se produce el «conflicto cognitivo» necesario para el aprendizaje genuino.
+        </div>
+        <div class="persp-box persp-prof">
+          <div class="persp-label">💼 Perspectiva Profesional</div>
+          El contador que solo concibe al emprendedor como «dueño de negocio» subestima su propio potencial como intraemprendedor dentro de una firma auditora o como consultor innovador.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pregunta-card">
+    <div class="pregunta-num">2</div>
+    <div>
+      <div class="pregunta-texto">«¿Cuál es la diferencia entre inventar e innovar?»</div>
+      <div class="pregunta-analisis">Esta pregunta confronta dos conceptos que en el lenguaje cotidiano se usan como sinónimos, pero que académicamente son distintos. La invención es la creación de algo nuevo; la innovación es la introducción exitosa de esa novedad en el mercado o en la organización. Se puede innovar sin inventar (combinando elementos existentes de forma nueva).</div>
+      <div class="pregunta-perspectiva">
+        <div class="persp-box persp-ped">
+          <div class="persp-label">📚 Perspectiva Pedagógica</div>
+          Desarrolla el pensamiento analítico-diferencial: la capacidad de distinguir entre términos relacionados pero no equivalentes. Esta habilidad es fundamental en auditoría, donde los errores de conceptualización pueden tener consecuencias jurídicas.
+        </div>
+        <div class="persp-box persp-prof">
+          <div class="persp-label">💼 Perspectiva Profesional</div>
+          Un contador que comprende la diferencia puede asesorar correctamente sobre activos intangibles: ¿es una patente (invención) o una mejora de proceso (innovación)? Ambas tienen tratamiento contable diferente según las NIIF.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pregunta-card">
+    <div class="pregunta-num">3</div>
+    <div>
+      <div class="pregunta-texto">«¿Crees que la contabilidad y el emprendimiento tienen algo en común?»</div>
+      <div class="pregunta-analisis">Esta pregunta directa provocó la disonancia cognitiva necesaria. Muchos estudiantes de contabilidad perciben su carrera como opuesta al emprendimiento (técnica, normativa, retroactiva), cuando en realidad la contabilidad nació para servir al emprendimiento (Pacioli la sistematizó para los mercaderes) y hoy es el lenguaje universal de los negocios.</div>
+      <div class="pregunta-perspectiva">
+        <div class="persp-box persp-ped">
+          <div class="persp-label">📚 Perspectiva Pedagógica</div>
+          Genera motivación intrínseca: cuando el estudiante descubre que su carrera tiene más aplicación de la que imaginaba, aumenta su disposición a aprender. Es la técnica de «relevancia percibida» del modelo ARCS de Keller.
+        </div>
+        <div class="persp-box persp-prof">
+          <div class="persp-label">💼 Perspectiva Profesional</div>
+          El contador moderno no solo registra: analiza, diagnostica y propone. Ese salto —de técnico a consultor— es exactamente la mentalidad emprendedora aplicada a la profesión contable.
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- ═══ FIN TAB 0 ═══ -->
+
+<!-- ═══════════════════════════════════════════════════ TAB 1: CAPACIDAD -->
+<div id="tab1" class="tab-panel">
+  <div class="semana-badge"><div class="semana-dot"></div>Semana 4 · Tema 1</div>
+  <h2 class="section-title">La Capacidad para Emprender</h2>
+  <p class="section-sub">¿El emprendedor nace o se hace? Esta es una de las preguntas más debatidas en la literatura. La respuesta académica actual es clara: la capacidad emprendedora es, en gran medida, aprendible.</p>
+
+  <div class="card">
+    <div class="card-title"><div class="card-icon ci-turquesa">🧠</div>¿Qué es la capacidad emprendedora?</div>
+    <p>La <strong>capacidad emprendedora</strong> es el conjunto de competencias —cognitivas, emocionales y comportamentales— que permiten a una persona identificar oportunidades, asumir riesgos calculados, movilizar recursos y transformar ideas en valor concreto. No se limita a la creación de empresas: se manifiesta también en la mejora de procesos dentro de organizaciones existentes y en la generación de impacto social.</p>
+    <p>Man y Lau (2000, p. 213) la definen como «las competencias de alto nivel relacionadas con las actitudes y comportamientos del emprendedor que conducen a resultados superiores y sostenibles». Esta definición es importante porque desvincula la capacidad emprendedora del acto de fundar una empresa y la traslada al terreno de las actitudes y los resultados.</p>
+    <div class="ref-apa">Man, T. W. Y., & Lau, T. (2000). Entrepreneurial competencies of SME owner/managers in the Hong Kong services sector: A qualitative analysis. <em>Journal of Enterprising Culture, 8</em>(3), 235–254.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><div class="card-icon ci-azul">🔬</div>¿Nace o se hace? El debate científico</div>
+    <p>Durante décadas se buscó el «gen emprendedor», una predisposición innata que explicara por qué algunas personas emprenden y otras no. Estudios de gemelos (Nicolaou et al., 2008) encontraron que entre el 37% y el 48% de la varianza en la intención de emprender puede atribuirse a factores genéticos. Sin embargo, esto implica que <strong>más del 50% de la capacidad emprendedora es producto del entorno, la educación y la experiencia</strong>.</p>
+    <p>Krueger y Carsrud (1993), en su modelo de intenciones emprendedoras, demostraron que la <strong>educación emprendedora</strong> modifica significativamente la intención de emprender al cambiar la percepción de deseabilidad y viabilidad. En otras palabras: estudiar emprendimiento funciona.</p>
+    <div class="highlight-box">
+      <strong>Conclusión clave:</strong> Aunque existen predisposiciones temperamentales, la capacidad emprendedora se desarrolla. El hecho de que estés en este curso ya es evidencia de que estás cultivando esa capacidad de forma deliberada.
+    </div>
+    <div class="ref-apa">Nicolaou, N., Shane, S., Cherkas, L., Hunkin, J., & Spector, T. D. (2008). Is the tendency to engage in entrepreneurship genetic? <em>Management Science, 54</em>(1), 167–179. · Krueger, N. F., & Carsrud, A. L. (1993). Entrepreneurial intentions: Applying the theory of planned behaviour. <em>Entrepreneurship & Regional Development, 5</em>(4), 315–330.</div>
+  </div>
+
+  <h3 style="font-family:'Playfair Display',serif;font-size:19px;color:var(--azul-oscuro);margin:26px 0 16px;">Las competencias emprendedoras según el modelo europeo EntreComp</h3>
+  <p style="font-size:14px;line-height:1.75;color:#4a5568;margin-bottom:18px;">La Comisión Europea (Bacigalupo et al., 2016) desarrolló el marco <em>EntreComp</em>, el estándar más completo sobre competencias emprendedoras. Identifica <strong>15 competencias</strong> organizadas en tres áreas. Aquí se presentan con su aplicación directa a la contabilidad y auditoría:</p>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <span>🌱 Área 1: Ideas e Innovación — Detectar valor donde otros no lo ven</span>
+      <span class="acc-arrow">▼</span>
+    </div>
+    <div class="acc-body">
+      <p>Esta área reúne competencias orientadas a generar ideas y convertirlas en oportunidades. Incluye: <strong>(1) Creatividad</strong>: generar ideas originales aplicando pensamiento lateral; <strong>(2) Alfabetización en oportunidades</strong>: reconocer cuándo una necesidad no satisfecha representa una oportunidad; <strong>(3) Pensamiento prospectivo</strong>: imaginar futuros posibles y deseables con base en el análisis del presente.</p>
+      <p><strong>Aplicación contable:</strong> Un contador con pensamiento prospectivo no solo cierra los libros del año anterior; propone escenarios financieros para los próximos tres años. Esa proyección es la base del análisis de inversión y de la planificación tributaria.</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <span>⚙️ Área 2: Recursos — Movilizar lo que se necesita para crear valor</span>
+      <span class="acc-arrow">▼</span>
+    </div>
+    <div class="acc-body">
+      <p>Incluye competencias como: <strong>(4) Autoconocimiento y eficacia personal</strong>: saber cuáles son las propias fortalezas y limitaciones; <strong>(5) Motivación y perseverancia</strong>: el <em>grit</em> de Duckworth (2016); <strong>(6) Movilización de recursos</strong>: saber identificar, atraer y gestionar recursos financieros, humanos y de información; <strong>(7) Competencia financiera y económica</strong>: comprender el valor del dinero en el tiempo, el costo de oportunidad y el análisis de rentabilidad.</p>
+      <p><strong>Aplicación contable:</strong> La competencia financiera no es solo registrar transacciones. Es entender por qué una empresa se financia de cierta manera, qué costos implica ese financiamiento y cómo optimizarlo. El auditor que domina esto puede asesorar, no solo verificar.</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <span>🚀 Área 3: Acción — Transformar ideas en valor real</span>
+      <span class="acc-arrow">▼</span>
+    </div>
+    <div class="acc-body">
+      <p>Es el área más orientada a la ejecución. Incluye: <strong>(8) Toma de iniciativa</strong>: actuar sin esperar instrucción explícita; <strong>(9) Planificación y gestión</strong>: establecer objetivos y diseñar rutas hacia ellos; <strong>(10) Trabajo con otros</strong>: construir equipos y relaciones; <strong>(11) Aprendizaje a través de la experiencia</strong>: extraer lecciones del fracaso y del éxito; <strong>(12) Enfrentar la ambigüedad y el riesgo</strong>: tomar decisiones con información incompleta.</p>
+      <p><strong>Aplicación contable:</strong> El auditor que toma iniciativa detecta riesgos antes de que se materialicen. El que enfrenta la ambigüedad puede emitir una opinión técnica sólida incluso cuando la documentación es incompleta, algo cotidiano en la auditoría forense.</p>
+      <div class="ref-apa">Bacigalupo, M., Kampylis, P., Punie, Y., & Van den Brande, G. (2016). <em>EntreComp: The Entrepreneurship Competence Framework</em>. Publications Office of the European Union. https://doi.org/10.2791/593884</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:22px;">
+    <div class="card-title"><div class="card-icon ci-oscuro">📐</div>El modelo de intención emprendedora de Ajzen aplicado a la profesión contable</div>
+    <p>Ajzen (1991), con su <em>Teoría de la Conducta Planificada</em>, explica que la <strong>intención</strong> de emprender —o de innovar dentro de la profesión— depende de tres factores que se pueden desarrollar intencionalmente:</p>
+    <div class="steps-container" style="margin-top:16px;">
+      <div class="step-item">
+        <div class="step-circle">1</div>
+        <div class="step-content">
+          <div class="step-title">Actitud hacia el comportamiento</div>
+          <div class="step-desc">¿Valoro positivamente emprender o innovar en mi carrera? Si el contador percibe la innovación como una amenaza (ej. «la IA me va a reemplazar»), su intención de adoptarla será baja. Cambiar esa actitud —transformarla en curiosidad— es el primer paso. Este curso trabaja deliberadamente este factor.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-circle">2</div>
+        <div class="step-content">
+          <div class="step-title">Norma subjetiva</div>
+          <div class="step-desc">¿Las personas importantes para mí (familia, mentores, pares) aprueban que emprenda o que innove? El entorno cultural importa. En contextos donde «el emprendimiento es inestable» o «los contadores no innovan», la norma subjetiva frena la intención. Conocer emprendedores contables exitosos contrarresta esta norma.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-circle">3</div>
+        <div class="step-content">
+          <div class="step-title">Control conductual percibido</div>
+          <div class="step-desc">¿Creo que soy capaz de hacerlo? Esta es la dimensión de autoeficacia (Bandura, 1997). Un estudiante que aprende herramientas concretas de análisis de tendencias y de diseño de soluciones aumenta su percepción de control y, por tanto, su intención de emprender.</div>
+        </div>
+      </div>
+    </div>
+    <div class="ref-apa">Ajzen, I. (1991). The theory of planned behavior. <em>Organizational Behavior and Human Decision Processes, 50</em>(2), 179–211. · Bandura, A. (1997). <em>Self-efficacy: The exercise of control</em>. W. H. Freeman.</div>
+  </div>
+
+</div>
+<!-- ═══ FIN TAB 1 ═══ -->
+
+<!-- ═══════════════════════════════════════════════════ TAB 2: TIPOS -->
+<div id="tab2" class="tab-panel">
+  <div class="semana-badge"><div class="semana-dot"></div>Semana 4 · Tema 2</div>
+  <h2 class="section-title">Tipos de Emprendedor</h2>
+  <p class="section-sub">No existe un único perfil de emprendedor. La literatura identifica múltiples tipologías. Aquí se presentan las más relevantes académicamente, con su traducción directa al contexto contable y auditor.</p>
+
+  <div class="info-box">
+    <span class="info-icon">⚠️</span>
+    <span><strong>Nota importante:</strong> Estas tipologías no son excluyentes ni permanentes. Una misma persona puede transitar entre tipos según el momento de su carrera, el contexto económico o el proyecto que lidera. El objetivo no es «etiquetarse», sino entender qué recursos y desafíos caracterizan a cada perfil.</span>
+  </div>
+
+  <!-- TIPO 1 -->
+  <div class="tipo-card t1">
+    <div class="tipo-header">
+      <div class="tipo-emoji">🏗️</div>
+      <div>
+        <div class="tipo-titulo">1. Emprendedor Clásico o Fundador</div>
+        <div class="tipo-subtitulo">El que crea una empresa desde cero (startup o microempresa)</div>
+      </div>
+    </div>
+    <div class="tipo-body">
+      <p>Es el emprendedor más estudiado en la literatura. Identifica una necesidad del mercado que no está siendo satisfecha y crea una organización nueva para satisfacerla, asumiendo el riesgo financiero y organizacional desde el inicio. Cantillon (1730/1755) fue el primero en describir este perfil al definir al emprendedor como quien «compra a precios ciertos para vender a precios inciertos»: es decir, quien asume riesgo a cambio de una ganancia esperada.</p>
+      <p>Schumpeter (1934) añadió la dimensión de <strong>destrucción creativa</strong>: el emprendedor clásico no solo crea algo nuevo, sino que en el proceso desplaza o transforma lo existente. Los cajeros automáticos transformaron la banca; las plataformas digitales de contabilidad en la nube están transformando la profesión contable.</p>
+      <div class="tipo-rasgos">
+        <span class="rasgo-tag">Alta tolerancia al riesgo</span>
+        <span class="rasgo-tag">Visión de largo plazo</span>
+        <span class="rasgo-tag">Capacidad de convocatoria</span>
+        <span class="rasgo-tag">Orientación a resultados</span>
+        <span class="rasgo-tag">Resilencia ante el fracaso</span>
+      </div>
+      <div class="tipo-cita">«El emprendedor es el agente que efectúa las nuevas combinaciones de medios de producción.» — Schumpeter (1934, p. 74)</div>
+      <div class="tipo-ug">
+        <strong>Aplicación contable y auditora</strong>
+        El contador que funda su propia firma de auditoría, consultoría tributaria o asesoría financiera es un emprendedor clásico. Debe dominar no solo los aspectos técnicos, sino también la gestión de clientes, la fijación de precios de sus servicios y la administración del flujo de caja de su propio negocio.
+      </div>
+      <div class="tipo-ref">Cantillon, R. (1755). <em>Essai sur la nature du commerce en général</em>. · Schumpeter, J. A. (1934). <em>The theory of economic development</em>. Harvard University Press.</div>
+    </div>
+  </div>
+
+  <!-- TIPO 2 -->
+  <div class="tipo-card t2">
+    <div class="tipo-header">
+      <div class="tipo-emoji">⚡</div>
+      <div>
+        <div class="tipo-titulo">2. Intraemprendedor (Intrapreneur)</div>
+        <div class="tipo-subtitulo">El emprendedor dentro de una organización existente</div>
+      </div>
+    </div>
+    <div class="tipo-body">
+      <p>El término fue acuñado por Gifford Pinchot III (1985) para describir a los empleados que actúan como emprendedores dentro de organizaciones ya establecidas: proponen, desarrollan e implementan innovaciones sin salir de la empresa. No asumen riesgo financiero personal, pero sí riesgo reputacional y político dentro de la organización.</p>
+      <p>Antoncic y Hisrich (2003) estudiaron el intraemprendimiento corporativo y encontraron que las organizaciones con alta actividad intraemprendedora tienen mayor crecimiento, rentabilidad e innovación sostenida. Google, por ejemplo, otorgó a sus empleados el 20% del tiempo laboral para proyectos propios, generando productos como Gmail y Google Maps.</p>
+      <div class="tipo-rasgos">
+        <span class="rasgo-tag">Iniciativa dentro del sistema</span>
+        <span class="rasgo-tag">Capacidad de influencia</span>
+        <span class="rasgo-tag">Gestión de la burocracia</span>
+        <span class="rasgo-tag">Pensamiento sistémico</span>
+        <span class="rasgo-tag">Orientación a la mejora continua</span>
+      </div>
+      <div class="tipo-cita">«El intraemprendedor es alguien que toma responsabilidad directa de convertir una idea en un producto o servicio rentable mediante la acción asertiva e innovadora.» — Pinchot (1985, p. ix)</div>
+      <div class="tipo-ug">
+        <strong>Aplicación contable y auditora</strong>
+        La mayoría de los contadores y auditores trabajan en relación de dependencia: son, por definición, intraemprendedores potenciales. El auditor interno que propone un nuevo sistema de control de riesgos, el contador que automatiza los informes financieros o el jefe de área que rediseña el proceso de cierre mensual son intraemprendedores activos. Este es el tipo más directamente aplicable a la carrera de Contabilidad y Auditoría.
+      </div>
+      <div class="tipo-ref">Pinchot, G., III. (1985). <em>Intrapreneuring: Why you don't have to leave the corporation to become an entrepreneur</em>. Harper & Row. · Antoncic, B., & Hisrich, R. D. (2003). Clarifying the intrapreneurship concept. <em>Journal of Small Business and Enterprise Development, 10</em>(1), 7–24.</div>
+    </div>
+  </div>
+
+  <!-- TIPO 3 -->
+  <div class="tipo-card t3">
+    <div class="tipo-header">
+      <div class="tipo-emoji">🌍</div>
+      <div>
+        <div class="tipo-titulo">3. Emprendedor Social</div>
+        <div class="tipo-subtitulo">El que crea valor social, no solo económico</div>
+      </div>
+    </div>
+    <div class="tipo-body">
+      <p>J. Gregory Dees (1998), considerado el padre del emprendimiento social, lo definió como la aplicación de los principios del emprendimiento para resolver problemas sociales de forma sostenible. El emprendedor social no busca el máximo beneficio personal, sino el máximo impacto en una comunidad o problema específico.</p>
+      <p>No implica necesariamente una organización sin fines de lucro: puede ser una empresa híbrida (B Corp) o una cooperativa. Lo que lo define es que <strong>el impacto social es la métrica principal del éxito</strong>, y la sostenibilidad económica es el medio, no el fin.</p>
+      <div class="tipo-rasgos">
+        <span class="rasgo-tag">Orientación al impacto</span>
+        <span class="rasgo-tag">Empatía sistémica</span>
+        <span class="rasgo-tag">Sostenibilidad como principio</span>
+        <span class="rasgo-tag">Liderazgo transformador</span>
+        <span class="rasgo-tag">Colaboración intersectorial</span>
+      </div>
+      <div class="tipo-cita">«Los emprendedores sociales son agentes de cambio en el sector social. Adoptan una misión para crear y sostener valor social.» — Dees (1998, p. 2)</div>
+      <div class="tipo-ug">
+        <strong>Aplicación contable y auditora</strong>
+        El contador que trabaja en ONGs, cooperativas o empresas con responsabilidad social corporativa debe dominar la contabilidad social y ambiental (ESG: Environmental, Social and Governance), los informes de sostenibilidad (GRI) y la medición del impacto social. Estas competencias son cada vez más demandadas en el mercado laboral global.
+      </div>
+      <div class="tipo-ref">Dees, J. G. (1998). <em>The meaning of social entrepreneurship</em>. Kauffman Foundation. https://entrepreneurship.duke.edu/news-item/the-meaning-of-social-entrepreneurship/</div>
+    </div>
+  </div>
+
+  <!-- TIPO 4 -->
+  <div class="tipo-card t4">
+    <div class="tipo-header">
+      <div class="tipo-emoji">🌐</div>
+      <div>
+        <div class="tipo-titulo">4. Emprendedor Digital o Tecnológico</div>
+        <div class="tipo-subtitulo">El que usa la tecnología como plataforma de creación de valor</div>
+      </div>
+    </div>
+    <div class="tipo-body">
+      <p>Es el emprendedor que aprovecha las tecnologías digitales —plataformas, inteligencia artificial, blockchain, big data— como el núcleo de su propuesta de valor. Nambisan (2017) sostiene que el emprendimiento digital tiene características únicas: el proceso de creación de oportunidades es continuo (no puntual), los recursos son fluidos y las fronteras organizacionales son borrosas.</p>
+      <p>No requiere necesariamente conocimiento de programación, sino la capacidad de entender el potencial de la tecnología y articularlo con necesidades del mercado. El contador que diseña un sistema de reportes financieros automatizados usando herramientas de business intelligence (Power BI, Tableau) es un emprendedor digital.</p>
+      <div class="tipo-rasgos">
+        <span class="rasgo-tag">Alfabetización digital</span>
+        <span class="rasgo-tag">Pensamiento en plataformas</span>
+        <span class="rasgo-tag">Agilidad y iteración</span>
+        <span class="rasgo-tag">Análisis de datos</span>
+        <span class="rasgo-tag">Pensamiento escalable</span>
+      </div>
+      <div class="tipo-ug">
+        <strong>Aplicación contable y auditora</strong>
+        La auditoría digital, el uso de IA en la detección de fraude (auditoría forense), la contabilidad en la nube y el análisis predictivo de riesgos fiscales son terrenos donde el emprendedor digital contable tiene una ventaja competitiva decisiva en el mercado actual.
+      </div>
+      <div class="tipo-ref">Nambisan, S. (2017). Digital entrepreneurship: Toward a digital technology perspective of entrepreneurship. <em>Entrepreneurship Theory and Practice, 41</em>(6), 1029–1055.</div>
+    </div>
+  </div>
+
+  <!-- TIPO 5 -->
+  <div class="tipo-card t5">
+    <div class="tipo-header">
+      <div class="tipo-emoji">🌎</div>
+      <div>
+        <div class="tipo-titulo">5. Emprendedor en Serie (Serial Entrepreneur)</div>
+        <div class="tipo-subtitulo">El que aprende de cada emprendimiento para lanzar el siguiente</div>
+      </div>
+    </div>
+    <div class="tipo-body">
+      <p>El emprendedor en serie no se detiene en un solo proyecto: su propuesta de valor es la experiencia acumulada y la red de contactos construida en emprendimientos anteriores. MacMillan (1986) fue el primero en estudiar sistemáticamente este perfil y encontró que los emprendedores en serie aprenden significativamente más de sus fracasos que de sus éxitos.</p>
+      <p>Estudios recientes (Ucbasaran et al., 2010) demuestran que los emprendedores en serie identifican más oportunidades, tienen mayor tolerancia al fracaso y son más eficientes en la asignación de recursos que los emprendedores novatos, precisamente porque han cometido y procesado más errores.</p>
+      <div class="tipo-rasgos">
+        <span class="rasgo-tag">Aprendizaje del fracaso</span>
+        <span class="rasgo-tag">Red de contactos amplia</span>
+        <span class="rasgo-tag">Evaluación rápida de oportunidades</span>
+        <span class="rasgo-tag">Experiencia en equipos</span>
+      </div>
+      <div class="tipo-ug">
+        <strong>Aplicación contable y auditora</strong>
+        El contador que ha pasado por diversas firmas, sectores o roles antes de montar su propia consultora es, en cierta medida, un emprendedor en serie. Cada experiencia laboral debe ser entendida como un «emprendimiento de aprendizaje» que acumula capital humano y relacional.
+      </div>
+      <div class="tipo-ref">Ucbasaran, D., Westhead, P., & Wright, M. (2010). The extent and nature of opportunity identification by experienced entrepreneurs. <em>Journal of Business Venturing, 25</em>(5), 503–510.</div>
+    </div>
+  </div>
+
+  <!-- TABLA COMPARATIVA -->
+  <h3 style="font-family:'Playfair Display',serif;font-size:19px;color:var(--azul-oscuro);margin:28px 0 14px;">Tabla comparativa de tipos de emprendedor</h3>
+  <div class="tabla-contenedor">
+    <table>
+      <thead>
+        <tr>
+          <th>Tipo</th>
+          <th>Motivación principal</th>
+          <th>Riesgo asumido</th>
+          <th>Entorno</th>
+          <th>Métrica de éxito</th>
+          <th>Perfil contable asociado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Clásico/Fundador</strong></td><td>Rentabilidad y crecimiento</td><td>Alto (financiero y personal)</td><td>Nueva empresa</td><td>Utilidades, participación de mercado</td><td>Socio fundador de firma contable</td></tr>
+        <tr><td><strong>Intraemprendedor</strong></td><td>Mejora e innovación interna</td><td>Reputacional/político</td><td>Empresa existente</td><td>Eficiencia, nuevos procesos</td><td>Auditor que mejora controles internos</td></tr>
+        <tr><td><strong>Social</strong></td><td>Impacto comunitario</td><td>Misión vs. sostenibilidad</td><td>ONG, coop, B Corp</td><td>Alcance social, beneficiarios</td><td>Contador en ESG y GRI</td></tr>
+        <tr><td><strong>Digital</strong></td><td>Escala mediante tecnología</td><td>Tecnológico y de mercado</td><td>Plataformas digitales</td><td>Usuarios, datos, escalabilidad</td><td>Auditor digital, consultor BI</td></tr>
+        <tr><td><strong>En serie</strong></td><td>Aprendizaje y capital relacional</td><td>Experiencial</td><td>Múltiples ventures</td><td>Aprendizaje, red, nuevos proyectos</td><td>Consultor con múltiples firmas/roles</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+<!-- ═══ FIN TAB 2 ═══ -->
+
+<!-- ═══════════════════════════════════════════════════ TAB 3: PROBLEMAS -->
+<div id="tab3" class="tab-panel">
+  <div class="semana-badge"><div class="semana-dot"></div>Semana 4 · Tema 3</div>
+  <h2 class="section-title">Identificación de Problemas y Oportunidades</h2>
+  <p class="section-sub">No se puede emprender sin saber dónde hay un problema real. La identificación de oportunidades no es intuición pura: es un proceso metodológico que se puede aprender y sistematizar.</p>
+
+  <div class="card">
+    <div class="card-title"><div class="card-icon ci-turquesa">🔍</div>¿Qué es una oportunidad emprendedora?</div>
+    <p>Shane y Venkataraman (2000, p. 220) definen la oportunidad emprendedora como «aquellas situaciones en las que nuevos bienes, servicios, materias primas, mercados y métodos de organización pueden introducirse a través de la formación de nuevos medios, fines o relaciones medios-fines». En lenguaje más directo: una oportunidad es una brecha entre lo que el mercado necesita y lo que actualmente existe para satisfacerlo.</p>
+    <p>Es fundamental distinguir entre <strong>idea</strong> y <strong>oportunidad</strong>. Una idea es una ocurrencia; una oportunidad es una idea validada que tiene mercado, viabilidad y momento adecuado para ejecutarla. Muchos emprendedores fracasan porque persiguen ideas sin verificar si son oportunidades reales.</p>
+    <div class="highlight-box">
+      <strong>Criterios para que una idea se convierta en oportunidad (Timmons, 1999):</strong><br>
+      (1) Crea valor significativo para clientes reales · (2) Tiene atractivo de mercado (demanda suficiente) · (3) Es duradera en el tiempo (no es una moda pasajera de corto plazo) · (4) Es oportuna (el mercado está listo para recibirla) · (5) Genera retorno suficiente para justificar los recursos invertidos.
+    </div>
+    <div class="ref-apa">Shane, S., & Venkataraman, S. (2000). The promise of entrepreneurship as a field of research. <em>Academy of Management Review, 25</em>(1), 217–226. · Timmons, J. A. (1999). <em>New venture creation: Entrepreneurship for the 21st century</em> (5th ed.). Irwin/McGraw-Hill.</div>
+  </div>
+
+  <h3 style="font-family:'Playfair Display',serif;font-size:19px;color:var(--azul-oscuro);margin:22px 0 14px;">Fuentes de oportunidades según Drucker (1985)</h3>
+  <p style="font-size:14px;line-height:1.75;color:#4a5568;margin-bottom:18px;">Peter Drucker identificó siete fuentes sistemáticas de innovación y oportunidad, ordenadas de menor a mayor riesgo e incertidumbre:</p>
+
+  <div class="steps-container">
+    <div class="step-item">
+      <div class="step-circle" style="font-size:14px;">S1</div>
+      <div class="step-content">
+        <div class="step-title">Lo inesperado (éxito o fracaso no previsto)</div>
+        <div class="step-desc">Cuando algo funciona de forma inesperadamente bien —o fracasa de forma inesperada— hay información valiosa sobre el mercado. <em>Ejemplo contable:</em> Un software de facturación diseñado para medianas empresas fue adoptado masivamente por microempresas: esa adopción inesperada reveló un mercado nuevo.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-circle" style="font-size:14px;">S2</div>
+      <div class="step-content">
+        <div class="step-title">Incongruencia entre realidad y supuestos</div>
+        <div class="step-desc">Cuando lo que «debería ser» no coincide con lo que «es», hay una oportunidad. <em>Ejemplo contable:</em> Se asume que las pymes no pueden pagar auditorías formales, pero estudios muestran que las pymes que son auditadas acceden a créditos 30% más baratos. Esa incongruencia abre un servicio de auditoría asequible para pymes.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-circle" style="font-size:14px;">S3</div>
+      <div class="step-content">
+        <div class="step-title">Necesidades de proceso (cuello de botella)</div>
+        <div class="step-desc">Cuando un proceso tiene un paso débil o ineficiente que limita todo lo demás. <em>Ejemplo contable:</em> El proceso de conciliación bancaria manual toma 3 días al mes en muchas empresas. Una herramienta que lo automatice en 2 horas es una solución a una necesidad de proceso clara.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-circle" style="font-size:14px;">S4</div>
+      <div class="step-content">
+        <div class="step-title">Cambios en la industria y la estructura del mercado</div>
+        <div class="step-desc">Cuando cambia la regulación, la tecnología dominante o la estructura competitiva de un sector. <em>Ejemplo contable:</em> La obligatoriedad de la facturación electrónica en Ecuador transformó el mercado de servicios contables: creó demanda urgente de capacitación y sistemas de cumplimiento.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-circle" style="font-size:14px;">S5</div>
+      <div class="step-content">
+        <div class="step-title">Cambios demográficos</div>
+        <div class="step-desc">Variaciones en la composición de la población (edad, educación, migración). <em>Ejemplo contable:</em> El envejecimiento de la población aumenta la demanda de servicios fiduciarios, planificación de herencias y contabilidad para fondos de pensiones privados.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-circle" style="font-size:14px;">S6</div>
+      <div class="step-content">
+        <div class="step-title">Cambios en la percepción, el estado de ánimo y el significado</div>
+        <div class="step-desc">Cuando la sociedad cambia su valoración de algo. <em>Ejemplo contable:</em> El creciente interés en la sostenibilidad ambiental ha aumentado la demanda de contadores especializados en informes ESG y huella de carbono, que hace 10 años era un nicho marginal.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-circle" style="font-size:14px;">S7</div>
+      <div class="step-content">
+        <div class="step-title">Conocimiento nuevo (científico o no científico)</div>
+        <div class="step-desc">Descubrimientos que crean posibilidades antes inexistentes. <em>Ejemplo contable:</em> El blockchain como tecnología de registro distribuido crea la posibilidad de auditorías en tiempo real y contratos inteligentes que automatizan el cumplimiento contable.</div>
+      </div>
+    </div>
+  </div>
+  <div class="ref-apa" style="margin-top:10px;">Drucker, P. F. (1985). <em>Innovation and entrepreneurship: Practice and principles</em>. Harper & Row.</div>
+
+  <div class="card" style="margin-top:26px;">
+    <div class="card-title"><div class="card-icon ci-azul">🗺️</div>El proceso de identificación de oportunidades: paso a paso</div>
+    <p>Corbett (2007) demostró que la identificación de oportunidades es un proceso cognitivo que combina <strong>aprendizaje experimental</strong> (descubrir mientras se hace) y <strong>aprendizaje conceptual</strong> (buscar patrones en la información). Combinar ambos es más eficaz que usar solo uno.</p>
+    <p>El proceso tiene cuatro momentos que se retroalimentan continuamente:</p>
+    <div class="highlight-box">
+      <strong>1. Escaneo del entorno</strong> → Observar el mundo con ojos críticos: ¿qué frustra a la gente? ¿qué proceso es lento o caro? ¿qué necesidad no está bien resuelta?<br><br>
+      <strong>2. Reconocimiento del patrón</strong> → Conectar información dispersa para ver una brecha de mercado que otros no ven. Esto requiere conocimiento previo del sector.<br><br>
+      <strong>3. Evaluación de la oportunidad</strong> → Contrastar la idea con los criterios de Timmons: ¿tiene mercado suficiente? ¿es técnicamente viable? ¿es el momento adecuado?<br><br>
+      <strong>4. Prototipado y validación</strong> → Crear una versión mínima de la solución (MVP) y exponerla a usuarios reales para verificar si resuelve el problema.
+    </div>
+    <div class="ref-apa">Corbett, A. C. (2007). Learning asymmetries and the discovery of entrepreneurial opportunities. <em>Journal of Business Venturing, 22</em>(1), 97–118.</div>
+  </div>
+
+</div>
+<!-- ═══ FIN TAB 3 ═══ -->
+
+<!-- ═══════════════════════════════════════════════════ TAB 4: TENDENCIAS -->
+<div id="tab4" class="tab-panel">
+  <div class="semana-badge"><div class="semana-dot"></div>Semana 4 · Tema 4</div>
+  <h2 class="section-title">Análisis de Tendencias</h2>
+  <p class="section-sub">Una tendencia no es una moda: es un patrón de cambio con dirección, velocidad y horizonte temporal identificables. Saber leerlas es la diferencia entre anticiparse al mercado o reaccionar tarde.</p>
+
+  <div class="card">
+    <div class="card-title"><div class="card-icon ci-turquesa">📡</div>¿Qué es una tendencia y por qué analizarla?</div>
+    <p>En el ámbito del emprendimiento, una <strong>tendencia</strong> es una dirección dominante de cambio en el comportamiento social, tecnológico, económico o regulatorio que se mantiene durante un período prolongado y que afecta el valor de los productos, servicios y modelos de negocio existentes.</p>
+    <p>Naisbitt (1982), en su obra <em>Megatrends</em>, estableció uno de los primeros marcos sistemáticos de análisis de tendencias. Hoy, el modelo más usado académicamente para el análisis del entorno es el <strong>análisis PESTEL</strong>, que examina las tendencias en seis dimensiones: Política, Económica, Social, Tecnológica, Ecológica y Legal. Cada una de estas dimensiones genera oportunidades y amenazas para los emprendedores.</p>
+    <div class="ref-apa">Naisbitt, J. (1982). <em>Megatrends: Ten new directions transforming our lives</em>. Warner Books.</div>
+  </div>
+
+  <h3 style="font-family:'Playfair Display',serif;font-size:19px;color:var(--azul-oscuro);margin:22px 0 14px;">Tendencias globales relevantes para el contador/auditor emprendedor</h3>
+
+  <div class="card">
+    <div class="tendencia-item">
+      <div class="tend-icon">🤖</div>
+      <div class="tend-content">
+        <h4>1. Automatización e Inteligencia Artificial en los Servicios Financieros</h4>
+        <p>La IA ya realiza tareas contables básicas: clasificación de transacciones, conciliaciones, detección de anomalías en patrones de gasto. Según el World Economic Forum (2020), el 85% de las empresas acelerarán la adopción de IA y automatización para 2025. Esto no elimina la profesión contable: la transforma. Las tareas repetitivas se automatizan; las tareas de análisis, juicio e interpretación se vuelven más valiosas.</p>
+        <div class="tend-contable">💼 <strong>Oportunidad contable:</strong> Servicios de implementación y auditoría de sistemas de IA en contabilidad; consultoría en automatización de procesos financieros; desarrollo de tableros de control inteligentes. El contador que entiende la IA puede auditar los sistemas que otros no comprenden.</div>
+      </div>
+    </div>
+    <div class="tendencia-item">
+      <div class="tend-icon">☁️</div>
+      <div class="tend-content">
+        <h4>2. Contabilidad en la Nube y Digitalización Obligatoria</h4>
+        <p>La migración de los sistemas contables a plataformas en la nube (SaaS) es irreversible. En Ecuador, el Servicio de Rentas Internas (SRI) ha avanzado en la digitalización de obligaciones tributarias (comprobantes electrónicos, declaraciones online, cruces de información automáticos). Esta tendencia se profundizará con estándares como el XBRL (eXtensible Business Reporting Language) para reportes financieros estandarizados.</p>
+        <div class="tend-contable">💼 <strong>Oportunidad contable:</strong> Consultoría en migración a sistemas ERP en la nube; capacitación en herramientas como QuickBooks Online, Xero o Alegra; servicios de configuración y mantenimiento de sistemas contables digitales para pymes.</div>
+      </div>
+    </div>
+    <div class="tendencia-item">
+      <div class="tend-icon">🌱</div>
+      <div class="tend-content">
+        <h4>3. Sostenibilidad y Contabilidad ESG</h4>
+        <p>Los criterios Ambientales, Sociales y de Gobernanza (ESG por sus siglas en inglés) han pasado de ser una tendencia de nicho a un requisito regulatorio en múltiples mercados. La Unión Europea ya exige informes de sostenibilidad a empresas medianas desde 2024 (CSRD). Los inversores institucionales globales gestionan más de 35 billones de dólares bajo criterios ESG (GSIA, 2020).</p>
+        <div class="tend-contable">💼 <strong>Oportunidad contable:</strong> Auditoría y verificación de informes de sostenibilidad (GRI, SASB, TCFD); consultoría en métricas de impacto social; contabilidad de externalidades ambientales; asesoría para obtener certificación B Corp.</div>
+      </div>
+    </div>
+    <div class="tendencia-item">
+      <div class="tend-icon">🔐</div>
+      <div class="tend-content">
+        <h4>4. Blockchain, Criptomonedas y Nuevas Formas de Registro</h4>
+        <p>La tecnología blockchain crea registros distribuidos, inmutables y transparentes que pueden transformar radicalmente la forma en que se llevan los libros contables. Empresas como Deloitte y PwC ya han desarrollado herramientas de auditoría basadas en blockchain. Las criptomonedas plantean nuevos desafíos de registro, valoración y tributación que los marcos normativos actuales (NIIF) aún están adaptándose para absorber.</p>
+        <div class="tend-contable">💼 <strong>Oportunidad contable:</strong> Auditoría forense de activos digitales; consultoría tributaria para transacciones en criptomonedas; diseño de controles internos para organizaciones que usan blockchain; asesoría en tokens y activos digitales.</div>
+      </div>
+    </div>
+    <div class="tendencia-item">
+      <div class="tend-icon">📊</div>
+      <div class="tend-content">
+        <h4>5. Big Data y Auditoría Continua</h4>
+        <p>Tradicionalmente, la auditoría examina muestras representativas de transacciones. Con el análisis de datos masivos, es posible examinar el 100% de las transacciones en tiempo real (auditoría continua). Alles et al. (2006) describieron este modelo como la transformación más significativa en la práctica auditora en décadas. Herramientas como IDEA, ACL Analytics o Python con librerías de análisis permiten detectar patrones de fraude imposibles de identificar con metodologías tradicionales.</p>
+        <div class="tend-contable">💼 <strong>Oportunidad contable:</strong> Auditoría forense con análisis de datos; diseño de dashboards de control financiero en tiempo real; consultoría en sistemas de detección temprana de fraude; análisis predictivo de riesgos tributarios.</div>
+      </div>
+    </div>
+    <div class="tendencia-item">
+      <div class="tend-icon">⚖️</div>
+      <div class="tend-content">
+        <h4>6. Mayor Regulación Anticorrupción y Transparencia Fiscal</h4>
+        <p>El escándalo de los «Panama Papers» (2016) y los «Pandora Papers» (2021) aceleró la demanda global de mayor transparencia fiscal. La OCDE ha impulsado el intercambio automático de información fiscal entre países (CRS), y el plan BEPS (Base Erosion and Profit Shifting) afecta directamente a empresas multinacionales y a los contadores que las asesoran en Ecuador.</p>
+        <div class="tend-contable">💼 <strong>Oportunidad contable:</strong> Consultoría en cumplimiento BEPS y precios de transferencia; servicios de due diligence para inversiones extranjeras; auditoría forense anticorrupción; asesoría en estructuras fiscales transparentes.</div>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-family:'Playfair Display',serif;font-size:19px;color:var(--azul-oscuro);margin:22px 0 14px;">¿Cómo analizar una tendencia? El método STEEPV</h3>
+  <div class="card">
+    <p>El método <strong>STEEPV</strong> es una extensión del análisis PESTEL que añade la dimensión de <em>Valores</em>, reconociendo que las transformaciones culturales y éticas también son fuentes de oportunidades emprendedoras. Permite una exploración sistemática del entorno macro para identificar patrones emergentes con impacto en el negocio.</p>
+    <div class="tabla-contenedor">
+      <table>
+        <thead>
+          <tr>
+            <th>Dimensión</th>
+            <th>Qué analiza</th>
+            <th>Pregunta clave</th>
+            <th>Ejemplo contable</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>S</strong> Social</td><td>Demografía, cultura, estilos de vida, expectativas sociales</td><td>¿Cómo está cambiando la población y qué nuevas necesidades genera?</td><td>Envejecimiento → demanda de planificación patrimonial y fideicomisos</td></tr>
+          <tr><td><strong>T</strong> Tecnológico</td><td>IA, automatización, digitalización, blockchain</td><td>¿Qué tecnología emergente cambiará cómo se hace mi trabajo?</td><td>IA en auditoría → automatización del 40% de tareas rutinarias</td></tr>
+          <tr><td><strong>E</strong> Económico</td><td>Tasas, inflación, comercio, acceso al crédito</td><td>¿Qué condiciones económicas crean nuevas oportunidades o amenazas?</td><td>Inflación alta → demanda de asesoría en protección de activos</td></tr>
+          <tr><td><strong>E</strong> Ecológico</td><td>Regulaciones ambientales, sostenibilidad, clima</td><td>¿Qué presiones ambientales están cambiando los modelos de negocio?</td><td>Regulaciones carbono → mercado de contabilidad ambiental</td></tr>
+          <tr><td><strong>P</strong> Político/Legal</td><td>Regulación, políticas públicas, cambios normativos</td><td>¿Qué cambios regulatorios abren o cierran oportunidades?</td><td>Digitalización tributaria → consultoría en cumplimiento SRI</td></tr>
+          <tr><td><strong>V</strong> Valores</td><td>Ética, confianza, transparencia, identidad</td><td>¿Qué valores emergentes en la sociedad crean nuevas expectativas de servicio?</td><td>Demanda de transparencia → servicios de auditoría ESG y reporting social</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+<!-- ═══ FIN TAB 4 ═══ -->
+
+<!-- ═══════════════════════════════════════════════════ TAB 5: GUÍAS -->
+<div id="tab5" class="tab-panel">
+  <div class="semana-badge"><div class="semana-dot"></div>Semana 4 · Guías Prácticas</div>
+  <h2 class="section-title">Plantillas y Guías para la Actividad en Casa</h2>
+  <p class="section-sub">Estas plantillas son herramientas de trabajo, no simples formularios. Cada campo está diseñado para que el proceso de completarlo ya sea en sí mismo un aprendizaje. Léelas completas antes de empezar a rellenarlas.</p>
+
+  <div class="info-box">
+    <span class="info-icon">📋</span>
+    <span><strong>¿Cómo usar estas guías?</strong> Primero, lee todo el campo (el label en color turquesa, la descripción en gris y el ejemplo en el recuadro punteado). Solo entonces empieza a escribir. Si no entiendes un campo, regresa al contenido teórico de las pestañas anteriores. El objetivo es que al terminar, tengas un análisis real de una oportunidad dentro de tu campo profesional.</span>
+  </div>
+
+  <!-- GUÍA 1: Perfil de Emprendedor -->
+  <div class="plantilla">
+    <div class="plantilla-header">
+      <div>
+        <h3>Guía 1: Mi Perfil de Emprendedor</h3>
+        <p>Autoevaluación orientada a la carrera contable · Basada en el marco EntreComp (Bacigalupo et al., 2016)</p>
+      </div>
+    </div>
+    <div class="plantilla-body">
+
+      <div class="campo-grupo">
+        <div class="campo-label">📌 Datos de identificación</div>
+        <div class="campo-desc">Escribe tu nombre y carrera. Esto no es un dato burocrático: sirve para que el documento sea tuyo y puedas revisitarlo al final del semestre y comparar tu evolución.</div>
+        <input class="campo-linea" type="text" placeholder="Nombre completo">
+        <input class="campo-linea" type="text" placeholder="Carrera y semestre">
+      </div>
+
+      <div class="campo-grupo">
+        <div class="campo-label">🧭 Tipo de emprendedor con el que más me identifico</div>
+        <div class="campo-desc">De los cinco tipos estudiados (clásico, intraemprendedor, social, digital, en serie), elige el que sientes más cercano a tu forma de ser o al rol profesional que deseas. No es una respuesta «correcta»: es un punto de partida para la reflexión. Justifica tu elección con al menos tres argumentos concretos que describan tu personalidad, valores o experiencia.</div>
+        <div class="campo-ejemplo">
+          <strong>Ejemplo de justificación bien redactada:</strong>
+          «Me identifico con el intraemprendedor porque actualmente trabajo en una empresa de retail y constantemente propongo mejoras en los procesos de cierre mensual. No quiero asumir el riesgo de fundar mi propia empresa en este momento, pero sí quiero ser el profesional que transforma su entorno desde adentro. Además, el pensamiento sistémico y la capacidad de influir en equipos son fortalezas que he identificado en mí desde mis prácticas preprofesionales.»
+        </div>
+        <textarea class="campo-area" placeholder="Escribe aquí tu tipo preferido y tus tres argumentos de justificación..."></textarea>
+      </div>
+
+      <div class="campo-grupo">
+        <div class="campo-label">💪 Mis tres competencias emprendedoras más desarrolladas</div>
+        <div class="campo-desc">Del marco EntreComp (creatividad, pensamiento prospectivo, movilización de recursos, autoeficacia, motivación, perseverancia, planificación, trabajo en equipo, aprendizaje del error, tolerancia a la ambigüedad, entre otras), identifica las tres que describes como fortalezas reales. Para cada una, da un ejemplo concreto de tu vida académica, laboral o personal donde hayas demostrado esa competencia.</div>
+        <div class="campo-ejemplo">
+          <strong>Ejemplo de formato esperado:</strong>
+          «1. Perseverancia: Durante el primer año de la carrera, reprobé Costos I en el primer parcial con 4/10. En lugar de retirarme, formé un grupo de estudio, cambié de metodología de aprendizaje y obtuve 8.5 en el examen final. · 2. Planificación: Organicé las actividades del Club de Finanzas del segundo semestre, coordinando 8 personas y tres eventos en un mes sin presupuesto inicial...»
+        </div>
+        <textarea class="campo-area" style="min-height:120px;" placeholder="Competencia 1: [nombre] · Evidencia concreta: ...&#10;Competencia 2: [nombre] · Evidencia concreta: ...&#10;Competencia 3: [nombre] · Evidencia concreta: ..."></textarea>
+      </div>
+
+      <div class="campo-grupo">
+        <div class="campo-label">🌱 Mi competencia emprendedora más débil y cómo la desarrollaré</div>
+        <div class="campo-desc">La autoconciencia de las propias limitaciones es en sí misma una competencia emprendedora (Bacigalupo et al., 2016). Identifica la competencia que sientes menos desarrollada y propone una acción concreta y realizable durante este semestre para trabajarla. No sirven propuestas vagas («leer más»); deben ser acciones con frecuencia, duración y método específicos.</div>
+        <div class="campo-ejemplo">
+          <strong>Ejemplo de acción concreta:</strong>
+          «Mi competencia más débil es la tolerancia a la ambigüedad: cuando no tengo instrucciones claras, me paralizo. Para trabajarla, voy a participar activamente en los ejercicios de caso sin instrucciones cerradas que propone el profesor, y voy a documentar en un diario semanal (los martes) qué decisiones tomé en ausencia de información completa y qué resultaron.»
+        </div>
+        <textarea class="campo-area" placeholder="Competencia débil identificada: ...&#10;Plan de acción concreto con frecuencia, duración y método: ..."></textarea>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GUÍA 2: Identificación de oportunidad -->
+  <div class="plantilla">
+    <div class="plantilla-header">
+      <div>
+        <h3>Guía 2: Identificación de una Oportunidad Contable</h3>
+        <p>Análisis estructurado desde el entorno profesional · Basada en Drucker (1985) y Timmons (1999)</p>
+      </div>
+    </div>
+    <div class="plantilla-body">
+
+      <div class="campo-grupo">
+        <div class="campo-label">🔭 Fuente de oportunidad identificada (Drucker, 1985)</div>
+        <div class="campo-desc">Selecciona cuál de las siete fuentes de oportunidad de Drucker es la base de tu idea (lo inesperado, incongruencia, necesidad de proceso, cambio estructural, cambio demográfico, cambio de percepción, o conocimiento nuevo). Explica por qué esta fuente aplica al problema que identificaste.</div>
+        <div class="campo-ejemplo">
+          <strong>Ejemplo:</strong>
+          «Fuente: Necesidad de proceso (S3). En la empresa donde realizo mis prácticas, el proceso de archivo de comprobantes físicos de compras toma 4 horas semanales del auxiliar contable. La solución sería un sistema de escaneo y clasificación automática con IA, que existe pero no ha sido implementado por desconocimiento del equipo.»
+        </div>
+        <textarea class="campo-area" placeholder="Fuente de Drucker seleccionada: ...&#10;¿Por qué aplica a tu contexto?: ..."></textarea>
+      </div>
+
+      <div class="campo-grupo">
+        <div class="campo-label">🎯 Descripción del problema o necesidad insatisfecha</div>
+        <div class="campo-desc">Describe el problema con precisión. Un buen enunciado de problema responde: ¿Quién lo sufre? ¿Con qué frecuencia? ¿Qué impacto tiene (tiempo, dinero, riesgo)? ¿Por qué las soluciones actuales no son suficientes? Evita describir la solución en este campo: solo el problema.</div>
+        <div class="campo-ejemplo">
+          <strong>Ejemplo bien estructurado:</strong>
+          «Las microempresas de Guayaquil (menos de 10 empleados) no llevan registros contables ordenados, no porque no quieran, sino porque los servicios contables tradicionales cuestan entre $150 y $300 mensuales, lo que supera el 15% de sus utilidades promedio. Sin registros ordenados, no pueden acceder a créditos formales ni demostrar su rentabilidad a inversionistas. La consecuencia directa es que crecen más lentamente que si tuvieran acceso a financiamiento.»
+        </div>
+        <textarea class="campo-area" style="min-height:110px;" placeholder="¿Quién sufre el problema? ¿Con qué frecuencia? ¿Qué impacto tiene? ¿Por qué las soluciones actuales no bastan?"></textarea>
+      </div>
+
+      <div class="campo-grupo">
+        <div class="campo-label">✅ Validación con los criterios de Timmons (1999)</div>
+        <div class="campo-desc">Evalúa tu oportunidad con los cinco criterios de Timmons. Para cada criterio, escribe si se cumple (Sí/Parcialmente/No) y por qué. Si un criterio no se cumple, no significa que la oportunidad sea inviable: puede ser una brecha que requiere solución creativa.</div>
+        <div class="campo-ejemplo">
+          <strong>Criterios:</strong> (1) Crea valor real para clientes reales · (2) Tiene mercado suficiente · (3) Es duradera (no es una moda) · (4) El mercado está listo ahora · (5) Genera retorno suficiente
+        </div>
+        <textarea class="campo-area" style="min-height:130px;" placeholder="Criterio 1 – Valor real: [Sí/Parcialmente/No] porque...&#10;Criterio 2 – Mercado: [Sí/Parcialmente/No] porque...&#10;Criterio 3 – Durabilidad: [Sí/Parcialmente/No] porque...&#10;Criterio 4 – Momento: [Sí/Parcialmente/No] porque...&#10;Criterio 5 – Retorno: [Sí/Parcialmente/No] porque..."></textarea>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GUÍA 3: STEEPV -->
+  <div class="plantilla">
+    <div class="plantilla-header">
+      <div>
+        <h3>Guía 3: Análisis de Tendencias con el Método STEEPV</h3>
+        <p>Exploración del entorno macro para identificar oportunidades emergentes · Basada en Naisbitt (1982) y análisis PESTEL ampliado</p>
+      </div>
+    </div>
+    <div class="plantilla-body">
+
+      <div class="campo-grupo">
+        <div class="campo-label">📍 Contexto de análisis</div>
+        <div class="campo-desc">Define el sector o subsector contable/auditor que vas a analizar. Ser específico es fundamental: «contabilidad» es demasiado amplio; «auditoría interna en empresas exportadoras de camarón en Ecuador» es un contexto analizable. La especificidad te permite identificar tendencias concretas y no generalidades.</div>
+        <input class="campo-linea" type="text" placeholder="Sector/subsector contable específico que analizaré: ...">
+      </div>
+
+      <div class="campo-grupo">
+        <div class="campo-label">🌐 S – Dimensión Social</div>
+        <div class="campo-desc">Identifica cambios sociales (demográficos, culturales, en valores o comportamientos) que estén ocurriendo y que afecten directamente la demanda de servicios contables en tu sector. Piensa en cambios generacionales, de género, de urbanización, de expectativas de transparencia, de confianza en las instituciones.</div>
+        <div class="campo-ejemplo">
+          <strong>Ejemplo:</strong> «La generación Z que está llegando al mercado laboral exige que las empresas donde trabajan tengan prácticas éticas verificables. Esto aumentará la demanda de auditorías de cultura organizacional y de informes de sostenibilidad en empresas que quieran atraer talento joven.»
+        </div>
+        <textarea class="campo-area" placeholder="Tendencia social identificada y su impacto en el sector contable..."></textarea>
+      </div>
+
+      <div class="campo-grupo">
+        <div class="campo-label">💻 T – Dimensión Tecnológica</div>
+        <div class="campo-desc">Identifica avances tecnológicos que estén cambiando o que cambiarán en los próximos 3-5 años la forma en que se hacen los registros, reportes, auditorías o asesorías en tu sector. Considera IA, automatización, blockchain, big data, cloud computing, ciberseguridad.</div>
+        <textarea class="campo-area" placeholder="Tecnología emergente identificada y cómo transformará el trabajo contable en tu sector..."></textarea>
+      </div>
+
+      <div class="campo-grupo">
+        <div class="campo-label">💰 E – Dimensión Económica</div>
+        <div class="campo-desc">Analiza las condiciones macroeconómicas actuales y proyectadas en Ecuador y en el mercado global que afectan a tu sector: tasas de interés, inflación, acceso al crédito, condiciones de comercio internacional, presión sobre márgenes de utilidad.</div>
+        <textarea class="campo-area" placeholder="Condición económica relevante y la oportunidad o amenaza que genera para el contador/auditor..."></textarea>
+      </div>
+
+      <div class="campo-grupo">
+        <div class="campo-label">🌿 E – Dimensión Ecológica</div>
+        <div class="campo-desc">Identifica regulaciones ambientales, presiones de sostenibilidad o riesgos climáticos que afecten la contabilidad en tu sector. ¿Hay empresas en tu sector que ya deban o deberán pronto reportar su huella de carbono? ¿Existe regulación ambiental que impacte los activos o pasivos en los estados financieros?</div>
+        <textarea class="campo-area" placeholder="Presión ecológica identificada y cómo afecta los registros o reportes contables en tu sector..."></textarea>
+      </div>
+
+      <div class="campo-grupo">
+        <div class="campo-label">⚖️ P – Dimensión Política/Legal</div>
+        <div class="campo-desc">¿Qué cambios normativos, leyes o políticas públicas recientes o anunciadas afectan directamente la práctica contable o auditora en tu sector? Considera reformas tributarias, nuevas NIIF vigentes en Ecuador, regulaciones de la Superintendencia de Compañías, acuerdos comerciales.</div>
+        <textarea class="campo-area" placeholder="Cambio normativo o político relevante y su impacto en la profesión contable..."></textarea>
+      </div>
+
+      <div class="campo-grupo">
+        <div class="campo-label">🧭 V – Dimensión de Valores</div>
+        <div class="campo-desc">¿Qué cambios en los valores y expectativas éticas de la sociedad, los inversores o los reguladores están creando nuevas demandas de transparencia, responsabilidad o integridad en tu sector? ¿Cómo responde (o debería responder) la profesión contable a esos valores emergentes?</div>
+        <textarea class="campo-area" placeholder="Valor emergente identificado y cómo abre una oportunidad para el profesional contable que lo abraza..."></textarea>
+      </div>
+
+      <div class="campo-grupo">
+        <div class="campo-label">🚀 Oportunidad emprendedora derivada del análisis</div>
+        <div class="campo-desc">Con base en todo el análisis STEEPV que realizaste, describe una oportunidad emprendedora concreta para el profesional contable en tu sector. Debe ser una propuesta de servicio, producto o mejora de proceso que responda a al menos dos de las tendencias que identificaste. Esta es la síntesis de todo el ejercicio.</div>
+        <textarea class="campo-area" style="min-height:100px;" placeholder="Oportunidad emprendedora concreta derivada del análisis STEEPV: [qué servicio/producto/proceso], [para qué cliente], [respondiendo a qué tendencias], [con qué diferenciador respecto a lo que ya existe]..."></textarea>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+<!-- ═══ FIN TAB 5 ═══ -->
+
+<!-- ═══════════════════════════════════════════════════ TAB 6: CUESTIONARIO -->
+<div id="tab6" class="tab-panel">
+  <div class="semana-badge"><div class="semana-dot"></div>Semana 4 · Cuestionario de Evaluación</div>
+  <h2 class="section-title">Cuestionario Interactivo de Comprensión</h2>
+  <p class="section-sub">Cada pregunta fue diseñada para que la respuesta correcta requiera comprensión real, no memorización superficial. Las alternativas incorrectas contienen afirmaciones parcialmente verdaderas que solo se distinguen con un análisis cuidadoso. Lee cada opción completa antes de seleccionar.</p>
+
+  <div class="info-box">
+    <span class="info-icon">🎯</span>
+    <span>Al seleccionar una respuesta, el sistema te indicará si es correcta o incorrecta y te explicará <strong>por qué</strong> — tanto la lógica de la respuesta correcta como el error en las opciones incorrectas. Ese proceso de explicación es el núcleo del aprendizaje.</span>
+  </div>
+
+  <div class="quiz-container" id="quizContainer">
+
+    <!-- P1 -->
+    <div class="quiz-pregunta" id="q1">
+      <div class="quiz-num-badge">Pregunta 1 de 10</div>
+      <div class="quiz-enunciado">Man y Lau (2000) definen la capacidad emprendedora como «competencias de alto nivel relacionadas con actitudes y comportamientos que conducen a resultados superiores y sostenibles». ¿Cuál de las siguientes afirmaciones se deriva CORRECTAMENTE de esta definición?</div>
+      <div class="quiz-opciones">
+        <div class="quiz-opcion" onclick="responder(this,'q1','b')"><span class="opcion-letra">a</span> La capacidad emprendedora se mide principalmente por el número de empresas que una persona ha fundado, ya que los «resultados superiores» se refieren necesariamente a resultados económicos de mercado.</div>
+        <div class="quiz-opcion" onclick="responder(this,'q1','b')"><span class="opcion-letra">b</span> Un auditor interno que mejora sistemáticamente los controles de una empresa puede ser tan emprendedor como quien funda una startup, porque la definición se centra en actitudes, comportamientos y resultados, no en el tipo de organización.</div>
+        <div class="quiz-opcion" onclick="responder(this,'q1','c')"><span class="opcion-letra">c</span> La capacidad emprendedora es exclusivamente una predisposición genética, ya que los estudios de Nicolaou et al. (2008) demostraron que entre el 37% y el 48% de la varianza en la intención de emprender tiene origen hereditario.</div>
+        <div class="quiz-opcion" onclick="responder(this,'q1','d')"><span class="opcion-letra">d</span> Dado que la definición habla de «resultados sostenibles», se infiere que la capacidad emprendedora solo aplica al emprendimiento social y ecológico, no al emprendimiento con fines de lucro.</div>
+      </div>
+      <div class="quiz-feedback" id="fb_q1"></div>
+    </div>
+
+    <!-- P2 -->
+    <div class="quiz-pregunta" id="q2">
+      <div class="quiz-num-badge">Pregunta 2 de 10</div>
+      <div class="quiz-enunciado">Según el modelo de Ajzen (1991), la intención de emprender depende de tres factores: actitud hacia el comportamiento, norma subjetiva y control conductual percibido. Un estudiante de contabilidad menciona: «Creo que emprender es valioso (A), mi familia me apoya (B), pero no creo que yo sea capaz de hacerlo (C)». ¿Cuál es el factor que más frena su intención emprendedora, y cuál sería la intervención más efectiva?</div>
+      <div class="quiz-opciones">
+        <div class="quiz-opcion" onclick="responder(this,'q2','a')"><span class="opcion-letra">a</span> El factor más limitante es C (baja autoeficacia / bajo control conductual percibido). La intervención más efectiva sería trabajar con el estudiante en el desarrollo de competencias concretas y en la exposición a modelos de rol contables emprendedores, para elevar su percepción de capacidad.</div>
+        <div class="quiz-opcion" onclick="responder(this,'q2','b')"><span class="opcion-letra">b</span> El factor más limitante es B (norma subjetiva), porque aunque la familia apoya, el entorno académico puede no hacerlo, lo que genera una norma subjetiva negativa que supera cualquier actitud positiva individual.</div>
+        <div class="quiz-opcion" onclick="responder(this,'q2','c')"><span class="opcion-letra">c</span> El factor más limitante es A (actitud), porque si el estudiante realmente creyera en el valor de emprender, la falta de autoeficacia no sería un obstáculo relevante: la motivación fuerte siempre supera las dudas de capacidad.</div>
+        <div class="quiz-opcion" onclick="responder(this,'q2','d')"><span class="opcion-letra">d</span> Los tres factores tienen el mismo peso en el modelo de Ajzen, por lo que no se puede identificar uno como más limitante que otro; la intervención debe atacar los tres simultáneamente para producir cualquier cambio de intención.</div>
+      </div>
+      <div class="quiz-feedback" id="fb_q2"></div>
+    </div>
+
+    <!-- P3 -->
+    <div class="quiz-pregunta" id="q3">
+      <div class="quiz-num-badge">Pregunta 3 de 10</div>
+      <div class="quiz-enunciado">Pinchot (1985) acuñó el concepto de «intrapreneur» y lo distinguió del emprendedor clásico. Un contador trabaja en una firma auditora de tamaño mediano y propone, desarrolla e implementa un nuevo sistema de gestión de riesgos que reduce el tiempo de auditoría en un 30%. ¿Qué tipo de riesgo asume principalmente este profesional?</div>
+      <div class="quiz-opciones">
+        <div class="quiz-opcion" onclick="responder(this,'q3','a')"><span class="opcion-letra">a</span> Riesgo financiero personal directo, porque si el sistema falla, la firma podría responsabilizarlo y descontar el costo de implementación de su salario, similar al riesgo del emprendedor clásico que invierte su propio capital.</div>
+        <div class="quiz-opcion" onclick="responder(this,'q3','b')"><span class="opcion-letra">b</span> Riesgo reputacional y político interno: si la propuesta fracasa o genera resistencia, su credibilidad dentro de la organización puede verse afectada, sus relaciones con colegas o superiores pueden deteriorarse, y su progreso profesional puede verse frenado.</div>
+        <div class="quiz-opcion" onclick="responder(this,'q3','c')"><span class="opcion-letra">c</span> Ningún riesgo real, porque al estar en relación de dependencia, la organización absorbe todos los riesgos del proyecto, y el empleado solo ejecuta instrucciones dentro de los límites que la empresa ya ha validado previamente.</div>
+        <div class="quiz-opcion" onclick="responder(this,'q3','d')"><span class="opcion-letra">d</span> Riesgo de mercado exclusivamente, porque cualquier sistema nuevo expone a la firma a comparación con competidores que pueden imitarlo rápidamente y eliminar la ventaja competitiva que el contador ayudó a construir.</div>
+      </div>
+      <div class="quiz-feedback" id="fb_q3"></div>
+    </div>
+
+    <!-- P4 -->
+    <div class="quiz-pregunta" id="q4">
+      <div class="quiz-num-badge">Pregunta 4 de 10</div>
+      <div class="quiz-enunciado">Dees (1998) distingue al emprendedor social del emprendedor clásico en la relación entre impacto social y retorno económico. Una firma de consultoría lanza un servicio de auditoría de informes ESG que cobra tarifas de mercado a sus clientes, pero destina el 20% de su utilidad a capacitar contadores de comunidades rurales en Ecuador. ¿Cómo se clasificaría correctamente esta iniciativa?</div>
+      <div class="quiz-opciones">
+        <div class="quiz-opcion" onclick="responder(this,'q4','a')"><span class="opcion-letra">a</span> Es puro emprendimiento social, porque cualquier iniciativa que genera impacto social positivo, independientemente de su estructura de ingresos o su búsqueda de rentabilidad, cae por definición bajo la categoría de emprendimiento social de Dees.</div>
+        <div class="quiz-opcion" onclick="responder(this,'q4','b')"><span class="opcion-letra">b</span> Es un modelo híbrido: tiene una lógica primaria de emprendimiento clásico (cobra tarifas de mercado, genera utilidades), pero integra una dimensión de impacto social secundaria. No es puramente social porque el impacto social no es la métrica principal del éxito del negocio.</div>
+        <div class="quiz-opcion" onclick="responder(this,'q4','c')"><span class="opcion-letra">c</span> No puede clasificarse como emprendimiento de ningún tipo, porque el hecho de cobrar tarifas de mercado le quita cualquier validez social, y el 20% destinado a capacitación es demasiado pequeño para considerarlo impacto social real según los estándares académicos.</div>
+        <div class="quiz-opcion" onclick="responder(this,'q4','d')"><span class="opcion-letra">d</span> Es exclusivamente un emprendedor digital, porque los servicios ESG y de sostenibilidad están intrínsecamente vinculados a la tecnología de reporte y análisis de datos, independientemente de sus fines sociales.</div>
+      </div>
+      <div class="quiz-feedback" id="fb_q4"></div>
+    </div>
+
+    <!-- P5 -->
+    <div class="quiz-pregunta" id="q5">
+      <div class="quiz-num-badge">Pregunta 5 de 10</div>
+      <div class="quiz-enunciado">Shane y Venkataraman (2000) distinguen entre «idea» y «oportunidad emprendedora». Un estudiante de contabilidad propone: «Crear una app que recuerde a las pymes cuándo deben presentar sus declaraciones tributarias al SRI». Usando los criterios de Timmons (1999), ¿cuál de las siguientes evaluaciones es la más rigurosa académicamente?</div>
+      <div class="quiz-opciones">
+        <div class="quiz-opcion" onclick="responder(this,'q5','a')"><span class="opcion-letra">a</span> Es una oportunidad validada, porque cualquier solución que reduzca el incumplimiento tributario tiene atractivo de mercado garantizado en un país donde las multas del SRI son severas, y eso es suficiente para cumplir los cinco criterios de Timmons simultáneamente.</div>
+        <div class="quiz-opcion" onclick="responder(this,'q5','b')"><span class="opcion-letra">b</span> Es una idea que puede convertirse en oportunidad, pero requiere validar si existen soluciones similares ya disponibles (como los recordatorios nativos del portal del SRI), cuánto pagarían las pymes por ese recordatorio adicional, y si el mercado es suficientemente grande para justificar el desarrollo de la app.</div>
+        <div class="quiz-opcion" onclick="responder(this,'q5','c')"><span class="opcion-letra">c</span> No es una oportunidad porque las apps tributarias son un mercado saturado globalmente, y en mercados saturados no hay espacio para nuevos entrantes, independientemente de las características específicas del entorno ecuatoriano o de la propuesta diferenciadora del estudiante.</div>
+        <div class="quiz-opcion" onclick="responder(this,'q5','d')"><span class="opcion-letra">d</span> Es una oportunidad inviable porque el criterio de «durabilidad» de Timmons no se cumple: la tecnología cambia demasiado rápido y en cinco años las declaraciones tributarias serán automáticas, lo que eliminaría la necesidad del recordatorio antes de que el emprendimiento pueda amortizar su inversión inicial.</div>
+      </div>
+      <div class="quiz-feedback" id="fb_q5"></div>
+    </div>
+
+    <!-- P6 -->
+    <div class="quiz-pregunta" id="q6">
+      <div class="quiz-num-badge">Pregunta 6 de 10</div>
+      <div class="quiz-enunciado">Drucker (1985) identificó «la incongruencia entre realidad y supuestos» (S2) como una fuente de oportunidad. Un contador observa que las empresas de economía popular y solidaria en Ecuador (cooperativas, asociaciones) llevan registros contables muy básicos, a pesar de que los estudios demuestran que las cooperativas con contabilidad formalizada acceden a mejores tasas de crédito. ¿Cuál sería la oportunidad correctamente derivada de esta incongruencia?</div>
+      <div class="quiz-opciones">
+        <div class="quiz-opcion" onclick="responder(this,'q6','a')"><span class="opcion-letra">a</span> La incongruencia no genera oportunidad porque es un problema estructural de pobreza y falta de educación financiera que ningún emprendedor individual puede resolver; requiere política pública y no intervención privada de mercado.</div>
+        <div class="quiz-opcion" onclick="responder(this,'q6','b')"><span class="opcion-letra">b</span> La oportunidad está en crear un servicio de contabilidad simplificada y asequible específicamente diseñado para cooperativas de la EPS, que les permita formalizar sus registros y acceder a mejores condiciones crediticias, diferenciándose de los servicios contables estándar que no responden a sus particularidades.</div>
+        <div class="quiz-opcion" onclick="responder(this,'q6','c')"><span class="opcion-letra">c</span> La oportunidad está en presionar al gobierno para que cambie la regulación contable de las cooperativas, eliminando la obligación de llevar registros formales, ya que la incongruencia demuestra que esa obligación es incompatible con la realidad económica del sector.</div>
+        <div class="quiz-opcion" onclick="responder(this,'q6','d')"><span class="opcion-letra">d</span> Esta situación responde más a la fuente S7 (conocimiento nuevo) de Drucker que a la S2 (incongruencia), porque el conocimiento sobre la relación entre contabilidad y acceso al crédito es técnico y nuevo, no una incongruencia entre suposiciones y realidad observada.</div>
+      </div>
+      <div class="quiz-feedback" id="fb_q6"></div>
+    </div>
+
+    <!-- P7 -->
+    <div class="quiz-pregunta" id="q7">
+      <div class="quiz-num-badge">Pregunta 7 de 10</div>
+      <div class="quiz-enunciado">El análisis STEEPV en su dimensión Tecnológica (T) identifica la IA como tendencia central para la contabilidad y auditoría. Sin embargo, un auditor senior afirma: «La IA en auditoría solo automatiza lo que ya sé hacer; no cambia el valor fundamental del juicio profesional del auditor». ¿Cuál es la evaluación más rigurosa de esta afirmación?</div>
+      <div class="quiz-opciones">
+        <div class="quiz-opcion" onclick="responder(this,'q7','a')"><span class="opcion-letra">a</span> La afirmación es completamente correcta: el juicio profesional es una competencia humana irreemplazable, y la historia de la tecnología demuestra que ninguna automatización ha desplazado profesiones que requieren evaluación contextual y responsabilidad legal, como la auditoría.</div>
+        <div class="quiz-opcion" onclick="responder(this,'q7','b')"><span class="opcion-letra">b</span> La afirmación es parcialmente correcta: el juicio profesional sigue siendo valioso, pero la IA no solo automatiza tareas existentes, sino que cambia cuáles tareas requieren juicio y cuáles no. El auditor debe migrar su valor hacia la interpretación de resultados de IA, la validación de modelos y la toma de decisiones en situaciones que la IA no puede manejar.</div>
+        <div class="quiz-opcion" onclick="responder(this,'q7','c')"><span class="opcion-letra">c</span> La afirmación es completamente incorrecta: la IA reemplazará completamente al auditor en un horizonte de 10 años, ya que los modelos de lenguaje de gran escala ya pueden interpretar estados financieros, identificar anomalías y emitir opiniones de auditoría con mayor precisión que el profesional humano promedio.</div>
+        <div class="quiz-opcion" onclick="responder(this,'q7','d')"><span class="opcion-letra">d</span> La afirmación es irrelevante para el análisis STEEPV, porque dicho análisis se ocupa de identificar tendencias externas macro, no de evaluar el impacto específico de esas tendencias en competencias individuales de profesionales concretos.</div>
+      </div>
+      <div class="quiz-feedback" id="fb_q7"></div>
+    </div>
+
+    <!-- P8 -->
+    <div class="quiz-pregunta" id="q8">
+      <div class="quiz-num-badge">Pregunta 8 de 10</div>
+      <div class="quiz-enunciado">Corbett (2007) distingue entre aprendizaje experiencial (descubrir haciendo) y aprendizaje conceptual (buscar patrones en información) en la identificación de oportunidades. ¿Cuál de los siguientes perfiles de contador tiene mayor probabilidad de identificar más oportunidades emprendedoras, y por qué?</div>
+      <div class="quiz-opciones">
+        <div class="quiz-opcion" onclick="responder(this,'q8','a')"><span class="opcion-letra">a</span> Contador A: 15 años de experiencia práctica en varias empresas pero escasa lectura académica y técnica actualizada, porque la experiencia directa es la única fuente confiable de identificación de oportunidades y el conocimiento libresco no puede sustituirla.</div>
+        <div class="quiz-opcion" onclick="responder(this,'q8','b')"><span class="opcion-letra">b</span> Contador C: combina experiencia práctica diversa con lectura sistemática de tendencias sectoriales y académicas, porque Corbett (2007) demostró que la combinación de ambos tipos de aprendizaje produce más y mejores oportunidades que cualquiera de los dos tipos por separado.</div>
+        <div class="quiz-opcion" onclick="responder(this,'q8','c')"><span class="opcion-letra">c</span> Contador B: recién graduado con excelente formación académica y sin experiencia laboral, porque el conocimiento conceptual actualizado y sin sesgos experienciales permite ver oportunidades que los practicantes experimentados ya no pueden ver por estar «demasiado dentro» del problema.</div>
+        <div class="quiz-opcion" onclick="responder(this,'q8','d')"><span class="opcion-letra">d</span> Ninguno de los tres, porque según Shane y Venkataraman (2000), la identificación de oportunidades depende exclusivamente de información privada y asimétrica que el mercado aún no ha procesado, y no de las competencias individuales del emprendedor.</div>
+      </div>
+      <div class="quiz-feedback" id="fb_q8"></div>
+    </div>
+
+    <!-- P9 -->
+    <div class="quiz-pregunta" id="q9">
+      <div class="quiz-num-badge">Pregunta 9 de 10</div>
+      <div class="quiz-enunciado">La tendencia de sostenibilidad ESG (dimensión Ecológica y de Valores del STEEPV) está generando una creciente demanda de informes de sostenibilidad verificados. Sin embargo, actualmente en Ecuador la mayoría de contadores no tiene formación específica en estándares GRI (Global Reporting Initiative) o SASB. Desde la perspectiva del análisis de tendencias, ¿qué tipo de oportunidad representa esta brecha?</div>
+      <div class="quiz-opciones">
+        <div class="quiz-opcion" onclick="responder(this,'q9','a')"><span class="opcion-letra">a</span> Una amenaza exclusivamente: la falta de contadores certificados en ESG en Ecuador implica que las empresas ecuatorianas recurrirán a firmas internacionales para estos servicios, desplazando a los profesionales locales del mercado de mayor crecimiento en auditoría.</div>
+        <div class="quiz-opcion" onclick="responder(this,'q9','b')"><span class="opcion-letra">b</span> Una oportunidad de primer orden: la brecha entre demanda creciente (empresas que deben reportar ESG) y oferta escasa (contadores certificados) genera una ventaja competitiva para quienes se especialicen ahora, antes de que el mercado se sature, actuando exactamente como lo describe la fuente S4 de Drucker (cambio estructural del mercado).</div>
+        <div class="quiz-opcion" onclick="responder(this,'q9','c')"><span class="opcion-letra">c</span> Una oportunidad de corto plazo únicamente: en 3-5 años la IA podrá generar automáticamente los informes ESG sin necesidad de contadores especializados, por lo que invertir hoy en formación ESG tendría un retorno demasiado breve para justificar el costo de la especialización.</div>
+        <div class="quiz-opcion" onclick="responder(this,'q9','d')"><span class="opcion-letra">d</span> Una brecha neutral: según el modelo de Timmons, para que una brecha de mercado sea una oportunidad real debe existir una demanda pagante identificada, y en Ecuador las empresas aún no están obligadas legalmente a reportar ESG, por lo que la demanda es aspiracional y no concreta en este momento.</div>
+      </div>
+      <div class="quiz-feedback" id="fb_q9"></div>
+    </div>
+
+    <!-- P10 -->
+    <div class="quiz-pregunta" id="q10">
+      <div class="quiz-num-badge">Pregunta 10 de 10</div>
+      <div class="quiz-enunciado">El marco EntreComp (Bacigalupo et al., 2016) incluye en su Área 3 («Acción») la competencia de «aprendizaje a través de la experiencia», que implica extraer lecciones del fracaso. Ucbasaran et al. (2010) encontraron que los emprendedores en serie tienen mayor capacidad de identificar oportunidades que los novatos, precisamente por haber procesado más fracasos. ¿Cuál es la implicación más directa de este hallazgo para un estudiante de Contabilidad y Auditoría que nunca ha fallado en un proyecto académico?</div>
+      <div class="quiz-opciones">
+        <div class="quiz-opcion" onclick="responder(this,'q10','a')"><span class="opcion-letra">a</span> El estudiante tiene una desventaja estructural irreversible: sin historial de fracasos, no puede desarrollar la capacidad de aprendizaje del error, y por lo tanto nunca podrá igualar la capacidad de identificación de oportunidades de un emprendedor con experiencia de fracaso real.</div>
+        <div class="quiz-opcion" onclick="responder(this,'q10','b')"><span class="opcion-letra">b</span> El estudiante debe interpretar sus pequeñas experiencias de error académico (un parcial reprobado, una actividad grupal fallida, una presentación que no funcionó como esperaba) como oportunidades deliberadas de aprendizaje emprendedor, documentando qué falló, por qué y qué haría diferente. La capacidad no viene del tamaño del fracaso sino de la calidad de la reflexión sobre él.</div>
+        <div class="quiz-opcion" onclick="responder(this,'q10','c')"><span class="opcion-letra">c</span> No existe implicación directa: el hallazgo de Ucbasaran et al. se aplica exclusivamente a emprendedores que han fundado y cerrado empresas reales, no al ámbito académico, y extrapolar sus conclusiones al contexto universitario representa una falacia de generalización inadecuada.</div>
+        <div class="quiz-opcion" onclick="responder(this,'q10','d')"><span class="opcion-letra">d</span> El estudiante debería provocar artificialmente situaciones de fracaso (retirarse de materias, abandonar proyectos antes de terminarlos) para acumular experiencias de error que luego le permitan desarrollar la competencia de aprendizaje emprendedor que estudian Ucbasaran y sus colegas.</div>
+      </div>
+      <div class="quiz-feedback" id="fb_q10"></div>
+    </div>
+
+  </div><!-- fin quizContainer -->
+
+  <div class="quiz-resultado" id="quizResultado">
+    <div class="resultado-score" id="scoreNum">0/10</div>
+    <div class="resultado-label" id="scoreLabel">Resultado</div>
+    <div class="resultado-msg" id="scoreMsg"></div>
+    <button class="btn-reiniciar" onclick="reiniciarQuiz()">🔄 Reiniciar cuestionario</button>
+  </div>
+
+</div>
+<!-- ═══ FIN TAB 6 ═══ -->
+
+</div><!-- fin content-area -->
+
+<script>
+// ── TABS ──
+function openTab(event, tabId) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  event.currentTarget.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── ACCORDION ──
+function toggleAcc(header) {
+  const body = header.nextElementSibling;
+  const isOpen = header.classList.contains('open');
+  document.querySelectorAll('.acc-header.open').forEach(h => {
+    h.classList.remove('open');
+    h.nextElementSibling.classList.remove('open');
+  });
+  if (!isOpen) {
+    header.classList.add('open');
+    body.classList.add('open');
+  }
+}
+
+// ── QUIZ ──
+const respuestasCorrectas = {
+  q1: 'b', q2: 'a', q3: 'b', q4: 'b', q5: 'b',
+  q6: 'b', q7: 'b', q8: 'b', q9: 'b', q10: 'b'
+};
+
+const feedbacks = {
+  q1: {
+    b: '✅ <strong>Correcto.</strong> Man y Lau (2000) definen la capacidad emprendedora en términos de actitudes, comportamientos y resultados, sin restringirla a la fundación de empresas. Un auditor interno que transforma los controles de su organización exhibe exactamente las «competencias de alto nivel» que la definición describe. Esta es la razón por la que el intraemprendimiento es una forma legítima y relevante de emprendimiento para contadores.',
+    err: '❌ <strong>Incorrecto.</strong> La opción correcta es B. La definición de Man y Lau (2000) no vincula la capacidad emprendedora a la cantidad de empresas fundadas ni la restringe a tipos específicos de impacto (social, ecológico o de mercado). Tampoco afirma que sea exclusivamente genética: los estudios de Nicolaou et al. (2008) mostraron que entre el 37-48% tiene origen genético, lo que implica que más del 50% es aprendible. La definición se centra en actitudes y comportamientos sin importar el entorno organizacional.'
+  },
+  q2: {
+    a: '✅ <strong>Correcto.</strong> En el escenario descrito, el factor A (actitud positiva) y el B (norma subjetiva favorable) ya están presentes. El único factor que frena la intención es C: el bajo control conductual percibido, es decir, la baja autoeficacia. Ajzen (1991) y Bandura (1997) demuestran que la autoeficacia es modificable a través de la exposición a modelos de rol, el dominio gradual de habilidades concretas y la experiencia de éxitos progresivos. Una educación emprendedora bien diseñada actúa exactamente sobre este factor.',
+    err: '❌ <strong>Incorrecto.</strong> La opción correcta es A. El estudiante declaró que su familia lo apoya (B ya está resuelto) y que valora emprender (A está resuelto). El único cuello de botella es C: la baja autoeficacia. Aunque los tres factores de Ajzen son interdependientes, sí tienen pesos diferentes en cada persona y en cada situación. La clave de diagnóstico está en leer cuidadosamente cuáles factores ya son favorables y cuál es el restrictivo.'
+  },
+  q3: {
+    b: '✅ <strong>Correcto.</strong> El intraemprendedor, por definición (Pinchot, 1985), no asume riesgo financiero personal: la empresa es quien invierte. Sin embargo, sí asume un riesgo real: el reputacional y político dentro de la organización. Si la iniciativa fracasa, puede perder la confianza de sus superiores, ser excluido de proyectos futuros o deteriorar sus relaciones con colegas que resistieron el cambio. Este riesgo, aunque invisible en el balance, es muy real para el desarrollo profesional del intraemprendedor.',
+    err: '❌ <strong>Incorrecto.</strong> La opción correcta es B. El intraemprendedor no asume riesgo financiero personal (eso lo distingue del emprendedor clásico), pero tampoco está exento de riesgo. Afirmar que no asume ningún riesgo (opción C) ignora la naturaleza política de las organizaciones. Afirmar que asume riesgo financiero directo (opción A) confunde al intraemprendedor con el emprendedor clásico. El riesgo de mercado (opción D) es institucional, no personal.'
+  },
+  q4: {
+    b: '✅ <strong>Correcto.</strong> Dees (1998) establece que en el emprendimiento social puro, el impacto social ES la métrica principal del éxito, y la sostenibilidad económica es un medio. En el caso descrito, la firma cobra tarifas de mercado y genera utilidades como objetivo primario: ese es un modelo de emprendimiento clásico. El 20% destinado a impacto social añade una dimensión social secundaria, creando un modelo híbrido —que en el contexto actual podría calificarse como empresa con propósito o B Corp— pero no lo convierte en emprendimiento social puro.',
+    err: '❌ <strong>Incorrecto.</strong> La opción correcta es B. Clasificar una iniciativa como emprendimiento social requiere que el impacto social sea la métrica principal del éxito (Dees, 1998), no una consecuencia secundaria de la rentabilidad. Sin embargo, tampoco es correcto descartarla como carente de valor social (opción C) o clasificarla solo como digital (opción D). Los modelos híbridos son cada vez más frecuentes y tienen su propia lógica académica.'
+  },
+  q5: {
+    b: '✅ <strong>Correcto.</strong> Esta es la respuesta más rigurosa porque aplica correctamente el test de conversión de idea a oportunidad. Una buena aplicación de los criterios de Timmons no concluye automáticamente que algo «es» o «no es» una oportunidad: evalúa qué falta por validar. En este caso, la existencia de soluciones similares ya disponibles (como recordatorios del propio portal SRI), la disposición real de pago de las pymes y el tamaño del mercado son variables que deben contrastarse antes de afirmar que es una oportunidad real.',
+    err: '❌ <strong>Incorrecto.</strong> La opción correcta es B. La opción A cae en el error de asumir que toda necesidad observable es automáticamente una oportunidad viable. La opción C aplica incorrectamente el principio de saturación global a un contexto local con características propias. La opción D hace una predicción tecnológica determinista que ignora la incertidumbre inherente a toda previsión tecnológica a 5+ años.'
+  },
+  q6: {
+    b: '✅ <strong>Correcto.</strong> Esta es exactamente la lógica de la fuente S2 de Drucker (1985): la brecha entre lo que «debería ser» (registros formales para acceder a crédito) y lo que «es» (registros informales por inaccesibilidad del servicio) revela una oportunidad de mercado. La solución emprendedora es diseñar un servicio que cierre esa brecha adaptándose a las particularidades del sector: precio accesible, metodología simplificada, lenguaje adecuado a las cooperativas de la EPS.',
+    err: '❌ <strong>Incorrecto.</strong> La opción correcta es B. La opción A comete un error de fatalismo estructural: muchos emprendedores sociales precisamente se especializan en resolver problemas que el sector público ha dejado sin resolver. La opción C propone una solución regulatoria (no emprendedora). La opción D confunde las fuentes de Drucker: S2 (incongruencia) y S7 (conocimiento nuevo) son distintas, y en este caso la incongruencia entre realidad y supuesto es el elemento central, no el conocimiento técnico nuevo.'
+  },
+  q7: {
+    b: '✅ <strong>Correcto.</strong> Esta es la posición más matizada y académicamente sólida. La afirmación del auditor senior contiene una verdad importante (el juicio profesional sigue siendo valioso) pero subestima el alcance del cambio. La IA no solo automatiza lo existente: reconfigura qué necesita juicio y qué no. El valor del auditor humano migra hacia tareas que la IA no puede hacer: validar los supuestos del modelo, interpretar anomalías en contexto, tomar decisiones éticas y comunicar resultados a stakeholders. Ignorar este desplazamiento de valor sería estratégicamente peligroso.',
+    err: '❌ <strong>Incorrecto.</strong> La opción correcta es B. La opción A cae en el optimismo pasivo que históricamente ha precedido a la obsolescencia de roles profesionales. La opción C exagera el alcance actual de la IA y confunde capacidades actuales con proyecciones especulativas. La opción D confunde el propósito del análisis STEEPV: precisamente su valor está en conectar las tendencias macro con las implicaciones para profesionales concretos.'
+  },
+  q8: {
+    b: '✅ <strong>Correcto.</strong> Corbett (2007) es explícito: la combinación de aprendizaje experiencial y conceptual produce más oportunidades de mayor calidad que cualquiera de los dos tipos por separado. El contador C tiene experiencia diversa (que genera patrones cognitivos ricos) y conocimiento actualizado (que le permite reconocer esos patrones dentro de marcos conceptuales). La sinergia entre ambos es lo que produce la capacidad superior de identificación de oportunidades que describe el autor.',
+    err: '❌ <strong>Incorrecto.</strong> La opción correcta es B. La experiencia sin actualización conceptual (opción A) produce sesgo de confirmación y puntos ciegos sobre tendencias emergentes. El conocimiento conceptual sin experiencia (opción C) puede identificar patrones teóricos pero falla al evaluar la viabilidad práctica. La opción D malinterpreta a Shane y Venkataraman: ellos reconocen que la información asimétrica importa, pero no afirman que las competencias individuales son irrelevantes; todo lo contrario.'
+  },
+  q9: {
+    b: '✅ <strong>Correcto.</strong> Esta es una oportunidad clásica de «ventaja del primer movimiento» en un mercado emergente. La brecha entre demanda creciente (empresas que necesitan reportar ESG por presión de inversores, socios internacionales o regulación anticipada) y oferta escasa (contadores ecuatorianos certificados en GRI/SASB) genera una ventaja competitiva real para quienes se especialicen ahora. Además, responde a la fuente S4 de Drucker: el cambio en la estructura de expectativas del mercado de auditoría global está llegando al contexto local.',
+    err: '❌ <strong>Incorrecto.</strong> La opción correcta es B. La opción A cae en el pesimismo estratégico: la globalización de servicios profesionales crea oportunidades para los locales especializados, no solo amenazas. La opción C hace una predicción tecnológica no respaldada empíricamente. La opción D aplica incorrectamente el criterio de Timmons: la demanda de ESG ya existe (inversores, mercados de exportación, bancos con criterios de sostenibilidad) aunque la regulación local aún no sea obligatoria.'
+  },
+  q10: {
+    b: '✅ <strong>Correcto.</strong> Ucbasaran et al. (2010) no afirman que los fracasos deben ser grandes ni que deben involucrar empresas reales: lo que importa es la calidad del procesamiento reflexivo de la experiencia de error. EntreComp (Bacigalupo et al., 2016) también articula esto como «aprendizaje reflexivo sobre la acción». El estudiante que registra, analiza y extrae lecciones de sus errores académicos está practicando exactamente la competencia que distingue al emprendedor en serie. El error no es el maestro: la reflexión sobre el error es el maestro.',
+    err: '❌ <strong>Incorrecto.</strong> La opción correcta es B. La opción A asume que la capacidad de aprendizaje del error es rígida e irreversible: esto contradice la premisa central del aprendizaje adulto y del marco EntreComp. La opción C malinterpreta a Ucbasaran: el mecanismo que estudian (reflexión sobre el fracaso) es transferible al contexto académico, aunque la escala sea diferente. La opción D propone conductas contraproducentes y éticamente cuestionables; el aprendizaje del error no requiere fracasos artificiales.'
+  }
+};
+
+let respuestasUsuario = {};
+let preguntasRespondidas = 0;
+
+function responder(elemento, preguntaId, letraSeleccionada) {
+  if (respuestasUsuario[preguntaId]) return; // ya respondida
+
+  const correcta = respuestasCorrectas[preguntaId];
+  const opciones = document.querySelectorAll(`#${preguntaId} .quiz-opcion`);
+  const fb = document.getElementById(`fb_${preguntaId}`);
+
+  // deshabilitar todas
+  opciones.forEach((op, i) => {
+    const letra = String.fromCharCode(97 + i);
+    if (letra === correcta) op.classList.add('correcta');
+    else if (letra === letraSeleccionada && letraSeleccionada !== correcta) op.classList.add('incorrecta');
+    op.onclick = null;
+    op.style.cursor = 'default';
+  });
+
+  const esCorrecta = letraSeleccionada === correcta;
+  respuestasUsuario[preguntaId] = esCorrecta;
+  preguntasRespondidas++;
+
+  fb.className = `quiz-feedback show ${esCorrecta ? 'correcto' : 'incorrecto'}`;
+  fb.innerHTML = `<div class="feedback-titulo">${esCorrecta ? '✅ ¡Respuesta correcta!' : '❌ Respuesta incorrecta'}</div>` +
+    (esCorrecta ? feedbacks[preguntaId].b : feedbacks[preguntaId].err);
+
+  if (preguntasRespondidas === 10) {
+    setTimeout(mostrarResultado, 800);
+  }
+}
+
+function mostrarResultado() {
+  const aciertos = Object.values(respuestasUsuario).filter(Boolean).length;
+  const resultDiv = document.getElementById('quizResultado');
+  resultDiv.classList.add('show');
+  document.getElementById('scoreNum').textContent = `${aciertos}/10`;
+
+  let label, msg;
+  if (aciertos >= 9) { label = '¡Desempeño excepcional!'; msg = 'Dominas con profundidad los conceptos de la Semana 4. Tu capacidad de análisis aplicado demuestra que estás desarrollando genuinamente una mentalidad emprendedora como profesional contable.'; }
+  else if (aciertos >= 7) { label = '¡Buen desempeño!'; msg = 'Comprendes la mayoría de los conceptos. Revisa las preguntas en las que cometiste errores: cada feedback contiene la clave del razonamiento que debes consolidar.'; }
+  else if (aciertos >= 5) { label = 'Desempeño aceptable'; msg = 'Hay conceptos que requieren refuerzo. Te recomendamos releer las pestañas correspondientes a las preguntas que no respondiste correctamente antes de avanzar a la Semana 5.'; }
+  else { label = 'Necesitas reforzar'; msg = 'El resultado indica que algunos conceptos centrales no están aún consolidados. Vuelve a las pestañas teóricas con tiempo, sin prisa, y vuelve a intentar el cuestionario.'; }
+
+  document.getElementById('scoreLabel').textContent = label;
+  document.getElementById('scoreMsg').textContent = msg;
+  resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function reiniciarQuiz() {
+  respuestasUsuario = {};
+  preguntasRespondidas = 0;
+
+  document.querySelectorAll('.quiz-opcion').forEach(op => {
+    op.classList.remove('correcta', 'incorrecta');
+    op.style.cursor = 'pointer';
+  });
+  document.querySelectorAll('.quiz-feedback').forEach(fb => fb.className = 'quiz-feedback');
+  document.getElementById('quizResultado').classList.remove('show');
+
+  // re-asignar handlers
+  const preguntas = ['q1','q2','q3','q4','q5','q6','q7','q8','q9','q10'];
+  preguntas.forEach(qid => {
+    document.querySelectorAll(`#${qid} .quiz-opcion`).forEach((op, i) => {
+      const letra = String.fromCharCode(97 + i);
+      op.onclick = () => responder(op, qid, letra);
+    });
+  });
+}
+</script>
+</body>
+</html>
