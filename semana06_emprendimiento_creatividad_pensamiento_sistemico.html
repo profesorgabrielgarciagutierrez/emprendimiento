@@ -1,0 +1,1851 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 06 | Emprendimiento e Innovación | U. Guayaquil</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #222;
+    background: #f4f6f9;
+    min-height: 100vh;
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    background: #003366;
+    color: #fff;
+    padding: 20px 28px 16px;
+  }
+  .header-top {
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    opacity: 0.85;
+    margin-bottom: 6px;
+  }
+  .header h1 {
+    font-family: 'Lora', serif;
+    font-size: clamp(1.2rem, 3vw, 1.7rem);
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .header-meta {
+    font-size: 13px;
+    opacity: 0.8;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .header-meta span {
+    background: rgba(255,255,255,0.15);
+    padding: 2px 10px;
+    border-radius: 20px;
+  }
+
+  /* ===== TAB NAV ===== */
+  .tab-nav-wrapper {
+    background: #87CEEB;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-bottom: 3px solid #5aade3;
+    scrollbar-width: thin;
+    scrollbar-color: #5aade3 #87CEEB;
+  }
+  .tab-nav-wrapper::-webkit-scrollbar { height: 5px; }
+  .tab-nav-wrapper::-webkit-scrollbar-track { background: #87CEEB; }
+  .tab-nav-wrapper::-webkit-scrollbar-thumb { background: #5aade3; border-radius: 4px; }
+  .tab-nav {
+    display: inline-flex;
+    padding: 0 8px;
+    min-width: 100%;
+  }
+  .tab-btn {
+    display: inline-block;
+    padding: 12px 16px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #111;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s, color 0.2s;
+    margin-bottom: -3px;
+    letter-spacing: 0.2px;
+  }
+  .tab-btn:hover { background: rgba(255,255,255,0.5); }
+  .tab-btn.active {
+    background: #fff;
+    color: #003366;
+    font-weight: 700;
+    border-bottom: 3px solid #fff;
+  }
+
+  /* ===== CONTENT AREA ===== */
+  .tab-content { display: none; padding: 28px 24px; max-width: 900px; margin: 0 auto; }
+  .tab-content.active { display: block; }
+
+  /* ===== TYPOGRAPHY ===== */
+  h2 {
+    font-family: 'Lora', serif;
+    font-size: 1.5rem;
+    color: #003366;
+    margin-bottom: 16px;
+    border-left: 5px solid #87CEEB;
+    padding-left: 12px;
+  }
+  h3 {
+    font-family: 'Lora', serif;
+    font-size: 1.15rem;
+    color: #003366;
+    margin: 20px 0 10px;
+  }
+  p { margin-bottom: 14px; }
+  ul, ol { margin: 10px 0 14px 22px; }
+  li { margin-bottom: 6px; }
+  strong { color: #003366; }
+
+  /* ===== BOXES ===== */
+  .concept-box {
+    border-left: 5px solid #003366;
+    background: #f0f4ff;
+    padding: 16px 18px;
+    margin: 18px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .concept-box .box-title {
+    font-family: 'Lora', serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #003366;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .example-box {
+    background: #e3f2fd;
+    border: 1px solid #90caf9;
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin: 18px 0;
+  }
+  .example-box .box-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #1565c0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .key-idea {
+    background: #003366;
+    color: #fff;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 20px 0;
+  }
+  .key-idea .box-title {
+    font-family: 'Lora', serif;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    opacity: 0.75;
+    margin-bottom: 6px;
+  }
+  .key-idea p { margin: 0; font-size: 1rem; }
+  .highlight-box {
+    background: linear-gradient(135deg, #fff9e6, #fff3cc);
+    border: 1px solid #f0c040;
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin: 18px 0;
+  }
+  .highlight-box .box-title {
+    color: #8a6200;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+
+  /* ===== TABLE ===== */
+  .styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0;
+    font-size: 14.5px;
+  }
+  .styled-table th {
+    background: #003366;
+    color: #fff;
+    padding: 10px 14px;
+    text-align: left;
+    font-family: 'Lora', serif;
+  }
+  .styled-table td { padding: 9px 14px; border-bottom: 1px solid #dde3f0; }
+  .styled-table tr:nth-child(even) td { background: #f0f4ff; }
+  .styled-table tr:hover td { background: #dce8ff; }
+
+  /* ===== STEP CARDS ===== */
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin: 18px 0;
+  }
+  .step-card {
+    background: #fff;
+    border: 1px solid #c3d4f0;
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,51,102,0.07);
+  }
+  .step-num {
+    width: 36px; height: 36px;
+    background: #003366;
+    color: #fff;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 1rem;
+    margin: 0 auto 10px;
+  }
+  .step-card h4 { font-size: 0.95rem; color: #003366; margin-bottom: 6px; }
+  .step-card p { font-size: 0.88rem; margin: 0; }
+
+  /* ===== TOOL CARDS ===== */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin: 18px 0;
+  }
+  .tool-card {
+    background: #fff;
+    border: 1px solid #c3d4f0;
+    border-top: 4px solid #003366;
+    border-radius: 8px;
+    padding: 18px 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .tool-card h4 { font-family: 'Lora', serif; color: #003366; font-size: 1rem; margin-bottom: 8px; }
+  .tool-card p { font-size: 0.88rem; margin: 0 0 8px; }
+  .tool-tag {
+    display: inline-block;
+    background: #e3f2fd;
+    color: #1565c0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 20px;
+  }
+
+  /* ===== INTERACTIVE EXERCISE ===== */
+  .exercise-container { margin-top: 10px; }
+  .exercise-item {
+    background: #fff;
+    border: 1px solid #c3d4f0;
+    border-radius: 10px;
+    padding: 18px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  }
+  .exercise-item .item-question {
+    font-weight: 600;
+    color: #003366;
+    margin-bottom: 12px;
+    font-size: 0.97rem;
+  }
+  .exercise-item .item-num {
+    display: inline-block;
+    background: #003366;
+    color: #fff;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 26px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  .match-options { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .match-btn {
+    padding: 7px 14px;
+    border: 2px solid #87CEEB;
+    background: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    font-family: 'Source Sans 3', sans-serif;
+  }
+  .match-btn:hover { background: #e3f2fd; border-color: #5aade3; }
+  .match-btn.selected { background: #003366; color: #fff; border-color: #003366; }
+  .select-dropdown {
+    padding: 8px 12px;
+    border: 2px solid #87CEEB;
+    border-radius: 8px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.93rem;
+    color: #222;
+    width: 100%;
+    max-width: 400px;
+    background: #fff;
+    cursor: pointer;
+  }
+  .select-dropdown:focus { outline: none; border-color: #003366; }
+  .item-feedback {
+    display: none;
+    margin-top: 10px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+  }
+  .item-feedback.correct { background: #e8f5e9; border: 1px solid #66bb6a; color: #1b5e20; }
+  .item-feedback.incorrect { background: #ffebee; border: 1px solid #ef9a9a; color: #b71c1c; }
+
+  /* ===== QUIZ ===== */
+  .quiz-item {
+    background: #fff;
+    border: 1px solid #c3d4f0;
+    border-radius: 10px;
+    padding: 18px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  }
+  .quiz-item .q-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .q-num {
+    min-width: 28px; height: 28px;
+    background: #003366;
+    color: #fff;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .badge-teoria { background: #e3f2fd; color: #1565c0; }
+  .badge-analisis { background: #fce4ec; color: #880e4f; }
+  .q-text { font-weight: 600; color: #222; font-size: 0.95rem; }
+  .q-options { display: flex; flex-direction: column; gap: 8px; }
+  .q-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 14px;
+    border: 2px solid #dde3f0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.93rem;
+  }
+  .q-option:hover { border-color: #87CEEB; background: #f0f8ff; }
+  .q-option.selected { border-color: #003366; background: #e8f0fe; }
+  .q-option input[type="radio"] { margin-top: 2px; flex-shrink: 0; accent-color: #003366; }
+  .q-option.correct-ans { border-color: #43a047; background: #e8f5e9; }
+  .q-option.wrong-ans { border-color: #e53935; background: #ffebee; }
+  .q-explanation {
+    display: none;
+    margin-top: 10px;
+    padding: 10px 14px;
+    background: #f0f4ff;
+    border-left: 4px solid #003366;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.88rem;
+  }
+
+  /* ===== SCORE PANEL ===== */
+  .score-panel {
+    display: none;
+    background: #fff;
+    border: 2px solid #003366;
+    border-radius: 12px;
+    padding: 24px;
+    margin-top: 20px;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(0,51,102,0.12);
+  }
+  .score-emoji { font-size: 3rem; margin-bottom: 8px; }
+  .score-main { font-family: 'Lora', serif; font-size: 2rem; color: #003366; font-weight: 700; }
+  .score-percent { font-size: 1.1rem; color: #555; margin: 4px 0 14px; }
+  .progress-bar-container {
+    background: #dde3f0;
+    border-radius: 20px;
+    height: 16px;
+    overflow: hidden;
+    margin: 12px 0 16px;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #003366, #87CEEB);
+    border-radius: 20px;
+    width: 0%;
+    transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+  }
+  .score-msg {
+    font-size: 1rem;
+    color: #333;
+    font-style: italic;
+    margin-bottom: 14px;
+  }
+
+  /* ===== BUTTONS ===== */
+  .btn-primary {
+    background: #003366;
+    color: #fff;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+    transition: background 0.2s, transform 0.1s;
+    display: inline-block;
+    margin-top: 10px;
+  }
+  .btn-primary:hover { background: #004a99; transform: translateY(-1px); }
+  .btn-secondary {
+    background: #87CEEB;
+    color: #003366;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+    transition: background 0.2s;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+  .btn-secondary:hover { background: #5aade3; }
+  .btn-row { margin-top: 20px; text-align: center; }
+
+  /* ===== AI ACTIVITY ===== */
+  .ai-prompt-box {
+    background: #1a1a2e;
+    color: #e0e0e0;
+    border-radius: 10px;
+    padding: 20px 22px;
+    margin: 18px 0;
+    font-family: 'Source Sans 3', monospace;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    border-left: 4px solid #87CEEB;
+  }
+  .ai-steps { counter-reset: ai-step; margin: 14px 0; }
+  .ai-step {
+    counter-increment: ai-step;
+    padding: 12px 16px 12px 48px;
+    margin-bottom: 10px;
+    background: #fff;
+    border: 1px solid #c3d4f0;
+    border-radius: 8px;
+    position: relative;
+    font-size: 0.93rem;
+  }
+  .ai-step::before {
+    content: counter(ai-step);
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px; height: 24px;
+    background: #003366;
+    color: #fff;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 24px;
+    text-align: center;
+  }
+
+  /* ===== REFLECTION ===== */
+  .reflection-card {
+    background: #fff;
+    border: 1px solid #c3d4f0;
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    border-left: 5px solid #87CEEB;
+  }
+  .reflection-card .r-num {
+    font-weight: 700;
+    color: #003366;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .reflection-card p { margin: 0; font-size: 0.97rem; }
+
+  /* ===== BIBLIOGRAPHY ===== */
+  .ref-card {
+    background: #fff;
+    border: 1px solid #c3d4f0;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .ref-card .ref-authors { font-weight: 700; color: #003366; font-size: 0.92rem; }
+  .ref-card .ref-year { color: #555; font-size: 0.92rem; }
+  .ref-card .ref-title { font-style: italic; font-size: 0.92rem; }
+  .ref-card .ref-source { font-size: 0.88rem; color: #666; margin-top: 4px; }
+  .ref-note {
+    background: #fff9e6;
+    border: 1px solid #f0c040;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 0.88rem;
+    color: #5a4000;
+    margin-top: 16px;
+  }
+
+  /* ===== ALERT ===== */
+  .alert-box {
+    display: none;
+    background: #fff3e0;
+    border: 1px solid #ffb74d;
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: #e65100;
+    font-weight: 600;
+    margin-top: 10px;
+    font-size: 0.93rem;
+  }
+
+  /* ===== CAUSAL LOOP VISUAL ===== */
+  .loop-visual {
+    background: #f0f4ff;
+    border: 1px solid #c3d4f0;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 18px 0;
+    text-align: center;
+  }
+  .loop-nodes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin: 12px 0;
+  }
+  .loop-node {
+    background: #003366;
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 30px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    position: relative;
+  }
+  .loop-arrow {
+    color: #003366;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+  }
+
+  /* ===== DIVIDER ===== */
+  .divider { border: none; border-top: 2px solid #e3eaf5; margin: 24px 0; }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .tab-content { padding: 18px 14px; }
+    h2 { font-size: 1.2rem; }
+    .steps-grid, .tools-grid { grid-template-columns: 1fr; }
+    .styled-table { font-size: 13px; }
+    .btn-primary, .btn-secondary { width: 100%; margin: 6px 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="header">
+  <div class="header-top">Universidad de Guayaquil · Facultad de Ciencias Administrativas · Carrera en Contabilidad y Auditoría</div>
+  <h1>Emprendimiento e Innovación</h1>
+  <div class="header-meta">
+    <span>📅 Semana 06</span>
+    <span>📚 Unidad 2: Creatividad, Innovación y Metodologías Innovadoras</span>
+    <span>🎯 Tema: Herramientas de Creatividad y Pensamiento Sistémico</span>
+  </div>
+</header>
+
+<!-- ===== TAB NAV ===== -->
+<nav class="tab-nav-wrapper" role="navigation" aria-label="Menú de pestañas">
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="showTab('repaso')">📖 Repaso</button>
+    <button class="tab-btn" onclick="showTab('t1')">1. Creatividad como Sistema</button>
+    <button class="tab-btn" onclick="showTab('t2')">2. Herramientas de Creatividad</button>
+    <button class="tab-btn" onclick="showTab('t3')">3. Pensamiento Sistémico</button>
+    <button class="tab-btn" onclick="showTab('t4')">4. Herramientas Sistémicas</button>
+    <button class="tab-btn" onclick="showTab('t5')">5. Creatividad + Sistema en Acción</button>
+    <button class="tab-btn" onclick="showTab('ejercicio')">6. Ejercicio Interactivo</button>
+    <button class="tab-btn" onclick="showTab('cuestionario')">7. Cuestionario</button>
+    <button class="tab-btn" onclick="showTab('ia')">8. Actividad con IA</button>
+    <button class="tab-btn" onclick="showTab('reflexion')">9. Reflexión Personal</button>
+    <button class="tab-btn" onclick="showTab('biblio')">10. Bibliografía</button>
+  </div>
+</nav>
+
+<!-- ===== TAB: REPASO ===== -->
+<section id="tab-repaso" class="tab-content active">
+  <h2>📖 Repaso de Semanas Anteriores</h2>
+  <p>Antes de avanzar al nuevo contenido, revisemos el camino recorrido hasta aquí. Este repaso te ayuda a conectar lo aprendido con los temas de esta semana.</p>
+
+  <div class="concept-box">
+    <div class="box-title">Semanas 1 y 2 — Fundamentos del Emprendimiento</div>
+    <p>Exploramos qué es el emprendimiento desde sus raíces históricas (Cantillon, Say, Schumpeter) y construimos una definición propia: el emprendedor es quien <strong>detecta oportunidades</strong> donde otros ven problemas y asume riesgos calculados para crear valor. Identificamos los tipos de emprendedor (por necesidad, por oportunidad, corporativo, social) y realizamos un cuestionario de autoperfil para reconocer nuestras fortalezas emprendedoras personales.</p>
+  </div>
+
+  <div class="concept-box">
+    <div class="box-title">Semana 3 — El Ecosistema Emprendedor</div>
+    <p>Analizamos el ecosistema global y ecuatoriano del emprendimiento: el rol de las incubadoras, aceleradoras, el Estado, la universidad y la familia. Usamos datos del <strong>GEM Ecuador</strong> para entender la realidad local. Completamos un Canvas básico donde identificamos propuesta de valor, segmento de clientes y canales, herramienta que volveremos a usar más adelante.</p>
+  </div>
+
+  <div class="concept-box">
+    <div class="box-title">Semanas 4 y 5 — Capacidad Emprendedora e Identificación de Oportunidades</div>
+    <p>Profundizamos en la <strong>capacidad emprendedora</strong>: las competencias clave (resiliencia, tolerancia a la ambigüedad, orientación al logro) y cómo estas se desarrollan. Aprendimos a <strong>identificar oportunidades</strong> usando análisis de tendencias (PESTEL, Google Trends), observación del entorno y la teoría de "empleos por hacer" (<em>Jobs to be Done</em>) de Christensen. Descubrimos que la oportunidad no se inventa: se detecta con atención y método.</p>
+  </div>
+
+  <div class="key-idea">
+    <div class="box-title">🔗 CONEXIÓN CON LA SEMANA 06</div>
+    <p>Ahora que sabemos reconocer oportunidades, la pregunta es: <strong>¿cómo generamos ideas de calidad para aprovecharlas?</strong> Y más importante aún: ¿cómo entendemos el sistema completo en el que esa idea operará, con sus causas y consecuencias? Eso es exactamente lo que vamos a aprender esta semana: <strong>herramientas de creatividad estructurada y pensamiento sistémico</strong>.</p>
+  </div>
+
+  <div class="highlight-box">
+    <div class="box-title">💡 Antes de continuar, ten presente esto</div>
+    <p>Esta semana combina <strong>dos habilidades que parecen opuestas pero son complementarias:</strong> la creatividad (que amplía posibilidades) y el pensamiento sistémico (que comprende cómo esas posibilidades interactúan con la realidad). Un emprendedor que solo crea ideas sin entender el sistema fracasa; uno que solo analiza el sistema sin generar ideas se paraliza. La maestría está en dominar ambas.</p>
+  </div>
+</section>
+
+<!-- ===== TAB: TEMA 1 ===== -->
+<section id="tab-t1" class="tab-content">
+  <h2>1. La Creatividad como Proceso Estructurado</h2>
+
+  <p>Cuando hablamos de creatividad en el contexto del emprendimiento, muchos estudiantes piensan en artistas o personas "especialmente dotadas". Esta idea es un mito que debemos desmantelar desde el inicio.</p>
+
+  <div class="concept-box">
+    <div class="box-title">Definición: ¿Qué es la Creatividad?</div>
+    <p>La creatividad es la <strong>capacidad cognitiva y social de generar ideas, soluciones o conexiones que son a la vez novedosas y útiles</strong> en un contexto determinado. Esta definición proviene de investigaciones de Amabile (1988) y Csikszentmihalyi (1996), dos de los investigadores más reconocidos del campo.</p>
+    <p>Nótese que la creatividad tiene dos componentes inseparables: <strong>novedad</strong> (algo diferente a lo existente) y <strong>utilidad</strong> (que sirve para algo concreto). Una idea que es novedosa pero inútil no es emprendedoramente creativa; una idea útil pero no novedosa tampoco genera ventaja competitiva.</p>
+  </div>
+
+  <h3>¿Por qué la creatividad NO es exclusiva de ciertos talentos?</h3>
+  <p>La neurociencia moderna ha demostrado que la creatividad involucra procesos cognitivos que <strong>todos los seres humanos poseen</strong>. El cerebro crea nuevas conexiones neuronales constantemente cuando se expone a información nueva, se hace preguntas o enfrenta problemas. La creatividad es, en gran medida, <strong>un hábito y una habilidad que se entrena</strong>.</p>
+
+  <div class="styled-table-wrapper" style="overflow-x:auto;">
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>Mito sobre la Creatividad</th>
+          <th>Realidad Científica</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>"Se nace creativo o no."</td>
+          <td>La creatividad se desarrolla con práctica, estímulo y métodos adecuados (Sawyer, 2012).</td>
+        </tr>
+        <tr>
+          <td>"La inspiración llega sola."</td>
+          <td>La mayoría de las grandes ideas resultan de procesos sistemáticos de exploración (Edison: "Genius is 1% inspiration, 99% perspiration").</td>
+        </tr>
+        <tr>
+          <td>"Solo los artistas son creativos."</td>
+          <td>La creatividad es necesaria en ingeniería, contabilidad, educación y cualquier campo que enfrente problemas.</td>
+        </tr>
+        <tr>
+          <td>"Necesito condiciones perfectas para crear."</td>
+          <td>Las restricciones (de tiempo, recursos) frecuentemente estimulan la creatividad al forzar nuevas conexiones.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>El Proceso Creativo: Modelo de Wallas (1926)</h3>
+  <p>Graham Wallas, psicólogo británico, describió en 1926 un modelo de cuatro etapas del proceso creativo que sigue siendo válido y reconocido hoy:</p>
+
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <h4>Preparación</h4>
+      <p>Se recopila información, se estudia el problema, se formulan preguntas. Es el momento del esfuerzo consciente.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <h4>Incubación</h4>
+      <p>El problema "descansa" en el inconsciente. El cerebro sigue trabajando sin que lo notemos. Se recomienda hacer pausas, dormir, caminar.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <h4>Iluminación</h4>
+      <p>El momento "¡ajá!": la idea aparece de manera repentina. Es el resultado de todo el trabajo previo, no de la casualidad.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">4</div>
+      <h4>Verificación</h4>
+      <p>Se evalúa, prueba y refina la idea. No toda iluminación resulta en una solución válida; esta etapa filtra y mejora.</p>
+    </div>
+  </div>
+
+  <div class="example-box">
+    <div class="box-title">📍 Ejemplo Ecuatoriano: Datil y el proceso creativo</div>
+    <p><strong>Datil</strong> es una empresa ecuatoriana de software de facturación electrónica creada en Guayaquil. Sus fundadores no "inventaron" la facturación electrónica de la nada: primero <em>estudiaron profundamente</em> el sistema tributario ecuatoriano y el SRI (etapa de preparación), luego experimentaron con distintas soluciones técnicas (incubación), llegaron a la idea de una plataforma en la nube accesible para PYMES (iluminación), y finalmente lanzaron, fallaron en versiones tempranas y refinaron hasta el producto actual (verificación). Hoy atienden a miles de empresas en Ecuador y la región.</p>
+    <p>Lo relevante para tu formación como contador o auditor: <strong>Datil resolvió un problema de cumplimiento tributario</strong>, que es exactamente el campo de tu carrera. La creatividad no fue artística; fue técnica y aplicada a la realidad fiscal ecuatoriana.</p>
+  </div>
+
+  <h3>Creatividad Individual vs. Creatividad Colectiva</h3>
+  <p>La investigación en innovación empresarial muestra que la creatividad colectiva — la que emerge de equipos diversos con roles diferenciados — suele producir mejores resultados que la creatividad individual. Por ello, las herramientas que estudiaremos en la próxima pestaña están diseñadas para activar la creatividad tanto de manera individual como grupal.</p>
+
+  <div class="key-idea">
+    <div class="box-title">💡 IDEA CLAVE</div>
+    <p>La creatividad emprendedora no es un don mistioso: es un proceso con etapas identificables que se puede practicar, estructurar y mejorar. Como futuro contador o auditor, tu creatividad no estará en el arte, sino en encontrar <strong>soluciones originales a problemas de gestión, cumplimiento, riesgo y valor</strong>. Eso también es crear.</p>
+  </div>
+</section>
+
+<!-- ===== TAB: TEMA 2 ===== -->
+<section id="tab-t2" class="tab-content">
+  <h2>2. Herramientas de Creatividad para Emprendedores</h2>
+  <p>Existen decenas de técnicas de creatividad. En esta sección te presentamos las más utilizadas, validadas y aplicables al contexto del emprendimiento, especialmente para estudiantes de contabilidad y auditoría que deben resolver problemas con rigor y método.</p>
+
+  <div class="concept-box">
+    <div class="box-title">¿Por qué usar herramientas de creatividad?</div>
+    <p>Las herramientas de creatividad son <strong>métodos estructurados que facilitan la generación de ideas rompiendo patrones de pensamiento habituales</strong>. Nuestro cerebro tiende a resolver problemas usando las mismas rutas cognitivas de siempre. Las herramientas interrumpen esos caminos y fuerzan conexiones nuevas. Su uso no elimina la creatividad natural; la amplifica y la hace más productiva.</p>
+  </div>
+
+  <!-- TOOL 1: BRAINSTORMING -->
+  <h3>🧠 Herramienta 1: Brainstorming (Tormenta de Ideas)</h3>
+  <p>Desarrollada por Alex Osborn en 1939, es la técnica de generación de ideas más conocida del mundo. Su principio central es la <strong>separación entre generación y evaluación</strong>: primero se producen ideas sin juzgarlas, luego se analizan.</p>
+
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">R1</div>
+      <h4>Ninguna crítica</h4>
+      <p>No se evalúa ninguna idea durante la fase de generación. El juicio mata la creatividad.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">R2</div>
+      <h4>Libertad total</h4>
+      <p>Cualquier idea es bienvenida, incluso las que parecen absurdas o imposibles.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">R3</div>
+      <h4>Cantidad primero</h4>
+      <p>A más ideas, mayor probabilidad de que alguna sea buena o inspire una aún mejor.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">R4</div>
+      <h4>Construcción mutua</h4>
+      <p>Las ideas de otros se pueden mejorar o combinar. "¿Y si además añadimos...?"</p>
+    </div>
+  </div>
+
+  <div class="example-box">
+    <div class="box-title">📍 Aplicación Contable: Brainstorming en un estudio de auditoría</div>
+    <p>Un equipo de auditores en Quito necesita identificar posibles riesgos de fraude en los estados financieros de una empresa importadora. En lugar de seguir solo la lista estándar de procedimientos, realizan un brainstorming de 20 minutos donde cualquier riesgo puede nombrarse, sin importar lo improbable que parezca. El resultado: identifican un esquema de doble facturación en importaciones que el procedimiento estándar no habría detectado. La creatividad al servicio del control.</p>
+  </div>
+
+  <!-- TOOL 2: SCAMPER -->
+  <h3>🔧 Herramienta 2: SCAMPER</h3>
+  <p>SCAMPER es un acrónimo creado por Bob Eberle (1971) que propone siete tipos de transformaciones que se pueden aplicar a cualquier producto, servicio o proceso para innovarlo. Es especialmente útil cuando ya existe algo que se quiere mejorar, no crear desde cero.</p>
+
+  <div class="styled-table-wrapper" style="overflow-x:auto;">
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>Letra</th>
+          <th>Acción</th>
+          <th>Pregunta clave</th>
+          <th>Ejemplo aplicado a auditoría</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>S</strong></td><td>Sustituir</td><td>¿Qué puedo reemplazar?</td><td>¿Qué si sustituimos los informes escritos por dashboards interactivos?</td></tr>
+        <tr><td><strong>C</strong></td><td>Combinar</td><td>¿Qué puedo unir?</td><td>¿Y si combinamos la auditoría financiera con la auditoría ambiental?</td></tr>
+        <tr><td><strong>A</strong></td><td>Adaptar</td><td>¿Qué puedo tomar de otro contexto?</td><td>¿Cómo adaptar el análisis de datos de marketing al análisis de riesgo contable?</td></tr>
+        <tr><td><strong>M</strong></td><td>Modificar / Magnificar</td><td>¿Qué puedo cambiar en tamaño, forma, frecuencia?</td><td>¿Qué si hacemos auditorías continuas (en tiempo real) en lugar de anuales?</td></tr>
+        <tr><td><strong>P</strong></td><td>Poner en otros usos</td><td>¿Qué otros usos tiene esto?</td><td>¿Los datos de nómina podrían usarse para detectar patrones de comportamiento sospechoso?</td></tr>
+        <tr><td><strong>E</strong></td><td>Eliminar</td><td>¿Qué puedo quitar sin perder valor?</td><td>¿Qué procedimientos de auditoría son obsoletos hoy con herramientas digitales?</td></tr>
+        <tr><td><strong>R</strong></td><td>Reorganizar / Invertir</td><td>¿Qué pasa si invierto el orden?</td><td>¿Y si en lugar de auditar al final del período, el auditor trabaja junto al equipo contable desde el inicio?</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- TOOL 3: MAPA MENTAL -->
+  <h3>🗺️ Herramienta 3: Mapa Mental</h3>
+  <p>Desarrollado por Tony Buzan en los años 70, el <strong>mapa mental</strong> es una herramienta de representación visual del pensamiento que parte de un concepto central y se ramifica en ideas relacionadas. A diferencia de los apuntes lineales, refleja cómo el cerebro realmente asocia información: de manera radial, no secuencial.</p>
+  <p><strong>Cómo funciona:</strong></p>
+  <ol>
+    <li>Se escribe el problema o tema central en el centro de la hoja.</li>
+    <li>Se trazan ramas principales para cada categoría de ideas.</li>
+    <li>De cada rama principal salen sub-ramas con detalles.</li>
+    <li>Se usan colores, imágenes y palabras clave (no frases largas).</li>
+  </ol>
+
+  <div class="example-box">
+    <div class="box-title">📍 Ejemplo: Mapa Mental para una firma contable nueva en Ecuador</div>
+    <p>Un contador recién graduado en Guayaquil quiere crear su propia firma de servicios contables. Usa un mapa mental con "Mi Firma Contable" al centro y ramas como: <em>Servicios</em> (declaraciones, auditorías, nómina, asesoría tributaria); <em>Clientes</em> (PYMES, personas naturales, ONG); <em>Diferenciadores</em> (100% digital, precios accesibles, soporte WhatsApp); <em>Costos</em> (software, oficina, marketing); <em>Alianzas</em> (abogados, bancos, SRI). El mapa mental le permite ver el negocio completo de un solo vistazo y descubrir conexiones que no habría notado en un documento lineal.</p>
+  </div>
+
+  <!-- TOOL 4: PENSAMIENTO LATERAL -->
+  <h3>🔄 Herramienta 4: Pensamiento Lateral (De Bono)</h3>
+  <p>El médico y psicólogo maltés Edward de Bono acuñó el término <strong>pensamiento lateral</strong> (<em>lateral thinking</em>) en 1967 para describir un modo de razonamiento que <em>evita los caminos lógicos habituales</em> para llegar a soluciones inesperadas. El pensamiento vertical (lógico, secuencial) es necesario; el pensamiento lateral lo complementa buscando rutas alternativas al problema.</p>
+
+  <div class="concept-box">
+    <div class="box-title">Técnica práctica: Los Seis Sombreros para Pensar</div>
+    <p>De Bono diseñó esta técnica para que equipos de trabajo analicen un problema desde seis perspectivas simultáneas, representadas por sombreros de colores:</p>
+    <ul>
+      <li>🎩 <strong>Blanco:</strong> Datos y hechos objetivos. ¿Qué sabemos con certeza?</li>
+      <li>🎩 <strong>Rojo:</strong> Emociones e intuición. ¿Cómo nos sentimos con esto?</li>
+      <li>🎩 <strong>Negro:</strong> Pensamiento crítico. ¿Qué puede fallar? ¿Cuáles son los riesgos?</li>
+      <li>🎩 <strong>Amarillo:</strong> Optimismo y valor. ¿Cuáles son los beneficios?</li>
+      <li>🎩 <strong>Verde:</strong> Creatividad y alternativas. ¿Qué otras opciones existen?</li>
+      <li>🎩 <strong>Azul:</strong> Gestión del proceso. ¿Cómo organizamos el pensamiento del grupo?</li>
+    </ul>
+    <p>En una reunión de negocio, si todos hablan desde el mismo "sombrero" (por ejemplo, todos critican o todos son optimistas), el análisis es incompleto. Esta técnica estructura la conversación para que cada perspectiva tenga espacio.</p>
+  </div>
+
+  <div class="key-idea">
+    <div class="box-title">💡 IDEA CLAVE</div>
+    <p>Las herramientas de creatividad no son "juegos" ni actividades menores. Son <strong>metodologías probadas que las empresas más innovadoras del mundo usan sistemáticamente</strong>: desde startups tecnológicas hasta grandes estudios de auditoría. Dominarlas te convierte en un profesional más completo y competitivo.</p>
+  </div>
+</section>
+
+<!-- ===== TAB: TEMA 3 ===== -->
+<section id="tab-t3" class="tab-content">
+  <h2>3. Pensamiento Sistémico: Ver el Todo, No Solo las Partes</h2>
+
+  <p>Imagina que una empresa tiene problemas de liquidez. Un enfoque tradicional busca el error en el área de finanzas. Un emprendedor con pensamiento sistémico pregunta: ¿es el problema realmente de finanzas, o es que ventas está prometiendo descuentos excesivos, lo cual reduce márgenes, lo cual afecta el flujo de caja? El pensamiento sistémico permite ver estas conexiones invisibles.</p>
+
+  <div class="concept-box">
+    <div class="box-title">Definición: ¿Qué es el Pensamiento Sistémico?</div>
+    <p>El pensamiento sistémico es una <strong>disciplina intelectual y un conjunto de herramientas para comprender cómo los elementos de un sistema interactúan, se influyen mutuamente y generan comportamientos emergentes que no pueden predecirse estudiando las partes de forma aislada</strong>.</p>
+    <p>Fue formalizado por el ingeniero Jay Forrester en el MIT en los años 50-60, y popularizado masivamente por Peter Senge en su libro <em>La Quinta Disciplina</em> (1990), texto fundamental en administración de empresas.</p>
+  </div>
+
+  <h3>¿Qué es un Sistema?</h3>
+  <p>Un <strong>sistema</strong> es un conjunto de elementos interconectados que funcionan juntos para lograr un propósito. Los sistemas tienen características que los hacen distintos a simples colecciones de partes:</p>
+
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">①</div>
+      <h4>Interconexión</h4>
+      <p>Los elementos se relacionan entre sí. Cambiar uno afecta a los demás.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">②</div>
+      <h4>Emergencia</h4>
+      <p>El sistema tiene propiedades que ninguna parte tiene por sí sola. El todo es más que la suma de las partes.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">③</div>
+      <h4>Retroalimentación</h4>
+      <p>Los resultados del sistema regresan e influyen en su propio funcionamiento (loops de retroalimentación).</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">④</div>
+      <h4>Propósito</h4>
+      <p>Todo sistema tiene una función o resultado hacia el que tiende, aunque no siempre el deseado.</p>
+    </div>
+  </div>
+
+  <h3>Pensamiento Lineal vs. Pensamiento Sistémico</h3>
+  <div class="styled-table-wrapper" style="overflow-x:auto;">
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>Pensamiento Lineal (causa→efecto)</th>
+          <th>Pensamiento Sistémico (red de relaciones)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Busca una causa única para cada problema.</td>
+          <td>Reconoce que los problemas tienen múltiples causas interconectadas.</td>
+        </tr>
+        <tr>
+          <td>Ve las partes de forma separada.</td>
+          <td>Ve cómo las partes se influyen mutuamente en el tiempo.</td>
+        </tr>
+        <tr>
+          <td>Soluciones rápidas y puntuales.</td>
+          <td>Soluciones que consideran efectos secundarios y consecuencias a largo plazo.</td>
+        </tr>
+        <tr>
+          <td>"El problema está en el Departamento X."</td>
+          <td>"El problema emerge de cómo el Departamento X interactúa con Y y Z."</td>
+        </tr>
+        <tr>
+          <td>Optimiza partes del proceso.</td>
+          <td>Optimiza el sistema completo, aunque eso implique que alguna parte trabaje menos.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Los Bucles de Retroalimentación: El Corazón del Pensamiento Sistémico</h3>
+  <p>La retroalimentación (o <em>feedback</em>) ocurre cuando la salida de un sistema regresa como entrada al mismo sistema, modificando su comportamiento futuro. Existen dos tipos básicos:</p>
+
+  <div class="tools-grid">
+    <div class="tool-card">
+      <h4>Bucle Reforzador (R) — Amplificador</h4>
+      <span class="tool-tag">También llamado: Feedback positivo</span>
+      <p style="margin-top:10px;">El efecto inicial se amplifica con el tiempo, generando crecimiento o colapso exponencial. Si tienes más dinero → inviertes más → ganas más → tienes más dinero. También funciona en sentido negativo: menos ventas → menos inversión → peor producto → menos ventas.</p>
+      <p><strong>En emprendimiento:</strong> El crecimiento viral de una startup funciona por un bucle reforzador: más usuarios → más recomendaciones → más usuarios.</p>
+    </div>
+    <div class="tool-card">
+      <h4>Bucle Equilibrador (B) — Estabilizador</h4>
+      <span class="tool-tag">También llamado: Feedback negativo</span>
+      <p style="margin-top:10px;">El sistema busca un estado de equilibrio o meta. Si la temperatura de un cuarto sube mucho → el aire acondicionado se activa → la temperatura baja → el aire se apaga. Regula y corrige las desviaciones.</p>
+      <p><strong>En emprendimiento:</strong> Los precios de mercado funcionan así: si el precio sube mucho → entran competidores → el precio baja. El mercado se autorregula.</p>
+    </div>
+  </div>
+
+  <div class="example-box">
+    <div class="box-title">📍 Ejemplo Ecuatoriano: Sistema Tributario y Evasión Fiscal</div>
+    <p>El SRI (Servicio de Rentas Internas) enfrenta un sistema complejo de retroalimentación. Cuando aumenta la fiscalización (→ más recaudación → más inversión en tecnología de control → mayor fiscalización: bucle reforzador). Pero también: a mayor presión tributaria → más incentivo para evasión → aparecen nuevos esquemas informales → se reduce la recaudación (bucle equilibrador perverso). Ninguna medida aislada funciona; hay que entender el sistema completo. <strong>Los auditores y contadores son actores clave en este sistema.</strong></p>
+  </div>
+
+  <div class="key-idea">
+    <div class="box-title">💡 IDEA CLAVE</div>
+    <p>El pensamiento sistémico te hace comprender que <strong>cada decisión empresarial tiene consecuencias que van más allá de su efecto inmediato</strong>. Una empresa que reduce costos de calidad hoy puede perder clientes mañana y quebrar el año siguiente. Ver esas conexiones en el tiempo es la diferencia entre gestión reactiva y gestión estratégica.</p>
+  </div>
+</section>
+
+<!-- ===== TAB: TEMA 4 ===== -->
+<section id="tab-t4" class="tab-content">
+  <h2>4. Herramientas del Pensamiento Sistémico</h2>
+  <p>El pensamiento sistémico no es solo una filosofía abstracta: tiene herramientas concretas y visuales para mapear, analizar y comunicar sistemas complejos. A continuación estudiamos las más aplicables al emprendimiento y la gestión contable-financiera.</p>
+
+  <!-- HERRAMIENTA 1: DIAGRAMA CAUSAL -->
+  <h3>🔁 Herramienta 1: Diagrama de Bucles Causales (CLD)</h3>
+  <p>El <strong>Diagrama de Bucles Causales</strong> (en inglés, <em>Causal Loop Diagram</em> o CLD) es una representación visual de las relaciones de causa y efecto dentro de un sistema. Muestra qué variables existen, cómo se conectan y qué tipo de influencia tienen entre sí.</p>
+
+  <div class="concept-box">
+    <div class="box-title">Cómo leer un CLD</div>
+    <ul>
+      <li>Las <strong>variables</strong> son los elementos del sistema (ventas, costos, satisfacción del cliente, etc.).</li>
+      <li>Las <strong>flechas</strong> muestran la dirección de la influencia (A → B significa "A influye en B").</li>
+      <li>Los signos <strong>(+)</strong> indican que las variables se mueven en la misma dirección: si A sube, B sube.</li>
+      <li>Los signos <strong>(–)</strong> indican que se mueven en dirección opuesta: si A sube, B baja.</li>
+      <li>Los bucles se etiquetan como <strong>R</strong> (reforzador) o <strong>B</strong> (equilibrador).</li>
+    </ul>
+  </div>
+
+  <div class="loop-visual">
+    <p style="font-weight:700; color:#003366; margin-bottom:10px;">Ejemplo de Bucle Causal: Calidad de Servicio en una Firma Contable</p>
+    <div class="loop-nodes">
+      <div class="loop-node">Calidad del servicio</div>
+      <span class="loop-arrow">→(+)→</span>
+      <div class="loop-node">Satisfacción del cliente</div>
+      <span class="loop-arrow">→(+)→</span>
+      <div class="loop-node">Recomendaciones (boca a boca)</div>
+      <span class="loop-arrow">→(+)→</span>
+      <div class="loop-node">Nuevos clientes</div>
+      <span class="loop-arrow">→(+)→</span>
+      <div class="loop-node">Ingresos</div>
+      <span class="loop-arrow">→(+)→</span>
+      <div class="loop-node">Inversión en talento</div>
+      <span class="loop-arrow">→(+)→</span>
+      <div class="loop-node">Calidad del servicio</div>
+    </div>
+    <p style="font-size:0.85rem; color:#555;">🔄 Este es un bucle reforzador (R): un ciclo virtuoso. Si se rompe en algún punto (ej. recorte de personal), todo el ciclo colapsa.</p>
+  </div>
+
+  <!-- HERRAMIENTA 2: ÁRBOL DE PROBLEMAS -->
+  <h3>🌳 Herramienta 2: Árbol de Problemas</h3>
+  <p>El árbol de problemas es una herramienta visual que estructura las relaciones entre un <strong>problema central</strong>, sus <strong>causas raíz</strong> (raíces del árbol) y sus <strong>efectos o consecuencias</strong> (ramas del árbol). Es ampliamente usada en planificación de proyectos, ONGs y políticas públicas, pero es igualmente útil para emprendedores.</p>
+
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">🌿</div>
+      <h4>Raíces (Causas)</h4>
+      <p>¿Por qué ocurre el problema? Se identifican causas directas e indirectas, buscando las más profundas.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">🌲</div>
+      <h4>Tronco (Problema)</h4>
+      <p>El problema central que se quiere resolver. Debe ser específico y medible, no vago.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">🌿</div>
+      <h4>Ramas (Efectos)</h4>
+      <p>¿Qué consecuencias genera el problema si no se resuelve? Impactos a corto y largo plazo.</p>
+    </div>
+  </div>
+
+  <div class="example-box">
+    <div class="box-title">📍 Ejemplo: Árbol de Problemas para una PYME ecuatoriana con problemas financieros</div>
+    <p><strong>Tronco (Problema central):</strong> La empresa no puede pagar sus obligaciones a tiempo.</p>
+    <p><strong>Raíces (Causas):</strong> No llevan contabilidad formal → desconocen sus costos reales → fijan precios sin margen real → venden a pérdida sin saberlo. También: cobros a clientes demorados (cuentas por cobrar mal gestionadas).</p>
+    <p><strong>Ramas (Efectos):</strong> Acceso negado a crédito bancario → imposibilidad de crecer → estrés del dueño → pérdida de personal clave → cierre del negocio.</p>
+    <p><strong>Insight sistémico:</strong> La solución no es "conseguir más ventas" (lo que el dueño cree). La solución está en las raíces: implementar contabilidad básica y gestión de cobranza. Un contador puede ser el emprendedor que resuelve este problema con un servicio de consultoría.</p>
+  </div>
+
+  <!-- HERRAMIENTA 3: ARQUETIPO -->
+  <h3>🔍 Herramienta 3: Arquetipos Sistémicos</h3>
+  <p>Peter Senge identificó en <em>La Quinta Disciplina</em> una serie de <strong>patrones de comportamiento que se repiten en todo tipo de organizaciones</strong>, como si los sistemas tuvieran "enfermedades" recurrentes. Reconocerlos permite diagnosticar y actuar antes de que el problema se profundice.</p>
+
+  <div class="styled-table-wrapper" style="overflow-x:auto;">
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>Arquetipo</th>
+          <th>Descripción</th>
+          <th>Señal de alerta</th>
+          <th>Ejemplo en negocio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Límites al Crecimiento</strong></td>
+          <td>Un bucle reforzador (crecimiento) choca con un bucle equilibrador (restricción).</td>
+          <td>"Antes crecíamos rápido pero ahora no podemos avanzar."</td>
+          <td>Una startup crece rápido pero no puede escalar porque su sistema de soporte al cliente colapsa.</td>
+        </tr>
+        <tr>
+          <td><strong>Soluciones que Fallan</strong></td>
+          <td>Una solución a corto plazo alivia el síntoma pero empeora el problema de fondo.</td>
+          <td>"Aplicamos la misma solución de siempre pero el problema vuelve más grande."</td>
+          <td>Una empresa pide préstamos para cubrir déficit de caja sin mejorar la gestión de costos.</td>
+        </tr>
+        <tr>
+          <td><strong>Tragedia de los Comunes</strong></td>
+          <td>Cada actor actúa en su propio interés, destruyendo el recurso compartido.</td>
+          <td>"Todos ganan individualmente pero el sistema colapsa."</td>
+          <td>Varias empresas extraen agua de un acuífero sin regulación hasta agotarlo.</td>
+        </tr>
+        <tr>
+          <td><strong>Escalada</strong></td>
+          <td>Dos actores se responden mutuamente escalando sus acciones.</td>
+          <td>"Ellos suben el precio, nosotros bajamos el nuestro, ellos bajan más..."</td>
+          <td>Guerra de precios entre supermercados que termina destruyendo los márgenes del sector.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="key-idea">
+    <div class="box-title">💡 IDEA CLAVE</div>
+    <p>Las herramientas sistémicas convierten problemas complejos en estructuras visibles y analizables. Para un contador o auditor, esto es especialmente valioso: <strong>los estados financieros muestran el resultado del sistema, pero el pensamiento sistémico revela por qué ese resultado ocurrió y qué pasará si no se interviene en las causas raíz.</strong></p>
+  </div>
+</section>
+
+<!-- ===== TAB: TEMA 5 ===== -->
+<section id="tab-t5" class="tab-content">
+  <h2>5. Creatividad y Pensamiento Sistémico en Acción</h2>
+  <p>Esta pestaña integra los conceptos de las anteriores para mostrar cómo la <strong>creatividad y el pensamiento sistémico trabajan juntos</strong> en el proceso real de emprendimiento e innovación. Además, revisamos cómo estas capacidades se aplican específicamente en el campo contable y auditor.</p>
+
+  <h3>5.1 El Ciclo Creativo-Sistémico del Emprendedor</h3>
+  <p>El emprendedor innovador no solo genera ideas (creatividad) ni solo analiza el entorno (pensamiento sistémico): los combina en un ciclo continuo:</p>
+
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <h4>Observar el Sistema</h4>
+      <p>¿Qué partes existen? ¿Cómo se relacionan? ¿Qué bucles de retroalimentación operan? (Herramientas: CLD, Árbol de Problemas)</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <h4>Identificar el Punto de Apalancamiento</h4>
+      <p>¿Dónde un pequeño cambio produce el mayor impacto en el sistema? Donella Meadows (2008) identifica 12 niveles de palanca en los sistemas.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <h4>Generar Ideas para ese Punto</h4>
+      <p>Aplicar herramientas de creatividad (Brainstorming, SCAMPER, Seis Sombreros) enfocadas en el punto de apalancamiento identificado.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">4</div>
+      <h4>Simular las Consecuencias</h4>
+      <p>¿Qué nuevos bucles crea mi idea? ¿Qué efectos secundarios genera? ¿El sistema mejora o solo desplaza el problema?</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">5</div>
+      <h4>Implementar y Aprender</h4>
+      <p>Ejecutar con métricas claras, observar cómo el sistema responde, ajustar. El sistema siempre sorprende.</p>
+    </div>
+  </div>
+
+  <h3>5.2 Caso Integrador: Una Firma de Auditoría que Innova</h3>
+
+  <div class="example-box">
+    <div class="box-title">📍 Caso: Firma "Auditores del Futuro" — Guayaquil</div>
+    <p><strong>Situación:</strong> Tres auditores jóvenes recién graduados de la Universidad de Guayaquil quieren crear una firma que compita con las grandes en el mercado de PYMES.</p>
+    <p><strong>Paso 1 — Observar el Sistema:</strong> Usando un árbol de problemas, identifican que las PYMES ecuatorianas no contratan auditorías porque: (a) no las exige la ley para empresas pequeñas, (b) perciben el servicio como costoso, (c) no entienden el valor que agrega. Resultado: el mercado está desatendido por un problema de percepción de valor, no de necesidad real.</p>
+    <p><strong>Paso 2 — Punto de Apalancamiento:</strong> La palanca no está en bajar el precio (que afecta márgenes y calidad); está en <em>cambiar la percepción de valor</em> del servicio.</p>
+    <p><strong>Paso 3 — Generar Ideas (SCAMPER aplicado):</strong>
+    <br>• <em>Sustituir</em> el informe final por un dashboard interactivo mensual.
+    <br>• <em>Combinar</em> la auditoría con asesoría tributaria preventiva (no reactiva).
+    <br>• <em>Adaptar</em> el modelo de suscripción de software a los servicios contables (pago mensual fijo).
+    <br>• <em>Eliminar</em> la oficina física y operar 100% en la nube (reducción de costos → precios competitivos).</p>
+    <p><strong>Paso 4 — Simular consecuencias:</strong> Un CLD muestra que el modelo de suscripción crea un bucle reforzador: cliente más informado → menos errores tributarios → menos multas → cliente confía más → renueva la suscripción → la firma crece.</p>
+    <p><strong>Resultado:</strong> La firma lanza un modelo de "Auditoría Preventiva Digital" a un precio mensual accesible para PYMES. En 18 meses, tiene 60 clientes y referidos. El sistema funciona porque fue diseñado con creatividad y comprensión sistémica.</p>
+  </div>
+
+  <h3>5.3 Design Thinking: Creatividad Sistémica para Resolver Problemas Reales</h3>
+  <p>El <strong>Design Thinking</strong> (Pensamiento de Diseño) es una metodología creada en la Universidad de Stanford (d.school) que combina creatividad, empatía y enfoque sistémico para resolver problemas complejos centrados en las personas. Es hoy una de las metodologías de innovación más usadas en empresas globales como IBM, Apple y Google.</p>
+
+  <div class="styled-table-wrapper" style="overflow-x:auto;">
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>Fase</th>
+          <th>Pregunta central</th>
+          <th>Herramienta típica</th>
+          <th>Conexión con lo aprendido</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>1. Empatizar</strong></td>
+          <td>¿Qué experimenta realmente el usuario?</td>
+          <td>Entrevistas, observación, mapa de empatía</td>
+          <td>Pensamiento sistémico: ver el sistema desde el usuario</td>
+        </tr>
+        <tr>
+          <td><strong>2. Definir</strong></td>
+          <td>¿Cuál es el problema real que debemos resolver?</td>
+          <td>Punto de vista (POV), árbol de problemas</td>
+          <td>Árbol de problemas (Tema 4)</td>
+        </tr>
+        <tr>
+          <td><strong>3. Idear</strong></td>
+          <td>¿Cuántas soluciones podemos generar?</td>
+          <td>Brainstorming, SCAMPER, Seis Sombreros</td>
+          <td>Herramientas de creatividad (Tema 2)</td>
+        </tr>
+        <tr>
+          <td><strong>4. Prototipar</strong></td>
+          <td>¿Cómo damos forma rápida y económica a la idea?</td>
+          <td>Maquetas, storyboards, MVP</td>
+          <td>Verificación del proceso creativo (Tema 1)</td>
+        </tr>
+        <tr>
+          <td><strong>5. Testear</strong></td>
+          <td>¿Funciona en el mundo real? ¿Qué aprendemos?</td>
+          <td>Pruebas con usuarios, iteración</td>
+          <td>Bucle de retroalimentación (Tema 3)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="highlight-box">
+    <div class="box-title">🎓 Para el Contador y Auditor Emprendedor</div>
+    <p>El Design Thinking no es solo para diseñadores. Un estudio de contabilidad que aplica Design Thinking para rediseñar su proceso de entrega de reportes — haciéndolo más comprensible, visual y oportuno para sus clientes — está innovando en su servicio. La innovación en servicios profesionales es tan válida como la innovación tecnológica.</p>
+  </div>
+
+  <div class="key-idea">
+    <div class="box-title">💡 IDEA CLAVE INTEGRADORA</div>
+    <p>La creatividad sin estructura produce caos; el análisis sistémico sin creatividad produce parálisis. El emprendedor innovador domina ambas y sabe cuándo ampliar posibilidades (creatividad) y cuándo comprender consecuencias (sistemas). <strong>Esta combinación es su principal ventaja competitiva en cualquier campo profesional, incluyendo la contabilidad y la auditoría.</strong></p>
+  </div>
+</section>
+
+<!-- ===== TAB: EJERCICIO INTERACTIVO ===== -->
+<section id="tab-ejercicio" class="tab-content">
+  <h2>6. Ejercicio Interactivo</h2>
+  <p>Pon a prueba tu comprensión del contenido de esta semana. <strong>Responde todos los ítems y luego presiona "Verificar respuestas"</strong> para ver tu calificación detallada.</p>
+  <p style="font-size:0.9rem; color:#555;">📌 Instrucción: Cada ítem puede ser de selección múltiple, clasificación o asociación. Lee cuidadosamente antes de responder.</p>
+
+  <div class="exercise-container" id="ejercicio-items">
+
+    <!-- ÍTEM 1: Clasificación -->
+    <div class="exercise-item">
+      <div class="item-question"><span class="item-num">1</span> Una empresa lanza una campaña de publicidad masiva para aumentar ventas. Las ventas suben → mejoran las ganancias → aumenta el presupuesto para más publicidad → vuelven a subir las ventas. ¿Qué tipo de bucle de retroalimentación describe este patrón?</div>
+      <div class="match-options" id="ej1-opts">
+        <button class="match-btn" onclick="selectBtn('ej1','Bucle Equilibrador (B)')">Bucle Equilibrador (B)</button>
+        <button class="match-btn" onclick="selectBtn('ej1','Bucle Reforzador (R)')">Bucle Reforzador (R)</button>
+        <button class="match-btn" onclick="selectBtn('ej1','Árbol de Problemas')">Árbol de Problemas</button>
+        <button class="match-btn" onclick="selectBtn('ej1','Diagrama de Gantt')">Diagrama de Gantt</button>
+      </div>
+      <div class="item-feedback" id="ej1-fb"></div>
+    </div>
+
+    <!-- ÍTEM 2 -->
+    <div class="exercise-item">
+      <div class="item-question"><span class="item-num">2</span> Usando la técnica SCAMPER, un auditor pregunta: "¿Qué procedimientos de auditoría son obsoletos hoy gracias a las herramientas digitales y pueden eliminarse?" ¿A qué letra de SCAMPER corresponde esta pregunta?</div>
+      <div class="match-options" id="ej2-opts">
+        <button class="match-btn" onclick="selectBtn('ej2','S — Sustituir')">S — Sustituir</button>
+        <button class="match-btn" onclick="selectBtn('ej2','C — Combinar')">C — Combinar</button>
+        <button class="match-btn" onclick="selectBtn('ej2','E — Eliminar')">E — Eliminar</button>
+        <button class="match-btn" onclick="selectBtn('ej2','R — Reorganizar')">R — Reorganizar</button>
+      </div>
+      <div class="item-feedback" id="ej2-fb"></div>
+    </div>
+
+    <!-- ÍTEM 3 -->
+    <div class="exercise-item">
+      <div class="item-question"><span class="item-num">3</span> En la técnica de los Seis Sombreros de De Bono, ¿qué sombrero se usa cuando el equipo quiere analizar específicamente los riesgos y aspectos negativos de una idea?</div>
+      <select class="select-dropdown" id="ej3-sel">
+        <option value="">-- Selecciona una respuesta --</option>
+        <option value="Sombrero Blanco">Sombrero Blanco (datos objetivos)</option>
+        <option value="Sombrero Negro">Sombrero Negro (pensamiento crítico y riesgos)</option>
+        <option value="Sombrero Verde">Sombrero Verde (creatividad y alternativas)</option>
+        <option value="Sombrero Azul">Sombrero Azul (gestión del proceso)</option>
+      </select>
+      <div class="item-feedback" id="ej3-fb"></div>
+    </div>
+
+    <!-- ÍTEM 4 -->
+    <div class="exercise-item">
+      <div class="item-question"><span class="item-num">4</span> El modelo de cuatro etapas del proceso creativo de Wallas (1926) incluye: Preparación → Incubación → Iluminación → Verificación. ¿Qué ocurre específicamente en la etapa de "Incubación"?</div>
+      <div class="match-options" id="ej4-opts">
+        <button class="match-btn" onclick="selectBtn('ej4','El cerebro procesa el problema inconscientemente mientras la persona se aleja de él')">El cerebro procesa el problema inconscientemente mientras la persona se aleja de él</button>
+        <button class="match-btn" onclick="selectBtn('ej4','Se recopila toda la información y se estudia el problema de forma intensiva')">Se recopila toda la información y se estudia el problema de forma intensiva</button>
+        <button class="match-btn" onclick="selectBtn('ej4','Se prueba la solución con usuarios reales para verificar su validez')">Se prueba la solución con usuarios reales para verificar su validez</button>
+        <button class="match-btn" onclick="selectBtn('ej4','Se presenta la idea al equipo para obtener retroalimentación')">Se presenta la idea al equipo para obtener retroalimentación</button>
+      </div>
+      <div class="item-feedback" id="ej4-fb"></div>
+    </div>
+
+    <!-- ÍTEM 5 -->
+    <div class="exercise-item">
+      <div class="item-question"><span class="item-num">5</span> Una empresa ecuatoriana tiene problemas graves de flujo de caja. Su gerente decide pedir un préstamo bancario para cubrir el déficit, sin revisar la estructura de costos. Tres meses después, el problema vuelve a ocurrir y piden otro préstamo. ¿Qué arquetipo sistémico describe este patrón?</div>
+      <select class="select-dropdown" id="ej5-sel">
+        <option value="">-- Selecciona una respuesta --</option>
+        <option value="Límites al Crecimiento">Límites al Crecimiento</option>
+        <option value="Soluciones que Fallan">Soluciones que Fallan</option>
+        <option value="Tragedia de los Comunes">Tragedia de los Comunes</option>
+        <option value="Escalada">Escalada</option>
+      </select>
+      <div class="item-feedback" id="ej5-fb"></div>
+    </div>
+
+    <!-- ÍTEM 6 -->
+    <div class="exercise-item">
+      <div class="item-question"><span class="item-num">6</div> En el Design Thinking, ¿en qué fase se utilizan técnicas como el Brainstorming y el SCAMPER?</div>
+      <div class="match-options" id="ej6-opts">
+        <button class="match-btn" onclick="selectBtn('ej6','Empatizar')">Empatizar</button>
+        <button class="match-btn" onclick="selectBtn('ej6','Definir')">Definir</button>
+        <button class="match-btn" onclick="selectBtn('ej6','Idear')">Idear</button>
+        <button class="match-btn" onclick="selectBtn('ej6','Testear')">Testear</button>
+      </div>
+      <div class="item-feedback" id="ej6-fb"></div>
+    </div>
+
+    <!-- ÍTEM 7 -->
+    <div class="exercise-item">
+      <div class="item-question"><span class="item-num">7</span> En un árbol de problemas, ¿qué representa el "tronco" del árbol?</div>
+      <div class="match-options" id="ej7-opts">
+        <button class="match-btn" onclick="selectBtn('ej7','Las causas raíz del problema')">Las causas raíz del problema</button>
+        <button class="match-btn" onclick="selectBtn('ej7','El problema central específico que se quiere resolver')">El problema central específico que se quiere resolver</button>
+        <button class="match-btn" onclick="selectBtn('ej7','Los efectos y consecuencias del problema')">Los efectos y consecuencias del problema</button>
+        <button class="match-btn" onclick="selectBtn('ej7','Las soluciones propuestas al problema')">Las soluciones propuestas al problema</button>
+      </div>
+      <div class="item-feedback" id="ej7-fb"></div>
+    </div>
+
+    <!-- ÍTEM 8 -->
+    <div class="exercise-item">
+      <div class="item-question"><span class="item-num">8</span> ¿Cuál de las siguientes afirmaciones describe correctamente una diferencia entre el pensamiento lineal y el pensamiento sistémico?</div>
+      <select class="select-dropdown" id="ej8-sel">
+        <option value="">-- Selecciona una respuesta --</option>
+        <option value="El pensamiento sistémico es más rápido que el lineal">El pensamiento sistémico es más rápido que el lineal para resolver problemas urgentes.</option>
+        <option value="El pensamiento lineal reconoce múltiples causas interconectadas">El pensamiento lineal reconoce múltiples causas interconectadas mientras el sistémico busca una causa única.</option>
+        <option value="El pensamiento sistémico ve cómo las partes se influyen mutuamente en el tiempo">El pensamiento sistémico ve cómo las partes se influyen mutuamente en el tiempo, mientras el lineal busca una causa única para cada problema.</option>
+        <option value="El pensamiento lineal es obsoleto y debe abandonarse">El pensamiento lineal es obsoleto y debe abandonarse completamente.</option>
+      </select>
+      <div class="item-feedback" id="ej8-fb"></div>
+    </div>
+
+  </div><!-- fin ejercicio-items -->
+
+  <div id="ej-alert" class="alert-box">⚠️ Por favor, responde TODOS los ítems antes de verificar.</div>
+  <div class="btn-row">
+    <button class="btn-primary" onclick="verificarEjercicio()">✅ Verificar Respuestas</button>
+    <button class="btn-secondary" onclick="reiniciarEjercicio()">🔄 Reiniciar</button>
+  </div>
+
+  <div class="score-panel" id="ej-score">
+    <div class="score-emoji" id="ej-emoji">🎯</div>
+    <div class="score-main" id="ej-main">0/8</div>
+    <div class="score-percent" id="ej-pct">0%</div>
+    <div class="progress-bar-container"><div class="progress-bar-fill" id="ej-bar"></div></div>
+    <div class="score-msg" id="ej-msg"></div>
+  </div>
+</section>
+
+<!-- ===== TAB: CUESTIONARIO ===== -->
+<section id="tab-cuestionario" class="tab-content">
+  <h2>7. Cuestionario de Evaluación</h2>
+  <p>Este cuestionario contiene <strong>10 preguntas</strong>: 7 teóricas y 3 de análisis de caso. Selecciona tu respuesta en cada pregunta y luego presiona <strong>"Verificar respuestas"</strong> al final. El sistema mostrará todos los resultados de una sola vez.</p>
+
+  <div id="quiz-items">
+
+    <!-- Q1 -->
+    <div class="quiz-item" id="q1">
+      <div class="q-header">
+        <div class="q-num">1</div>
+        <span class="badge badge-teoria">Teórica</span>
+        <div class="q-text">¿Cuál es la definición más precisa de creatividad en el contexto del emprendimiento, según autores como Amabile y Csikszentmihalyi?</div>
+      </div>
+      <div class="q-options">
+        <label class="q-option"><input type="radio" name="q1" value="a"> La capacidad artística de crear obras originales con valor estético reconocido.</label>
+        <label class="q-option"><input type="radio" name="q1" value="b"> La capacidad de generar ideas novedosas y útiles en un contexto determinado.</label>
+        <label class="q-option"><input type="radio" name="q1" value="c"> La habilidad innata con la que nace un porcentaje reducido de la población.</label>
+        <label class="q-option"><input type="radio" name="q1" value="d"> El proceso de copiar y mejorar ideas que ya existen en el mercado.</label>
+      </div>
+      <div class="q-explanation" id="q1-exp">✅ Correcto: La creatividad emprendedora combina dos componentes inseparables — novedad y utilidad. Amabile (1988) y Csikszentmihalyi (1996) coinciden en que no es un don exclusivo ni meramente artístico, sino una capacidad cognitiva desarrollable aplicable a cualquier campo.</div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="quiz-item" id="q2">
+      <div class="q-header">
+        <div class="q-num">2</div>
+        <span class="badge badge-teoria">Teórica</span>
+        <div class="q-text">En la técnica SCAMPER, la letra "A" corresponde a "Adaptar". ¿Cuál de las siguientes preguntas representa correctamente esta operación?</div>
+      </div>
+      <div class="q-options">
+        <label class="q-option"><input type="radio" name="q2" value="a"> ¿Qué elemento del proceso puedo eliminar sin perder valor?</label>
+        <label class="q-option"><input type="radio" name="q2" value="b"> ¿Qué pasaría si invierto el orden de los pasos del proceso?</label>
+        <label class="q-option"><input type="radio" name="q2" value="c"> ¿Cómo puedo tomar algo de otro contexto o industria y aplicarlo aquí?</label>
+        <label class="q-option"><input type="radio" name="q2" value="d"> ¿Qué componente del producto puedo sustituir por uno diferente?</label>
+      </div>
+      <div class="q-explanation" id="q2-exp">✅ Correcto: "Adaptar" en SCAMPER significa tomar ideas, soluciones o principios de otros contextos e industrias y aplicarlos al problema actual. Es la operación que genera más innovaciones disruptivas, porque fuerza analogías entre campos distintos.</div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="quiz-item" id="q3">
+      <div class="q-header">
+        <div class="q-num">3</div>
+        <span class="badge badge-teoria">Teórica</span>
+        <div class="q-text">¿Cuál de los siguientes principios es fundamental en una sesión de Brainstorming correctamente conducida?</div>
+      </div>
+      <div class="q-options">
+        <label class="q-option"><input type="radio" name="q3" value="a"> Las ideas deben evaluarse y descartarse inmediatamente si parecen imposibles.</label>
+        <label class="q-option"><input type="radio" name="q3" value="b"> Solo deben participar expertos en el tema para garantizar la calidad.</label>
+        <label class="q-option"><input type="radio" name="q3" value="c"> La evaluación y selección de ideas se realiza en una fase separada, posterior a la generación.</label>
+        <label class="q-option"><input type="radio" name="q3" value="d"> Se debe priorizar la calidad de las ideas sobre la cantidad generada.</label>
+      </div>
+      <div class="q-explanation" id="q3-exp">✅ Correcto: El principio más importante del Brainstorming (Osborn, 1939) es separar la generación de la evaluación. El juicio prematuro inhibe la creatividad. La cantidad primero; la calidad se obtiene luego en la fase de análisis.</div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="quiz-item" id="q4">
+      <div class="q-header">
+        <div class="q-num">4</div>
+        <span class="badge badge-teoria">Teórica</span>
+        <div class="q-text">¿Qué distingue a un bucle de retroalimentación REFORZADOR de uno EQUILIBRADOR en el pensamiento sistémico?</div>
+      </div>
+      <div class="q-options">
+        <label class="q-option"><input type="radio" name="q4" value="a"> El reforzador siempre es positivo para el sistema; el equilibrador siempre es negativo.</label>
+        <label class="q-option"><input type="radio" name="q4" value="b"> El reforzador amplifica el cambio inicial (genera crecimiento o colapso exponencial); el equilibrador busca un estado de equilibrio o meta.</label>
+        <label class="q-option"><input type="radio" name="q4" value="c"> El equilibrador solo existe en sistemas biológicos; el reforzador en sistemas económicos.</label>
+        <label class="q-option"><input type="radio" name="q4" value="d"> No existe diferencia real; son términos distintos para el mismo fenómeno.</label>
+      </div>
+      <div class="q-explanation" id="q4-exp">✅ Correcto: Los bucles reforzadores amplifican el cambio en una dirección (ya sea de crecimiento o de declive). Los bucles equilibradores actúan como reguladores que corrigen desviaciones respecto a una meta o estado deseado. Ambos coexisten en cualquier sistema real.</div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="quiz-item" id="q5">
+      <div class="q-header">
+        <div class="q-num">5</div>
+        <span class="badge badge-teoria">Teórica</span>
+        <div class="q-text">Peter Senge, en "La Quinta Disciplina", describe el arquetipo "Soluciones que Fallan". ¿Cuál es la característica definitoria de este patrón?</div>
+      </div>
+      <div class="q-options">
+        <label class="q-option"><input type="radio" name="q5" value="a"> Una solución que funciona perfectamente a largo plazo pero falla al inicio.</label>
+        <label class="q-option"><input type="radio" name="q5" value="b"> Una solución a corto plazo que alivia el síntoma pero empeora o desplaza el problema de fondo.</label>
+        <label class="q-option"><input type="radio" name="q5" value="c"> Dos organizaciones que se responden mutuamente escalando sus acciones.</label>
+        <label class="q-option"><input type="radio" name="q5" value="d"> Un sistema que crece rápido hasta chocar con una restricción insuperable.</label>
+      </div>
+      <div class="q-explanation" id="q5-exp">✅ Correcto: "Soluciones que Fallan" (Senge, 1990) describe situaciones donde la solución elegida aborda el síntoma visible, no la causa raíz. El alivio es temporal y el problema regresa, frecuentemente más severo. La trampa es que cada "solución" refuerza la dependencia en ella, alejando al sistema de la solución real.</div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="quiz-item" id="q6">
+      <div class="q-header">
+        <div class="q-num">6</div>
+        <span class="badge badge-teoria">Teórica</span>
+        <div class="q-text">En el proceso creativo de Wallas (1926), ¿por qué la etapa de "Verificación" es indispensable incluso cuando la "Iluminación" produce una idea brillante?</div>
+      </div>
+      <div class="q-options">
+        <label class="q-option"><input type="radio" name="q6" value="a"> Porque es la etapa en que se presenta la idea al mercado para obtener financiamiento.</label>
+        <label class="q-option"><input type="radio" name="q6" value="b"> Porque no toda iluminación produce una solución válida; la verificación evalúa, prueba y refina la idea antes de implementarla.</label>
+        <label class="q-option"><input type="radio" name="q6" value="c"> Porque en la verificación se regresa a la etapa de preparación para recolectar más datos.</label>
+        <label class="q-option"><input type="radio" name="q6" value="d"> Porque la ley exige validar legalmente toda idea antes de ejecutarla.</label>
+      </div>
+      <div class="q-explanation" id="q6-exp">✅ Correcto: La iluminación es un punto de partida, no un producto terminado. La etapa de verificación es el filtro que convierte una idea interesante en una solución viable. Muchas ideas que parecen brillantes en el "¡ajá!" resultan inviables, incompletas o ya existentes. La verificación rigurosa es lo que distingue al emprendedor del soñador.</div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="quiz-item" id="q7">
+      <div class="q-header">
+        <div class="q-num">7</div>
+        <span class="badge badge-teoria">Teórica</span>
+        <div class="q-text">El Design Thinking se describe como una metodología que combina creatividad, empatía y enfoque sistémico. ¿En cuál de sus fases se busca COMPRENDER profundamente al usuario, sus necesidades y el contexto en el que vive el problema?</div>
+      </div>
+      <div class="q-options">
+        <label class="q-option"><input type="radio" name="q7" value="a"> Idear</label>
+        <label class="q-option"><input type="radio" name="q7" value="b"> Prototipar</label>
+        <label class="q-option"><input type="radio" name="q7" value="c"> Empatizar</label>
+        <label class="q-option"><input type="radio" name="q7" value="d"> Definir</label>
+      </div>
+      <div class="q-explanation" id="q7-exp">✅ Correcto: "Empatizar" es la primera fase del Design Thinking y la más fundamental. Sin comprensión real del usuario (no suposiciones), cualquier solución es una apuesta ciega. Las herramientas de esta fase incluyen entrevistas, observación etnográfica y mapas de empatía.</div>
+    </div>
+
+    <!-- Q8 ANÁLISIS -->
+    <div class="quiz-item" id="q8">
+      <div class="q-header">
+        <div class="q-num">8</div>
+        <span class="badge badge-analisis">Análisis de Caso</span>
+        <div class="q-text">Una empresa de retail textil en Guayaquil nota que sus ventas caen. El gerente decide invertir masivamente en publicidad. Las ventas suben brevemente, pero tres meses después vuelven a caer y el problema es peor porque ahora también tienen deudas de la publicidad. El gerente decide hacer otra campaña publicitaria. ¿Cuál es el error sistémico fundamental que está cometiendo?</div>
+      </div>
+      <div class="q-options">
+        <label class="q-option"><input type="radio" name="q8" value="a"> No está invirtiendo suficiente dinero en publicidad; necesita campañas más grandes.</label>
+        <label class="q-option"><input type="radio" name="q8" value="b"> Está atacando el síntoma (caída de ventas) sin investigar las causas raíz del problema sistémico.</label>
+        <label class="q-option"><input type="radio" name="q8" value="c"> El problema es exclusivamente externo (economía del país) y no puede resolverse desde dentro de la empresa.</label>
+        <label class="q-option"><input type="radio" name="q8" value="d"> La publicidad es una herramienta obsoleta y debe sustituirse por redes sociales.</label>
+      </div>
+      <div class="q-explanation" id="q8-exp">✅ Correcto: Este es el arquetipo "Soluciones que Fallan". El gerente usa la publicidad como solución rápida al síntoma (ventas bajas) sin preguntarse por qué caen las ventas realmente (¿calidad del producto? ¿precios? ¿competencia? ¿cambio en preferencias del consumidor?). El pensamiento sistémico exigiría un árbol de problemas para identificar las causas raíz antes de actuar.</div>
+    </div>
+
+    <!-- Q9 ANÁLISIS -->
+    <div class="quiz-item" id="q9">
+      <div class="q-header">
+        <div class="q-num">9</div>
+        <span class="badge badge-analisis">Análisis de Caso</span>
+        <div class="q-text">Una firma contable quiere innovar en sus servicios. Aplica SCAMPER y pregunta: "¿Cómo podríamos combinar nuestro servicio de auditoría financiera con análisis de datos predictivos para anticipar riesgos antes de que ocurran, en lugar de detectarlos después?" ¿Qué tipo de innovación están describiendo y qué letra de SCAMPER están usando?</div>
+      </div>
+      <div class="q-options">
+        <label class="q-option"><input type="radio" name="q9" value="a"> Están usando "S" (Sustituir) para reemplazar la auditoría tradicional por análisis de datos.</label>
+        <label class="q-option"><input type="radio" name="q9" value="b"> Están usando "C" (Combinar) para fusionar dos capacidades distintas en un servicio nuevo de mayor valor.</label>
+        <label class="q-option"><input type="radio" name="q9" value="c"> Están usando "E" (Eliminar) para quitar pasos del proceso de auditoría.</label>
+        <label class="q-option"><input type="radio" name="q9" value="d"> Están usando "M" (Modificar) para hacer auditorías más largas y detalladas.</label>
+      </div>
+      <div class="q-explanation" id="q9-exp">✅ Correcto: "C" de SCAMPER es "Combinar": unir dos elementos para crear algo nuevo con más valor que cada parte por separado. En este caso, combinar auditoría financiera tradicional con análisis predictivo de datos crea un servicio de auditoría proactiva — una innovación significativa en el mercado de servicios profesionales contables.</div>
+    </div>
+
+    <!-- Q10 ANÁLISIS -->
+    <div class="quiz-item" id="q10">
+      <div class="q-header">
+        <div class="q-num">10</div>
+        <span class="badge badge-analisis">Análisis de Caso</span>
+        <div class="q-text">Un contador independiente quiere crear una aplicación para que pequeños comercios ecuatorianos lleven su contabilidad de forma simple. Para diseñarla, primero pasa tres semanas visitando tiendas de barrio en Guayaquil y Cuenca, observando cómo los dueños registran sus ventas (en papel, en el celular, de memoria) y conversando con ellos sobre sus frustraciones. ¿Qué fase del Design Thinking está ejecutando y por qué es estratégicamente valiosa?</div>
+      </div>
+      <div class="q-options">
+        <label class="q-option"><input type="radio" name="q10" value="a"> Fase de Prototipar: está construyendo la versión inicial de la aplicación con las tiendas.</label>
+        <label class="q-option"><input type="radio" name="q10" value="b"> Fase de Idear: está generando ideas de funcionalidades visitando los negocios.</label>
+        <label class="q-option"><input type="radio" name="q10" value="c"> Fase de Empatizar: está comprendiendo la realidad del usuario antes de diseñar la solución, lo que garantiza que la app resuelva problemas reales y no suposiciones.</label>
+        <label class="q-option"><input type="radio" name="q10" value="d"> Fase de Testear: está validando si su idea de aplicación funciona en el mercado.</label>
+      </div>
+      <div class="q-explanation" id="q10-exp">✅ Correcto: Esta es la fase de "Empatizar" del Design Thinking. Su valor estratégico es enorme: la mayoría de las aplicaciones y servicios fracasan no por mala tecnología, sino porque no resuelven un problema real del usuario. Al observar directamente cómo trabajan los comerciantes antes de diseñar nada, el contador emprendedor garantiza que cada decisión de diseño estará anclada en la realidad de sus futuros usuarios.</div>
+    </div>
+
+  </div><!-- fin quiz-items -->
+
+  <div id="quiz-alert" class="alert-box">⚠️ Debes responder las 10 preguntas antes de verificar.</div>
+  <div class="btn-row">
+    <button class="btn-primary" onclick="verificarQuiz()">✅ Verificar Respuestas</button>
+    <button class="btn-secondary" onclick="reiniciarQuiz()">🔄 Reiniciar</button>
+  </div>
+
+  <div class="score-panel" id="quiz-score">
+    <div class="score-emoji" id="quiz-emoji">🎯</div>
+    <div class="score-main" id="quiz-main">0/10</div>
+    <div class="score-percent" id="quiz-pct">0%</div>
+    <div class="progress-bar-container"><div class="progress-bar-fill" id="quiz-bar"></div></div>
+    <div class="score-msg" id="quiz-msg"></div>
+  </div>
+</section>
+
+<!-- ===== TAB: ACTIVIDAD CON IA ===== -->
+<section id="tab-ia" class="tab-content">
+  <h2>8. Actividad con Inteligencia Artificial</h2>
+
+  <div class="concept-box">
+    <div class="box-title">Objetivo de la actividad</div>
+    <p>Usar la IA como <strong>interlocutora estratégica</strong> para aplicar el pensamiento sistémico a un problema real de tu entorno. No se trata de copiar lo que dice la IA, sino de <strong>cuestionarla, confrontarla con tu realidad ecuatoriana y usarla como punto de partida para tu propio análisis crítico</strong>.</p>
+  </div>
+
+  <h3>🎯 Actividad: "Diagnosticando un Sistema con IA"</h3>
+
+  <div class="ai-steps">
+    <div class="ai-step"><strong>Herramienta recomendada:</strong> Claude en <a href="https://claude.ai" target="_blank" style="color:#003366;">claude.ai</a> (gratuito). Alternativas: ChatGPT (chat.openai.com) o Gemini (gemini.google.com).</div>
+    <div class="ai-step"><strong>Elige un problema real</strong> de tu entorno: puede ser algo que hayas observado en un negocio familiar, en tu comunidad, en el sector público, o incluso en la universidad. Debe ser un problema que tenga múltiples causas y consecuencias (no uno simple).</div>
+    <div class="ai-step"><strong>Copia y pega el siguiente prompt exacto</strong> en la IA, reemplazando [PROBLEMA] con el problema que elegiste:</div>
+  </div>
+
+  <div class="ai-prompt-box">Actúa como un experto en pensamiento sistémico y emprendimiento innovador. 
+Voy a describirte un problema real que he observado en mi entorno en Ecuador:
+
+[PROBLEMA: describe aquí el problema con el mayor detalle posible]
+
+Necesito que me ayudes a analizarlo usando herramientas de pensamiento sistémico. Específicamente:
+
+1. Identifica las VARIABLES CLAVE del sistema (los elementos que participan en el problema).
+2. Describe al menos 2 BUCLES DE RETROALIMENTACIÓN (reforzadores o equilibradores) que operan en este sistema.
+3. Identifica cuál podría ser el ARQUETIPO SISTÉMICO que mejor describe este patrón (usa los de Senge: Límites al Crecimiento, Soluciones que Fallan, Tragedia de los Comunes, Escalada u otro).
+4. Señala el PUNTO DE APALANCAMIENTO más prometedor: ¿dónde una pequeña intervención podría generar el mayor cambio positivo en el sistema?
+5. Finalmente, propón 3 IDEAS CREATIVAS (usando la lógica SCAMPER) para intervenir en ese punto de apalancamiento.
+
+Sé específico, usa ejemplos concretos y explica tu razonamiento paso a paso.</div>
+
+  <h3>📋 ¿Qué hacer con la respuesta de la IA?</h3>
+  <div class="ai-steps">
+    <div class="ai-step"><strong>Lee el análisis completo</strong> de la IA. ¿Reconoció correctamente las variables del sistema? ¿Los bucles que describió tienen sentido para tu problema real?</div>
+    <div class="ai-step"><strong>Cuestiona al menos 2 puntos</strong> del análisis: ¿Hay algo que la IA no consideró porque no conoce el contexto ecuatoriano? ¿Algún bucle que describió no aplica a tu realidad? ¿El punto de apalancamiento que sugirió es realista en Ecuador?</div>
+    <div class="ai-step"><strong>Enriquece el análisis:</strong> Añade variables, relaciones o consideraciones que la IA omitió, basándote en tu conocimiento del contexto local (cultura de negocio, regulaciones del SRI, acceso a crédito, informalidad, etc.).</div>
+    <div class="ai-step"><strong>Redacta una conclusión propia</strong> (mínimo 200 palabras) donde expliques: (a) qué fue valioso del análisis de la IA, (b) qué fue incompleto o equivocado, y (c) cuál sería TU propuesta de intervención más efectiva para ese sistema, justificada con los conceptos de esta semana.</div>
+  </div>
+
+  <div class="highlight-box">
+    <div class="box-title">📊 Criterio de Evaluación: ¿Qué demuestra pensamiento crítico?</div>
+    <table class="styled-table" style="margin-top:10px;">
+      <thead><tr><th>Nivel</th><th>Descripción</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>🏆 Excelente</strong></td>
+          <td>El estudiante cuestiona y complementa el análisis de la IA con observaciones propias del contexto ecuatoriano. Su conclusión demuestra comprensión real de bucles, arquetipos y puntos de apalancamiento. Usa vocabulario técnico correctamente.</td>
+        </tr>
+        <tr>
+          <td><strong>🎯 Bueno</strong></td>
+          <td>El estudiante identifica al menos una limitación del análisis de la IA y añade algún elemento propio. La conclusión usa los conceptos del tema aunque con menor profundidad.</td>
+        </tr>
+        <tr>
+          <td><strong>⚠️ Básico</strong></td>
+          <td>El estudiante copia la respuesta de la IA sin cuestionarla. La "conclusión" es un resumen de lo que dijo la IA, sin análisis personal ni referencia al contexto ecuatoriano.</td>
+        </tr>
+        <tr>
+          <td><strong>📖 Insuficiente</strong></td>
+          <td>No se realizó la actividad, o la entrega no muestra evidencia de haber interactuado con la IA ni de haber leído el contenido de la semana.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="key-idea">
+    <div class="box-title">🤖 RECUERDA</div>
+    <p>La IA es un interlocutor poderoso pero imperfecto. No conoce tu barrio, tu familia, las particularidades del SRI o la cultura empresarial de Guayaquil. Tú sí. <strong>Tu valor como profesional está precisamente en ese conocimiento contextual que ninguna IA puede replicar completamente.</strong> Úsala como trampolín, no como respuesta final.</p>
+  </div>
+</section>
+
+<!-- ===== TAB: REFLEXIÓN ===== -->
+<section id="tab-reflexion" class="tab-content">
+  <h2>9. Reflexión Personal</h2>
+  <p>Esta sección conecta el contenido académico con tu vida cotidiana. No hay respuestas correctas ni incorrectas: el objetivo es que <strong>descubras cómo estos conceptos ya operan en tu realidad diaria</strong>, aunque nunca los hayas llamado "creatividad" o "pensamiento sistémico".</p>
+  <p style="font-size:0.9rem; color:#555; font-style:italic;">Tómate entre 10 y 15 minutos para reflexionar genuinamente sobre cada pregunta antes de pasar a la siguiente. Puedes escribir tus respuestas en un cuaderno personal.</p>
+
+  <div class="reflection-card">
+    <div class="r-num">Reflexión 1 — La creatividad que ya tienes</div>
+    <p>Piensa en alguna vez que resolviste un problema del hogar, del trabajo o de la universidad de una manera diferente a la habitual, quizás con pocos recursos o de forma inesperada. ¿Lo llamaste "creatividad" en ese momento? ¿Por qué crees que muchas veces no reconocemos nuestra propia creatividad? ¿Qué te impide expresarla más frecuentemente?</p>
+  </div>
+
+  <div class="reflection-card">
+    <div class="r-num">Reflexión 2 — Los bucles de tu vida personal</div>
+    <p>Los bucles de retroalimentación no solo existen en las empresas. ¿Puedes identificar un bucle reforzador en tu propia vida? Puede ser positivo (el estudio constante → mejores notas → más motivación → más estudio) o negativo (el estrés → insomnio → cansancio → peor rendimiento → más estrés). Una vez que lo identifiques: ¿dónde estaría el punto de apalancamiento para romperlo o fortalecerlo?</p>
+  </div>
+
+  <div class="reflection-card">
+    <div class="r-num">Reflexión 3 — ¿Eres un pensador lineal o sistémico en tus decisiones?</div>
+    <p>Cuando algo sale mal en tu vida (una pelea con alguien, un fracaso en un examen, un problema económico), ¿cuál es tu reacción habitual: buscar un culpable único o intentar entender todas las causas? ¿Cómo sería diferente tu respuesta si la próxima vez intentaras aplicar el pensamiento sistémico? ¿Qué preguntas te harías antes de actuar?</p>
+  </div>
+
+  <div class="reflection-card">
+    <div class="r-num">Reflexión 4 — La "solución que falla" que reconoces</div>
+    <p>El arquetipo "Soluciones que Fallan" no solo existe en empresas. ¿Conoces alguna situación en tu familia, comunidad o país donde se aplica una misma "solución" una y otra vez sin resolver el problema de fondo? (Puede ser cómo se manejan los conflictos en casa, la forma en que el gobierno responde a ciertos problemas, etc.) ¿Cuál sería la causa raíz que nadie está atacando?</p>
+  </div>
+
+  <div class="reflection-card">
+    <div class="r-num">Reflexión 5 — Los Seis Sombreros en tu día a día</div>
+    <p>Cuando tienes que tomar una decisión difícil (cambiar de carrera, emprender un negocio, terminar una relación, mudarte), ¿desde qué "sombrero" sueles operar? ¿Eres más del sombrero negro (ves los riesgos primero) o del amarillo (eres optimista)? ¿Qué sombrero rara vez usas y por qué? ¿Cómo cambiaría tu toma de decisiones si conscientemente usaras todos los sombreros antes de decidir?</p>
+  </div>
+
+  <div class="reflection-card">
+    <div class="r-num">Reflexión 6 — Creatividad y autoestima profesional</div>
+    <p>En Ecuador, muchos contadores y auditores se perciben a sí mismos como "profesionales técnicos", no como "creativos". Esto puede limitar su desarrollo profesional. ¿Cómo se siente para ti la idea de que la contabilidad y la auditoría pueden ser campos de innovación y creatividad? ¿Qué creencia tuya (sobre ti mismo, sobre tu carrera, sobre lo que es posible en Ecuador) tendría que cambiar para que te veas a ti mismo como un profesional innovador?</p>
+  </div>
+
+  <div class="highlight-box">
+    <div class="box-title">🌱 Un pensamiento para llevar contigo esta semana</div>
+    <p>"<em>Los sistemas no cambian solos. Las personas que los comprenden son quienes los transforman.</em>" Lo que has aprendido esta semana no es teoría para el examen: es una forma diferente de ver el mundo, tu trabajo, tu vida y tu comunidad. La próxima vez que enfrentes un problema, antes de buscar la solución más obvia, pregúntate: <strong>¿qué sistema estoy mirando y cuál es su verdadera estructura?</strong>"</p>
+  </div>
+</section>
+
+<!-- ===== TAB: BIBLIOGRAFÍA ===== -->
+<section id="tab-biblio" class="tab-content">
+  <h2>10. Bibliografía</h2>
+  <p>Referencias utilizadas para el desarrollo del contenido de esta semana, presentadas en formato APA 7.ª edición.</p>
+
+  <div class="ref-card">
+    <div class="ref-authors">Senge, P. M.</div>
+    <div class="ref-year">(2006).</div>
+    <div class="ref-title">The fifth discipline: The art and practice of the learning organization</div>
+    <div class="ref-source">Doubleday/Currency. (Trabajo original publicado en 1990)</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-authors">Amabile, T. M.</div>
+    <div class="ref-year">(1988).</div>
+    <div class="ref-title">A model of creativity and innovation in organizations.</div>
+    <div class="ref-source"><em>Research in Organizational Behavior</em>, 10, 123–167.</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-authors">De Bono, E.</div>
+    <div class="ref-year">(1985).</div>
+    <div class="ref-title">Six thinking hats</div>
+    <div class="ref-source">Little, Brown and Company.</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-authors">Osborn, A. F.</div>
+    <div class="ref-year">(1953).</div>
+    <div class="ref-title">Applied imagination: Principles and procedures of creative problem-solving</div>
+    <div class="ref-source">Scribner's Sons.</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-authors">Brown, T.</div>
+    <div class="ref-year">(2009).</div>
+    <div class="ref-title">Change by design: How design thinking transforms organizations and inspires innovation</div>
+    <div class="ref-source">HarperCollins Publishers.</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-authors">Meadows, D. H.</div>
+    <div class="ref-year">(2008).</div>
+    <div class="ref-title">Thinking in systems: A primer</div>
+    <div class="ref-source">Chelsea Green Publishing.</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-authors">Csikszentmihalyi, M.</div>
+    <div class="ref-year">(1996).</div>
+    <div class="ref-title">Creativity: Flow and the psychology of discovery and invention</div>
+    <div class="ref-source">HarperCollins Publishers.</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-authors">Eberle, B.</div>
+    <div class="ref-year">(2008).</div>
+    <div class="ref-title">Scamper: Creative games and activities for imagination development</div>
+    <div class="ref-source">Prufrock Press. (Trabajo original publicado en 1971)</div>
+  </div>
+
+  <div class="ref-note">
+    📌 <strong>Nota académica:</strong> Se recomienda verificar cada referencia en Google Scholar (<a href="https://scholar.google.com" target="_blank" style="color:#8a6200;">scholar.google.com</a>) o en el repositorio institucional de la Universidad de Guayaquil antes de citar en trabajos académicos. Algunas obras clásicas están disponibles en versión digital en bibliotecas universitarias con acceso JSTOR o Google Books.
+  </div>
+</section>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+// ========== TAB NAVIGATION ==========
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  const buttons = document.querySelectorAll('.tab-btn');
+  const tabMap = {
+    'repaso':0,'t1':1,'t2':2,'t3':3,'t4':4,'t5':5,
+    'ejercicio':6,'cuestionario':7,'ia':8,'reflexion':9,'biblio':10
+  };
+  if (tabMap[id] !== undefined) buttons[tabMap[id]].classList.add('active');
+}
+
+// ========== EJERCICIO INTERACTIVO ==========
+const ejAnswers = {
+  ej1: { correct: 'Bucle Reforzador (R)', feedback: '✅ Correcto. Este patrón describe un bucle reforzador (R): el efecto se amplifica de manera continua en la misma dirección. Más ventas → más presupuesto → más publicidad → más ventas. Si el ciclo se invierte (ventas bajan), se convierte en un espiral descendente igual de poderoso.' },
+  ej2: { correct: 'E — Eliminar', feedback: '✅ Correcto. La "E" de SCAMPER corresponde a Eliminar: identificar qué componentes del proceso, producto o servicio pueden removerse sin perder (y a veces ganando) valor. En auditoría, las herramientas digitales permiten eliminar procedimientos manuales que eran necesarios cuando no existía la tecnología actual.' },
+  ej3: { correct: 'Sombrero Negro', feedback: '✅ Correcto. El Sombrero Negro de De Bono representa el pensamiento crítico, los riesgos, los problemas potenciales y los aspectos negativos. Es el que analiza qué puede salir mal. Debe usarse, pero no dominar: si un equipo solo usa el sombrero negro, paraliza la innovación.' },
+  ej4: { correct: 'El cerebro procesa el problema inconscientemente mientras la persona se aleja de él', feedback: '✅ Correcto. La incubación es la etapa en que el pensamiento consciente descansa pero el inconsciente continúa procesando. Esto es respaldado por la neurociencia moderna: alejarse del problema (dormir, caminar, hacer otra actividad) frecuentemente facilita la iluminación posterior.' },
+  ej5: { correct: 'Soluciones que Fallan', feedback: '✅ Correcto. Este es el arquetipo "Soluciones que Fallan" (Senge, 1990). El préstamo alivia el síntoma (falta de liquidez) pero no resuelve la causa raíz (estructura de costos inadecuada o precios mal calculados). Cada solución crea deuda adicional y el problema regresa amplificado.' },
+  ej6: { correct: 'Idear', feedback: '✅ Correcto. La fase de "Idear" del Design Thinking es donde se aplican herramientas de generación de ideas como Brainstorming y SCAMPER. La condición para que funcione es haber completado correctamente las fases anteriores: empatizar (entender al usuario) y definir (enmarcar el problema real).' },
+  ej7: { correct: 'El problema central específico que se quiere resolver', feedback: '✅ Correcto. En el árbol de problemas: el tronco = problema central; las raíces = causas (por qué ocurre); las ramas = efectos (qué consecuencias genera). Esta estructura visual ayuda a no confundir síntomas con causas, error muy común en la gestión empresarial.' },
+  ej8: { correct: 'El pensamiento sistémico ve cómo las partes se influyen mutuamente en el tiempo', feedback: '✅ Correcto. El pensamiento sistémico no reemplaza al lineal: los complementa. El pensamiento lineal es útil para relaciones simples y directas. El sistémico es necesario cuando las causas son múltiples, hay retroalimentación y el tiempo juega un rol importante.' }
+};
+
+let ejUserAnswers = {};
+
+function selectBtn(group, value) {
+  const opts = document.querySelectorAll(`#${group}-opts .match-btn`);
+  opts.forEach(b => b.classList.remove('selected'));
+  opts.forEach(b => { if (b.textContent.trim() === value) b.classList.add('selected'); });
+  ejUserAnswers[group] = value;
+}
+
+function verificarEjercicio() {
+  const groups = ['ej1','ej2','ej4','ej6','ej7'];
+  const selects = ['ej3','ej5','ej8'];
+  let allAnswered = true;
+
+  // Check btn groups
+  groups.forEach(g => { if (!ejUserAnswers[g]) allAnswered = false; });
+  // Check selects
+  selects.forEach(id => {
+    const el = document.getElementById(id + '-sel');
+    if (!el || !el.value) allAnswered = false;
+  });
+
+  const alert = document.getElementById('ej-alert');
+  if (!allAnswered) { alert.style.display = 'block'; return; }
+  alert.style.display = 'none';
+
+  // Collect select answers
+  selects.forEach(id => { ejUserAnswers[id] = document.getElementById(id + '-sel').value; });
+
+  let score = 0;
+  Object.keys(ejAnswers).forEach(key => {
+    const ans = ejAnswers[key];
+    const userAns = ejUserAnswers[key] || '';
+    const fb = document.getElementById(key + '-fb');
+    const correct = userAns === ans.correct;
+    if (correct) score++;
+    fb.style.display = 'block';
+    fb.className = 'item-feedback ' + (correct ? 'correct' : 'incorrect');
+    fb.innerHTML = correct
+      ? ans.feedback
+      : `❌ Incorrecto. Tu respuesta: "<em>${userAns}</em>". ${ans.feedback.replace('✅ Correcto.','La respuesta correcta es: "<strong>' + ans.correct + '</strong>".')}`;
+  });
+
+  // Show score
+  const total = Object.keys(ejAnswers).length;
+  const pct = Math.round((score / total) * 100);
+  const panel = document.getElementById('ej-score');
+  panel.style.display = 'block';
+  document.getElementById('ej-main').textContent = score + '/' + total;
+  document.getElementById('ej-pct').textContent = pct + '%';
+  const emojis = pct === 100 ? '🏆' : pct >= 80 ? '🎯' : pct >= 60 ? '📘' : pct >= 40 ? '⚠️' : '📖';
+  document.getElementById('ej-emoji').textContent = emojis;
+  const msgs = pct === 100 ? '¡Perfecto! Dominas completamente los conceptos de esta semana.' :
+               pct >= 80 ? '¡Muy bien! Comprendes sólidamente el tema. Revisa los ítems marcados en rojo.' :
+               pct >= 60 ? 'Buen avance. Repasa las secciones relacionadas con los errores.' :
+               pct >= 40 ? 'En proceso. Te recomendamos releer el contenido antes de continuar.' :
+               'Necesitas reforzar los conceptos. Vuelve a las pestañas de contenido y relée con calma.';
+  document.getElementById('ej-msg').textContent = msgs;
+  setTimeout(() => { document.getElementById('ej-bar').style.width = pct + '%'; }, 100);
+  panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function reiniciarEjercicio() {
+  ejUserAnswers = {};
+  document.querySelectorAll('.match-btn').forEach(b => b.classList.remove('selected'));
+  document.querySelectorAll('#ejercicio-items select').forEach(s => s.value = '');
+  document.querySelectorAll('.item-feedback').forEach(f => { f.style.display = 'none'; f.textContent = ''; });
+  document.getElementById('ej-score').style.display = 'none';
+  document.getElementById('ej-bar').style.width = '0%';
+  document.getElementById('ej-alert').style.display = 'none';
+}
+
+// ========== CUESTIONARIO ==========
+const quizAnswers = {
+  q1: { correct: 'b', explanation: 'La creatividad emprendedora combina dos componentes inseparables — novedad y utilidad. Amabile (1988) y Csikszentmihalyi (1996) coinciden en que no es un don exclusivo ni meramente artístico, sino una capacidad cognitiva desarrollable aplicable a cualquier campo.' },
+  q2: { correct: 'c', explanation: '"Adaptar" en SCAMPER significa tomar ideas, soluciones o principios de otros contextos e industrias y aplicarlos al problema actual. Es la operación que genera más innovaciones disruptivas, porque fuerza analogías entre campos distintos.' },
+  q3: { correct: 'c', explanation: 'El principio más importante del Brainstorming (Osborn, 1939) es separar la generación de la evaluación. El juicio prematuro inhibe la creatividad. La cantidad primero; la calidad se obtiene luego en la fase de análisis.' },
+  q4: { correct: 'b', explanation: 'Los bucles reforzadores amplifican el cambio en una dirección (ya sea de crecimiento o de declive). Los bucles equilibradores actúan como reguladores que corrigen desviaciones respecto a una meta o estado deseado. Ambos coexisten en cualquier sistema real.' },
+  q5: { correct: 'b', explanation: '"Soluciones que Fallan" (Senge, 1990) describe situaciones donde la solución elegida aborda el síntoma visible, no la causa raíz. El alivio es temporal y el problema regresa, frecuentemente más severo.' },
+  q6: { correct: 'b', explanation: 'La iluminación es un punto de partida, no un producto terminado. La etapa de verificación es el filtro que convierte una idea interesante en una solución viable. La verificación rigurosa es lo que distingue al emprendedor del soñador.' },
+  q7: { correct: 'c', explanation: '"Empatizar" es la primera fase del Design Thinking y la más fundamental. Sin comprensión real del usuario (no suposiciones), cualquier solución es una apuesta ciega. Las herramientas de esta fase incluyen entrevistas, observación etnográfica y mapas de empatía.' },
+  q8: { correct: 'b', explanation: 'Este es el arquetipo "Soluciones que Fallan". El gerente usa la publicidad como solución rápida al síntoma (ventas bajas) sin preguntarse por qué caen las ventas realmente. El pensamiento sistémico exigiría un árbol de problemas para identificar las causas raíz antes de actuar.' },
+  q9: { correct: 'b', explanation: '"C" de SCAMPER es "Combinar": unir dos elementos para crear algo nuevo con más valor que cada parte por separado. Combinar auditoría financiera con análisis predictivo de datos crea un servicio de auditoría proactiva — una innovación significativa en servicios profesionales contables.' },
+  q10: { correct: 'c', explanation: 'Esta es la fase de "Empatizar" del Design Thinking. Su valor estratégico es enorme: la mayoría de los productos y servicios fracasan no por mala tecnología, sino porque no resuelven un problema real del usuario. Observar directamente garantiza que cada decisión de diseño estará anclada en la realidad de sus futuros usuarios.' }
+};
+
+function verificarQuiz() {
+  let allAnswered = true;
+  Object.keys(quizAnswers).forEach(q => {
+    const sel = document.querySelector(`input[name="${q}"]:checked`);
+    if (!sel) allAnswered = false;
+  });
+
+  const alert = document.getElementById('quiz-alert');
+  if (!allAnswered) { alert.style.display = 'block'; return; }
+  alert.style.display = 'none';
+
+  let score = 0;
+  Object.keys(quizAnswers).forEach(q => {
+    const sel = document.querySelector(`input[name="${q}"]:checked`);
+    const ans = quizAnswers[q];
+    const correct = sel && sel.value === ans.correct;
+    if (correct) score++;
+
+    // Style options
+    document.querySelectorAll(`input[name="${q}"]`).forEach(opt => {
+      const label = opt.closest('.q-option');
+      if (opt.value === ans.correct) label.classList.add('correct-ans');
+      else if (opt.checked && !correct) label.classList.add('wrong-ans');
+    });
+
+    // Show explanation
+    const exp = document.getElementById(q + '-exp');
+    exp.style.display = 'block';
+    exp.innerHTML = (correct ? '✅ ' : '❌ Respuesta incorrecta. ') + ans.explanation;
+  });
+
+  // Disable all radios
+  document.querySelectorAll('#quiz-items input[type="radio"]').forEach(r => r.disabled = true);
+
+  // Score
+  const pct = Math.round((score / 10) * 100);
+  const panel = document.getElementById('quiz-score');
+  panel.style.display = 'block';
+  document.getElementById('quiz-main').textContent = score + '/10';
+  document.getElementById('quiz-pct').textContent = pct + '%';
+  const emojis = pct === 100 ? '🏆' : pct >= 80 ? '🎯' : pct >= 60 ? '📘' : pct >= 40 ? '⚠️' : '📖';
+  document.getElementById('quiz-emoji').textContent = emojis;
+  const msgs = pct === 100 ? '¡Perfecto! Dominio completo del tema. ¡Excelente desempeño!' :
+               pct >= 80 ? '¡Muy bien! Comprensión sólida. Repasa los puntos señalados en rojo.' :
+               pct >= 60 ? 'Buen avance. Regresa a los temas con errores y refuerza.' :
+               pct >= 40 ? 'En proceso. Te recomendamos releer el contenido detenidamente.' :
+               'Necesitas reforzar. Vuelve a las pestañas de contenido antes de reintentar.';
+  document.getElementById('quiz-msg').textContent = msgs;
+  setTimeout(() => { document.getElementById('quiz-bar').style.width = pct + '%'; }, 100);
+  panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function reiniciarQuiz() {
+  document.querySelectorAll('#quiz-items input[type="radio"]').forEach(r => { r.checked = false; r.disabled = false; });
+  document.querySelectorAll('.q-option').forEach(o => { o.classList.remove('correct-ans','wrong-ans'); });
+  document.querySelectorAll('.q-explanation').forEach(e => e.style.display = 'none');
+  document.getElementById('quiz-score').style.display = 'none';
+  document.getElementById('quiz-bar').style.width = '0%';
+  document.getElementById('quiz-alert').style.display = 'none';
+}
+
+// ========== RADIO OPTION VISUAL ==========
+document.querySelectorAll('.q-option').forEach(label => {
+  label.addEventListener('click', function() {
+    const radio = this.querySelector('input[type="radio"]');
+    if (!radio || radio.disabled) return;
+    const name = radio.getAttribute('name');
+    document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
+      r.closest('.q-option').classList.remove('selected');
+    });
+    this.classList.add('selected');
+  });
+});
+</script>
+</body>
+</html>
