@@ -1,0 +1,1795 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 5 | Emprendimiento e Innovación | Universidad de Guayaquil</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --azul-oscuro: #003366;
+  --celeste: #87CEEB;
+  --celeste-light: #e8f4fb;
+  --celeste-mid: #c8e8f7;
+  --blanco: #ffffff;
+  --gris-claro: #f5f7fa;
+  --gris-borde: #dde3ea;
+  --verde: #1a7f4b;
+  --verde-light: #eaf7f0;
+  --rojo: #c0392b;
+  --rojo-light: #fdf0ee;
+  --amarillo: #f39c12;
+  --amarillo-light: #fef9e7;
+  --texto: #1a2636;
+  --texto-suave: #4a5568;
+  --sombra: 0 2px 12px rgba(0,51,102,0.10);
+  --sombra-hover: 0 6px 24px rgba(0,51,102,0.18);
+  --radius: 10px;
+  --font-titulo: 'Lora', Georgia, serif;
+  --font-cuerpo: 'Source Sans 3', Arial, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-cuerpo);
+  background: #eef3f8;
+  color: var(--texto);
+  min-height: 100vh;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* ===== ENCABEZADO ===== */
+header {
+  background: var(--azul-oscuro);
+  color: var(--blanco);
+  padding: 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 3px 16px rgba(0,0,0,0.22);
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 14px 28px 10px;
+  border-bottom: 1px solid rgba(135,206,235,0.25);
+}
+
+.header-logo {
+  width: 52px;
+  height: 52px;
+  background: var(--celeste);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-family: var(--font-titulo);
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--azul-oscuro);
+}
+
+.header-info { flex: 1; }
+.header-info h1 {
+  font-family: var(--font-titulo);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+}
+.header-info .subtitulo {
+  font-size: 0.82rem;
+  opacity: 0.82;
+  margin-top: 2px;
+  font-weight: 300;
+}
+
+.header-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 7px 28px 10px;
+}
+
+.badge {
+  background: rgba(135,206,235,0.18);
+  border: 1px solid rgba(135,206,235,0.4);
+  color: var(--celeste);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 11px;
+  border-radius: 20px;
+  letter-spacing: 0.03em;
+}
+
+/* ===== MENÚ DE PESTAÑAS ===== */
+.tabs-nav {
+  background: var(--celeste);
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+  gap: 0;
+  border-bottom: 3px solid var(--azul-oscuro);
+}
+.tabs-nav::-webkit-scrollbar { display: none; }
+
+.tab-btn {
+  background: transparent;
+  border: none;
+  padding: 11px 16px;
+  font-family: var(--font-cuerpo);
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: #111;
+  cursor: pointer;
+  white-space: nowrap;
+  border-right: 1px solid rgba(0,51,102,0.12);
+  transition: background 0.18s, color 0.18s;
+  position: relative;
+}
+.tab-btn:hover { background: rgba(0,51,102,0.08); }
+.tab-btn.active {
+  background: var(--blanco);
+  color: var(--azul-oscuro);
+  font-weight: 700;
+  border-bottom: 3px solid var(--blanco);
+  margin-bottom: -3px;
+}
+
+/* ===== CONTENIDO PRINCIPAL ===== */
+main { max-width: 980px; margin: 0 auto; padding: 28px 20px 60px; }
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; animation: fadeIn 0.3s ease; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ===== SECCIÓN TÍTULO ===== */
+.section-title {
+  font-family: var(--font-titulo);
+  font-size: 1.65rem;
+  color: var(--azul-oscuro);
+  font-weight: 700;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+.section-subtitle {
+  color: var(--texto-suave);
+  font-size: 0.97rem;
+  margin-bottom: 24px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--celeste);
+}
+
+/* ===== CAJAS ===== */
+.caja-concepto {
+  border-left: 5px solid var(--azul-oscuro);
+  background: var(--gris-claro);
+  padding: 16px 20px;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  margin: 20px 0;
+  box-shadow: var(--sombra);
+}
+.caja-concepto h4 {
+  font-family: var(--font-titulo);
+  font-size: 1.02rem;
+  color: var(--azul-oscuro);
+  margin-bottom: 7px;
+  font-weight: 700;
+}
+
+.caja-ejemplo {
+  background: var(--celeste-light);
+  border: 1px solid var(--celeste-mid);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin: 20px 0;
+  box-shadow: var(--sombra);
+}
+.caja-ejemplo .ejemplo-label {
+  display: inline-block;
+  background: var(--azul-oscuro);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 9px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.caja-idea {
+  background: var(--azul-oscuro);
+  color: var(--blanco);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.caja-idea h4 {
+  font-family: var(--font-titulo);
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+  opacity: 0.88;
+  letter-spacing: 0.01em;
+}
+.caja-idea p { opacity: 0.93; font-size: 0.97rem; }
+
+.caja-verde {
+  background: var(--verde-light);
+  border-left: 5px solid var(--verde);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 14px 18px;
+  margin: 16px 0;
+}
+.caja-verde h4 { color: var(--verde); font-family: var(--font-titulo); margin-bottom: 6px; }
+
+.caja-amarilla {
+  background: var(--amarillo-light);
+  border-left: 5px solid var(--amarillo);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 14px 18px;
+  margin: 16px 0;
+}
+
+/* ===== TARJETAS DE GRID ===== */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  margin: 22px 0;
+}
+.card {
+  background: var(--blanco);
+  border-radius: var(--radius);
+  padding: 18px;
+  box-shadow: var(--sombra);
+  border-top: 4px solid var(--azul-oscuro);
+  transition: box-shadow 0.2s;
+}
+.card:hover { box-shadow: var(--sombra-hover); }
+.card h4 {
+  font-family: var(--font-titulo);
+  color: var(--azul-oscuro);
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+/* ===== TABLAS ===== */
+.tabla-wrapper { overflow-x: auto; margin: 20px 0; border-radius: var(--radius); box-shadow: var(--sombra); }
+table { width: 100%; border-collapse: collapse; background: var(--blanco); }
+thead { background: var(--azul-oscuro); color: var(--blanco); }
+thead th {
+  padding: 12px 16px;
+  font-family: var(--font-titulo);
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-align: left;
+}
+tbody td { padding: 11px 16px; border-bottom: 1px solid var(--gris-borde); font-size: 0.93rem; }
+tbody tr:nth-child(even) { background: var(--gris-claro); }
+tbody tr:hover { background: var(--celeste-light); }
+
+/* ===== LISTAS ===== */
+.lista-check { list-style: none; padding: 0; margin: 12px 0; }
+.lista-check li {
+  padding: 6px 0 6px 28px;
+  position: relative;
+  font-size: 0.97rem;
+  border-bottom: 1px solid var(--gris-borde);
+}
+.lista-check li:last-child { border-bottom: none; }
+.lista-check li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--verde);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.lista-num { padding-left: 22px; margin: 12px 0; }
+.lista-num li { margin-bottom: 8px; font-size: 0.97rem; }
+
+/* ===== REPASO ===== */
+.repaso-card {
+  background: var(--blanco);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin-bottom: 18px;
+  box-shadow: var(--sombra);
+  border-left: 6px solid var(--celeste);
+  position: relative;
+}
+.repaso-card .semana-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--azul-oscuro);
+  background: var(--celeste-light);
+  padding: 3px 10px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+.repaso-card h3 {
+  font-family: var(--font-titulo);
+  color: var(--azul-oscuro);
+  font-size: 1.08rem;
+  margin-bottom: 10px;
+}
+
+/* ===== EJERCICIO INTERACTIVO ===== */
+.quiz-item {
+  background: var(--blanco);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 18px;
+  box-shadow: var(--sombra);
+  border: 2px solid var(--gris-borde);
+  transition: border-color 0.2s;
+}
+.quiz-item.correcto { border-color: var(--verde); background: var(--verde-light); }
+.quiz-item.incorrecto { border-color: var(--rojo); background: var(--rojo-light); }
+
+.quiz-pregunta {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 14px;
+  color: var(--azul-oscuro);
+}
+.quiz-num {
+  display: inline-block;
+  background: var(--azul-oscuro);
+  color: #fff;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 28px;
+  font-size: 0.85rem;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+.opciones-grid { display: flex; flex-direction: column; gap: 8px; }
+.opcion-btn {
+  background: var(--gris-claro);
+  border: 2px solid var(--gris-borde);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-family: var(--font-cuerpo);
+  font-size: 0.92rem;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.18s;
+  color: var(--texto);
+}
+.opcion-btn:hover { border-color: var(--celeste); background: var(--celeste-light); }
+.opcion-btn.selected { border-color: var(--azul-oscuro); background: var(--celeste-light); font-weight: 600; }
+.opcion-btn.correcta-final { border-color: var(--verde); background: var(--verde-light); color: var(--verde); font-weight: 600; }
+.opcion-btn.incorrecta-final { border-color: var(--rojo); background: var(--rojo-light); color: var(--rojo); }
+
+.resultado-feedback {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.91rem;
+  display: none;
+}
+.resultado-feedback.show { display: block; }
+.resultado-feedback.ok { background: var(--verde-light); border-left: 4px solid var(--verde); color: #145a32; }
+.resultado-feedback.fail { background: var(--rojo-light); border-left: 4px solid var(--rojo); color: #922b21; }
+
+.btn-verificar, .btn-reiniciar {
+  display: inline-block;
+  padding: 13px 34px;
+  border-radius: 8px;
+  font-family: var(--font-cuerpo);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  margin-top: 18px;
+  transition: all 0.2s;
+}
+.btn-verificar {
+  background: var(--azul-oscuro);
+  color: var(--blanco);
+  box-shadow: 0 4px 14px rgba(0,51,102,0.25);
+}
+.btn-verificar:hover { background: #00255a; transform: translateY(-2px); }
+.btn-reiniciar {
+  background: var(--celeste);
+  color: var(--azul-oscuro);
+  margin-left: 12px;
+  display: none;
+}
+.btn-reiniciar:hover { background: #6dbde8; }
+
+.score-box {
+  background: var(--blanco);
+  border-radius: var(--radius);
+  padding: 22px 26px;
+  margin-top: 22px;
+  box-shadow: var(--sombra);
+  border: 2px solid var(--azul-oscuro);
+  display: none;
+  text-align: center;
+}
+.score-box.show { display: block; animation: fadeIn 0.4s ease; }
+.score-big { font-family: var(--font-titulo); font-size: 2.8rem; font-weight: 700; color: var(--azul-oscuro); }
+.score-pct { font-size: 1.2rem; color: var(--texto-suave); margin-bottom: 14px; }
+
+.progress-bar-wrap {
+  background: var(--gris-borde);
+  border-radius: 20px;
+  height: 16px;
+  overflow: hidden;
+  margin: 10px 0 14px;
+}
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 20px;
+  background: linear-gradient(90deg, var(--azul-oscuro), var(--celeste));
+  transition: width 0.8s ease;
+  width: 0%;
+}
+.score-msg { font-size: 1rem; font-weight: 600; margin-top: 6px; }
+
+/* ===== BADGE TIPO ===== */
+.badge-tipo {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+.badge-teorica { background: #d6eaf8; color: #1a5276; }
+.badge-analisis { background: #fde8d8; color: #784212; }
+
+/* ===== ACTIVIDAD IA ===== */
+.ia-step {
+  background: var(--blanco);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  margin-bottom: 16px;
+  box-shadow: var(--sombra);
+  border-left: 5px solid var(--azul-oscuro);
+}
+.ia-step-num {
+  display: inline-block;
+  background: var(--azul-oscuro);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  letter-spacing: 0.04em;
+}
+.ia-step h4 { font-family: var(--font-titulo); color: var(--azul-oscuro); margin-bottom: 8px; }
+
+.prompt-box {
+  background: #0a1628;
+  color: #a8d8f0;
+  border-radius: 8px;
+  padding: 18px 20px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  margin: 12px 0;
+  border: 1px solid #1e3a5f;
+  white-space: pre-wrap;
+}
+
+/* ===== PREGUNTAS REFLEXIVAS ===== */
+.reflexiva-card {
+  background: var(--blanco);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  margin-bottom: 14px;
+  box-shadow: var(--sombra);
+  border-top: 4px solid var(--celeste);
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.reflexiva-num {
+  background: var(--celeste);
+  color: var(--azul-oscuro);
+  font-weight: 700;
+  font-size: 1.1rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-family: var(--font-titulo);
+}
+.reflexiva-card p { font-size: 0.98rem; padding-top: 6px; }
+
+/* ===== BIBLIOGRAFÍA ===== */
+.bib-card {
+  background: var(--blanco);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  margin-bottom: 14px;
+  box-shadow: var(--sombra);
+  border-left: 5px solid var(--celeste-mid);
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.bib-icon {
+  font-size: 1.6rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.bib-card .bib-ref { font-size: 0.93rem; line-height: 1.65; }
+.bib-card .bib-ref em { color: var(--azul-oscuro); }
+.bib-nota {
+  background: var(--amarillo-light);
+  border: 1px solid #f0d080;
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  font-size: 0.88rem;
+  margin-top: 22px;
+  color: #7d5a00;
+}
+
+/* ===== DIVISOR ===== */
+hr.divisor { border: none; border-top: 2px solid var(--gris-borde); margin: 26px 0; }
+
+/* ===== TENDENCIA CARD ===== */
+.tendencia-card {
+  background: var(--blanco);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin-bottom: 14px;
+  box-shadow: var(--sombra);
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  border: 1px solid var(--gris-borde);
+  transition: box-shadow 0.2s;
+}
+.tendencia-card:hover { box-shadow: var(--sombra-hover); }
+.tendencia-icon { font-size: 2rem; flex-shrink: 0; }
+.tendencia-card h4 { font-family: var(--font-titulo); color: var(--azul-oscuro); margin-bottom: 5px; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 640px) {
+  .header-top { padding: 12px 14px 8px; }
+  .header-meta { padding: 5px 14px 8px; }
+  main { padding: 18px 12px 50px; }
+  .section-title { font-size: 1.3rem; }
+  .card-grid { grid-template-columns: 1fr; }
+  .score-big { font-size: 2.2rem; }
+  .tab-btn { padding: 9px 11px; font-size: 0.78rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== ENCABEZADO ===== -->
+<header>
+  <div class="header-top">
+    <div class="header-logo">UG</div>
+    <div class="header-info">
+      <h1>Universidad de Guayaquil &nbsp;|&nbsp; Facultad de Ciencias Administrativas</h1>
+      <div class="subtitulo">Carrera en Contabilidad y Auditoría &nbsp;·&nbsp; Emprendimiento e Innovación</div>
+    </div>
+  </div>
+  <div class="header-meta">
+    <span class="badge">UNIDAD 1</span>
+    <span class="badge">SEMANA 5</span>
+    <span class="badge">El Emprendimiento: Generalidades y el Proceso Emprendedor</span>
+    <span class="badge">2024–2025</span>
+  </div>
+  <!-- MENÚ DE PESTAÑAS -->
+  <nav class="tabs-nav" id="tabsNav">
+    <button class="tab-btn active" data-tab="repaso">📋 Repaso</button>
+    <button class="tab-btn" data-tab="tema1">1. La Capacidad Emprendedora</button>
+    <button class="tab-btn" data-tab="tema2">2. Tipos de Emprendedor</button>
+    <button class="tab-btn" data-tab="tema3">3. Identificación de Problemas y Oportunidades</button>
+    <button class="tab-btn" data-tab="tema4">4. Análisis de Tendencias</button>
+    <button class="tab-btn" data-tab="ejercicio">🎯 Ejercicio Interactivo</button>
+    <button class="tab-btn" data-tab="cuestionario">📝 Cuestionario</button>
+    <button class="tab-btn" data-tab="ia">🤖 Actividad con IA</button>
+    <button class="tab-btn" data-tab="reflexion">💭 Preguntas Reflexivas</button>
+    <button class="tab-btn" data-tab="biblio">📚 Bibliografía</button>
+  </nav>
+</header>
+
+<main>
+
+<!-- ============================== PESTAÑA: REPASO ============================== -->
+<section class="tab-panel active" id="tab-repaso">
+  <h2 class="section-title">📋 Repaso: Semanas 1 a 4</h2>
+  <p class="section-subtitle">Antes de avanzar, consolidemos lo que hemos construido. Este repaso no es un simple listado de temas — es una síntesis analítica que te ayudará a ver la conexión entre semanas y prepararte para los contenidos de hoy.</p>
+
+  <div class="repaso-card">
+    <span class="semana-label">Semanas 1 y 2</span>
+    <h3>Teoría y Concepto del Emprendimiento e Innovación</h3>
+    <p>Comenzamos por los fundamentos: ¿qué es emprender? Estudiamos que la palabra "emprendimiento" proviene del francés <em>entrepreneur</em>, término que Richard Cantillon (1755) usó para describir a quien asume riesgos económicos en condiciones de incertidumbre. Jean-Baptiste Say amplió esta idea al señalar que el emprendedor combina recursos productivos de forma novedosa. Luego, Joseph Schumpeter introdujo el concepto central de <strong>destrucción creativa</strong>: la idea de que el emprendimiento no solo crea valor nuevo, sino que transforma o desplaza lo existente. Peter Drucker, por su parte, definió el emprendimiento como <em>una disciplina aprendible</em>, no un don natural, vinculándolo directamente con la innovación sistemática. Distinguimos también emprendimiento de innovación: emprender es el proceso de creación; innovar es aplicar ideas nuevas que generan valor. Ambos conceptos son complementarios, no sinónimos.</p>
+    <div class="caja-verde">
+      <h4>Idea clave de las semanas 1–2</h4>
+      <p>El emprendimiento es una actitud y una disciplina; la innovación es su principal herramienta. Todo emprendedor innova, pero no toda innovación requiere crear una empresa.</p>
+    </div>
+  </div>
+
+  <div class="repaso-card">
+    <span class="semana-label">Semana 3</span>
+    <h3>Situación Mundial del Emprendimiento — Ecosistema Emprendedor Ecuatoriano</h3>
+    <p>Ampliamos la mirada hacia el contexto global. Revisamos el <strong>GEM (Global Entrepreneurship Monitor)</strong>, el mayor estudio comparativo de emprendimiento en el mundo, que mide indicadores como la TEA (Tasa de Actividad Emprendedora Temprana). Ecuador históricamente figura entre los países con mayor TEA de América Latina, lo que indica alta actividad emprendedora; sin embargo, también enfrenta altas tasas de cierre de negocios en etapas tempranas, lo que evidencia que emprender no es suficiente: se necesita <em>capacidad para sostener el emprendimiento</em>. Estudiamos el concepto de <strong>ecosistema emprendedor</strong> (Isenberg, 2010) como el conjunto de factores institucionales, culturales, financieros, regulatorios y humanos que determinan si los emprendimientos florecen o fracasan en un territorio. En Ecuador, identificamos actores clave: SENESCYT, Yachay Tech, EmprendeEcuador, incubadoras universitarias y el rol emergente de las cámaras de comercio y las Fintech.</p>
+    <div class="caja-verde">
+      <h4>Idea clave de la semana 3</h4>
+      <p>Ecuador tiene potencial emprendedor alto, pero su ecosistema aún presenta brechas en financiamiento, mentoría especializada y cultura de tolerancia al fracaso. El entorno importa tanto como el emprendedor.</p>
+    </div>
+  </div>
+
+  <div class="repaso-card" style="border-left-color: var(--amarillo);">
+    <span class="semana-label" style="background:#fef3cd; color:#7d5a00;">Semana 4 — Base de la clase de hoy</span>
+    <h3>Introducción a la Capacidad para Emprender, Tipos de Emprendedor y Análisis de Tendencias</h3>
+    <p>La semana 4 fue una introducción general al tema que hoy desarrollamos en profundidad. Vimos que <strong>la capacidad emprendedora</strong> no se refiere únicamente al talento innato, sino a un conjunto de competencias desarrollables: iniciativa, tolerancia a la ambigüedad, orientación a resultados, creatividad aplicada y habilidades de relacionamiento. Presentamos brevemente los distintos <strong>tipos de emprendedor</strong> según criterios como motivación, forma legal del emprendimiento y dimensión social. También introdujimos el <strong>análisis de tendencias</strong> como una herramienta estratégica para detectar oportunidades antes de que se vuelvan evidentes para todos. Hoy profundizaremos en cada uno de estos bloques con ejemplos, marcos conceptuales sólidos y herramientas aplicables.</p>
+    <div class="caja-amarilla">
+      <strong>⚠️ Punto de partida de hoy:</strong> Si la semana pasada fue la puerta, hoy entramos a la casa. Vas a trabajar con conceptos, clasificaciones y herramientas que podrás aplicar a tu propia realidad como futuro profesional contable.
+    </div>
+  </div>
+</section>
+
+<!-- ============================== TEMA 1: CAPACIDAD EMPRENDEDORA ============================== -->
+<section class="tab-panel" id="tab-tema1">
+  <h2 class="section-title">La Capacidad para Emprender</h2>
+  <p class="section-subtitle">¿Se nace emprendedor o se aprece a emprender? La respuesta transforma la forma en que te ves a ti mismo y a tus posibilidades.</p>
+
+  <div class="caja-concepto">
+    <h4>📌 Definición precisa</h4>
+    <p>La <strong>capacidad emprendedora</strong> es el conjunto integrado de competencias cognitivas, emocionales, relacionales y ejecutoras que permiten a una persona identificar oportunidades, gestionar recursos bajo incertidumbre, tolerar el riesgo calculado y transformar ideas en valor concreto para sí misma o para la sociedad. No es un rasgo de personalidad fijo, sino un repertorio de habilidades aprendibles y mejorables (Drucker, 1986; Mitchelmore & Rowley, 2010).</p>
+  </div>
+
+  <h3 style="font-family: var(--font-titulo); color: var(--azul-oscuro); margin: 24px 0 12px; font-size: 1.2rem;">¿Por qué importa definirla con precisión?</h3>
+  <p>Durante décadas se creyó que el emprendedor era una especie particular de persona — audaz, extrovertida, casi heroica. Esta visión romántica hizo mucho daño: convenció a millones de personas de que "emprender no es para ellos". La investigación contemporánea demuestra lo contrario: las capacidades emprendedoras pueden desarrollarse sistemáticamente, exactamente igual que las habilidades contables. Tú aprendiste a hacer balances; puedes aprender a emprender.</p>
+
+  <h3 style="font-family: var(--font-titulo); color: var(--azul-oscuro); margin: 24px 0 12px; font-size: 1.2rem;">Las cinco dimensiones de la capacidad emprendedora</h3>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4>1. Competencia Cognitiva</h4>
+      <p>Capacidad de leer el entorno, identificar patrones, reconocer oportunidades donde otros ven problemas. Incluye pensamiento lateral, análisis crítico y toma de decisiones bajo incertidumbre.</p>
+    </div>
+    <div class="card">
+      <h4>2. Competencia Emocional</h4>
+      <p>Tolerancia a la ambigüedad, resiliencia ante el fracaso, autoconfianza calibrada. Angela Duckworth (2016) la nombra <em>grit</em>: perseverancia sostenida hacia metas de largo plazo a pesar de los obstáculos.</p>
+    </div>
+    <div class="card">
+      <h4>3. Competencia Social</h4>
+      <p>Habilidad para construir redes de relaciones (networking), comunicar visiones, persuadir, liderar equipos, colaborar con personas de distintos perfiles y generar confianza.</p>
+    </div>
+    <div class="card">
+      <h4>4. Competencia Técnica-Funcional</h4>
+      <p>Conocimientos específicos del sector donde se emprende: finanzas, mercadeo, operaciones. El contador que emprende tiene aquí una ventaja real: entiende los números antes que la mayoría.</p>
+    </div>
+    <div class="card">
+      <h4>5. Competencia Ejecutora</h4>
+      <p>La capacidad de pasar de la idea a la acción. Planificación operativa, gestión del tiempo, priorización de recursos escasos, habilidad para pivotar cuando el plan no funciona.</p>
+    </div>
+  </div>
+
+  <div class="caja-ejemplo">
+    <span class="ejemplo-label">Ejemplo ecuatoriano</span>
+    <h4 style="font-family: var(--font-titulo); color: var(--azul-oscuro); margin-bottom: 8px;">El caso de las emprendedoras de Guaranda</h4>
+    <p>En 2018, un grupo de mujeres de la provincia de Bolívar, con educación básica-media y sin capital inicial, fundaron una asociación de producción y comercialización de quinua orgánica. Lo que las convirtió en emprendedoras no fue un MBA ni una inversión millonaria, sino: (1) identificar que había demanda creciente de superalimentos en mercados nacionales e internacionales; (2) organizarse colectivamente; (3) aprender técnicas básicas de control de calidad; y (4) perseverar ante la resistencia inicial del mercado. En ese proceso, cuando necesitaron acceder a crédito de la CFN, la única persona del grupo que entendía un balance y un flujo de caja fue determinante para que la solicitud prosperara. El conocimiento contable fue una ventaja emprendedora directa.</p>
+  </div>
+
+  <h3 style="font-family: var(--font-titulo); color: var(--azul-oscuro); margin: 24px 0 12px; font-size: 1.2rem;">El modelo de competencias de Mitchelmore y Rowley</h3>
+  <p>Mitchelmore y Rowley (2010) propusieron un modelo que organiza las competencias emprendedoras en cuatro bloques interrelacionados:</p>
+
+  <div class="tabla-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Bloque de competencia</th>
+          <th>¿Qué incluye?</th>
+          <th>¿Cómo se desarrolla?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Empresarial y gerencial</strong></td>
+          <td>Planificar, presupuestar, controlar, organizar recursos</td>
+          <td>Formación académica, mentorías, práctica directa</td>
+        </tr>
+        <tr>
+          <td><strong>Relacional e interpersonal</strong></td>
+          <td>Negociar, comunicar, liderar, gestionar conflictos</td>
+          <td>Exposición social, roles de liderazgo, retroalimentación</td>
+        </tr>
+        <tr>
+          <td><strong>Personal</strong></td>
+          <td>Autoconocimiento, disciplina, motivación intrínseca</td>
+          <td>Reflexión, coaching, lectura crítica</td>
+        </tr>
+        <tr>
+          <td><strong>Cognitiva y de aprendizaje</strong></td>
+          <td>Pensamiento crítico, aprendizaje continuo, creatividad</td>
+          <td>Entornos de aprendizaje desafiantes, lectura interdisciplinar</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="font-family: var(--font-titulo); color: var(--azul-oscuro); margin: 24px 0 12px; font-size: 1.2rem;">La capacidad emprendedora del contador: una ventaja poco explotada</h3>
+  <p>Los contadores y auditores poseen de forma natural varias de las competencias más difíciles de desarrollar en el mundo emprendedor:</p>
+  <ul class="lista-check">
+    <li><strong>Pensamiento numérico y financiero</strong>: entienden márgenes, costos, rentabilidad y viabilidad antes de invertir.</li>
+    <li><strong>Orientación al cumplimiento y al orden</strong>: los emprendimientos fracasan frecuentemente por desorden administrativo; un contador sabe estructurar desde el inicio.</li>
+    <li><strong>Lectura de señales de riesgo</strong>: la auditoría enseña a detectar anomalías y puntos débiles — habilidad directamente transferible a la evaluación de negocios.</li>
+    <li><strong>Credibilidad institucional</strong>: los inversores y bancos confían más en alguien que habla con precisión financiera.</li>
+  </ul>
+
+  <div class="caja-idea">
+    <h4>💡 Idea clave del Tema 1</h4>
+    <p>La capacidad emprendedora no es un gen ni un don reservado para cierto tipo de personas. Es un sistema de competencias — cognitivas, emocionales, sociales, técnicas y ejecutoras — que se desarrollan con aprendizaje deliberado y práctica sostenida. Como futuro contador o auditor, ya posees muchas de esas competencias. La pregunta no es si puedes emprender, sino si eliges hacerlo.</p>
+  </div>
+</section>
+
+<!-- ============================== TEMA 2: TIPOS DE EMPRENDEDOR ============================== -->
+<section class="tab-panel" id="tab-tema2">
+  <h2 class="section-title">Tipos de Emprendedor</h2>
+  <p class="section-subtitle">No todos los emprendedores son iguales, ni tienen las mismas motivaciones. Clasificarlos con precisión académica ayuda a entender qué tipo de soporte, habilidades y estrategias necesita cada perfil.</p>
+
+  <div class="caja-concepto">
+    <h4>📌 ¿Por qué clasificar tipos de emprendedor?</h4>
+    <p>La tipología del emprendedor no es un ejercicio académico sin consecuencias prácticas. Entender qué tipo de emprendedor eres (o quieres ser) determina: qué formación necesitas, qué financiamiento buscar, qué red construir y qué métricas de éxito usar. Un emprendedor social que mide su éxito únicamente en rentabilidad financiera está usando los instrumentos equivocados.</p>
+  </div>
+
+  <h3 style="font-family: var(--font-titulo); color: var(--azul-oscuro); margin: 24px 0 12px; font-size: 1.2rem;">Clasificación 1: Por motivación o impulso</h3>
+  <p>Esta es la clasificación más fundamental. La motivación de origen define la resiliencia del emprendedor en momentos de crisis.</p>
+
+  <div class="card-grid">
+    <div class="card" style="border-top-color: #e74c3c;">
+      <h4>🚀 Emprendedor por Oportunidad</h4>
+      <p>Detecta una brecha en el mercado y decide explotarla. Actúa desde la iniciativa y la visión estratégica. Ejemplos: quien identifica que no hay servicio de contabilidad digital para pequeños negocios en su ciudad y crea una startup para cubrirlo.</p>
+      <p style="margin-top: 8px; font-size: 0.88rem; color: var(--texto-suave);">Según el GEM (2022), estos emprendedores tienen mayor tasa de supervivencia y crecimiento.</p>
+    </div>
+    <div class="card" style="border-top-color: #f39c12;">
+      <h4>⚡ Emprendedor por Necesidad</h4>
+      <p>No tiene otra opción económica: el desempleo, la crisis o la urgencia lo empujan a emprender. En Ecuador y América Latina, este tipo representa históricamente entre el 35-45% del total (GEM Ecuador, 2021).</p>
+      <p style="margin-top: 8px; font-size: 0.88rem; color: var(--texto-suave);">No implica menor valor, pero sí requiere más soporte para consolidarse.</p>
+    </div>
+  </div>
+
+  <h3 style="font-family: var(--font-titulo); color: var(--azul-oscuro); margin: 24px 0 14px; font-size: 1.2rem;">Clasificación 2: Por dimensión y escala del emprendimiento</h3>
+
+  <div class="tabla-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Tipo</th>
+          <th>Características</th>
+          <th>Escala de impacto</th>
+          <th>Ejemplo ecuatoriano</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Microemprendedor / Subsistencia</strong></td>
+          <td>Opera solo o con familia, sin financiamiento formal, ingresos cubren necesidades básicas</td>
+          <td>Individual / Familiar</td>
+          <td>Vendedor de encebollado en Guayaquil con puesto propio</td>
+        </tr>
+        <tr>
+          <td><strong>Emprendedor de pequeña empresa</strong></td>
+          <td>Tiene entre 1-9 colaboradores, algún nivel de formalización, accede a crédito</td>
+          <td>Local / Barrio / Ciudad</td>
+          <td>Empresa familiar de catering en Quito con RUC y personal</td>
+        </tr>
+        <tr>
+          <td><strong>Emprendedor escalable / Startup</strong></td>
+          <td>Busca crecer rápidamente, usa tecnología como palanca, atrae inversión externa</td>
+          <td>Nacional / Regional / Global</td>
+          <td>Kushki (fintech ecuatoriana de pagos digitales)</td>
+        </tr>
+        <tr>
+          <td><strong>Emprendedor corporativo / Intrapreneur</strong></td>
+          <td>Innova desde adentro de una organización existente, sin crear su propia empresa</td>
+          <td>Organizacional</td>
+          <td>Funcionario de Banco Pichincha que desarrolló nueva línea de productos digitales</td>
+        </tr>
+        <tr>
+          <td><strong>Emprendedor social</strong></td>
+          <td>El impacto social es el fin; lo económico es el medio. No necesariamente sin fines de lucro.</td>
+          <td>Comunitario / Social</td>
+          <td>Asociación Tierra Nueva (reciclaje + empleo para personas vulnerables)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="font-family: var(--font-titulo); color: var(--azul-oscuro); margin: 24px 0 12px; font-size: 1.2rem;">El Intrapreneur: el emprendedor invisible de las organizaciones</h3>
+
+  <div class="caja-concepto">
+    <h4>📌 ¿Qué es el Intrapreneur?</h4>
+    <p>El término <strong>intrapreneurship</strong> fue popularizado por Gifford Pinchot III en 1985. Se refiere a empleados que, dentro de una organización establecida, actúan con mentalidad emprendedora: proponen ideas disruptivas, asumen riesgos calculados, lideran proyectos de innovación y crean valor adicional sin necesidad de fundar su propia empresa. La organización les provee recursos; ellos aportan la iniciativa creadora.</p>
+  </div>
+
+  <div class="caja-ejemplo">
+    <span class="ejemplo-label">Caso Latinoamérica</span>
+    <h4 style="font-family: var(--font-titulo); color: var(--azul-oscuro); margin-bottom: 8px;">El intrapreneurship en empresas colombianas y ecuatorianas</h4>
+    <p>Empresas como Grupo Nutresa (Colombia) y Corporación La Favorita (Ecuador) han implementado programas formales de intrapreneurship, donde equipos internos presentan proyectos de innovación que, si son aprobados, reciben presupuesto y tiempo de trabajo para desarrollarse. En La Favorita, la línea de marcas propias surgió en parte de propuestas internas que identificaron oportunidades de márgenes superiores en categorías específicas de retail. Los contadores y auditores que participan en estos procesos aportan análisis de viabilidad financiera que define qué proyectos avanzan y cuáles no.</p>
+  </div>
+
+  <h3 style="font-family: var(--font-titulo); color: var(--azul-oscuro); margin: 24px 0 12px; font-size: 1.2rem;">El Emprendedor Social: cuando el impacto es el producto</h3>
+  <p>Muhammad Yunus, Premio Nobel de Paz 2006, es el referente global de este modelo. Su Grameen Bank demostró que los pobres son prestatarios confiables y que el crédito puede ser un instrumento de cambio social. J. Gregory Dees (1998) definió al emprendedor social como quien persigue una misión de cambio social utilizando estrategias empresariales para generar sostenibilidad. En el contexto contable, el emprendedor social necesita especialmente un buen auditor: las organizaciones de impacto social son juzgadas por la transparencia de su gestión tanto como por sus resultados.</p>
+
+  <div class="caja-idea">
+    <h4>💡 Idea clave del Tema 2</h4>
+    <p>No existe "el" emprendedor: existen múltiples perfiles con motivaciones, escalas y fines distintos. Conocer tu perfil te ayuda a definir estrategias adecuadas. Y como contador, puedes aportar valor en <em>todos</em> los tipos: desde el microemprendedor que necesita ordenar su caja, hasta la startup que necesita estructurar su modelo financiero para atraer inversión.</p>
+  </div>
+</section>
+
+<!-- ============================== TEMA 3: IDENTIFICACIÓN DE PROBLEMAS Y OPORTUNIDADES ============================== -->
+<section class="tab-panel" id="tab-tema3">
+  <h2 class="section-title">Identificación de Problemas y Oportunidades</h2>
+  <p class="section-subtitle">Una oportunidad de negocio no se inventa: se descubre. Y se descubre siendo especialmente sensible a los problemas que la gente vive sin resolver.</p>
+
+  <div class="caja-concepto">
+    <h4>📌 Definición precisa: ¿Qué es una oportunidad emprendedora?</h4>
+    <p>Shane y Venkataraman (2000) definen la oportunidad emprendedora como una situación en la que nuevos bienes, servicios, materias primas o métodos de organización pueden ser introducidos y vendidos a un precio mayor que su costo de producción. No basta con que exista la oportunidad: alguien tiene que <em>reconocerla</em> como tal. Esa capacidad de reconocimiento —llamada <em>entrepreneurial alertness</em> o alerta emprendedora— es una de las competencias más valiosas y menos enseñadas.</p>
+  </div>
+
+  <h3 style="font-family: var(--font-titulo); color: var(--azul-oscuro); margin: 24px 0 12px; font-size: 1.2rem;">¿Problema u oportunidad? Dos caras de la misma moneda</h3>
+  <p>El punto de partida de todo emprendimiento exitoso es, casi siempre, un <strong>problema real y no resuelto</strong>. La diferencia entre ver un problema y ver una oportunidad está en la perspectiva:</p>
+
+  <div class="tabla-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Perspectiva del problema</th>
+          <th>Perspectiva de la oportunidad</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Los pequeños negocios en Ecuador no tienen acceso a software contable porque es caro</td>
+          <td>Existe un mercado enorme de PYMEs que pagarían por una solución contable asequible y sencilla</td>
+        </tr>
+        <tr>
+          <td>Los adultos mayores en Guayaquil no entienden cómo hacer trámites bancarios digitales</td>
+          <td>Hay demanda de un servicio de alfabetización financiera digital para adultos mayores</td>
+        </tr>
+        <tr>
+          <td>Los trabajadores informales no pueden acceder a crédito bancario tradicional</td>
+          <td>Existe un segmento no atendido de millones de personas con necesidad de productos financieros alternativos</td>
+        </tr>
+        <tr>
+          <td>Las empresas exportadoras ecuatorianas pierden dinero en tipo de cambio sin saberlo</td>
+          <td>Un servicio de asesoría de riesgo cambiario especializado para exportadores medianos tiene alta demanda potencial</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="font-family: var(--font-titulo); color: var(--azul-oscuro); margin: 24px 0 12px; font-size: 1.2rem;">Fuentes de oportunidades: ¿dónde mirar?</h3>
+  <p>Peter Drucker (1985) identificó siete fuentes sistemáticas de innovación y oportunidad. Las presentamos aquí con ejemplos contextualizados:</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4>Lo Inesperado</h4>
+      <p>Éxitos o fracasos inesperados que nadie planeó pero que revelan algo. Ejemplo: la pandemia aumentó explosivamente el uso de pagos digitales en Ecuador, creando oportunidades en fintech que nadie había proyectado.</p>
+    </div>
+    <div class="card">
+      <h4>Incongruencias</h4>
+      <p>Brechas entre lo que "debería ser" y lo que "es". Ejemplo: la facturación electrónica es obligatoria en Ecuador, pero miles de PYMES no saben usarla correctamente — brecha entre norma y capacidad.</p>
+    </div>
+    <div class="card">
+      <h4>Necesidades de proceso</h4>
+      <p>Pasos incompletos o engorrosos en procesos existentes. Ejemplo: el proceso de declaración de impuestos en el SRI es técnicamente complejo para personas sin formación contable — oportunidad para servicios de asesoría digital.</p>
+    </div>
+    <div class="card">
+      <h4>Cambios en el mercado</h4>
+      <p>Cambios demográficos, de hábitos o de estructura económica. Ejemplo: el crecimiento del trabajo remoto creó demanda de servicios de coworking en ciudades intermedias de Ecuador.</p>
+    </div>
+    <div class="card">
+      <h4>Cambios demográficos</h4>
+      <p>Variaciones en composición de la población: edad, migración, urbanización. Ejemplo: el envejecimiento poblacional en Ecuador crea oportunidades en servicios de cuidado, salud y recreación para adultos mayores.</p>
+    </div>
+    <div class="card">
+      <h4>Cambios de percepción</h4>
+      <p>Cuando la sociedad cambia lo que valora. Ejemplo: el creciente interés en sostenibilidad ambiental creó mercado para productos orgánicos, reciclables y de comercio justo en Ecuador.</p>
+    </div>
+    <div class="card">
+      <h4>Nuevo conocimiento</h4>
+      <p>Descubrimientos científicos o tecnológicos. Ejemplo: la blockchain abre oportunidades en auditoría descentralizada, trazabilidad de cadenas de suministro y contratos inteligentes.</p>
+    </div>
+  </div>
+
+  <h3 style="font-family: var(--font-titulo); color: var(--azul-oscuro); margin: 24px 0 12px; font-size: 1.2rem;">Herramientas para identificar oportunidades</h3>
+
+  <div class="caja-concepto" style="border-left-color: var(--verde);">
+    <h4>🔍 Observación sistemática</h4>
+    <p>Metodología Design Thinking: salir al campo y observar con empatía cómo la gente vive, qué frustraciones experimenta, qué soluciones improvisadas usa. El principio central es: donde hay una solución improvisada ("workaround"), hay una oportunidad de negocio formal.</p>
+  </div>
+
+  <div class="caja-concepto" style="border-left-color: var(--verde);">
+    <h4>🔍 Entrevistas de problema</h4>
+    <p>Steve Blank (2013) propone validar problemas antes de construir soluciones. Se realizan entrevistas cortas (15-20 min) a personas del segmento objetivo preguntando: ¿Qué es lo más difícil de tu trabajo/vida en [área]? ¿Cómo lo resuelves ahora? ¿Cuánto tiempo/dinero pierdes en eso? Las respuestas revelan dolores reales, no suposiciones del emprendedor.</p>
+  </div>
+
+  <div class="caja-ejemplo">
+    <span class="ejemplo-label">Ejemplo Ecuador</span>
+    <h4 style="font-family: var(--font-titulo); color: var(--azul-oscuro); margin-bottom: 8px;">Cómo nació Datil — una oportunidad identificada desde un problema real</h4>
+    <p>Datil es una empresa ecuatoriana de facturación electrónica fundada en 2013, cuando el SRI empezó a implementar la obligatoriedad de la facturación electrónica. Sus fundadores identificaron que la mayoría de las empresas pequeñas y medianas no contaban con sistemas para cumplir esta nueva exigencia legal. El problema era claro, el mercado era enorme (miles de empresas) y la urgencia era real (cumplimiento tributario). Datil no inventó un problema: lo descubrió, escuchó a sus primeros clientes y construyó una solución que hoy procesa millones de documentos electrónicos. El origen fue un cambio regulatorio — exactamente el tipo de incongruencia que Drucker identificó como fuente de oportunidad.</p>
+  </div>
+
+  <div class="caja-idea">
+    <h4>💡 Idea clave del Tema 3</h4>
+    <p>Las oportunidades emprendedoras no esperan en ningún libro de texto: están en la brecha entre lo que existe y lo que la gente necesita. Desarrollar la "alerta emprendedora" — la capacidad de ver oportunidades donde otros ven rutina — es la competencia más diferenciadora del emprendedor exitoso. Y se desarrolla con observación sistemática, empatía y conocimiento del contexto.</p>
+  </div>
+</section>
+
+<!-- ============================== TEMA 4: ANÁLISIS DE TENDENCIAS ============================== -->
+<section class="tab-panel" id="tab-tema4">
+  <h2 class="section-title">Análisis de Tendencias</h2>
+  <p class="section-subtitle">Una tendencia es una señal del futuro visible en el presente. Saber leerlas es la diferencia entre adelantarse al mercado y llegar tarde.</p>
+
+  <div class="caja-concepto">
+    <h4>📌 Definición precisa: ¿Qué es una tendencia?</h4>
+    <p>Una <strong>tendencia</strong> es un patrón de cambio sostenido y observable en el comportamiento humano, la tecnología, la economía, la demografía o la cultura que, al mantenerse en el tiempo, transforma las necesidades, los mercados y las oportunidades disponibles. A diferencia de las modas (cambios breves y superficiales), las tendencias tienen raíces profundas y duración de años o décadas (Naisbitt, 1982; OECD Oslo Manual, 2018).</p>
+  </div>
+
+  <h3 style="font-family: var(--font-titulo); color: var(--azul-oscuro); margin: 24px 0 12px; font-size: 1.2rem;">Moda vs. Tendencia vs. Megatendencia</h3>
+
+  <div class="tabla-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Concepto</th>
+          <th>Duración</th>
+          <th>Profundidad</th>
+          <th>Ejemplo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Moda o Fad</strong></td>
+          <td>Semanas a meses</td>
+          <td>Superficial, efímera</td>
+          <td>El "challenge" viral de turno en TikTok</td>
+        </tr>
+        <tr>
+          <td><strong>Tendencia</strong></td>
+          <td>3-10 años</td>
+          <td>Cambio en comportamientos, mercados o tecnologías</td>
+          <td>Crecimiento del comercio electrónico en Ecuador</td>
+        </tr>
+        <tr>
+          <td><strong>Megatendencia</strong></td>
+          <td>10-30+ años</td>
+          <td>Transformación estructural de la economía o la sociedad</td>
+          <td>Digitalización de la economía global; envejecimiento poblacional</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="font-family: var(--font-titulo); color: var(--azul-oscuro); margin: 24px 0 12px; font-size: 1.2rem;">El análisis de tendencias como herramienta estratégica</h3>
+  <p>El análisis de tendencias es el proceso sistemático de identificar, comprender e interpretar señales de cambio para tomar decisiones estratégicas anticipadas. En emprendimiento, sirve para dos cosas fundamentales:</p>
+  <ol class="lista-num">
+    <li><strong>Validar si una idea de negocio tiene "viento a favor"</strong> — ¿el mercado va hacia donde yo quiero ir o en sentido contrario?</li>
+    <li><strong>Detectar oportunidades emergentes antes de que se vuelvan obvias</strong> para todos los competidores.</li>
+  </ol>
+
+  <h3 style="font-family: var(--font-titulo); color: var(--azul-oscuro); margin: 24px 0 12px; font-size: 1.2rem;">Herramientas para el análisis de tendencias</h3>
+
+  <div class="tendencia-card">
+    <div class="tendencia-icon">📈</div>
+    <div>
+      <h4>Google Trends</h4>
+      <p>Muestra el volumen de búsqueda de términos en Google a lo largo del tiempo y por región geográfica. Permite detectar si el interés en un tema crece, disminuye o es estacional. Gratuito y accesible. Ejemplo de uso: comparar búsquedas de "contabilidad en la nube" vs. "software contable" en Ecuador durante los últimos 5 años para validar si la demanda está creciendo.</p>
+    </div>
+  </div>
+
+  <div class="tendencia-card">
+    <div class="tendencia-icon">🔬</div>
+    <div>
+      <h4>Informes del GEM, OCDE, Banco Mundial y CEPAL</h4>
+      <p>Organismos internacionales publican anualmente análisis de macrotendencias en economía, emprendimiento, tecnología y sociedad. Son fuentes de alta credibilidad para fundamentar decisiones estratégicas. El GEM Ecuador 2021-2022 identifica tendencias específicas del ecosistema local.</p>
+    </div>
+  </div>
+
+  <div class="tendencia-card">
+    <div class="tendencia-icon">🌐</div>
+    <div>
+      <h4>CB Insights / Crunchbase / Statista</h4>
+      <p>Plataformas que rastrean inversiones en startups por sector. Donde fluye el capital de riesgo, es una señal de tendencias emergentes. Si los fondos de venture capital están invirtiendo masivamente en Agritech latinoamericana, es una señal poderosa de tendencia sectorial.</p>
+    </div>
+  </div>
+
+  <div class="tendencia-card">
+    <div class="tendencia-icon">🗞️</div>
+    <div>
+      <h4>Análisis de prensa especializada y redes profesionales</h4>
+      <p>Harvard Business Review, MIT Technology Review, Bloomberg, y plataformas como LinkedIn publican análisis de tendencias sectoriales. Seguir publicaciones especializadas del sector donde se quiere emprender es una práctica clave de inteligencia competitiva.</p>
+    </div>
+  </div>
+
+  <div class="tendencia-card">
+    <div class="tendencia-icon">🗣️</div>
+    <div>
+      <h4>Conversaciones directas con el mercado (etnografía de campo)</h4>
+      <p>Salir a hablar con clientes potenciales, proveedores, distribuidores. Lo que la gente dice, lo que busca, de qué se queja: esas conversaciones son datos de tendencia cualitativos de primera mano. Esta herramienta es subestimada y enormemente poderosa.</p>
+    </div>
+  </div>
+
+  <h3 style="font-family: var(--font-titulo); color: var(--azul-oscuro); margin: 24px 0 12px; font-size: 1.2rem;">Las 5 grandes tendencias globales con impacto directo en Ecuador (2024-2030)</h3>
+
+  <div class="card-grid">
+    <div class="card" style="border-top-color: #3498db;">
+      <h4>1. Digitalización de la economía</h4>
+      <p>Automatización, IA, pagos digitales, contabilidad en la nube, e-commerce. Impacto en contabilidad: el perfil del contador cambia hacia análisis e interpretación, no captura de datos.</p>
+    </div>
+    <div class="card" style="border-top-color: #27ae60;">
+      <h4>2. Economía verde y sostenibilidad</h4>
+      <p>Regulaciones ambientales, consumidores con conciencia ecológica, economía circular. Oportunidad: auditoría ambiental, ESG reporting, consultoría de huella de carbono.</p>
+    </div>
+    <div class="card" style="border-top-color: #e74c3c;">
+      <h4>3. Economía de plataformas / Gig Economy</h4>
+      <p>Trabajo por proyecto, plataformas digitales, freelancers. Demanda creciente de gestión tributaria y contable para trabajadores independientes y creadores de contenido.</p>
+    </div>
+    <div class="card" style="border-top-color: #9b59b6;">
+      <h4>4. Inclusión financiera</h4>
+      <p>Bancarización de poblaciones excluidas, fintech, microcrédito digital. En Ecuador, más del 40% de adultos tiene acceso limitado a servicios financieros formales (Banco Mundial, 2022).</p>
+    </div>
+    <div class="card" style="border-top-color: #f39c12;">
+      <h4>5. Cambio demográfico y envejecimiento</h4>
+      <p>La población latinoamericana envejece aceleradamente. Oportunidades en servicios de salud, cuidado, finanzas personales para adultos mayores y planificación de retiro.</p>
+    </div>
+  </div>
+
+  <div class="caja-ejemplo">
+    <span class="ejemplo-label">Aplicación práctica — Ecuador</span>
+    <h4 style="font-family: var(--font-titulo); color: var(--azul-oscuro); margin-bottom: 8px;">Cómo usar Google Trends para validar una idea de negocio</h4>
+    <p><strong>Situación:</strong> Un estudiante de Contabilidad quiere crear un servicio de declaraciones de impuestos express para trabajadores autónomos en Guayaquil. <br><br>
+    <strong>Paso 1:</strong> Ingresa a trends.google.com y busca "declaración de impuestos SRI" + "trabajadores autónomos Ecuador". <br>
+    <strong>Paso 2:</strong> Observa el comportamiento: ¿hay picos estacionales? ¿El interés crece año a año? <br>
+    <strong>Paso 3:</strong> Compara con términos alternativos: "asesores tributarios Guayaquil", "contabilidad freelance Ecuador". <br>
+    <strong>Resultado esperado:</strong> Si el volumen de búsqueda crece sostenidamente y tiene picos en meses de declaración, confirma que hay demanda real y permite planificar la estacionalidad del negocio antes de invertir un sol.</p>
+  </div>
+
+  <div class="caja-idea">
+    <h4>💡 Idea clave del Tema 4</h4>
+    <p>El análisis de tendencias convierte la intuición en estrategia. Un emprendedor que actúa solo desde el instinto puede acertar; uno que combina intuición con datos de tendencia tiene una ventaja competitiva sistemática. Las tendencias son señales del futuro visibles hoy: quien las lee con anticipación no crea el mercado — llega primero a él.</p>
+  </div>
+</section>
+
+<!-- ============================== EJERCICIO INTERACTIVO ============================== -->
+<section class="tab-panel" id="tab-ejercicio">
+  <h2 class="section-title">🎯 Ejercicio Interactivo</h2>
+  <p class="section-subtitle">Tipo: <strong>Clasificación y emparejamiento de conceptos</strong>. Lee cada situación y selecciona la opción correcta. Responde <em>todos</em> los ítems antes de verificar.</p>
+
+  <div id="ejercicio-container">
+
+    <!-- ÍTEM 1 -->
+    <div class="quiz-item" id="ej-1">
+      <p class="quiz-pregunta"><span class="quiz-num">1</span> Sofía tiene empleo estable pero detectó que ninguna empresa en su ciudad ofrece software contable en español para artesanos. Decide emprender para cubrir esa brecha. ¿Qué tipo de emprendedor por motivación es Sofía?</p>
+      <div class="opciones-grid">
+        <button class="opcion-btn" data-item="1" data-val="A">A) Emprendedor por necesidad</button>
+        <button class="opcion-btn" data-item="1" data-val="B">B) Emprendedor por oportunidad</button>
+        <button class="opcion-btn" data-item="1" data-val="C">C) Intrapreneur</button>
+        <button class="opcion-btn" data-item="1" data-val="D">D) Emprendedor social</button>
+      </div>
+      <div class="resultado-feedback" id="fb-1"></div>
+    </div>
+
+    <!-- ÍTEM 2 -->
+    <div class="quiz-item" id="ej-2">
+      <p class="quiz-pregunta"><span class="quiz-num">2</span> Carlos trabaja en el Banco del Pacífico. En vez de renunciar, propone internamente un nuevo servicio de asesoría financiera digital para jóvenes universitarios. El banco le da presupuesto y tiempo para desarrollarlo. ¿Cómo se denomina este perfil?</p>
+      <div class="opciones-grid">
+        <button class="opcion-btn" data-item="2" data-val="A">A) Emprendedor de subsistencia</button>
+        <button class="opcion-btn" data-item="2" data-val="B">B) Emprendedor escalable</button>
+        <button class="opcion-btn" data-item="2" data-val="C">C) Intrapreneur</button>
+        <button class="opcion-btn" data-item="2" data-val="D">D) Emprendedor por necesidad</button>
+      </div>
+      <div class="resultado-feedback" id="fb-2"></div>
+    </div>
+
+    <!-- ÍTEM 3 -->
+    <div class="quiz-item" id="ej-3">
+      <p class="quiz-pregunta"><span class="quiz-num">3</span> El concepto de <em>destrucción creativa</em> — donde el emprendimiento no solo crea valor nuevo sino que desplaza lo antiguo — fue desarrollado principalmente por:</p>
+      <div class="opciones-grid">
+        <button class="opcion-btn" data-item="3" data-val="A">A) Peter Drucker</button>
+        <button class="opcion-btn" data-item="3" data-val="B">B) Joseph Schumpeter</button>
+        <button class="opcion-btn" data-item="3" data-val="C">C) Richard Cantillon</button>
+        <button class="opcion-btn" data-item="3" data-val="D">D) Shane y Venkataraman</button>
+      </div>
+      <div class="resultado-feedback" id="fb-3"></div>
+    </div>
+
+    <!-- ÍTEM 4 -->
+    <div class="quiz-item" id="ej-4">
+      <p class="quiz-pregunta"><span class="quiz-num">4</span> Una empresa ecuatoriana de catering tiene 8 empleados, tiene RUC y accede a microcrédito. Según la clasificación por dimensión, ¿en qué categoría se ubica?</p>
+      <div class="opciones-grid">
+        <button class="opcion-btn" data-item="4" data-val="A">A) Startup escalable</button>
+        <button class="opcion-btn" data-item="4" data-val="B">B) Microemprendedor de subsistencia</button>
+        <button class="opcion-btn" data-item="4" data-val="C">C) Emprendedor de pequeña empresa</button>
+        <button class="opcion-btn" data-item="4" data-val="D">D) Emprendedor corporativo</button>
+      </div>
+      <div class="resultado-feedback" id="fb-4"></div>
+    </div>
+
+    <!-- ÍTEM 5 -->
+    <div class="quiz-item" id="ej-5">
+      <p class="quiz-pregunta"><span class="quiz-num">5</span> La empresa ecuatoriana Datil nació porque sus fundadores identificaron que miles de PYMEs no podían cumplir la nueva obligación de facturación electrónica del SRI. Según Drucker, ¿qué fuente de oportunidad representa este caso?</p>
+      <div class="opciones-grid">
+        <button class="opcion-btn" data-item="5" data-val="A">A) Lo inesperado</button>
+        <button class="opcion-btn" data-item="5" data-val="B">B) Cambios demográficos</button>
+        <button class="opcion-btn" data-item="5" data-val="C">C) Incongruencias (brecha entre norma y capacidad)</button>
+        <button class="opcion-btn" data-item="5" data-val="D">D) Nuevo conocimiento científico</button>
+      </div>
+      <div class="resultado-feedback" id="fb-5"></div>
+    </div>
+
+    <!-- ÍTEM 6 -->
+    <div class="quiz-item" id="ej-6">
+      <p class="quiz-pregunta"><span class="quiz-num">6</span> El interés en servicios de entrega a domicilio creció exponencialmente durante la pandemia de 2020 y se mantiene alto hasta hoy. Un emprendedor que en 2019 lanzó una app de delivery ya estaba respondiendo a:</p>
+      <div class="opciones-grid">
+        <button class="opcion-btn" data-item="6" data-val="A">A) Una moda pasajera</button>
+        <button class="opcion-btn" data-item="6" data-val="B">B) Una tendencia emergente de cambio de hábitos</button>
+        <button class="opcion-btn" data-item="6" data-val="C">C) Un capricho del mercado sin datos</button>
+        <button class="opcion-btn" data-item="6" data-val="D">D) Una megatendencia demográfica</button>
+      </div>
+      <div class="resultado-feedback" id="fb-6"></div>
+    </div>
+
+    <!-- ÍTEM 7 -->
+    <div class="quiz-item" id="ej-7">
+      <p class="quiz-pregunta"><span class="quiz-num">7</span> Shane y Venkataraman (2000) definen la oportunidad emprendedora como una situación donde nuevos bienes o servicios pueden introducirse a un precio mayor que su costo. La capacidad de reconocer esas situaciones se llama:</p>
+      <div class="opciones-grid">
+        <button class="opcion-btn" data-item="7" data-val="A">A) Entrepreneurial alertness (alerta emprendedora)</button>
+        <button class="opcion-btn" data-item="7" data-val="B">B) Design thinking</button>
+        <button class="opcion-btn" data-item="7" data-val="C">C) Business plan</button>
+        <button class="opcion-btn" data-item="7" data-val="D">D) Lean startup</button>
+      </div>
+      <div class="resultado-feedback" id="fb-7"></div>
+    </div>
+
+    <!-- ÍTEM 8 -->
+    <div class="quiz-item" id="ej-8">
+      <p class="quiz-pregunta"><span class="quiz-num">8</span> Mitchelmore y Rowley (2010) propusieron cuatro bloques de competencias emprendedoras. ¿Cuál de las siguientes <strong>NO</strong> es uno de esos bloques?</p>
+      <div class="opciones-grid">
+        <button class="opcion-btn" data-item="8" data-val="A">A) Empresarial y gerencial</button>
+        <button class="opcion-btn" data-item="8" data-val="B">B) Relacional e interpersonal</button>
+        <button class="opcion-btn" data-item="8" data-val="C">C) Política y legislativa</button>
+        <button class="opcion-btn" data-item="8" data-val="D">D) Cognitiva y de aprendizaje</button>
+      </div>
+      <div class="resultado-feedback" id="fb-8"></div>
+    </div>
+
+  </div>
+
+  <div style="text-align: center; margin-top: 10px;">
+    <button class="btn-verificar" id="btn-ver-ej">Verificar respuestas</button>
+    <button class="btn-reiniciar" id="btn-rei-ej">Reiniciar ejercicio</button>
+  </div>
+
+  <div class="score-box" id="score-ej">
+    <div class="score-big" id="score-ej-num">0/8</div>
+    <div class="score-pct" id="score-ej-pct">0%</div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="score-ej-bar"></div></div>
+    <div class="score-msg" id="score-ej-msg"></div>
+  </div>
+</section>
+
+<!-- ============================== CUESTIONARIO ============================== -->
+<section class="tab-panel" id="tab-cuestionario">
+  <h2 class="section-title">📝 Cuestionario de Evaluación</h2>
+  <p class="section-subtitle">10 preguntas: 7 teóricas + 3 de análisis de caso. Responde <em>todas</em> antes de verificar. Calificación sobre 10 puntos.</p>
+
+  <div id="quiz-container">
+
+    <!-- Q1 -->
+    <div class="quiz-item" id="q-1">
+      <span class="badge-tipo badge-teorica">Teórica</span>
+      <p class="quiz-pregunta"><span class="quiz-num">1</span> Según la investigación contemporánea en emprendimiento, las competencias emprendedoras son:</p>
+      <div class="opciones-grid">
+        <button class="opcion-btn" data-item="q1" data-val="A">A) Rasgos de personalidad innatos que no pueden desarrollarse</button>
+        <button class="opcion-btn" data-item="q1" data-val="B">B) Habilidades aprendibles y mejorables con práctica deliberada</button>
+        <button class="opcion-btn" data-item="q1" data-val="C">C) Características exclusivas de personas con educación universitaria</button>
+        <button class="opcion-btn" data-item="q1" data-val="D">D) Atributos que solo se desarrollan con experiencia empresarial previa</button>
+      </div>
+      <div class="resultado-feedback" id="fbq-1"></div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="quiz-item" id="q-2">
+      <span class="badge-tipo badge-teorica">Teórica</span>
+      <p class="quiz-pregunta"><span class="quiz-num">2</span> ¿Cuál es la principal diferencia entre una moda y una tendencia en el contexto del análisis de mercado?</p>
+      <div class="opciones-grid">
+        <button class="opcion-btn" data-item="q2" data-val="A">A) Las modas son internacionales; las tendencias son locales</button>
+        <button class="opcion-btn" data-item="q2" data-val="B">B) Las tendencias tienen mayor alcance geográfico que las modas</button>
+        <button class="opcion-btn" data-item="q2" data-val="C">C) Las modas son efímeras (semanas/meses); las tendencias son sostenidas (años) con raíces profundas</button>
+        <button class="opcion-btn" data-item="q2" data-val="D">D) Las modas siempre generan más dinero que las tendencias</button>
+      </div>
+      <div class="resultado-feedback" id="fbq-2"></div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="quiz-item" id="q-3">
+      <span class="badge-tipo badge-teorica">Teórica</span>
+      <p class="quiz-pregunta"><span class="quiz-num">3</span> El concepto de intrapreneurship, tal como lo definió Gifford Pinchot III, se refiere a:</p>
+      <div class="opciones-grid">
+        <button class="opcion-btn" data-item="q3" data-val="A">A) Emprender entre varios socios externos a cualquier organización</button>
+        <button class="opcion-btn" data-item="q3" data-val="B">B) La innovación dentro de una organización existente por parte de sus propios empleados</button>
+        <button class="opcion-btn" data-item="q3" data-val="C">C) Invertir en startups desde el interior de un banco</button>
+        <button class="opcion-btn" data-item="q3" data-val="D">D) Emprender exclusivamente en el sector tecnológico</button>
+      </div>
+      <div class="resultado-feedback" id="fbq-3"></div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="quiz-item" id="q-4">
+      <span class="badge-tipo badge-teorica">Teórica</span>
+      <p class="quiz-pregunta"><span class="quiz-num">4</span> Según Drucker (1985), ¿cuál de las siguientes es una de las siete fuentes sistemáticas de innovación y oportunidad emprendedora?</p>
+      <div class="opciones-grid">
+        <button class="opcion-btn" data-item="q4" data-val="A">A) La intuición empresarial heredada</button>
+        <button class="opcion-btn" data-item="q4" data-val="B">B) Las incongruencias entre lo que es y lo que debería ser</button>
+        <button class="opcion-btn" data-item="q4" data-val="C">C) La preferencia personal del emprendedor</button>
+        <button class="opcion-btn" data-item="q4" data-val="D">D) El capital de inversión disponible</button>
+      </div>
+      <div class="resultado-feedback" id="fbq-4"></div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="quiz-item" id="q-5">
+      <span class="badge-tipo badge-teorica">Teórica</span>
+      <p class="quiz-pregunta"><span class="quiz-num">5</span> En la clasificación de emprendedores por motivación, el emprendedor por necesidad se caracteriza principalmente porque:</p>
+      <div class="opciones-grid">
+        <button class="opcion-btn" data-item="q5" data-val="A">A) Tiene una visión estratégica de largo plazo y planifica su negocio desde el inicio</button>
+        <button class="opcion-btn" data-item="q5" data-val="B">B) Emprende porque no tiene otra opción económica: el desempleo o la urgencia lo impulsa</button>
+        <button class="opcion-btn" data-item="q5" data-val="C">C) Busca exclusivamente el impacto social y no el beneficio económico</button>
+        <button class="opcion-btn" data-item="q5" data-val="D">D) Opera dentro de una organización existente innovando desde adentro</button>
+      </div>
+      <div class="resultado-feedback" id="fbq-5"></div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="quiz-item" id="q-6">
+      <span class="badge-tipo badge-teorica">Teórica</span>
+      <p class="quiz-pregunta"><span class="quiz-num">6</span> El término <em>grit</em>, desarrollado por Angela Duckworth (2016), describe una competencia emprendedora fundamental que consiste en:</p>
+      <div class="opciones-grid">
+        <button class="opcion-btn" data-item="q6" data-val="A">A) La capacidad de analizar grandes volúmenes de datos de mercado</button>
+        <button class="opcion-btn" data-item="q6" data-val="B">B) La habilidad para negociar con inversores de capital de riesgo</button>
+        <button class="opcion-btn" data-item="q6" data-val="C">C) La perseverancia sostenida hacia metas de largo plazo a pesar de los obstáculos</button>
+        <button class="opcion-btn" data-item="q6" data-val="D">D) La capacidad técnica para diseñar productos innovadores</button>
+      </div>
+      <div class="resultado-feedback" id="fbq-6"></div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="quiz-item" id="q-7">
+      <span class="badge-tipo badge-teorica">Teórica</span>
+      <p class="quiz-pregunta"><span class="quiz-num">7</span> Google Trends es una herramienta útil en el análisis de tendencias porque permite:</p>
+      <div class="opciones-grid">
+        <button class="opcion-btn" data-item="q7" data-val="A">A) Conocer el estado financiero de empresas competidoras</button>
+        <button class="opcion-btn" data-item="q7" data-val="B">B) Ver el volumen histórico de búsquedas de términos específicos por región y tiempo</button>
+        <button class="opcion-btn" data-item="q7" data-val="C">C) Registrar marcas y patentes de productos nuevos</button>
+        <button class="opcion-btn" data-item="q7" data-val="D">D) Calcular el mercado total disponible (TAM) para un negocio</button>
+      </div>
+      <div class="resultado-feedback" id="fbq-7"></div>
+    </div>
+
+    <!-- Q8 ANÁLISIS -->
+    <div class="quiz-item" id="q-8">
+      <span class="badge-tipo badge-analisis">Análisis de Caso</span>
+      <p class="quiz-pregunta"><span class="quiz-num">8</span> Andrés perdió su trabajo contable durante la pandemia. Sin opciones inmediatas, empezó a ofrecer servicios de declaraciones de impuestos a domicilio para negocios pequeños en su barrio. En el primer año ganó apenas lo suficiente para cubrir gastos básicos. Al año siguiente, identificó que muchos clientes también necesitaban asesoría en facturación electrónica, amplió su oferta y sus ingresos se triplicaron. ¿Cómo clasificaría correctamente la evolución del emprendimiento de Andrés?</p>
+      <div class="opciones-grid">
+        <button class="opcion-btn" data-item="q8" data-val="A">A) Comenzó como startup escalable y luego se convirtió en microemprendedor</button>
+        <button class="opcion-btn" data-item="q8" data-val="B">B) Fue siempre un emprendedor social con enfoque comunitario</button>
+        <button class="opcion-btn" data-item="q8" data-val="C">C) Comenzó como emprendedor por necesidad y evolucionó incorporando competencias de oportunidad al identificar una demanda real</button>
+        <button class="opcion-btn" data-item="q8" data-val="D">D) Fue siempre un intrapreneur porque trabajó para clientes externos</button>
+      </div>
+      <div class="resultado-feedback" id="fbq-8"></div>
+    </div>
+
+    <!-- Q9 ANÁLISIS -->
+    <div class="quiz-item" id="q-9">
+      <span class="badge-tipo badge-analisis">Análisis de Caso</span>
+      <p class="quiz-pregunta"><span class="quiz-num">9</span> Una estudiante de Contabilidad quiere emprender un negocio de asesoría tributaria para trabajadores de plataformas digitales (Uber, Rappi, iFood). Usa Google Trends y descubre que las búsquedas de "impuestos freelance Ecuador" han crecido un 340% en 3 años. ¿Qué conclusión estratégica es más correcta?</p>
+      <div class="opciones-grid">
+        <button class="opcion-btn" data-item="q9" data-val="A">A) El crecimiento en búsquedas confirma que no hay competencia en el mercado</button>
+        <button class="opcion-btn" data-item="q9" data-val="B">B) La tendencia creciente valida que hay demanda real y sostenida, lo que reduce el riesgo de la idea</button>
+        <button class="opcion-btn" data-item="q9" data-val="C">C) Debe esperar a que el mercado sea más grande antes de ingresar</button>
+        <button class="opcion-btn" data-item="q9" data-val="D">D) Los datos de Google no son relevantes para decisiones de negocio contables</button>
+      </div>
+      <div class="resultado-feedback" id="fbq-9"></div>
+    </div>
+
+    <!-- Q10 ANÁLISIS -->
+    <div class="quiz-item" id="q-10">
+      <span class="badge-tipo badge-analisis">Análisis de Caso</span>
+      <p class="quiz-pregunta"><span class="quiz-num">10</span> María José, auditora en una firma mediana de Guayaquil, propone a su gerencia implementar un módulo de auditoría ambiental para atraer a empresas exportadoras que necesitan certificaciones de sostenibilidad para acceder a mercados europeos. La gerencia le da 3 meses para desarrollar el servicio piloto con recursos de la firma. ¿Cuál es el perfil emprendedor que mejor describe a María José y cuál tendencia global está aprovechando?</p>
+      <div class="opciones-grid">
+        <button class="opcion-btn" data-item="q10" data-val="A">A) Emprendedora por necesidad — aprovechando la digitalización de la economía</button>
+        <button class="opcion-btn" data-item="q10" data-val="B">B) Intrapreneur — aprovechando la tendencia de economía verde y sostenibilidad</button>
+        <button class="opcion-btn" data-item="q10" data-val="C">C) Emprendedora social — aprovechando el cambio demográfico</button>
+        <button class="opcion-btn" data-item="q10" data-val="D">D) Startup escalable — aprovechando la economía de plataformas</button>
+      </div>
+      <div class="resultado-feedback" id="fbq-10"></div>
+    </div>
+
+  </div>
+
+  <div style="text-align: center; margin-top: 10px;">
+    <button class="btn-verificar" id="btn-ver-quiz">Verificar respuestas</button>
+    <button class="btn-reiniciar" id="btn-rei-quiz">Reiniciar cuestionario</button>
+  </div>
+
+  <div class="score-box" id="score-quiz">
+    <div class="score-big" id="score-quiz-num">0/10</div>
+    <div class="score-pct" id="score-quiz-pct">0%</div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="score-quiz-bar"></div></div>
+    <div class="score-msg" id="score-quiz-msg"></div>
+  </div>
+</section>
+
+<!-- ============================== ACTIVIDAD CON IA ============================== -->
+<section class="tab-panel" id="tab-ia">
+  <h2 class="section-title">🤖 Actividad con Inteligencia Artificial</h2>
+  <p class="section-subtitle">Esta actividad usa la IA como interlocutor crítico, no como fuente de respuestas. El objetivo es que <em>tú pienses</em> usando la IA como espejo y punto de contraste.</p>
+
+  <div class="caja-ejemplo" style="margin-bottom: 24px;">
+    <span class="ejemplo-label">Herramienta recomendada</span>
+    <h4 style="font-family: var(--font-titulo); color: var(--azul-oscuro); margin-bottom: 8px;">🥇 Claude (claude.ai) — Anthropic</h4>
+    <p>Utiliza <strong>Claude en claude.ai</strong> (gratuito) como tu herramienta principal. Es un asistente de IA avanzado, excelente para análisis crítico, comparaciones conceptuales y retroalimentación argumentativa. También puedes usar ChatGPT (versión gratuita en chatgpt.com) o Gemini (gemini.google.com) si lo prefieres.</p>
+  </div>
+
+  <div class="ia-step">
+    <span class="ia-step-num">ACTIVIDAD</span>
+    <h4>Analista de Tendencias: ¿Tu idea tiene viento a favor?</h4>
+    <p>Vas a usar la IA para evaluar críticamente si una idea de negocio en el área contable-financiera tiene soporte en tendencias reales, y luego tú cuestionarás y enriquecerás el análisis que la IA genera.</p>
+  </div>
+
+  <div class="ia-step">
+    <span class="ia-step-num">PASO 1 — Elige tu idea</span>
+    <h4>Selecciona o crea una idea de negocio relacionada con contabilidad o auditoría</h4>
+    <p>Puede ser una que tú tengas en mente o una de estas opciones:</p>
+    <ul class="lista-check" style="margin-top: 10px;">
+      <li>Servicio de contabilidad digital para emprendedores informales en Ecuador</li>
+      <li>App de control de gastos personales para universitarios ecuatorianos</li>
+      <li>Consultoría de ESG/sostenibilidad para PYMEs exportadoras</li>
+      <li>Plataforma de auditoría remota para cooperativas de ahorro</li>
+      <li>(Tu propia idea)</li>
+    </ul>
+  </div>
+
+  <div class="ia-step">
+    <span class="ia-step-num">PASO 2 — Usa este prompt exacto con la IA</span>
+    <h4>Copia y pega este prompt en Claude (claude.ai), ChatGPT o Gemini:</h4>
+    <div class="prompt-box">Actúa como consultor de emprendimiento con experiencia en el mercado ecuatoriano y latinoamericano.
+
+Quiero que analices la siguiente idea de negocio desde el ángulo de las tendencias:
+
+IDEA DE NEGOCIO: [ESCRIBE AQUÍ TU IDEA]
+
+Por favor, responde con estructura clara los siguientes puntos:
+
+1. ¿Qué tendencias globales (de las grandes: digitalización, sostenibilidad, gig economy, inclusión financiera, cambio demográfico) respaldan esta idea? Explica el vínculo concreto.
+
+2. ¿Qué tendencias específicas del mercado ecuatoriano o latinoamericano son relevantes para esta idea?
+
+3. ¿Hay alguna tendencia en CONTRA de esta idea que deba considerar? (riesgos de tendencia)
+
+4. ¿Cuál es tu evaluación general: esta idea tiene "viento a favor" o "viento en contra"? Justifica tu respuesta.
+
+5. ¿Qué datos o fuentes específicas podría buscar para validar estas tendencias antes de invertir?
+
+Sé directo, analítico y evita respuestas genéricas. Habla específicamente del contexto ecuatoriano cuando sea relevante.</div>
+  </div>
+
+  <div class="ia-step">
+    <span class="ia-step-num">PASO 3 — Analiza críticamente la respuesta</span>
+    <h4>Una vez que la IA responda, haz lo siguiente:</h4>
+    <ol class="lista-num">
+      <li><strong>Identifica 2 afirmaciones de la IA que te parezcan correctas y justifica por qué,</strong> usando conceptos del contenido de esta semana (Drucker, Shane & Venkataraman, tipos de tendencia, etc.).</li>
+      <li><strong>Identifica 1 afirmación que pongas en duda o con la que no estés de acuerdo.</strong> Pregunta a la IA: "¿Por qué afirmas eso? ¿Tienes datos específicos de Ecuador?" Evalúa si su respuesta te convence.</li>
+      <li><strong>Añade algo que la IA no dijo</strong> pero que tú ves como relevante, basándote en tu conocimiento del contexto ecuatoriano o en tu experiencia personal.</li>
+      <li><strong>Redacta una conclusión de máximo 150 palabras</strong> que resuma si, después de este análisis con IA, confirmarías o descartarías la idea — y por qué.</li>
+    </ol>
+  </div>
+
+  <div class="ia-step" style="border-left-color: var(--verde);">
+    <span class="ia-step-num" style="background: var(--verde);">CRITERIO DE EVALUACIÓN</span>
+    <h4>¿Qué demuestra pensamiento crítico vs. qué es copia simple?</h4>
+    <div class="tabla-wrapper" style="margin-top: 10px;">
+      <table>
+        <thead>
+          <tr>
+            <th>Pensamiento crítico ✅</th>
+            <th>Copia simple ❌</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Cita conceptos de clase para evaluar lo que dice la IA</td>
+            <td>Reproduce la respuesta de la IA sin comentario</td>
+          </tr>
+          <tr>
+            <td>Identifica contradicciones o vacíos en el análisis de la IA</td>
+            <td>Acepta todo lo que dice la IA como verdad absoluta</td>
+          </tr>
+          <tr>
+            <td>Aporta perspectiva propia del contexto ecuatoriano</td>
+            <td>No añade nada personal ni contextual</td>
+          </tr>
+          <tr>
+            <td>Formula preguntas de seguimiento a la IA basadas en su respuesta</td>
+            <td>Solo usa el primer prompt y no profundiza</td>
+          </tr>
+          <tr>
+            <td>Concluye con posición propia justificada</td>
+            <td>No tiene conclusión propia</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="caja-idea">
+    <h4>🎯 Entregable final</h4>
+    <p>Documento de máximo 2 páginas (o enviado por el medio que indique tu docente) que incluya: (1) la idea elegida, (2) los puntos del análisis crítico del Paso 3, (3) tu conclusión personal. El docente evaluará la calidad del cuestionamiento, no la "corrección" de la idea elegida.</p>
+  </div>
+</section>
+
+<!-- ============================== PREGUNTAS REFLEXIVAS ============================== -->
+<section class="tab-panel" id="tab-reflexion">
+  <h2 class="section-title">💭 Preguntas para la Reflexión Personal</h2>
+  <p class="section-subtitle">No hay respuestas correctas ni incorrectas. Estas preguntas buscan conectar los conceptos de hoy con tu vida real — para que el emprendimiento deje de ser una materia y se convierta en una forma de ver el mundo.</p>
+
+  <div class="caja-concepto" style="margin-bottom: 22px;">
+    <h4>¿Por qué esta sección?</h4>
+    <p>El conocimiento académico sin conexión con la vida personal suele olvidarse en días. Esta sección existe porque creemos que los mejores aprendizajes ocurren cuando conectas lo que estudias con lo que ya sabes, sientes o has vivido. Tómate unos minutos para responder en tu mente, en un cuaderno o con alguien de confianza.</p>
+  </div>
+
+  <div class="reflexiva-card">
+    <div class="reflexiva-num">1</div>
+    <p><strong>Piensa en un problema que encuentras frecuentemente en tu vida diaria</strong> — en la universidad, en tu barrio, en tu familia, en tus compras habituales. ¿Alguna vez pensaste que podría ser resuelto mejor? ¿Cómo se resuelve ahora? ¿Ese "cómo se resuelve ahora" es la mejor solución posible? Acabas de practicar la observación de oportunidades.</p>
+  </div>
+
+  <div class="reflexiva-card">
+    <div class="reflexiva-num">2</div>
+    <p><strong>¿Cuándo fue la última vez que persististe en algo difícil, aunque querías rendirte?</strong> Puede ser un examen, un deporte, una relación, un proyecto. ¿Qué te mantuvo adelante? ¿Reconoces algo de eso en la definición de <em>grit</em> que vimos hoy? ¿Tienes más de esa capacidad de lo que creías?</p>
+  </div>
+
+  <div class="reflexiva-card">
+    <div class="reflexiva-num">3</div>
+    <p><strong>¿Hay algún negocio o servicio en tu ciudad o comunidad que sientas que "falta"?</strong> Algo que tú o personas cercanas buscan y no encuentran, o que existe pero podría funcionar mucho mejor. ¿Qué te ha impedido hasta ahora pensar en eso como una oportunidad real?</p>
+  </div>
+
+  <div class="reflexiva-card">
+    <div class="reflexiva-num">4</div>
+    <p><strong>Piensa en alguien que conoces (familiar, vecino, amigo) que emprendió algo propio.</strong> ¿Lo hizo por oportunidad o por necesidad? ¿Cómo fue ese proceso para esa persona? ¿Cambió algo en su vida y en su forma de verse a sí misma? ¿Qué aprendiste de observar ese proceso?</p>
+  </div>
+
+  <div class="reflexiva-card">
+    <div class="reflexiva-num">5</div>
+    <p><strong>¿Qué tendencia de las que vimos hoy (digitalización, sostenibilidad, gig economy, inclusión financiera, cambio demográfico) ya estás viviendo en tu vida cotidiana?</strong> ¿Usas apps de pago? ¿Consumes de forma más consciente? ¿Tienes algún ingreso informal o "rebusque"? ¿Ves a adultos mayores cerca de ti que no saben usar tecnología? ¿Cómo se conecta eso con lo que hoy estudiamos?</p>
+  </div>
+
+  <div class="reflexiva-card">
+    <div class="reflexiva-num">6</div>
+    <p><strong>Si pudieras emprender algo hoy, sin restricciones de dinero ni tiempo, ¿qué sería y por qué?</strong> No tiene que ser "rentable" ni "realista" en este momento. La pregunta busca que te escuches: ¿hacia dónde apunta tu curiosidad? ¿Qué problema del mundo te duele más? Esas respuestas suelen ser las semillas más auténticas de los emprendimientos con propósito.</p>
+  </div>
+
+  <div class="caja-idea" style="margin-top: 24px;">
+    <h4>🌱 Reflexión de cierre</h4>
+    <p>El emprendimiento no empieza con un plan de negocios ni con dinero. Empieza con una mirada diferente al mundo: la capacidad de ver lo que no funciona bien y preguntarse "¿podría hacerlo mejor?". Cada vez que te haces esa pregunta, estás practicando la actitud emprendedora más fundamental.</p>
+  </div>
+</section>
+
+<!-- ============================== BIBLIOGRAFÍA ============================== -->
+<section class="tab-panel" id="tab-biblio">
+  <h2 class="section-title">📚 Bibliografía</h2>
+  <p class="section-subtitle">Referencias académicas verificadas en formato APA 7.ª edición. Todas las fuentes corresponden a publicaciones reales.</p>
+
+  <div class="bib-card">
+    <div class="bib-icon">📗</div>
+    <div class="bib-ref">
+      Drucker, P. F. (1986). <em>La innovación y el empresariado innovador: La práctica y los principios</em>. Edhasa. (Obra original publicada en 1985 como <em>Innovation and Entrepreneurship</em>, Harper & Row.)
+    </div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-icon">📘</div>
+    <div class="bib-ref">
+      Shane, S., & Venkataraman, S. (2000). The promise of entrepreneurship as a field of research. <em>Academy of Management Review, 25</em>(1), 217–226. <a href="https://doi.org/10.2307/259271" target="_blank" style="color: var(--azul-oscuro);">https://doi.org/10.2307/259271</a>
+    </div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-icon">📙</div>
+    <div class="bib-ref">
+      Duckworth, A. (2016). <em>Grit: The power of passion and perseverance</em>. Scribner.
+    </div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-icon">📒</div>
+    <div class="bib-ref">
+      Mitchelmore, S., & Rowley, J. (2010). Entrepreneurial competencies: A literature review and development agenda. <em>International Journal of Entrepreneurial Behaviour & Research, 16</em>(2), 92–111. <a href="https://doi.org/10.1108/13552551011026995" target="_blank" style="color: var(--azul-oscuro);">https://doi.org/10.1108/13552551011026995</a>
+    </div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-icon">📕</div>
+    <div class="bib-ref">
+      Isenberg, D. J. (2010). How to start an entrepreneurial revolution. <em>Harvard Business Review, 88</em>(6), 40–50. Recuperado de <a href="https://hbr.org" target="_blank" style="color: var(--azul-oscuro);">https://hbr.org</a>
+    </div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-icon">🌐</div>
+    <div class="bib-ref">
+      Global Entrepreneurship Monitor. (2022). <em>GEM 2021/2022 Global Report: Opportunity Amid Disruption</em>. GEM Consortium. <a href="https://www.gemconsortium.org" target="_blank" style="color: var(--azul-oscuro);">https://www.gemconsortium.org</a>
+    </div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-icon">📔</div>
+    <div class="bib-ref">
+      Dees, J. G. (1998). The meaning of social entrepreneurship. <em>Kauffman Foundation and Stanford University</em>. Recuperado de <a href="https://entrepreneurship.duke.edu/news-item/the-meaning-of-social-entrepreneurship/" target="_blank" style="color: var(--azul-oscuro);">https://entrepreneurship.duke.edu</a>
+    </div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-icon">📗</div>
+    <div class="bib-ref">
+      Blank, S., & Dorf, B. (2012). <em>The startup owner's manual: The step-by-step guide for building a great company</em>. K&S Ranch.
+    </div>
+  </div>
+
+  <div class="bib-nota">
+    ⚠️ <strong>Nota importante:</strong> Se recomienda verificar cada referencia en Google Scholar (<a href="https://scholar.google.com" target="_blank" style="color: #7d5a00;">scholar.google.com</a>) o en el repositorio institucional de la Universidad de Guayaquil antes de citar en trabajos académicos. Las referencias en línea pueden cambiar de URL; siempre verifica el acceso al documento original.
+  </div>
+</section>
+
+</main>
+
+<!-- ============================== JAVASCRIPT ============================== -->
+<script>
+/* ===== NAVEGACIÓN DE PESTAÑAS ===== */
+const tabBtns = document.querySelectorAll('.tab-btn');
+const tabPanels = document.querySelectorAll('.tab-panel');
+
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.dataset.tab;
+    tabBtns.forEach(b => b.classList.remove('active'));
+    tabPanels.forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + target).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+
+/* ===== LÓGICA EJERCICIO INTERACTIVO ===== */
+const ejRespuestas = {
+  '1': { correcta: 'B', explicacion: '✅ Correcto. Sofía tiene empleo estable y detecta una brecha de mercado. Actúa desde la visión estratégica, no desde la urgencia económica. Eso la define como emprendedora por oportunidad.' },
+  '2': { correcta: 'C', explicacion: '✅ Correcto. Carlos innova desde dentro de una organización existente, con recursos de la misma, sin crear su propia empresa. Gifford Pinchot III llamó a esto "intrapreneurship".' },
+  '3': { correcta: 'B', explicacion: '✅ Correcto. Joseph Schumpeter fue quien acuñó y desarrolló el concepto de destrucción creativa en "Teoría del desenvolvimiento económico" (1911) y lo amplió en "Capitalismo, socialismo y democracia" (1942).' },
+  '4': { correcta: 'C', explicacion: '✅ Correcto. 8 empleados + RUC + acceso a microcrédito corresponde a la categoría de pequeña empresa según las clasificaciones de dimensión del emprendimiento.' },
+  '5': { correcta: 'C', explicacion: '✅ Correcto. Datil aprovechó la incongruencia entre la norma regulatoria nueva (facturación electrónica obligatoria) y la capacidad real de las empresas para cumplirla. Drucker identificó las incongruencias como fuente sistemática de oportunidad.' },
+  '6': { correcta: 'B', explicacion: '✅ Correcto. El crecimiento del delivery comenzó antes de la pandemia y se sostuvo después: eso lo define como tendencia (patrón sostenido de cambio en comportamientos), no como moda efímera ni megatendencia de 30 años.' },
+  '7': { correcta: 'A', explicacion: '✅ Correcto. Shane y Venkataraman (2000) denominan "entrepreneurial alertness" (alerta emprendedora) a la capacidad de reconocer oportunidades que otros no ven. Es una de las competencias más diferenciadores del emprendedor.' },
+  '8': { correcta: 'C', explicacion: '✅ Correcto. Los cuatro bloques de Mitchelmore y Rowley (2010) son: (1) Empresarial y gerencial, (2) Relacional e interpersonal, (3) Personal, y (4) Cognitiva y de aprendizaje. "Política y legislativa" no es uno de ellos.' }
+};
+
+const ejExplicacionesError = {
+  '1': '❌ Incorrecto. Sofía tiene empleo estable y actúa desde la detección de una oportunidad de mercado, no desde una urgencia económica. El emprendedor por necesidad emprende porque no tiene otra opción económica.',
+  '2': '❌ Incorrecto. Carlos no crea su propia empresa ni es desempleado. Innova desde dentro de la organización donde trabaja. Eso es exactamente intrapreneurship.',
+  '3': '❌ Incorrecto. Cantillon describió al entrepreneur como asumidor de riesgos. Drucker lo vinculó a la innovación sistemática. Shane y Venkataraman definieron la oportunidad emprendedora. El concepto de destrucción creativa es de Schumpeter.',
+  '4': '❌ Incorrecto. Una startup escalable busca crecer rápidamente con tecnología. Un microemprendedor opera solo o en familia. Un emprendedor corporativo innova dentro de grandes organizaciones. 8 empleados + crédito = pequeña empresa.',
+  '5': '❌ Incorrecto. El caso Datil no responde a algo inesperado, a demografía ni a ciencia nueva. Responde a una brecha clara entre lo que la norma exige y lo que las empresas podían hacer: eso es una incongruencia según Drucker.',
+  '6': '❌ Incorrecto. Una moda dura semanas. Una megatendencia dura 30+ años. El delivery creció sostenidamente durante varios años: es una tendencia. No es una moda pasajera ni un capricho sin datos.',
+  '7': '❌ Incorrecto. Design thinking es una metodología de innovación. Business plan es un documento de planificación. Lean startup es una metodología de validación rápida. La alerta emprendedora (entrepreneurial alertness) es el término correcto.',
+  '8': '❌ Incorrecto. Los cuatro bloques reales son: empresarial/gerencial, relacional/interpersonal, personal, y cognitiva/de aprendizaje. Ninguno incluye competencias "políticas o legislativas" como categoría independiente.'
+};
+
+function inicializarEjercicio() {
+  document.querySelectorAll('.opcion-btn[data-item]').forEach(btn => {
+    if (!btn.dataset.item.startsWith('q')) {
+      btn.addEventListener('click', function() {
+        const item = this.dataset.item;
+        document.querySelectorAll(`.opcion-btn[data-item="${item}"]`).forEach(b => b.classList.remove('selected'));
+        this.classList.add('selected');
+      });
+    }
+  });
+}
+
+document.getElementById('btn-ver-ej').addEventListener('click', function() {
+  let respondidas = 0;
+  let correctas = 0;
+  const total = Object.keys(ejRespuestas).length;
+
+  for (let i = 1; i <= total; i++) {
+    const sel = document.querySelector(`.opcion-btn[data-item="${i}"].selected`);
+    if (sel) respondidas++;
+  }
+
+  if (respondidas < total) {
+    alert(`⚠️ Debes responder todos los ítems antes de verificar. Faltan ${total - respondidas} respuesta(s).`);
+    return;
+  }
+
+  for (let i = 1; i <= total; i++) {
+    const sel = document.querySelector(`.opcion-btn[data-item="${i}"].selected`);
+    const val = sel ? sel.dataset.val : null;
+    const correctaVal = ejRespuestas[i].correcta;
+    const item = document.getElementById(`ej-${i}`);
+    const fb = document.getElementById(`fb-${i}`);
+
+    document.querySelectorAll(`.opcion-btn[data-item="${i}"]`).forEach(b => {
+      b.disabled = true;
+      if (b.dataset.val === correctaVal) b.classList.add('correcta-final');
+      else if (b.classList.contains('selected')) b.classList.add('incorrecta-final');
+    });
+
+    if (val === correctaVal) {
+      correctas++;
+      item.classList.add('correcto');
+      fb.className = 'resultado-feedback ok show';
+      fb.textContent = ejRespuestas[i].explicacion;
+    } else {
+      item.classList.add('incorrecto');
+      fb.className = 'resultado-feedback fail show';
+      fb.textContent = ejExplicacionesError[i];
+    }
+  }
+
+  const pct = Math.round((correctas / total) * 100);
+  const scoreBox = document.getElementById('score-ej');
+  scoreBox.classList.add('show');
+  document.getElementById('score-ej-num').textContent = `${correctas}/${total}`;
+  document.getElementById('score-ej-pct').textContent = `${pct}%`;
+  setTimeout(() => {
+    document.getElementById('score-ej-bar').style.width = pct + '%';
+  }, 100);
+
+  let msg = '';
+  if (pct === 100) msg = '🏆 ¡Perfecto! Dominas completamente los conceptos de esta semana.';
+  else if (pct >= 80) msg = '🎯 ¡Excelente! Tienes una comprensión sólida del tema.';
+  else if (pct >= 60) msg = '📘 Buen trabajo. Revisa los ítems erróneos para consolidar tu aprendizaje.';
+  else if (pct >= 40) msg = '⚠️ Vas por buen camino. Vuelve a leer los subtemas y reinténtalo.';
+  else msg = '📖 Necesitas repasar el contenido. ¡Sin prisa, el aprendizaje es un proceso!';
+
+  document.getElementById('score-ej-msg').textContent = msg;
+  document.getElementById('btn-reiniciar').style.display = 'inline-block';
+  document.getElementById('btn-ver-ej').style.display = 'none';
+  document.getElementById('btn-rei-ej').style.display = 'inline-block';
+});
+
+document.getElementById('btn-rei-ej').addEventListener('click', function() {
+  location.reload();
+});
+
+inicializarEjercicio();
+
+/* ===== LÓGICA CUESTIONARIO ===== */
+const quizRespuestas = {
+  'q1': { correcta: 'B', explicacion: 'Las competencias emprendedoras son habilidades aprendibles y mejorables. Drucker (1986) fue explícito: el emprendimiento es una disciplina que se aprende, no un don. Mitchelmore & Rowley (2010) demostraron empíricamente que estas competencias se desarrollan con práctica deliberada.' },
+  'q2': { correcta: 'C', explicacion: 'La diferencia clave es la duración y profundidad. Las modas duran semanas o meses y son superficiales; las tendencias duran años y tienen raíces en cambios reales de comportamiento, tecnología, economía o demografía. Las megatendencias duran décadas.' },
+  'q3': { correcta: 'B', explicacion: 'Intrapreneurship (Pinchot, 1985) es exactamente esto: empleados que innovan dentro de una organización existente con sus recursos, sin crear su propia empresa. Es uno de los tipos de emprendedor más valiosos para las organizaciones establecidas.' },
+  'q4': { correcta: 'B', explicacion: 'Drucker identificó siete fuentes de oportunidad: lo inesperado, las incongruencias, las necesidades de proceso, cambios en el mercado, cambios demográficos, cambios de percepción, y nuevo conocimiento. Las incongruencias son brechas entre lo que es y lo que debería ser.' },
+  'q5': { correcta: 'B', explicacion: 'El emprendedor por necesidad actúa empujado por la urgencia económica (desempleo, crisis). No parte de una visión estratégica sino de la necesidad de generar ingresos. En Ecuador representa entre 35-45% del emprendimiento temprano (GEM, 2022).' },
+  'q6': { correcta: 'C', explicacion: 'Angela Duckworth (2016) define grit como la combinación de pasión y perseverancia sostenida hacia metas de largo plazo, incluso cuando hay obstáculos, aburrimiento o fracasos. Es una de las competencias emocionales más relevantes para el emprendedor.' },
+  'q7': { correcta: 'B', explicacion: 'Google Trends muestra el volumen de búsqueda de cualquier término en el tiempo y por región geográfica. Esto permite detectar si el interés en un tema crece, si tiene estacionalidad, y comparar términos entre sí — todo gratuito y en tiempo real.' },
+  'q8': { correcta: 'C', explicacion: 'Andrés comenzó emprendiendo por necesidad (pérdida de empleo, sin opciones). Al año siguiente, identificó una demanda no cubierta (facturación electrónica) y la aprovechó estratégicamente. Esto muestra cómo un emprendedor puede evolucionar de perfil de necesidad a incorporar lógica de oportunidad.' },
+  'q9': { correcta: 'B', explicacion: 'Un crecimiento del 340% en búsquedas de un término relacionado con el servicio que se quiere ofrecer es una señal poderosa de demanda creciente. Valida que hay un mercado real y que está creciendo, lo que reduce el riesgo de la idea. No confirma ausencia de competencia.' },
+  'q10': { correcta: 'B', explicacion: 'María José innova desde dentro de su firma existente, con recursos de la firma — eso es intrapreneurship. Y aprovecha la tendencia de economía verde/sostenibilidad, ya que las certificaciones ESG son una demanda creciente de mercados internacionales.' }
+};
+
+const quizExplicacionesError = {
+  'q1': 'Incorrecto. La visión de que las competencias emprendedoras son innatas e inmutables fue desmentida por décadas de investigación. Drucker fue uno de los primeros en argumentar que el emprendimiento es una disciplina aprendible.',
+  'q2': 'Incorrecto. La diferencia principal no es geográfica ni de rentabilidad, sino de profundidad y duración. Las modas son efímeras; las tendencias son cambios sostenidos con raíces profundas.',
+  'q3': 'Incorrecto. Intrapreneurship no requiere crear una empresa externa ni se limita al sector tecnológico. Es específicamente la innovación desde dentro de una organización existente.',
+  'q4': 'Incorrecto. La intuición, la preferencia personal y el capital disponible no son fuentes de oportunidad según Drucker. Son condiciones o recursos, no fuentes. Las incongruencias sí son una de sus siete fuentes identificadas.',
+  'q5': 'Incorrecto. La visión estratégica, el impacto social y la innovación interna corresponden a otros perfiles. El emprendedor por necesidad se define por la urgencia económica que lo impulsa a emprender.',
+  'q6': 'Incorrecto. Grit no es sobre análisis de datos, negociación ni diseño técnico. Duckworth lo define específicamente como perseverancia y pasión sostenidas hacia objetivos de largo plazo. Es una competencia emocional.',
+  'q7': 'Incorrecto. Google Trends no muestra estados financieros, no registra marcas ni calcula tamaño de mercado. Su función específica es mostrar el volumen de búsquedas de términos en el tiempo y por región.',
+  'q8': 'Incorrecto. Andrés comenzó claramente por necesidad (desempleo + urgencia). El intrapreneur innova dentro de una organización existente como empleado, no como proveedor externo de servicios.',
+  'q9': 'Incorrecto. El crecimiento en búsquedas valida demanda, pero no garantiza ausencia de competencia (puede haber más competidores también). "Esperar" tampoco es la conclusión correcta — la tendencia muestra que el mercado ya está madurando.',
+  'q10': 'Incorrecto. María José no pierde su empleo ni actúa desde urgencia (no es por necesidad). No crea una startup independiente (no es escalable). El enfoque no es social. Innova con recursos de su firma en un área de tendencia ESG — eso es intrapreneurship + sostenibilidad.'
+};
+
+document.querySelectorAll('.opcion-btn[data-item^="q"]').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const item = this.dataset.item;
+    document.querySelectorAll(`.opcion-btn[data-item="${item}"]`).forEach(b => b.classList.remove('selected'));
+    this.classList.add('selected');
+  });
+});
+
+document.getElementById('btn-ver-quiz').addEventListener('click', function() {
+  const items = Object.keys(quizRespuestas);
+  let respondidas = 0;
+  let correctas = 0;
+
+  items.forEach(item => {
+    const sel = document.querySelector(`.opcion-btn[data-item="${item}"].selected`);
+    if (sel) respondidas++;
+  });
+
+  if (respondidas < items.length) {
+    alert(`⚠️ Debes responder las ${items.length} preguntas antes de verificar. Faltan ${items.length - respondidas}.`);
+    return;
+  }
+
+  items.forEach((item, idx) => {
+    const n = idx + 1;
+    const sel = document.querySelector(`.opcion-btn[data-item="${item}"].selected`);
+    const val = sel ? sel.dataset.val : null;
+    const correctaVal = quizRespuestas[item].correcta;
+    const qItem = document.getElementById(`q-${n}`);
+    const fb = document.getElementById(`fbq-${n}`);
+
+    document.querySelectorAll(`.opcion-btn[data-item="${item}"]`).forEach(b => {
+      b.disabled = true;
+      if (b.dataset.val === correctaVal) b.classList.add('correcta-final');
+      else if (b.classList.contains('selected')) b.classList.add('incorrecta-final');
+    });
+
+    if (val === correctaVal) {
+      correctas++;
+      qItem.classList.add('correcto');
+      fb.className = 'resultado-feedback ok show';
+      fb.innerHTML = `<strong>✅ Correcto.</strong> ${quizRespuestas[item].explicacion}`;
+    } else {
+      qItem.classList.add('incorrecto');
+      fb.className = 'resultado-feedback fail show';
+      fb.innerHTML = `<strong>❌ Incorrecto.</strong> ${quizExplicacionesError[item]}`;
+    }
+  });
+
+  const pct = Math.round((correctas / 10) * 100);
+  const scoreBox = document.getElementById('score-quiz');
+  scoreBox.classList.add('show');
+  document.getElementById('score-quiz-num').textContent = `${correctas}/10`;
+  document.getElementById('score-quiz-pct').textContent = `${pct}%`;
+  setTimeout(() => {
+    document.getElementById('score-quiz-bar').style.width = pct + '%';
+  }, 100);
+
+  let emoji = '', msg = '';
+  if (pct === 100) { emoji = '🏆'; msg = '¡Perfecto! Dominas completamente los conceptos de la semana 5.'; }
+  else if (pct >= 80) { emoji = '🎯'; msg = 'Excelente comprensión. Consolida los puntos erróneos y estarás listo.'; }
+  else if (pct >= 60) { emoji = '📘'; msg = 'Buen trabajo. Revisa los temas donde fallaste y vuelve a intentarlo.'; }
+  else if (pct >= 40) { emoji = '⚠️'; msg = 'Vas avanzando. Vuelve al contenido de los subtemas y reinténtalo.'; }
+  else { emoji = '📖'; msg = 'Necesitas más estudio. Lee los temas con calma y regresa al cuestionario.'; }
+
+  document.getElementById('score-quiz-msg').textContent = `${emoji} ${msg}`;
+  document.getElementById('btn-ver-quiz').style.display = 'none';
+  document.getElementById('btn-rei-quiz').style.display = 'inline-block';
+});
+
+document.getElementById('btn-rei-quiz').addEventListener('click', function() {
+  location.reload();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<!--
+PLANIFICACIÓN: 7 semanas | 2 archivos
+Archivo 1 → S1–S4 (Unidad 1, Semanas 1 a 4)
+Archivo 2 → S5–S7 (Unidad 1 S5 + Unidad 2 S6–S7)
+Este es el ARCHIVO 2 DE 2
+Materia: Emprendimiento e Innovación
+Institución: Universidad de Guayaquil | Facultad de Ciencias Administrativas | Carrera en Contabilidad y Auditoría
+-->
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Repaso | Emprendimiento e Innovación | S5–S7</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet"/>
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: #f0f4f8;
+    color: #1a1a2e;
+    min-height: 100vh;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    background: #003366;
+    color: #fff;
+    padding: 18px 28px;
+  }
+  header .inst { font-family: 'Lora', serif; font-size: 0.82rem; letter-spacing: 0.05em; opacity: 0.85; }
+  header h1  { font-family: 'Lora', serif; font-size: 1.35rem; font-weight: 700; margin-top: 4px; }
+  header .sub { font-size: 0.85rem; margin-top: 3px; opacity: 0.78; }
+
+  /* ===== TAB BAR ===== */
+  .tab-bar-wrap {
+    background: #87CEEB;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-bottom: 3px solid #003366;
+  }
+  .tab-bar-wrap::-webkit-scrollbar { height: 5px; }
+  .tab-bar-wrap::-webkit-scrollbar-thumb { background: #003366; border-radius: 3px; }
+  .tab-btn {
+    display: inline-block;
+    padding: 11px 20px;
+    cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.88rem;
+    color: #111;
+    background: transparent;
+    border: none;
+    border-right: 1px solid rgba(0,51,102,0.2);
+    transition: background 0.2s;
+  }
+  .tab-btn:hover { background: rgba(255,255,255,0.45); }
+  .tab-btn.active {
+    background: #fff;
+    color: #003366;
+    font-weight: 700;
+    border-bottom: 3px solid #fff;
+  }
+
+  /* ===== TAB CONTENT ===== */
+  .tab-content { display: none; padding: 28px 24px 40px; max-width: 900px; margin: 0 auto; }
+  .tab-content.active { display: block; }
+
+  /* ===== SEMANA HEADER ===== */
+  .semana-header {
+    background: #003366;
+    color: #fff;
+    border-radius: 8px;
+    padding: 16px 22px;
+    margin-bottom: 28px;
+  }
+  .semana-header .badge {
+    display: inline-block;
+    background: #87CEEB;
+    color: #003366;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 20px;
+    margin-bottom: 6px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .semana-header h2 { font-family: 'Lora', serif; font-size: 1.2rem; }
+  .semana-header p  { font-size: 0.85rem; margin-top: 5px; opacity: 0.82; }
+
+  /* ===== BLOCK TITLE ===== */
+  .block-title {
+    font-family: 'Lora', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #003366;
+    margin-bottom: 16px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #87CEEB;
+  }
+
+  /* ===== BLOCK CARD ===== */
+  .block-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 22px;
+    box-shadow: 0 2px 8px rgba(0,51,102,0.1);
+    margin-bottom: 12px;
+  }
+
+  /* ===== ITEM ROWS ===== */
+  .item-row {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    border: 1.5px solid #d8e8f5;
+    border-radius: 8px;
+    background: #f9fcff;
+    transition: border-color 0.2s;
+  }
+  .item-row.correct   { border-color: #28a745; background: #f0fff4; }
+  .item-row.incorrect { border-color: #dc3545; background: #fff5f5; }
+
+  .item-enunciado { font-weight: 600; margin-bottom: 10px; line-height: 1.45; }
+  .options-list { list-style: none; }
+  .options-list li { margin-bottom: 6px; }
+  .options-list label {
+    display: flex; align-items: flex-start; gap: 9px;
+    cursor: pointer; font-size: 0.93rem; line-height: 1.4;
+  }
+  .options-list input[type="radio"] { margin-top: 3px; flex-shrink: 0; accent-color: #003366; }
+
+  /* ===== FEEDBACK ===== */
+  .feedback-msg {
+    margin-top: 10px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.87rem;
+    display: none;
+  }
+  .feedback-msg.show { display: block; }
+  .feedback-msg.ok  { background: #d4edda; color: #155724; border-left: 4px solid #28a745; }
+  .feedback-msg.err { background: #f8d7da; color: #721c24; border-left: 4px solid #dc3545; }
+
+  /* ===== BADGE TIPO ===== */
+  .badge-tipo {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 1px 8px;
+    border-radius: 20px;
+    margin-left: 8px;
+    vertical-align: middle;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .badge-teorica  { background: #cce5ff; color: #004085; }
+  .badge-analisis { background: #fff3cd; color: #856404; }
+
+  /* ===== BUTTONS ===== */
+  .btn-verificar, .btn-reiniciar {
+    border: none; cursor: pointer; border-radius: 6px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.93rem; font-weight: 600;
+    padding: 10px 24px; margin-top: 8px; margin-right: 8px;
+    transition: opacity 0.2s, transform 0.1s;
+  }
+  .btn-verificar { background: #003366; color: #fff; }
+  .btn-verificar:hover { opacity: 0.88; }
+  .btn-reiniciar { background: #87CEEB; color: #003366; }
+  .btn-reiniciar:hover { opacity: 0.82; }
+  .btn-verificar:active, .btn-reiniciar:active { transform: scale(0.97); }
+
+  /* ===== ALERT ===== */
+  .alert-incomplete {
+    display: none;
+    background: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffc107;
+    border-radius: 6px;
+    padding: 9px 14px;
+    margin-top: 10px;
+    font-size: 0.88rem;
+  }
+  .alert-incomplete.show { display: block; }
+
+  /* ===== RESULT PANEL ===== */
+  .result-panel {
+    display: none;
+    margin-top: 18px;
+    background: #f0f8ff;
+    border-radius: 8px;
+    padding: 18px;
+    border: 1.5px solid #87CEEB;
+  }
+  .result-panel.show { display: block; }
+  .result-score { font-family: 'Lora', serif; font-size: 1.3rem; font-weight: 700; color: #003366; }
+  .progress-bar-bg {
+    background: #d8e8f5; border-radius: 20px; height: 14px;
+    margin: 10px 0; overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%; border-radius: 20px;
+    background: linear-gradient(90deg, #003366, #87CEEB);
+    width: 0%; transition: width 1s ease;
+  }
+  .result-msg { font-size: 1rem; margin-top: 8px; font-weight: 600; }
+
+  /* ===== SEPARATOR ===== */
+  .separator {
+    border: none;
+    border-top: 3px solid #87CEEB;
+    margin: 32px 0;
+    position: relative;
+  }
+  .separator::after {
+    content: '✦ Cuestionario ✦';
+    position: absolute;
+    top: -11px; left: 50%;
+    transform: translateX(-50%);
+    background: #f0f4f8;
+    padding: 0 14px;
+    font-size: 0.8rem;
+    color: #003366;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 600px) {
+    .tab-content { padding: 18px 14px 30px; }
+    header h1 { font-size: 1.1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== HEADER ==================== -->
+<header>
+  <div class="inst">Universidad de Guayaquil &nbsp;|&nbsp; Facultad de Ciencias Administrativas &nbsp;|&nbsp; Carrera en Contabilidad y Auditoría</div>
+  <h1>Emprendimiento e Innovación — Material de Repaso Interactivo</h1>
+  <div class="sub">Unidades 1–2 | Semanas 5 – 7 &nbsp;·&nbsp; Archivo 2 de 2</div>
+</header>
+
+<!-- ==================== TAB BAR ==================== -->
+<div class="tab-bar-wrap">
+  <button class="tab-btn active" onclick="showTab('s5')">Semana 5 — Tipos de Emprendedor y Análisis de Tendencias</button>
+  <button class="tab-btn"        onclick="showTab('s6')">Semana 6 — Creatividad y Pensamiento Sistémico</button>
+  <button class="tab-btn"        onclick="showTab('s7')">Semana 7 — Innovación y Design Thinking</button>
+</div>
+
+<!-- ============================================================
+     SEMANA 5
+     Tema: La capacidad para emprender. Tipos de Emprendedor.
+            Identificación de problemas y oportunidades: Análisis de Tendencias
+     ============================================================ -->
+<div id="s5" class="tab-content active">
+  <div class="semana-header">
+    <span class="badge">Unidad 1 · Semana 5</span>
+    <h2>La Capacidad para Emprender — Tipos de Emprendedor e Identificación de Oportunidades</h2>
+    <p>Análisis de Tendencias · Identificación de problemas · Habilidades emprendedoras</p>
+  </div>
+
+  <!-- ===== EJERCICIO S5 ===== -->
+  <div class="block-card">
+    <div class="block-title">🧩 Ejercicio Interactivo — Clasificación y Emparejamiento</div>
+
+    <!-- Ítem 1 -->
+    <div class="item-row" id="s5e-row1">
+      <div class="item-enunciado">1. El emprendedor que detecta una oportunidad de negocio a partir de una tendencia emergente y actúa antes que el mercado la masifique se denomina:</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s5ei1" value="a"/> a) Emprendedor por necesidad</label></li>
+        <li><label><input type="radio" name="s5ei1" value="b"/> b) Emprendedor oportunista</label></li>
+        <li><label><input type="radio" name="s5ei1" value="c"/> c) Emprendedor social</label></li>
+        <li><label><input type="radio" name="s5ei1" value="d"/> d) Emprendedor corporativo</label></li>
+      </ul>
+      <div class="feedback-msg" id="s5e-fb1"></div>
+    </div>
+
+    <!-- Ítem 2 -->
+    <div class="item-row" id="s5e-row2">
+      <div class="item-enunciado">2. Un trabajador que pierde su empleo e inicia un negocio para generar ingresos de subsistencia representa principalmente el perfil de:</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s5ei2" value="a"/> a) Emprendedor por oportunidad</label></li>
+        <li><label><input type="radio" name="s5ei2" value="b"/> b) Emprendedor serial</label></li>
+        <li><label><input type="radio" name="s5ei2" value="c"/> c) Emprendedor por necesidad</label></li>
+        <li><label><input type="radio" name="s5ei2" value="d"/> d) Intraemprendedor</label></li>
+      </ul>
+      <div class="feedback-msg" id="s5e-fb2"></div>
+    </div>
+
+    <!-- Ítem 3 -->
+    <div class="item-row" id="s5e-row3">
+      <div class="item-enunciado">3. La capacidad para tolerar la ambigüedad, gestionar el riesgo y persistir ante el fracaso forma parte de:</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s5ei3" value="a"/> a) Las competencias técnicas del emprendedor</label></li>
+        <li><label><input type="radio" name="s5ei3" value="b"/> b) Las competencias actitudinales y psicológicas del emprendedor</label></li>
+        <li><label><input type="radio" name="s5ei3" value="c"/> c) Las habilidades financieras del emprendedor</label></li>
+        <li><label><input type="radio" name="s5ei3" value="d"/> d) Los recursos tangibles del emprendimiento</label></li>
+      </ul>
+      <div class="feedback-msg" id="s5e-fb3"></div>
+    </div>
+
+    <!-- Ítem 4 -->
+    <div class="item-row" id="s5e-row4">
+      <div class="item-enunciado">4. El análisis de tendencias tecnológicas, sociales y económicas (PESTEL, megatendencias) sirve fundamentalmente para:</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s5ei4" value="a"/> a) Establecer el organigrama de la empresa</label></li>
+        <li><label><input type="radio" name="s5ei4" value="b"/> b) Calcular el punto de equilibrio financiero</label></li>
+        <li><label><input type="radio" name="s5ei4" value="c"/> c) Identificar oportunidades de negocio antes de que se vuelvan evidentes para todos</label></li>
+        <li><label><input type="radio" name="s5ei4" value="d"/> d) Definir el nombre comercial y la marca</label></li>
+      </ul>
+      <div class="feedback-msg" id="s5e-fb4"></div>
+    </div>
+
+    <!-- Ítem 5 -->
+    <div class="item-row" id="s5e-row5">
+      <div class="item-enunciado">5. Un empleado que propone y lidera proyectos innovadores dentro de su organización sin salir de ella es conocido como:</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s5ei5" value="a"/> a) Emprendedor social</label></li>
+        <li><label><input type="radio" name="s5ei5" value="b"/> b) Emprendedor serial</label></li>
+        <li><label><input type="radio" name="s5ei5" value="c"/> c) Intraemprendedor o emprendedor corporativo</label></li>
+        <li><label><input type="radio" name="s5ei5" value="d"/> d) Emprendedor por necesidad</label></li>
+      </ul>
+      <div class="feedback-msg" id="s5e-fb5"></div>
+    </div>
+
+    <!-- Ítem 6 -->
+    <div class="item-row" id="s5e-row6">
+      <div class="item-enunciado">6. Al identificar un problema social no resuelto y crear una organización que genere valor social más que económico, se perfila un:</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s5ei6" value="a"/> a) Emprendedor serial</label></li>
+        <li><label><input type="radio" name="s5ei6" value="b"/> b) Emprendedor social</label></li>
+        <li><label><input type="radio" name="s5ei6" value="c"/> c) Emprendedor por oportunidad</label></li>
+        <li><label><input type="radio" name="s5ei6" value="d"/> d) Emprendedor corporativo</label></li>
+      </ul>
+      <div class="feedback-msg" id="s5e-fb6"></div>
+    </div>
+
+    <!-- Ítem 7 -->
+    <div class="item-row" id="s5e-row7">
+      <div class="item-enunciado">7. ¿Cuál de las siguientes NO es una fuente válida para identificar oportunidades de negocio a través del análisis de tendencias?</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s5ei7" value="a"/> a) Cambios demográficos y sociales</label></li>
+        <li><label><input type="radio" name="s5ei7" value="b"/> b) Avances tecnológicos disruptivos</label></li>
+        <li><label><input type="radio" name="s5ei7" value="c"/> c) Preferencias personales del emprendedor sin validación externa</label></li>
+        <li><label><input type="radio" name="s5ei7" value="d"/> d) Cambios regulatorios y legales</label></li>
+      </ul>
+      <div class="feedback-msg" id="s5e-fb7"></div>
+    </div>
+
+    <!-- Ítem 8 -->
+    <div class="item-row" id="s5e-row8">
+      <div class="item-enunciado">8. La "brecha de valor" como técnica de identificación de oportunidades señala que una oportunidad existe cuando:</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s5ei8" value="a"/> a) Hay demasiada competencia en un sector</label></li>
+        <li><label><input type="radio" name="s5ei8" value="b"/> b) Las necesidades del mercado superan la oferta existente o esta no satisface plenamente al cliente</label></li>
+        <li><label><input type="radio" name="s5ei8" value="c"/> c) El gobierno apoya financieramente nuevos negocios</label></li>
+        <li><label><input type="radio" name="s5ei8" value="d"/> d) El emprendedor dispone de capital suficiente</label></li>
+      </ul>
+      <div class="feedback-msg" id="s5e-fb8"></div>
+    </div>
+
+    <div class="alert-incomplete" id="s5e-alert">⚠️ Por favor, responde todos los ítems antes de verificar.</div>
+    <button class="btn-verificar" onclick="verificarEjercicio_s5()">Verificar respuestas</button>
+    <button class="btn-reiniciar" onclick="reiniciarEjercicio_s5()">Reiniciar</button>
+    <div class="result-panel" id="s5e-result">
+      <div class="result-score" id="s5e-score"></div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="s5e-bar"></div></div>
+      <div class="result-msg" id="s5e-msg"></div>
+    </div>
+  </div><!-- /block-card ejercicio s5 -->
+
+  <!-- SEPARADOR -->
+  <hr class="separator"/>
+
+  <!-- ===== CUESTIONARIO S5 ===== -->
+  <div class="block-card">
+    <div class="block-title">📋 Cuestionario — Semana 5</div>
+
+    <!-- Q1 -->
+    <div class="item-row" id="s5q-row1">
+      <div class="item-enunciado">1. ¿Cuál es la diferencia principal entre el emprendedor por oportunidad y el emprendedor por necesidad? <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s5qi1" value="a"/> a) El emprendedor por oportunidad actúa motivado por una necesidad económica urgente; el de necesidad, por ambición</label></li>
+        <li><label><input type="radio" name="s5qi1" value="b"/> b) El emprendedor por oportunidad identifica y aprovecha una brecha de mercado; el de necesidad emprende ante la falta de otras alternativas laborales</label></li>
+        <li><label><input type="radio" name="s5qi1" value="c"/> c) Ambos tipos son idénticos; solo difieren en el sector económico en que operan</label></li>
+        <li><label><input type="radio" name="s5qi1" value="d"/> d) El emprendedor por necesidad siempre genera mayor impacto económico que el de oportunidad</label></li>
+      </ul>
+      <div class="feedback-msg" id="s5q-fb1"></div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="item-row" id="s5q-row2">
+      <div class="item-enunciado">2. ¿Qué caracteriza al emprendedor serial? <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s5qi2" value="a"/> a) Funda una sola empresa y la gestiona de por vida</label></li>
+        <li><label><input type="radio" name="s5qi2" value="b"/> b) Emprende exclusivamente en el sector tecnológico</label></li>
+        <li><label><input type="radio" name="s5qi2" value="c"/> c) Crea múltiples emprendimientos a lo largo del tiempo, con frecuencia vendiendo o delegando los anteriores</label></li>
+        <li><label><input type="radio" name="s5qi2" value="d"/> d) Solo emprende dentro de grandes corporaciones como intraemprendedor</label></li>
+      </ul>
+      <div class="feedback-msg" id="s5q-fb2"></div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="item-row" id="s5q-row3">
+      <div class="item-enunciado">3. La tolerancia a la ambigüedad, la perseverancia y la autoconfianza son ejemplos de: <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s5qi3" value="a"/> a) Recursos financieros necesarios para emprender</label></li>
+        <li><label><input type="radio" name="s5qi3" value="b"/> b) Competencias actitudinales y rasgos psicológicos del emprendedor</label></li>
+        <li><label><input type="radio" name="s5qi3" value="c"/> c) Habilidades exclusivas del emprendedor tecnológico</label></li>
+        <li><label><input type="radio" name="s5qi3" value="d"/> d) Características del ecosistema emprendedor, no del individuo</label></li>
+      </ul>
+      <div class="feedback-msg" id="s5q-fb3"></div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="item-row" id="s5q-row4">
+      <div class="item-enunciado">4. El análisis PESTEL aplicado al emprendimiento permite: <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s5qi4" value="a"/> a) Establecer el costo de producción de un bien</label></li>
+        <li><label><input type="radio" name="s5qi4" value="b"/> b) Examinar factores políticos, económicos, sociales, tecnológicos, ecológicos y legales para detectar tendencias y oportunidades</label></li>
+        <li><label><input type="radio" name="s5qi4" value="c"/> c) Diseñar el plan de marketing de la startup</label></li>
+        <li><label><input type="radio" name="s5qi4" value="d"/> d) Determinar el organigrama funcional del emprendimiento</label></li>
+      </ul>
+      <div class="feedback-msg" id="s5q-fb4"></div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="item-row" id="s5q-row5">
+      <div class="item-enunciado">5. ¿Cuál es la principal motivación del emprendedor social? <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s5qi5" value="a"/> a) Maximizar el retorno sobre la inversión de sus accionistas</label></li>
+        <li><label><input type="radio" name="s5qi5" value="b"/> b) Generar soluciones sostenibles a problemas sociales o ambientales, más allá del lucro</label></li>
+        <li><label><input type="radio" name="s5qi5" value="c"/> c) Competir con multinacionales en mercados globales</label></li>
+        <li><label><input type="radio" name="s5qi5" value="d"/> d) Obtener financiamiento estatal para proyectos personales</label></li>
+      </ul>
+      <div class="feedback-msg" id="s5q-fb5"></div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="item-row" id="s5q-row6">
+      <div class="item-enunciado">6. La identificación de una oportunidad de negocio se distingue de una simple idea porque: <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s5qi6" value="a"/> a) La oportunidad es espontánea y no requiere validación</label></li>
+        <li><label><input type="radio" name="s5qi6" value="b"/> b) La oportunidad está respaldada por evidencia de demanda real, viabilidad y capacidad del emprendedor para capturarla</label></li>
+        <li><label><input type="radio" name="s5qi6" value="c"/> c) Una idea siempre supera en valor a una oportunidad identificada</label></li>
+        <li><label><input type="radio" name="s5qi6" value="d"/> d) Las oportunidades solo provienen de sectores tecnológicos</label></li>
+      </ul>
+      <div class="feedback-msg" id="s5q-fb6"></div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="item-row" id="s5q-row7">
+      <div class="item-enunciado">7. El intraemprendedor es valioso para las organizaciones porque: <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s5qi7" value="a"/> a) Trabaja de forma independiente y sin responder a la organización</label></li>
+        <li><label><input type="radio" name="s5qi7" value="b"/> b) Impulsa la innovación y la renovación estratégica desde dentro, sin los riesgos de una nueva empresa independiente</label></li>
+        <li><label><input type="radio" name="s5qi7" value="c"/> c) Reemplaza al equipo directivo en sus funciones ordinarias</label></li>
+        <li><label><input type="radio" name="s5qi7" value="d"/> d) Solo es relevante en empresas del sector público</label></li>
+      </ul>
+      <div class="feedback-msg" id="s5q-fb7"></div>
+    </div>
+
+    <!-- Q8 (Análisis) -->
+    <div class="item-row" id="s5q-row8">
+      <div class="item-enunciado">8. Verónica trabajaba como contadora. Al quedar desempleada durante una crisis económica, abrió una pequeña lavandería para sostener a su familia. Con el tiempo, detectó que muchos clientes querían servicio a domicilio y expandió su negocio a tres barrios. ¿Qué tipo(s) de emprendedor ilustra su trayectoria? <span class="badge-tipo badge-analisis">Análisis</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s5qi8" value="a"/> a) Exclusivamente emprendedora social</label></li>
+        <li><label><input type="radio" name="s5qi8" value="b"/> b) Intraemprendedora corporativa</label></li>
+        <li><label><input type="radio" name="s5qi8" value="c"/> c) Emprendedora por necesidad que evolucionó hacia emprendedora por oportunidad al detectar una brecha de mercado</label></li>
+        <li><label><input type="radio" name="s5qi8" value="d"/> d) Emprendedora serial, porque tuvo dos negocios distintos</label></li>
+      </ul>
+      <div class="feedback-msg" id="s5q-fb8"></div>
+    </div>
+
+    <!-- Q9 (Análisis) -->
+    <div class="item-row" id="s5q-row9">
+      <div class="item-enunciado">9. Un equipo de universitarios observa que las personas mayores del barrio no saben usar aplicaciones de pago digital. Deciden crear una app con interfaz simplificada y tutoriales en audio. ¿Qué herramienta de identificación de oportunidades están aplicando? <span class="badge-tipo badge-analisis">Análisis</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s5qi9" value="a"/> a) Análisis financiero de rentabilidad</label></li>
+        <li><label><input type="radio" name="s5qi9" value="b"/> b) Identificación de un problema real no resuelto y análisis de tendencias demográficas y tecnológicas</label></li>
+        <li><label><input type="radio" name="s5qi9" value="c"/> c) Benchmarking de precios de la competencia</label></li>
+        <li><label><input type="radio" name="s5qi9" value="d"/> d) Análisis de costos de producción del software</label></li>
+      </ul>
+      <div class="feedback-msg" id="s5q-fb9"></div>
+    </div>
+
+    <!-- Q10 (Análisis) -->
+    <div class="item-row" id="s5q-row10">
+      <div class="item-enunciado">10. Andrés lleva 15 años emprendiendo: fundó una empresa de logística, la vendió a los 5 años, luego creó una firma de consultoría, también cedida después, y actualmente lidera una startup de inteligencia artificial. ¿Cuál tipo de emprendedor describe mejor a Andrés? <span class="badge-tipo badge-analisis">Análisis</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s5qi10" value="a"/> a) Emprendedor por necesidad</label></li>
+        <li><label><input type="radio" name="s5qi10" value="b"/> b) Emprendedor social</label></li>
+        <li><label><input type="radio" name="s5qi10" value="c"/> c) Intraemprendedor</label></li>
+        <li><label><input type="radio" name="s5qi10" value="d"/> d) Emprendedor serial</label></li>
+      </ul>
+      <div class="feedback-msg" id="s5q-fb10"></div>
+    </div>
+
+    <div class="alert-incomplete" id="s5q-alert">⚠️ Por favor, responde todas las preguntas antes de verificar.</div>
+    <button class="btn-verificar" onclick="verificarQuiz_s5()">Verificar respuestas</button>
+    <button class="btn-reiniciar" onclick="reiniciarQuiz_s5()">Reiniciar</button>
+    <div class="result-panel" id="s5q-result">
+      <div class="result-score" id="s5q-score"></div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="s5q-bar"></div></div>
+      <div class="result-msg" id="s5q-msg"></div>
+    </div>
+  </div><!-- /block-card cuestionario s5 -->
+</div><!-- /tab s5 -->
+
+
+<!-- ============================================================
+     SEMANA 6
+     Unidad 2: Creatividad, Innovación y Metodologías Innovadoras
+     Tema: Herramientas de creatividad y pensamiento sistémico
+     ============================================================ -->
+<div id="s6" class="tab-content">
+  <div class="semana-header">
+    <span class="badge">Unidad 2 · Semana 6</span>
+    <h2>Creatividad e Innovación — Herramientas de Creatividad y Pensamiento Sistémico</h2>
+    <p>Brainstorming · Mapas mentales · SCAMPER · Pensamiento sistémico y lateral</p>
+  </div>
+
+  <!-- ===== EJERCICIO S6 ===== -->
+  <div class="block-card">
+    <div class="block-title">🧩 Ejercicio Interactivo — Verdadero / Falso y Completar la Idea</div>
+
+    <!-- Ítem 1 -->
+    <div class="item-row" id="s6e-row1">
+      <div class="item-enunciado">1. La técnica de <em>Brainstorming</em> (lluvia de ideas) establece que durante la generación de ideas NO se debe criticar ni evaluar ninguna propuesta hasta que finalice la etapa creativa. ¿Esto es correcto?</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s6ei1" value="a"/> a) Verdadero — el juicio diferido es un principio central del Brainstorming</label></li>
+        <li><label><input type="radio" name="s6ei1" value="b"/> b) Falso — la crítica inmediata mejora la calidad de las ideas</label></li>
+        <li><label><input type="radio" name="s6ei1" value="c"/> c) Falso — el moderador puede rechazar ideas irrealistas en el momento</label></li>
+        <li><label><input type="radio" name="s6ei1" value="d"/> d) Verdadero, pero solo aplica para grupos de más de 10 personas</label></li>
+      </ul>
+      <div class="feedback-msg" id="s6e-fb1"></div>
+    </div>
+
+    <!-- Ítem 2 -->
+    <div class="item-row" id="s6e-row2">
+      <div class="item-enunciado">2. En la técnica SCAMPER, la letra "S" corresponde a la acción de:</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s6ei2" value="a"/> a) Sustituir (Substitute) — reemplazar un componente del producto o proceso por otro</label></li>
+        <li><label><input type="radio" name="s6ei2" value="b"/> b) Simplificar — reducir el número de pasos del proceso</label></li>
+        <li><label><input type="radio" name="s6ei2" value="c"/> c) Seleccionar — elegir la mejor idea del brainstorming</label></li>
+        <li><label><input type="radio" name="s6ei2" value="d"/> d) Sistematizar — organizar las ideas en un mapa mental</label></li>
+      </ul>
+      <div class="feedback-msg" id="s6e-fb2"></div>
+    </div>
+
+    <!-- Ítem 3 -->
+    <div class="item-row" id="s6e-row3">
+      <div class="item-enunciado">3. El pensamiento sistémico parte del principio de que los problemas complejos deben analizarse considerando:</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s6ei3" value="a"/> a) Solo la causa inmediata del problema, para actuar con rapidez</label></li>
+        <li><label><input type="radio" name="s6ei3" value="b"/> b) Las interrelaciones, retroalimentaciones y consecuencias entre los elementos del sistema</label></li>
+        <li><label><input type="radio" name="s6ei3" value="c"/> c) Únicamente los factores financieros del entorno empresarial</label></li>
+        <li><label><input type="radio" name="s6ei3" value="d"/> d) El impacto individual de cada componente, de forma aislada</label></li>
+      </ul>
+      <div class="feedback-msg" id="s6e-fb3"></div>
+    </div>
+
+    <!-- Ítem 4 -->
+    <div class="item-row" id="s6e-row4">
+      <div class="item-enunciado">4. El pensamiento lateral (Edward de Bono) busca resolver problemas mediante:</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s6ei4" value="a"/> a) Aplicación rigurosa del método científico hipotético-deductivo</label></li>
+        <li><label><input type="radio" name="s6ei4" value="b"/> b) Enfoques no convencionales que cuestionan los supuestos establecidos y buscan ángulos alternativos de análisis</label></li>
+        <li><label><input type="radio" name="s6ei4" value="c"/> c) El análisis estadístico de grandes volúmenes de datos históricos</label></li>
+        <li><label><input type="radio" name="s6ei4" value="d"/> d) La imitación de las mejores prácticas de la competencia</label></li>
+      </ul>
+      <div class="feedback-msg" id="s6e-fb4"></div>
+    </div>
+
+    <!-- Ítem 5 -->
+    <div class="item-row" id="s6e-row5">
+      <div class="item-enunciado">5. Los mapas mentales como herramienta de creatividad son útiles principalmente para:</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s6ei5" value="a"/> a) Calcular la rentabilidad de un proyecto de inversión</label></li>
+        <li><label><input type="radio" name="s6ei5" value="b"/> b) Organizar y expandir ideas de forma visual, explorando asociaciones y ramificaciones desde un concepto central</label></li>
+        <li><label><input type="radio" name="s6ei5" value="c"/> c) Establecer el cronograma de producción de una empresa</label></li>
+        <li><label><input type="radio" name="s6ei5" value="d"/> d) Presentar informes financieros de forma gráfica</label></li>
+      </ul>
+      <div class="feedback-msg" id="s6e-fb5"></div>
+    </div>
+
+    <!-- Ítem 6 -->
+    <div class="item-row" id="s6e-row6">
+      <div class="item-enunciado">6. En la técnica SCAMPER, la acción "Combinar" (Combine) implica:</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s6ei6" value="a"/> a) Eliminar algún componente para reducir costos</label></li>
+        <li><label><input type="radio" name="s6ei6" value="b"/> b) Unir dos o más ideas, productos o procesos para crear algo nuevo con valor superior</label></li>
+        <li><label><input type="radio" name="s6ei6" value="c"/> c) Adaptar el producto a un nuevo mercado geográfico</label></li>
+        <li><label><input type="radio" name="s6ei6" value="d"/> d) Rediseñar el empaque sin modificar el contenido</label></li>
+      </ul>
+      <div class="feedback-msg" id="s6e-fb6"></div>
+    </div>
+
+    <!-- Ítem 7 -->
+    <div class="item-row" id="s6e-row7">
+      <div class="item-enunciado">7. Una empresa que analiza cómo un cambio en su cadena de suministro afecta a la calidad del producto, la satisfacción del cliente y los costos operativos de forma simultánea está aplicando:</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s6ei7" value="a"/> a) Pensamiento lineal causa-efecto simple</label></li>
+        <li><label><input type="radio" name="s6ei7" value="b"/> b) Pensamiento sistémico, al considerar las interrelaciones entre componentes del sistema</label></li>
+        <li><label><input type="radio" name="s6ei7" value="c"/> c) Pensamiento lateral de De Bono</label></li>
+        <li><label><input type="radio" name="s6ei7" value="d"/> d) La técnica SCAMPER en la fase "Modificar"</label></li>
+      </ul>
+      <div class="feedback-msg" id="s6e-fb7"></div>
+    </div>
+
+    <!-- Ítem 8 -->
+    <div class="item-row" id="s6e-row8">
+      <div class="item-enunciado">8. La creatividad en el ámbito empresarial se diferencia de la innovación principalmente porque:</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s6ei8" value="a"/> a) La creatividad es exclusiva de artistas; la innovación, de ingenieros</label></li>
+        <li><label><input type="radio" name="s6ei8" value="b"/> b) La creatividad es la capacidad de generar ideas originales; la innovación implica llevarlas a la práctica con valor real</label></li>
+        <li><label><input type="radio" name="s6ei8" value="c"/> c) Son términos sinónimos sin distinción conceptual</label></li>
+        <li><label><input type="radio" name="s6ei8" value="d"/> d) La innovación solo ocurre en grandes empresas con departamentos de I+D</label></li>
+      </ul>
+      <div class="feedback-msg" id="s6e-fb8"></div>
+    </div>
+
+    <div class="alert-incomplete" id="s6e-alert">⚠️ Por favor, responde todos los ítems antes de verificar.</div>
+    <button class="btn-verificar" onclick="verificarEjercicio_s6()">Verificar respuestas</button>
+    <button class="btn-reiniciar" onclick="reiniciarEjercicio_s6()">Reiniciar</button>
+    <div class="result-panel" id="s6e-result">
+      <div class="result-score" id="s6e-score"></div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="s6e-bar"></div></div>
+      <div class="result-msg" id="s6e-msg"></div>
+    </div>
+  </div><!-- /block-card ejercicio s6 -->
+
+  <!-- SEPARADOR -->
+  <hr class="separator"/>
+
+  <!-- ===== CUESTIONARIO S6 ===== -->
+  <div class="block-card">
+    <div class="block-title">📋 Cuestionario — Semana 6</div>
+
+    <!-- Q1 -->
+    <div class="item-row" id="s6q-row1">
+      <div class="item-enunciado">1. ¿Cuáles son los dos principios básicos del Brainstorming según Alex Osborn? <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s6qi1" value="a"/> a) Crítica inmediata y selección jerárquica de ideas</label></li>
+        <li><label><input type="radio" name="s6qi1" value="b"/> b) Juicio diferido y búsqueda de cantidad de ideas</label></li>
+        <li><label><input type="radio" name="s6qi1" value="c"/> c) Análisis profundo y aprobación por mayoría</label></li>
+        <li><label><input type="radio" name="s6qi1" value="d"/> d) Creatividad individual y eliminación de ideas redundantes</label></li>
+      </ul>
+      <div class="feedback-msg" id="s6q-fb1"></div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="item-row" id="s6q-row2">
+      <div class="item-enunciado">2. ¿Qué significa la letra "E" en la técnica SCAMPER? <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s6qi2" value="a"/> a) Expander — ampliar el alcance del producto</label></li>
+        <li><label><input type="radio" name="s6qi2" value="b"/> b) Eliminar (Eliminate) — quitar elementos no esenciales para simplificar o mejorar</label></li>
+        <li><label><input type="radio" name="s6qi2" value="c"/> c) Evaluar — medir el impacto de los cambios realizados</label></li>
+        <li><label><input type="radio" name="s6qi2" value="d"/> d) Externalizar — trasladar parte del proceso a terceros</label></li>
+      </ul>
+      <div class="feedback-msg" id="s6q-fb2"></div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="item-row" id="s6q-row3">
+      <div class="item-enunciado">3. El concepto de "retroalimentación" en el pensamiento sistémico se refiere a: <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s6qi3" value="a"/> a) El informe final de resultados que recibe la gerencia cada mes</label></li>
+        <li><label><input type="radio" name="s6qi3" value="b"/> b) El proceso por el que el resultado de una acción regresa al sistema y altera su comportamiento futuro</label></li>
+        <li><label><input type="radio" name="s6qi3" value="c"/> c) La evaluación de desempeño que realizan los supervisores al equipo</label></li>
+        <li><label><input type="radio" name="s6qi3" value="d"/> d) La encuesta de satisfacción del cliente post-venta</label></li>
+      </ul>
+      <div class="feedback-msg" id="s6q-fb3"></div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="item-row" id="s6q-row4">
+      <div class="item-enunciado">4. ¿Cuál de los Seis Sombreros para Pensar de Edward de Bono representa el pensamiento creativo y las nuevas ideas? <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s6qi4" value="a"/> a) El sombrero negro (pensamiento crítico y precaución)</label></li>
+        <li><label><input type="radio" name="s6qi4" value="b"/> b) El sombrero blanco (hechos y datos)</label></li>
+        <li><label><input type="radio" name="s6qi4" value="c"/> c) El sombrero verde (pensamiento creativo, nuevas ideas y alternativas)</label></li>
+        <li><label><input type="radio" name="s6qi4" value="d"/> d) El sombrero rojo (emociones e intuición)</label></li>
+      </ul>
+      <div class="feedback-msg" id="s6q-fb4"></div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="item-row" id="s6q-row5">
+      <div class="item-enunciado">5. Una organización que solo resuelve síntomas sin atacar la causa raíz de sus problemas demuestra ausencia de: <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s6qi5" value="a"/> a) Creatividad publicitaria</label></li>
+        <li><label><input type="radio" name="s6qi5" value="b"/> b) Pensamiento sistémico, al no analizar las interrelaciones profundas del sistema</label></li>
+        <li><label><input type="radio" name="s6qi5" value="c"/> c) Capacidad financiera</label></li>
+        <li><label><input type="radio" name="s6qi5" value="d"/> d) Habilidades de negociación con proveedores</label></li>
+      </ul>
+      <div class="feedback-msg" id="s6q-fb5"></div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="item-row" id="s6q-row6">
+      <div class="item-enunciado">6. ¿Cuál es la diferencia entre el pensamiento convergente y el pensamiento divergente? <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s6qi6" value="a"/> a) El convergente genera múltiples ideas; el divergente selecciona la mejor solución</label></li>
+        <li><label><input type="radio" name="s6qi6" value="b"/> b) El divergente genera múltiples posibilidades; el convergente enfoca y selecciona la mejor entre las generadas</label></li>
+        <li><label><input type="radio" name="s6qi6" value="c"/> c) Son el mismo proceso con nombres distintos según el autor</label></li>
+        <li><label><input type="radio" name="s6qi6" value="d"/> d) El convergente es exclusivo del diseño gráfico; el divergente, de la ingeniería</label></li>
+      </ul>
+      <div class="feedback-msg" id="s6q-fb6"></div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="item-row" id="s6q-row7">
+      <div class="item-enunciado">7. La técnica del "Mapa Mental" fue desarrollada y popularizada principalmente por: <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s6qi7" value="a"/> a) Alex Osborn</label></li>
+        <li><label><input type="radio" name="s6qi7" value="b"/> b) Peter Senge</label></li>
+        <li><label><input type="radio" name="s6qi7" value="c"/> c) Tony Buzan</label></li>
+        <li><label><input type="radio" name="s6qi7" value="d"/> d) Edward de Bono</label></li>
+      </ul>
+      <div class="feedback-msg" id="s6q-fb7"></div>
+    </div>
+
+    <!-- Q8 (Análisis) -->
+    <div class="item-row" id="s6q-row8">
+      <div class="item-enunciado">8. En una sesión de trabajo, el gerente interrumpe a cada persona que propone algo diciendo "eso no va a funcionar". ¿Qué principio del Brainstorming está violando y cuál es la consecuencia probable? <span class="badge-tipo badge-analisis">Análisis</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s6qi8" value="a"/> a) Viola el principio de cantidad de ideas; el equipo producirá más ideas de las necesarias</label></li>
+        <li><label><input type="radio" name="s6qi8" value="b"/> b) Viola el principio de juicio diferido; el equipo se autocensurará y generará menos ideas, empobreciendo el proceso creativo</label></li>
+        <li><label><input type="radio" name="s6qi8" value="c"/> c) Viola el principio de pensamiento sistémico; el equipo perderá la visión global</label></li>
+        <li><label><input type="radio" name="s6qi8" value="d"/> d) Viola el principio SCAMPER; el equipo no podrá combinar ideas</label></li>
+      </ul>
+      <div class="feedback-msg" id="s6q-fb8"></div>
+    </div>
+
+    <!-- Q9 (Análisis) -->
+    <div class="item-row" id="s6q-row9">
+      <div class="item-enunciado">9. Una startup de comida saludable decide aplicar SCAMPER a su menú tradicional. Al preguntarse "¿Qué pasaría si eliminamos los platos que tardan más de 15 min?", están aplicando la acción: <span class="badge-tipo badge-analisis">Análisis</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s6qi9" value="a"/> a) Sustituir (S)</label></li>
+        <li><label><input type="radio" name="s6qi9" value="b"/> b) Combinar (C)</label></li>
+        <li><label><input type="radio" name="s6qi9" value="c"/> c) Eliminar (E)</label></li>
+        <li><label><input type="radio" name="s6qi9" value="d"/> d) Adaptar (A)</label></li>
+      </ul>
+      <div class="feedback-msg" id="s6q-fb9"></div>
+    </div>
+
+    <!-- Q10 (Análisis) -->
+    <div class="item-row" id="s6q-row10">
+      <div class="item-enunciado">10. Una empresa textil nota que sus ventas caen. El gerente culpa al equipo de ventas y los presiona más. Las ventas bajan aún más porque el equipo estresado comete errores. ¿Qué concepto del pensamiento sistémico explica esta dinámica? <span class="badge-tipo badge-analisis">Análisis</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s6qi10" value="a"/> a) Pensamiento lateral de De Bono</label></li>
+        <li><label><input type="radio" name="s6qi10" value="b"/> b) Bucle de retroalimentación reforzante negativo: la solución aplicada agrava el problema al no atacar la causa sistémica</label></li>
+        <li><label><input type="radio" name="s6qi10" value="c"/> c) Técnica SCAMPER mal aplicada</label></li>
+        <li><label><input type="radio" name="s6qi10" value="d"/> d) Juicio diferido incorrecto durante el brainstorming</label></li>
+      </ul>
+      <div class="feedback-msg" id="s6q-fb10"></div>
+    </div>
+
+    <div class="alert-incomplete" id="s6q-alert">⚠️ Por favor, responde todas las preguntas antes de verificar.</div>
+    <button class="btn-verificar" onclick="verificarQuiz_s6()">Verificar respuestas</button>
+    <button class="btn-reiniciar" onclick="reiniciarQuiz_s6()">Reiniciar</button>
+    <div class="result-panel" id="s6q-result">
+      <div class="result-score" id="s6q-score"></div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="s6q-bar"></div></div>
+      <div class="result-msg" id="s6q-msg"></div>
+    </div>
+  </div><!-- /block-card cuestionario s6 -->
+</div><!-- /tab s6 -->
+
+
+<!-- ============================================================
+     SEMANA 7
+     Unidad 2: Creatividad, Innovación y Metodologías Innovadoras
+     Tema: Búsqueda de la innovación — Design Thinking
+     ============================================================ -->
+<div id="s7" class="tab-content">
+  <div class="semana-header">
+    <span class="badge">Unidad 2 · Semana 7</span>
+    <h2>Búsqueda de la Innovación — Design Thinking</h2>
+    <p>Las 5 fases del Design Thinking · Empatía · Prototipado · Testeo · Innovación centrada en el usuario</p>
+  </div>
+
+  <!-- ===== EJERCICIO S7 ===== -->
+  <div class="block-card">
+    <div class="block-title">🧩 Ejercicio Interactivo — Ordenar Fases y Clasificar Acciones</div>
+
+    <!-- Ítem 1 -->
+    <div class="item-row" id="s7e-row1">
+      <div class="item-enunciado">1. ¿Cuál es el orden correcto de las 5 fases del Design Thinking según la metodología estándar de la d.school de Stanford?</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s7ei1" value="a"/> a) Idear → Empatizar → Definir → Prototipar → Testear</label></li>
+        <li><label><input type="radio" name="s7ei1" value="b"/> b) Empatizar → Definir → Idear → Prototipar → Testear</label></li>
+        <li><label><input type="radio" name="s7ei1" value="c"/> c) Definir → Empatizar → Prototipar → Idear → Testear</label></li>
+        <li><label><input type="radio" name="s7ei1" value="d"/> d) Prototipar → Testear → Empatizar → Definir → Idear</label></li>
+      </ul>
+      <div class="feedback-msg" id="s7e-fb1"></div>
+    </div>
+
+    <!-- Ítem 2 -->
+    <div class="item-row" id="s7e-row2">
+      <div class="item-enunciado">2. La fase de "Empatizar" en Design Thinking consiste fundamentalmente en:</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s7ei2" value="a"/> a) Construir el primer prototipo del producto lo más rápido posible</label></li>
+        <li><label><input type="radio" name="s7ei2" value="b"/> b) Comprender profundamente las necesidades, emociones y contexto de las personas para las que se diseña</label></li>
+        <li><label><input type="radio" name="s7ei2" value="c"/> c) Definir los indicadores financieros del proyecto</label></li>
+        <li><label><input type="radio" name="s7ei2" value="d"/> d) Seleccionar al equipo de diseño más adecuado</label></li>
+      </ul>
+      <div class="feedback-msg" id="s7e-fb2"></div>
+    </div>
+
+    <!-- Ítem 3 -->
+    <div class="item-row" id="s7e-row3">
+      <div class="item-enunciado">3. El "Punto de Vista" (POV) que se formula en la fase "Definir" debe incluir:</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s7ei3" value="a"/> a) El presupuesto disponible y el tiempo de desarrollo</label></li>
+        <li><label><input type="radio" name="s7ei3" value="b"/> b) El usuario específico, su necesidad real y el insight que la explica</label></li>
+        <li><label><input type="radio" name="s7ei3" value="c"/> c) El nombre del producto y su precio de mercado</label></li>
+        <li><label><input type="radio" name="s7ei3" value="d"/> d) Los competidores directos y su participación de mercado</label></li>
+      </ul>
+      <div class="feedback-msg" id="s7e-fb3"></div>
+    </div>
+
+    <!-- Ítem 4 -->
+    <div class="item-row" id="s7e-row4">
+      <div class="item-enunciado">4. En la fase de "Idear", la técnica "How Might We" (¿Cómo podríamos…?) sirve para:</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s7ei4" value="a"/> a) Calcular el costo de implementación de la solución elegida</label></li>
+        <li><label><input type="radio" name="s7ei4" value="b"/> b) Convertir los problemas e insights del usuario en preguntas creativas que abran el espacio de soluciones</label></li>
+        <li><label><input type="radio" name="s7ei4" value="c"/> c) Seleccionar al proveedor del prototipo</label></li>
+        <li><label><input type="radio" name="s7ei4" value="d"/> d) Evaluar la viabilidad legal del emprendimiento</label></li>
+      </ul>
+      <div class="feedback-msg" id="s7e-fb4"></div>
+    </div>
+
+    <!-- Ítem 5 -->
+    <div class="item-row" id="s7e-row5">
+      <div class="item-enunciado">5. El prototipo en Design Thinking es, por definición:</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s7ei5" value="a"/> a) El producto final terminado listo para la venta</label></li>
+        <li><label><input type="radio" name="s7ei5" value="b"/> b) Una representación simplificada y de bajo costo de la solución, diseñada para aprender rápido y con riesgo mínimo</label></li>
+        <li><label><input type="radio" name="s7ei5" value="c"/> c) El informe técnico del proyecto</label></li>
+        <li><label><input type="radio" name="s7ei5" value="d"/> d) El contrato con los inversores del startup</label></li>
+      </ul>
+      <div class="feedback-msg" id="s7e-fb5"></div>
+    </div>
+
+    <!-- Ítem 6 -->
+    <div class="item-row" id="s7e-row6">
+      <div class="item-enunciado">6. La fase de "Testear" en Design Thinking no busca demostrar que la solución es correcta, sino:</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s7ei6" value="a"/> a) Presentar el producto al equipo directivo para su aprobación final</label></li>
+        <li><label><input type="radio" name="s7ei6" value="b"/> b) Aprender del usuario real cómo mejorar la solución, incluso si eso implica volver a fases anteriores</label></li>
+        <li><label><input type="radio" name="s7ei6" value="c"/> c) Documentar el proceso para el informe anual de la empresa</label></li>
+        <li><label><input type="radio" name="s7ei6" value="d"/> d) Calcular el retorno sobre la inversión del prototipo</label></li>
+      </ul>
+      <div class="feedback-msg" id="s7e-fb6"></div>
+    </div>
+
+    <!-- Ítem 7 -->
+    <div class="item-row" id="s7e-row7">
+      <div class="item-enunciado">7. Design Thinking se distingue de los enfoques tradicionales de innovación porque está:</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s7ei7" value="a"/> a) Centrado exclusivamente en la tecnología disponible</label></li>
+        <li><label><input type="radio" name="s7ei7" value="b"/> b) Centrado en el ser humano (human-centered), priorizando la comprensión profunda del usuario final</label></li>
+        <li><label><input type="radio" name="s7ei7" value="c"/> c) Centrado en la reducción de costos de producción</label></li>
+        <li><label><input type="radio" name="s7ei7" value="d"/> d) Centrado en el análisis cuantitativo de datos de mercado</label></li>
+      </ul>
+      <div class="feedback-msg" id="s7e-fb7"></div>
+    </div>
+
+    <!-- Ítem 8 -->
+    <div class="item-row" id="s7e-row8">
+      <div class="item-enunciado">8. La naturaleza "iterativa" del Design Thinking significa que:</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s7ei8" value="a"/> a) El proceso es siempre lineal y no se puede retroceder a fases anteriores</label></li>
+        <li><label><input type="radio" name="s7ei8" value="b"/> b) El proceso puede repetirse y retroceder entre fases según lo que se aprenda, mejorando continuamente la solución</label></li>
+        <li><label><input type="radio" name="s7ei8" value="c"/> c) Se repite el mismo prototipo sin cambios hasta obtener la aprobación</label></li>
+        <li><label><input type="radio" name="s7ei8" value="d"/> d) Solo el equipo de ingeniería puede iterar; el diseño queda fijo desde el inicio</label></li>
+      </ul>
+      <div class="feedback-msg" id="s7e-fb8"></div>
+    </div>
+
+    <div class="alert-incomplete" id="s7e-alert">⚠️ Por favor, responde todos los ítems antes de verificar.</div>
+    <button class="btn-verificar" onclick="verificarEjercicio_s7()">Verificar respuestas</button>
+    <button class="btn-reiniciar" onclick="reiniciarEjercicio_s7()">Reiniciar</button>
+    <div class="result-panel" id="s7e-result">
+      <div class="result-score" id="s7e-score"></div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="s7e-bar"></div></div>
+      <div class="result-msg" id="s7e-msg"></div>
+    </div>
+  </div><!-- /block-card ejercicio s7 -->
+
+  <!-- SEPARADOR -->
+  <hr class="separator"/>
+
+  <!-- ===== CUESTIONARIO S7 ===== -->
+  <div class="block-card">
+    <div class="block-title">📋 Cuestionario — Semana 7</div>
+
+    <!-- Q1 -->
+    <div class="item-row" id="s7q-row1">
+      <div class="item-enunciado">1. ¿Qué institución popularizó el modelo de Design Thinking de las 5 fases que se enseña mundialmente? <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s7qi1" value="a"/> a) Harvard Business School</label></li>
+        <li><label><input type="radio" name="s7qi1" value="b"/> b) La d.school (Hasso Plattner Institute of Design) de la Universidad de Stanford</label></li>
+        <li><label><input type="radio" name="s7qi1" value="c"/> c) El MIT Media Lab</label></li>
+        <li><label><input type="radio" name="s7qi1" value="d"/> d) IDEO, la consultora de diseño</label></li>
+      </ul>
+      <div class="feedback-msg" id="s7q-fb1"></div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="item-row" id="s7q-row2">
+      <div class="item-enunciado">2. ¿Cuál es el objetivo central de la fase "Empatizar"? <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s7qi2" value="a"/> a) Lanzar el producto al mercado lo antes posible</label></li>
+        <li><label><input type="radio" name="s7qi2" value="b"/> b) Comprender sin supuestos las verdaderas necesidades, emociones y contexto del usuario mediante observación y entrevistas</label></li>
+        <li><label><input type="radio" name="s7qi2" value="c"/> c) Calcular el segmento de mercado objetivo mediante encuestas cuantitativas masivas</label></li>
+        <li><label><input type="radio" name="s7qi2" value="d"/> d) Definir el precio de venta al público del producto</label></li>
+      </ul>
+      <div class="feedback-msg" id="s7q-fb2"></div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="item-row" id="s7q-row3">
+      <div class="item-enunciado">3. En Design Thinking, un "insight" es: <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s7qi3" value="a"/> a) El nombre del prototipo que se va a construir</label></li>
+        <li><label><input type="radio" name="s7qi3" value="b"/> b) Una comprensión profunda y no obvia sobre la motivación o comportamiento del usuario que revela oportunidades de diseño</label></li>
+        <li><label><input type="radio" name="s7qi3" value="c"/> c) El indicador financiero de viabilidad del proyecto</label></li>
+        <li><label><input type="radio" name="s7qi3" value="d"/> d) El resumen ejecutivo del plan de negocios</label></li>
+      </ul>
+      <div class="feedback-msg" id="s7q-fb3"></div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="item-row" id="s7q-row4">
+      <div class="item-enunciado">4. El mapa de empatía es una herramienta que se usa típicamente en la fase de: <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s7qi4" value="a"/> a) Prototipar</label></li>
+        <li><label><input type="radio" name="s7qi4" value="b"/> b) Idear</label></li>
+        <li><label><input type="radio" name="s7qi4" value="c"/> c) Empatizar, para organizar y visualizar lo que el usuario piensa, siente, dice y hace</label></li>
+        <li><label><input type="radio" name="s7qi4" value="d"/> d) Testear</label></li>
+      </ul>
+      <div class="feedback-msg" id="s7q-fb4"></div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="item-row" id="s7q-row5">
+      <div class="item-enunciado">5. ¿Por qué se recomienda que los prototipos en Design Thinking sean de baja fidelidad en las etapas iniciales? <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s7qi5" value="a"/> a) Porque los usuarios prefieren productos de mala calidad</label></li>
+        <li><label><input type="radio" name="s7qi5" value="b"/> b) Para reducir la inversión de tiempo y recursos antes de validar que la solución resuelve realmente el problema del usuario</label></li>
+        <li><label><input type="radio" name="s7qi5" value="c"/> c) Porque las normativas legales exigen prototipos simples</label></li>
+        <li><label><input type="radio" name="s7qi5" value="d"/> d) Para evitar que la competencia copie el diseño final</label></li>
+      </ul>
+      <div class="feedback-msg" id="s7q-fb5"></div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="item-row" id="s7q-row6">
+      <div class="item-enunciado">6. ¿Cuál de los siguientes NO es un principio del Design Thinking? <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s7qi6" value="a"/> a) Centrarse en el ser humano</label></li>
+        <li><label><input type="radio" name="s7qi6" value="b"/> b) Iterar rápido y aprender del error</label></li>
+        <li><label><input type="radio" name="s7qi6" value="c"/> c) Evitar el trabajo colaborativo para mantener la visión del diseñador</label></li>
+        <li><label><input type="radio" name="s7qi6" value="d"/> d) Construir para aprender, no para demostrar</label></li>
+      </ul>
+      <div class="feedback-msg" id="s7q-fb6"></div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="item-row" id="s7q-row7">
+      <div class="item-enunciado">7. La innovación centrada en el usuario (human-centered innovation) se diferencia de la innovación tecnológica tradicional porque: <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s7qi7" value="a"/> a) Solo aplica a productos físicos, no a servicios digitales</label></li>
+        <li><label><input type="radio" name="s7qi7" value="b"/> b) El punto de partida es la comprensión del usuario y sus necesidades reales, no la capacidad tecnológica disponible</label></li>
+        <li><label><input type="radio" name="s7qi7" value="c"/> c) Requiere mayor inversión financiera inicial que la innovación tecnológica</label></li>
+        <li><label><input type="radio" name="s7qi7" value="d"/> d) Es exclusiva de grandes empresas con departamentos de diseño</label></li>
+      </ul>
+      <div class="feedback-msg" id="s7q-fb7"></div>
+    </div>
+
+    <!-- Q8 (Análisis) -->
+    <div class="item-row" id="s7q-row8">
+      <div class="item-enunciado">8. Un equipo pasa semanas construyendo una app completamente funcional sin hablar con ningún usuario. Al lanzarla, nadie la descarga porque no resuelve un problema real. ¿Qué fase del Design Thinking omitieron críticamente? <span class="badge-tipo badge-analisis">Análisis</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s7qi8" value="a"/> a) Prototipar</label></li>
+        <li><label><input type="radio" name="s7qi8" value="b"/> b) Idear</label></li>
+        <li><label><input type="radio" name="s7qi8" value="c"/> c) Empatizar y Definir: nunca comprendieron ni articularon las necesidades reales del usuario</label></li>
+        <li><label><input type="radio" name="s7qi8" value="d"/> d) Testear, porque no midieron el retorno financiero</label></li>
+      </ul>
+      <div class="feedback-msg" id="s7q-fb8"></div>
+    </div>
+
+    <!-- Q9 (Análisis) -->
+    <div class="item-row" id="s7q-row9">
+      <div class="item-enunciado">9. Un equipo crea un prototipo de papel de su app de delivery, lo lleva a 10 usuarios y descubre que nadie entiende el flujo de pago. Deciden rediseñarlo antes de programar. ¿Qué valor de Design Thinking están aplicando correctamente? <span class="badge-tipo badge-analisis">Análisis</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s7qi9" value="a"/> a) Están aplicando análisis PESTEL al producto digital</label></li>
+        <li><label><input type="radio" name="s7qi9" value="b"/> b) Están aplicando el principio de iterar con prototipos de baja fidelidad para aprender rápido y a bajo costo antes de invertir en desarrollo</label></li>
+        <li><label><input type="radio" name="s7qi9" value="c"/> c) Están aplicando la técnica SCAMPER en la fase de eliminar</label></li>
+        <li><label><input type="radio" name="s7qi9" value="d"/> d) Están aplicando el brainstorming para generar nuevas ideas de interfaz</label></li>
+      </ul>
+      <div class="feedback-msg" id="s7q-fb9"></div>
+    </div>
+
+    <!-- Q10 (Análisis) -->
+    <div class="item-row" id="s7q-row10">
+      <div class="item-enunciado">10. Un emprendedor afirma: "Ya sé lo que necesita el usuario, no hace falta entrevistarlo." Si aplica Design Thinking, ¿qué error conceptual comete? <span class="badge-tipo badge-analisis">Análisis</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s7qi10" value="a"/> a) Ninguno; es válido asumir las necesidades si el emprendedor tiene experiencia en el sector</label></li>
+        <li><label><input type="radio" name="s7qi10" value="b"/> b) Saltarse la fase de Empatizar, que es la base del proceso; los supuestos no reemplazados por evidencia real llevan a soluciones que no resuelven el problema verdadero</label></li>
+        <li><label><input type="radio" name="s7qi10" value="c"/> c) Un error financiero: no cotizó el costo de las entrevistas</label></li>
+        <li><label><input type="radio" name="s7qi10" value="d"/> d) Un error de prototipado: debería construir antes de hablar con usuarios</label></li>
+      </ul>
+      <div class="feedback-msg" id="s7q-fb10"></div>
+    </div>
+
+    <div class="alert-incomplete" id="s7q-alert">⚠️ Por favor, responde todas las preguntas antes de verificar.</div>
+    <button class="btn-verificar" onclick="verificarQuiz_s7()">Verificar respuestas</button>
+    <button class="btn-reiniciar" onclick="reiniciarQuiz_s7()">Reiniciar</button>
+    <div class="result-panel" id="s7q-result">
+      <div class="result-score" id="s7q-score"></div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="s7q-bar"></div></div>
+      <div class="result-msg" id="s7q-msg"></div>
+    </div>
+  </div><!-- /block-card cuestionario s7 -->
+</div><!-- /tab s7 -->
+
+
+<!-- ============================================================
+     JAVASCRIPT GLOBAL + POR SEMANA
+     ============================================================ -->
+<script>
+/* ===== NAVEGACIÓN DE PESTAÑAS ===== */
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(function(el){ el.classList.remove('active'); });
+  document.querySelectorAll('.tab-btn').forEach(function(el){ el.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  var btns = document.querySelectorAll('.tab-btn');
+  var map = { s5: 0, s6: 1, s7: 2 };
+  if (map[id] !== undefined) btns[map[id]].classList.add('active');
+}
+
+/* ===== UTILIDADES COMPARTIDAS ===== */
+function getSelected(name) {
+  var radios = document.querySelectorAll('input[name="' + name + '"]');
+  for (var i = 0; i < radios.length; i++) {
+    if (radios[i].checked) return radios[i].value;
+  }
+  return null;
+}
+function resetRadios(name) {
+  document.querySelectorAll('input[name="' + name + '"]').forEach(function(r){ r.checked = false; });
+}
+function resetRow(id) {
+  var el = document.getElementById(id);
+  if (el) { el.classList.remove('correct','incorrect'); }
+}
+function resetFb(id) {
+  var el = document.getElementById(id);
+  if (el) { el.textContent = ''; el.className = 'feedback-msg'; }
+}
+function mostrarResultado(resultId, barId, scoreId, msgId, correctos, total) {
+  var pct = Math.round((correctos / total) * 100);
+  var panel = document.getElementById(resultId);
+  panel.classList.add('show');
+  document.getElementById(scoreId).textContent = correctos + ' / ' + total + ' correctas (' + pct + '%)';
+  setTimeout(function(){ document.getElementById(barId).style.width = pct + '%'; }, 80);
+  var msg = '';
+  if (pct === 100)      msg = '🏆 ¡Excelente dominio del tema!';
+  else if (pct >= 80)   msg = '🎯 ¡Muy buen trabajo!';
+  else if (pct >= 60)   msg = '📘 Vas por buen camino, repasa los ítems en rojo.';
+  else if (pct >= 40)   msg = '⚠️ Necesitas reforzar. Vuelve al material.';
+  else                  msg = '📖 Te recomendamos releer el contenido antes de continuar.';
+  document.getElementById(msgId).textContent = msg;
+}
+
+/* ==============================================================
+   SEMANA 5 — EJERCICIO
+   ============================================================== */
+var ejercicioCorrects_s5 = {
+  s5ei1: 'b',
+  s5ei2: 'c',
+  s5ei3: 'b',
+  s5ei4: 'c',
+  s5ei5: 'c',
+  s5ei6: 'b',
+  s5ei7: 'c',
+  s5ei8: 'b'
+};
+var ejercicioFeedbacks_s5 = {
+  s5ei1: { ok: '✅ Correcto. El emprendedor oportunista identifica y actúa sobre brechas de mercado antes de que sean evidentes para la mayoría.', err: '❌ Incorrecto. El perfil descrito es el del emprendedor por oportunidad, que actúa proactivamente ante una tendencia detectada.' },
+  s5ei2: { ok: '✅ Correcto. Emprender por presión económica (desempleo, subsistencia) define al emprendedor por necesidad.', err: '❌ Incorrecto. Cuando la motivación es la falta de alternativas laborales, se habla de emprendimiento por necesidad.' },
+  s5ei3: { ok: '✅ Correcto. Tolerar la ambigüedad, gestionar el riesgo y la perseverancia son competencias actitudinales y psicológicas clave del emprendedor.', err: '❌ Incorrecto. Estas son competencias actitudinales/psicológicas, no habilidades técnicas ni financieras.' },
+  s5ei4: { ok: '✅ Correcto. El análisis de tendencias (PESTEL, megatendencias) permite detectar oportunidades emergentes antes de que el mercado las conozca masivamente.', err: '❌ Incorrecto. El análisis de tendencias busca identificar oportunidades de negocio a partir de cambios en el entorno.' },
+  s5ei5: { ok: '✅ Correcto. El intraemprendedor (o emprendedor corporativo) innova dentro de una organización existente sin crear una empresa propia.', err: '❌ Incorrecto. Innovar desde adentro de una empresa sin salir de ella define al intraemprendedor o emprendedor corporativo.' },
+  s5ei6: { ok: '✅ Correcto. El emprendedor social prioriza generar valor social o ambiental por encima del lucro económico personal.', err: '❌ Incorrecto. Cuando el motor es resolver un problema social o ambiental más que obtener ganancia, se trata de un emprendedor social.' },
+  s5ei7: { ok: '✅ Correcto. Las preferencias personales no validadas externamente no constituyen por sí solas una fuente de análisis de tendencias; se necesita evidencia de cambios en el entorno.', err: '❌ Incorrecto. Los cambios demográficos, tecnológicos y regulatorios sí son fuentes válidas de tendencias. Las preferencias sin validación externa no lo son.' },
+  s5ei8: { ok: '✅ Correcto. La brecha de valor existe cuando la oferta actual no satisface plenamente las necesidades del mercado, lo que genera la oportunidad.', err: '❌ Incorrecto. La brecha de valor se produce cuando las necesidades del mercado superan o no son satisfechas por la oferta existente.' }
+};
+
+function verificarEjercicio_s5() {
+  var items = ['s5ei1','s5ei2','s5ei3','s5ei4','s5ei5','s5ei6','s5ei7','s5ei8'];
+  var allAnswered = items.every(function(n){ return getSelected(n) !== null; });
+  if (!allAnswered) { document.getElementById('s5e-alert').classList.add('show'); return; }
+  document.getElementById('s5e-alert').classList.remove('show');
+  var correctos = 0;
+  items.forEach(function(name, idx) {
+    var sel = getSelected(name);
+    var rowId = 's5e-row' + (idx+1);
+    var fbId  = 's5e-fb'  + (idx+1);
+    var row = document.getElementById(rowId);
+    var fb  = document.getElementById(fbId);
+    if (sel === ejercicioCorrects_s5[name]) {
+      row.classList.add('correct'); row.classList.remove('incorrect');
+      fb.textContent = ejercicioFeedbacks_s5[name].ok;
+      fb.className = 'feedback-msg show ok';
+      correctos++;
+    } else {
+      row.classList.add('incorrect'); row.classList.remove('correct');
+      fb.textContent = ejercicioFeedbacks_s5[name].err;
+      fb.className = 'feedback-msg show err';
+    }
+  });
+  mostrarResultado('s5e-result','s5e-bar','s5e-score','s5e-msg', correctos, items.length);
+}
+
+function reiniciarEjercicio_s5() {
+  ['s5ei1','s5ei2','s5ei3','s5ei4','s5ei5','s5ei6','s5ei7','s5ei8'].forEach(function(n,i){
+    resetRadios(n); resetRow('s5e-row'+(i+1)); resetFb('s5e-fb'+(i+1));
+  });
+  document.getElementById('s5e-alert').classList.remove('show');
+  document.getElementById('s5e-result').classList.remove('show');
+  document.getElementById('s5e-bar').style.width = '0%';
+}
+
+/* ==============================================================
+   SEMANA 5 — CUESTIONARIO
+   ============================================================== */
+var quizCorrects_s5 = {
+  s5qi1: 'b',
+  s5qi2: 'c',
+  s5qi3: 'b',
+  s5qi4: 'b',
+  s5qi5: 'b',
+  s5qi6: 'b',
+  s5qi7: 'b',
+  s5qi8: 'c',
+  s5qi9: 'b',
+  s5qi10: 'd'
+};
+var quizFeedbacks_s5 = {
+  s5qi1: { ok: '✅ Correcto. El emprendedor por oportunidad actúa proactivamente; el de necesidad, reactivamente ante la falta de empleo.', err: '❌ Incorrecto. La clave es la motivación: oportunidad = detectar brecha; necesidad = ausencia de alternativas laborales.' },
+  s5qi2: { ok: '✅ Correcto. El emprendedor serial crea múltiples proyectos a lo largo del tiempo, frecuentemente transfiriendo o vendiendo los anteriores.', err: '❌ Incorrecto. El emprendedor serial se caracteriza por fundar y gestionar varios emprendimientos sucesivos.' },
+  s5qi3: { ok: '✅ Correcto. La tolerancia a la ambigüedad, la perseverancia y la autoconfianza son rasgos actitudinales y psicológicos del emprendedor.', err: '❌ Incorrecto. Estas son competencias actitudinales y psicológicas, no recursos financieros ni características del ecosistema.' },
+  s5qi4: { ok: '✅ Correcto. PESTEL examina seis dimensiones del entorno para identificar tendencias y oportunidades de negocio.', err: '❌ Incorrecto. PESTEL analiza el macroentorno (político, económico, social, tecnológico, ecológico y legal) para detectar oportunidades.' },
+  s5qi5: { ok: '✅ Correcto. El emprendedor social busca resolver problemas sociales o ambientales con soluciones sostenibles, por encima del lucro.', err: '❌ Incorrecto. La motivación principal del emprendedor social es el impacto social o ambiental, no la rentabilidad financiera.' },
+  s5qi6: { ok: '✅ Correcto. Una oportunidad está respaldada por evidencia de demanda real, viabilidad y capacidad del emprendedor; una idea no necesariamente.', err: '❌ Incorrecto. La diferencia clave es que la oportunidad está validada por evidencia de demanda, viabilidad y capacidad de capturarla.' },
+  s5qi7: { ok: '✅ Correcto. El intraemprendedor impulsa la renovación estratégica interna sin los riesgos de crear una empresa externa.', err: '❌ Incorrecto. El valor del intraemprendedor es innovar dentro de la organización, con sus recursos, sin los riesgos de una startup independiente.' },
+  s5qi8: { ok: '✅ Correcto. Verónica comenzó por necesidad (subsistencia) y evolucionó a emprendedora por oportunidad al detectar la brecha del servicio a domicilio.', err: '❌ Incorrecto. Su trayectoria muestra una evolución: inició por necesidad y luego actuó como emprendedora por oportunidad al expandirse.' },
+  s5qi9: { ok: '✅ Correcto. Están identificando un problema real no resuelto (brecha de uso de tecnología) y aplicando análisis de tendencias demográficas y tecnológicas.', err: '❌ Incorrecto. La acción del equipo corresponde a identificar un problema no resuelto y analizar tendencias (demográficas: adultos mayores; tecnológicas: pagos digitales).' },
+  s5qi10: { ok: '✅ Correcto. Andrés es un emprendedor serial: ha fundado y cedido múltiples emprendimientos en distintos sectores a lo largo del tiempo.', err: '❌ Incorrecto. La característica definitoria del emprendedor serial es la creación sucesiva de varios negocios, lo que describe perfectamente la trayectoria de Andrés.' }
+};
+
+function verificarQuiz_s5() {
+  var items = ['s5qi1','s5qi2','s5qi3','s5qi4','s5qi5','s5qi6','s5qi7','s5qi8','s5qi9','s5qi10'];
+  var allAnswered = items.every(function(n){ return getSelected(n) !== null; });
+  if (!allAnswered) { document.getElementById('s5q-alert').classList.add('show'); return; }
+  document.getElementById('s5q-alert').classList.remove('show');
+  var correctos = 0;
+  items.forEach(function(name, idx) {
+    var sel = getSelected(name);
+    var rowId = 's5q-row' + (idx+1);
+    var fbId  = 's5q-fb'  + (idx+1);
+    var row = document.getElementById(rowId);
+    var fb  = document.getElementById(fbId);
+    if (sel === quizCorrects_s5[name]) {
+      row.classList.add('correct'); row.classList.remove('incorrect');
+      fb.textContent = quizFeedbacks_s5[name].ok;
+      fb.className = 'feedback-msg show ok';
+      correctos++;
+    } else {
+      row.classList.add('incorrect'); row.classList.remove('correct');
+      fb.textContent = quizFeedbacks_s5[name].err;
+      fb.className = 'feedback-msg show err';
+    }
+  });
+  mostrarResultado('s5q-result','s5q-bar','s5q-score','s5q-msg', correctos, items.length);
+}
+
+function reiniciarQuiz_s5() {
+  ['s5qi1','s5qi2','s5qi3','s5qi4','s5qi5','s5qi6','s5qi7','s5qi8','s5qi9','s5qi10'].forEach(function(n,i){
+    resetRadios(n); resetRow('s5q-row'+(i+1)); resetFb('s5q-fb'+(i+1));
+  });
+  document.getElementById('s5q-alert').classList.remove('show');
+  document.getElementById('s5q-result').classList.remove('show');
+  document.getElementById('s5q-bar').style.width = '0%';
+}
+
+/* ==============================================================
+   SEMANA 6 — EJERCICIO
+   ============================================================== */
+var ejercicioCorrects_s6 = {
+  s6ei1: 'a',
+  s6ei2: 'a',
+  s6ei3: 'b',
+  s6ei4: 'b',
+  s6ei5: 'b',
+  s6ei6: 'b',
+  s6ei7: 'b',
+  s6ei8: 'b'
+};
+var ejercicioFeedbacks_s6 = {
+  s6ei1: { ok: '✅ Correcto. El juicio diferido (no criticar durante la generación) es un principio central del Brainstorming de Alex Osborn.', err: '❌ Incorrecto. El Brainstorming establece que la crítica debe diferirse para no inhibir la generación de ideas.' },
+  s6ei2: { ok: '✅ Correcto. La "S" de SCAMPER significa Sustituir (Substitute): reemplazar un componente por otro para mejorar o innovar.', err: '❌ Incorrecto. En SCAMPER, la "S" corresponde a Sustituir (Substitute), no a simplificar ni sistematizar.' },
+  s6ei3: { ok: '✅ Correcto. El pensamiento sistémico analiza las interrelaciones, retroalimentaciones y consecuencias entre los elementos del sistema, no causas aisladas.', err: '❌ Incorrecto. El pensamiento sistémico requiere analizar las interrelaciones y retroalimentaciones entre todos los elementos del sistema.' },
+  s6ei4: { ok: '✅ Correcto. El pensamiento lateral busca ángulos no convencionales que cuestionan los supuestos establecidos, diferenciándose del pensamiento lógico lineal.', err: '❌ Incorrecto. De Bono definió el pensamiento lateral como la búsqueda de enfoques alternativos que cuestionan los supuestos convencionales.' },
+  s6ei5: { ok: '✅ Correcto. Los mapas mentales organizan y expanden ideas visualmente a partir de un concepto central, facilitando la exploración de asociaciones.', err: '❌ Incorrecto. Los mapas mentales son herramientas de organización y expansión visual de ideas, no de análisis financiero ni operativo.' },
+  s6ei6: { ok: '✅ Correcto. "Combinar" en SCAMPER implica unir dos o más ideas, productos o procesos para crear algo con valor superior.', err: '❌ Incorrecto. En SCAMPER, "Combinar" significa fusionar elementos para generar una nueva propuesta de valor.' },
+  s6ei7: { ok: '✅ Correcto. Analizar simultáneamente cómo un cambio afecta varios componentes y sus consecuencias encadenadas es pensamiento sistémico.', err: '❌ Incorrecto. La empresa está usando pensamiento sistémico al considerar las interrelaciones entre proveedor, calidad, cliente y costos.' },
+  s6ei8: { ok: '✅ Correcto. La creatividad genera ideas originales; la innovación es la implementación de esas ideas con valor real para el mercado o la sociedad.', err: '❌ Incorrecto. Creatividad (generar ideas) e innovación (implementar con valor) son conceptos distintos aunque complementarios.' }
+};
+
+function verificarEjercicio_s6() {
+  var items = ['s6ei1','s6ei2','s6ei3','s6ei4','s6ei5','s6ei6','s6ei7','s6ei8'];
+  var allAnswered = items.every(function(n){ return getSelected(n) !== null; });
+  if (!allAnswered) { document.getElementById('s6e-alert').classList.add('show'); return; }
+  document.getElementById('s6e-alert').classList.remove('show');
+  var correctos = 0;
+  items.forEach(function(name, idx) {
+    var sel = getSelected(name);
+    var rowId = 's6e-row' + (idx+1);
+    var fbId  = 's6e-fb'  + (idx+1);
+    var row = document.getElementById(rowId);
+    var fb  = document.getElementById(fbId);
+    if (sel === ejercicioCorrects_s6[name]) {
+      row.classList.add('correct'); row.classList.remove('incorrect');
+      fb.textContent = ejercicioFeedbacks_s6[name].ok;
+      fb.className = 'feedback-msg show ok';
+      correctos++;
+    } else {
+      row.classList.add('incorrect'); row.classList.remove('correct');
+      fb.textContent = ejercicioFeedbacks_s6[name].err;
+      fb.className = 'feedback-msg show err';
+    }
+  });
+  mostrarResultado('s6e-result','s6e-bar','s6e-score','s6e-msg', correctos, items.length);
+}
+
+function reiniciarEjercicio_s6() {
+  ['s6ei1','s6ei2','s6ei3','s6ei4','s6ei5','s6ei6','s6ei7','s6ei8'].forEach(function(n,i){
+    resetRadios(n); resetRow('s6e-row'+(i+1)); resetFb('s6e-fb'+(i+1));
+  });
+  document.getElementById('s6e-alert').classList.remove('show');
+  document.getElementById('s6e-result').classList.remove('show');
+  document.getElementById('s6e-bar').style.width = '0%';
+}
+
+/* ==============================================================
+   SEMANA 6 — CUESTIONARIO
+   ============================================================== */
+var quizCorrects_s6 = {
+  s6qi1: 'b',
+  s6qi2: 'b',
+  s6qi3: 'b',
+  s6qi4: 'c',
+  s6qi5: 'b',
+  s6qi6: 'b',
+  s6qi7: 'c',
+  s6qi8: 'b',
+  s6qi9: 'c',
+  s6qi10: 'b'
+};
+var quizFeedbacks_s6 = {
+  s6qi1: { ok: '✅ Correcto. Osborn estableció el juicio diferido (no juzgar durante la generación) y la búsqueda de cantidad de ideas como principios fundacionales del Brainstorming.', err: '❌ Incorrecto. Los principios de Osborn son: juicio diferido y búsqueda de cantidad (la cantidad lleva a la calidad).' },
+  s6qi2: { ok: '✅ Correcto. "E" en SCAMPER = Eliminar (Eliminate): suprimir elementos para simplificar o mejorar el producto o proceso.', err: '❌ Incorrecto. En SCAMPER, la "E" significa Eliminar (Eliminate), no evaluar ni externalizar.' },
+  s6qi3: { ok: '✅ Correcto. En sistemas, la retroalimentación es el mecanismo por el que los resultados regresan al sistema y modifican su comportamiento futuro.', err: '❌ Incorrecto. La retroalimentación sistémica es el proceso por el que el output de un sistema vuelve a influir en su propio comportamiento.' },
+  s6qi4: { ok: '✅ Correcto. El sombrero verde de De Bono representa el pensamiento creativo, nuevas ideas y alternativas.', err: '❌ Incorrecto. En la técnica de los Seis Sombreros, el verde es el del pensamiento creativo y generación de alternativas.' },
+  s6qi5: { ok: '✅ Correcto. Tratar solo síntomas sin ver las causas profundas e interconectadas revela ausencia de pensamiento sistémico.', err: '❌ Incorrecto. Resolver síntomas sin atacar causas raíz es el síntoma clásico de no aplicar pensamiento sistémico.' },
+  s6qi6: { ok: '✅ Correcto. El pensamiento divergente genera múltiples posibilidades; el convergente selecciona y enfoca la mejor solución entre las generadas.', err: '❌ Incorrecto. Divergente = múltiples ideas; convergente = selección de la mejor. No son sinónimos.' },
+  s6qi7: { ok: '✅ Correcto. Tony Buzan desarrolló y popularizó la técnica de los mapas mentales como herramienta de organización visual del pensamiento.', err: '❌ Incorrecto. Los mapas mentales son atribuidos a Tony Buzan, no a Osborn, Senge ni De Bono.' },
+  s6qi8: { ok: '✅ Correcto. Al criticar en el momento, el gerente viola el juicio diferido, generando autocensura y empobreciendo el proceso creativo del equipo.', err: '❌ Incorrecto. El gerente viola el juicio diferido del Brainstorming; el resultado es la inhibición creativa del equipo.' },
+  s6qi9: { ok: '✅ Correcto. Preguntarse "¿qué pasaría si eliminamos X?" corresponde exactamente a la acción Eliminar (E) de SCAMPER.', err: '❌ Incorrecto. La pregunta sobre eliminar platos que tardan más tiempo corresponde a la acción Eliminar (E) de SCAMPER.' },
+  s6qi10: { ok: '✅ Correcto. Es un bucle de retroalimentación donde la "solución" (presionar más) agrava el problema (más errores por estrés) sin atacar la causa real, concepto central del pensamiento sistémico.', err: '❌ Incorrecto. Esta dinámica ilustra un bucle de retroalimentación reforzante negativo del pensamiento sistémico: la acción correctiva amplifica el problema.' }
+};
+
+function verificarQuiz_s6() {
+  var items = ['s6qi1','s6qi2','s6qi3','s6qi4','s6qi5','s6qi6','s6qi7','s6qi8','s6qi9','s6qi10'];
+  var allAnswered = items.every(function(n){ return getSelected(n) !== null; });
+  if (!allAnswered) { document.getElementById('s6q-alert').classList.add('show'); return; }
+  document.getElementById('s6q-alert').classList.remove('show');
+  var correctos = 0;
+  items.forEach(function(name, idx) {
+    var sel = getSelected(name);
+    var rowId = 's6q-row' + (idx+1);
+    var fbId  = 's6q-fb'  + (idx+1);
+    var row = document.getElementById(rowId);
+    var fb  = document.getElementById(fbId);
+    if (sel === quizCorrects_s6[name]) {
+      row.classList.add('correct'); row.classList.remove('incorrect');
+      fb.textContent = quizFeedbacks_s6[name].ok;
+      fb.className = 'feedback-msg show ok';
+      correctos++;
+    } else {
+      row.classList.add('incorrect'); row.classList.remove('correct');
+      fb.textContent = quizFeedbacks_s6[name].err;
+      fb.className = 'feedback-msg show err';
+    }
+  });
+  mostrarResultado('s6q-result','s6q-bar','s6q-score','s6q-msg', correctos, items.length);
+}
+
+function reiniciarQuiz_s6() {
+  ['s6qi1','s6qi2','s6qi3','s6qi4','s6qi5','s6qi6','s6qi7','s6qi8','s6qi9','s6qi10'].forEach(function(n,i){
+    resetRadios(n); resetRow('s6q-row'+(i+1)); resetFb('s6q-fb'+(i+1));
+  });
+  document.getElementById('s6q-alert').classList.remove('show');
+  document.getElementById('s6q-result').classList.remove('show');
+  document.getElementById('s6q-bar').style.width = '0%';
+}
+
+/* ==============================================================
+   SEMANA 7 — EJERCICIO
+   ============================================================== */
+var ejercicioCorrects_s7 = {
+  s7ei1: 'b',
+  s7ei2: 'b',
+  s7ei3: 'b',
+  s7ei4: 'b',
+  s7ei5: 'b',
+  s7ei6: 'b',
+  s7ei7: 'b',
+  s7ei8: 'b'
+};
+var ejercicioFeedbacks_s7 = {
+  s7ei1: { ok: '✅ Correcto. El orden estándar de la d.school de Stanford es: Empatizar → Definir → Idear → Prototipar → Testear.', err: '❌ Incorrecto. El orden correcto es: Empatizar → Definir → Idear → Prototipar → Testear. El proceso parte siempre del usuario.' },
+  s7ei2: { ok: '✅ Correcto. Empatizar significa comprender profundamente las necesidades, emociones y contexto de las personas para quienes se diseña.', err: '❌ Incorrecto. La fase de Empatizar no es construir prototipos ni cálculos; es comprender al usuario mediante observación y entrevistas.' },
+  s7ei3: { ok: '✅ Correcto. El Punto de Vista (POV) articula al usuario específico, su necesidad real y el insight que explica por qué esa necesidad existe.', err: '❌ Incorrecto. El POV en Design Thinking siempre incluye: usuario + necesidad real + insight explicativo. No abarca presupuesto ni competidores.' },
+  s7ei4: { ok: '✅ Correcto. "How Might We" convierte problemas e insights en preguntas creativas abiertas que disparan el proceso de ideación.', err: '❌ Incorrecto. "¿Cómo podríamos...?" es una técnica de la fase Idear que transforma problemas en preguntas generadoras de soluciones.' },
+  s7ei5: { ok: '✅ Correcto. El prototipo es una representación simplificada y de bajo costo diseñada para aprender rápido y con riesgo mínimo, no el producto terminado.', err: '❌ Incorrecto. Un prototipo en Design Thinking es deliberadamente simple y barato; su objetivo es aprender, no vender.' },
+  s7ei6: { ok: '✅ Correcto. Testear busca aprender del usuario real para mejorar la solución, aceptando incluso la necesidad de retroceder a fases anteriores.', err: '❌ Incorrecto. Testear no es una presentación ni un cálculo de ROI; es una instancia de aprendizaje con usuarios reales para mejorar la solución.' },
+  s7ei7: { ok: '✅ Correcto. Design Thinking está centrado en el ser humano (human-centered): el usuario y sus necesidades reales son el punto de partida y el criterio de éxito.', err: '❌ Incorrecto. Design Thinking es human-centered: parte de las necesidades humanas, no de la tecnología disponible ni de los costos.' },
+  s7ei8: { ok: '✅ Correcto. La naturaleza iterativa permite repetir, retroceder y mejorar continuamente entre fases según lo que se aprende en cada ciclo.', err: '❌ Incorrecto. Design Thinking es explícitamente no lineal e iterativo: se puede y debe volver a fases anteriores cuando el aprendizaje lo exige.' }
+};
+
+function verificarEjercicio_s7() {
+  var items = ['s7ei1','s7ei2','s7ei3','s7ei4','s7ei5','s7ei6','s7ei7','s7ei8'];
+  var allAnswered = items.every(function(n){ return getSelected(n) !== null; });
+  if (!allAnswered) { document.getElementById('s7e-alert').classList.add('show'); return; }
+  document.getElementById('s7e-alert').classList.remove('show');
+  var correctos = 0;
+  items.forEach(function(name, idx) {
+    var sel = getSelected(name);
+    var rowId = 's7e-row' + (idx+1);
+    var fbId  = 's7e-fb'  + (idx+1);
+    var row = document.getElementById(rowId);
+    var fb  = document.getElementById(fbId);
+    if (sel === ejercicioCorrects_s7[name]) {
+      row.classList.add('correct'); row.classList.remove('incorrect');
+      fb.textContent = ejercicioFeedbacks_s7[name].ok;
+      fb.className = 'feedback-msg show ok';
+      correctos++;
+    } else {
+      row.classList.add('incorrect'); row.classList.remove('correct');
+      fb.textContent = ejercicioFeedbacks_s7[name].err;
+      fb.className = 'feedback-msg show err';
+    }
+  });
+  mostrarResultado('s7e-result','s7e-bar','s7e-score','s7e-msg', correctos, items.length);
+}
+
+function reiniciarEjercicio_s7() {
+  ['s7ei1','s7ei2','s7ei3','s7ei4','s7ei5','s7ei6','s7ei7','s7ei8'].forEach(function(n,i){
+    resetRadios(n); resetRow('s7e-row'+(i+1)); resetFb('s7e-fb'+(i+1));
+  });
+  document.getElementById('s7e-alert').classList.remove('show');
+  document.getElementById('s7e-result').classList.remove('show');
+  document.getElementById('s7e-bar').style.width = '0%';
+}
+
+/* ==============================================================
+   SEMANA 7 — CUESTIONARIO
+   ============================================================== */
+var quizCorrects_s7 = {
+  s7qi1: 'b',
+  s7qi2: 'b',
+  s7qi3: 'b',
+  s7qi4: 'c',
+  s7qi5: 'b',
+  s7qi6: 'c',
+  s7qi7: 'b',
+  s7qi8: 'c',
+  s7qi9: 'b',
+  s7qi10: 'b'
+};
+var quizFeedbacks_s7 = {
+  s7qi1: { ok: '✅ Correcto. La d.school (Hasso Plattner Institute of Design) de Stanford es la institución que popularizó el modelo de las 5 fases de Design Thinking a nivel mundial.', err: '❌ Incorrecto. Aunque IDEO también practica Design Thinking, el modelo de las 5 fases fue popularizado mundialmente por la d.school de Stanford.' },
+  s7qi2: { ok: '✅ Correcto. Empatizar implica comprender sin supuestos las verdaderas necesidades, emociones y contexto del usuario mediante observación y entrevistas directas.', err: '❌ Incorrecto. Empatizar no es lanzar ni encuestar masivamente; es comprensión profunda del usuario a través de observación e interacción directa.' },
+  s7qi3: { ok: '✅ Correcto. Un insight es una comprensión profunda y no obvia sobre la motivación o comportamiento del usuario que revela oportunidades de diseño.', err: '❌ Incorrecto. Un insight en Design Thinking no es un nombre de producto ni un indicador financiero; es una comprensión profunda sobre el usuario.' },
+  s7qi4: { ok: '✅ Correcto. El mapa de empatía se usa en la fase de Empatizar para organizar lo que el usuario piensa, siente, dice y hace.', err: '❌ Incorrecto. El mapa de empatía pertenece a la fase de Empatizar, donde se organiza la información recopilada sobre el usuario.' },
+  s7qi5: { ok: '✅ Correcto. Los prototipos de baja fidelidad reducen la inversión antes de validar que la solución resuelve realmente el problema, permitiendo aprender rápido y a bajo costo.', err: '❌ Incorrecto. La razón de la baja fidelidad inicial es reducir el riesgo e inversión antes de confirmar que la solución es la correcta.' },
+  s7qi6: { ok: '✅ Correcto. "Evitar el trabajo colaborativo" contradice un principio fundamental del Design Thinking, que es la colaboración multidisciplinaria.', err: '❌ Incorrecto. El principio que no pertenece al Design Thinking es evitar la colaboración; la metodología se basa en equipos multidisciplinarios.' },
+  s7qi7: { ok: '✅ Correcto. La innovación centrada en el usuario parte de comprender necesidades humanas reales, no de la tecnología disponible como punto de partida.', err: '❌ Incorrecto. La innovación human-centered pone al usuario y sus necesidades en el centro, no a la tecnología ni los costos.' },
+  s7qi8: { ok: '✅ Correcto. Al no hablar con usuarios antes de construir, omitieron Empatizar y Definir, las fases que garantizan que la solución resuelve un problema real.', err: '❌ Incorrecto. El error crítico fue omitir Empatizar y Definir: sin comprender al usuario, se construyó algo sin demanda real.' },
+  s7qi9: { ok: '✅ Correcto. Están aplicando el principio de prototipar con baja fidelidad para aprender rápido y a bajo costo, antes de invertir en el desarrollo completo.', err: '❌ Incorrecto. El equipo aplica el principio de prototipado de baja fidelidad del Design Thinking para validar antes de invertir en programación.' },
+  s7qi10: { ok: '✅ Correcto. Asumir sin evidencia viola el principio de Empatizar; los supuestos no validados por observación directa llevan a soluciones que no resuelven el problema verdadero.', err: '❌ Incorrecto. En Design Thinking, saltarse Empatizar por asumir que ya se conoce al usuario es el error más común y el que más hace fracasar proyectos.' }
+};
+
+function verificarQuiz_s7() {
+  var items = ['s7qi1','s7qi2','s7qi3','s7qi4','s7qi5','s7qi6','s7qi7','s7qi8','s7qi9','s7qi10'];
+  var allAnswered = items.every(function(n){ return getSelected(n) !== null; });
+  if (!allAnswered) { document.getElementById('s7q-alert').classList.add('show'); return; }
+  document.getElementById('s7q-alert').classList.remove('show');
+  var correctos = 0;
+  items.forEach(function(name, idx) {
+    var sel = getSelected(name);
+    var rowId = 's7q-row' + (idx+1);
+    var fbId  = 's7q-fb'  + (idx+1);
+    var row = document.getElementById(rowId);
+    var fb  = document.getElementById(fbId);
+    if (sel === quizCorrects_s7[name]) {
+      row.classList.add('correct'); row.classList.remove('incorrect');
+      fb.textContent = quizFeedbacks_s7[name].ok;
+      fb.className = 'feedback-msg show ok';
+      correctos++;
+    } else {
+      row.classList.add('incorrect'); row.classList.remove('correct');
+      fb.textContent = quizFeedbacks_s7[name].err;
+      fb.className = 'feedback-msg show err';
+    }
+  });
+  mostrarResultado('s7q-result','s7q-bar','s7q-score','s7q-msg', correctos, items.length);
+}
+
+function reiniciarQuiz_s7() {
+  ['s7qi1','s7qi2','s7qi3','s7qi4','s7qi5','s7qi6','s7qi7','s7qi8','s7qi9','s7qi10'].forEach(function(n,i){
+    resetRadios(n); resetRow('s7q-row'+(i+1)); resetFb('s7q-fb'+(i+1));
+  });
+  document.getElementById('s7q-alert').classList.remove('show');
+  document.getElementById('s7q-result').classList.remove('show');
+  document.getElementById('s7q-bar').style.width = '0%';
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1696 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<!-- PLANIFICACIÓN: 7 semanas | 2 archivos
+     Archivo 1 → S1–S4 (Unidad 1: Semanas 1 a 4)
+     Archivo 2 → S5–S7 (Unidad 1 S5 + Unidad 2 S6–S7)
+     Distribución estimada: ~2 000 líneas por archivo -->
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Repaso | Emprendimiento e Innovación | U1 S1–S4</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet"/>
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: #f0f4f8;
+    color: #1a1a2e;
+    min-height: 100vh;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    background: #003366;
+    color: #fff;
+    padding: 18px 28px;
+  }
+  header .inst { font-family: 'Lora', serif; font-size: 0.82rem; letter-spacing: 0.05em; opacity: 0.85; }
+  header h1  { font-family: 'Lora', serif; font-size: 1.35rem; font-weight: 700; margin-top: 4px; }
+  header .sub { font-size: 0.85rem; margin-top: 3px; opacity: 0.78; }
+
+  /* ===== TAB BAR ===== */
+  .tab-bar-wrap {
+    background: #87CEEB;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-bottom: 3px solid #003366;
+  }
+  .tab-bar-wrap::-webkit-scrollbar { height: 5px; }
+  .tab-bar-wrap::-webkit-scrollbar-thumb { background: #003366; border-radius: 3px; }
+  .tab-btn {
+    display: inline-block;
+    padding: 11px 20px;
+    cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.88rem;
+    color: #111;
+    background: transparent;
+    border: none;
+    border-right: 1px solid rgba(0,51,102,0.2);
+    transition: background 0.2s;
+  }
+  .tab-btn:hover { background: rgba(255,255,255,0.45); }
+  .tab-btn.active {
+    background: #fff;
+    color: #003366;
+    font-weight: 700;
+    border-bottom: 3px solid #fff;
+  }
+
+  /* ===== TAB CONTENT ===== */
+  .tab-content { display: none; padding: 28px 24px 40px; max-width: 900px; margin: 0 auto; }
+  .tab-content.active { display: block; }
+
+  /* ===== SEMANA HEADER ===== */
+  .semana-header {
+    background: #003366;
+    color: #fff;
+    border-radius: 8px;
+    padding: 16px 22px;
+    margin-bottom: 28px;
+  }
+  .semana-header .badge {
+    display: inline-block;
+    background: #87CEEB;
+    color: #003366;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 20px;
+    margin-bottom: 6px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .semana-header h2 { font-family: 'Lora', serif; font-size: 1.2rem; }
+  .semana-header p  { font-size: 0.85rem; margin-top: 5px; opacity: 0.82; }
+
+  /* ===== BLOCK TITLE ===== */
+  .block-title {
+    font-family: 'Lora', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #003366;
+    margin-bottom: 16px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #87CEEB;
+  }
+
+  /* ===== EJERCICIO / QUIZ CARDS ===== */
+  .block-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 22px;
+    box-shadow: 0 2px 8px rgba(0,51,102,0.1);
+    margin-bottom: 12px;
+  }
+
+  /* ===== ITEM ROWS ===== */
+  .item-row {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    border: 1.5px solid #d8e8f5;
+    border-radius: 8px;
+    background: #f9fcff;
+    transition: border-color 0.2s;
+  }
+  .item-row.correct { border-color: #28a745; background: #f0fff4; }
+  .item-row.incorrect { border-color: #dc3545; background: #fff5f5; }
+
+  .item-enunciado { font-weight: 600; margin-bottom: 10px; line-height: 1.45; }
+  .options-list { list-style: none; }
+  .options-list li { margin-bottom: 6px; }
+  .options-list label {
+    display: flex; align-items: flex-start; gap: 9px;
+    cursor: pointer; font-size: 0.93rem; line-height: 1.4;
+  }
+  .options-list input[type="radio"] { margin-top: 3px; flex-shrink: 0; accent-color: #003366; }
+
+  /* ===== FEEDBACK ===== */
+  .feedback-msg {
+    margin-top: 10px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.87rem;
+    display: none;
+  }
+  .feedback-msg.show { display: block; }
+  .feedback-msg.ok  { background: #d4edda; color: #155724; border-left: 4px solid #28a745; }
+  .feedback-msg.err { background: #f8d7da; color: #721c24; border-left: 4px solid #dc3545; }
+
+  /* ===== BADGE TIPO ===== */
+  .badge-tipo {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 1px 8px;
+    border-radius: 20px;
+    margin-left: 8px;
+    vertical-align: middle;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .badge-teorica { background: #cce5ff; color: #004085; }
+  .badge-analisis { background: #fff3cd; color: #856404; }
+
+  /* ===== BUTTONS ===== */
+  .btn-verificar, .btn-reiniciar {
+    border: none; cursor: pointer; border-radius: 6px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.93rem; font-weight: 600;
+    padding: 10px 24px; margin-top: 8px; margin-right: 8px;
+    transition: opacity 0.2s, transform 0.1s;
+  }
+  .btn-verificar { background: #003366; color: #fff; }
+  .btn-verificar:hover { opacity: 0.88; }
+  .btn-reiniciar { background: #87CEEB; color: #003366; }
+  .btn-reiniciar:hover { opacity: 0.82; }
+  .btn-verificar:active, .btn-reiniciar:active { transform: scale(0.97); }
+
+  /* ===== ALERT ===== */
+  .alert-incomplete {
+    display: none;
+    background: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffc107;
+    border-radius: 6px;
+    padding: 9px 14px;
+    margin-top: 10px;
+    font-size: 0.88rem;
+  }
+  .alert-incomplete.show { display: block; }
+
+  /* ===== RESULT PANEL ===== */
+  .result-panel {
+    display: none;
+    margin-top: 18px;
+    background: #f0f8ff;
+    border-radius: 8px;
+    padding: 18px;
+    border: 1.5px solid #87CEEB;
+  }
+  .result-panel.show { display: block; }
+  .result-score { font-family: 'Lora', serif; font-size: 1.3rem; font-weight: 700; color: #003366; }
+  .progress-bar-bg {
+    background: #d8e8f5; border-radius: 20px; height: 14px;
+    margin: 10px 0; overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%; border-radius: 20px;
+    background: linear-gradient(90deg, #003366, #87CEEB);
+    width: 0%; transition: width 1s ease;
+  }
+  .result-msg { font-size: 1rem; margin-top: 8px; font-weight: 600; }
+
+  /* ===== SEPARATOR ===== */
+  .separator {
+    border: none;
+    border-top: 3px solid #87CEEB;
+    margin: 32px 0;
+    position: relative;
+  }
+  .separator::after {
+    content: '✦ Cuestionario ✦';
+    position: absolute;
+    top: -11px; left: 50%;
+    transform: translateX(-50%);
+    background: #f0f4f8;
+    padding: 0 14px;
+    font-size: 0.8rem;
+    color: #003366;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 600px) {
+    .tab-content { padding: 18px 14px 30px; }
+    header h1 { font-size: 1.1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== HEADER ==================== -->
+<header>
+  <div class="inst">Universidad de Guayaquil &nbsp;|&nbsp; Facultad de Ciencias Administrativas &nbsp;|&nbsp; Carrera en Contabilidad y Auditoría</div>
+  <h1>Emprendimiento e Innovación — Material de Repaso Interactivo</h1>
+  <div class="sub">Unidad 1 | Semanas 1 – 4 &nbsp;·&nbsp; Archivo 1 de 2</div>
+</header>
+
+<!-- ==================== TAB BAR ==================== -->
+<div class="tab-bar-wrap">
+  <button class="tab-btn active" onclick="showTab('s1')">Semana 1 — Teoría y Concepto del Emprendimiento</button>
+  <button class="tab-btn"        onclick="showTab('s2')">Semana 2 — Innovación y Tipos de Emprendimiento</button>
+  <button class="tab-btn"        onclick="showTab('s3')">Semana 3 — Situación Mundial y Ecosistema Ecuatoriano</button>
+  <button class="tab-btn"        onclick="showTab('s4')">Semana 4 — Capacidad para Emprender y Tipos de Emprendedor</button>
+</div>
+
+<!-- ============================================================
+     SEMANA 1
+     ============================================================ -->
+<div id="s1" class="tab-content active">
+  <div class="semana-header">
+    <span class="badge">Semana 1 · Unidad 1</span>
+    <h2>Teoría y Concepto del Emprendimiento e Innovación</h2>
+    <p>Fundamentos históricos, definiciones clave y el perfil del emprendedor.</p>
+  </div>
+
+  <!-- === EJERCICIO S1 === -->
+  <div class="block-card">
+    <div class="block-title">🧩 Ejercicio Interactivo — Verdadero / Falso y Clasificación</div>
+
+    <!-- Ítem 1 -->
+    <div class="item-row" id="s1e-row1">
+      <div class="item-enunciado">1. Joseph Schumpeter introdujo el concepto de "destrucción creativa" para explicar cómo los emprendedores generan innovación al reemplazar estructuras económicas obsoletas.</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s1ei1" value="V"> Verdadero</label></li>
+        <li><label><input type="radio" name="s1ei1" value="F"> Falso</label></li>
+      </ul>
+      <div class="feedback-msg" id="s1e-fb1"></div>
+    </div>
+
+    <!-- Ítem 2 -->
+    <div class="item-row" id="s1e-row2">
+      <div class="item-enunciado">2. El término "entrepreneur" proviene del inglés y fue utilizado por primera vez en el siglo XIX.</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s1ei2" value="V"> Verdadero</label></li>
+        <li><label><input type="radio" name="s1ei2" value="F"> Falso</label></li>
+      </ul>
+      <div class="feedback-msg" id="s1e-fb2"></div>
+    </div>
+
+    <!-- Ítem 3 -->
+    <div class="item-row" id="s1e-row3">
+      <div class="item-enunciado">3. Para Peter Drucker, la innovación es la herramienta específica de los emprendedores que convierte el cambio en una oportunidad de negocio.</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s1ei3" value="V"> Verdadero</label></li>
+        <li><label><input type="radio" name="s1ei3" value="F"> Falso</label></li>
+      </ul>
+      <div class="feedback-msg" id="s1e-fb3"></div>
+    </div>
+
+    <!-- Ítem 4 -->
+    <div class="item-row" id="s1e-row4">
+      <div class="item-enunciado">4. La innovación siempre implica la invención de tecnología completamente nueva; no puede ocurrir mediante mejoras a productos o procesos existentes.</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s1ei4" value="V"> Verdadero</label></li>
+        <li><label><input type="radio" name="s1ei4" value="F"> Falso</label></li>
+      </ul>
+      <div class="feedback-msg" id="s1e-fb4"></div>
+    </div>
+
+    <!-- Ítem 5 -->
+    <div class="item-row" id="s1e-row5">
+      <div class="item-enunciado">5. La actitud emprendedora incluye características como tolerancia al riesgo, iniciativa, creatividad y capacidad de liderazgo.</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s1ei5" value="V"> Verdadero</label></li>
+        <li><label><input type="radio" name="s1ei5" value="F"> Falso</label></li>
+      </ul>
+      <div class="feedback-msg" id="s1e-fb5"></div>
+    </div>
+
+    <!-- Ítem 6 -->
+    <div class="item-row" id="s1e-row6">
+      <div class="item-enunciado">6. Según la teoría schumpeteriana, el emprendedor es básicamente un administrador de recursos escasos que busca la eficiencia sin generar cambios estructurales.</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s1ei6" value="V"> Verdadero</label></li>
+        <li><label><input type="radio" name="s1ei6" value="F"> Falso</label></li>
+      </ul>
+      <div class="feedback-msg" id="s1e-fb6"></div>
+    </div>
+
+    <!-- Ítem 7 -->
+    <div class="item-row" id="s1e-row7">
+      <div class="item-enunciado">7. El emprendimiento puede manifestarse tanto en nuevas empresas (startups) como dentro de organizaciones ya existentes (intraemprendimiento o corporate entrepreneurship).</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s1ei7" value="V"> Verdadero</label></li>
+        <li><label><input type="radio" name="s1ei7" value="F"> Falso</label></li>
+      </ul>
+      <div class="feedback-msg" id="s1e-fb7"></div>
+    </div>
+
+    <div class="alert-incomplete" id="s1e-alert">⚠️ Por favor responde TODOS los ítems antes de verificar.</div>
+    <br/>
+    <button class="btn-verificar" onclick="verificarEjercicio_s1()">✔ Verificar respuestas</button>
+    <button class="btn-reiniciar" onclick="reiniciarEjercicio_s1()">↺ Reiniciar</button>
+    <div class="result-panel" id="s1e-result">
+      <div class="result-score" id="s1e-score"></div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="s1e-bar"></div></div>
+      <div class="result-msg" id="s1e-msg"></div>
+    </div>
+  </div><!-- /block-card ejercicio s1 -->
+
+  <!-- SEPARATOR -->
+  <hr class="separator"/>
+
+  <!-- === CUESTIONARIO S1 === -->
+  <div class="block-card">
+    <div class="block-title">📋 Cuestionario — 10 Preguntas de Opción Múltiple</div>
+
+    <!-- P1 -->
+    <div class="item-row" id="s1q-row1">
+      <div class="item-enunciado">1. ¿Quién es considerado el primer teórico en definir formalmente al emprendedor como agente de cambio económico? <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s1qi1" value="a"> a) Adam Smith</label></li>
+        <li><label><input type="radio" name="s1qi1" value="b"> b) Jean-Baptiste Say</label></li>
+        <li><label><input type="radio" name="s1qi1" value="c"> c) Joseph Schumpeter</label></li>
+        <li><label><input type="radio" name="s1qi1" value="d"> d) Peter Drucker</label></li>
+      </ul>
+      <div class="feedback-msg" id="s1q-fb1"></div>
+    </div>
+
+    <!-- P2 -->
+    <div class="item-row" id="s1q-row2">
+      <div class="item-enunciado">2. La "destrucción creativa" schumpeteriana se refiere a: <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s1qi2" value="a"> a) La eliminación de empresas poco rentables por parte del Estado.</label></li>
+        <li><label><input type="radio" name="s1qi2" value="b"> b) El proceso por el cual la innovación del emprendedor desplaza productos, procesos y estructuras obsoletas.</label></li>
+        <li><label><input type="radio" name="s1qi2" value="c"> c) La quiebra de startups que no logran financiamiento.</label></li>
+        <li><label><input type="radio" name="s1qi2" value="d"> d) La reducción de costos mediante automatización tecnológica.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s1q-fb2"></div>
+    </div>
+
+    <!-- P3 -->
+    <div class="item-row" id="s1q-row3">
+      <div class="item-enunciado">3. Para Peter Drucker, la innovación es: <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s1qi3" value="a"> a) Un proceso exclusivo de laboratorios de I+D corporativos.</label></li>
+        <li><label><input type="radio" name="s1qi3" value="b"> b) Sinónimo de invención tecnológica patentable.</label></li>
+        <li><label><input type="radio" name="s1qi3" value="c"> c) La herramienta específica del emprendedor que convierte el cambio en oportunidad.</label></li>
+        <li><label><input type="radio" name="s1qi3" value="d"> d) Una estrategia de marketing para relanzar productos existentes.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s1q-fb3"></div>
+    </div>
+
+    <!-- P4 -->
+    <div class="item-row" id="s1q-row4">
+      <div class="item-enunciado">4. El término "entrepreneur" tiene origen en: <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s1qi4" value="a"> a) El latín "entrepreneurus" del siglo XV.</label></li>
+        <li><label><input type="radio" name="s1qi4" value="b"> b) El inglés antiguo del siglo XIX.</label></li>
+        <li><label><input type="radio" name="s1qi4" value="c"> c) El francés "entreprendre" (acometer, llevar a cabo).</label></li>
+        <li><label><input type="radio" name="s1qi4" value="d"> d) El alemán "unternehmen" adoptado por Schumpeter.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s1q-fb4"></div>
+    </div>
+
+    <!-- P5 -->
+    <div class="item-row" id="s1q-row5">
+      <div class="item-enunciado">5. ¿Cuál de las siguientes NO es una característica del perfil emprendedor? <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s1qi5" value="a"> a) Tolerancia a la ambigüedad y al riesgo.</label></li>
+        <li><label><input type="radio" name="s1qi5" value="b"> b) Aversión total al fracaso y búsqueda de certeza absoluta.</label></li>
+        <li><label><input type="radio" name="s1qi5" value="c"> c) Iniciativa y proactividad ante las oportunidades.</label></li>
+        <li><label><input type="radio" name="s1qi5" value="d"> d) Capacidad de liderazgo y trabajo en equipo.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s1q-fb5"></div>
+    </div>
+
+    <!-- P6 -->
+    <div class="item-row" id="s1q-row6">
+      <div class="item-enunciado">6. El intraemprendimiento (corporate entrepreneurship) se define como: <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s1qi6" value="a"> a) La creación de startups financiadas por fondos de capital de riesgo.</label></li>
+        <li><label><input type="radio" name="s1qi6" value="b"> b) La actividad emprendedora que ocurre dentro de una organización ya establecida.</label></li>
+        <li><label><input type="radio" name="s1qi6" value="c"> c) El proceso de adquisición de empresas pequeñas por corporaciones multinacionales.</label></li>
+        <li><label><input type="radio" name="s1qi6" value="d"> d) El emprendimiento exclusivamente social sin fines de lucro.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s1q-fb6"></div>
+    </div>
+
+    <!-- P7 -->
+    <div class="item-row" id="s1q-row7">
+      <div class="item-enunciado">7. ¿Cuál de los siguientes enunciados refleja mejor la relación entre emprendimiento e innovación? <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s1qi7" value="a"> a) Son conceptos independientes sin relación directa.</label></li>
+        <li><label><input type="radio" name="s1qi7" value="b"> b) La innovación es siempre consecuencia obligatoria del emprendimiento.</label></li>
+        <li><label><input type="radio" name="s1qi7" value="c"> c) La innovación es el motor que da valor diferencial al emprendimiento y genera ventajas competitivas.</label></li>
+        <li><label><input type="radio" name="s1qi7" value="d"> d) El emprendimiento es un subconjunto de la innovación tecnológica.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s1q-fb7"></div>
+    </div>
+
+    <!-- P8 ANÁLISIS -->
+    <div class="item-row" id="s1q-row8">
+      <div class="item-enunciado">8. María lanzó un servicio de catering que usa ingredientes locales y combina tradiciones culinarias de distintas regiones. No inventó ningún alimento nuevo, pero su propuesta es única en el mercado. ¿Cómo se clasifica esto desde la perspectiva de Drucker? <span class="badge-tipo badge-analisis">Análisis</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s1qi8" value="a"> a) No es emprendimiento porque no hay invención tecnológica.</label></li>
+        <li><label><input type="radio" name="s1qi8" value="b"> b) Es emprendimiento con innovación, pues convierte una oportunidad de mercado en valor diferencial.</label></li>
+        <li><label><input type="radio" name="s1qi8" value="c"> c) Es un negocio tradicional sin componente emprendedor.</label></li>
+        <li><label><input type="radio" name="s1qi8" value="d"> d) Solo será emprendimiento cuando logre exportar al extranjero.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s1q-fb8"></div>
+    </div>
+
+    <!-- P9 ANÁLISIS -->
+    <div class="item-row" id="s1q-row9">
+      <div class="item-enunciado">9. Una empresa de taxis tradicionales pierde el 40% de su mercado tras la llegada de una app de transporte que ofrece precios dinámicos y calificación de conductores. ¿Qué concepto schumpeteriano explica mejor esta situación? <span class="badge-tipo badge-analisis">Análisis</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s1qi9" value="a"> a) Economía de escala.</label></li>
+        <li><label><input type="radio" name="s1qi9" value="b"> b) Destrucción creativa: la innovación de la app desplaza al modelo obsoleto de taxis.</label></li>
+        <li><label><input type="radio" name="s1qi9" value="c"> c) Integración vertical de la cadena de valor.</label></li>
+        <li><label><input type="radio" name="s1qi9" value="d"> d) Regulación antimonopolio del Estado.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s1q-fb9"></div>
+    </div>
+
+    <!-- P10 ANÁLISIS -->
+    <div class="item-row" id="s1q-row10">
+      <div class="item-enunciado">10. Carlos trabaja en una corporación y propone un nuevo proceso interno que reduce costos en un 20% e inicia su implementación de manera autónoma. ¿Qué tipo de emprendimiento describe este caso? <span class="badge-tipo badge-analisis">Análisis</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s1qi10" value="a"> a) Emprendimiento social.</label></li>
+        <li><label><input type="radio" name="s1qi10" value="b"> b) Startup tecnológica.</label></li>
+        <li><label><input type="radio" name="s1qi10" value="c"> c) Intraemprendimiento o corporate entrepreneurship.</label></li>
+        <li><label><input type="radio" name="s1qi10" value="d"> d) Emprendimiento por necesidad.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s1q-fb10"></div>
+    </div>
+
+    <div class="alert-incomplete" id="s1q-alert">⚠️ Por favor responde TODAS las preguntas antes de verificar.</div>
+    <br/>
+    <button class="btn-verificar" onclick="verificarQuiz_s1()">✔ Verificar respuestas</button>
+    <button class="btn-reiniciar" onclick="reiniciarQuiz_s1()">↺ Reiniciar</button>
+    <div class="result-panel" id="s1q-result">
+      <div class="result-score" id="s1q-score"></div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="s1q-bar"></div></div>
+      <div class="result-msg" id="s1q-msg"></div>
+    </div>
+  </div><!-- /block-card quiz s1 -->
+</div><!-- /tab s1 -->
+
+
+<!-- ============================================================
+     SEMANA 2
+     ============================================================ -->
+<div id="s2" class="tab-content">
+  <div class="semana-header">
+    <span class="badge">Semana 2 · Unidad 1</span>
+    <h2>Innovación, Tipos y el Proceso Emprendedor</h2>
+    <p>Tipos de innovación, el proceso emprendedor por etapas y factores de éxito.</p>
+  </div>
+
+  <!-- === EJERCICIO S2 === -->
+  <div class="block-card">
+    <div class="block-title">🧩 Ejercicio Interactivo — Emparejamiento y Clasificación</div>
+
+    <!-- Ítem 1 -->
+    <div class="item-row" id="s2e-row1">
+      <div class="item-enunciado">1. La innovación de producto consiste en: introducir un bien o servicio nuevo o mejorar significativamente uno ya existente.</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s2ei1" value="V"> Verdadero</label></li>
+        <li><label><input type="radio" name="s2ei1" value="F"> Falso</label></li>
+      </ul>
+      <div class="feedback-msg" id="s2e-fb1"></div>
+    </div>
+
+    <!-- Ítem 2 -->
+    <div class="item-row" id="s2e-row2">
+      <div class="item-enunciado">2. La innovación de proceso hace referencia exclusivamente a cambios en la línea de ensamblaje de fábricas manufactureras.</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s2ei2" value="V"> Verdadero</label></li>
+        <li><label><input type="radio" name="s2ei2" value="F"> Falso</label></li>
+      </ul>
+      <div class="feedback-msg" id="s2e-fb2"></div>
+    </div>
+
+    <!-- Ítem 3 -->
+    <div class="item-row" id="s2e-row3">
+      <div class="item-enunciado">3. El proceso emprendedor comienza con la identificación de una oportunidad de mercado antes de pasar a la planificación del negocio.</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s2ei3" value="V"> Verdadero</label></li>
+        <li><label><input type="radio" name="s2ei3" value="F"> Falso</label></li>
+      </ul>
+      <div class="feedback-msg" id="s2e-fb3"></div>
+    </div>
+
+    <!-- Ítem 4 -->
+    <div class="item-row" id="s2e-row4">
+      <div class="item-enunciado">4. La innovación disruptiva, según Clayton Christensen, mejora los productos existentes para satisfacer a los clientes más exigentes del mercado.</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s2ei4" value="V"> Verdadero</label></li>
+        <li><label><input type="radio" name="s2ei4" value="F"> Falso</label></li>
+      </ul>
+      <div class="feedback-msg" id="s2e-fb4"></div>
+    </div>
+
+    <!-- Ítem 5 -->
+    <div class="item-row" id="s2e-row5">
+      <div class="item-enunciado">5. El "modelo de las 4 etapas del proceso emprendedor" incluye: identificación de oportunidad, desarrollo del plan, obtención de recursos y gestión/crecimiento del negocio.</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s2ei5" value="V"> Verdadero</label></li>
+        <li><label><input type="radio" name="s2ei5" value="F"> Falso</label></li>
+      </ul>
+      <div class="feedback-msg" id="s2e-fb5"></div>
+    </div>
+
+    <!-- Ítem 6 -->
+    <div class="item-row" id="s2e-row6">
+      <div class="item-enunciado">6. La innovación de modelo de negocio implica únicamente cambiar el precio de los productos o servicios ofrecidos.</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s2ei6" value="V"> Verdadero</label></li>
+        <li><label><input type="radio" name="s2ei6" value="F"> Falso</label></li>
+      </ul>
+      <div class="feedback-msg" id="s2e-fb6"></div>
+    </div>
+
+    <!-- Ítem 7 -->
+    <div class="item-row" id="s2e-row7">
+      <div class="item-enunciado">7. Entre los factores de éxito del emprendimiento destacan: visión clara, equipo competente, propuesta de valor diferenciada y capacidad de adaptación al entorno.</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s2ei7" value="V"> Verdadero</label></li>
+        <li><label><input type="radio" name="s2ei7" value="F"> Falso</label></li>
+      </ul>
+      <div class="feedback-msg" id="s2e-fb7"></div>
+    </div>
+
+    <div class="alert-incomplete" id="s2e-alert">⚠️ Por favor responde TODOS los ítems antes de verificar.</div>
+    <br/>
+    <button class="btn-verificar" onclick="verificarEjercicio_s2()">✔ Verificar respuestas</button>
+    <button class="btn-reiniciar" onclick="reiniciarEjercicio_s2()">↺ Reiniciar</button>
+    <div class="result-panel" id="s2e-result">
+      <div class="result-score" id="s2e-score"></div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="s2e-bar"></div></div>
+      <div class="result-msg" id="s2e-msg"></div>
+    </div>
+  </div>
+
+  <hr class="separator"/>
+
+  <!-- === CUESTIONARIO S2 === -->
+  <div class="block-card">
+    <div class="block-title">📋 Cuestionario — 10 Preguntas de Opción Múltiple</div>
+
+    <!-- P1 -->
+    <div class="item-row" id="s2q-row1">
+      <div class="item-enunciado">1. ¿Cuáles son los cuatro tipos de innovación reconocidos por el Manual de Oslo? <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s2qi1" value="a"> a) Producto, proceso, marketing y organizacional.</label></li>
+        <li><label><input type="radio" name="s2qi1" value="b"> b) Tecnológica, social, digital y ambiental.</label></li>
+        <li><label><input type="radio" name="s2qi1" value="c"> c) Incremental, disruptiva, radical y de sostenimiento.</label></li>
+        <li><label><input type="radio" name="s2qi1" value="d"> d) Producto, financiera, operativa y de marca.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s2q-fb1"></div>
+    </div>
+
+    <!-- P2 -->
+    <div class="item-row" id="s2q-row2">
+      <div class="item-enunciado">2. La innovación disruptiva (Christensen) se caracteriza por: <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s2qi2" value="a"> a) Mejorar continuamente el producto líder para el segmento premium.</label></li>
+        <li><label><input type="radio" name="s2qi2" value="b"> b) Crear inicialmente soluciones más simples y accesibles que desplazan al mercado establecido.</label></li>
+        <li><label><input type="radio" name="s2qi2" value="c"> c) Requerir grandes inversiones en I+D desde el inicio.</label></li>
+        <li><label><input type="radio" name="s2qi2" value="d"> d) Operar exclusivamente en sectores tecnológicos de alta gama.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s2q-fb2"></div>
+    </div>
+
+    <!-- P3 -->
+    <div class="item-row" id="s2q-row3">
+      <div class="item-enunciado">3. ¿Cuál es la primera etapa del proceso emprendedor? <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s2qi3" value="a"> a) Obtención de financiamiento.</label></li>
+        <li><label><input type="radio" name="s2qi3" value="b"> b) Registro legal de la empresa.</label></li>
+        <li><label><input type="radio" name="s2qi3" value="c"> c) Identificación y evaluación de la oportunidad.</label></li>
+        <li><label><input type="radio" name="s2qi3" value="d"> d) Contratación del equipo fundador.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s2q-fb3"></div>
+    </div>
+
+    <!-- P4 -->
+    <div class="item-row" id="s2q-row4">
+      <div class="item-enunciado">4. La innovación incremental se distingue de la innovación radical porque: <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s2qi4" value="a"> a) La incremental crea industrias completamente nuevas mientras la radical solo mejora.</label></li>
+        <li><label><input type="radio" name="s2qi4" value="b"> b) La incremental introduce mejoras graduales a productos/servicios existentes; la radical transforma o crea mercados.</label></li>
+        <li><label><input type="radio" name="s2qi4" value="c"> c) Ambas son equivalentes y el término depende del autor consultado.</label></li>
+        <li><label><input type="radio" name="s2qi4" value="d"> d) La incremental solo aplica a software y la radical a bienes físicos.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s2q-fb4"></div>
+    </div>
+
+    <!-- P5 -->
+    <div class="item-row" id="s2q-row5">
+      <div class="item-enunciado">5. ¿Cuál de los siguientes es un factor de éxito clave en el proceso emprendedor? <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s2qi5" value="a"> a) Contar con un plan de negocio definitivo e inamovible desde el inicio.</label></li>
+        <li><label><input type="radio" name="s2qi5" value="b"> b) Evitar el feedback del cliente hasta tener el producto terminado.</label></li>
+        <li><label><input type="radio" name="s2qi5" value="c"> c) Tener una propuesta de valor clara, equipo comprometido y capacidad de adaptación.</label></li>
+        <li><label><input type="radio" name="s2qi5" value="d"> d) Operar en mercados con alta regulación para evitar la competencia.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s2q-fb5"></div>
+    </div>
+
+    <!-- P6 -->
+    <div class="item-row" id="s2q-row6">
+      <div class="item-enunciado">6. La innovación de modelo de negocio implica: <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s2qi6" value="a"> a) Cambiar únicamente el precio de venta al público.</label></li>
+        <li><label><input type="radio" name="s2qi6" value="b"> b) Rediseñar la manera en que la empresa crea, entrega y captura valor.</label></li>
+        <li><label><input type="radio" name="s2qi6" value="c"> c) Lanzar el mismo producto en un nuevo país.</label></li>
+        <li><label><input type="radio" name="s2qi6" value="d"> d) Contratar un nuevo director de marketing.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s2q-fb6"></div>
+    </div>
+
+    <!-- P7 -->
+    <div class="item-row" id="s2q-row7">
+      <div class="item-enunciado">7. ¿Qué etapa del proceso emprendedor abarca la planificación estratégica, el modelo de negocio y el plan financiero? <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s2qi7" value="a"> a) Identificación de la oportunidad.</label></li>
+        <li><label><input type="radio" name="s2qi7" value="b"> b) Gestión y crecimiento del negocio.</label></li>
+        <li><label><input type="radio" name="s2qi7" value="c"> c) Desarrollo del plan de negocio.</label></li>
+        <li><label><input type="radio" name="s2qi7" value="d"> d) Liquidación del emprendimiento.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s2q-fb7"></div>
+    </div>
+
+    <!-- P8 ANÁLISIS -->
+    <div class="item-row" id="s2q-row8">
+      <div class="item-enunciado">8. Netflix pasó de alquiler físico de DVDs a streaming por suscripción mensual, transformando cómo millones de personas consumen entretenimiento. ¿Qué tipo de innovación protagonizó? <span class="badge-tipo badge-analisis">Análisis</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s2qi8" value="a"> a) Innovación incremental de producto.</label></li>
+        <li><label><input type="radio" name="s2qi8" value="b"> b) Innovación de modelo de negocio con componente disruptivo.</label></li>
+        <li><label><input type="radio" name="s2qi8" value="c"> c) Innovación organizacional interna sin impacto en el mercado.</label></li>
+        <li><label><input type="radio" name="s2qi8" value="d"> d) Innovación de proceso manufacturero.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s2q-fb8"></div>
+    </div>
+
+    <!-- P9 ANÁLISIS -->
+    <div class="item-row" id="s2q-row9">
+      <div class="item-enunciado">9. Pedro tiene una idea de app para conectar artesanos locales con compradores internacionales. Acaba de identificar que no existe una plataforma especializada para ello. ¿En qué etapa del proceso emprendedor se encuentra? <span class="badge-tipo badge-analisis">Análisis</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s2qi9" value="a"> a) Gestión y crecimiento del negocio.</label></li>
+        <li><label><input type="radio" name="s2qi9" value="b"> b) Obtención de recursos financieros.</label></li>
+        <li><label><input type="radio" name="s2qi9" value="c"> c) Identificación y evaluación de la oportunidad.</label></li>
+        <li><label><input type="radio" name="s2qi9" value="d"> d) Registro de propiedad intelectual.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s2q-fb9"></div>
+    </div>
+
+    <!-- P10 ANÁLISIS -->
+    <div class="item-row" id="s2q-row10">
+      <div class="item-enunciado">10. Una empresa de panadería introduce una nueva máquina que reduce el tiempo de producción a la mitad sin cambiar el tipo de pan que vende. ¿Qué tipo de innovación aplica? <span class="badge-tipo badge-analisis">Análisis</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s2qi10" value="a"> a) Innovación de producto.</label></li>
+        <li><label><input type="radio" name="s2qi10" value="b"> b) Innovación de proceso.</label></li>
+        <li><label><input type="radio" name="s2qi10" value="c"> c) Innovación de modelo de negocio.</label></li>
+        <li><label><input type="radio" name="s2qi10" value="d"> d) Innovación disruptiva.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s2q-fb10"></div>
+    </div>
+
+    <div class="alert-incomplete" id="s2q-alert">⚠️ Por favor responde TODAS las preguntas antes de verificar.</div>
+    <br/>
+    <button class="btn-verificar" onclick="verificarQuiz_s2()">✔ Verificar respuestas</button>
+    <button class="btn-reiniciar" onclick="reiniciarQuiz_s2()">↺ Reiniciar</button>
+    <div class="result-panel" id="s2q-result">
+      <div class="result-score" id="s2q-score"></div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="s2q-bar"></div></div>
+      <div class="result-msg" id="s2q-msg"></div>
+    </div>
+  </div>
+</div><!-- /tab s2 -->
+
+
+<!-- ============================================================
+     SEMANA 3
+     ============================================================ -->
+<div id="s3" class="tab-content">
+  <div class="semana-header">
+    <span class="badge">Semana 3 · Unidad 1</span>
+    <h2>Situación Mundial del Emprendimiento y Ecosistema Ecuatoriano</h2>
+    <p>Índices globales de emprendimiento, el GEM, el contexto latinoamericano y el ecosistema emprendedor de Ecuador.</p>
+  </div>
+
+  <!-- === EJERCICIO S3 === -->
+  <div class="block-card">
+    <div class="block-title">🧩 Ejercicio Interactivo — Verdadero / Falso</div>
+
+    <!-- Ítem 1 -->
+    <div class="item-row" id="s3e-row1">
+      <div class="item-enunciado">1. El GEM (Global Entrepreneurship Monitor) es el principal estudio anual que mide el nivel de actividad emprendedora en distintos países del mundo.</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s3ei1" value="V"> Verdadero</label></li>
+        <li><label><input type="radio" name="s3ei1" value="F"> Falso</label></li>
+      </ul>
+      <div class="feedback-msg" id="s3e-fb1"></div>
+    </div>
+
+    <!-- Ítem 2 -->
+    <div class="item-row" id="s3e-row2">
+      <div class="item-enunciado">2. El emprendimiento por oportunidad ocurre cuando una persona emprende porque no encontró empleo formal, mientras que el emprendimiento por necesidad surge de la detección de un nicho de mercado atractivo.</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s3ei2" value="V"> Verdadero</label></li>
+        <li><label><input type="radio" name="s3ei2" value="F"> Falso</label></li>
+      </ul>
+      <div class="feedback-msg" id="s3e-fb2"></div>
+    </div>
+
+    <!-- Ítem 3 -->
+    <div class="item-row" id="s3e-row3">
+      <div class="item-enunciado">3. Ecuador históricamente ha presentado tasas de Actividad Emprendedora Temprana (TEA) superiores al promedio de los países de altos ingresos, según reportes del GEM.</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s3ei3" value="V"> Verdadero</label></li>
+        <li><label><input type="radio" name="s3ei3" value="F"> Falso</label></li>
+      </ul>
+      <div class="feedback-msg" id="s3e-fb3"></div>
+    </div>
+
+    <!-- Ítem 4 -->
+    <div class="item-row" id="s3e-row4">
+      <div class="item-enunciado">4. El ecosistema emprendedor incluye exclusivamente a los emprendedores individuales y a los bancos que los financian.</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s3ei4" value="V"> Verdadero</label></li>
+        <li><label><input type="radio" name="s3ei4" value="F"> Falso</label></li>
+      </ul>
+      <div class="feedback-msg" id="s3e-fb4"></div>
+    </div>
+
+    <!-- Ítem 5 -->
+    <div class="item-row" id="s3e-row5">
+      <div class="item-enunciado">5. En Ecuador, organismos como el Ministerio de Producción, Comercio Exterior, Inversiones y Pesca (MIPRO) cumplen un rol en el fomento del emprendimiento a través de políticas públicas y programas de apoyo.</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s3ei5" value="V"> Verdadero</label></li>
+        <li><label><input type="radio" name="s3ei5" value="F"> Falso</label></li>
+      </ul>
+      <div class="feedback-msg" id="s3e-fb5"></div>
+    </div>
+
+    <!-- Ítem 6 -->
+    <div class="item-row" id="s3e-row6">
+      <div class="item-enunciado">6. Los países nórdicos y Silicon Valley son referentes mundiales de ecosistemas emprendedores gracias a la combinación de capital de riesgo, talento, cultura innovadora e infraestructura tecnológica.</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s3ei6" value="V"> Verdadero</label></li>
+        <li><label><input type="radio" name="s3ei6" value="F"> Falso</label></li>
+      </ul>
+      <div class="feedback-msg" id="s3e-fb6"></div>
+    </div>
+
+    <!-- Ítem 7 -->
+    <div class="item-row" id="s3e-row7">
+      <div class="item-enunciado">7. En Latinoamérica, la mayoría del emprendimiento informal se vincula principalmente con emprendimiento por necesidad y no con emprendimiento de alto impacto.</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s3ei7" value="V"> Verdadero</label></li>
+        <li><label><input type="radio" name="s3ei7" value="F"> Falso</label></li>
+      </ul>
+      <div class="feedback-msg" id="s3e-fb7"></div>
+    </div>
+
+    <div class="alert-incomplete" id="s3e-alert">⚠️ Por favor responde TODOS los ítems antes de verificar.</div>
+    <br/>
+    <button class="btn-verificar" onclick="verificarEjercicio_s3()">✔ Verificar respuestas</button>
+    <button class="btn-reiniciar" onclick="reiniciarEjercicio_s3()">↺ Reiniciar</button>
+    <div class="result-panel" id="s3e-result">
+      <div class="result-score" id="s3e-score"></div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="s3e-bar"></div></div>
+      <div class="result-msg" id="s3e-msg"></div>
+    </div>
+  </div>
+
+  <hr class="separator"/>
+
+  <!-- === CUESTIONARIO S3 === -->
+  <div class="block-card">
+    <div class="block-title">📋 Cuestionario — 10 Preguntas de Opción Múltiple</div>
+
+    <!-- P1 -->
+    <div class="item-row" id="s3q-row1">
+      <div class="item-enunciado">1. ¿Qué mide el índice TEA (Total Early-stage Entrepreneurial Activity) del GEM? <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s3qi1" value="a"> a) El número de empresas cotizadas en bolsa.</label></li>
+        <li><label><input type="radio" name="s3qi1" value="b"> b) El porcentaje de adultos que están iniciando o han iniciado recientemente un negocio (menos de 3,5 años).</label></li>
+        <li><label><input type="radio" name="s3qi1" value="c"> c) La tasa de fracaso de startups en los primeros dos años.</label></li>
+        <li><label><input type="radio" name="s3qi1" value="d"> d) El ingreso promedio de los emprendedores por país.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s3q-fb1"></div>
+    </div>
+
+    <!-- P2 -->
+    <div class="item-row" id="s3q-row2">
+      <div class="item-enunciado">2. ¿Cuál es la diferencia fundamental entre emprendimiento por oportunidad y emprendimiento por necesidad? <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s3qi2" value="a"> a) El primero es formal y el segundo siempre informal.</label></li>
+        <li><label><input type="radio" name="s3qi2" value="b"> b) El primero nace de identificar una oportunidad de mercado atractiva; el segundo, de la falta de alternativas laborales.</label></li>
+        <li><label><input type="radio" name="s3qi2" value="c"> c) El primero requiere financiamiento y el segundo se autofinancia siempre.</label></li>
+        <li><label><input type="radio" name="s3qi2" value="d"> d) El primero es individual y el segundo colectivo.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s3q-fb2"></div>
+    </div>
+
+    <!-- P3 -->
+    <div class="item-row" id="s3q-row3">
+      <div class="item-enunciado">3. ¿Qué componentes integran un ecosistema emprendedor saludable? <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s3qi3" value="a"> a) Solo emprendedores y clientes finales.</label></li>
+        <li><label><input type="radio" name="s3qi3" value="b"> b) Emprendedores, inversores, universidades, gobierno, aceleradoras, mentores y cultura emprendedora.</label></li>
+        <li><label><input type="radio" name="s3qi3" value="c"> c) Bancos estatales y cámaras de comercio únicamente.</label></li>
+        <li><label><input type="radio" name="s3qi3" value="d"> d) Multinacionales que ofrecen franquicias a emprendedores locales.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s3q-fb3"></div>
+    </div>
+
+    <!-- P4 -->
+    <div class="item-row" id="s3q-row4">
+      <div class="item-enunciado">4. ¿Por qué Ecuador presenta tasas TEA elevadas en comparación con países de altos ingresos? <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s3qi4" value="a"> a) Porque el Estado ecuatoriano invierte más en I+D que los países desarrollados.</label></li>
+        <li><label><input type="radio" name="s3qi4" value="b"> b"> Porque en Ecuador predomina el emprendimiento por oportunidad de alta tecnología.</label></li>
+        <li><label><input type="radio" name="s3qi4" value="c"> c) Porque una proporción significativa responde a emprendimiento por necesidad ante limitadas opciones de empleo formal.</label></li>
+        <li><label><input type="radio" name="s3qi4" value="d"> d) Porque Ecuador lidera en exportación de startups tecnológicas a nivel regional.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s3q-fb4"></div>
+    </div>
+
+    <!-- P5 -->
+    <div class="item-row" id="s3q-row5">
+      <div class="item-enunciado">5. ¿Cuál es el rol principal de las aceleradoras e incubadoras en el ecosistema emprendedor? <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s3qi5" value="a"> a) Otorgar créditos hipotecarios a emprendedores.</label></li>
+        <li><label><input type="radio" name="s3qi5" value="b"> b) Acompañar y acelerar el crecimiento de startups mediante mentoría, redes y recursos.</label></li>
+        <li><label><input type="radio" name="s3qi5" value="c"> c) Regular el cumplimiento tributario de las nuevas empresas.</label></li>
+        <li><label><input type="radio" name="s3qi5" value="d"> d) Publicitar los productos de los emprendedores en medios masivos.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s3q-fb5"></div>
+    </div>
+
+    <!-- P6 -->
+    <div class="item-row" id="s3q-row6">
+      <div class="item-enunciado">6. Silicon Valley es reconocido globalmente como un ecosistema emprendedor exitoso principalmente porque: <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s3qi6" value="a"> a) Tiene regulaciones muy estrictas que protegen a los emprendedores de la competencia.</label></li>
+        <li><label><input type="radio" name="s3qi6" value="b"> b) Combina capital de riesgo abundante, universidades de élite, talento global y cultura de tolerancia al fracaso.</label></li>
+        <li><label><input type="radio" name="s3qi6" value="c"> c) Es el único lugar del mundo donde no se pagan impuestos corporativos.</label></li>
+        <li><label><input type="radio" name="s3qi6" value="d"> d) El gobierno federal financia directamente a todas las startups.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s3q-fb6"></div>
+    </div>
+
+    <!-- P7 -->
+    <div class="item-row" id="s3q-row7">
+      <div class="item-enunciado">7. ¿Qué papel cumplen las universidades dentro del ecosistema emprendedor ecuatoriano? <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s3qi7" value="a"> a) Únicamente otorgan títulos profesionales sin vinculación con el entorno productivo.</label></li>
+        <li><label><input type="radio" name="s3qi7" value="b"> b) Forman talento emprendedor, generan investigación aplicada y articulan proyectos con el sector productivo.</label></li>
+        <li><label><input type="radio" name="s3qi7" value="c"> c) Financian directamente a los emprendedores con fondos propios.</label></li>
+        <li><label><input type="radio" name="s3qi7" value="d"> d) Regulan el registro mercantil de las nuevas empresas.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s3q-fb7"></div>
+    </div>
+
+    <!-- P8 ANÁLISIS -->
+    <div class="item-row" id="s3q-row8">
+      <div class="item-enunciado">8. Ana perdió su trabajo en una empresa de contabilidad y, para generar ingresos, comenzó a vender comida preparada desde su casa. ¿Qué tipo de emprendimiento ejemplifica este caso? <span class="badge-tipo badge-analisis">Análisis</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s3qi8" value="a"> a) Emprendimiento por oportunidad de alto impacto.</label></li>
+        <li><label><input type="radio" name="s3qi8" value="b"> b) Intraemprendimiento corporativo.</label></li>
+        <li><label><input type="radio" name="s3qi8" value="c"> c) Emprendimiento por necesidad.</label></li>
+        <li><label><input type="radio" name="s3qi8" value="d"> d) Emprendimiento social sin fines de lucro.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s3q-fb8"></div>
+    </div>
+
+    <!-- P9 ANÁLISIS -->
+    <div class="item-row" id="s3q-row9">
+      <div class="item-enunciado">9. Un grupo de jóvenes en Quito quiere lanzar una app de delivery de productos agrícolas locales. Buscan apoyo en la universidad, contactan a un fondo de capital semilla y se inscriben en un programa del MIPRO. ¿Qué aspecto del ecosistema emprendedor están activando? <span class="badge-tipo badge-analisis">Análisis</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s3qi9" value="a"> a) Solo el componente de financiamiento bancario tradicional.</label></li>
+        <li><label><input type="radio" name="s3qi9" value="b"> b) Múltiples actores del ecosistema: academia, capital de riesgo y política pública.</label></li>
+        <li><label><input type="radio" name="s3qi9" value="c"> c) Únicamente el componente de marketing digital.</label></li>
+        <li><label><input type="radio" name="s3qi9" value="d"> d) El ecosistema internacional, ya que las apps son globales.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s3q-fb9"></div>
+    </div>
+
+    <!-- P10 ANÁLISIS -->
+    <div class="item-row" id="s3q-row10">
+      <div class="item-enunciado">10. Comparando el ecosistema emprendedor de Ecuador con el de países con ecosistemas consolidados, ¿cuál es una brecha frecuentemente identificada? <span class="badge-tipo badge-analisis">Análisis</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s3qi10" value="a"> a) Ecuador tiene exceso de capital de riesgo disponible para startups.</label></li>
+        <li><label><input type="radio" name="s3qi10" value="b"> b) Ecuador cuenta con demasiados programas universitarios de emprendimiento.</label></li>
+        <li><label><input type="radio" name="s3qi10" value="c"> c) Acceso limitado a financiamiento de riesgo, menor cultura de tolerancia al fracaso y débil articulación entre actores del ecosistema.</label></li>
+        <li><label><input type="radio" name="s3qi10" value="d"> d) Exceso de regulaciones que impiden el ingreso de competencia extranjera.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s3q-fb10"></div>
+    </div>
+
+    <div class="alert-incomplete" id="s3q-alert">⚠️ Por favor responde TODAS las preguntas antes de verificar.</div>
+    <br/>
+    <button class="btn-verificar" onclick="verificarQuiz_s3()">✔ Verificar respuestas</button>
+    <button class="btn-reiniciar" onclick="reiniciarQuiz_s3()">↺ Reiniciar</button>
+    <div class="result-panel" id="s3q-result">
+      <div class="result-score" id="s3q-score"></div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="s3q-bar"></div></div>
+      <div class="result-msg" id="s3q-msg"></div>
+    </div>
+  </div>
+</div><!-- /tab s3 -->
+
+
+<!-- ============================================================
+     SEMANA 4
+     ============================================================ -->
+<div id="s4" class="tab-content">
+  <div class="semana-header">
+    <span class="badge">Semana 4 · Unidad 1</span>
+    <h2>La Capacidad para Emprender, Tipos de Emprendedor e Identificación de Oportunidades</h2>
+    <p>Competencias emprendedoras, tipologías del emprendedor y análisis de tendencias como herramienta de detección de oportunidades.</p>
+  </div>
+
+  <!-- === EJERCICIO S4 === -->
+  <div class="block-card">
+    <div class="block-title">🧩 Ejercicio Interactivo — Completar el concepto correcto</div>
+    <p style="font-size:0.88rem;color:#444;margin-bottom:16px;">Selecciona la opción que completa correctamente cada enunciado.</p>
+
+    <!-- Ítem 1 -->
+    <div class="item-row" id="s4e-row1">
+      <div class="item-enunciado">1. El emprendedor "lifestyle" se caracteriza por:</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s4ei1" value="a"> a) Buscar el crecimiento exponencial y la escalabilidad global de su negocio.</label></li>
+        <li><label><input type="radio" name="s4ei1" value="b"> b) Crear un negocio que le permita vivir según su estilo de vida personal sin priorizar la expansión.</label></li>
+        <li><label><input type="radio" name="s4ei1" value="c"> c) Emprender exclusivamente dentro de grandes corporaciones.</label></li>
+        <li><label><input type="radio" name="s4ei1" value="d"> d) Fundar una organización sin fines de lucro con impacto social.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s4e-fb1"></div>
+    </div>
+
+    <!-- Ítem 2 -->
+    <div class="item-row" id="s4e-row2">
+      <div class="item-enunciado">2. El emprendedor serial se distingue por:</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s4ei2" value="a"> a) Desarrollar un único negocio durante toda su vida profesional.</label></li>
+        <li><label><input type="radio" name="s4ei2" value="b"> b) Crear y lanzar múltiples emprendimientos de manera sucesiva a lo largo del tiempo.</label></li>
+        <li><label><input type="radio" name="s4ei2" value="c"> c) Administrar franquicias de marcas internacionales.</label></li>
+        <li><label><input type="radio" name="s4ei2" value="d"> d) Emprender únicamente en el sector tecnológico.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s4e-fb2"></div>
+    </div>
+
+    <!-- Ítem 3 -->
+    <div class="item-row" id="s4e-row3">
+      <div class="item-enunciado">3. La identificación de oportunidades a través del análisis de tendencias consiste en:</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s4ei3" value="a"> a) Copiar modelos de negocio exitosos de otros países sin adaptación local.</label></li>
+        <li><label><input type="radio" name="s4ei3" value="b"> b) Observar cambios tecnológicos, sociales, económicos y culturales que crean necesidades no cubiertas.</label></li>
+        <li><label><input type="radio" name="s4ei3" value="c"> c) Estudiar los estados financieros de competidores directos.</label></li>
+        <li><label><input type="radio" name="s4ei3" value="d"> d) Analizar encuestas de satisfacción de los clientes actuales.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s4e-fb3"></div>
+    </div>
+
+    <!-- Ítem 4 -->
+    <div class="item-row" id="s4e-row4">
+      <div class="item-enunciado">4. Una competencia emprendedora clave es la tolerancia a la incertidumbre, lo que significa:</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s4ei4" value="a"> a) Ignorar los riesgos del entorno y tomar decisiones sin información.</label></li>
+        <li><label><input type="radio" name="s4ei4" value="b"> b) Actuar con decisión y resiliencia ante situaciones ambiguas o cambiantes.</label></li>
+        <li><label><input type="radio" name="s4ei4" value="c"> c) Delegar todas las decisiones al equipo directivo.</label></li>
+        <li><label><input type="radio" name="s4ei4" value="d"> d) Esperar a tener información perfecta antes de iniciar cualquier acción.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s4e-fb4"></div>
+    </div>
+
+    <!-- Ítem 5 -->
+    <div class="item-row" id="s4e-row5">
+      <div class="item-enunciado">5. El emprendedor social tiene como objetivo principal:</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s4ei5" value="a"> a) Maximizar el retorno económico para sus accionistas.</label></li>
+        <li><label><input type="radio" name="s4ei5" value="b"> b) Generar impacto positivo en la sociedad resolviendo problemas sociales o ambientales.</label></li>
+        <li><label><input type="radio" name="s4ei5" value="c"> c) Escalar su startup al mercado bursátil internacional.</label></li>
+        <li><label><input type="radio" name="s4ei5" value="d"> d) Operar dentro de una empresa establecida como intraemprendedor.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s4e-fb5"></div>
+    </div>
+
+    <!-- Ítem 6 -->
+    <div class="item-row" id="s4e-row6">
+      <div class="item-enunciado">6. El análisis PEST (Político, Económico, Social, Tecnológico) es útil para identificar oportunidades porque:</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s4ei6" value="a"> a) Permite calcular el precio de venta óptimo del producto.</label></li>
+        <li><label><input type="radio" name="s4ei6" value="b"> b) Mapea factores del macroentorno que pueden convertirse en oportunidades o amenazas para el emprendimiento.</label></li>
+        <li><label><input type="radio" name="s4ei6" value="c"> c) Evalúa el desempeño individual de los miembros del equipo.</label></li>
+        <li><label><input type="radio" name="s4ei6" value="d"> d) Describe únicamente el entorno político y sus efectos regulatorios.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s4e-fb6"></div>
+    </div>
+
+    <!-- Ítem 7 -->
+    <div class="item-row" id="s4e-row7">
+      <div class="item-enunciado">7. El emprendedor de alto impacto (high-impact entrepreneur) se distingue por:</div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s4ei7" value="a"> a) Enfocarse en preservar la estabilidad del negocio sin asumir riesgos adicionales.</label></li>
+        <li><label><input type="radio" name="s4ei7" value="b"> b) Crear negocios con potencial de escalar rápidamente, generar empleo masivo y transformar sectores.</label></li>
+        <li><label><input type="radio" name="s4ei7" value="c"> c) Emprender por obligación ante la pérdida de un trabajo.</label></li>
+        <li><label><input type="radio" name="s4ei7" value="d"> d) Operar exclusivamente en el sector de tecnología de la información.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s4e-fb7"></div>
+    </div>
+
+    <div class="alert-incomplete" id="s4e-alert">⚠️ Por favor responde TODOS los ítems antes de verificar.</div>
+    <br/>
+    <button class="btn-verificar" onclick="verificarEjercicio_s4()">✔ Verificar respuestas</button>
+    <button class="btn-reiniciar" onclick="reiniciarEjercicio_s4()">↺ Reiniciar</button>
+    <div class="result-panel" id="s4e-result">
+      <div class="result-score" id="s4e-score"></div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="s4e-bar"></div></div>
+      <div class="result-msg" id="s4e-msg"></div>
+    </div>
+  </div>
+
+  <hr class="separator"/>
+
+  <!-- === CUESTIONARIO S4 === -->
+  <div class="block-card">
+    <div class="block-title">📋 Cuestionario — 10 Preguntas de Opción Múltiple</div>
+
+    <!-- P1 -->
+    <div class="item-row" id="s4q-row1">
+      <div class="item-enunciado">1. ¿Cuál de los siguientes tipos de emprendedor busca principalmente la escalabilidad y el crecimiento exponencial? <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s4qi1" value="a"> a) Emprendedor lifestyle.</label></li>
+        <li><label><input type="radio" name="s4qi1" value="b"> b) Emprendedor de alto impacto (high-impact).</label></li>
+        <li><label><input type="radio" name="s4qi1" value="c"> c) Emprendedor por necesidad.</label></li>
+        <li><label><input type="radio" name="s4qi1" value="d"> d) Emprendedor social.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s4q-fb1"></div>
+    </div>
+
+    <!-- P2 -->
+    <div class="item-row" id="s4q-row2">
+      <div class="item-enunciado">2. ¿Qué entiende la teoría del emprendimiento por "capacidad emprendedora"? <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s4qi2" value="a"> a) El monto de capital con que cuenta un individuo para iniciar un negocio.</label></li>
+        <li><label><input type="radio" name="s4qi2" value="b"> b) El conjunto de competencias, actitudes y habilidades que permiten identificar oportunidades y desarrollarlas.</label></li>
+        <li><label><input type="radio" name="s4qi2" value="c"> c) El título académico en administración de empresas o carreras afines.</label></li>
+        <li><label><input type="radio" name="s4qi2" value="d"> d) La experiencia mínima de 5 años en el sector de interés.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s4q-fb2"></div>
+    </div>
+
+    <!-- P3 -->
+    <div class="item-row" id="s4q-row3">
+      <div class="item-enunciado">3. El análisis de tendencias como herramienta de identificación de oportunidades examina principalmente: <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s4qi3" value="a"> a) Los balances contables de las empresas competidoras.</label></li>
+        <li><label><input type="radio" name="s4qi3" value="b"> b) Cambios en el entorno (tecnológico, social, económico, demográfico) que generan nuevas necesidades.</label></li>
+        <li><label><input type="radio" name="s4qi3" value="c"> c) Las preferencias estéticas del diseñador del producto.</label></li>
+        <li><label><input type="radio" name="s4qi3" value="d"> d) El historial crediticio del fundador del emprendimiento.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s4q-fb3"></div>
+    </div>
+
+    <!-- P4 -->
+    <div class="item-row" id="s4q-row4">
+      <div class="item-enunciado">4. El emprendedor social se diferencia del emprendedor comercial porque: <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s4qi4" value="a"> a) No utiliza herramientas de innovación ni modelos de negocio.</label></li>
+        <li><label><input type="radio" name="s4qi4" value="b"> b) Su misión principal es crear valor social o ambiental, no solo maximizar utilidades económicas.</label></li>
+        <li><label><input type="radio" name="s4qi4" value="c"> c) Opera exclusivamente con donaciones sin generar ningún ingreso.</label></li>
+        <li><label><input type="radio" name="s4qi4" value="d"> d) No puede tener fines de lucro bajo ninguna circunstancia.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s4q-fb4"></div>
+    </div>
+
+    <!-- P5 -->
+    <div class="item-row" id="s4q-row5">
+      <div class="item-enunciado">5. ¿Cuál de las siguientes opciones describe mejor a un emprendedor serial? <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s4qi5" value="a"> a) Alguien que gestiona una sola empresa durante décadas con enfoque conservador.</label></li>
+        <li><label><input type="radio" name="s4qi5" value="b"> b) Alguien que funda, vende o cierra negocios y lanza nuevos emprendimientos sucesivamente.</label></li>
+        <li><label><input type="radio" name="s4qi5" value="c"> c) Alguien que solo emprende en sectores regulados por el Estado.</label></li>
+        <li><label><input type="radio" name="s4qi5" value="d"> d) Alguien que hereda un negocio familiar y lo administra.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s4q-fb5"></div>
+    </div>
+
+    <!-- P6 -->
+    <div class="item-row" id="s4q-row6">
+      <div class="item-enunciado">6. ¿Por qué la resiliencia es una competencia central en el perfil del emprendedor? <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s4qi6" value="a"> a) Porque permite evitar completamente los fracasos empresariales.</label></li>
+        <li><label><input type="radio" name="s4qi6" value="b"> b) Porque capacita al emprendedor para recuperarse de los fracasos, aprender de ellos y continuar avanzando.</label></li>
+        <li><label><input type="radio" name="s4qi6" value="c"> c) Porque garantiza el acceso a financiamiento bancario preferencial.</label></li>
+        <li><label><input type="radio" name="s4qi6" value="d"> d) Porque reemplaza la necesidad de planificación estratégica.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s4q-fb6"></div>
+    </div>
+
+    <!-- P7 -->
+    <div class="item-row" id="s4q-row7">
+      <div class="item-enunciado">7. ¿Cuál de las siguientes fuentes de identificación de oportunidades propone Peter Drucker en su obra? <span class="badge-tipo badge-teorica">Teórica</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s4qi7" value="a"> a) La intuición y los sueños del emprendedor.</label></li>
+        <li><label><input type="radio" name="s4qi7" value="b"> b) Las inconsistencias, cambios demográficos, nuevos conocimientos y necesidades no cubiertas del mercado.</label></li>
+        <li><label><input type="radio" name="s4qi7" value="c"> c) Los análisis de rentabilidad histórica de empresas consolidadas.</label></li>
+        <li><label><input type="radio" name="s4qi7" value="d"> d) Las modas pasajeras y los gustos de la generación Z exclusivamente.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s4q-fb7"></div>
+    </div>
+
+    <!-- P8 ANÁLISIS -->
+    <div class="item-row" id="s4q-row8">
+      <div class="item-enunciado">8. Andrés fundó una empresa de tecnología educativa, la vendió, luego creó una app de delivery, la escala y volvió a vender; ahora está desarrollando una plataforma de telemedicina. ¿Qué tipo de emprendedor es Andrés? <span class="badge-tipo badge-analisis">Análisis</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s4qi8" value="a"> a) Emprendedor lifestyle.</label></li>
+        <li><label><input type="radio" name="s4qi8" value="b"> b) Emprendedor serial.</label></li>
+        <li><label><input type="radio" name="s4qi8" value="c"> c) Emprendedor por necesidad.</label></li>
+        <li><label><input type="radio" name="s4qi8" value="d"> d) Intraemprendedor.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s4q-fb8"></div>
+    </div>
+
+    <!-- P9 ANÁLISIS -->
+    <div class="item-row" id="s4q-row9">
+      <div class="item-enunciado">9. Una diseñadora gráfica renuncia a su trabajo corporativo para montar un estudio desde casa que le permita trabajar sus propios horarios, viajar y elegir sus clientes. No busca expandir el negocio. ¿Qué tipo de emprendedor describe este perfil? <span class="badge-tipo badge-analisis">Análisis</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s4qi9" value="a"> a) Emprendedor de alto impacto.</label></li>
+        <li><label><input type="radio" name="s4qi9" value="b"> b) Emprendedor serial.</label></li>
+        <li><label><input type="radio" name="s4qi9" value="c"> c) Emprendedor lifestyle.</label></li>
+        <li><label><input type="radio" name="s4qi9" value="d"> d) Emprendedor social.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s4q-fb9"></div>
+    </div>
+
+    <!-- P10 ANÁLISIS -->
+    <div class="item-row" id="s4q-row10">
+      <div class="item-enunciado">10. Un equipo de jóvenes detecta que el envejecimiento poblacional en Ecuador crea una creciente demanda de servicios de cuidado para adultos mayores. Deciden crear una plataforma que conecta cuidadores certificados con familias. ¿Qué herramienta de identificación de oportunidades aplican? <span class="badge-tipo badge-analisis">Análisis</span></div>
+      <ul class="options-list">
+        <li><label><input type="radio" name="s4qi10" value="a"> a) Análisis de competencia directa (benchmarking).</label></li>
+        <li><label><input type="radio" name="s4qi10" value="b"> b) Análisis de tendencias demográficas como fuente de oportunidad.</label></li>
+        <li><label><input type="radio" name="s4qi10" value="c"> c) Estudio de satisfacción de clientes actuales.</label></li>
+        <li><label><input type="radio" name="s4qi10" value="d"> d) Análisis de estados financieros del sector salud.</label></li>
+      </ul>
+      <div class="feedback-msg" id="s4q-fb10"></div>
+    </div>
+
+    <div class="alert-incomplete" id="s4q-alert">⚠️ Por favor responde TODAS las preguntas antes de verificar.</div>
+    <br/>
+    <button class="btn-verificar" onclick="verificarQuiz_s4()">✔ Verificar respuestas</button>
+    <button class="btn-reiniciar" onclick="reiniciarQuiz_s4()">↺ Reiniciar</button>
+    <div class="result-panel" id="s4q-result">
+      <div class="result-score" id="s4q-score"></div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="s4q-bar"></div></div>
+      <div class="result-msg" id="s4q-msg"></div>
+    </div>
+  </div>
+</div><!-- /tab s4 -->
+
+
+<!-- ============================================================
+     JAVASCRIPT — ORGANIZADO POR SEMANA
+     ============================================================ -->
+<script>
+/* ===========================
+   UTILIDADES GLOBALES
+   =========================== */
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function getMensaje(pct) {
+  if (pct === 100) return '🏆 ¡Excelente dominio del tema!';
+  if (pct >= 80)  return '🎯 ¡Muy buen trabajo!';
+  if (pct >= 60)  return '📘 Vas por buen camino, repasa los ítems en rojo.';
+  if (pct >= 40)  return '⚠️ Necesitas reforzar. Vuelve al material.';
+  return '📖 Te recomendamos releer el contenido antes de continuar.';
+}
+
+function mostrarResultado(panelId, barId, scoreId, msgId, correctos, total) {
+  var panel = document.getElementById(panelId);
+  var bar   = document.getElementById(barId);
+  var score = document.getElementById(scoreId);
+  var msg   = document.getElementById(msgId);
+  var pct   = Math.round((correctos / total) * 100);
+  panel.classList.add('show');
+  score.textContent = correctos + ' / ' + total + ' correctas  (' + pct + '%)';
+  msg.textContent   = getMensaje(pct);
+  setTimeout(function(){ bar.style.width = pct + '%'; }, 80);
+}
+
+function getSelected(name) {
+  var radios = document.querySelectorAll('input[name="' + name + '"]');
+  for (var i = 0; i < radios.length; i++) {
+    if (radios[i].checked) return radios[i].value;
+  }
+  return null;
+}
+
+function resetRadios(name) {
+  document.querySelectorAll('input[name="' + name + '"]').forEach(function(r){ r.checked = false; });
+}
+
+function resetRow(rowId) {
+  var row = document.getElementById(rowId);
+  row.classList.remove('correct','incorrect');
+}
+
+function resetFb(fbId) {
+  var fb = document.getElementById(fbId);
+  fb.classList.remove('show','ok','err');
+  fb.textContent = '';
+}
+
+/* ===========================
+   SEMANA 1 — EJERCICIO
+   =========================== */
+var ejercicioCorrects_s1 = { s1ei1:'V', s1ei2:'F', s1ei3:'V', s1ei4:'F', s1ei5:'V', s1ei6:'F', s1ei7:'V' };
+var ejercicioFeedbacks_s1 = {
+  s1ei1: { ok: '✔ Correcto. Schumpeter acuñó la "destrucción creativa" describiendo al emprendedor como motor del cambio económico.', err: '✘ Incorrecto. Sí fue Schumpeter quien introdujo este concepto central en la teoría del emprendimiento.' },
+  s1ei2: { ok: '✔ Correcto. El término proviene del FRANCÉS "entreprendre" (siglo XVIII), no del inglés.', err: '✘ Incorrecto. El origen es francés: "entreprendre" significa "acometer" o "llevar a cabo". No es inglés ni del siglo XIX.' },
+  s1ei3: { ok: '✔ Correcto. Peter Drucker definió la innovación como la herramienta del emprendedor para convertir el cambio en oportunidad.', err: '✘ Incorrecto. Para Drucker la innovación es precisamente eso: la herramienta del emprendedor frente al cambio.' },
+  s1ei4: { ok: '✔ Correcto. La afirmación ES falsa: la innovación también incluye mejoras incrementales a lo existente.', err: '✘ Incorrecto. La innovación no requiere invención tecnológica nueva; las mejoras a productos o procesos existentes también son innovación.' },
+  s1ei5: { ok: '✔ Correcto. Tolerancia al riesgo, iniciativa, creatividad y liderazgo son rasgos reconocidos del perfil emprendedor.', err: '✘ Incorrecto. Estas características sí forman parte del perfil emprendedor según la teoría.' },
+  s1ei6: { ok: '✔ Correcto. Para Schumpeter el emprendedor es un agente de cambio radical, no un simple administrador de recursos.', err: '✘ Incorrecto. Schumpeter concibe al emprendedor como generador de cambios estructurales, no como administrador conservador.' },
+  s1ei7: { ok: '✔ Correcto. El emprendimiento existe tanto en startups como en empresas establecidas (intraemprendimiento).', err: '✘ Incorrecto. El emprendimiento puede ocurrir dentro de organizaciones ya existentes; a eso se llama intraemprendimiento.' }
+};
+
+function verificarEjercicio_s1() {
+  var items = ['s1ei1','s1ei2','s1ei3','s1ei4','s1ei5','s1ei6','s1ei7'];
+  for (var i = 0; i < items.length; i++) {
+    if (!getSelected(items[i])) {
+      document.getElementById('s1e-alert').classList.add('show');
+      return;
+    }
+  }
+  document.getElementById('s1e-alert').classList.remove('show');
+  var correctos = 0;
+  items.forEach(function(name, idx) {
+    var sel = getSelected(name);
+    var rowId = 's1e-row' + (idx+1);
+    var fbId  = 's1e-fb'  + (idx+1);
+    var row = document.getElementById(rowId);
+    var fb  = document.getElementById(fbId);
+    if (sel === ejercicioCorrects_s1[name]) {
+      row.classList.add('correct'); row.classList.remove('incorrect');
+      fb.textContent = ejercicioFeedbacks_s1[name].ok;
+      fb.className = 'feedback-msg show ok';
+      correctos++;
+    } else {
+      row.classList.add('incorrect'); row.classList.remove('correct');
+      fb.textContent = ejercicioFeedbacks_s1[name].err;
+      fb.className = 'feedback-msg show err';
+    }
+  });
+  mostrarResultado('s1e-result','s1e-bar','s1e-score','s1e-msg', correctos, items.length);
+}
+
+function reiniciarEjercicio_s1() {
+  ['s1ei1','s1ei2','s1ei3','s1ei4','s1ei5','s1ei6','s1ei7'].forEach(function(n,i){
+    resetRadios(n); resetRow('s1e-row'+(i+1)); resetFb('s1e-fb'+(i+1));
+  });
+  document.getElementById('s1e-alert').classList.remove('show');
+  var panel = document.getElementById('s1e-result');
+  panel.classList.remove('show');
+  document.getElementById('s1e-bar').style.width = '0%';
+}
+
+/* ===========================
+   SEMANA 1 — CUESTIONARIO
+   =========================== */
+var quizCorrects_s1 = { s1qi1:'b', s1qi2:'b', s1qi3:'c', s1qi4:'c', s1qi5:'b', s1qi6:'b', s1qi7:'c', s1qi8:'b', s1qi9:'b', s1qi10:'c' };
+var quizFeedbacks_s1 = {
+  s1qi1:  { ok:'✔ Correcto. Jean-Baptiste Say fue el primero en definir formalmente al emprendedor como agente que combina factores productivos.',      err:'✘ Incorrecto. Fue Jean-Baptiste Say quien ofreció la primera definición formal del emprendedor en el contexto económico.' },
+  s1qi2:  { ok:'✔ Correcto. La destrucción creativa describe cómo la innovación del emprendedor desplaza estructuras económicas obsoletas.',            err:'✘ Incorrecto. La destrucción creativa es el proceso por el que la innovación reemplaza estructuras económicas obsoletas.' },
+  s1qi3:  { ok:'✔ Correcto. Drucker definió la innovación como la herramienta específica del emprendedor que transforma el cambio en oportunidad.',      err:'✘ Incorrecto. Para Drucker, la innovación convierte el cambio en oportunidad; no es exclusiva de laboratorios corporativos.' },
+  s1qi4:  { ok:'✔ Correcto. "Entrepreneur" viene del francés "entreprendre" (acometer, llevar a cabo).',                                               err:'✘ Incorrecto. El origen es francés: "entreprendre" significa acometer una empresa.' },
+  s1qi5:  { ok:'✔ Correcto. La aversión total al fracaso y la búsqueda de certeza absoluta son lo opuesto al perfil emprendedor.',                      err:'✘ Incorrecto. La característica que NO pertenece al perfil es la aversión total al fracaso; el emprendedor acepta el riesgo.' },
+  s1qi6:  { ok:'✔ Correcto. El intraemprendimiento es la actividad emprendedora dentro de una organización ya existente.',                              err:'✘ Incorrecto. El intraemprendimiento ocurre dentro de empresas establecidas, no en startups nuevas.' },
+  s1qi7:  { ok:'✔ Correcto. La innovación es el motor que otorga valor diferencial al emprendimiento y genera ventajas competitivas.',                  err:'✘ Incorrecto. La relación es que la innovación actúa como motor de valor diferencial dentro del emprendimiento.' },
+  s1qi8:  { ok:'✔ Correcto. Para Drucker, la innovación no requiere invención; aquí se crea valor diferencial convirtiendo una oportunidad.',           err:'✘ Incorrecto. Según Drucker, no hace falta inventar algo nuevo: combinar elementos de forma diferenciada ya es innovación.' },
+  s1qi9:  { ok:'✔ Correcto. La app desplaza al modelo obsoleto de taxis, ilustrando perfectamente la destrucción creativa schumpeteriana.',              err:'✘ Incorrecto. Este caso ilustra la destrucción creativa: una innovación desplaza al modelo de negocio establecido.' },
+  s1qi10: { ok:'✔ Correcto. Carlos actúa como intraemprendedor dentro de su corporación al innovar en procesos internos de manera autónoma.',           err:'✘ Incorrecto. Este es un caso de intraemprendimiento: innovación que ocurre dentro de una organización existente.' }
+};
+
+function verificarQuiz_s1() {
+  var items = ['s1qi1','s1qi2','s1qi3','s1qi4','s1qi5','s1qi6','s1qi7','s1qi8','s1qi9','s1qi10'];
+  for (var i = 0; i < items.length; i++) {
+    if (!getSelected(items[i])) {
+      document.getElementById('s1q-alert').classList.add('show');
+      return;
+    }
+  }
+  document.getElementById('s1q-alert').classList.remove('show');
+  var correctos = 0;
+  items.forEach(function(name, idx) {
+    var sel = getSelected(name);
+    var rowId = 's1q-row' + (idx+1);
+    var fbId  = 's1q-fb'  + (idx+1);
+    var row = document.getElementById(rowId);
+    var fb  = document.getElementById(fbId);
+    if (sel === quizCorrects_s1[name]) {
+      row.classList.add('correct'); row.classList.remove('incorrect');
+      fb.textContent = quizFeedbacks_s1[name].ok;
+      fb.className = 'feedback-msg show ok';
+      correctos++;
+    } else {
+      row.classList.add('incorrect'); row.classList.remove('correct');
+      fb.textContent = quizFeedbacks_s1[name].err;
+      fb.className = 'feedback-msg show err';
+    }
+  });
+  mostrarResultado('s1q-result','s1q-bar','s1q-score','s1q-msg', correctos, items.length);
+}
+
+function reiniciarQuiz_s1() {
+  ['s1qi1','s1qi2','s1qi3','s1qi4','s1qi5','s1qi6','s1qi7','s1qi8','s1qi9','s1qi10'].forEach(function(n,i){
+    resetRadios(n); resetRow('s1q-row'+(i+1)); resetFb('s1q-fb'+(i+1));
+  });
+  document.getElementById('s1q-alert').classList.remove('show');
+  document.getElementById('s1q-result').classList.remove('show');
+  document.getElementById('s1q-bar').style.width = '0%';
+}
+
+/* ===========================
+   SEMANA 2 — EJERCICIO
+   =========================== */
+var ejercicioCorrects_s2 = { s2ei1:'V', s2ei2:'F', s2ei3:'V', s2ei4:'F', s2ei5:'V', s2ei6:'F', s2ei7:'V' };
+var ejercicioFeedbacks_s2 = {
+  s2ei1: { ok:'✔ Correcto. La innovación de producto implica crear o mejorar significativamente un bien o servicio.',                              err:'✘ Incorrecto. La definición correcta de innovación de producto incluye tanto la creación de nuevos bienes como la mejora significativa de los existentes.' },
+  s2ei2: { ok:'✔ Correcto. La afirmación es falsa: la innovación de proceso aplica a cualquier sector, no solo manufactura.',                      err:'✘ Incorrecto. La innovación de proceso aplica a todo tipo de organizaciones (servicios, educación, etc.), no solo fábricas.' },
+  s2ei3: { ok:'✔ Correcto. Identificar la oportunidad es el punto de partida del proceso emprendedor, antes de planificar.',                        err:'✘ Incorrecto. El proceso emprendedor sí inicia con la identificación de la oportunidad, que precede a la planificación.' },
+  s2ei4: { ok:'✔ Correcto. La afirmación es falsa: la disruptiva crea soluciones simples y asequibles para nuevos segmentos, no mejora el segmento premium.',  err:'✘ Incorrecto. La innovación disruptiva de Christensen apunta a segmentos desatendidos con soluciones más simples y accesibles, no al mercado premium.' },
+  s2ei5: { ok:'✔ Correcto. El modelo de 4 etapas incluye: identificación de oportunidad, plan, obtención de recursos y gestión/crecimiento.',       err:'✘ Incorrecto. Sí corresponde al modelo de 4 etapas del proceso emprendedor ampliamente citado en la literatura.' },
+  s2ei6: { ok:'✔ Correcto. La afirmación es falsa: la innovación de modelo de negocio rediseña cómo se crea, entrega y captura valor, no solo el precio.', err:'✘ Incorrecto. Cambiar solo el precio es una táctica comercial; la innovación de modelo de negocio transforma la estructura completa de creación de valor.' },
+  s2ei7: { ok:'✔ Correcto. Visión, equipo, propuesta de valor diferenciada y adaptación son factores de éxito reconocidos.',                       err:'✘ Incorrecto. Estos factores sí son claves de éxito del emprendimiento según la literatura especializada.' }
+};
+
+function verificarEjercicio_s2() {
+  var items = ['s2ei1','s2ei2','s2ei3','s2ei4','s2ei5','s2ei6','s2ei7'];
+  for (var i = 0; i < items.length; i++) {
+    if (!getSelected(items[i])) {
+      document.getElementById('s2e-alert').classList.add('show');
+      return;
+    }
+  }
+  document.getElementById('s2e-alert').classList.remove('show');
+  var correctos = 0;
+  items.forEach(function(name, idx) {
+    var sel = getSelected(name);
+    var rowId = 's2e-row' + (idx+1);
+    var fbId  = 's2e-fb'  + (idx+1);
+    var row = document.getElementById(rowId);
+    var fb  = document.getElementById(fbId);
+    if (sel === ejercicioCorrects_s2[name]) {
+      row.classList.add('correct'); row.classList.remove('incorrect');
+      fb.textContent = ejercicioFeedbacks_s2[name].ok;
+      fb.className = 'feedback-msg show ok';
+      correctos++;
+    } else {
+      row.classList.add('incorrect'); row.classList.remove('correct');
+      fb.textContent = ejercicioFeedbacks_s2[name].err;
+      fb.className = 'feedback-msg show err';
+    }
+  });
+  mostrarResultado('s2e-result','s2e-bar','s2e-score','s2e-msg', correctos, items.length);
+}
+
+function reiniciarEjercicio_s2() {
+  ['s2ei1','s2ei2','s2ei3','s2ei4','s2ei5','s2ei6','s2ei7'].forEach(function(n,i){
+    resetRadios(n); resetRow('s2e-row'+(i+1)); resetFb('s2e-fb'+(i+1));
+  });
+  document.getElementById('s2e-alert').classList.remove('show');
+  document.getElementById('s2e-result').classList.remove('show');
+  document.getElementById('s2e-bar').style.width = '0%';
+}
+
+/* ===========================
+   SEMANA 2 — CUESTIONARIO
+   =========================== */
+var quizCorrects_s2 = { s2qi1:'a', s2qi2:'b', s2qi3:'c', s2qi4:'b', s2qi5:'c', s2qi6:'b', s2qi7:'c', s2qi8:'b', s2qi9:'c', s2qi10:'b' };
+var quizFeedbacks_s2 = {
+  s2qi1:  { ok:'✔ Correcto. El Manual de Oslo define cuatro tipos: producto, proceso, marketing y organizacional.',                                   err:'✘ Incorrecto. El Manual de Oslo clasifica la innovación en producto, proceso, marketing y organizacional.' },
+  s2qi2:  { ok:'✔ Correcto. Christensen describe la innovación disruptiva como soluciones simples y accesibles que eventualmente desplazan al mercado establecido.', err:'✘ Incorrecto. La disruptiva apunta a segmentos desatendidos con soluciones asequibles; no es para el segmento premium.' },
+  s2qi3:  { ok:'✔ Correcto. La primera etapa es identificar y evaluar la oportunidad antes de cualquier otra acción.',                                err:'✘ Incorrecto. El proceso emprendedor comienza con la identificación y evaluación de la oportunidad.' },
+  s2qi4:  { ok:'✔ Correcto. La incremental introduce mejoras graduales; la radical transforma o crea mercados.',                                       err:'✘ Incorrecto. La diferencia clave: incremental mejora lo existente gradualmente; radical genera transformaciones de mercado.' },
+  s2qi5:  { ok:'✔ Correcto. Propuesta de valor clara, equipo comprometido y adaptación son factores de éxito reconocidos.',                           err:'✘ Incorrecto. Los factores de éxito incluyen propuesta de valor, equipo sólido y capacidad de adaptación al mercado.' },
+  s2qi6:  { ok:'✔ Correcto. La innovación de modelo de negocio rediseña cómo se crea, entrega y captura valor.',                                       err:'✘ Incorrecto. Va más allá del precio: implica rediseñar toda la lógica de creación y captura de valor.' },
+  s2qi7:  { ok:'✔ Correcto. El desarrollo del plan de negocio abarca la planificación estratégica, modelo de negocio y proyecciones financieras.',     err:'✘ Incorrecto. Esa actividad corresponde a la etapa de desarrollo del plan de negocio.' },
+  s2qi8:  { ok:'✔ Correcto. Netflix rediseñó su modelo de negocio con componente disruptivo al pasar del físico al streaming digital.',               err:'✘ Incorrecto. Netflix protagonizó una innovación de modelo de negocio con efecto disruptivo sobre el mercado de entretenimiento.' },
+  s2qi9:  { ok:'✔ Correcto. Pedro acaba de detectar la oportunidad; está en la primera etapa: identificación y evaluación.',                          err:'✘ Incorrecto. Detectar que no hay plataforma especializada es precisamente la etapa de identificación de la oportunidad.' },
+  s2qi10: { ok:'✔ Correcto. Cambiar el método de producción sin alterar el producto es innovación de proceso.',                                        err:'✘ Incorrecto. Al mejorar cómo se produce (sin cambiar qué se vende) se aplica innovación de proceso.' }
+};
+
+function verificarQuiz_s2() {
+  var items = ['s2qi1','s2qi2','s2qi3','s2qi4','s2qi5','s2qi6','s2qi7','s2qi8','s2qi9','s2qi10'];
+  for (var i = 0; i < items.length; i++) {
+    if (!getSelected(items[i])) {
+      document.getElementById('s2q-alert').classList.add('show');
+      return;
+    }
+  }
+  document.getElementById('s2q-alert').classList.remove('show');
+  var correctos = 0;
+  items.forEach(function(name, idx) {
+    var sel = getSelected(name);
+    var rowId = 's2q-row' + (idx+1);
+    var fbId  = 's2q-fb'  + (idx+1);
+    var row = document.getElementById(rowId);
+    var fb  = document.getElementById(fbId);
+    if (sel === quizCorrects_s2[name]) {
+      row.classList.add('correct'); row.classList.remove('incorrect');
+      fb.textContent = quizFeedbacks_s2[name].ok;
+      fb.className = 'feedback-msg show ok';
+      correctos++;
+    } else {
+      row.classList.add('incorrect'); row.classList.remove('correct');
+      fb.textContent = quizFeedbacks_s2[name].err;
+      fb.className = 'feedback-msg show err';
+    }
+  });
+  mostrarResultado('s2q-result','s2q-bar','s2q-score','s2q-msg', correctos, items.length);
+}
+
+function reiniciarQuiz_s2() {
+  ['s2qi1','s2qi2','s2qi3','s2qi4','s2qi5','s2qi6','s2qi7','s2qi8','s2qi9','s2qi10'].forEach(function(n,i){
+    resetRadios(n); resetRow('s2q-row'+(i+1)); resetFb('s2q-fb'+(i+1));
+  });
+  document.getElementById('s2q-alert').classList.remove('show');
+  document.getElementById('s2q-result').classList.remove('show');
+  document.getElementById('s2q-bar').style.width = '0%';
+}
+
+/* ===========================
+   SEMANA 3 — EJERCICIO
+   =========================== */
+var ejercicioCorrects_s3 = { s3ei1:'V', s3ei2:'F', s3ei3:'V', s3ei4:'F', s3ei5:'V', s3ei6:'V', s3ei7:'V' };
+var ejercicioFeedbacks_s3 = {
+  s3ei1: { ok:'✔ Correcto. El GEM es el principal estudio anual de actividad emprendedora a nivel mundial.',                                          err:'✘ Incorrecto. El GEM sí es el principal estudio anual de medición de actividad emprendedora en el mundo.' },
+  s3ei2: { ok:'✔ Correcto. La afirmación tiene los conceptos invertidos. Por oportunidad = detectar nicho atractivo; por necesidad = falta de empleo.', err:'✘ Incorrecto. Los conceptos están invertidos: por oportunidad nace de detectar un nicho; por necesidad, de la falta de empleo.' },
+  s3ei3: { ok:'✔ Correcto. Ecuador efectivamente presenta tasas TEA superiores al promedio de países de altos ingresos, aunque en buena parte por necesidad.', err:'✘ Incorrecto. Ecuador sí aparece con TEA superiores al promedio de economías avanzadas según reportes del GEM.' },
+  s3ei4: { ok:'✔ Correcto. La afirmación es falsa: el ecosistema incluye múltiples actores (universidades, gobierno, inversores, aceleradoras, cultura…).', err:'✘ Incorrecto. El ecosistema emprendedor es mucho más amplio: incluye universidades, gobierno, aceleradoras, mentores y cultura.' },
+  s3ei5: { ok:'✔ Correcto. El MIPRO en Ecuador tiene competencias formales en el fomento del emprendimiento y la producción.',                          err:'✘ Incorrecto. El MIPRO sí cumple un rol en la política pública de emprendimiento en Ecuador.' },
+  s3ei6: { ok:'✔ Correcto. Silicon Valley y los países nórdicos combinan esos cuatro pilares que hacen de sus ecosistemas referencias mundiales.',     err:'✘ Incorrecto. Sí son referentes mundiales por esa combinación de capital, talento, cultura e infraestructura.' },
+  s3ei7: { ok:'✔ Correcto. En Latinoamérica el emprendimiento informal se vincula predominantemente con emprendimiento por necesidad.',                 err:'✘ Incorrecto. El emprendimiento informal latinoamericano se asocia principalmente al emprendimiento por necesidad.' }
+};
+
+function verificarEjercicio_s3() {
+  var items = ['s3ei1','s3ei2','s3ei3','s3ei4','s3ei5','s3ei6','s3ei7'];
+  for (var i = 0; i < items.length; i++) {
+    if (!getSelected(items[i])) {
+      document.getElementById('s3e-alert').classList.add('show');
+      return;
+    }
+  }
+  document.getElementById('s3e-alert').classList.remove('show');
+  var correctos = 0;
+  items.forEach(function(name, idx) {
+    var sel = getSelected(name);
+    var rowId = 's3e-row' + (idx+1);
+    var fbId  = 's3e-fb'  + (idx+1);
+    var row = document.getElementById(rowId);
+    var fb  = document.getElementById(fbId);
+    if (sel === ejercicioCorrects_s3[name]) {
+      row.classList.add('correct'); row.classList.remove('incorrect');
+      fb.textContent = ejercicioFeedbacks_s3[name].ok;
+      fb.className = 'feedback-msg show ok';
+      correctos++;
+    } else {
+      row.classList.add('incorrect'); row.classList.remove('correct');
+      fb.textContent = ejercicioFeedbacks_s3[name].err;
+      fb.className = 'feedback-msg show err';
+    }
+  });
+  mostrarResultado('s3e-result','s3e-bar','s3e-score','s3e-msg', correctos, items.length);
+}
+
+function reiniciarEjercicio_s3() {
+  ['s3ei1','s3ei2','s3ei3','s3ei4','s3ei5','s3ei6','s3ei7'].forEach(function(n,i){
+    resetRadios(n); resetRow('s3e-row'+(i+1)); resetFb('s3e-fb'+(i+1));
+  });
+  document.getElementById('s3e-alert').classList.remove('show');
+  document.getElementById('s3e-result').classList.remove('show');
+  document.getElementById('s3e-bar').style.width = '0%';
+}
+
+/* ===========================
+   SEMANA 3 — CUESTIONARIO
+   =========================== */
+var quizCorrects_s3 = { s3qi1:'b', s3qi2:'b', s3qi3:'b', s3qi4:'c', s3qi5:'b', s3qi6:'b', s3qi7:'b', s3qi8:'c', s3qi9:'b', s3qi10:'c' };
+var quizFeedbacks_s3 = {
+  s3qi1:  { ok:'✔ Correcto. El TEA mide el % de adultos que están iniciando o han iniciado recientemente un negocio (menos de 3,5 años).',             err:'✘ Incorrecto. TEA mide el porcentaje de adultos con actividad emprendedora temprana (hasta 3,5 años de operación).' },
+  s3qi2:  { ok:'✔ Correcto. Por oportunidad = nicho atractivo; por necesidad = sin alternativas laborales.',                                           err:'✘ Incorrecto. Por oportunidad surge de detectar un mercado atractivo; por necesidad, de la falta de opciones laborales.' },
+  s3qi3:  { ok:'✔ Correcto. El ecosistema incluye emprendedores, inversores, universidades, gobierno, aceleradoras, mentores y cultura.',               err:'✘ Incorrecto. El ecosistema emprendedor es multidimensional; no se reduce a emprendedores y bancos.' },
+  s3qi4:  { ok:'✔ Correcto. Las altas tasas TEA ecuatorianas se explican en parte por el emprendimiento por necesidad ante escasas opciones formales.', err:'✘ Incorrecto. Las altas tasas TEA de Ecuador responden principalmente al emprendimiento por necesidad.' },
+  s3qi5:  { ok:'✔ Correcto. Las aceleradoras e incubadoras ofrecen mentoría, redes y recursos para acelerar el crecimiento de startups.',               err:'✘ Incorrecto. El rol principal de aceleradoras e incubadoras es acompañar y acelerar startups, no otorgar créditos.' },
+  s3qi6:  { ok:'✔ Correcto. Silicon Valley combina capital de riesgo, universidades de élite, talento global y cultura de tolerancia al fracaso.',      err:'✘ Incorrecto. El éxito de Silicon Valley se debe a la combinación de capital, universidades, talento y cultura emprendedora.' },
+  s3qi7:  { ok:'✔ Correcto. Las universidades forman talento, generan investigación aplicada y articulan proyectos con el sector productivo.',          err:'✘ Incorrecto. Las universidades tienen un rol activo: formación, investigación aplicada y vinculación con el entorno productivo.' },
+  s3qi8:  { ok:'✔ Correcto. Ana emprendió por necesidad al quedarse sin empleo y buscar ingresos alternativos.',                                        err:'✘ Incorrecto. Este es un caso típico de emprendimiento por necesidad: se emprende ante la falta de empleo.' },
+  s3qi9:  { ok:'✔ Correcto. Activan academia (universidad), capital de riesgo (fondo semilla) y política pública (MIPRO): múltiples actores.',          err:'✘ Incorrecto. Al involucrar universidad, capital semilla y MIPRO, activan múltiples actores del ecosistema.' },
+  s3qi10: { ok:'✔ Correcto. Las brechas frecuentes del ecosistema ecuatoriano son: financiamiento de riesgo escaso, baja tolerancia al fracaso y débil articulación entre actores.', err:'✘ Incorrecto. Las brechas identificadas son: poco capital de riesgo, baja cultura de tolerancia al fracaso y articulación débil entre actores.' }
+};
+
+function verificarQuiz_s3() {
+  var items = ['s3qi1','s3qi2','s3qi3','s3qi4','s3qi5','s3qi6','s3qi7','s3qi8','s3qi9','s3qi10'];
+  for (var i = 0; i < items.length; i++) {
+    if (!getSelected(items[i])) {
+      document.getElementById('s3q-alert').classList.add('show');
+      return;
+    }
+  }
+  document.getElementById('s3q-alert').classList.remove('show');
+  var correctos = 0;
+  items.forEach(function(name, idx) {
+    var sel = getSelected(name);
+    var rowId = 's3q-row' + (idx+1);
+    var fbId  = 's3q-fb'  + (idx+1);
+    var row = document.getElementById(rowId);
+    var fb  = document.getElementById(fbId);
+    if (sel === quizCorrects_s3[name]) {
+      row.classList.add('correct'); row.classList.remove('incorrect');
+      fb.textContent = quizFeedbacks_s3[name].ok;
+      fb.className = 'feedback-msg show ok';
+      correctos++;
+    } else {
+      row.classList.add('incorrect'); row.classList.remove('correct');
+      fb.textContent = quizFeedbacks_s3[name].err;
+      fb.className = 'feedback-msg show err';
+    }
+  });
+  mostrarResultado('s3q-result','s3q-bar','s3q-score','s3q-msg', correctos, items.length);
+}
+
+function reiniciarQuiz_s3() {
+  ['s3qi1','s3qi2','s3qi3','s3qi4','s3qi5','s3qi6','s3qi7','s3qi8','s3qi9','s3qi10'].forEach(function(n,i){
+    resetRadios(n); resetRow('s3q-row'+(i+1)); resetFb('s3q-fb'+(i+1));
+  });
+  document.getElementById('s3q-alert').classList.remove('show');
+  document.getElementById('s3q-result').classList.remove('show');
+  document.getElementById('s3q-bar').style.width = '0%';
+}
+
+/* ===========================
+   SEMANA 4 — EJERCICIO
+   =========================== */
+var ejercicioCorrects_s4 = { s4ei1:'b', s4ei2:'b', s4ei3:'b', s4ei4:'b', s4ei5:'b', s4ei6:'b', s4ei7:'b' };
+var ejercicioFeedbacks_s4 = {
+  s4ei1: { ok:'✔ Correcto. El emprendedor lifestyle construye un negocio alineado con su estilo de vida sin priorizar la expansión.',              err:'✘ Incorrecto. El emprendedor lifestyle busca un negocio que se ajuste a su estilo de vida, no la escalabilidad global.' },
+  s4ei2: { ok:'✔ Correcto. El emprendedor serial crea múltiples negocios sucesivos a lo largo de su trayectoria.',                                err:'✘ Incorrecto. El emprendedor serial se caracteriza por lanzar múltiples emprendimientos de manera sucesiva.' },
+  s4ei3: { ok:'✔ Correcto. El análisis de tendencias observa cambios en el entorno para detectar necesidades emergentes.',                         err:'✘ Incorrecto. Analizar tendencias implica observar cambios tecnológicos, sociales, económicos y culturales del entorno.' },
+  s4ei4: { ok:'✔ Correcto. La tolerancia a la incertidumbre es actuar con decisión y resiliencia ante ambigüedad, no ignorar riesgos.',            err:'✘ Incorrecto. Tolerar la incertidumbre es actuar con decisión pese a la ambigüedad; no significa ignorar los riesgos.' },
+  s4ei5: { ok:'✔ Correcto. El emprendedor social tiene como norte el impacto positivo en la sociedad o el medioambiente.',                         err:'✘ Incorrecto. El objetivo principal del emprendedor social es el impacto social o ambiental positivo.' },
+  s4ei6: { ok:'✔ Correcto. El análisis PEST mapea factores del macroentorno que pueden ser oportunidades o amenazas.',                             err:'✘ Incorrecto. El análisis PEST es una herramienta de macroentorno que identifica oportunidades y amenazas en cuatro dimensiones.' },
+  s4ei7: { ok:'✔ Correcto. El emprendedor de alto impacto busca escalar rápidamente, generar empleo masivo y transformar sectores.',               err:'✘ Incorrecto. El emprendedor de alto impacto se distingue por su potencial de escala, generación de empleo y transformación sectorial.' }
+};
+
+function verificarEjercicio_s4() {
+  var items = ['s4ei1','s4ei2','s4ei3','s4ei4','s4ei5','s4ei6','s4ei7'];
+  for (var i = 0; i < items.length; i++) {
+    if (!getSelected(items[i])) {
+      document.getElementById('s4e-alert').classList.add('show');
+      return;
+    }
+  }
+  document.getElementById('s4e-alert').classList.remove('show');
+  var correctos = 0;
+  items.forEach(function(name, idx) {
+    var sel = getSelected(name);
+    var rowId = 's4e-row' + (idx+1);
+    var fbId  = 's4e-fb'  + (idx+1);
+    var row = document.getElementById(rowId);
+    var fb  = document.getElementById(fbId);
+    if (sel === ejercicioCorrects_s4[name]) {
+      row.classList.add('correct'); row.classList.remove('incorrect');
+      fb.textContent = ejercicioFeedbacks_s4[name].ok;
+      fb.className = 'feedback-msg show ok';
+      correctos++;
+    } else {
+      row.classList.add('incorrect'); row.classList.remove('correct');
+      fb.textContent = ejercicioFeedbacks_s4[name].err;
+      fb.className = 'feedback-msg show err';
+    }
+  });
+  mostrarResultado('s4e-result','s4e-bar','s4e-score','s4e-msg', correctos, items.length);
+}
+
+function reiniciarEjercicio_s4() {
+  ['s4ei1','s4ei2','s4ei3','s4ei4','s4ei5','s4ei6','s4ei7'].forEach(function(n,i){
+    resetRadios(n); resetRow('s4e-row'+(i+1)); resetFb('s4e-fb'+(i+1));
+  });
+  document.getElementById('s4e-alert').classList.remove('show');
+  document.getElementById('s4e-result').classList.remove('show');
+  document.getElementById('s4e-bar').style.width = '0%';
+}
+
+/* ===========================
+   SEMANA 4 — CUESTIONARIO
+   =========================== */
+var quizCorrects_s4 = { s4qi1:'b', s4qi2:'b', s4qi3:'b', s4qi4:'b', s4qi5:'b', s4qi6:'b', s4qi7:'b', s4qi8:'b', s4qi9:'c', s4qi10:'b' };
+var quizFeedbacks_s4 = {
+  s4qi1:  { ok:'✔ Correcto. El emprendedor de alto impacto es quien busca escalar exponencialmente y transformar mercados.',                         err:'✘ Incorrecto. La escalabilidad y el crecimiento exponencial caracterizan al emprendedor de alto impacto.' },
+  s4qi2:  { ok:'✔ Correcto. La capacidad emprendedora es el conjunto de competencias, actitudes y habilidades para detectar y aprovechar oportunidades.', err:'✘ Incorrecto. No depende del capital ni del título; es un conjunto de competencias y actitudes.' },
+  s4qi3:  { ok:'✔ Correcto. El análisis de tendencias examina cambios en el entorno (tecnológico, social, económico, demográfico) que generan nuevas necesidades.', err:'✘ Incorrecto. El análisis de tendencias observa cambios del macroentorno que crean necesidades no cubiertas.' },
+  s4qi4:  { ok:'✔ Correcto. El emprendedor social prioriza crear valor social o ambiental; puede tener ingresos pero no es su fin principal.',         err:'✘ Incorrecto. El emprendedor social tiene como misión principal el impacto social o ambiental, no la maximización de utilidades.' },
+  s4qi5:  { ok:'✔ Correcto. El emprendedor serial funda, vende o cierra negocios y luego lanza nuevos emprendimientos sucesivamente.',                  err:'✘ Incorrecto. El emprendedor serial lanza múltiples negocios a lo largo del tiempo, no gestiona uno solo.' },
+  s4qi6:  { ok:'✔ Correcto. La resiliencia capacita al emprendedor para recuperarse del fracaso, aprender y seguir avanzando.',                         err:'✘ Incorrecto. La resiliencia permite recuperarse del fracaso y aprender de él; no lo elimina ni reemplaza la planificación.' },
+  s4qi7:  { ok:'✔ Correcto. Drucker señala: inconsistencias, cambios demográficos, nuevo conocimiento y necesidades de mercado como fuentes de oportunidad.', err:'✘ Incorrecto. Drucker identifica fuentes sistemáticas de oportunidad: inconsistencias, demografía, conocimiento y necesidades.' },
+  s4qi8:  { ok:'✔ Correcto. Andrés crea, vende y relanza múltiples negocios sucesivamente: perfil clásico del emprendedor serial.',                    err:'✘ Incorrecto. Al fundar y vender múltiples emprendimientos en secuencia, Andrés es un emprendedor serial.' },
+  s4qi9:  { ok:'✔ Correcto. Construir un negocio adaptado al estilo de vida personal sin buscar expansión es el perfil del emprendedor lifestyle.',     err:'✘ Incorrecto. Este perfil corresponde al emprendedor lifestyle: el negocio sirve al estilo de vida, sin afán de expansión.' },
+  s4qi10: { ok:'✔ Correcto. Detectar el envejecimiento poblacional como fuente de demanda es un clásico análisis de tendencias demográficas.',          err:'✘ Incorrecto. Identificar el envejecimiento como tendencia que crea demanda es análisis de tendencias demográficas.' }
+};
+
+function verificarQuiz_s4() {
+  var items = ['s4qi1','s4qi2','s4qi3','s4qi4','s4qi5','s4qi6','s4qi7','s4qi8','s4qi9','s4qi10'];
+  for (var i = 0; i < items.length; i++) {
+    if (!getSelected(items[i])) {
+      document.getElementById('s4q-alert').classList.add('show');
+      return;
+    }
+  }
+  document.getElementById('s4q-alert').classList.remove('show');
+  var correctos = 0;
+  items.forEach(function(name, idx) {
+    var sel = getSelected(name);
+    var rowId = 's4q-row' + (idx+1);
+    var fbId  = 's4q-fb'  + (idx+1);
+    var row = document.getElementById(rowId);
+    var fb  = document.getElementById(fbId);
+    if (sel === quizCorrects_s4[name]) {
+      row.classList.add('correct'); row.classList.remove('incorrect');
+      fb.textContent = quizFeedbacks_s4[name].ok;
+      fb.className = 'feedback-msg show ok';
+      correctos++;
+    } else {
+      row.classList.add('incorrect'); row.classList.remove('correct');
+      fb.textContent = quizFeedbacks_s4[name].err;
+      fb.className = 'feedback-msg show err';
+    }
+  });
+  mostrarResultado('s4q-result','s4q-bar','s4q-score','s4q-msg', correctos, items.length);
+}
+
+function reiniciarQuiz_s4() {
+  ['s4qi1','s4qi2','s4qi3','s4qi4','s4qi5','s4qi6','s4qi7','s4qi8','s4qi9','s4qi10'].forEach(function(n,i){
+    resetRadios(n); resetRow('s4q-row'+(i+1)); resetFb('s4q-fb'+(i+1));
+  });
+  document.getElementById('s4q-alert').classList.remove('show');
+  document.getElementById('s4q-result').classList.remove('show');
+  document.getElementById('s4q-bar').style.width = '0%';
+}
+</script>
+</body>
+</html>

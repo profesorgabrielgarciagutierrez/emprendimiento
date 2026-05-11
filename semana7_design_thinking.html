@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Semana 7 | Design Thinking | Emprendimiento e Innovación</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: #f4f6f9;
+    color: #1a1a2e;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4 { font-family: 'Lora', serif; }
+
+  /* ===== HEADER ===== */
+  .site-header {
+    background: #003366;
+    color: #fff;
+    padding: 18px 28px;
+  }
+  .site-header .inst { font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.82; margin-bottom: 4px; }
+  .site-header h1 { font-size: 1.35rem; font-weight: 700; line-height: 1.3; }
+  .site-header .meta { margin-top: 6px; font-size: 0.82rem; opacity: 0.75; }
+  .badge-unidad {
+    display: inline-block;
+    background: #87CEEB;
+    color: #003366;
+    font-weight: 700;
+    font-size: 0.72rem;
+    padding: 2px 10px;
+    border-radius: 20px;
+    margin-top: 8px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* ===== TAB NAV ===== */
+  .tab-nav-wrapper {
+    background: #87CEEB;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-bottom: 3px solid #003366;
+    scrollbar-width: thin;
+    scrollbar-color: #003366 #87CEEB;
+  }
+  .tab-nav-wrapper::-webkit-scrollbar { height: 5px; }
+  .tab-nav-wrapper::-webkit-scrollbar-thumb { background: #003366; border-radius: 3px; }
+
+  .tab-nav { display: inline-flex; padding: 0 8px; }
+  .tab-btn {
+    padding: 12px 18px;
+    border: none;
+    background: transparent;
+    color: #1a1a2e;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    margin-bottom: -3px;
+  }
+  .tab-btn:hover { background: rgba(0,51,102,0.1); }
+  .tab-btn.active {
+    background: #fff;
+    color: #003366;
+    font-weight: 700;
+    border-bottom: 3px solid #003366;
+    border-radius: 6px 6px 0 0;
+  }
+
+  /* ===== CONTENT ===== */
+  .tab-content { display: none; padding: 28px 24px; max-width: 960px; margin: 0 auto; }
+  .tab-content.active { display: block; }
+
+  /* ===== TYPOGRAPHY & BOXES ===== */
+  .section-title {
+    font-family: 'Lora', serif;
+    color: #003366;
+    font-size: 1.45rem;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #87CEEB;
+  }
+  .sub-title {
+    font-family: 'Lora', serif;
+    color: #003366;
+    font-size: 1.1rem;
+    margin: 22px 0 10px;
+  }
+  p { line-height: 1.75; margin-bottom: 14px; font-size: 0.97rem; }
+
+  .concept-box {
+    border-left: 5px solid #003366;
+    background: #f0f5ff;
+    padding: 16px 20px;
+    margin: 18px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .concept-box strong { color: #003366; }
+
+  .example-box {
+    background: #e1f0fa;
+    border: 1px solid #87CEEB;
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 18px 0;
+  }
+  .example-box .ex-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #003366;
+    margin-bottom: 8px;
+  }
+
+  .key-idea {
+    background: #003366;
+    color: #fff;
+    border-radius: 10px;
+    padding: 16px 22px;
+    margin: 22px 0;
+  }
+  .key-idea h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; opacity: 0.8; }
+  .key-idea p { color: #e8f0fe; margin: 0; font-size: 0.97rem; }
+
+  /* Table */
+  table { width: 100%; border-collapse: collapse; margin: 18px 0; font-size: 0.9rem; }
+  th { background: #003366; color: #fff; padding: 10px 14px; text-align: left; font-family: 'Source Sans 3', sans-serif; font-weight: 600; }
+  td { padding: 10px 14px; border-bottom: 1px solid #dde4f0; vertical-align: top; }
+  tr:nth-child(even) td { background: #f0f5ff; }
+
+  /* Step cards */
+  .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 20px 0; }
+  .step-card {
+    border-radius: 12px;
+    padding: 20px;
+    color: #fff;
+  }
+  .step-card .step-num { font-size: 1.8rem; font-weight: 700; font-family: 'Lora', serif; opacity: 0.6; }
+  .step-card h4 { font-size: 1rem; margin: 6px 0; }
+  .step-card p { font-size: 0.85rem; opacity: 0.9; margin: 0; line-height: 1.55; }
+  .s1 { background: #1565C0; }
+  .s2 { background: #00838F; }
+  .s3 { background: #2E7D32; }
+  .s4 { background: #E65100; }
+  .s5 { background: #6A1B9A; }
+
+  /* List visual */
+  .visual-list { list-style: none; padding: 0; margin: 14px 0; }
+  .visual-list li {
+    padding: 10px 14px 10px 42px;
+    position: relative;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    background: #f8faff;
+    border: 1px solid #dde4f0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  .visual-list li::before {
+    content: attr(data-icon);
+    position: absolute;
+    left: 12px;
+    top: 10px;
+    font-size: 1.1rem;
+  }
+
+  /* Empatía fases visual */
+  .phase-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 18px 0; }
+  .phase-pill {
+    background: #003366;
+    color: #fff;
+    border-radius: 30px;
+    padding: 8px 18px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .phase-pill.alt { background: #87CEEB; color: #003366; }
+
+  /* ===== EXERCISE ===== */
+  .exercise-intro {
+    background: #e8f5e9;
+    border: 1px solid #a5d6a7;
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-bottom: 24px;
+  }
+  .exercise-intro h3 { color: #1b5e20; font-size: 1rem; margin-bottom: 6px; }
+
+  .ex-item {
+    background: #fff;
+    border: 1px solid #dde4f0;
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-bottom: 16px;
+  }
+  .ex-item .ex-q { font-weight: 600; color: #003366; margin-bottom: 12px; font-size: 0.97rem; }
+  .ex-options { display: flex; flex-direction: column; gap: 8px; }
+  .ex-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 14px;
+    border: 2px solid #dde4f0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    font-size: 0.93rem;
+    line-height: 1.5;
+  }
+  .ex-option:hover { border-color: #87CEEB; background: #f0f8ff; }
+  .ex-option input { margin-top: 2px; accent-color: #003366; }
+  .ex-option.correct { border-color: #43a047; background: #e8f5e9; }
+  .ex-option.incorrect { border-color: #e53935; background: #ffebee; }
+
+  .feedback-box {
+    display: none;
+    margin-top: 12px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+  .feedback-box.show { display: block; }
+  .feedback-box.ok { background: #e8f5e9; border-left: 4px solid #43a047; color: #1b5e20; }
+  .feedback-box.fail { background: #ffebee; border-left: 4px solid #e53935; color: #b71c1c; }
+
+  /* Quiz */
+  .quiz-item { background: #fff; border: 1px solid #dde4f0; border-radius: 10px; padding: 18px 22px; margin-bottom: 18px; }
+  .quiz-badge { display: inline-block; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+  .badge-teorica { background: #e3f2fd; color: #1565C0; }
+  .badge-analisis { background: #fce4ec; color: #880e4f; }
+  .quiz-q { font-weight: 600; color: #1a1a2e; margin-bottom: 12px; font-size: 0.97rem; line-height: 1.5; }
+  .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+  .quiz-option {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 10px 14px; border: 2px solid #dde4f0; border-radius: 8px;
+    cursor: pointer; transition: all 0.2s; font-size: 0.92rem; line-height: 1.5;
+  }
+  .quiz-option:hover { border-color: #87CEEB; background: #f0f8ff; }
+  .quiz-option input { margin-top: 2px; accent-color: #003366; }
+  .quiz-option.correct { border-color: #43a047; background: #e8f5e9; }
+  .quiz-option.incorrect { border-color: #e53935; background: #ffebee; }
+
+  /* Buttons */
+  .btn-primary {
+    background: #003366;
+    color: #fff;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 10px;
+  }
+  .btn-primary:hover { background: #004080; }
+  .btn-secondary {
+    background: #e8ecf3;
+    color: #003366;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+  .btn-secondary:hover { background: #d0d8ea; }
+
+  /* Score box */
+  .score-box {
+    display: none;
+    background: #f0f5ff;
+    border: 2px solid #003366;
+    border-radius: 14px;
+    padding: 24px;
+    margin-top: 24px;
+    text-align: center;
+  }
+  .score-box.show { display: block; }
+  .score-emoji { font-size: 2.5rem; margin-bottom: 8px; }
+  .score-num { font-size: 2rem; font-weight: 700; color: #003366; font-family: 'Lora', serif; }
+  .score-label { color: #555; font-size: 0.9rem; margin-bottom: 14px; }
+  .progress-bar-wrap { background: #dde4f0; border-radius: 20px; height: 14px; margin: 12px auto; max-width: 400px; overflow: hidden; }
+  .progress-bar-fill { height: 100%; border-radius: 20px; background: linear-gradient(90deg, #003366, #87CEEB); transition: width 1s ease; }
+  .score-message { font-size: 1rem; color: #003366; font-weight: 600; margin-top: 10px; }
+
+  /* IA Activity */
+  .ia-box { background: #1a1a2e; color: #e8f0fe; border-radius: 14px; padding: 24px 26px; margin: 20px 0; }
+  .ia-box h3 { color: #87CEEB; font-size: 1.1rem; margin-bottom: 12px; }
+  .ia-box p { color: #c5d0e8; font-size: 0.93rem; line-height: 1.7; margin-bottom: 10px; }
+  .ia-prompt-box {
+    background: #0d1b35;
+    border: 1px solid #87CEEB;
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin: 14px 0;
+    font-family: monospace;
+    font-size: 0.88rem;
+    color: #a8d8ff;
+    line-height: 1.7;
+    white-space: pre-wrap;
+  }
+  .ia-step { margin: 14px 0; }
+  .ia-step-num {
+    display: inline-block;
+    background: #87CEEB;
+    color: #003366;
+    font-weight: 700;
+    font-size: 0.78rem;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 24px;
+    margin-right: 8px;
+  }
+
+  /* Reflection */
+  .reflex-card {
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #dde4f0;
+    padding: 22px 24px;
+    margin-bottom: 18px;
+    border-left: 5px solid #87CEEB;
+  }
+  .reflex-card .reflex-icon { font-size: 1.6rem; margin-bottom: 8px; }
+  .reflex-card h4 { color: #003366; font-size: 1rem; margin-bottom: 8px; }
+  .reflex-card p { color: #444; font-size: 0.93rem; line-height: 1.7; margin: 0; }
+
+  /* Bibliography */
+  .ref-card {
+    background: #fff;
+    border: 1px solid #dde4f0;
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-bottom: 14px;
+    border-left: 5px solid #003366;
+  }
+  .ref-card .ref-authors { font-weight: 700; color: #003366; font-size: 0.9rem; }
+  .ref-card .ref-year { color: #555; font-size: 0.9rem; }
+  .ref-card .ref-title { font-style: italic; color: #1a1a2e; font-size: 0.9rem; }
+  .ref-card .ref-source { color: #666; font-size: 0.85rem; margin-top: 4px; }
+  .ref-note { background: #fff9c4; border: 1px solid #f9a825; border-radius: 8px; padding: 14px 18px; margin-top: 20px; font-size: 0.85rem; color: #5d4037; }
+
+  /* Responsive */
+  @media(max-width:600px){
+    .tab-content { padding: 18px 14px; }
+    .steps-grid { grid-template-columns: 1fr; }
+    .section-title { font-size: 1.2rem; }
+    .phase-row { flex-direction: column; }
+  }
+
+  /* Alert */
+  .alert-msg {
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+    color: #856404;
+    padding: 12px 18px;
+    border-radius: 8px;
+    margin: 10px 0;
+    font-size: 0.9rem;
+    display: none;
+  }
+  .alert-msg.show { display: block; }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="inst">Universidad de Guayaquil &nbsp;|&nbsp; Facultad de Ciencias Administrativas &nbsp;|&nbsp; Contabilidad y Auditoría</div>
+  <h1>Emprendimiento e Innovación</h1>
+  <div class="meta">Semana 7 &nbsp;·&nbsp; Tema: Búsqueda de la Innovación · Design Thinking</div>
+  <span class="badge-unidad">Unidad 2: Creatividad, Innovación y Metodologías Innovadoras</span>
+</header>
+
+<!-- ===== TAB NAV ===== -->
+<div class="tab-nav-wrapper">
+  <nav class="tab-nav" role="tablist">
+    <button class="tab-btn active" onclick="showTab('repaso')" role="tab">📋 Repaso</button>
+    <button class="tab-btn" onclick="showTab('t1')" role="tab">1. ¿Qué es Design Thinking?</button>
+    <button class="tab-btn" onclick="showTab('t2')" role="tab">2. Las 5 Fases</button>
+    <button class="tab-btn" onclick="showTab('t3')" role="tab">3. Empatía y Definición</button>
+    <button class="tab-btn" onclick="showTab('t4')" role="tab">4. Ideación, Prototipo y Prueba</button>
+    <button class="tab-btn" onclick="showTab('t5')" role="tab">5. DT en Contabilidad</button>
+    <button class="tab-btn" onclick="showTab('ejercicio')" role="tab">6. Ejercicio Interactivo</button>
+    <button class="tab-btn" onclick="showTab('cuestionario')" role="tab">7. Cuestionario</button>
+    <button class="tab-btn" onclick="showTab('ia')" role="tab">8. Actividad con IA</button>
+    <button class="tab-btn" onclick="showTab('reflexion')" role="tab">9. Reflexión</button>
+    <button class="tab-btn" onclick="showTab('biblio')" role="tab">10. Bibliografía</button>
+  </nav>
+</div>
+
+<!-- ===== TAB CONTENTS ===== -->
+
+<!-- REPASO -->
+<div id="repaso" class="tab-content active">
+  <h2 class="section-title">📋 Repaso de Semanas Anteriores</h2>
+  <p>Este resumen te ayudará a conectar lo aprendido con el tema de hoy. Revísalo antes de avanzar.</p>
+
+  <div class="concept-box">
+    <strong>Semanas 1 y 2 — Teoría y Concepto del Emprendimiento e Innovación:</strong> Estudiamos las bases teóricas del emprendimiento desde Cantillon, Say, Schumpeter y Drucker. Comprendimos que el emprendedor es quien identifica oportunidades, asume riesgos y transforma recursos en valor. La innovación se definió como la introducción exitosa de algo nuevo (producto, proceso, modelo de negocio) en el mercado. Se estableció la diferencia entre invención (idea nueva) e innovación (idea nueva + implementación + valor).
+  </div>
+
+  <div class="concept-box">
+    <strong>Semana 3 — Situación mundial del emprendimiento y ecosistema ecuatoriano:</strong> Exploramos los datos del GEM (Global Entrepreneurship Monitor) y la realidad del ecosistema emprendedor en Ecuador: alta tasa de emprendimiento por necesidad, obstáculos como el acceso al financiamiento, y referentes locales como Datil, Kushki y La Favorita. Comprendimos que el ecosistema emprendedor incluye actores, recursos, instituciones y cultura que interactúan para facilitar o dificultar el emprendimiento.
+  </div>
+
+  <div class="concept-box">
+    <strong>Semanas 4 y 5 — Capacidad para emprender, tipos de emprendedor e identificación de oportunidades:</strong> Profundizamos en las competencias emprendedoras (Bacigalupo et al.), los tipos de emprendedor (por necesidad, oportunidad, social, intraemprendedor), y las herramientas para detectar tendencias (Google Trends, PESTEL, análisis de megatendencias). Aprendimos que las oportunidades no se descubren por azar: se buscan sistemáticamente.
+  </div>
+
+  <div class="concept-box">
+    <strong>Semana 6 — Creatividad, innovación y herramientas de pensamiento sistémico:</strong> Iniciamos la Unidad 2 con herramientas de creatividad: mapas mentales, SCAMPER, lluvia de ideas, los seis sombreros de De Bono y el pensamiento sistémico. Entendimos que la creatividad no es un don innato sino una habilidad que se entrena, y que el pensamiento sistémico nos ayuda a ver problemas en su totalidad, no como eventos aislados.
+  </div>
+
+  <div class="key-idea">
+    <h4>🔗 Conexión con la Semana 7</h4>
+    <p>Hoy damos un paso crucial: pasamos de las herramientas de creatividad a una <strong>metodología estructurada de innovación centrada en las personas</strong>. El Design Thinking integra empatía, creatividad y experimentación en un proceso que cualquier profesional —incluyendo contadores y auditores— puede aplicar para resolver problemas reales.</p>
+  </div>
+</div>
+
+<!-- TEMA 1 -->
+<div id="t1" class="tab-content">
+  <h2 class="section-title">1. ¿Qué es el Design Thinking?</h2>
+
+  <p>Antes de definir el Design Thinking, es importante entender por qué surge. Durante décadas, las organizaciones intentaron resolver problemas complejos usando métodos analíticos y racionales: datos, estadísticas, lógica formal. Sin embargo, muchos de esos análisis fallaban porque ignoraban un elemento fundamental: <strong>las personas que vivían esos problemas</strong>. El Design Thinking nació como respuesta a esa limitación.</p>
+
+  <div class="concept-box">
+    <strong>Definición:</strong> El <em>Design Thinking</em> (en español: Pensamiento de Diseño) es una metodología de innovación centrada en las personas que combina empatía hacia el usuario, pensamiento creativo para generar ideas y un enfoque experimental para probar soluciones. Fue sistematizada por la firma de diseño IDEO y popularizada académicamente por la Universidad de Stanford (d.school) a partir de la década de 1990.
+  </div>
+
+  <p>La palabra "design" no se refiere aquí únicamente al diseño gráfico o industrial. En este contexto, <em>diseñar</em> significa <strong>crear soluciones intencionales para problemas humanos</strong>, partiendo siempre de comprender profundamente a quien tiene el problema.</p>
+
+  <h3 class="sub-title">1.1 ¿Por qué "centrado en las personas"?</h3>
+  <p>La mayoría de los métodos de resolución de problemas parten de datos o de la perspectiva del experto. El Design Thinking invierte ese orden: parte de las <strong>experiencias, frustraciones, necesidades y deseos de las personas reales</strong>. A esto se le llama <em>enfoque human-centered</em> (centrado en el ser humano).</p>
+
+  <div class="example-box">
+    <div class="ex-label">🇪🇨 Ejemplo Ecuador</div>
+    <p>Un grupo de emprendedores en Guayaquil quería crear una app de pagos digitales para mercados populares. Antes de programar una sola línea de código, pasaron tres semanas observando a vendedores y compradores en el Mercado Central. Descubrieron que el problema real no era la tecnología sino la <strong>desconfianza en el sistema bancario</strong>. Eso cambió completamente el diseño de la solución. Esta es la esencia del Design Thinking: entender primero, crear después.</p>
+  </div>
+
+  <h3 class="sub-title">1.2 Orígenes y evolución del Design Thinking</h3>
+  <table>
+    <tr><th>Período</th><th>Hito</th><th>Protagonista</th></tr>
+    <tr><td>1960s–70s</td><td>Primeras teorías sobre el "pensamiento del diseñador" como proceso cognitivo diferente</td><td>Herbert Simon (Premio Nobel de Economía)</td></tr>
+    <tr><td>1980s–90s</td><td>IDEO aplica el método a proyectos industriales y de producto</td><td>David Kelley, Tim Brown</td></tr>
+    <tr><td>2004</td><td>Fundación del d.school en Stanford; el método se formaliza en educación</td><td>David Kelley / Stanford</td></tr>
+    <tr><td>2009</td><td>Tim Brown publica <em>Change by Design</em>, popularizando el concepto globalmente</td><td>Tim Brown (CEO de IDEO)</td></tr>
+    <tr><td>2010s–2020s</td><td>Adopción masiva en empresas, gobiernos, ONGs y educación en América Latina</td><td>Multiple actores</td></tr>
+  </table>
+
+  <h3 class="sub-title">1.3 ¿En qué se diferencia de otros métodos de innovación?</h3>
+  <table>
+    <tr><th>Aspecto</th><th>Método tradicional</th><th>Design Thinking</th></tr>
+    <tr><td>Punto de partida</td><td>El problema definido por el experto</td><td>La experiencia del usuario</td></tr>
+    <tr><td>Proceso</td><td>Lineal y secuencial</td><td>Iterativo y cíclico</td></tr>
+    <tr><td>Error</td><td>Debe evitarse</td><td>Es una fuente de aprendizaje</td></tr>
+    <tr><td>Evaluación</td><td>Al final del proceso</td><td>A lo largo de todo el proceso</td></tr>
+    <tr><td>Equipo</td><td>Especialistas del área</td><td>Equipos multidisciplinarios</td></tr>
+    <tr><td>Resultado</td><td>La solución "correcta"</td><td>La solución que funciona para el usuario</td></tr>
+  </table>
+
+  <div class="key-idea">
+    <h4>💡 Idea Clave</h4>
+    <p>El Design Thinking no es solo un proceso de cinco pasos: es una <strong>actitud mental</strong>. Implica estar dispuesto a no saber la respuesta desde el inicio, a escuchar antes de hablar, y a probar ideas imperfectas con la disposición de mejorarlas. En el mundo profesional de hoy, esta actitud es tan valiosa como el conocimiento técnico.</p>
+  </div>
+</div>
+
+<!-- TEMA 2 -->
+<div id="t2" class="tab-content">
+  <h2 class="section-title">2. Las 5 Fases del Design Thinking</h2>
+
+  <p>El Design Thinking se estructura en cinco fases que no son rígidas ni estrictamente secuenciales: el proceso es <strong>iterativo</strong>, lo que significa que es normal regresar a fases anteriores cuando se descubre nueva información. Cada fase tiene un propósito específico y herramientas propias.</p>
+
+  <div class="steps-grid">
+    <div class="step-card s1">
+      <div class="step-num">01</div>
+      <h4>EMPATIZAR</h4>
+      <p>Comprender profundamente a las personas afectadas por el problema. Observar, escuchar, ponerse en su lugar.</p>
+    </div>
+    <div class="step-card s2">
+      <div class="step-num">02</div>
+      <h4>DEFINIR</h4>
+      <p>Sintetizar lo aprendido en la empatía para formular el problema real de forma clara y centrada en el usuario.</p>
+    </div>
+    <div class="step-card s3">
+      <div class="step-num">03</div>
+      <h4>IDEAR</h4>
+      <p>Generar la mayor cantidad posible de ideas sin filtros iniciales. Cantidad antes que calidad.</p>
+    </div>
+    <div class="step-card s4">
+      <div class="step-num">04</div>
+      <h4>PROTOTIPAR</h4>
+      <p>Construir versiones simples y económicas de las mejores ideas para hacerlas tangibles.</p>
+    </div>
+    <div class="step-card s5">
+      <div class="step-num">05</div>
+      <h4>PROBAR</h4>
+      <p>Poner el prototipo frente a usuarios reales, observar sus reacciones y aprender de la experiencia.</p>
+    </div>
+  </div>
+
+  <h3 class="sub-title">2.1 El proceso no es lineal: la importancia de iterar</h3>
+  <p>Un error frecuente es pensar que el Design Thinking es una lista de tareas que se ejecuta en orden. En realidad, es un proceso <strong>cíclico</strong>: después de probar un prototipo, es común regresar a redefinir el problema o incluso volver a empatizar con nuevos usuarios. Este "retroceder" no es un fracaso; es el mecanismo que garantiza que la solución final realmente funcione.</p>
+
+  <div class="example-box">
+    <div class="ex-label">🔄 Cómo funciona la iteración</div>
+    <p>Una consultora en Quito diseñó un sistema de reporte financiero para pequeñas empresas. En la fase de prueba, los usuarios dijeron que el sistema era "muy técnico". El equipo regresó a la fase de empatía, descubrió que los dueños de negocios no entendían terminología contable básica, y rediseñó el sistema con lenguaje cotidiano. El segundo prototipo tuvo una aceptación del 80%. Sin la iteración, habrían lanzado un producto que nadie usaría.</p>
+  </div>
+
+  <h3 class="sub-title">2.2 Mentalidades que sostienen el proceso</h3>
+  <ul class="visual-list">
+    <li data-icon="👁️"><strong>Curiosidad radical:</strong> Nunca asumir que ya sabes la respuesta. Siempre hacer preguntas como si fuera la primera vez.</li>
+    <li data-icon="🧪"><strong>Sesgo hacia la acción:</strong> Es mejor un prototipo imperfecto hoy que un plan perfecto que nunca se ejecuta.</li>
+    <li data-icon="🤝"><strong>Colaboración:</strong> Los mejores resultados emergen de perspectivas diversas trabajando juntas.</li>
+    <li data-icon="🌱"><strong>Tolerancia a la ambigüedad:</strong> Estar cómodo en la incertidumbre, especialmente al inicio del proceso.</li>
+    <li data-icon="🔁"><strong>Aprendizaje desde el fracaso:</strong> Cada error en el prototipo es información valiosa, no una derrota.</li>
+  </ul>
+
+  <div class="key-idea">
+    <h4>💡 Idea Clave</h4>
+    <p>Las 5 fases del Design Thinking son un <strong>mapa, no un camino rígido</strong>. Su verdadero valor está en la actitud que promueven: observar antes de concluir, crear antes de perfeccionar, y aprender antes de escalar. Esta lógica es aplicable tanto a la creación de un producto como al diseño de un informe de auditoría o un proceso contable.</p>
+  </div>
+</div>
+
+<!-- TEMA 3 -->
+<div id="t3" class="tab-content">
+  <h2 class="section-title">3. Fases 1 y 2: Empatía y Definición del Problema</h2>
+
+  <h3 class="sub-title">3.1 EMPATIZAR — La Fase Más Importante</h3>
+  <p>La empatía, en el contexto del Design Thinking, es la capacidad de <strong>comprender la experiencia de otra persona desde su propio punto de vista</strong>, no desde las suposiciones del diseñador o del experto. Esta fase es considerada la más importante porque define todo lo que vendrá después: si el problema se comprende mal, todas las soluciones serán incorrectas.</p>
+
+  <div class="concept-box">
+    <strong>¿Qué significa empatizar en este contexto?</strong> No se trata de sentir lástima o de imaginar cómo se siente alguien. Se trata de <em>observar comportamientos reales, escuchar historias auténticas y participar en la experiencia del usuario</em>. La empatía genuina requiere salir de la oficina y encontrarse con las personas en su entorno real.
+  </div>
+
+  <h3 class="sub-title">Herramientas de Empatía</h3>
+  <table>
+    <tr><th>Herramienta</th><th>¿En qué consiste?</th><th>Cuándo usarla</th></tr>
+    <tr><td><strong>Entrevista en profundidad</strong></td><td>Conversación abierta con el usuario para entender su experiencia, no solo sus preferencias</td><td>Siempre, es la herramienta central</td></tr>
+    <tr><td><strong>Observación directa</strong></td><td>Ver al usuario en su entorno natural sin interrumpir; registrar comportamientos reales (no declarados)</td><td>Cuando queremos ver la realidad, no lo que dicen que hacen</td></tr>
+    <tr><td><strong>Mapa de empatía</strong></td><td>Plantilla que organiza lo que el usuario dice, piensa, siente y hace</td><td>Para sintetizar hallazgos de entrevistas</td></tr>
+    <tr><td><strong>Journey map (mapa de viaje del usuario)</strong></td><td>Representación visual del recorrido del usuario al interactuar con un producto o servicio</td><td>Para identificar momentos de frustración o satisfacción</td></tr>
+    <tr><td><strong>Shadowing (seguimiento)</strong></td><td>Acompañar al usuario durante su actividad normal sin interferir</td><td>Para entender contextos complejos o repetitivos</td></tr>
+  </table>
+
+  <div class="example-box">
+    <div class="ex-label">🇪🇨 Ejemplo Ecuatoriano — Empatía en Acción</div>
+    <p>Una empresa de software contable en Cuenca quería rediseñar su sistema. En lugar de preguntarle a los contadores qué funciones querían, los siguieron durante una semana de trabajo. Observaron que el mayor problema no era la interfaz del software, sino que los clientes entregaban facturas en papel a destiempo. El contador pasaba 40% de su tiempo persiguiendo documentos, no analizando datos. <strong>Sin la fase de empatía, habrían diseñado una interfaz más bonita para un problema que no era el real.</strong></p>
+  </div>
+
+  <h3 class="sub-title">El Mapa de Empatía — Herramienta Visual</h3>
+  <div class="concept-box">
+    <strong>Estructura del Mapa de Empatía (4 cuadrantes):</strong><br><br>
+    <strong>¿Qué DICE?</strong> — Las palabras textuales del usuario ("me cuesta mucho tiempo revisar los estados de cuenta").<br>
+    <strong>¿Qué PIENSA?</strong> — Lo que cree pero no dice en voz alta ("siento que el sistema no fue diseñado para alguien como yo").<br>
+    <strong>¿Qué HACE?</strong> — Sus comportamientos observables (usa una hoja de Excel paralela al sistema oficial).<br>
+    <strong>¿Qué SIENTE?</strong> — Sus emociones (frustración, ansiedad, alivio, orgullo).
+  </div>
+
+  <h3 class="sub-title">3.2 DEFINIR — Formular el Problema Correcto</h3>
+  <p>Una vez acumulada la información de la fase de empatía, el equipo necesita convertirla en un enunciado claro del problema. Esta es la fase de <strong>Definición</strong>. No se trata de definir el problema que el equipo supone que existe, sino el problema real que los datos de empatía revelan.</p>
+
+  <div class="concept-box">
+    <strong>La declaración POV (Point of View — Punto de Vista):</strong> Es la herramienta central de la fase de definición. Su estructura es:<br><br>
+    <em>[Usuario específico] necesita [necesidad real] porque [razón o insight descubierto].</em><br><br>
+    <strong>Ejemplo:</strong> "Los pequeños comerciantes de mercados populares en Guayaquil necesitan una forma de registrar sus ventas diarias sin depender de conexión a internet, porque su zona tiene cobertura de datos intermitente y perder información les genera pérdidas que no pueden cuantificar."
+  </div>
+
+  <p>La declaración POV es poderosa porque <strong>convierte datos dispersos en un reto accionable</strong>. Además, centra al equipo en las necesidades del usuario, no en las preferencias del equipo diseñador.</p>
+
+  <h3 class="sub-title">¿Cómo saber si el problema está bien definido?</h3>
+  <ul class="visual-list">
+    <li data-icon="✅">Está formulado desde la perspectiva del usuario, no del proveedor o experto.</li>
+    <li data-icon="✅">Incluye un insight (descubrimiento sorprendente) que no era obvio antes de la investigación.</li>
+    <li data-icon="✅">Es suficientemente específico para guiar el diseño de soluciones.</li>
+    <li data-icon="✅">Es suficientemente amplio para permitir creatividad y exploración.</li>
+    <li data-icon="❌">No describe la solución (error común: "necesitamos una app" — eso es solución, no problema).</li>
+  </ul>
+
+  <div class="key-idea">
+    <h4>💡 Idea Clave</h4>
+    <p>"Si me dieran una hora para salvar el planeta, usaría 59 minutos para definir el problema y un minuto para resolverlo." Esta frase, atribuida a Albert Einstein, captura la esencia de por qué la empatía y la definición son las fases más críticas del Design Thinking. Una solución brillante para el problema equivocado es un fracaso garantizado.</p>
+  </div>
+</div>
+
+<!-- TEMA 4 -->
+<div id="t4" class="tab-content">
+  <h2 class="section-title">4. Fases 3, 4 y 5: Idear, Prototipar y Probar</h2>
+
+  <h3 class="sub-title">4.1 IDEAR — La Explosión de Posibilidades</h3>
+  <p>Una vez definido el problema correctamente, el equipo entra en la fase más dinámica y creativa: la <strong>ideación</strong>. Su objetivo es generar la mayor cantidad posible de soluciones potenciales, suspendiendo el juicio crítico temporalmente. La regla de oro es: <em>cantidad primero, calidad después</em>.</p>
+
+  <div class="concept-box">
+    <strong>¿Por qué suspender el juicio?</strong> El cerebro humano tiende a rechazar ideas "extrañas" o poco convencionales de inmediato. Sin embargo, muchas innovaciones disruptivas comenzaron como ideas que parecían absurdas. Airbnb (alquilar la habitación de tu casa a desconocidos) o Uber (subirse al auto de un desconocido) habrían sido descartadas en segundos en un entorno de juicio crítico. La ideación crea un espacio seguro para lo no convencional.
+  </div>
+
+  <h3 class="sub-title">Herramientas de Ideación</h3>
+  <ul class="visual-list">
+    <li data-icon="🌩️"><strong>Brainstorming (tormenta de ideas):</strong> Generar ideas en grupo sin filtros. Ninguna idea es "mala" en esta etapa. Visto en Semana 6.</li>
+    <li data-icon="🤔"><strong>¿Cómo podríamos…? (How Might We):</strong> Reformular el problema como pregunta generativa. Ej: "¿Cómo podríamos hacer que los agricultores de la Costa accedan a financiamiento sin ir a una sucursal bancaria?"</li>
+    <li data-icon="🎯"><strong>SCAMPER aplicado al problema:</strong> Sustituir, Combinar, Adaptar, Modificar, Poner en otros usos, Eliminar, Reordenar soluciones existentes. Visto en Semana 6.</li>
+    <li data-icon="🗳️"><strong>Votación con puntos (dot voting):</strong> Cada integrante del equipo coloca puntos adhesivos en las ideas que considera más prometedoras. Las ideas con más puntos avanzan.</li>
+    <li data-icon="🌐"><strong>Mapas mentales de soluciones:</strong> Expandir visualmente cada idea en ramas de posibilidades relacionadas.</li>
+  </ul>
+
+  <div class="example-box">
+    <div class="ex-label">🇪🇨 Ejemplo — Ideación para un problema fiscal en Ecuador</div>
+    <p>Un equipo de contadores en Ambato detectó (vía empatía) que los microempresarios dejaban de declarar el IVA por miedo a cometer errores. En la sesión de ideación generaron 34 ideas en 45 minutos: desde videotutoriales en YouTube hasta una línea de WhatsApp con el SRI, hasta una app de declaración guiada con lenguaje simple. Sin la presión de elegir "la correcta" de inmediato, emergieron ideas que solos nunca habrían considerado.</p>
+  </div>
+
+  <h3 class="sub-title">4.2 PROTOTIPAR — Hacer las Ideas Tangibles</h3>
+  <p>Prototipar significa <strong>construir una versión simple, rápida y económica de una idea</strong> para explorarla y comunicarla. Un prototipo NO es el producto final: es un artefacto de aprendizaje. Su propósito es responder preguntas específicas antes de invertir recursos significativos.</p>
+
+  <div class="concept-box">
+    <strong>Principios del prototipado eficaz:</strong><br>
+    <em>Falla pronto, falla barato:</em> Es mejor descubrir un defecto en papel que después de meses de desarrollo.<br>
+    <em>Construir para pensar:</em> El acto de prototipar revela problemas que el análisis mental no detecta.<br>
+    <em>Un prototipo por pregunta:</em> Cada prototipo debe responder a una pregunta de diseño específica.
+  </div>
+
+  <h3 class="sub-title">Tipos de Prototipo</h3>
+  <table>
+    <tr><th>Tipo</th><th>Descripción</th><th>Ejemplo en contabilidad</th></tr>
+    <tr><td><strong>Boceto (sketch)</strong></td><td>Dibujo a mano de la interfaz o flujo del servicio</td><td>Dibujo del nuevo diseño de un reporte financiero</td></tr>
+    <tr><td><strong>Maqueta en papel</strong></td><td>Páginas impresas o dibujadas que simulan una app o formulario</td><td>Formulario de declaración tributaria simplificado en papel</td></tr>
+    <tr><td><strong>Storyboard</strong></td><td>Secuencia de dibujos que muestran cómo el usuario interactúa con la solución</td><td>Viaje del cliente desde que recibe una factura hasta que la registra</td></tr>
+    <tr><td><strong>Prototipo digital de baja fidelidad</strong></td><td>Pantallas simples creadas en herramientas como Figma o PowerPoint</td><td>Flujo básico de una app de registro de gastos sin código</td></tr>
+    <tr><td><strong>Servicio piloto</strong></td><td>Prueba del servicio con un grupo pequeño de usuarios reales</td><td>Proceso de auditoría simplificado con 3 clientes seleccionados</td></tr>
+  </table>
+
+  <h3 class="sub-title">4.3 PROBAR — Aprender de los Usuarios Reales</h3>
+  <p>La fase de prueba consiste en <strong>poner el prototipo frente a usuarios reales y observar cómo interactúan con él</strong>. Es fundamental entender que el objetivo no es validar que la idea es correcta (eso sería sesgo de confirmación), sino aprender qué funciona y qué no.</p>
+
+  <ul class="visual-list">
+    <li data-icon="👀"><strong>Observar, no explicar:</strong> Cuando el usuario tiene dificultades, la tendencia es explicarle. Resiste esa tentación: las dificultades son los datos más valiosos.</li>
+    <li data-icon="❓"><strong>Preguntar "¿por qué?":</strong> Si algo no funciona, preguntar por qué (al menos 5 veces) revela las causas raíz.</li>
+    <li data-icon="📝"><strong>Registrar todo:</strong> Tomar notas, fotos (con permiso) y observaciones literales de lo que dice el usuario.</li>
+    <li data-icon="🔄"><strong>Iterar inmediatamente:</strong> Con los aprendizajes de la prueba, mejorar el prototipo y volver a probar.</li>
+  </ul>
+
+  <div class="key-idea">
+    <h4>💡 Idea Clave</h4>
+    <p>Idear, prototipar y probar forman un ciclo de aprendizaje acelerado. En lugar de planificar durante meses antes de actuar, el Design Thinking propone actuar en horas o días y aprender de la realidad. Este ciclo rápido es especialmente valioso en entornos cambiantes como el Ecuador actual, donde las condiciones del mercado, la regulación fiscal y las necesidades de los clientes evolucionan constantemente.</p>
+  </div>
+</div>
+
+<!-- TEMA 5 -->
+<div id="t5" class="tab-content">
+  <h2 class="section-title">5. Design Thinking Aplicado a Contabilidad y Auditoría</h2>
+
+  <p>Puede parecer que el Design Thinking es una herramienta exclusiva para diseñadores de productos o startups tecnológicas. Sin embargo, su aplicación en el ámbito contable y auditor es directa, poderosa y cada vez más frecuente en las organizaciones modernas. Un contador o auditor que domina esta metodología tiene una ventaja profesional significativa.</p>
+
+  <h3 class="sub-title">5.1 ¿Por qué un contador necesita el Design Thinking?</h3>
+  <p>El profesional contable trabaja en una interfaz entre dos mundos: el mundo técnico-normativo (NIIF, NIC, leyes tributarias del SRI, normativa de la Superintendencia de Compañías) y el mundo humano-organizacional (los directivos, los empleados, los clientes). Los problemas más difíciles no están en la norma; están en esa interfaz.</p>
+
+  <ul class="visual-list">
+    <li data-icon="📊">El gerente que no entiende los informes financieros porque están diseñados para contadores, no para tomadores de decisiones.</li>
+    <li data-icon="🗂️">El sistema de archivo que nadie usa porque fue diseñado sin preguntar a quienes lo usan.</li>
+    <li data-icon="💼">El proceso de auditoría que genera resistencia en el personal auditado porque se percibe como amenaza, no como mejora.</li>
+    <li data-icon="📋">El formulario de declaración tributaria que los microempresarios no completan correctamente porque usa terminología que no comprenden.</li>
+  </ul>
+
+  <p>Todos estos son problemas de diseño que el Design Thinking puede resolver.</p>
+
+  <h3 class="sub-title">5.2 Aplicaciones Concretas del Design Thinking en el Campo Contable</h3>
+  <table>
+    <tr><th>Área</th><th>Problema típico</th><th>Aplicación del Design Thinking</th></tr>
+    <tr><td><strong>Auditoría interna</strong></td><td>El auditado percibe el proceso como persecución, no como mejora</td><td>Empatizar con el auditado, rediseñar la comunicación y el proceso para que sea colaborativo</td></tr>
+    <tr><td><strong>Reportes financieros</strong></td><td>Los directivos no toman decisiones basadas en los informes</td><td>Observar cómo los directivos leen los informes y rediseñarlos para su contexto</td></tr>
+    <tr><td><strong>Sistemas de control interno</strong></td><td>Los controles se evaden porque son engorrosos</td><td>Definir por qué se evaden y rediseñar controles que sean eficientes para el operario</td></tr>
+    <tr><td><strong>Asesoría tributaria</strong></td><td>Los clientes no entienden las obligaciones fiscales y llegan tarde</td><td>Mapear el journey del cliente y diseñar alertas y comunicaciones en su lenguaje</td></tr>
+    <tr><td><strong>Firma contable (startup)</strong></td><td>Diferenciarse en un mercado saturado de servicios contables</td><td>Empatizar con el cliente tipo y diseñar un servicio que resuelva su problema real, no el genérico</td></tr>
+  </table>
+
+  <div class="example-box">
+    <div class="ex-label">🇪🇨 Caso Real Ecuador — Design Thinking en Tributación</div>
+    <p>El Servicio de Rentas Internas (SRI) del Ecuador implementó en años recientes mejoras significativas en su plataforma de declaración en línea. Estas mejoras no nacieron de decisiones técnicas aisladas: nacieron de observar a los contribuyentes interactuando con el sistema, identificar puntos de confusión (especialmente en personas mayores o con poca alfabetización digital) y rediseñar los flujos de navegación. El resultado fue una reducción de errores en declaraciones y mayor cumplimiento tributario. Este es Design Thinking en acción desde el sector público.</p>
+  </div>
+
+  <h3 class="sub-title">5.3 El Contador Innovador: Un Nuevo Perfil Profesional</h3>
+  <p>Las Normas Internacionales de Información Financiera (NIIF) y la automatización contable están transformando el rol del contador. Las tareas repetitivas y de registro son cada vez más automatizadas por software. El valor diferencial del profesional contable moderno está en:</p>
+
+  <ul class="visual-list">
+    <li data-icon="🧠">La capacidad de <strong>interpretar y comunicar</strong> información financiera compleja de forma comprensible.</li>
+    <li data-icon="🔍">La habilidad para <strong>identificar problemas ocultos</strong> detrás de los números.</li>
+    <li data-icon="🎨">La competencia de <strong>diseñar procesos y soluciones</strong> que funcionen para las personas que los usan.</li>
+    <li data-icon="🤝">La capacidad de <strong>trabajar con equipos multidisciplinarios</strong> para crear valor organizacional.</li>
+  </ul>
+
+  <p>El Design Thinking es la metodología que desarrolla exactamente estas competencias.</p>
+
+  <div class="key-idea">
+    <h4>💡 Idea Clave</h4>
+    <p>El Design Thinking no reemplaza el conocimiento técnico contable: lo potencia. Un contador que combina dominio de las NIIF con la capacidad de empatizar con sus clientes, definir los problemas reales y prototipar soluciones ágiles, es un profesional del siglo XXI. La Carrera de Contabilidad y Auditoría de la Universidad de Guayaquil te forma en ambas dimensiones.</p>
+  </div>
+</div>
+
+<!-- EJERCICIO INTERACTIVO -->
+<div id="ejercicio" class="tab-content">
+  <h2 class="section-title">6. Ejercicio Interactivo</h2>
+  <div class="exercise-intro">
+    <h3>📌 Instrucciones</h3>
+    <p>Lee cada situación o enunciado y selecciona la opción que mejor corresponde al Design Thinking. Responde <strong>todos los ítems primero</strong> y luego presiona <strong>"Verificar respuestas"</strong>. Recibirás retroalimentación ítem por ítem con explicación detallada.</p>
+  </div>
+
+  <!-- EI1 -->
+  <div class="ex-item" id="ex-item-1">
+    <div class="ex-q">1. Una firma de auditoría quiere mejorar su proceso de auditoría a estados financieros. Según el Design Thinking, ¿cuál debe ser su primer paso?</div>
+    <div class="ex-options">
+      <label class="ex-option"><input type="radio" name="ei1" value="a"/> Comprar el mejor software de auditoría disponible en el mercado.</label>
+      <label class="ex-option"><input type="radio" name="ei1" value="b"/> Entrevistar y observar a los auditados para entender su experiencia con el proceso actual.</label>
+      <label class="ex-option"><input type="radio" name="ei1" value="c"/> Redactar un nuevo manual de procedimientos basado en las normas vigentes.</label>
+      <label class="ex-option"><input type="radio" name="ei1" value="d"/> Generar el mayor número posible de ideas de mejora con el equipo.</label>
+    </div>
+    <div class="feedback-box" id="fb-ei1"></div>
+  </div>
+
+  <!-- EI2 -->
+  <div class="ex-item" id="ex-item-2">
+    <div class="ex-q">2. ¿Cuál de los siguientes enunciados representa correctamente una declaración POV (Punto de Vista) del Design Thinking?</div>
+    <div class="ex-options">
+      <label class="ex-option"><input type="radio" name="ei2" value="a"/> "Necesitamos una app de registro contable para pequeños negocios."</label>
+      <label class="ex-option"><input type="radio" name="ei2" value="b"/> "Los comerciantes del mercado municipal necesitan registrar sus ventas diarias sin internet porque su zona tiene conectividad intermitente."</label>
+      <label class="ex-option"><input type="radio" name="ei2" value="c"/> "El problema es que los clientes no pagan a tiempo."</label>
+      <label class="ex-option"><input type="radio" name="ei2" value="d"/> "Nuestro sistema actual tiene demasiados errores en las declaraciones tributarias."</label>
+    </div>
+    <div class="feedback-box" id="fb-ei2"></div>
+  </div>
+
+  <!-- EI3 -->
+  <div class="ex-item" id="ex-item-3">
+    <div class="ex-q">3. Durante una sesión de ideación aplicando Design Thinking, un integrante del equipo propone una idea que parece poco práctica. ¿Cuál es la actitud correcta?</div>
+    <div class="ex-options">
+      <label class="ex-option"><input type="radio" name="ei3" value="a"/> Rechazarla de inmediato para no perder tiempo del equipo.</label>
+      <label class="ex-option"><input type="radio" name="ei3" value="b"/> Registrarla junto con todas las demás, suspendiendo el juicio hasta la fase de selección.</label>
+      <label class="ex-option"><input type="radio" name="ei3" value="c"/> Pedir al integrante que la desarrolle completamente antes de presentarla.</label>
+      <label class="ex-option"><input type="radio" name="ei3" value="d"/> Consultarla con el gerente antes de incluirla en la lista.</label>
+    </div>
+    <div class="feedback-box" id="fb-ei3"></div>
+  </div>
+
+  <!-- EI4 -->
+  <div class="ex-item" id="ex-item-4">
+    <div class="ex-q">4. Un equipo contable prototipar un nuevo formato de informe financiero. El gerente general lo prueba y dice: "No entiendo qué significa este gráfico." ¿Qué debe hacer el equipo?</div>
+    <div class="ex-options">
+      <label class="ex-option"><input type="radio" name="ei4" value="a"/> Explicarle al gerente cómo interpretar el gráfico y continuar con el mismo diseño.</label>
+      <label class="ex-option"><input type="radio" name="ei4" value="b"/> Considerar este feedback como información de aprendizaje y rediseñar el gráfico para que sea comprensible sin explicación.</label>
+      <label class="ex-option"><input type="radio" name="ei4" value="c"/> Descartar el uso de gráficos en los informes financieros.</label>
+      <label class="ex-option"><input type="radio" name="ei4" value="d"/> Presentar el informe ante todos los directivos para ver si los demás también tienen el mismo problema.</label>
+    </div>
+    <div class="feedback-box" id="fb-ei4"></div>
+  </div>
+
+  <!-- EI5 -->
+  <div class="ex-item" id="ex-item-5">
+    <div class="ex-q">5. ¿Cuál es la principal diferencia entre un prototipo y un producto final en el marco del Design Thinking?</div>
+    <div class="ex-options">
+      <label class="ex-option"><input type="radio" name="ei5" value="a"/> El prototipo es más costoso y elaborado que el producto final.</label>
+      <label class="ex-option"><input type="radio" name="ei5" value="b"/> El prototipo es una versión simple y económica creada para aprender; el producto final incorpora los aprendizajes de múltiples pruebas.</label>
+      <label class="ex-option"><input type="radio" name="ei5" value="c"/> El prototipo lo hace el equipo de tecnología; el producto final lo diseña el equipo de marketing.</label>
+      <label class="ex-option"><input type="radio" name="ei5" value="d"/> No hay diferencia: el primer prototipo aprobado por la gerencia se convierte en el producto final.</label>
+    </div>
+    <div class="feedback-box" id="fb-ei5"></div>
+  </div>
+
+  <!-- EI6 -->
+  <div class="ex-item" id="ex-item-6">
+    <div class="ex-q">6. Un contador recién graduado aplica Design Thinking para mejorar el proceso de declaración del IVA de sus clientes. En la fase de empatía, ¿cuál de las siguientes acciones es MÁS adecuada?</div>
+    <div class="ex-options">
+      <label class="ex-option"><input type="radio" name="ei6" value="a"/> Leer los manuales del SRI para identificar los pasos correctos del proceso.</label>
+      <label class="ex-option"><input type="radio" name="ei6" value="b"/> Encuestar a 100 clientes con preguntas de selección múltiple sobre su nivel de satisfacción.</label>
+      <label class="ex-option"><input type="radio" name="ei6" value="c"/> Acompañar a tres clientes durante el proceso completo de recopilación y declaración para observar sus dificultades reales.</label>
+      <label class="ex-option"><input type="radio" name="ei6" value="d"/> Revisar los errores más comunes en las declaraciones del año anterior usando el sistema del SRI.</label>
+    </div>
+    <div class="feedback-box" id="fb-ei6"></div>
+  </div>
+
+  <!-- EI7 -->
+  <div class="ex-item" id="ex-item-7">
+    <div class="ex-q">7. El Design Thinking describe su proceso como "iterativo". ¿Qué significa esto?</div>
+    <div class="ex-options">
+      <label class="ex-option"><input type="radio" name="ei7" value="a"/> Que las cinco fases deben ejecutarse siempre en el mismo orden sin posibilidad de retroceder.</label>
+      <label class="ex-option"><input type="radio" name="ei7" value="b"/> Que el proceso implica ciclos repetidos de aprendizaje, donde es normal regresar a fases anteriores cuando se descubre nueva información.</label>
+      <label class="ex-option"><input type="radio" name="ei7" value="c"/> Que cada fase debe repetirse exactamente tres veces antes de avanzar a la siguiente.</label>
+      <label class="ex-option"><input type="radio" name="ei7" value="d"/> Que el proceso debe ser ejecutado por el mismo equipo de manera indefinida hasta lograr la perfección.</label>
+    </div>
+    <div class="feedback-box" id="fb-ei7"></div>
+  </div>
+
+  <!-- EI8 -->
+  <div class="ex-item" id="ex-item-8">
+    <div class="ex-q">8. ¿Cuál de las siguientes opciones NO corresponde a una mentalidad del Design Thinking?</div>
+    <div class="ex-options">
+      <label class="ex-option"><input type="radio" name="ei8" value="a"/> Sesgo hacia la acción: es mejor un prototipo imperfecto hoy que un plan perfecto mañana.</label>
+      <label class="ex-option"><input type="radio" name="ei8" value="b"/> Certeza desde el inicio: el experto sabe cuál es el problema antes de investigar.</label>
+      <label class="ex-option"><input type="radio" name="ei8" value="c"/> Tolerancia a la ambigüedad: estar cómodo con la incertidumbre al inicio del proceso.</label>
+      <label class="ex-option"><input type="radio" name="ei8" value="d"/> Aprendizaje desde el fracaso: cada error es información valiosa.</label>
+    </div>
+    <div class="feedback-box" id="fb-ei8"></div>
+  </div>
+
+  <div class="alert-msg" id="alert-ejercicio">⚠️ Por favor, responde <strong>todos los ítems</strong> antes de verificar.</div>
+  <div>
+    <button class="btn-primary" onclick="verificarEjercicio()">✔ Verificar respuestas</button>
+    <button class="btn-secondary" onclick="reiniciarEjercicio()">🔄 Reiniciar</button>
+  </div>
+
+  <div class="score-box" id="score-ejercicio">
+    <div class="score-emoji" id="score-ej-emoji"></div>
+    <div class="score-num" id="score-ej-num"></div>
+    <div class="score-label">respuestas correctas</div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="pb-ejercicio" style="width:0%"></div></div>
+    <div class="score-message" id="score-ej-msg"></div>
+  </div>
+</div>
+
+<!-- CUESTIONARIO -->
+<div id="cuestionario" class="tab-content">
+  <h2 class="section-title">7. Cuestionario de Evaluación</h2>
+  <p>Responde las 10 preguntas. Las primeras 7 son <strong>teóricas</strong> (basadas en el contenido del widget) y las últimas 3 son de <strong>análisis de caso</strong> (requieren razonamiento). Selecciona todas tus respuestas y luego presiona "Verificar respuestas".</p>
+
+  <!-- Q1 -->
+  <div class="quiz-item">
+    <span class="quiz-badge badge-teorica">Teórica</span>
+    <div class="quiz-q">1. ¿Quién sistematizó y popularizó académicamente el Design Thinking como metodología de innovación?</div>
+    <div class="quiz-options">
+      <label class="quiz-option"><input type="radio" name="qi1" value="a"/> Peter Drucker, en sus estudios sobre gestión estratégica de los años 1960.</label>
+      <label class="quiz-option"><input type="radio" name="qi1" value="b"/> La firma de diseño IDEO y la Universidad de Stanford (d.school), desde los años 1990.</label>
+      <label class="quiz-option"><input type="radio" name="qi1" value="c"/> Joseph Schumpeter, en su teoría sobre la destrucción creativa.</label>
+      <label class="quiz-option"><input type="radio" name="qi1" value="d"/> El MIT Media Lab, como parte de sus investigaciones sobre inteligencia artificial.</label>
+    </div>
+    <div class="feedback-box" id="fb-qi1"></div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="quiz-item">
+    <span class="quiz-badge badge-teorica">Teórica</span>
+    <div class="quiz-q">2. ¿Cuál es el orden correcto de las 5 fases del Design Thinking según la metodología estándar de Stanford/IDEO?</div>
+    <div class="quiz-options">
+      <label class="quiz-option"><input type="radio" name="qi2" value="a"/> Definir → Idear → Empatizar → Prototipar → Probar</label>
+      <label class="quiz-option"><input type="radio" name="qi2" value="b"/> Empatizar → Definir → Idear → Prototipar → Probar</label>
+      <label class="quiz-option"><input type="radio" name="qi2" value="c"/> Idear → Empatizar → Definir → Probar → Prototipar</label>
+      <label class="quiz-option"><input type="radio" name="qi2" value="d"/> Probar → Prototipar → Idear → Definir → Empatizar</label>
+    </div>
+    <div class="feedback-box" id="fb-qi2"></div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="quiz-item">
+    <span class="quiz-badge badge-teorica">Teórica</span>
+    <div class="quiz-q">3. ¿Qué es el "Mapa de Empatía" en el contexto del Design Thinking?</div>
+    <div class="quiz-options">
+      <label class="quiz-option"><input type="radio" name="qi3" value="a"/> Un diagrama que muestra el organigrama de los usuarios de un producto.</label>
+      <label class="quiz-option"><input type="radio" name="qi3" value="b"/> Una plantilla visual que organiza lo que el usuario dice, piensa, siente y hace, para sintetizar hallazgos de investigación.</label>
+      <label class="quiz-option"><input type="radio" name="qi3" value="c"/> Un mapa geográfico que indica dónde viven los clientes potenciales del negocio.</label>
+      <label class="quiz-option"><input type="radio" name="qi3" value="d"/> Un análisis FODA centrado en las emociones del equipo de diseño.</label>
+    </div>
+    <div class="feedback-box" id="fb-qi3"></div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="quiz-item">
+    <span class="quiz-badge badge-teorica">Teórica</span>
+    <div class="quiz-q">4. En la fase de Ideación del Design Thinking, ¿cuál es la regla de oro?</div>
+    <div class="quiz-options">
+      <label class="quiz-option"><input type="radio" name="qi4" value="a"/> Evaluar críticamente cada idea antes de avanzar a la siguiente, para no perder tiempo.</label>
+      <label class="quiz-option"><input type="radio" name="qi4" value="b"/> Generar primero la mayor cantidad posible de ideas, suspendiendo el juicio crítico temporalmente.</label>
+      <label class="quiz-option"><input type="radio" name="qi4" value="c"/> El gerente o experto debe seleccionar la mejor idea al final de la sesión.</label>
+      <label class="quiz-option"><input type="radio" name="qi4" value="d"/> Cada integrante trabaja individualmente para evitar la influencia de ideas ajenas.</label>
+    </div>
+    <div class="feedback-box" id="fb-qi4"></div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="quiz-item">
+    <span class="quiz-badge badge-teorica">Teórica</span>
+    <div class="quiz-q">5. ¿Qué significa que el Design Thinking es un proceso "human-centered" (centrado en el ser humano)?</div>
+    <div class="quiz-options">
+      <label class="quiz-option"><input type="radio" name="qi5" value="a"/> Que las soluciones se diseñan únicamente para clientes con alto poder adquisitivo.</label>
+      <label class="quiz-option"><input type="radio" name="qi5" value="b"/> Que parte siempre de comprender las experiencias, necesidades y frustraciones reales de las personas afectadas por el problema.</label>
+      <label class="quiz-option"><input type="radio" name="qi5" value="c"/> Que el proceso requiere un equipo exclusivamente de psicólogos y sociólogos.</label>
+      <label class="quiz-option"><input type="radio" name="qi5" value="d"/> Que las decisiones finales siempre las toma el equipo humano, nunca un algoritmo.</label>
+    </div>
+    <div class="feedback-box" id="fb-qi5"></div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="quiz-item">
+    <span class="quiz-badge badge-teorica">Teórica</span>
+    <div class="quiz-q">6. ¿Cuál es el propósito principal de la fase de "Probar" en el Design Thinking?</div>
+    <div class="quiz-options">
+      <label class="quiz-option"><input type="radio" name="qi6" value="a"/> Confirmar que la idea del equipo es correcta antes de presentarla a los directivos.</label>
+      <label class="quiz-option"><input type="radio" name="qi6" value="b"/> Aprender qué funciona y qué no en el prototipo, observando cómo interactúan los usuarios reales con él.</label>
+      <label class="quiz-option"><input type="radio" name="qi6" value="c"/> Demostrar a los inversores que el producto está terminado y listo para el mercado.</label>
+      <label class="quiz-option"><input type="radio" name="qi6" value="d"/> Medir el retorno sobre la inversión (ROI) de la solución diseñada.</label>
+    </div>
+    <div class="feedback-box" id="fb-qi6"></div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="quiz-item">
+    <span class="quiz-badge badge-teorica">Teórica</span>
+    <div class="quiz-q">7. ¿Cuál de las siguientes afirmaciones describe mejor la diferencia entre el Design Thinking y los métodos tradicionales de resolución de problemas?</div>
+    <div class="quiz-options">
+      <label class="quiz-option"><input type="radio" name="qi7" value="a"/> El Design Thinking es más lento y costoso, pero produce resultados de mayor calidad técnica.</label>
+      <label class="quiz-option"><input type="radio" name="qi7" value="b"/> El método tradicional parte de la perspectiva del experto y sigue un proceso lineal; el Design Thinking parte de la experiencia del usuario y es iterativo.</label>
+      <label class="quiz-option"><input type="radio" name="qi7" value="c"/> El Design Thinking es idéntico al método científico, pero aplicado a negocios.</label>
+      <label class="quiz-option"><input type="radio" name="qi7" value="d"/> Los métodos tradicionales son exclusivos para ingenieros; el Design Thinking es exclusivo para diseñadores gráficos.</label>
+    </div>
+    <div class="feedback-box" id="fb-qi7"></div>
+  </div>
+
+  <!-- Q8 — ANÁLISIS -->
+  <div class="quiz-item">
+    <span class="quiz-badge badge-analisis">Análisis de Caso</span>
+    <div class="quiz-q">8. Una empresa ecuatoriana de servicios contables implementó un nuevo sistema de gestión documental. Después de tres meses, el 70% del personal sigue usando el método anterior en papel. ¿Qué fase del Design Thinking fue omitida, y cuál fue probablemente la consecuencia de esa omisión?</div>
+    <div class="quiz-options">
+      <label class="quiz-option"><input type="radio" name="qi8" value="a"/> Se omitió la fase de Ideación: el equipo no generó suficientes alternativas tecnológicas antes de elegir el sistema.</label>
+      <label class="quiz-option"><input type="radio" name="qi8" value="b"/> Se omitió la fase de Empatía: el sistema fue diseñado sin comprender las necesidades, hábitos y resistencias reales del personal que lo usaría.</label>
+      <label class="quiz-option"><input type="radio" name="qi8" value="c"/> Se omitió la fase de Prototipar: el prototipo habría revelado que el sistema era demasiado caro para la empresa.</label>
+      <label class="quiz-option"><input type="radio" name="qi8" value="d"/> Se omitió la fase de Definir: el problema se describió de manera incorrecta en los documentos del proyecto.</label>
+    </div>
+    <div class="feedback-box" id="fb-qi8"></div>
+  </div>
+
+  <!-- Q9 — ANÁLISIS -->
+  <div class="quiz-item">
+    <span class="quiz-badge badge-analisis">Análisis de Caso</span>
+    <div class="quiz-q">9. Una auditora aplica Design Thinking para mejorar el proceso de auditoría de una cooperativa de ahorro y crédito en Riobamba. En la fase de empatía, los empleados auditados expresan que el proceso les genera mucha ansiedad porque "sienten que los están vigilando para encontrarles errores". ¿Cuál sería la declaración POV más adecuada?</div>
+    <div class="quiz-options">
+      <label class="quiz-option"><input type="radio" name="qi9" value="a"/> "La cooperativa necesita capacitar a sus empleados en normas de auditoría para reducir errores."</label>
+      <label class="quiz-option"><input type="radio" name="qi9" value="b"/> "Los empleados de la cooperativa necesitan participar del proceso de auditoría desde un rol colaborativo, porque actualmente lo perciben como vigilancia punitiva, lo que genera resistencia y dificulta el hallazgo de mejoras reales."</label>
+      <label class="quiz-option"><input type="radio" name="qi9" value="c"/> "El equipo auditor necesita un protocolo más estricto para manejar la resistencia del personal auditado."</label>
+      <label class="quiz-option"><input type="radio" name="qi9" value="d"/> "La cooperativa necesita contratar más personal contable para que la auditoría sea menos intrusiva."</label>
+    </div>
+    <div class="feedback-box" id="fb-qi9"></div>
+  </div>
+
+  <!-- Q10 — ANÁLISIS -->
+  <div class="quiz-item">
+    <span class="quiz-badge badge-analisis">Análisis de Caso</span>
+    <div class="quiz-q">10. Un estudiante de contabilidad aplica Design Thinking para crear un servicio de asesoría tributaria para artesanos de la ciudad de Otavalo. Luego de entrevistar a 8 artesanos, construye un prototipo: un flyer explicativo con los pasos para declarar el IVA. Lo muestra a los artesanos y todos dicen que no lo entienden. ¿Cuál es la respuesta más adecuada según la metodología?</div>
+    <div class="quiz-options">
+      <label class="quiz-option"><input type="radio" name="qi10" value="a"/> Descartar el prototipo y comenzar desde cero con un enfoque completamente distinto al Design Thinking.</label>
+      <label class="quiz-option"><input type="radio" name="qi10" value="b"/> Concluir que los artesanos no tienen el nivel educativo suficiente para comprender la información tributaria.</label>
+      <label class="quiz-option"><input type="radio" name="qi10" value="c"/> Tratar el feedback como aprendizaje valioso, identificar qué específicamente no comprenden, y rediseñar el prototipo (quizás con imágenes, lenguaje simplificado o formato diferente) para una nueva prueba.</label>
+      <label class="quiz-option"><input type="radio" name="qi10" value="d"/> Presentar el flyer directamente al SRI para que ellos lo corrijan y aprueben, ya que son la autoridad en materia tributaria.</label>
+    </div>
+    <div class="feedback-box" id="fb-qi10"></div>
+  </div>
+
+  <div class="alert-msg" id="alert-quiz">⚠️ Por favor, responde <strong>todas las preguntas</strong> antes de verificar.</div>
+  <div>
+    <button class="btn-primary" onclick="verificarQuiz()">✔ Verificar respuestas</button>
+    <button class="btn-secondary" onclick="reiniciarQuiz()">🔄 Reiniciar</button>
+  </div>
+
+  <div class="score-box" id="score-quiz">
+    <div class="score-emoji" id="score-q-emoji"></div>
+    <div class="score-num" id="score-q-num"></div>
+    <div class="score-label">preguntas correctas de 10</div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="pb-quiz" style="width:0%"></div></div>
+    <div class="score-message" id="score-q-msg"></div>
+  </div>
+</div>
+
+<!-- ACTIVIDAD IA -->
+<div id="ia" class="tab-content">
+  <h2 class="section-title">8. Actividad con Inteligencia Artificial</h2>
+
+  <div class="ia-box">
+    <h3>🤖 Herramienta recomendada: Claude en claude.ai</h3>
+    <p>Para esta actividad usa <strong>Claude en claude.ai</strong> (www.claude.ai) — disponible gratuitamente con registro. También puedes usar ChatGPT (chat.openai.com) o Gemini (gemini.google.com). La actividad tiene el mismo valor independientemente de la herramienta.</p>
+  </div>
+
+  <h3 class="sub-title">🎯 Nombre de la Actividad: "El Auditor que no Escuchó"</h3>
+  <p>En esta actividad usarás la IA como interlocutora crítica para profundizar en la aplicación del Design Thinking en un escenario contable real. No se trata de copiar la respuesta: se trata de usarla como punto de partida para desarrollar tu propio análisis.</p>
+
+  <h3 class="sub-title">Paso 1 — Copia y pega este prompt exacto en la IA:</h3>
+  <div class="ia-prompt-box">Actúa como experto en Design Thinking y consultoría contable. 
+
+Escenario: Una firma de auditoría en Guayaquil, Ecuador, fue contratada para auditar los estados financieros de una empresa mediana del sector manufacturero. El equipo auditor diseñó un proceso exhaustivo basado en normas internacionales de auditoría (NIA), pero al presentar el informe final, la gerencia de la empresa auditada rechazó las recomendaciones diciendo: "Este informe no tiene nada que ver con nuestra realidad operativa."
+
+Desde la perspectiva del Design Thinking:
+1. ¿En qué fase del proceso falló el equipo auditor y por qué?
+2. ¿Qué herramientas concretas de Design Thinking debería haber aplicado antes de diseñar el proceso de auditoría?
+3. ¿Cómo habría cambiado el resultado si el equipo hubiera aplicado la fase de Empatía correctamente?
+4. ¿Cuáles son los riesgos éticos y profesionales de ignorar la perspectiva del auditado al diseñar un proceso de auditoría?
+
+Por favor, responde de manera estructurada y con ejemplos aplicados al contexto ecuatoriano.</div>
+
+  <h3 class="sub-title">Paso 2 — Qué hacer con la respuesta:</h3>
+  <div class="ia-step">
+    <span class="ia-step-num">1</span>
+    <strong style="color:#87CEEB;">Lee la respuesta completa</strong> <span style="color:#c5d0e8;">sin copiarla. Identifica los argumentos centrales de la IA.</span>
+  </div>
+  <div class="ia-step">
+    <span class="ia-step-num">2</span>
+    <strong style="color:#87CEEB;">Compara con el material del widget:</strong> <span style="color:#c5d0e8;">¿La IA mencionó las mismas fases y herramientas que estudiaste? ¿Añadió algo nuevo? ¿Hay algo con lo que no estás de acuerdo?</span>
+  </div>
+  <div class="ia-step">
+    <span class="ia-step-num">3</span>
+    <strong style="color:#87CEEB;">Escribe tu análisis propio (mínimo 300 palabras)</strong> <span style="color:#c5d0e8;">respondiendo: ¿Qué aprendiste de la respuesta de la IA que no estaba en el widget? ¿En qué punto discrepas o matizarías la respuesta? ¿Cómo aplicarías estas ideas si fueras el auditor en el escenario descrito?</span>
+  </div>
+  <div class="ia-step">
+    <span class="ia-step-num">4</span>
+    <strong style="color:#87CEEB;">Pregunta de seguimiento:</strong> <span style="color:#c5d0e8;">Después de leer la respuesta, escribe una pregunta adicional a la IA sobre el aspecto que encontraste más interesante o más confuso. Incluye esa pregunta y la respuesta en tu entrega.</span>
+  </div>
+
+  <h3 class="sub-title" style="color:#fff; margin-top:20px;">📊 Criterio de Evaluación</h3>
+  <table style="margin-top:10px;">
+    <tr><th>Indicador</th><th>Pensamiento Crítico ✅</th><th>Copia Simple ❌</th></tr>
+    <tr><td>Contenido</td><td>Analiza, compara y cuestiona la respuesta de la IA con sus propias palabras</td><td>Pega la respuesta de la IA sin modificación</td></tr>
+    <tr><td>Conexión</td><td>Conecta la respuesta de la IA con el material del widget y experiencias propias</td><td>No menciona el material del curso</td></tr>
+    <tr><td>Postura</td><td>Expresa acuerdos, desacuerdos o matices razonados</td><td>Acepta todo lo que dice la IA sin cuestionarlo</td></tr>
+    <tr><td>Profundidad</td><td>Hace una pregunta de seguimiento relevante y la incluye en la entrega</td><td>No interactúa más allá del primer prompt</td></tr>
+  </table>
+</div>
+
+<!-- REFLEXIÓN -->
+<div id="reflexion" class="tab-content">
+  <h2 class="section-title">9. Preguntas para la Reflexión Personal</h2>
+  <p style="margin-bottom:24px;">Estas preguntas no tienen respuestas correctas ni incorrectas. Su propósito es ayudarte a conectar los conceptos aprendidos con tu vida cotidiana. Tómate el tiempo para reflexionar honestamente. El emprendimiento y la innovación no son cosas ajenas: están ocurriendo en tu vida todo el tiempo.</p>
+
+  <div class="reflex-card">
+    <div class="reflex-icon">👂</div>
+    <h4>¿Cuánto escuchas antes de opinar?</h4>
+    <p>Piensa en la última vez que alguien (un familiar, amigo, compañero) te pidió ayuda para resolver un problema. ¿Cuánto tiempo pasaste escuchando su experiencia real antes de ofrecer soluciones? ¿O tendiste a dar consejos rápidamente basándote en lo que tú harías? La fase de Empatía del Design Thinking nos reta a invertir más tiempo escuchando que hablando. ¿Qué tan difícil te resulta eso en tu vida diaria?</p>
+  </div>
+
+  <div class="reflex-card">
+    <div class="reflex-icon">🧪</div>
+    <h4>¿Eres "prototipador" o esperas la perfección?</h4>
+    <p>El Design Thinking propone actuar con un prototipo imperfecto antes de tener la solución perfecta. En tu vida personal o académica, ¿tiendes a esperar hasta tener todo "listo" antes de dar el primer paso? ¿O pruebas ideas pequeñas y las mejoras sobre la marcha? Recuerda algún momento en que postergaste algo importante esperando el "momento perfecto". ¿Qué habría pasado si hubieras dado un pequeño primer paso imperfecto?</p>
+  </div>
+
+  <div class="reflex-card">
+    <div class="reflex-icon">💡</div>
+    <h4>¿Qué problema de tu entorno nadie ha resuelto bien?</h4>
+    <p>Piensa en tu barrio, en tu familia, en tu universidad o en tu futuro ambiente de trabajo. ¿Hay algún problema cotidiano que todo el mundo vive pero nadie ha resuelto de manera satisfactoria? ¿Se te ocurre alguna solución, aunque sea imperfecta? La innovación no nace en laboratorios lejanos; nace de observar con atención lo que nos rodea. Esta semana, conviértete en observador: anota lo que ves que podría funcionar mejor.</p>
+  </div>
+
+  <div class="reflex-card">
+    <div class="reflex-icon">😰</div>
+    <h4>¿Cómo te relacionas con el error?</h4>
+    <p>El Design Thinking abraza el error como fuente de aprendizaje. Sin embargo, nuestra cultura educativa y familiar muchas veces nos enseña que equivocarse es vergonzoso o señal de incapacidad. ¿Cómo reaccionas emocionalmente cuando cometes un error? ¿Te castigas, te bloqueas, o lo procesas rápidamente y sigues adelante? La inteligencia emocional implica poder ver el error sin que defina tu identidad. ¿Qué necesitarías cambiar internamente para relacionarte con el error desde el aprendizaje?</p>
+  </div>
+
+  <div class="reflex-card">
+    <div class="reflex-icon">🧩</div>
+    <h4>¿Ves los problemas en su totalidad o solo una parte?</h4>
+    <p>El Design Thinking (al igual que el pensamiento sistémico de la Semana 6) nos pide ver el sistema completo, no solo la parte visible del problema. Piensa en una dificultad que estés viviendo actualmente, ya sea personal o académica. ¿Estás viendo solo el síntoma (lo que se manifiesta) o también las causas profundas? ¿Quiénes más están involucrados en ese sistema? ¿Qué pasaría si, antes de buscar soluciones, invirtieras una semana en simplemente observar y entender el sistema completo?</p>
+  </div>
+
+  <div class="reflex-card">
+    <div class="reflex-icon">🌱</div>
+    <h4>¿Para quién quieres diseñar tu vida profesional?</h4>
+    <p>El Design Thinking está centrado en las personas. Al final de tu carrera, cuando ejerces como contador o auditor, ¿para quién estarás trabajando realmente? ¿Para cumplir una norma? ¿Para satisfacer a un jefe? ¿O para crear valor real en la vida de personas concretas —empresarios, cooperativistas, agricultores, artesanos— que dependen de información financiera confiable para tomar decisiones importantes? La respuesta a esta pregunta define no solo tu ética profesional, sino también tu motivación y tu bienestar en el trabajo.</p>
+  </div>
+
+  <div class="key-idea">
+    <h4>💬 Para cerrar esta semana</h4>
+    <p>El Design Thinking no es solo una metodología de negocios. Es una forma de ver el mundo: con curiosidad, con empatía, con disposición a probar y aprender. Estas actitudes, cultivadas desde ahora, te distinguirán como profesional contable en un mercado donde la automatización está reemplazando las tareas técnicas pero no puede reemplazar la capacidad humana de entender, conectar y crear valor para otras personas.</p>
+  </div>
+</div>
+
+<!-- BIBLIOGRAFÍA -->
+<div id="biblio" class="tab-content">
+  <h2 class="section-title">10. Bibliografía</h2>
+  <p style="margin-bottom:20px;">Referencias académicas y profesionales utilizadas como base conceptual de esta semana. Todas son reales y verificables.</p>
+
+  <div class="ref-card">
+    <div class="ref-authors">Brown, T.</div>
+    <div class="ref-year">(2009).</div>
+    <div class="ref-title">Change by design: How design thinking transforms organizations and inspires innovation.</div>
+    <div class="ref-source">HarperBusiness.</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-authors">Kelley, T., &amp; Kelley, D.</div>
+    <div class="ref-year">(2013).</div>
+    <div class="ref-title">Creative confidence: Unleashing the creative potential within us all.</div>
+    <div class="ref-source">Crown Business.</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-authors">Simon, H. A.</div>
+    <div class="ref-year">(1969).</div>
+    <div class="ref-title">The sciences of the artificial.</div>
+    <div class="ref-source">MIT Press.</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-authors">Liedtka, J., &amp; Ogilvie, T.</div>
+    <div class="ref-year">(2011).</div>
+    <div class="ref-title">Designing for growth: A design thinking tool kit for managers.</div>
+    <div class="ref-source">Columbia University Press.</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-authors">IDEO.org.</div>
+    <div class="ref-year">(2015).</div>
+    <div class="ref-title">The field guide to human-centered design.</div>
+    <div class="ref-source">IDEO.org. https://www.designkit.org/resources/1</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-authors">Plattner, H., Meinel, C., &amp; Leifer, L. (Eds.).</div>
+    <div class="ref-year">(2011).</div>
+    <div class="ref-title">Design thinking: Understand – improve – apply.</div>
+    <div class="ref-source">Springer.</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-authors">Rodgers, P. A., &amp; Milton, A.</div>
+    <div class="ref-year">(2011).</div>
+    <div class="ref-title">Product design.</div>
+    <div class="ref-source">Laurence King Publishing.</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-authors">Drucker, P. F.</div>
+    <div class="ref-year">(1985).</div>
+    <div class="ref-title">Innovation and entrepreneurship: Practice and principles.</div>
+    <div class="ref-source">Harper &amp; Row.</div>
+  </div>
+
+  <div class="ref-note">
+    📌 <strong>Nota importante:</strong> Se recomienda verificar cada referencia en Google Scholar (<a href="https://scholar.google.com" target="_blank">scholar.google.com</a>) o en el repositorio institucional antes de citar en trabajos académicos.
+  </div>
+</div>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+// ===== TAB SYSTEM =====
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ===== EJERCICIO =====
+const ejercicioCorrects = {
+  ei1: 'b',
+  ei2: 'b',
+  ei3: 'b',
+  ei4: 'b',
+  ei5: 'b',
+  ei6: 'c',
+  ei7: 'b',
+  ei8: 'b'
+};
+
+const ejercicioFeedbacks = {
+  ei1: {
+    ok: '✅ Correcto. En el Design Thinking, el primer paso siempre es EMPATIZAR: entrevistar y observar a las personas que viven el problema (en este caso, los auditados) para comprender su experiencia real antes de diseñar cualquier solución.',
+    fail: '❌ Incorrecto. Según el Design Thinking, el primer paso es siempre EMPATIZAR: comprender la experiencia real de las personas involucradas. Comprar software o redactar manuales sin ese paso equivale a resolver el problema equivocado.'
+  },
+  ei2: {
+    ok: '✅ Correcto. Esta declaración sigue la estructura POV: [Usuario] + [necesidad real] + [razón/insight]. Menciona a un usuario específico (comerciantes de mercado municipal), su necesidad real y el insight descubierto (conectividad intermitente). No describe la solución.',
+    fail: '❌ Incorrecto. La declaración correcta es la opción B. Las otras opciones caen en el error de describir soluciones ("necesitamos una app"), problemas mal definidos o problemas desde la perspectiva del proveedor, no del usuario.'
+  },
+  ei3: {
+    ok: '✅ Correcto. En la ideación, la regla de oro es suspender el juicio crítico temporalmente para permitir que emerjan ideas no convencionales. Rechazar ideas en el momento las suprime y empobrece el resultado creativo.',
+    fail: '❌ Incorrecto. La respuesta correcta es B. Durante la ideación, ninguna idea debe ser rechazada de inmediato. El juicio crítico se aplica DESPUÉS, en la selección de ideas. Las ideas "poco prácticas" a veces generan soluciones brillantes al refinarse.'
+  },
+  ei4: {
+    ok: '✅ Correcto. El Design Thinking trata el feedback de los usuarios como información de aprendizaje valiosísima, no como un problema a explicar. Si el gerente no entiende el gráfico sin explicación, el gráfico debe rediseñarse hasta que sea autoexplicativo.',
+    fail: '❌ Incorrecto. La respuesta correcta es B. Cuando el usuario tiene dificultades con un prototipo, la tentación de explicarle es un error metodológico: las dificultades son datos de diseño. El equipo debe rediseñar, no explicar.'
+  },
+  ei5: {
+    ok: '✅ Correcto. El prototipo es una versión deliberadamente simple y económica creada PARA APRENDER, no para ser el resultado final. El producto final incorpora los aprendizajes de múltiples ciclos de prueba y error.',
+    fail: '❌ Incorrecto. La respuesta correcta es B. El prototipo no es el producto final ni debe ser costoso. Su único propósito es generar aprendizaje rápido y económico antes de invertir recursos significativos en el desarrollo completo.'
+  },
+  ei6: {
+    ok: '✅ Correcto. La empatía genuina requiere observación directa en el entorno real. Acompañar a los clientes durante el proceso completo (shadowing) permite ver comportamientos reales que no aparecerían en encuestas o en la lectura de manuales.',
+    fail: '❌ Incorrecto. La respuesta correcta es C. Leer manuales revela el proceso normativo, no la experiencia real. Las encuestas de opción múltiple capturan preferencias declaradas, no comportamientos reales. Observar al usuario en acción es la herramienta central de la empatía.'
+  },
+  ei7: {
+    ok: '✅ Correcto. "Iterativo" significa que el proceso implica ciclos de aprendizaje: es normal y saludable regresar a fases anteriores cuando se descubre información nueva. El Design Thinking no es una lista de tareas secuenciales sino un proceso vivo.',
+    fail: '❌ Incorrecto. La respuesta correcta es B. "Iterativo" no significa repetir cada fase un número fijo de veces ni ejecutar el proceso de forma indefinida. Significa que el proceso es cíclico: los aprendizajes de fases posteriores pueden llevar de regreso a fases anteriores.'
+  },
+  ei8: {
+    ok: '✅ Correcto. "Certeza desde el inicio" es exactamente lo OPUESTO a la mentalidad del Design Thinking. Esta metodología abraza la incertidumbre y la curiosidad: el experto no sabe la respuesta antes de investigar; la descubre a través del proceso de empatía.',
+    fail: '❌ Incorrecto. La respuesta correcta es B. Las opciones A, C y D son mentalidades genuinas del Design Thinking: sesgo hacia la acción, tolerancia a la ambigüedad y aprendizaje desde el fracaso. "Certeza desde el inicio" contradice el principio de empatía.'
+  }
+};
+
+function verificarEjercicio() {
+  const names = ['ei1','ei2','ei3','ei4','ei5','ei6','ei7','ei8'];
+  let allAnswered = true;
+  names.forEach(n => {
+    if (!document.querySelector(`input[name="${n}"]:checked`)) allAnswered = false;
+  });
+  if (!allAnswered) {
+    document.getElementById('alert-ejercicio').classList.add('show');
+    return;
+  }
+  document.getElementById('alert-ejercicio').classList.remove('show');
+
+  let correct = 0;
+  names.forEach(n => {
+    const selected = document.querySelector(`input[name="${n}"]:checked`).value;
+    const isOk = selected === ejercicioCorrects[n];
+    if (isOk) correct++;
+
+    // highlight options
+    document.querySelectorAll(`input[name="${n}"]`).forEach(inp => {
+      const lbl = inp.parentElement;
+      if (inp.value === ejercicioCorrects[n]) lbl.classList.add('correct');
+      else if (inp.value === selected && !isOk) lbl.classList.add('incorrect');
+      inp.disabled = true;
+    });
+
+    // show feedback
+    const fb = document.getElementById(`fb-${n}`);
+    fb.textContent = isOk ? ejercicioFeedbacks[n].ok : ejercicioFeedbacks[n].fail;
+    fb.className = `feedback-box show ${isOk ? 'ok' : 'fail'}`;
+  });
+
+  const pct = Math.round((correct / names.length) * 100);
+  const box = document.getElementById('score-ejercicio');
+  box.classList.add('show');
+  document.getElementById('score-ej-num').textContent = `${correct} / ${names.length}`;
+
+  let emoji, msg;
+  if (pct === 100) { emoji = '🏆'; msg = '¡Perfecto! Dominas completamente el Design Thinking.'; }
+  else if (pct >= 80) { emoji = '🎯'; msg = 'Excelente trabajo. Comprendes bien la metodología.'; }
+  else if (pct >= 60) { emoji = '📘'; msg = 'Buen esfuerzo. Repasa las fases que tuviste incorrectas.'; }
+  else if (pct >= 40) { emoji = '⚠️'; msg = 'Necesitas reforzar el material. Revisa las pestañas de contenido.'; }
+  else { emoji = '📖'; msg = 'Vuelve a estudiar el contenido antes de intentarlo de nuevo.'; }
+
+  document.getElementById('score-ej-emoji').textContent = emoji;
+  document.getElementById('score-ej-msg').textContent = msg;
+  setTimeout(() => { document.getElementById('pb-ejercicio').style.width = pct + '%'; }, 100);
+}
+
+function reiniciarEjercicio() {
+  const names = ['ei1','ei2','ei3','ei4','ei5','ei6','ei7','ei8'];
+  names.forEach(n => {
+    document.querySelectorAll(`input[name="${n}"]`).forEach(inp => {
+      inp.checked = false;
+      inp.disabled = false;
+      inp.parentElement.classList.remove('correct','incorrect');
+    });
+    const fb = document.getElementById(`fb-${n}`);
+    fb.className = 'feedback-box';
+    fb.textContent = '';
+  });
+  document.getElementById('score-ejercicio').classList.remove('show');
+  document.getElementById('alert-ejercicio').classList.remove('show');
+  document.getElementById('pb-ejercicio').style.width = '0%';
+}
+
+// ===== CUESTIONARIO =====
+const quizCorrects = {
+  qi1: 'b',
+  qi2: 'b',
+  qi3: 'b',
+  qi4: 'b',
+  qi5: 'b',
+  qi6: 'b',
+  qi7: 'b',
+  qi8: 'b',
+  qi9: 'b',
+  qi10: 'c'
+};
+
+const quizFeedbacks = {
+  qi1: {
+    ok: '✅ Correcto. El Design Thinking fue sistematizado por la firma de diseño IDEO (con David Kelley y Tim Brown) y popularizado académicamente por el d.school de Stanford a partir de los años 1990.',
+    fail: '❌ Incorrecto. Aunque Drucker y Schumpeter son referentes del emprendimiento, el Design Thinking como metodología fue sistematizado por IDEO y Stanford. Drucker se enfocó en gestión estratégica; Schumpeter, en la destrucción creativa.'
+  },
+  qi2: {
+    ok: '✅ Correcto. El orden estándar es: Empatizar → Definir → Idear → Prototipar → Probar. Este orden refleja la lógica del proceso: primero entender (empatía y definición), luego crear (ideación y prototipado), y finalmente validar (prueba).',
+    fail: '❌ Incorrecto. El orden correcto es Empatizar → Definir → Idear → Prototipar → Probar. La empatía debe ser siempre el primer paso, porque sin comprender el problema real desde la perspectiva del usuario, todas las fases siguientes estarán mal orientadas.'
+  },
+  qi3: {
+    ok: '✅ Correcto. El Mapa de Empatía es una plantilla visual de cuatro cuadrantes (dice, piensa, hace, siente) que se usa para sintetizar los hallazgos de las entrevistas y observaciones de la fase de empatía.',
+    fail: '❌ Incorrecto. El Mapa de Empatía no es un organigrama, un mapa geográfico ni un FODA. Es una herramienta de síntesis que organiza lo que el usuario dice, piensa, hace y siente, para revelar sus necesidades profundas.'
+  },
+  qi4: {
+    ok: '✅ Correcto. La regla de oro de la ideación es: cantidad primero, calidad después. Se suspende el juicio crítico temporalmente para permitir que emerjan ideas no convencionales. El filtrado ocurre después de la generación.',
+    fail: '❌ Incorrecto. En la ideación, el juicio crítico se suspende temporalmente. Evaluar cada idea antes de avanzar destruye la creatividad. La selección ocurre en una etapa posterior, después de haber generado todas las ideas posibles.'
+  },
+  qi5: {
+    ok: '✅ Correcto. "Human-centered" significa que el proceso parte siempre de las experiencias, necesidades y frustraciones reales de las personas afectadas por el problema, no de las suposiciones del experto o de los datos abstractos.',
+    fail: '❌ Incorrecto. "Human-centered" no implica restricciones por poder adquisitivo ni equipos especializados. Significa que el diseño parte de comprender profundamente la experiencia de las personas que viven el problema.'
+  },
+  qi6: {
+    ok: '✅ Correcto. El propósito de la fase de Probar es aprender qué funciona y qué no, observando cómo los usuarios reales interactúan con el prototipo. No es para validar que la idea es correcta (eso sería sesgo de confirmación).',
+    fail: '❌ Incorrecto. La fase de Probar no busca confirmar que la idea es correcta ni medir ROI. Su único objetivo es aprender: ¿el prototipo funciona como se esperaba? ¿Qué no entiende el usuario? ¿Qué hay que cambiar?'
+  },
+  qi7: {
+    ok: '✅ Correcto. El método tradicional parte del experto y sigue un proceso lineal; el Design Thinking parte del usuario y es iterativo (cíclico). Esta diferencia de punto de partida y proceso es la distinción fundamental entre ambos enfoques.',
+    fail: '❌ Incorrecto. La diferencia fundamental es que el método tradicional parte del experto con un proceso lineal, mientras el Design Thinking parte del usuario con un proceso iterativo. No se trata de velocidad, costo ni disciplina profesional exclusiva.'
+  },
+  qi8: {
+    ok: '✅ Correcto. Si el 70% del personal sigue usando papel, el sistema fue diseñado sin comprender la experiencia real de quienes lo usarían. La fase de Empatía (observación, entrevistas, mapas de viaje del usuario) habría revelado hábitos, resistencias y necesidades que el sistema debía contemplar.',
+    fail: '❌ Incorrecto. La fase omitida fue la Empatía. Si el personal no adopta el sistema, es porque no fue diseñado para su realidad. La Ideación, el Prototipado o la Definición son importantes, pero sin Empatía, el punto de partida es incorrecto.'
+  },
+  qi9: {
+    ok: '✅ Correcto. Esta declaración sigue perfectamente la estructura POV: identifica al usuario específico (empleados de la cooperativa), su necesidad real (participar de forma colaborativa) y el insight descubierto en la empatía (perciben la auditoría como vigilancia punitiva, generando resistencia).',
+    fail: '❌ Incorrecto. La declaración correcta es la B. Las otras opciones describen soluciones (capacitación, protocolo más estricto, más personal) o replantean el problema desde la perspectiva del auditor, no del auditado. El POV debe centrarse en la necesidad del usuario.'
+  },
+  qi10: {
+    ok: '✅ Correcto. Según el Design Thinking, el feedback negativo de los usuarios (nadie entiende el flyer) es información valiosa, no un fracaso. El equipo debe identificar qué específicamente no funciona, mejorar el prototipo (quizás con imágenes o lenguaje simplificado) y volver a probar. Esto es iterar.',
+    fail: '❌ Incorrecto. La respuesta correcta es C. Descartar el prototipo sería un desperdicio del aprendizaje obtenido. Culpar al nivel educativo de los artesanos sería un error de empatía. Presentarlo al SRI no resuelve el problema de diseño. La solución es iterar: mejorar y probar de nuevo.'
+  }
+};
+
+function verificarQuiz() {
+  const names = ['qi1','qi2','qi3','qi4','qi5','qi6','qi7','qi8','qi9','qi10'];
+  let allAnswered = true;
+  names.forEach(n => {
+    if (!document.querySelector(`input[name="${n}"]:checked`)) allAnswered = false;
+  });
+  if (!allAnswered) {
+    document.getElementById('alert-quiz').classList.add('show');
+    return;
+  }
+  document.getElementById('alert-quiz').classList.remove('show');
+
+  let correct = 0;
+  names.forEach(n => {
+    const selected = document.querySelector(`input[name="${n}"]:checked`).value;
+    const isOk = selected === quizCorrects[n];
+    if (isOk) correct++;
+
+    document.querySelectorAll(`input[name="${n}"]`).forEach(inp => {
+      const lbl = inp.parentElement;
+      if (inp.value === quizCorrects[n]) lbl.classList.add('correct');
+      else if (inp.value === selected && !isOk) lbl.classList.add('incorrect');
+      inp.disabled = true;
+    });
+
+    const fb = document.getElementById(`fb-${n}`);
+    fb.textContent = isOk ? quizFeedbacks[n].ok : quizFeedbacks[n].fail;
+    fb.className = `feedback-box show ${isOk ? 'ok' : 'fail'}`;
+  });
+
+  const pct = Math.round((correct / 10) * 100);
+  document.getElementById('score-quiz').classList.add('show');
+  document.getElementById('score-q-num').textContent = `${correct} / 10`;
+
+  let emoji, msg;
+  if (pct === 100) { emoji = '🏆'; msg = '¡Resultado perfecto! Excelente dominio del Design Thinking.'; }
+  else if (pct >= 80) { emoji = '🎯'; msg = 'Muy buen resultado. Comprendes los conceptos centrales.'; }
+  else if (pct >= 60) { emoji = '📘'; msg = 'Aprobado. Refuerza los temas donde tuviste errores.'; }
+  else if (pct >= 40) { emoji = '⚠️'; msg = 'Por debajo del promedio. Revisa el material antes de continuar.'; }
+  else { emoji = '📖'; msg = 'Necesitas estudiar el contenido de esta semana con más dedicación.'; }
+
+  document.getElementById('score-q-emoji').textContent = emoji;
+  document.getElementById('score-q-msg').textContent = msg;
+  setTimeout(() => { document.getElementById('pb-quiz').style.width = pct + '%'; }, 100);
+}
+
+function reiniciarQuiz() {
+  const names = ['qi1','qi2','qi3','qi4','qi5','qi6','qi7','qi8','qi9','qi10'];
+  names.forEach(n => {
+    document.querySelectorAll(`input[name="${n}"]`).forEach(inp => {
+      inp.checked = false;
+      inp.disabled = false;
+      inp.parentElement.classList.remove('correct','incorrect');
+    });
+    const fb = document.getElementById(`fb-${n}`);
+    fb.className = 'feedback-box';
+    fb.textContent = '';
+  });
+  document.getElementById('score-quiz').classList.remove('show');
+  document.getElementById('alert-quiz').classList.remove('show');
+  document.getElementById('pb-quiz').style.width = '0%';
+}
+</script>
+</body>
+</html>
