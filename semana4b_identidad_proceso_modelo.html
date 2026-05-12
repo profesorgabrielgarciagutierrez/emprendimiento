@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 4 – Continuación---Identidad Emprendedora, Proceso y Modelo de Negocio</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Source Sans 3',sans-serif;font-size:16px;line-height:1.75;color:#1a1a2e;background:#f4f6f9;min-height:100vh}
+h1,h2,h3,h4{font-family:'Lora',serif}
+
+/* HEADER */
+header{background:#003366;color:#fff;padding:20px 30px 16px}
+.header-top{font-size:12px;letter-spacing:1px;text-transform:uppercase;opacity:.8;margin-bottom:4px}
+.header-title{font-family:'Lora',serif;font-size:clamp(18px,3vw,26px);font-weight:700;line-height:1.25}
+.header-sub{font-size:13px;margin-top:6px;opacity:.75;letter-spacing:.5px}
+
+/* TAB BAR */
+.tab-bar-wrapper{background:#87CEEB;overflow-x:auto;white-space:nowrap;position:sticky;top:0;z-index:100;box-shadow:0 2px 6px rgba(0,0,0,.15);scrollbar-width:thin;scrollbar-color:#003366 #87CEEB}
+.tab-bar-wrapper::-webkit-scrollbar{height:4px}
+.tab-bar-wrapper::-webkit-scrollbar-thumb{background:#003366;border-radius:4px}
+.tab-bar{display:inline-flex;padding:0 8px}
+.tab-btn{display:inline-block;padding:12px 18px;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1a2e;background:transparent;border:none;border-bottom:3px solid transparent;white-space:nowrap;transition:background .2s,border-color .2s,color .2s}
+.tab-btn:hover{background:rgba(255,255,255,.5)}
+.tab-btn.active{background:#fff;color:#003366;font-weight:700;border-bottom-color:#003366}
+
+/* MAIN */
+main{max-width:960px;margin:0 auto;padding:30px 20px 60px}
+.tab-content{display:none;animation:fadeIn .35s ease}
+.tab-content.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+/* TYPOGRAPHY */
+h2.section-title{font-size:clamp(20px,3vw,26px);color:#003366;margin-bottom:18px;padding-bottom:8px;border-bottom:3px solid #87CEEB}
+h3.subsection{font-size:18px;color:#003366;margin:24px 0 10px}
+p{margin-bottom:14px}
+ul,ol{padding-left:22px;margin-bottom:14px}
+li{margin-bottom:7px}
+
+/* BOXES */
+.concept-box{border-left:5px solid #003366;background:#eef4ff;padding:16px 20px;border-radius:0 8px 8px 0;margin:18px 0}
+.concept-box strong{color:#003366;display:block;margin-bottom:4px;font-family:'Lora',serif;font-size:15px}
+.example-box{background:#d0e8f5;border-radius:10px;padding:18px 22px;margin:18px 0}
+.example-box .ex-label{font-family:'Lora',serif;font-weight:700;color:#003366;font-size:14px;letter-spacing:.5px;text-transform:uppercase;margin-bottom:8px;display:block}
+.key-idea{background:#003366;color:#fff;padding:18px 22px;border-radius:10px;margin:22px 0}
+.key-idea strong{font-family:'Lora',serif;font-size:16px;display:block;margin-bottom:6px}
+.warning-box{background:#fff3cd;border-left:5px solid #e8a020;padding:16px 20px;border-radius:0 8px 8px 0;margin:18px 0}
+.warning-box strong{color:#b07000;display:block;margin-bottom:4px;font-family:'Lora',serif}
+
+/* TABLES */
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14.5px}
+th{background:#003366;color:#fff;padding:10px 14px;text-align:left;font-family:'Lora',serif}
+td{padding:9px 14px;border-bottom:1px solid #d0d8e8}
+tr:nth-child(even) td{background:#eef4ff}
+tr:hover td{background:#d0e8f5}
+
+/* STATS */
+.stat-row{display:flex;flex-wrap:wrap;gap:14px;margin:18px 0}
+.stat-card{flex:1 1 160px;background:#003366;color:#fff;border-radius:10px;padding:16px;text-align:center}
+.stat-card .stat-num{font-family:'Lora',serif;font-size:26px;font-weight:700;line-height:1.1}
+.stat-card .stat-label{font-size:12px;margin-top:4px;opacity:.85}
+
+/* RECAP */
+.recap-card{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.07);border-left:6px solid #87CEEB}
+.recap-card h4{color:#003366;font-size:16px;margin-bottom:8px}
+
+/* PROCESS STEPS */
+.process-steps{display:flex;flex-direction:column;gap:0;margin:20px 0}
+.process-step{display:flex;gap:16px;align-items:flex-start;position:relative}
+.process-step:not(:last-child)::after{content:'';position:absolute;left:18px;top:40px;bottom:-16px;width:3px;background:#87CEEB}
+.step-circle{width:38px;height:38px;background:#003366;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;flex-shrink:0;z-index:1}
+.step-body{flex:1;background:#fff;border-radius:8px;padding:14px 16px;box-shadow:0 2px 8px rgba(0,0,0,.06);margin-bottom:16px}
+.step-body h4{color:#003366;margin-bottom:4px}
+
+/* CANVAS BMC */
+.bmc-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;grid-template-rows:auto auto auto;gap:8px;margin:20px 0}
+.bmc-cell{background:#fff;border:2px solid #003366;border-radius:8px;padding:12px 14px;min-height:100px}
+.bmc-cell h4{color:#003366;font-size:13px;font-family:'Lora',serif;margin-bottom:6px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.bmc-cell p{font-size:12.5px;color:#444;margin:0;line-height:1.5}
+.bmc-span2{grid-column:span 2}
+.bmc-accent{background:#eef4ff}
+.bmc-dark{background:#003366;color:#fff}
+.bmc-dark h4{color:#87CEEB}
+.bmc-dark p{color:#dde8f5}
+
+/* MINDSET CARDS */
+.mindset-compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}
+.mindset-card{border-radius:12px;padding:18px 20px}
+.mindset-fixed{background:#f8d7da;border-top:5px solid #dc3545}
+.mindset-growth{background:#d4edda;border-top:5px solid #28a745}
+.mindset-card h4{margin-bottom:10px;font-size:16px}
+.mindset-fixed h4{color:#721c24}
+.mindset-growth h4{color:#155724}
+.mindset-card ul{font-size:14px;padding-left:18px}
+
+/* AUTOBOICOT */
+.boicot-card{background:#fff;border-radius:12px;padding:18px 20px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);border-left:5px solid #e8a020;display:flex;gap:14px;align-items:flex-start}
+.boicot-icon{font-size:28px;flex-shrink:0}
+.boicot-card h4{color:#b07000;margin-bottom:4px;font-size:16px}
+.boicot-card p{font-size:14.5px;margin:0}
+
+/* QUIZ */
+.quiz-question{background:#fff;border-radius:10px;padding:20px;margin-bottom:18px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.quiz-question p{font-weight:600;margin-bottom:12px;color:#003366;font-family:'Lora',serif}
+.quiz-option{display:flex;align-items:flex-start;gap:10px;padding:9px 12px;border-radius:7px;margin-bottom:6px;cursor:pointer;transition:background .2s}
+.quiz-option:hover{background:#eef4ff}
+.quiz-option input{margin-top:3px;flex-shrink:0;accent-color:#003366}
+.quiz-option label{cursor:pointer;font-size:15px}
+.badge{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;letter-spacing:.5px;margin-bottom:10px}
+.badge-theory{background:#003366;color:#fff}
+.badge-case{background:#e8a020;color:#fff}
+.badge-synth{background:#28a745;color:#fff}
+.btn{display:inline-block;padding:12px 28px;border-radius:8px;font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:700;cursor:pointer;border:none;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.btn-primary{background:#003366;color:#fff}
+.btn-secondary{background:#87CEEB;color:#003366;margin-left:10px}
+.feedback-item{padding:10px 14px;border-radius:7px;margin-top:8px;font-size:14px}
+.feedback-correct{background:#d4edda;border-left:4px solid #28a745;color:#155724}
+.feedback-incorrect{background:#f8d7da;border-left:4px solid #dc3545;color:#721c24}
+.score-panel{background:#fff;border-radius:12px;padding:24px;text-align:center;box-shadow:0 4px 16px rgba(0,0,0,.1);margin-top:24px;display:none}
+.score-panel .score-emoji{font-size:48px;line-height:1;margin-bottom:10px}
+.score-panel .score-num{font-family:'Lora',serif;font-size:32px;font-weight:700;color:#003366}
+.progress-bar-wrap{background:#e0e0e0;border-radius:20px;height:18px;margin:14px auto;max-width:400px;overflow:hidden}
+.progress-bar-fill{height:100%;border-radius:20px;background:linear-gradient(90deg,#003366,#0066cc);transition:width 1s ease}
+.score-msg{font-size:16px;font-weight:600;color:#003366;margin-top:8px}
+
+/* IA & REFLECTION */
+.ia-box{background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 10px rgba(0,0,0,.08);margin-bottom:20px}
+.ia-box h3{color:#003366;margin-bottom:14px}
+.prompt-code{background:#1a1a2e;color:#87CEEB;padding:18px;border-radius:8px;font-family:'Courier New',monospace;font-size:13.5px;line-height:1.7;white-space:pre-wrap;margin:14px 0}
+.step-num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;background:#003366;color:#fff;border-radius:50%;font-weight:700;font-size:13px;margin-right:8px;flex-shrink:0}
+.step-row{display:flex;align-items:flex-start;margin-bottom:12px}
+.reflection-q{background:#fff;border-radius:10px;padding:18px 22px;margin-bottom:14px;box-shadow:0 2px 8px rgba(0,0,0,.06);border-left:5px solid #87CEEB}
+.reflection-q .q-num{font-family:'Lora',serif;font-weight:700;color:#003366;margin-bottom:6px;font-size:15px}
+
+/* BIBLIO */
+.ref-card{background:#fff;border-radius:10px;padding:16px 20px;margin-bottom:14px;box-shadow:0 2px 8px rgba(0,0,0,.07);font-size:14.5px;line-height:1.6}
+.ref-card .ref-author{font-weight:700;color:#003366}
+.ref-note{background:#eef4ff;border-left:4px solid #003366;padding:12px 16px;border-radius:0 8px 8px 0;font-size:13px;margin-top:18px;color:#333}
+
+/* CHIPS */
+.chip-row{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.chip{background:#003366;color:#fff;border-radius:20px;padding:5px 14px;font-size:13px;font-weight:600}
+.chip-light{background:#87CEEB;color:#003366}
+
+/* COVEY HABITS */
+.habito-card{background:#fff;border-radius:12px;padding:16px 18px;margin-bottom:10px;box-shadow:0 2px 6px rgba(0,0,0,.06);display:flex;gap:14px;align-items:flex-start;border-left:5px solid #003366}
+.habito-num{font-family:'Lora',serif;font-size:22px;font-weight:700;color:#003366;flex-shrink:0;min-width:28px}
+.habito-card h4{color:#003366;margin-bottom:3px}
+.habito-card p{font-size:14.5px;margin:0}
+
+@media(max-width:600px){
+  main{padding:20px 12px 50px}
+  .stat-row{flex-direction:column}
+  .tab-btn{padding:10px 13px;font-size:12px}
+  .mindset-compare{grid-template-columns:1fr}
+  .bmc-grid{grid-template-columns:1fr 1fr}
+  .bmc-span2{grid-column:span 1}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-top">Universidad de Guayaquil · Facultad de Ciencias Administrativas · Contabilidad y Auditoría</div>
+  <div class="header-title">Emprendimiento e Innovación — Semana 4</div>
+  <div class="header-sub">Unidad 1: Cierre y Profundización &nbsp;|&nbsp; Identidad Emprendedora · Autoboicot · Mentalidad de Crecimiento · Proceso Emprendedor Profundo · Modelo de Negocio Canvas</div>
+</header>
+
+<div class="tab-bar-wrapper">
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="showTab('repaso')">📋 Repaso</button>
+    <button class="tab-btn" onclick="showTab('t1')">🧠 Tema 1</button>
+    <button class="tab-btn" onclick="showTab('t2')">⚙️ Tema 2</button>
+    <button class="tab-btn" onclick="showTab('t3')">🗺️ Tema 3</button>
+    <button class="tab-btn" onclick="showTab('t4')">🎯 Tema 4</button>
+    <button class="tab-btn" onclick="showTab('ejercicio')">✏️ Ejercicio</button>
+    <button class="tab-btn" onclick="showTab('cuestionario')">📝 Cuestionario</button>
+    <button class="tab-btn" onclick="showTab('ia')">🤖 Actividad IA</button>
+    <button class="tab-btn" onclick="showTab('reflexion')">💭 Reflexión</button>
+    <button class="tab-btn" onclick="showTab('biblio')">📚 Bibliografía</button>
+  </div>
+</div>
+
+<main>
+
+<!-- ══════════════════════════════════════════
+     REPASO
+══════════════════════════════════════════ -->
+<div id="repaso" class="tab-content active">
+  <h2 class="section-title">📋 Repaso Integrado — Unidad 1 en Perspectiva</h2>
+  <p>Esta es la semana de cierre de la Unidad 1. Antes de profundizar en los temas nuevos, hagamos un repaso integrador de todo el recorrido:</p>
+
+  <div class="recap-card">
+    <h4>Semanas 1–2 — Los cimientos conceptuales</h4>
+    <p>Definimos emprender (identificar una oportunidad y asumir el riesgo de transformarla en valor) e innovar (introducir algo nuevo que genera valor de forma sistemática). Conocimos los tipos básicos de emprendedor, el proceso emprendedor y la innovación disruptiva de Christensen. Casos: Kushki, Datil.</p>
+  </div>
+
+  <div class="recap-card">
+    <h4>Semana 3 — El ecosistema: el entorno importa tanto como la persona</h4>
+    <p>Mapeamos el panorama mundial del emprendimiento con el GEM (TEA, motivación por necesidad vs. oportunidad). Analizamos los 6 dominios de Isenberg y el modelo de Triple Hélice (Universidad–Empresa–Estado). Diagnosticamos el ecosistema ecuatoriano: alta TEA (~30%), alta discontinuación (70%), informalidad, y casos como Siembro, Kruger Labs y Yachay Tech.</p>
+  </div>
+
+  <div class="recap-card">
+    <h4>Semana 4 — La persona emprendedora: capacidades, tipos y oportunidades</h4>
+    <p>Profundizamos en el Marco EntreComp (15 competencias en 3 áreas), el Grit de Duckworth y el principio de responsabilidad 100% de Canfield. Conocimos los 6 tipos de emprendedor con perfiles psicológicos detallados (necesidad, oportunidad, social, intraemprendedor, digital, serial). Aprendimos el proceso de identificación de problemas → oportunidades (5 pasos, MVP de Blank) y el análisis de 5 tipos de tendencias con herramientas concretas.</p>
+  </div>
+
+  <div class="key-idea">
+    <strong>🔗 ¿Qué falta para completar la Unidad 1?</strong>
+    Hemos construido el "mapa del territorio". Esta semana excavamos en profundidad en la dimensión más íntima y determinante del emprendedor: <strong>la identidad y los modelos mentales</strong> que definen si actuamos o nos paralizamos. También cerramos con el instrumento que convierte una oportunidad en un plan de negocio concreto: el <strong>Business Model Canvas</strong>. Esta es la semana que conecta el pensamiento con la acción.
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     TEMA 1 — Identidad Emprendedora y Modelos Mentales
+══════════════════════════════════════════ -->
+<div id="t1" class="tab-content">
+  <h2 class="section-title">🧠 Tema 1: Identidad Emprendedora — ¿Quién Crees que Eres?</h2>
+
+  <p>Hay una razón por la que millones de personas con buenas ideas, suficiente tiempo y acceso a información nunca actúan: <strong>no se ven a sí mismas como emprendedoras</strong>. La identidad — lo que creemos sobre quiénes somos — es el filtro invisible que determina qué oportunidades vemos, qué riesgos tomamos y qué obstáculos nos detienen. Esta semana trabajamos ese filtro desde adentro.</p>
+
+  <h3 class="subsection">Mentalidad Fija vs. Mentalidad de Crecimiento (Dweck, 2006)</h3>
+  <div class="concept-box">
+    <strong>Mentalidad de Crecimiento (Growth Mindset) — Carol Dweck, Stanford</strong>
+    Carol Dweck, psicóloga de Stanford, investigó durante décadas por qué algunas personas prosperan ante los desafíos y otras se paralizan. Su hallazgo central: la diferencia no está en el talento ni en los recursos — está en la <strong>creencia sobre si las capacidades pueden cambiar</strong>. Las personas con <em>mentalidad fija</em> creen que las habilidades son innatas y permanentes. Las de <em>mentalidad de crecimiento</em> creen que pueden desarrollarse con esfuerzo, estrategia y aprendizaje de los errores. Esta segunda mentalidad es la que caracteriza a los emprendedores resilientes.
+  </div>
+
+  <div class="mindset-compare">
+    <div class="mindset-card mindset-fixed">
+      <h4>🔒 Mentalidad Fija (Fixed Mindset)</h4>
+      <ul>
+        <li>"No soy bueno/a para los negocios"</li>
+        <li>"Si fallo, significa que soy un fracasado/a"</li>
+        <li>"Evito los desafíos donde podría quedar mal"</li>
+        <li>"El talento es algo con lo que naces"</li>
+        <li>"La crítica de otros me paraliza"</li>
+        <li>"El éxito de otros me amenaza"</li>
+        <li>"No soy emprendedor/a — eso es para otras personas"</li>
+      </ul>
+    </div>
+    <div class="mindset-card mindset-growth">
+      <h4>🌱 Mentalidad de Crecimiento (Growth Mindset)</h4>
+      <ul>
+        <li>"Aún no sé hacerlo — pero puedo aprender"</li>
+        <li>"El fracaso es información, no identidad"</li>
+        <li>"Los desafíos son oportunidades de crecer"</li>
+        <li>"El esfuerzo sostenido supera al talento inicial"</li>
+        <li>"La crítica útil me hace mejor"</li>
+        <li>"El éxito de otros me inspira y me enseña"</li>
+        <li>"Desarrollo mi capacidad emprendedora todos los días"</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="subsection">El Autoboicot: el saboteador interno</h3>
+  <p>Jack Canfield dedica capítulos enteros de <em>Los Principios del Éxito</em> a identificar y desmantelar el autoboicot: el conjunto de creencias, hábitos, miedos y conductas que nos sabotean desde adentro, muchas veces sin que lo notemos conscientemente.</p>
+
+  <div class="concept-box">
+    <strong>Autoboicot — Definición operativa</strong>
+    El autoboicot (también llamado "sabotaje personal" o "autosabotaje") es cualquier patrón de pensamiento, emoción o conducta que nos impide alcanzar nuestras metas, a menudo de forma inconsciente y contraria a nuestros intereses declarados. Se manifiesta en el emprendimiento como procrastinación crónica, perfeccionismo paralizante, síndrome del impostor, búsqueda compulsiva de validación externa y evitación del riesgo necesario.
+  </div>
+
+  <p><strong>Las 5 formas más comunes de autoboicot en emprendedores ecuatorianos:</strong></p>
+
+  <div class="boicot-card">
+    <span class="boicot-icon">⏳</span>
+    <div>
+      <h4>Procrastinación disfrazada de preparación</h4>
+      <p>"Todavía no estoy listo/a. Cuando termine el semestre, cuando ahorre más, cuando aprenda más..." El perfeccionismo y la espera de condiciones ideales son la forma más elegante de nunca empezar. Canfield responde: <em>la acción imperfecta vence a la inacción perfecta siempre</em>.</p>
+    </div>
+  </div>
+
+  <div class="boicot-card">
+    <span class="boicot-icon">🎭</span>
+    <div>
+      <h4>Síndrome del Impostor</h4>
+      <p>La creencia persistente de que eres un fraude y que los demás "se darán cuenta" de que no eres tan capaz como creen. Es devastadoramente común en profesionales jóvenes y en estudiantes universitarios. El antídoto: documentar evidencia real de tus logros y competencias, y separar el sentimiento de la realidad.</p>
+    </div>
+  </div>
+
+  <div class="boicot-card">
+    <span class="boicot-icon">😱</span>
+    <div>
+      <h4>Miedo al fracaso como identidad</h4>
+      <p>En Ecuador, el fracaso empresarial todavía carga con estigma social. Cuando identificas el fracaso con "ser un fracasado" (y no simplemente "haber fallado en algo"), el riesgo de emprender se convierte en una amenaza a tu identidad. Esta confusión entre fracaso del proyecto y fracaso de la persona es el obstáculo psicológico más destructivo del ecosistema emprendedor latinoamericano.</p>
+    </div>
+  </div>
+
+  <div class="boicot-card">
+    <span class="boicot-icon">🗣️</span>
+    <div>
+      <h4>Dependencia excesiva de validación externa</h4>
+      <p>"¿Qué dirán mis padres, mis amigos, mi familia?" El emprendedor que necesita aprobación de todos antes de actuar raramente actúa. Covey distingue entre el <em>Círculo de Influencia</em> (lo que puedes controlar) y el <em>Círculo de Preocupación</em> (lo que no puedes controlar, como la opinión ajena). Los emprendedores proactivos invierten energía en su Círculo de Influencia.</p>
+    </div>
+  </div>
+
+  <div class="boicot-card">
+    <span class="boicot-icon">🔄</span>
+    <div>
+      <h4>Comparación destructiva</h4>
+      <p>Compararse con emprendedores en etapas muy avanzadas (o con el "highlight reel" de redes sociales) genera parálisis. Canfield lo llama "comparar tu interior con el exterior de otros". El antídoto es medir tu progreso contra tu propio punto de partida, no contra el resultado final de quienes llevan años más de recorrido.</p>
+    </div>
+  </div>
+
+  <h3 class="subsection">Los 7 Hábitos de Covey aplicados al emprendimiento</h3>
+  <p>Stephen Covey, en <em>Los 7 Hábitos de la Gente Altamente Efectiva</em>, ofrece un marco de efectividad personal que resulta directamente aplicable al emprendedor. No como filosofía abstracta — como guía concreta de acción:</p>
+
+  <div class="habito-card">
+    <span class="habito-num">1</span>
+    <div><h4>Sé proactivo</h4><p>Toma responsabilidad total sobre tus respuestas al entorno. El emprendedor proactivo no espera que el mercado mejore, que el gobierno cambie ni que la economía se estabilice: crea valor desde donde está, con lo que tiene. Sintonía directa con el Principio 100% de Canfield.</p></div>
+  </div>
+
+  <div class="habito-card">
+    <span class="habito-num">2</span>
+    <div><h4>Empieza con el fin en mente</h4><p>Antes de lanzar un negocio, visualiza con claridad a dónde quieres llegar: ¿qué impacto quieres generar? ¿qué vida quieres vivir? ¿cómo se ve el éxito para ti? Sin esta claridad, los emprendimientos carecen de dirección y los emprendedores queman energía sin avanzar.</p></div>
+  </div>
+
+  <div class="habito-card">
+    <span class="habito-num">3</span>
+    <div><h4>Pon primero lo primero</h4><p>La matriz de gestión del tiempo de Covey distingue entre lo urgente y lo importante. Los emprendedores exitosos priorizan lo <em>importante no urgente</em>: planificación estratégica, desarrollo de relaciones, formación, innovación. Los emprendedores que fracasan pasan todo el tiempo apagando incendios (urgente no importante).</p></div>
+  </div>
+
+  <div class="habito-card">
+    <span class="habito-num">4</span>
+    <div><h4>Piensa en ganar-ganar</h4><p>Los mejores negocios crean valor para todas las partes: cliente, proveedor, comunidad, inversionista. El emprendedor que busca sólo extraer valor de otros construye negocios frágiles. El que crea valor para todos construye ecosistemas sostenibles.</p></div>
+  </div>
+
+  <div class="habito-card">
+    <span class="habito-num">5</span>
+    <div><h4>Busca primero entender</h4><p>Antes de presentar tu solución, entiende profundamente el problema del cliente. Esto es exactamente la lógica del Design Thinking y las entrevistas de problema estudiadas en la Semana 4. Escuchar antes de hablar es una ventaja competitiva en sí misma.</p></div>
+  </div>
+
+  <div class="habito-card">
+    <span class="habito-num">6</span>
+    <div><h4>Sinergiza</h4><p>El emprendimiento solitario tiene límites. Los mejores emprendedores construyen equipos complementarios donde las diferencias se convierten en fortaleza. La sinergia crea resultados que ningún miembro del equipo podría lograr solo.</p></div>
+  </div>
+
+  <div class="habito-card">
+    <span class="habito-num">7</span>
+    <div><h4>Afila la sierra</h4><p>Renueva continuamente tu energía física, mental, emocional y espiritual. Un emprendedor que se agota sin renovarse termina tomando malas decisiones, perdiendo relaciones y destruyendo su propio negocio. El descanso estratégico y el aprendizaje continuo no son lujos — son inversiones en sostenibilidad.</p></div>
+  </div>
+
+  <div class="key-idea">
+    <strong>💡 Idea Clave</strong>
+    La identidad emprendedora no es un punto de llegada — es una práctica diaria. Cada vez que eliges actuar a pesar del miedo, cada vez que interpretas un fracaso como información y no como sentencia, cada vez que te haces responsable de tus resultados en lugar de culpar al entorno, estás construyendo la identidad del emprendedor/a que quieres ser. Eso es exactamente lo que Covey, Canfield, Duckworth y Dweck describen desde diferentes ángulos: <em>el carácter se forja en la repetición de decisiones conscientes</em>.
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     TEMA 2 — El Proceso Emprendedor Profundo
+══════════════════════════════════════════ -->
+<div id="t2" class="tab-content">
+  <h2 class="section-title">⚙️ Tema 2: El Proceso Emprendedor — De la Idea a la Empresa Sostenible</h2>
+
+  <p>En la Semana 1 vimos las etapas del proceso emprendedor a nivel introductorio. Esta semana lo tratamos con la profundidad que merece: cada etapa tiene su lógica, sus herramientas específicas, sus errores fatales frecuentes y su conexión con la formación del contador y auditor.</p>
+
+  <div class="concept-box">
+    <strong>El Proceso Emprendedor — Definición integrada</strong>
+    El proceso emprendedor es la secuencia de decisiones, acciones y aprendizajes mediante los cuales una persona o equipo transforma una oportunidad identificada en una empresa o iniciativa sostenible que genera valor económico, social o ambiental de forma sistemática. No es lineal — es iterativo: los emprendedores vuelven constantemente a etapas anteriores cuando la realidad del mercado lo exige (Timmons & Spinelli, 2007).
+  </div>
+
+  <h3 class="subsection">Las 6 Etapas del Proceso Emprendedor (versión profunda)</h3>
+
+  <div class="process-steps">
+    <div class="process-step">
+      <div class="step-circle">1</div>
+      <div class="step-body">
+        <h4>Reconocimiento de la Oportunidad</h4>
+        <p><strong>¿Qué pasa aquí?</strong> El emprendedor detecta una necesidad insatisfecha, una ineficiencia del mercado o un cambio de tendencia que abre una ventana de oportunidad. Como vimos en la Semana 4, esto requiere observación sistemática, empatía profunda y análisis de tendencias.</p>
+        <p><strong>Error fatal en esta etapa:</strong> Confundir una idea con una oportunidad. Una oportunidad tiene un cliente real con un problema real que está dispuesto a pagar por una solución. Una idea es solo un punto de partida hipotético.</p>
+        <p><strong>Herramienta clave:</strong> Entrevistas de problema (Design Thinking). Mínimo 20–30 entrevistas con clientes potenciales antes de asumir que el problema existe.</p>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="step-circle">2</div>
+      <div class="step-body">
+        <h4>Evaluación de la Oportunidad</h4>
+        <p><strong>¿Qué pasa aquí?</strong> No toda oportunidad vale la pena perseguir. Esta etapa evalúa la viabilidad desde cuatro dimensiones: <strong>técnica</strong> (¿podemos construir la solución?), <strong>comercial</strong> (¿hay mercado suficiente?), <strong>financiera</strong> (¿es rentable?) y <strong>personal</strong> (¿tenemos o podemos adquirir las competencias necesarias?).</p>
+        <p><strong>Error fatal:</strong> Enamorarse tanto de la oportunidad que se ignoran señales de inviabilidad. El pensamiento crítico y el análisis riguroso salvan más emprendimientos que el optimismo desbordado.</p>
+        <p><strong>Herramienta clave:</strong> Análisis de mercado + Canvas de Propuesta de Valor + análisis de punto de equilibrio financiero. Aquí la formación contable es una ventaja decisiva.</p>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="step-circle">3</div>
+      <div class="step-body">
+        <h4>Diseño del Modelo de Negocio</h4>
+        <p><strong>¿Qué pasa aquí?</strong> Se define cómo el emprendimiento creará, entregará y capturará valor de forma sostenible. El <strong>Business Model Canvas (BMC)</strong> de Osterwalder & Pigneur (2010) es la herramienta universal para este diseño. Lo veremos en profundidad en el Tema 3.</p>
+        <p><strong>Error fatal:</strong> Diseñar el modelo de negocio en el escritorio, sin validarlo con clientes reales. Un modelo de negocio es una hipótesis — no una verdad.</p>
+        <p><strong>Herramienta clave:</strong> Business Model Canvas + Lean Canvas (versión para startups de Ash Maurya). Ninguna de estas herramientas reemplaza la conversación con el cliente.</p>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="step-circle">4</div>
+      <div class="step-body">
+        <h4>Movilización de Recursos</h4>
+        <p><strong>¿Qué pasa aquí?</strong> El emprendedor identifica y consigue los recursos necesarios: capital financiero, talento humano, tecnología, redes y conocimiento. Sarasvathy (2001) introduce aquí la <strong>lógica effectual</strong>: los mejores emprendedores no esperan tener todos los recursos para empezar — empiezan con lo que tienen y van construyendo en el camino.</p>
+        <p><strong>Error fatal:</strong> Esperar tener capital suficiente antes de empezar. El bootstrapping (autofinanciamiento), los acuerdos de intercambio de valor y los recursos compartidos son alternativas válidas al financiamiento tradicional.</p>
+        <p><strong>Herramienta clave:</strong> Mapa de stakeholders + Plan financiero básico (flujo de caja, punto de equilibrio, proyecciones). Nuevamente, las competencias contables son una ventaja estratégica enorme.</p>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="step-circle">5</div>
+      <div class="step-body">
+        <h4>Lanzamiento y Aprendizaje Iterativo</h4>
+        <p><strong>¿Qué pasa aquí?</strong> El MVP (Minimum Viable Product) se lanza al mercado con el objetivo de aprender rápidamente de clientes reales. El ciclo de aprendizaje es: construir → medir → aprender → ajustar → repetir. Este ciclo, descrito por Eric Ries en <em>The Lean Startup</em> (2011), es el corazón de la metodología de startups modernas.</p>
+        <p><strong>Error fatal:</strong> Lanzar y no medir. Sin datos claros sobre qué funciona y qué no, los ajustes son ciegos. Las métricas de negocio (retención, costo de adquisición, ingresos, NPS) son el lenguaje con el que el mercado te habla.</p>
+        <p><strong>Herramienta clave:</strong> OKRs (Objectives and Key Results) + KPIs del negocio + Tablero de indicadores. El contador/auditor es el profesional más preparado para diseñar estos sistemas de medición.</p>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="step-circle">6</div>
+      <div class="step-body">
+        <h4>Escalamiento y Sostenibilidad</h4>
+        <p><strong>¿Qué pasa aquí?</strong> Una vez validado el modelo de negocio, el emprendimiento busca crecer de forma sostenible: ampliar el mercado, diversificar ingresos, fortalecer procesos y construir una organización que no dependa exclusivamente del fundador. Esta etapa exige pasar de <em>hacer todo</em> a <em>liderar y sistematizar</em>.</p>
+        <p><strong>Error fatal:</strong> Escalar antes de validar. Crecer con un modelo de negocio que aún no funciona solo acelera el fracaso y multiplica las pérdidas. Primero se valida, luego se escala.</p>
+        <p><strong>Herramienta clave:</strong> Plan estratégico + Estructura organizacional + Auditoría interna + Gobierno corporativo. El auditor y el contador son pilares indispensables de esta etapa.</p>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="subsection">La lógica effectual de Sarasvathy: emprender sin plan perfecto</h3>
+  <div class="concept-box">
+    <strong>Effectuation (Sarasvathy, 2001)</strong>
+    Saras Sarasvathy, investigadora de la Universidad de Virginia, estudió cómo piensan los emprendedores expertos. Su hallazgo sorprendente: los mejores emprendedores no piensan en términos de <em>objetivos fijos → recursos necesarios</em> (lógica causal). Piensan en <em>recursos disponibles → posibilidades de acción</em> (lógica effectual). No dicen "necesito $50,000 para empezar". Dicen "¿qué puedo hacer hoy con lo que tengo?" La effectuation tiene 5 principios: (1) empieza con tus medios actuales, (2) apunta a la pérdida aceptable (no al ROI ideal), (3) explota las contingencias (los "accidentes" son oportunidades), (4) construye alianzas en lugar de competir, y (5) acepta la incertidumbre sin paralizarte.
+  </div>
+
+  <div class="example-box">
+    <span class="ex-label">🇪🇨 Caso: Kuros Ecuador — Effectuation en acción</span>
+    <p>Los fundadores de Kuros comenzaron sin capital significativo ni plan de negocio formal. Tenían: conocimiento de tecnología, una red de contactos en el sector salud y la capacidad de programar. En lugar de esperar capital externo, comenzaron ofreciendo servicios de consultoría en tecnología médica a hospitales conocidos a través de sus redes. Cada proyecto les enseñó algo sobre el mercado y generó el flujo de caja para el siguiente paso. El producto final que escalaron no era el que habían imaginado al principio — fue el que el mercado les mostró que necesitaba. Este es effectuation: comenzar con lo que tienes, aprender del camino y construir el destino en movimiento. (Caso ilustrativo referenciado en estudios de ecosistemas de salud digital latinoamericanos.)</p>
+  </div>
+
+  <div class="key-idea">
+    <strong>💡 Idea Clave</strong>
+    El proceso emprendedor no es un camino recto del punto A al punto B. Es un proceso de aprendizaje iterativo donde cada etapa revela nueva información que puede cambiar radicalmente la dirección. Los emprendedores más exitosos no son los que tienen el mejor plan inicial — son los que aprenden más rápido y ajustan con mayor agilidad. Y para aprender rápido, necesitas medir bien. Ahí es exactamente donde el contador y el auditor son insustituibles.
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     TEMA 3 — Business Model Canvas
+══════════════════════════════════════════ -->
+<div id="t3" class="tab-content">
+  <h2 class="section-title">🗺️ Tema 3: Business Model Canvas — El Mapa de tu Negocio</h2>
+
+  <p>El <strong>Business Model Canvas (BMC)</strong> fue desarrollado por Alexander Osterwalder e Yves Pigneur (2010) y es hoy la herramienta más utilizada en el mundo para diseñar y comunicar modelos de negocio. En una sola página, permite visualizar las 9 dimensiones clave de cualquier empresa — desde una microempresa de Guayaquil hasta una corporación multinacional.</p>
+
+  <div class="concept-box">
+    <strong>¿Qué es un Modelo de Negocio?</strong>
+    Un modelo de negocio describe cómo una organización <strong>crea</strong> valor (para quién y qué), <strong>entrega</strong> ese valor (cómo llega al cliente) y <strong>captura</strong> una parte de ese valor (cómo genera ingresos y rentabilidad). Osterwalder & Pigneur (2010, p. 14) lo definen como "la lógica por la cual una organización crea, entrega y captura valor". No es el plan financiero, no es la estrategia de marketing, no es el organigrama: es la arquitectura completa del negocio en un solo documento visual.
+  </div>
+
+  <h3 class="subsection">Los 9 Bloques del Business Model Canvas</h3>
+  <p>El BMC tiene 9 bloques que se interrelacionan. Aquí los explicamos en el orden lógico de comprensión:</p>
+
+  <table>
+    <tr><th>Bloque</th><th>Pregunta clave</th><th>Ejemplo para una firma contable nueva</th></tr>
+    <tr><td><strong>1. Segmento de clientes</strong></td><td>¿Para quién creamos valor? ¿Quiénes son nuestros clientes más importantes?</td><td>PYMEs de Guayaquil con 1–20 empleados en etapa de formalización</td></tr>
+    <tr><td><strong>2. Propuesta de valor</strong></td><td>¿Qué valor entregamos? ¿Qué problema resolvemos? ¿Qué beneficio ofrecemos que la competencia no da?</td><td>Contabilidad y declaraciones tributarias en 48h con asesoría tributaria incluida, sin tecnicismos</td></tr>
+    <tr><td><strong>3. Canales</strong></td><td>¿Cómo llegamos a nuestros clientes? ¿Cómo entregamos la propuesta de valor?</td><td>WhatsApp Business, referidos, Instagram, plataforma web propia</td></tr>
+    <tr><td><strong>4. Relación con clientes</strong></td><td>¿Qué tipo de relación establecemos? ¿Cómo la mantenemos?</td><td>Servicio personalizado + grupo de WhatsApp con alertas tributarias mensuales</td></tr>
+    <tr><td><strong>5. Fuentes de ingresos</strong></td><td>¿Por qué valor pagan los clientes? ¿Cómo y cuánto pagan?</td><td>Suscripción mensual $80, declaraciones adicionales $30 c/u, asesoría $50/hora</td></tr>
+    <tr><td><strong>6. Recursos clave</strong></td><td>¿Qué recursos necesitamos para operar? (físicos, humanos, financieros, intelectuales)</td><td>Software contable, título profesional, computadora, conexión a internet</td></tr>
+    <tr><td><strong>7. Actividades clave</strong></td><td>¿Qué actividades críticas debemos hacer para que el modelo funcione?</td><td>Registro contable, declaraciones al SRI, asesoría tributaria, actualización normativa</td></tr>
+    <tr><td><strong>8. Socios clave</strong></td><td>¿Quiénes son nuestros aliados estratégicos? ¿Qué actividades externalizamos?</td><td>Software contable (Defontana, Monica), contador senior mentor, Cámara de Comercio</td></tr>
+    <tr><td><strong>9. Estructura de costos</strong></td><td>¿Cuáles son los costos más importantes? ¿Cuáles son fijos y variables?</td><td>Software ($50/mes), internet ($30/mes), tiempo profesional, marketing digital ($80/mes)</td></tr>
+  </table>
+
+  <h3 class="subsection">El Canvas visualizado — Caso de Estudio</h3>
+  <p>Así se ve el BMC completo aplicado a una consultora contable digital dirigida a startups ecuatorianas:</p>
+
+  <div class="bmc-grid">
+    <div class="bmc-cell bmc-accent" style="grid-row:span 2">
+      <h4>🤝 Socios Clave</h4>
+      <p>Software contable SaaS · Incubadoras (Kruger Labs) · Cámaras de Comercio · Mentores senior · Plataforma de facturación electrónica (Datil)</p>
+    </div>
+    <div class="bmc-cell">
+      <h4>⚙️ Actividades Clave</h4>
+      <p>Registro contable · Declaraciones SRI · Asesoría tributaria · Actualización legal · Gestión de clientes</p>
+    </div>
+    <div class="bmc-cell bmc-dark bmc-span2" style="grid-row:span 2">
+      <h4>💎 Propuesta de Valor</h4>
+      <p>Contabilidad y cumplimiento tributario para startups en 48h · Sin jerigonza contable · Con alertas proactivas de obligaciones · Precio fijo mensual predecible</p>
+    </div>
+    <div class="bmc-cell">
+      <h4>💞 Rel. Clientes</h4>
+      <p>Asesoría personalizada · Grupo WhatsApp · Newsletter tributario mensual · Atención <24h</p>
+    </div>
+    <div class="bmc-cell bmc-accent" style="grid-row:span 2">
+      <h4>👥 Segmento</h4>
+      <p>Startups y emprendimientos formales, 1–15 empleados · Guayaquil y Quito · Sin equipo contable interno</p>
+    </div>
+    <div class="bmc-cell">
+      <h4>🔑 Recursos Clave</h4>
+      <p>Título CPA · Software ERP · Marca personal · Red de referidos · Conocimiento SRI</p>
+    </div>
+    <div class="bmc-cell">
+      <h4>📡 Canales</h4>
+      <p>Instagram · LinkedIn · WhatsApp Business · Referidos · Web propia</p>
+    </div>
+    <div class="bmc-cell bmc-span2">
+      <h4>💸 Estructura de Costos</h4>
+      <p>Software ($80/mes) · Internet y servicios ($30/mes) · Marketing digital ($100/mes) · Capacitación continua ($50/mes) · Tiempo profesional (costo principal)</p>
+    </div>
+    <div class="bmc-cell bmc-span2 bmc-dark">
+      <h4>💰 Fuentes de Ingresos</h4>
+      <p>Suscripción mensual básica $120 · Declaraciones adicionales $35/cada una · Asesoría tributaria especializada $60/hora · Auditoría de cumplimiento $300/trimestre</p>
+    </div>
+  </div>
+
+  <h3 class="subsection">Diferencia entre un modelo de negocio y un plan de negocios</h3>
+  <table>
+    <tr><th>Business Model Canvas</th><th>Plan de Negocios Tradicional</th></tr>
+    <tr><td>Una página visual</td><td>20–80 páginas de texto</td></tr>
+    <tr><td>Hipótesis que se validan</td><td>Proyecciones que se presentan como certezas</td></tr>
+    <tr><td>Diseñado para iterar rápido</td><td>Diseñado para presentar a inversores o bancos</td></tr>
+    <tr><td>Herramienta de aprendizaje</td><td>Herramienta de comunicación formal</td></tr>
+    <tr><td>Se crea en horas</td><td>Se crea en semanas o meses</td></tr>
+    <tr><td>Cambia constantemente</td><td>Difícil de actualizar una vez presentado</td></tr>
+    <tr><td>Ideal para etapa de ideación y validación</td><td>Ideal para financiamiento formal, créditos bancarios y presentaciones institucionales</td></tr>
+  </table>
+
+  <div class="warning-box">
+    <strong>⚠️ Nota importante</strong>
+    El BMC no reemplaza al plan de negocios en contextos formales (solicitud de crédito, inversores institucionales, concursos gubernamentales). Son herramientas complementarias: el BMC diseña y valida; el plan de negocios formaliza y comunica. Un contador o auditor debe dominar ambos instrumentos y saber cuándo usar cada uno.
+  </div>
+
+  <div class="key-idea">
+    <strong>💡 Idea Clave</strong>
+    El Business Model Canvas es el lenguaje universal del emprendimiento moderno. Aprenderlo te da la capacidad de entender la lógica de cualquier negocio en 10 minutos — y de diseñar la tuya propia con claridad. Para un contador o auditor, esta habilidad es transformadora: podrás diagnosticar no solo la situación financiera de una empresa sino su modelo de negocio completo, identificar dónde está creando valor real y dónde está perdiendo dinero de forma estructural.
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     TEMA 4 — Emprendedor Contable: El Perfil Integrado
+══════════════════════════════════════════ -->
+<div id="t4" class="tab-content">
+  <h2 class="section-title">🎯 Tema 4: El Emprendedor Contable — Un Perfil de Alto Valor en el Ecosistema</h2>
+
+  <p>Durante toda la Unidad 1 hemos ido conectando el emprendimiento con la Contabilidad y Auditoría. Esta semana cerramos ese hilo con un análisis integrado de por qué el profesional contable tiene uno de los perfiles más valiosos — y más subestimados — del ecosistema emprendedor ecuatoriano.</p>
+
+  <h3 class="subsection">Las ventajas estructurales del contador/auditor como emprendedor</h3>
+
+  <div class="stat-row">
+    <div class="stat-card"><div class="stat-num">15</div><div class="stat-label">competencias EntreComp — el contador ya desarrolla 7 de ellas directamente</div></div>
+    <div class="stat-card"><div class="stat-num">90%</div><div class="stat-label">de PYMEs en Ecuador no tienen contador propio — mercado masivo sin atender</div></div>
+    <div class="stat-card"><div class="stat-num">70%</div><div class="stat-label">de emprendimientos fracasan por problemas financieros (CB Insights) — el contador los previene</div></div>
+    <div class="stat-card"><div class="stat-num">1</div><div class="stat-label">de los 3 actores de la Triple Hélice — las universidades forman al contador que transforma el ecosistema</div></div>
+  </div>
+
+  <h3 class="subsection">5 roles emprendedores de alta demanda para el profesional contable</h3>
+
+  <table>
+    <tr><th>Rol</th><th>¿Qué hace?</th><th>Tendencia que lo impulsa</th><th>Tipo de emprendimiento</th></tr>
+    <tr><td>🏢 <strong>Firma contable digital</strong></td><td>Contabilidad y tributaria 100% online para PYMEs y startups con modelo de suscripción</td><td>Digitalización + informalidad + regulación SRI</td><td>Por oportunidad / digital</td></tr>
+    <tr><td>🔍 <strong>Auditor forense freelance</strong></td><td>Investigación de fraude y corrupción para empresas medianas sin departamento propio</td><td>Regulación, transparencia, ESG</td><td>Por oportunidad / serial</td></tr>
+    <tr><td>📊 <strong>CFO fractional (tiempo parcial)</strong></td><td>Director financiero a tiempo parcial para startups que no pueden pagar uno de tiempo completo</td><td>Ecosistema de startups en crecimiento</td><td>Intraemprendedor / por oportunidad</td></tr>
+    <tr><td>🌱 <strong>Consultor ESG/sostenibilidad</strong></td><td>Ayuda a empresas a medir, reportar y mejorar sus indicadores ambientales, sociales y de gobernanza</td><td>ESG, regulación internacional, exportaciones</td><td>Social / por oportunidad</td></tr>
+    <tr><td>💻 <strong>Fintech / software financiero</strong></td><td>Co-funda o asesora startups de tecnología financiera aplicando conocimiento contable para definir el producto</td><td>Digitalización financiera, Kushki, Datil</td><td>Por oportunidad / serial</td></tr>
+  </table>
+
+  <h3 class="subsection">El Modelo de las Tres Brechas que el Contador Cierra</h3>
+  <div class="concept-box">
+    <strong>Brecha 1: La brecha de formalización</strong>
+    El 65% de los emprendedores ecuatorianos trabaja en la informalidad. El contador puede acompañar la transición a la formalidad: constitución de empresa, RUC, facturación electrónica, cumplimiento tributario. Sin formalización, los emprendedores no pueden acceder a crédito, contratos públicos ni mercados de exportación.
+  </div>
+  <div class="concept-box">
+    <strong>Brecha 2: La brecha de información financiera</strong>
+    La mayoría de emprendedores no sabe leer su propio balance ni interpretar su flujo de caja. No pueden tomar decisiones de inversión, fijación de precios ni expansión sin esta información. El contador convierte los números en decisiones.
+  </div>
+  <div class="concept-box">
+    <strong>Brecha 3: La brecha de acceso a financiamiento</strong>
+    Los bancos e inversores requieren información financiera ordenada, auditada y presentable. Un emprendimiento con contabilidad desordenada no puede acceder a crédito aunque tenga un negocio viable. El contador construye el puente entre el emprendedor y el capital.
+  </div>
+
+  <h3 class="subsection">La ética como ventaja competitiva del emprendedor contable</h3>
+  <p>En un ecosistema donde la desconfianza es una de las principales barreras para el acceso al crédito y la inversión, el contador/auditor tiene algo que la mayoría de emprendedores no tiene: <strong>un marco ético profesional regulado</strong> (NIC, NIIF, Código de Ética IFAC). La integridad no es solo un valor moral para el contador — es una ventaja competitiva concreta que genera confianza, retiene clientes y construye reputación de largo plazo.</p>
+
+  <div class="example-box">
+    <span class="ex-label">🇪🇨 Caso: La Contadora que Construyó un Ecosistema</span>
+    <p>Una contadora titulada en la Universidad de Guayaquil comenzó ofreciendo declaraciones del SRI a microempresarios de su barrio. En dos años, tenía 45 clientes recurrentes. Detectó que todos tenían el mismo problema: no entendían sus propios estados financieros. Creó un taller mensual de "Finanzas para emprendedores sin título" que luego se volvió un servicio premium. Tres años después, su firma tiene 3 colaboradores y ofrece contabilidad, asesoría tributaria, talleres y consultoría ESG. Hoy es mentora en un programa de aceleración de startups. Comenzó con un computador, su título y su red de contactos — effectuation pura. Lo que la diferenció no fue la idea revolucionaria: fue la profundidad de su conocimiento técnico convertida en valor accesible para personas que no podían pagarlo de otra forma. (Caso ilustrativo con datos representativos del ecosistema ecuatoriano.)</p>
+  </div>
+
+  <div class="key-idea">
+    <strong>💡 Idea Clave — Cierre de la Unidad 1</strong>
+    Al llegar al final de esta unidad, deberías tener una respuesta diferente a la pregunta "¿soy o no soy emprendedor/a?" que tenías en la Semana 1. La respuesta correcta no es sí o no. Es: <em>"Tengo competencias emprendedoras concretas, estoy desarrollando más, entiendo el ecosistema donde operaré, he identificado problemas reales que podría resolver, y conozco el proceso y las herramientas para construir un modelo de negocio viable."</em> Eso — esa claridad, esa concreción — es exactamente lo que esta materia busca darte. El resto lo construyes tú.
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     EJERCICIO INTERACTIVO
+══════════════════════════════════════════ -->
+<div id="ejercicio" class="tab-content">
+  <h2 class="section-title">✏️ Ejercicio Integrador — Diagnostica, Conecta y Decide</h2>
+  <p style="margin-bottom:20px;">Este ejercicio integra contenidos de las Semanas 1 a 5. Responde TODAS las preguntas antes de verificar.</p>
+
+  <div class="quiz-question">
+    <p>1. Según Carol Dweck, un emprendedor con <em>mentalidad fija</em> que fracasa en su primer intento de negocio probablemente:</p>
+    <div class="quiz-option"><input type="radio" name="ei1" value="a"><label>a) Interpreta el fracaso como información útil y ajusta su modelo de negocio.</label></div>
+    <div class="quiz-option"><input type="radio" name="ei1" value="b"><label>b) Concluye que "no es para los negocios" y abandona, porque ve el fracaso como prueba de incapacidad permanente.</label></div>
+    <div class="quiz-option"><input type="radio" name="ei1" value="c"><label>c) Busca activamente retroalimentación crítica de sus clientes para entender qué falló.</label></div>
+    <div class="quiz-option"><input type="radio" name="ei1" value="d"><label>d) Lanza inmediatamente un segundo negocio aplicando lo aprendido del primero.</label></div>
+  </div>
+
+  <div class="quiz-question">
+    <p>2. El Hábito 1 de Covey ("Sé proactivo") y el Principio 100% de Canfield comparten una idea central. ¿Cuál es?</p>
+    <div class="quiz-option"><input type="radio" name="ei2" value="a"><label>a) Que el emprendedor debe trabajar más horas que el promedio para compensar la falta de recursos.</label></div>
+    <div class="quiz-option"><input type="radio" name="ei2" value="b"><label>b) Que el éxito emprendedor depende principalmente de factores externos como el mercado y la economía.</label></div>
+    <div class="quiz-option"><input type="radio" name="ei2" value="c"><label>c) Que la persona es responsable de sus respuestas al entorno y debe actuar sobre lo que puede controlar, no esperar que el entorno cambie.</label></div>
+    <div class="quiz-option"><input type="radio" name="ei2" value="d"><label>d) Que los emprendedores exitosos siempre tienen un plan perfecto antes de actuar.</label></div>
+  </div>
+
+  <div class="quiz-question">
+    <p>3. En el Business Model Canvas, el bloque "Propuesta de Valor" responde principalmente a la pregunta:</p>
+    <div class="quiz-option"><input type="radio" name="ei3" value="a"><label>a) ¿Cómo generamos ingresos y cuánto cobra nuestro negocio?</label></div>
+    <div class="quiz-option"><input type="radio" name="ei3" value="b"><label>b) ¿Qué valor creamos para el cliente, qué problema resolvemos y por qué nos elegirían sobre la competencia?</label></div>
+    <div class="quiz-option"><input type="radio" name="ei3" value="c"><label>c) ¿Cuáles son los costos más importantes de operar el negocio?</label></div>
+    <div class="quiz-option"><input type="radio" name="ei3" value="d"><label>d) ¿Qué recursos físicos y humanos necesitamos para funcionar?</label></div>
+  </div>
+
+  <div class="quiz-question">
+    <p>4. La "lógica effectual" de Sarasvathy describe cómo los emprendedores expertos:</p>
+    <div class="quiz-option"><input type="radio" name="ei4" value="a"><label>a) Definen un objetivo fijo y calculan exactamente qué recursos necesitan antes de empezar.</label></div>
+    <div class="quiz-option"><input type="radio" name="ei4" value="b"><label>b) Comienzan con los medios disponibles y construyen posibilidades de acción desde lo que tienen, aceptando la incertidumbre.</label></div>
+    <div class="quiz-option"><input type="radio" name="ei4" value="c"><label>c) Esperan tener capital suficiente antes de dar el primer paso para reducir el riesgo al mínimo.</label></div>
+    <div class="quiz-option"><input type="radio" name="ei4" value="d"><label>d) Siguen un plan de negocios detallado de 50 páginas sin desviarse de él.</label></div>
+  </div>
+
+  <div class="quiz-question">
+    <p>5. Un emprendedor que dice "Necesito estudiar más, ahorrar más y esperar un mejor momento económico antes de lanzar mi negocio" — aunque lleva 3 años diciendo lo mismo — está probablemente manifestando:</p>
+    <div class="quiz-option"><input type="radio" name="ei5" value="a"><label>a) Prudencia financiera responsable, que es exactamente lo que enseñan los libros de administración.</label></div>
+    <div class="quiz-option"><input type="radio" name="ei5" value="b"><label>b) Una forma de autoboicot llamada "procrastinación disfrazada de preparación", identificada por Canfield como uno de los saboteadores personales más comunes.</label></div>
+    <div class="quiz-option"><input type="radio" name="ei5" value="c"><label>c) Una estrategia correcta de análisis de riesgo antes de comprometer capital.</label></div>
+    <div class="quiz-option"><input type="radio" name="ei5" value="d"><label>d) Una señal clara de que esa persona nunca debe emprender.</label></div>
+  </div>
+
+  <div class="quiz-question">
+    <p>6. En el proceso emprendedor, la etapa de "Lanzamiento y Aprendizaje Iterativo" se basa en el ciclo de Eric Ries. ¿Cuáles son sus tres componentes principales?</p>
+    <div class="quiz-option"><input type="radio" name="ei6" value="a"><label>a) Planificar → Ejecutar → Evaluar</label></div>
+    <div class="quiz-option"><input type="radio" name="ei6" value="b"><label>b) Construir → Medir → Aprender (y repetir)</label></div>
+    <div class="quiz-option"><input type="radio" name="ei6" value="c"><label>c) Investigar → Diseñar → Lanzar (sin retorno)</label></div>
+    <div class="quiz-option"><input type="radio" name="ei6" value="d"><label>d) Invertir → Producir → Vender</label></div>
+  </div>
+
+  <div class="quiz-question">
+    <p>7. ¿Cuál de las siguientes afirmaciones describe mejor la diferencia entre un Business Model Canvas y un Plan de Negocios tradicional?</p>
+    <div class="quiz-option"><input type="radio" name="ei7" value="a"><label>a) El Canvas es más completo porque incluye proyecciones financieras detalladas a 5 años.</label></div>
+    <div class="quiz-option"><input type="radio" name="ei7" value="b"><label>b) El Plan de Negocios es mejor para etapas de ideación porque es más rápido de actualizar.</label></div>
+    <div class="quiz-option"><input type="radio" name="ei7" value="c"><label>c) El Canvas es una herramienta de diseño e hipótesis iterativa; el Plan es una herramienta de comunicación formal para inversores y financiadores.</label></div>
+    <div class="quiz-option"><input type="radio" name="ei7" value="d"><label>d) Son exactamente lo mismo con diferentes nombres.</label></div>
+  </div>
+
+  <div class="quiz-question">
+    <p>8. Según el análisis integrado de la Unidad 1, ¿cuál es la "brecha de formalización" que el contador puede cerrar en el ecosistema emprendedor ecuatoriano?</p>
+    <div class="quiz-option"><input type="radio" name="ei8" value="a"><label>a) La falta de ideas innovadoras en los emprendedores ecuatorianos.</label></div>
+    <div class="quiz-option"><input type="radio" name="ei8" value="b"><label>b) La dificultad de los emprendedores para registrarse legalmente y cumplir con obligaciones tributarias, lo que les impide acceder a crédito, contratos públicos y mercados internacionales.</label></div>
+    <div class="quiz-option"><input type="radio" name="ei8" value="c"><label>c) La incapacidad de los emprendedores para usar tecnología digital en sus negocios.</label></div>
+    <div class="quiz-option"><input type="radio" name="ei8" value="d"><label>d) La falta de capital para financiar sus proyectos en etapa temprana.</label></div>
+  </div>
+
+  <div style="margin-top:24px; display:flex; flex-wrap:wrap; gap:10px;">
+    <button class="btn btn-primary" onclick="verificarEjercicio()">✅ Verificar Respuestas</button>
+    <button class="btn btn-secondary" onclick="reiniciarEjercicio()">🔄 Reiniciar</button>
+  </div>
+
+  <div id="ejercicio-feedback" style="margin-top:20px;"></div>
+  <div id="ejercicio-score" class="score-panel"></div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     CUESTIONARIO
+══════════════════════════════════════════ -->
+<div id="cuestionario" class="tab-content">
+  <h2 class="section-title">📝 Cuestionario de Cierre — Unidad 1 Completa (10 Preguntas)</h2>
+  <p style="margin-bottom:20px;">Este cuestionario cubre toda la Unidad 1 (Semanas 1–5). Responde todas las preguntas antes de verificar.</p>
+
+  <div class="quiz-question">
+    <span class="badge badge-theory">Teórica</span>
+    <p>1. Carol Dweck (2006) distingue entre mentalidad fija y mentalidad de crecimiento. ¿Cuál de las siguientes frases refleja mejor una mentalidad de crecimiento aplicada al emprendimiento?</p>
+    <div class="quiz-option"><input type="radio" name="qi1" value="a"><label>a) "O soy emprendedor/a o no lo soy — eso no puede cambiarse con estudio ni práctica."</label></div>
+    <div class="quiz-option"><input type="radio" name="qi1" value="b"><label>b) "Todavía no sé cómo construir un modelo de negocio, pero puedo aprenderlo — y cada fracaso me enseña algo que el éxito no enseña."</label></div>
+    <div class="quiz-option"><input type="radio" name="qi1" value="c"><label>c) "El fracaso de mi primer negocio demuestra que no estoy hecho/a para emprender."</label></div>
+    <div class="quiz-option"><input type="radio" name="qi1" value="d"><label>d) "Los emprendedores exitosos no cometen errores porque planifican perfectamente desde el inicio."</label></div>
+  </div>
+
+  <div class="quiz-question">
+    <span class="badge badge-theory">Teórica</span>
+    <p>2. El Business Model Canvas de Osterwalder & Pigneur tiene 9 bloques. ¿Cuál de los siguientes bloques describe cómo el negocio genera dinero?</p>
+    <div class="quiz-option"><input type="radio" name="qi2" value="a"><label>a) Propuesta de Valor</label></div>
+    <div class="quiz-option"><input type="radio" name="qi2" value="b"><label>b) Relación con Clientes</label></div>
+    <div class="quiz-option"><input type="radio" name="qi2" value="c"><label>c) Fuentes de Ingresos</label></div>
+    <div class="quiz-option"><input type="radio" name="qi2" value="d"><label>d) Actividades Clave</label></div>
+  </div>
+
+  <div class="quiz-question">
+    <span class="badge badge-theory">Teórica</span>
+    <p>3. La "lógica effectual" propuesta por Sarasvathy (2001) se diferencia de la lógica causal porque:</p>
+    <div class="quiz-option"><input type="radio" name="qi3" value="a"><label>a) Exige definir un objetivo preciso y calcular los recursos exactos antes de iniciar cualquier acción.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi3" value="b"><label>b) Parte de los medios disponibles para generar posibilidades de acción, acepta la incertidumbre y construye el destino en el camino.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi3" value="c"><label>c) Requiere financiamiento externo garantizado antes de comprometer tiempo o recursos propios.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi3" value="d"><label>d) Es la lógica que usan exclusivamente los emprendedores seriales con experiencia en más de 3 negocios.</label></div>
+  </div>
+
+  <div class="quiz-question">
+    <span class="badge badge-theory">Teórica</span>
+    <p>4. El "síndrome del impostor", descrito como una forma de autoboicot en el contexto del emprendimiento, consiste en:</p>
+    <div class="quiz-option"><input type="radio" name="qi4" value="a"><label>a) La tendencia a copiar modelos de negocio exitosos sin adaptarlos al propio contexto.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi4" value="b"><label>b) La creencia persistente de que eres un fraude y que otros "descubrirán" que no eres tan capaz como aparentas, aunque la evidencia diga lo contrario.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi4" value="c"><label>c) La práctica de presentar credenciales académicas falsas para conseguir clientes o inversores.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi4" value="d"><label>d) El hábito de comparar el modelo de negocio propio con el de competidores directos para identificar brechas.</label></div>
+  </div>
+
+  <div class="quiz-question">
+    <span class="badge badge-theory">Teórica</span>
+    <p>5. En el proceso emprendedor, ¿qué significa "escalar antes de validar" y por qué es un error grave?</p>
+    <div class="quiz-option"><input type="radio" name="qi5" value="a"><label>a) Es iniciar la empresa con mucho capital antes de tener el equipo completo, lo que genera desequilibrios financieros.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi5" value="b"><label>b) Es crecer (más clientes, más inversión, más empleados) con un modelo de negocio que aún no ha probado que funciona, lo que multiplica las pérdidas y acelera el fracaso.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi5" value="c"><label>c) Es expandirse geográficamente a otros países antes de dominar el mercado local, lo que genera costos logísticos innecesarios.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi5" value="d"><label>d) Es contratar personal especializado antes de tener clientes suficientes para sostener la nómina.</label></div>
+  </div>
+
+  <div class="quiz-question">
+    <span class="badge badge-theory">Teórica</span>
+    <p>6. ¿Qué bloque del Business Model Canvas describe "los canales por los que el negocio llega a sus clientes y les entrega la propuesta de valor"?</p>
+    <div class="quiz-option"><input type="radio" name="qi6" value="a"><label>a) Segmento de Clientes</label></div>
+    <div class="quiz-option"><input type="radio" name="qi6" value="b"><label>b) Socios Clave</label></div>
+    <div class="quiz-option"><input type="radio" name="qi6" value="c"><label>c) Canales</label></div>
+    <div class="quiz-option"><input type="radio" name="qi6" value="d"><label>d) Estructura de Costos</label></div>
+  </div>
+
+  <div class="quiz-question">
+    <span class="badge badge-synth">Síntesis</span>
+    <p>7. Integrando los contenidos de toda la Unidad 1, ¿cuál de las siguientes descripciones captura mejor la relación entre la identidad emprendedora y el ecosistema?</p>
+    <div class="quiz-option"><input type="radio" name="qi7" value="a"><label>a) El ecosistema (Isenberg) es el único determinante del éxito emprendedor; la identidad personal no tiene impacto significativo.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi7" value="b"><label>b) La identidad emprendedora (mentalidad de crecimiento, grit, responsabilidad 100%) determina si una persona aprovecha las condiciones del ecosistema; sin identidad sólida, el mejor ecosistema no alcanza.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi7" value="c"><label>c) La identidad es irrelevante en economías de bajo desarrollo; lo que importa es exclusivamente el acceso al financiamiento.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi7" value="d"><label>d) La mentalidad de crecimiento reemplaza la necesidad de desarrollar competencias técnicas específicas.</label></div>
+  </div>
+
+  <div class="quiz-question">
+    <span class="badge badge-case">Análisis de Caso</span>
+    <p>8. Andrea es contadora recién graduada en Quito. Quiere emprender pero cree que "no tiene suficiente experiencia todavía". Lleva 18 meses posponiendo el inicio de su firma contable. Cada vez que está a punto de dar el primer paso, encuentra una nueva razón para esperar. Según los contenidos de la Unidad 1, ¿cuál es el diagnóstico más preciso de la situación de Andrea?</p>
+    <div class="quiz-option"><input type="radio" name="qi8" value="a"><label>a) Andrea está siendo prudente y responsable — 18 meses de preparación es tiempo razonable para cualquier emprendimiento.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi8" value="b"><label>b) Andrea tiene una combinación de autoboicot (procrastinación disfrazada de preparación y posiblemente síndrome del impostor) y mentalidad fija que le impide actuar. El ciclo requiere una intervención en su modelo mental, no más tiempo de espera.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi8" value="c"><label>c) El problema de Andrea es la falta de capital semilla — necesita financiamiento antes de poder actuar.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi8" value="d"><label>d) Andrea tiene razón — sin al menos 5 años de experiencia laboral, ningún emprendedor contable debería lanzarse al mercado.</label></div>
+  </div>
+
+  <div class="quiz-question">
+    <span class="badge badge-case">Análisis de Caso</span>
+    <p>9. Un grupo de tres estudiantes de Contabilidad diseña un servicio de "auditoría de cumplimiento tributario express" para PYMEs guayaquileñas que han recibido notificaciones del SRI. El servicio cuesta $200, se entrega en 5 días hábiles y se ofrece vía WhatsApp Business y referidos. Al construir su Business Model Canvas, ¿en cuál bloque ubicarían la frase "WhatsApp Business y referidos de clientes satisfechos"?</p>
+    <div class="quiz-option"><input type="radio" name="qi9" value="a"><label>a) Propuesta de Valor, porque diferencia el servicio de la competencia.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi9" value="b"><label>b) Canales, porque describe cómo llegan a sus clientes y cómo entregan el servicio.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi9" value="c"><label>c) Relación con Clientes, porque describe el tipo de vínculo que construyen.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi9" value="d"><label>d) Socios Clave, porque WhatsApp es una plataforma aliada del negocio.</label></div>
+  </div>
+
+  <div class="quiz-question">
+    <span class="badge badge-synth">Síntesis</span>
+    <p>10. Al cerrar la Unidad 1, ¿cuál es la afirmación que mejor sintetiza la lección integradora del curso sobre el rol del contador/auditor en el ecosistema emprendedor?</p>
+    <div class="quiz-option"><input type="radio" name="qi10" value="a"><label>a) El contador/auditor es un actor periférico del ecosistema emprendedor cuya función se limita a registrar transacciones y declarar impuestos.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi10" value="b"><label>b) El contador/auditor tiene las competencias técnicas, el marco ético y la posición estratégica para cerrar las tres brechas del ecosistema (formalización, información financiera y acceso a capital) y puede ser emprendedor, intraemprendedor, asesor o cofundador de startups de alto impacto.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi10" value="c"><label>c) La formación contable es un obstáculo para el emprendimiento porque enfoca demasiado en la norma y poco en la creatividad.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi10" value="d"><label>d) El emprendimiento es relevante solo para quienes estudian administración de empresas o ingeniería comercial, no para profesionales contables.</label></div>
+  </div>
+
+  <div style="margin-top:24px; display:flex; flex-wrap:wrap; gap:10px;">
+    <button class="btn btn-primary" onclick="verificarCuestionario()">✅ Verificar Respuestas</button>
+    <button class="btn btn-secondary" onclick="reiniciarCuestionario()">🔄 Reiniciar</button>
+  </div>
+
+  <div id="quiz-feedback" style="margin-top:20px;"></div>
+  <div id="quiz-score" class="score-panel"></div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     ACTIVIDAD IA
+══════════════════════════════════════════ -->
+<div id="ia" class="tab-content">
+  <h2 class="section-title">🤖 Actividad con Inteligencia Artificial — Diseña Tu Modelo de Negocio</h2>
+
+  <div class="ia-box">
+    <h3>🎯 Objetivo</h3>
+    <p>Usar la IA como <strong>co-diseñador de tu primer Business Model Canvas</strong> basado en una oportunidad real que tú hayas identificado. Luego evaluarás críticamente su propuesta, la ajustarás con tu conocimiento del contexto ecuatoriano y defenderás tus decisiones con argumentos basados en el contenido de la Unidad 1.</p>
+  </div>
+
+  <div class="ia-box">
+    <h3>🔧 Herramienta</h3>
+    <p>Usa <strong>Claude en <a href="https://claude.ai" target="_blank" style="color:#003366;">claude.ai</a></strong> (gratuito). También puedes usar ChatGPT (chat.openai.com) o Gemini (gemini.google.com).</p>
+  </div>
+
+  <div class="ia-box">
+    <h3>📋 El Prompt</h3>
+    <p>Completa los datos entre corchetes con información real tuya, luego pégalo en Claude:</p>
+    <div class="prompt-code">Actúa como experto en diseño de modelos de negocio con especialización en startups latinoamericanas. Voy a describirte una oportunidad de emprendimiento que he identificado y quiero que me ayudes a construir un Business Model Canvas completo con los 9 bloques.
+
+LA OPORTUNIDAD QUE IDENTIFIQUÉ:
+- Problema que resuelve: [describe el problema que encontraste en tu entorno, comunidad o área de conocimiento]
+- Cliente potencial: [¿a quién va dirigido? Sé específico: edad, profesión, ciudad, situación]
+- Solución que propongo: [describe tu idea de solución — no tiene que ser perfecta]
+- Mi formación: Estudio Contabilidad y Auditoría en la Universidad de Guayaquil
+- Ciudad donde operaría: [tu ciudad]
+
+Por favor:
+1. Construye un Business Model Canvas completo con los 9 bloques para esta oportunidad, adaptado al mercado ecuatoriano.
+2. Para cada bloque, explica brevemente el razonamiento detrás de tu propuesta.
+3. Identifica el mayor riesgo en el bloque "Propuesta de Valor" — ¿qué hipótesis asumo que podría estar equivocada?
+4. Sugiere el MVP (Producto Mínimo Viable) más pequeño posible que podría validar si la propuesta de valor es real.
+5. ¿Cuál de las 3 "brechas del contador" (formalización, información financiera, acceso a capital) podría resolver este emprendimiento, y cómo?
+
+Sé específico, usa ejemplos del mercado ecuatoriano cuando sea posible, y señala abiertamente las debilidades que ves en la oportunidad.</div>
+  </div>
+
+  <div class="ia-box">
+    <h3>📌 ¿Qué hacer con la respuesta?</h3>
+    <div class="step-row"><span class="step-num">1</span><p><strong>Evalúa los 9 bloques del Canvas que propuso la IA.</strong> ¿Hay algún bloque que no refleje bien la realidad del mercado ecuatoriano? ¿Alguna propuesta que sea demasiado optimista o que no tome en cuenta una limitación real? Identifica al menos 2 ajustes que harías.</p></div>
+    <div class="step-row"><span class="step-num">2</span><p><strong>Identifica la hipótesis más arriesgada.</strong> ¿Cuál es el supuesto más importante sobre el que descansa todo el modelo? Si ese supuesto fuera falso, ¿el negocio seguiría siendo viable? Escribe tu análisis en 3–4 oraciones.</p></div>
+    <div class="step-row"><span class="step-num">3</span><p><strong>Diseña tu propio MVP.</strong> Toma la sugerencia de la IA y mejórala: ¿cuál es el experimento más pequeño, rápido y barato que podrías hacer ESTA SEMANA para comenzar a validar si el problema es real? No vale "seguir investigando" — debe ser una acción concreta con un resultado medible.</p></div>
+    <div class="step-row"><span class="step-num">4</span><p><strong>Redacta tu reflexión de cierre</strong> (mínimo 200 palabras): ¿Cómo cambió tu visión sobre el emprendimiento y sobre tu propio potencial emprendedor desde la Semana 1 hasta hoy? ¿Qué aprendiste sobre ti mismo/a que no sabías? ¿Cuál es tu siguiente paso concreto?</p></div>
+  </div>
+
+  <div class="ia-box">
+    <h3>📊 Criterio de Evaluación</h3>
+    <table>
+      <tr><th>Nivel</th><th>¿Qué hace el estudiante?</th></tr>
+      <tr><td>✅ <strong>Excelente</strong></td><td>Personaliza la oportunidad con detalle real, evalúa críticamente el Canvas de la IA con argumentos del curso, identifica la hipótesis más arriesgada con precisión, diseña un MVP concreto y accionable, y la reflexión de cierre muestra evidencia de transformación genuina en la comprensión de su rol emprendedor.</td></tr>
+      <tr><td>⚠️ <strong>Suficiente</strong></td><td>Completa el ejercicio pero sin profundidad crítica. Acepta el Canvas de la IA sin evaluarlo, el MVP es vago, y la reflexión es genérica sin conexión con la trayectoria personal.</td></tr>
+      <tr><td>❌ <strong>Insuficiente</strong></td><td>Transcribe directamente la respuesta de la IA. No hay ajustes, no hay análisis, no hay reflexión personal. El trabajo podría ser de cualquier persona — no refleja pensamiento propio.</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     REFLEXIÓN
+══════════════════════════════════════════ -->
+<div id="reflexion" class="tab-content">
+  <h2 class="section-title">💭 Reflexión Final — Cierre de la Unidad 1</h2>
+  <p style="margin-bottom:20px;">Esta es la última reflexión de la Unidad 1. No hay respuestas correctas. Hay preguntas que, si las respondes con honestidad, pueden cambiar la dirección de tu vida profesional.</p>
+
+  <div class="reflection-q">
+    <div class="q-num">🧭 Pregunta 1 — ¿Quién eras al entrar y quién eres ahora?</div>
+    <p>Piensa en la versión de ti que comenzó esta materia en la Semana 1. ¿Qué creías sobre el emprendimiento? ¿Te veías a ti mismo/a como emprendedor/a potencial? ¿Qué miedos o prejuicios tenías sobre el tema? Ahora, después de 5 semanas, ¿qué ha cambiado en tu comprensión? ¿Y qué ha cambiado — o ha comenzado a cambiar — en cómo te ves a ti mismo/a? No tienes que tener grandes revelaciones: un pequeño cambio real vale más que una transformación de papel.</p>
+  </div>
+
+  <div class="reflection-q">
+    <div class="q-num">🔍 Pregunta 2 — Tu autoboicot personal</div>
+    <p>De las 5 formas de autoboicot estudiadas (procrastinación, síndrome del impostor, miedo al fracaso como identidad, dependencia de validación externa, comparación destructiva), ¿cuál te reconoces más? No se trata de autocrítica destructiva — se trata de diagnóstico honesto. Si pudieras nombrar el saboteador que más te ha frenado en los últimos 2 años, ¿cuál sería? ¿Y qué acción concreta podrías tomar esta semana para interrumpir ese patrón aunque sea una sola vez?</p>
+  </div>
+
+  <div class="reflection-q">
+    <div class="q-num">🗺️ Pregunta 3 — Tu Business Model Canvas personal</div>
+    <p>Imagina que tu carrera profesional fuera un negocio. Aplica el BMC a ti mismo/a: ¿cuál es tu "propuesta de valor" como futuro/a contador/a o auditor/a? ¿Qué problema resuelves que otros no pueden o no están resolviendo bien? ¿Cuáles son tus "recursos clave" (conocimientos, relaciones, habilidades)? ¿Cuáles son tus "actividades clave" (lo que debes hacer todos los días para ser excelente en tu campo)? ¿Cuáles son tus "socios clave" (mentores, colegas, comunidades)? Este ejercicio revela con claridad qué estás construyendo — y qué te falta construir.</p>
+  </div>
+
+  <div class="reflection-q">
+    <div class="q-num">🌱 Pregunta 4 — El Hábito 7 de Covey: ¿Cómo estás afilando tu sierra?</div>
+    <p>Covey dice que la renovación — física, mental, emocional y espiritual — es el fundamento de la efectividad sostenida. Honestamente: ¿cómo estás cuidando estas cuatro dimensiones en este momento de tu vida? ¿Cuál está más descuidada? ¿Qué hábito pequeño pero concreto podrías comenzar mañana para fortalecer esa dimensión? Recuerda: Covey no pide grandes cambios — pide hábitos pequeños y consistentes que, en el tiempo, generan transformaciones profundas.</p>
+  </div>
+
+  <div class="reflection-q">
+    <div class="q-num">🚀 Pregunta 5 — Tu primer paso real</div>
+    <p>Si al terminar esta materia solo pudieras recordar una cosa y actuar sobre ella, ¿qué sería? Y ahora la pregunta más importante: ¿cuándo y cómo lo harás? No "algún día cuando tenga más tiempo". Una fecha concreta. Una acción específica. Una persona a quien contárselo para que te haga accountable. Como dice Canfield: la diferencia entre el sueño y el resultado es la decisión de actuar — aunque sea imperfectamente — hoy.</p>
+  </div>
+
+  <div class="reflection-q">
+    <div class="q-num">💼 Pregunta 6 — Una carta para el ecosistema</div>
+    <p>Imagina que dentro de 10 años ya has construido algo valioso: un negocio, una firma, un servicio que ayuda a decenas de personas. ¿Qué le escribirías a un/a estudiante de Contabilidad de primer año que te pregunta: "¿Vale la pena estudiar emprendimiento si voy a ser contador/a?" ¿Qué le dirías sobre lo que aprendiste en estos años? ¿Qué ojalá te hubieran dicho a ti al principio? Escribe esa carta desde el futuro — y léela como si la estuvieras recibiendo hoy.</p>
+  </div>
+
+  <div class="key-idea">
+    <strong>🔑 Para llevar — El cierre de la Unidad 1</strong>
+    El emprendimiento no es una asignatura. Es una forma de ver el mundo: como un mapa de problemas que esperan solución, de brechas que esperan ser cerradas, de valor que espera ser creado. Esa forma de ver el mundo no desaparece cuando cierras este widget. Se lleva contigo a cada empresa donde trabajes, a cada cliente que asesores, a cada decisión profesional que tomes. Y si un día decides crear algo propio — una firma, un servicio, una startup — sabrás que no empiezas desde cero. Empiezas con todo lo que construiste aquí.
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     BIBLIOGRAFÍA
+══════════════════════════════════════════ -->
+<div id="biblio" class="tab-content">
+  <h2 class="section-title">📚 Bibliografía — Semana 4 y Unidad 1 Completa</h2>
+
+  <p style="margin-bottom:18px; font-size:14px; color:#555;">Las referencias a continuación corresponden tanto al contenido nuevo de la Semana 4 como a los textos utilizados a lo largo de toda la Unidad 1. Están en formato APA 7ma edición.</p>
+
+  <div class="ref-card">
+    <span class="ref-author">Dweck, C. S.</span> (2006). <em>Mindset: The new psychology of success.</em> Random House.
+  </div>
+
+  <div class="ref-card">
+    <span class="ref-author">Covey, S. R.</span> (1989). <em>The 7 habits of highly effective people: Powerful lessons in personal change.</em> Simon & Schuster.
+  </div>
+
+  <div class="ref-card">
+    <span class="ref-author">Canfield, J., & Hansen, M. V.</span> (2005). <em>The success principles: How to get from where you are to where you want to be.</em> HarperCollins.
+  </div>
+
+  <div class="ref-card">
+    <span class="ref-author">Osterwalder, A., & Pigneur, Y.</span> (2010). <em>Business model generation: A handbook for visionaries, game changers, and challengers.</em> John Wiley & Sons.
+  </div>
+
+  <div class="ref-card">
+    <span class="ref-author">Sarasvathy, S. D.</span> (2001). Causation and effectuation: Toward a theoretical shift from economic inevitability to entrepreneurial contingency. <em>Academy of Management Review, 26</em>(2), 243–263. https://doi.org/10.5465/amr.2001.4378020
+  </div>
+
+  <div class="ref-card">
+    <span class="ref-author">Ries, E.</span> (2011). <em>The lean startup: How today's entrepreneurs use continuous innovation to create radically successful businesses.</em> Crown Business.
+  </div>
+
+  <div class="ref-card">
+    <span class="ref-author">Timmons, J. A., & Spinelli, S.</span> (2007). <em>New venture creation: Entrepreneurship for the 21st century</em> (7th ed.). McGraw-Hill/Irwin.
+  </div>
+
+  <div class="ref-card">
+    <span class="ref-author">Duckworth, A.</span> (2016). <em>Grit: The power of passion and perseverance.</em> Scribner.
+  </div>
+
+  <div class="ref-card">
+    <span class="ref-author">Bacigalupo, M., Kampylis, P., Punie, Y., & Van den Brande, G.</span> (2016). <em>EntreComp: The Entrepreneurship Competence Framework.</em> European Commission Joint Research Centre. https://doi.org/10.2791/593884
+  </div>
+
+  <div class="ref-card">
+    <span class="ref-author">Isenberg, D. J.</span> (2010). How to start an entrepreneurial revolution. <em>Harvard Business Review, 88</em>(6), 40–50.
+  </div>
+
+  <div class="ref-card">
+    <span class="ref-author">Blank, S., & Dorf, B.</span> (2012). <em>The startup owner's manual: The step-by-step guide for building a great company.</em> K&S Ranch.
+  </div>
+
+  <div class="ref-card">
+    <span class="ref-author">Bosma, N., Hill, S., Ionescu-Somers, A., Kelley, D., Guerrero, M., & Schøtt, T.</span> (2021). <em>Global Entrepreneurship Monitor 2020/2021 Global Report.</em> Global Entrepreneurship Research Association. https://www.gemconsortium.org/report/gem-20202021-global-report
+  </div>
+
+  <div class="ref-card">
+    <span class="ref-author">Etzkowitz, H., & Leydesdorff, L.</span> (2000). The dynamics of innovation: From national systems and "mode 2" to a triple helix of university-industry-government relations. <em>Research Policy, 29</em>(2), 109–123. https://doi.org/10.1016/S0048-7333(99)00055-4
+  </div>
+
+  <div class="ref-note">
+    📌 <strong>Nota de verificación:</strong> Se recomienda verificar cada referencia en Google Scholar (<a href="https://scholar.google.com" target="_blank" style="color:#003366;">scholar.google.com</a>) o en el repositorio institucional de la Universidad de Guayaquil antes de citar en trabajos académicos formales. Todas las referencias listadas corresponden a obras académicamente consolidadas y verificables.
+  </div>
+</div>
+
+</main>
+
+<script>
+// ─── NAVEGACIÓN ───
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    if (btn.getAttribute('onclick').includes("'" + id + "'")) btn.classList.add('active');
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ─── EJERCICIO ───
+const ejCorrects = { ei1:'b', ei2:'c', ei3:'b', ei4:'b', ei5:'b', ei6:'b', ei7:'c', ei8:'b' };
+const ejFeedbacks = {
+  ei1: {
+    correct: '✅ Correcto. La mentalidad fija interpreta el fracaso como prueba permanente de incapacidad ("no soy para esto"), lo que lleva al abandono. Dweck documenta extensamente este patrón y su impacto devastador en la resiliencia emprendedora.',
+    incorrect: '❌ La respuesta correcta es B. Con mentalidad fija, el fracaso se interpreta como prueba de incapacidad innata, no como información de aprendizaje. Las opciones A, C y D describen respuestas de mentalidad de crecimiento.'
+  },
+  ei2: {
+    correct: '✅ Correcto. Tanto Covey (proactividad) como Canfield (100% de responsabilidad) comparten la idea central de que la persona es responsable de sus respuestas al entorno — no del entorno mismo, sino de cómo decide responder a él. Esta distinción es fundamental.',
+    incorrect: '❌ La respuesta correcta es C. El Hábito 1 de Covey y el Principio 100% de Canfield coinciden en que la persona decide cómo responder a cualquier situación. No se trata de trabajar más horas, ni de esperar condiciones ideales, ni de tener un plan perfecto.'
+  },
+  ei3: {
+    correct: '✅ Correcto. El bloque Propuesta de Valor es el corazón del Canvas: responde qué valor creamos para el cliente, qué problema resolvemos y por qué nos elegirían. Es el bloque que conecta la necesidad del cliente con la oferta del negocio.',
+    incorrect: '❌ La respuesta correcta es B. Las fuentes de ingresos responden "cómo cobra el negocio" (bloque diferente). La estructura de costos responde los costos principales. Los recursos clave son los activos del negocio. La Propuesta de Valor es exclusivamente sobre el valor que se entrega al cliente.'
+  },
+  ei4: {
+    correct: '✅ Correcto. Sarasvathy describe la lógica effectual como el pensamiento de los emprendedores expertos: no esperan tener todos los recursos — empiezan con lo que tienen y construyen el camino en movimiento, aceptando la incertidumbre como parte del proceso.',
+    incorrect: '❌ La respuesta correcta es B. Las opciones A, C y D describen la lógica CAUSAL (la opuesta): definir objetivo → calcular recursos → esperar capital. La lógica effectual hace exactamente lo contrario: parte de los medios actuales y genera posibilidades desde ahí.'
+  },
+  ei5: {
+    correct: '✅ Correcto. Canfield identifica la "procrastinación disfrazada de preparación" como uno de los autoboicots más comunes y difíciles de detectar: la persona no se ve como procrastinadora porque tiene una razón "razonable" para esperar — pero el patrón se repite indefinidamente sin progreso real.',
+    incorrect: '❌ La respuesta correcta es B. 18 meses de postergación con razones cambiantes no es prudencia financiera ni análisis de riesgo — es autoboicot. La opción D tampoco es correcta: el diagnóstico no es "nunca debe emprender" sino que necesita intervenir su modelo mental.'
+  },
+  ei6: {
+    correct: '✅ Correcto. El ciclo de Ries en The Lean Startup es Construir → Medir → Aprender. La iteración de este ciclo permite aprender de clientes reales con el menor costo posible y ajustar el modelo de negocio antes de comprometer recursos significativos.',
+    incorrect: '❌ La respuesta correcta es B. El ciclo de Ries es Construir → Medir → Aprender (y repetir). No es Planificar-Ejecutar-Evaluar ni Investigar-Diseñar-Lanzar. El componente crítico es que el ciclo se repite continuamente — no es lineal ni tiene un final definitivo.'
+  },
+  ei7: {
+    correct: '✅ Correcto. El Canvas es una herramienta de diseño y aprendizaje rápido (hipótesis iterativas en una página). El Plan de Negocios es una herramienta de comunicación formal (para inversores, bancos, concursos). Son complementarios, no excluyentes.',
+    incorrect: '❌ La respuesta correcta es C. El Canvas NO incluye proyecciones financieras detalladas (eso es el plan financiero). El Plan de Negocios NO es más rápido de actualizar — es lo contrario. No son lo mismo: tienen propósitos, formatos y momentos de uso distintos.'
+  },
+  ei8: {
+    correct: '✅ Correcto. La brecha de formalización es el conjunto de obstáculos que impiden a los emprendedores informales legalizarse: desconocimiento de trámites, costos percibidos como altos, complejidad regulatoria. Sin formalización, el emprendedor queda excluido de mercados formales, crédito bancario y contratos públicos.',
+    incorrect: '❌ La respuesta correcta es B. La brecha de formalización es específicamente sobre el paso de la informalidad a la legalidad — no sobre falta de ideas, tecnología o capital. El contador es el profesional clave para acompañar ese proceso porque conoce tanto el lado regulatorio como el financiero.'
+  }
+};
+
+function verificarEjercicio() {
+  const names = ['ei1','ei2','ei3','ei4','ei5','ei6','ei7','ei8'];
+  let allAnswered = true, score = 0, html = '';
+  names.forEach(n => { if (!document.querySelector(`input[name="${n}"]:checked`)) allAnswered = false; });
+  if (!allAnswered) { alert('⚠️ Responde TODAS las preguntas antes de verificar.'); return; }
+  names.forEach((n, i) => {
+    const sel = document.querySelector(`input[name="${n}"]:checked`).value;
+    const ok = sel === ejCorrects[n];
+    if (ok) score++;
+    html += `<div class="feedback-item ${ok?'feedback-correct':'feedback-incorrect'}"><strong>Pregunta ${i+1}:</strong> ${ok?ejFeedbacks[n].correct:ejFeedbacks[n].incorrect}</div>`;
+  });
+  document.getElementById('ejercicio-feedback').innerHTML = html;
+  const pct = Math.round(score/names.length*100);
+  let emoji = '📖', msg = 'Repasa el material — cada revisión profundiza la comprensión.';
+  if (pct===100) { emoji='🏆'; msg='¡Perfecto! Dominas completamente el contenido de cierre de la Unidad 1.'; }
+  else if (pct>=80) { emoji='🎯'; msg='¡Excelente! Comprendes sólidamente los conceptos clave.'; }
+  else if (pct>=60) { emoji='📘'; msg='Buen avance. Refuerza los temas donde tuviste dudas.'; }
+  else if (pct>=40) { emoji='⚠️'; msg='Necesitas repasar el material con más detenimiento.'; }
+  const panel = document.getElementById('ejercicio-score');
+  panel.style.display = 'block';
+  panel.innerHTML = `<div class="score-emoji">${emoji}</div><div class="score-num">${score} / ${names.length}</div><div class="progress-bar-wrap"><div class="progress-bar-fill" id="ej-bar" style="width:0%"></div></div><div class="score-msg">${pct}% — ${msg}</div>`;
+  setTimeout(()=>{ document.getElementById('ej-bar').style.width = pct+'%'; }, 100);
+  panel.scrollIntoView({ behavior:'smooth' });
+  names.forEach(n => document.querySelectorAll(`input[name="${n}"]`).forEach(r => r.disabled = true));
+}
+
+function reiniciarEjercicio() {
+  ['ei1','ei2','ei3','ei4','ei5','ei6','ei7','ei8'].forEach(n => {
+    document.querySelectorAll(`input[name="${n}"]`).forEach(r => { r.checked=false; r.disabled=false; });
+  });
+  document.getElementById('ejercicio-feedback').innerHTML = '';
+  document.getElementById('ejercicio-score').style.display = 'none';
+}
+
+// ─── CUESTIONARIO ───
+const qzCorrects = { qi1:'b', qi2:'c', qi3:'b', qi4:'b', qi5:'b', qi6:'c', qi7:'b', qi8:'b', qi9:'b', qi10:'b' };
+const qzFeedbacks = {
+  qi1: {
+    correct: '✅ Correcto. La mentalidad de crecimiento (Dweck, 2006) se manifiesta exactamente así: "todavía no sé, pero puedo aprender", y "el fracaso enseña lo que el éxito no enseña". Esta frase captura los dos pilares: apertura al aprendizaje continuo y resiliencia ante el fracaso.',
+    incorrect: '❌ La respuesta correcta es B. Las opciones A y C reflejan mentalidad fija ("o eres o no eres", "el fracaso demuestra que no sirves"). La opción D es un mito sobre el emprendimiento. La mentalidad de crecimiento está en B.'
+  },
+  qi2: {
+    correct: '✅ Correcto. El bloque "Fuentes de Ingresos" del BMC responde exactamente esa pregunta: ¿por qué valor pagan los clientes? ¿cómo pagan? ¿cuánto pagan? Puede incluir suscripciones, pagos únicos, comisiones, freemium, publicidad, entre otros modelos.',
+    incorrect: '❌ La respuesta correcta es C (Fuentes de Ingresos). La Propuesta de Valor describe qué se entrega (no cómo se cobra). La Relación con Clientes describe el tipo de vínculo. Las Actividades Clave son las tareas operativas del negocio.'
+  },
+  qi3: {
+    correct: '✅ Correcto. Sarasvathy (2001) define la lógica effectual precisamente así: partir de los medios disponibles (quién soy, qué sé, a quién conozco), generar posibilidades de acción, aceptar la pérdida como medida de riesgo, explotar contingencias y construir el destino en el camino, no hacia un objetivo fijo predefinido.',
+    incorrect: '❌ La respuesta correcta es B. La opción A describe la lógica CAUSAL (opuesta a effectual). La opción C añade una condición (financiamiento garantizado) que la effectuation justamente rechaza. La opción D es una generalización incorrecta sobre quién puede usar esta lógica.'
+  },
+  qi4: {
+    correct: '✅ Correcto. El síndrome del impostor es esa voz interna que dice "voy a ser descubierto/a" a pesar de la evidencia real de competencia. Es devastadoramente común en profesionales jóvenes y especialmente en quienes son los primeros en su familia en alcanzar cierto nivel de formación.',
+    incorrect: '❌ La respuesta correcta es B. El síndrome del impostor no es sobre copiar modelos, presentar credenciales falsas ni analizar competencia. Es específicamente la creencia irracional de que uno es un fraude que será "descubierto", a pesar de evidencia concreta de competencia.'
+  },
+  qi5: {
+    correct: '✅ Correcto. "Escalar antes de validar" significa crecer (más inversión, más personas, más operaciones) con un modelo de negocio cuya viabilidad aún no se ha comprobado. Ries y Blank documentan este error como una de las causas más frecuentes de muerte de startups que sí tenían ideas válidas.',
+    incorrect: '❌ La respuesta correcta es B. Escalar antes de validar no es sobre capital inicial, expansión geográfica ni contratación prematura en sí mismos — es específicamente sobre crecer con un modelo no validado, que amplifica los errores estructurales del negocio.'
+  },
+  qi6: {
+    correct: '✅ Correcto. El bloque "Canales" del BMC describe exactamente los medios por los que el negocio llega a sus clientes (comunicación, distribución) y les entrega la propuesta de valor (canal de servicio). Incluye canales propios (web, tienda) y aliados (distribuidores, plataformas).',
+    incorrect: '❌ La respuesta correcta es C (Canales). El Segmento de Clientes describe a quiénes se dirige el negocio. Los Socios Clave son aliados estratégicos. La Estructura de Costos describe los principales gastos operativos.'
+  },
+  qi7: {
+    correct: '✅ Correcto. Esta es la síntesis más precisa de la Unidad 1: identidad (mentalidad de crecimiento, grit, responsabilidad) y ecosistema (Isenberg, Triple Hélice, políticas) son dos factores necesarios y complementarios. Sin identidad sólida, el mejor ecosistema no produce emprendedores. Sin un ecosistema funcional, la mejor identidad tiene menos oportunidades para manifestarse.',
+    incorrect: '❌ La respuesta correcta es B. La opción A es unilateral (solo ecosistema). La opción C aplica un reduccionismo que la evidencia del GEM refuta (la mentalidad importa en todos los contextos). La opción D es un error grave: la mentalidad de crecimiento acelera el desarrollo de competencias técnicas, no las reemplaza.'
+  },
+  qi8: {
+    correct: '✅ Correcto. El diagnóstico de Andrea combina dos formas de autoboicot identificadas en el curso: procrastinación disfrazada de preparación (siempre hay una razón para esperar) y posiblemente síndrome del impostor ("no tengo suficiente experiencia"). La solución no es más tiempo — es intervenir el modelo mental con acción imperfecta.',
+    incorrect: '❌ La respuesta correcta es B. La opción A normaliza un patrón que claramente no está funcionando (18 meses sin progreso). La opción C introduce una variable (capital) que el caso no menciona como problema. La opción D es incorrecta y desmotivadora: la experiencia se adquiere haciendo, no esperando tenerla.'
+  },
+  qi9: {
+    correct: '✅ Correcto. "WhatsApp Business y referidos" son los medios por los que los estudiantes llegan a sus clientes y entregan el servicio — eso es exactamente el bloque Canales. No es Propuesta de Valor (que describe el servicio mismo), ni Relación con Clientes (que describe el tipo de vínculo), ni Socios Clave.',
+    incorrect: '❌ La respuesta correcta es B (Canales). La Propuesta de Valor sería "auditoría express en 5 días". La Relación con Clientes podría ser "servicio personalizado por WhatsApp". WhatsApp como plataforma no es un Socio Clave — es el medio de comunicación y entrega (Canal).'
+  },
+  qi10: {
+    correct: '✅ Correcto. Esta es la afirmación integradora de toda la Unidad 1: el contador/auditor tiene una posición estratégica única (competencias técnicas + marco ético + conocimiento del ecosistema) para ser actor de cambio en el emprendimiento, ya sea como emprendedor, intraemprendedor, asesor o cofundador. Las tres brechas identificadas son oportunidades concretas de intervención.',
+    incorrect: '❌ La respuesta correcta es B. La opción A reduce al contador a un rol técnico periférico, ignorando todo el análisis de la unidad. La opción C es un malentendido: la ética y el rigor son ventajas competitivas, no obstáculos. La opción D es directamente contraria a la lógica de toda la materia.'
+  }
+};
+
+function verificarCuestionario() {
+  const names = ['qi1','qi2','qi3','qi4','qi5','qi6','qi7','qi8','qi9','qi10'];
+  let allAnswered = true, score = 0, html = '';
+  names.forEach(n => { if (!document.querySelector(`input[name="${n}"]:checked`)) allAnswered = false; });
+  if (!allAnswered) { alert('⚠️ Responde TODAS las preguntas antes de verificar.'); return; }
+  names.forEach((n, i) => {
+    const sel = document.querySelector(`input[name="${n}"]:checked`).value;
+    const ok = sel === qzCorrects[n];
+    if (ok) score++;
+    html += `<div class="feedback-item ${ok?'feedback-correct':'feedback-incorrect'}"><strong>Pregunta ${i+1}:</strong> ${ok?qzFeedbacks[n].correct:qzFeedbacks[n].incorrect}</div>`;
+  });
+  document.getElementById('quiz-feedback').innerHTML = html;
+  const pct = Math.round(score/10*100);
+  let emoji = '📖', msg = '¡Repasa la Unidad 1 — hay conceptos clave que reforzar!';
+  if (pct===100) { emoji='🏆'; msg='¡Perfecto! Dominas completamente la Unidad 1. ¡Estás listo/a para la Unidad 2!'; }
+  else if (pct>=80) { emoji='🎯'; msg='¡Excelente! Tienes una comprensión muy sólida de la Unidad 1.'; }
+  else if (pct>=60) { emoji='📘'; msg='Buen trabajo. Refuerza los temas donde tuviste dudas antes de avanzar.'; }
+  else if (pct>=40) { emoji='⚠️'; msg='Necesitas revisar el material de la Unidad 1 con más profundidad.'; }
+  const panel = document.getElementById('quiz-score');
+  panel.style.display = 'block';
+  panel.innerHTML = `<div class="score-emoji">${emoji}</div><div class="score-num">${score} / 10</div><div class="progress-bar-wrap"><div class="progress-bar-fill" id="qz-bar" style="width:0%"></div></div><div class="score-msg">${pct}% — ${msg}</div>`;
+  setTimeout(()=>{ document.getElementById('qz-bar').style.width = pct+'%'; }, 100);
+  panel.scrollIntoView({ behavior:'smooth' });
+  names.forEach(n => document.querySelectorAll(`input[name="${n}"]`).forEach(r => r.disabled = true));
+}
+
+function reiniciarCuestionario() {
+  ['qi1','qi2','qi3','qi4','qi5','qi6','qi7','qi8','qi9','qi10'].forEach(n => {
+    document.querySelectorAll(`input[name="${n}"]`).forEach(r => { r.checked=false; r.disabled=false; });
+  });
+  document.getElementById('quiz-feedback').innerHTML = '';
+  document.getElementById('quiz-score').style.display = 'none';
+}
+</script>
+</body>
+</html>
