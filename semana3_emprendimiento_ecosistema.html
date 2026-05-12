@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 3 – Situación Mundial del Emprendimiento y Ecosistema Ecuatoriano</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+/* =============================================
+   RESET Y BASE
+   ============================================= */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #1a1a2e;
+  background: #f4f6f9;
+  min-height: 100vh;
+}
+h1,h2,h3,h4 { font-family: 'Lora', serif; }
+
+/* =============================================
+   ENCABEZADO
+   ============================================= */
+header {
+  background: #003366;
+  color: #fff;
+  padding: 20px 30px 16px;
+}
+.header-top {
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: .8;
+  margin-bottom: 4px;
+}
+.header-title {
+  font-family: 'Lora', serif;
+  font-size: clamp(18px, 3vw, 26px);
+  font-weight: 700;
+  line-height: 1.25;
+}
+.header-sub {
+  font-size: 13px;
+  margin-top: 6px;
+  opacity: .75;
+  letter-spacing: .5px;
+}
+
+/* =============================================
+   MENÚ DE PESTAÑAS
+   ============================================= */
+.tab-bar-wrapper {
+  background: #87CEEB;
+  overflow-x: auto;
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 6px rgba(0,0,0,.15);
+  scrollbar-width: thin;
+  scrollbar-color: #003366 #87CEEB;
+}
+.tab-bar-wrapper::-webkit-scrollbar { height: 4px; }
+.tab-bar-wrapper::-webkit-scrollbar-thumb { background: #003366; border-radius: 4px; }
+.tab-bar {
+  display: inline-flex;
+  padding: 0 8px;
+}
+.tab-btn {
+  display: inline-block;
+  padding: 12px 18px;
+  cursor: pointer;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1a2e;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
+  transition: background .2s, border-color .2s, color .2s;
+}
+.tab-btn:hover { background: rgba(255,255,255,.5); }
+.tab-btn.active {
+  background: #fff;
+  color: #003366;
+  font-weight: 700;
+  border-bottom-color: #003366;
+}
+
+/* =============================================
+   CONTENIDO PRINCIPAL
+   ============================================= */
+main { max-width: 960px; margin: 0 auto; padding: 30px 20px 60px; }
+.tab-content { display: none; animation: fadeIn .35s ease; }
+.tab-content.active { display: block; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+
+/* =============================================
+   TIPOGRAFÍA Y ELEMENTOS
+   ============================================= */
+h2.section-title {
+  font-size: clamp(20px,3vw,26px);
+  color: #003366;
+  margin-bottom: 18px;
+  padding-bottom: 8px;
+  border-bottom: 3px solid #87CEEB;
+}
+h3.subsection { font-size: 18px; color: #003366; margin: 22px 0 10px; }
+p { margin-bottom: 14px; }
+ul, ol { padding-left: 22px; margin-bottom: 14px; }
+li { margin-bottom: 6px; }
+
+/* Cajas de concepto */
+.concept-box {
+  border-left: 5px solid #003366;
+  background: #eef4ff;
+  padding: 16px 20px;
+  border-radius: 0 8px 8px 0;
+  margin: 18px 0;
+}
+.concept-box strong { color: #003366; display: block; margin-bottom: 4px; font-family: 'Lora', serif; font-size: 15px; }
+
+/* Cajas de ejemplo / historia */
+.example-box {
+  background: #d0e8f5;
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin: 18px 0;
+}
+.example-box .ex-label {
+  font-family: 'Lora', serif;
+  font-weight: 700;
+  color: #003366;
+  font-size: 14px;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* Caja de idea clave */
+.key-idea {
+  background: #003366;
+  color: #fff;
+  padding: 18px 22px;
+  border-radius: 10px;
+  margin: 22px 0;
+}
+.key-idea strong { font-family: 'Lora', serif; font-size: 16px; display: block; margin-bottom: 6px; }
+
+/* Tablas */
+table { width: 100%; border-collapse: collapse; margin: 18px 0; font-size: 14.5px; }
+th {
+  background: #003366;
+  color: #fff;
+  padding: 10px 14px;
+  text-align: left;
+  font-family: 'Lora', serif;
+}
+td { padding: 9px 14px; border-bottom: 1px solid #d0d8e8; }
+tr:nth-child(even) td { background: #eef4ff; }
+tr:hover td { background: #d0e8f5; }
+
+/* Dato destacado */
+.stat-row { display: flex; flex-wrap: wrap; gap: 14px; margin: 18px 0; }
+.stat-card {
+  flex: 1 1 160px;
+  background: #003366;
+  color: #fff;
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+.stat-card .stat-num { font-family: 'Lora', serif; font-size: 28px; font-weight: 700; line-height: 1.1; }
+.stat-card .stat-label { font-size: 12px; margin-top: 4px; opacity: .85; }
+
+/* =============================================
+   SECCIÓN REPASO
+   ============================================= */
+.recap-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.07);
+  border-left: 6px solid #87CEEB;
+}
+.recap-card h4 { color: #003366; font-size: 16px; margin-bottom: 8px; }
+
+/* =============================================
+   EJERCICIO Y CUESTIONARIO
+   ============================================= */
+.quiz-question {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.07);
+}
+.quiz-question p { font-weight: 600; margin-bottom: 12px; color: #003366; font-family: 'Lora', serif; }
+.quiz-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 7px;
+  margin-bottom: 6px;
+  cursor: pointer;
+  transition: background .2s;
+}
+.quiz-option:hover { background: #eef4ff; }
+.quiz-option input { margin-top: 3px; flex-shrink: 0; accent-color: #003366; }
+.quiz-option label { cursor: pointer; font-size: 15px; }
+
+.badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  letter-spacing: .5px;
+  margin-bottom: 10px;
+}
+.badge-theory { background: #003366; color: #fff; }
+.badge-case { background: #e8a020; color: #fff; }
+
+.btn {
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: transform .15s, box-shadow .15s;
+}
+.btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,.2); }
+.btn-primary { background: #003366; color: #fff; }
+.btn-secondary { background: #87CEEB; color: #003366; margin-left: 10px; }
+
+.feedback-item {
+  padding: 10px 14px;
+  border-radius: 7px;
+  margin-top: 8px;
+  font-size: 14px;
+}
+.feedback-correct { background: #d4edda; border-left: 4px solid #28a745; color: #155724; }
+.feedback-incorrect { background: #f8d7da; border-left: 4px solid #dc3545; color: #721c24; }
+
+.score-panel {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,.1);
+  margin-top: 24px;
+  display: none;
+}
+.score-panel .score-emoji { font-size: 48px; line-height: 1; margin-bottom: 10px; }
+.score-panel .score-num { font-family: 'Lora', serif; font-size: 32px; font-weight: 700; color: #003366; }
+.progress-bar-wrap { background: #e0e0e0; border-radius: 20px; height: 18px; margin: 14px auto; max-width: 400px; overflow: hidden; }
+.progress-bar-fill { height: 100%; border-radius: 20px; background: linear-gradient(90deg, #003366, #0066cc); transition: width 1s ease; }
+.score-msg { font-size: 16px; font-weight: 600; color: #003366; margin-top: 8px; }
+
+/* =============================================
+   ACTIVIDAD IA
+   ============================================= */
+.ia-box {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.08);
+  margin-bottom: 20px;
+}
+.ia-box h3 { color: #003366; margin-bottom: 14px; }
+.prompt-code {
+  background: #1a1a2e;
+  color: #87CEEB;
+  padding: 18px;
+  border-radius: 8px;
+  font-family: 'Courier New', monospace;
+  font-size: 13.5px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  margin: 14px 0;
+}
+.step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px; height: 28px;
+  background: #003366;
+  color: #fff;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 13px;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+.step-row { display: flex; align-items: flex-start; margin-bottom: 12px; }
+
+/* =============================================
+   REFLEXIÓN
+   ============================================= */
+.reflection-q {
+  background: #fff;
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  border-left: 5px solid #87CEEB;
+}
+.reflection-q .q-num { font-family: 'Lora', serif; font-weight: 700; color: #003366; margin-bottom: 6px; font-size: 15px; }
+
+/* =============================================
+   BIBLIOGRAFÍA
+   ============================================= */
+.ref-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.07);
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+.ref-card .ref-author { font-weight: 700; color: #003366; }
+.ref-note {
+  background: #eef4ff;
+  border-left: 4px solid #003366;
+  padding: 12px 16px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  margin-top: 18px;
+  color: #333;
+}
+
+/* CANVAS TOOL BUTTON */
+.canvas-btn-wrap { text-align: center; margin: 28px 0; }
+.canvas-btn-wrap a {
+  display: inline-block;
+  padding: 14px 34px;
+  background: linear-gradient(135deg, #003366, #0055a5);
+  color: #fff;
+  border-radius: 10px;
+  text-decoration: none;
+  font-family: 'Lora', serif;
+  font-weight: 700;
+  font-size: 16px;
+  box-shadow: 0 4px 14px rgba(0,51,102,.35);
+  transition: transform .2s, box-shadow .2s;
+}
+.canvas-btn-wrap a:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,51,102,.45); }
+
+@media (max-width: 600px) {
+  main { padding: 20px 12px 50px; }
+  .stat-row { flex-direction: column; }
+  .tab-btn { padding: 10px 13px; font-size: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     ENCABEZADO
+═══════════════════════════════════════════ -->
+<header>
+  <div class="header-top">Universidad de Guayaquil · Facultad de Ciencias Administrativas · Contabilidad y Auditoría</div>
+  <div class="header-title">Emprendimiento e Innovación — Semana 3</div>
+  <div class="header-sub">Unidad 1: El Emprendimiento, Generalidades y el Proceso Emprendedor &nbsp;|&nbsp; Situación Mundial del Emprendimiento y Ecosistema Emprendedor Ecuatoriano</div>
+</header>
+
+<!-- ═══════════════════════════════════════════
+     MENÚ DE PESTAÑAS
+═══════════════════════════════════════════ -->
+<div class="tab-bar-wrapper">
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="showTab('repaso')">📋 Repaso</button>
+    <button class="tab-btn" onclick="showTab('t1')">🌍 Tema 1</button>
+    <button class="tab-btn" onclick="showTab('t2')">📊 Tema 2</button>
+    <button class="tab-btn" onclick="showTab('t3')">🇪🇨 Tema 3</button>
+    <button class="tab-btn" onclick="showTab('t4')">🌱 Tema 4</button>
+    <button class="tab-btn" onclick="showTab('ejercicio')">✏️ Ejercicio</button>
+    <button class="tab-btn" onclick="showTab('cuestionario')">📝 Cuestionario</button>
+    <button class="tab-btn" onclick="showTab('ia')">🤖 Actividad IA</button>
+    <button class="tab-btn" onclick="showTab('reflexion')">💭 Reflexión</button>
+    <button class="tab-btn" onclick="showTab('biblio')">📚 Bibliografía</button>
+  </div>
+</div>
+
+<main>
+
+<!-- ═══════════════════════════════════════════
+     REPASO
+═══════════════════════════════════════════ -->
+<div id="repaso" class="tab-content active">
+  <h2 class="section-title">📋 Repaso de Semanas Anteriores</h2>
+  <p>Antes de explorar el escenario mundial, recordemos los cimientos que construimos juntos:</p>
+
+  <div class="recap-card">
+    <h4>Semana 1 — ¿Qué es emprender y quién es emprendedor?</h4>
+    <p>Definimos <strong>emprender</strong> como el proceso de identificar una oportunidad y asumir el riesgo de transformarla en valor. Conocimos los <strong>tipos de emprendedor</strong> (por necesidad, por oportunidad, social, corporativo) y las etapas del <strong>proceso emprendedor</strong>: idea → validación → lanzamiento → crecimiento → sostenibilidad. También revisamos el <strong>GEM (Global Entrepreneurship Monitor)</strong>, el mayor estudio de emprendimiento del mundo, y su lectura del caso ecuatoriano.</p>
+  </div>
+
+  <div class="recap-card">
+    <h4>Semana 2 — Innovación: más que una palabra de moda</h4>
+    <p>Distinguimos <strong>innovar</strong> de simplemente mejorar: innovar es introducir algo <em>nuevo que genera valor</em>. Estudiamos los <strong>modelos de innovación</strong> (abierta, cerrada, colaborativa) y profundizamos en la <strong>innovación disruptiva</strong> de Clayton Christensen: aquella que transforma mercados completos al hacerlos más accesibles y asequibles. Ejemplos locales: Kushki en pagos digitales, Datil en facturación electrónica.</p>
+  </div>
+
+  <div class="key-idea">
+    <strong>🔗 Conexión con esta semana</strong>
+    Ahora que sabemos qué es emprender y qué significa innovar, la pregunta es: ¿cómo está el mundo en este campo? ¿Y cuál es el lugar de Ecuador en ese mapa? Esta semana respondemos exactamente eso.
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     TEMA 1 — Panorama mundial del emprendimiento
+═══════════════════════════════════════════ -->
+<div id="t1" class="tab-content">
+  <h2 class="section-title">🌍 Tema 1: Panorama Mundial del Emprendimiento</h2>
+
+  <p>Para entender dónde está Ecuador, primero necesitamos entender dónde está el mundo. El emprendimiento no es un fenómeno igual en todos los países: su intensidad, sus formas y sus resultados varían radicalmente según el contexto económico, cultural e institucional de cada nación.</p>
+
+  <h3 class="subsection">El GEM como termómetro mundial</h3>
+  <div class="concept-box">
+    <strong>¿Qué es el GEM (Global Entrepreneurship Monitor)?</strong>
+    Es el mayor programa de investigación sobre emprendimiento en el mundo. Fundado en 1999 por Babson College (EE.UU.) y London Business School (Reino Unido), el GEM encuesta cada año a decenas de miles de personas en más de 50 países para medir la actividad emprendedora, las actitudes hacia el emprendimiento y las condiciones del entorno. Sus datos son la fuente más citada en políticas públicas de emprendimiento a nivel global.
+  </div>
+
+  <p>El GEM mide, entre otros indicadores, la <strong>TEA (Total Early-Stage Entrepreneurial Activity)</strong>, que representa el porcentaje de la población adulta (18–64 años) que está involucrada en un negocio nuevo (menos de 3,5 años de operación). Este indicador permite comparar países de forma homogénea.</p>
+
+  <h3 class="subsection">¿Por qué emprender más no siempre significa emprender mejor?</h3>
+  <p>Un hallazgo contraintuitivo del GEM es que los países con mayores tasas de emprendimiento no son los más desarrollados. De hecho, ocurre lo contrario:</p>
+
+  <table>
+    <tr><th>Tipo de economía</th><th>Motivación principal</th><th>Tasa TEA típica</th><th>Ejemplo de región</th></tr>
+    <tr><td>Economías basadas en factores (bajos ingresos)</td><td>Necesidad (no hay empleo formal)</td><td>Alta (20–40%)</td><td>África Subsahariana, partes de Latinoamérica</td></tr>
+    <tr><td>Economías basadas en eficiencia (ingreso medio)</td><td>Mixta: necesidad + oportunidad</td><td>Media (10–20%)</td><td>Ecuador, Colombia, Perú</td></tr>
+    <tr><td>Economías basadas en innovación (altos ingresos)</td><td>Oportunidad y ambición de crecimiento</td><td>Baja–media (5–12%)</td><td>Alemania, Japón, Noruega</td></tr>
+  </table>
+
+  <p>Esto nos dice que <strong>emprender por necesidad es una señal de debilidad del mercado laboral</strong>, no de dinamismo innovador. La meta de toda sociedad es avanzar hacia el emprendimiento por oportunidad.</p>
+
+  <h3 class="subsection">Tendencias globales actuales</h3>
+  <ul>
+    <li><strong>Digitalización masiva:</strong> La pandemia de COVID-19 aceleró en 5 años la transformación digital de los negocios. Hoy más del 60% de los nuevos emprendimientos globales tienen un componente digital.</li>
+    <li><strong>Emprendimiento sostenible:</strong> Los inversores y consumidores exigen modelos de negocio con impacto ambiental y social positivo (ESG: Environmental, Social, Governance).</li>
+    <li><strong>Auge del emprendimiento femenino:</strong> Las mujeres representan hoy casi el 45% de los emprendedores en etapa temprana a nivel mundial, aunque siguen enfrentando mayores barreras de financiamiento.</li>
+    <li><strong>Emprendimiento joven (millennials y Gen Z):</strong> La generación más conectada de la historia es también la que más considera emprender como opción de vida.</li>
+    <li><strong>Startups de alto impacto (unicornios):</strong> Empresas como Airbnb, Rappi o MercadoLibre empezaron como proyectos pequeños y hoy valen más de 1.000 millones de dólares.</li>
+  </ul>
+
+  <div class="stat-row">
+    <div class="stat-card"><div class="stat-num">50+</div><div class="stat-label">países analizados por el GEM anualmente</div></div>
+    <div class="stat-card"><div class="stat-num">582M</div><div class="stat-label">emprendedores en el mundo (estimado GEM)</div></div>
+    <div class="stat-card"><div class="stat-num">45%</div><div class="stat-label">participación femenina en emprendimiento global</div></div>
+    <div class="stat-card"><div class="stat-num">70%</div><div class="stat-label">de empleos creados por PYMEs y startups en países en desarrollo</div></div>
+  </div>
+
+  <div class="example-box">
+    <span class="ex-label">🌎 Latinoamérica en el mapa mundial</span>
+    <p>América Latina tiene tasas de emprendimiento entre las más altas del mundo, pero la gran mayoría son emprendimientos de subsistencia: pequeños negocios informales con poco acceso a capital, tecnología o mercados. Chile y Colombia lideran el ecosistema latinoamericano con políticas de apoyo más desarrolladas. México tiene el ecosistema de startups más activo gracias a su cercanía con Silicon Valley. Brasil posee el mayor número de startups de la región. Ecuador, con sus características particulares, tiene un ecosistema en construcción con potencial significativo.</p>
+  </div>
+
+  <div class="key-idea">
+    <strong>💡 Idea Clave</strong>
+    La calidad del emprendimiento importa más que la cantidad. Un país puede tener millones de emprendedores por necesidad y seguir siendo económicamente frágil. El objetivo es crear condiciones para que el emprendimiento sea por oportunidad, innovador y escalable. Como futuro/a contador/a o auditor/a, tu rol será clave para que esos negocios operen con orden financiero y transparencia.
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     TEMA 2 — El ecosistema emprendedor: ¿qué es y cómo funciona?
+═══════════════════════════════════════════ -->
+<div id="t2" class="tab-content">
+  <h2 class="section-title">📊 Tema 2: El Ecosistema Emprendedor — ¿Qué es y Cómo Funciona?</h2>
+
+  <p>Cuando hablamos de <strong>"ecosistema emprendedor"</strong>, usamos una metáfora tomada de la biología: así como un ecosistema natural (un bosque, un océano) está formado por muchos seres vivos que se apoyan mutuamente, un ecosistema emprendedor es el conjunto de actores, instituciones, condiciones y relaciones que permiten que los emprendedores nazcan, crezcan y prosperen.</p>
+
+  <div class="concept-box">
+    <strong>Definición de Ecosistema Emprendedor (Isenberg, 2010)</strong>
+    Daniel Isenberg, profesor de Harvard, definió el ecosistema emprendedor como el conjunto de elementos interdependientes —políticas, finanzas, cultura, apoyos, capital humano y mercados— que permiten a los emprendedores crear y hacer crecer sus empresas. La clave es la interdependencia: si falla un elemento, todos los demás se debilitan.
+  </div>
+
+  <h3 class="subsection">Los 6 dominios del ecosistema de Isenberg</h3>
+  <p>Isenberg identificó seis grandes dominios que todo ecosistema emprendedor sano debe tener:</p>
+
+  <table>
+    <tr><th>Dominio</th><th>¿Qué incluye?</th><th>Ejemplo concreto</th></tr>
+    <tr><td>🏛️ <strong>Políticas</strong></td><td>Leyes, regulaciones, apoyo gubernamental</td><td>Ley de Fomento Productivo en Ecuador (2018)</td></tr>
+    <tr><td>💰 <strong>Finanzas</strong></td><td>Capital semilla, crédito, inversores ángel, fondos de capital de riesgo</td><td>COFIEC, BanEcuador, inversores privados</td></tr>
+    <tr><td>🎓 <strong>Capital Humano</strong></td><td>Educación emprendedora, talento, mentores</td><td>Programas universitarios como este</td></tr>
+    <tr><td>🤝 <strong>Redes y Comunidades</strong></td><td>Asociaciones, cámaras, hubs, comunidades tech</td><td>Startup Weekend Ecuador, Cámara de Comercio</td></tr>
+    <tr><td>🏗️ <strong>Infraestructura</strong></td><td>Coworking, internet, transporte, servicios</td><td>Ciudadela Universitaria, parques tecnológicos</td></tr>
+    <tr><td>🛒 <strong>Mercados</strong></td><td>Clientes iniciales, cadenas de valor, exportaciones</td><td>Plataformas como OLX, MercadoLibre Ecuador</td></tr>
+  </table>
+
+  <h3 class="subsection">Silicon Valley: el ecosistema de referencia mundial</h3>
+  <div class="example-box">
+    <span class="ex-label">🏆 Caso: Silicon Valley (California, EE.UU.)</span>
+    <p>No es casualidad que el 25% de las startups más valiosas del mundo hayan nacido en un área de apenas 30 km² en California. Silicon Valley es el resultado de décadas de acumulación de todos los elementos del ecosistema: universidades de excelencia (Stanford, Berkeley), capital de riesgo abundante (más del 40% del capital de riesgo de EE.UU. se concentra allí), una cultura que celebra el fracaso como aprendizaje, y una red densa de emprendedores, ingenieros y mentores. Empresas como Apple, Google, Netflix y Meta comenzaron allí. El elemento diferenciador no fue solo el talento, sino el <strong>entorno que habilitó ese talento</strong>.</p>
+  </div>
+
+  <h3 class="subsection">Otros ecosistemas relevantes en el mundo</h3>
+  <ul>
+    <li><strong>Israel (Tel Aviv):</strong> Conocido como "la nación startup". Con una población de 9 millones, tiene más empresas listadas en el NASDAQ que China o Europa. Su secreto: inversión estatal temprana en I+D y una cultura de desafío a la autoridad.</li>
+    <li><strong>Estonia (Tallinn):</strong> País de 1,3 millones de habitantes que creó Skype y TransferWise. Fue el primer país en otorgar "residencia digital" para que emprendedores del mundo puedan crear empresas online.</li>
+    <li><strong>Colombia (Medellín):</strong> Transformada de "la ciudad más peligrosa del mundo" a referente de innovación urbana gracias a políticas públicas y un ecosistema emprendedor vibrante.</li>
+    <li><strong>Chile (Santiago):</strong> Lanzó "Start-Up Chile" en 2010, el primer programa de gobierno del mundo en atraer startups extranjeras ofreciéndoles capital semilla sin pedir participación en la empresa.</li>
+  </ul>
+
+  <div class="key-idea">
+    <strong>💡 Idea Clave</strong>
+    El ecosistema emprendedor no es solo cuestión de tener buenas ideas. Es una arquitectura compleja de actores e instituciones. Un emprendedor sin acceso a financiamiento, sin red de apoyo, sin un marco legal claro, tiene pocas posibilidades de sobrevivir. Por eso las políticas públicas importan, y por eso la formación universitaria — como la que estás recibiendo — es un pilar fundamental de cualquier ecosistema.
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     TEMA 3 — Ecuador: diagnóstico del ecosistema
+═══════════════════════════════════════════ -->
+<div id="t3" class="tab-content">
+  <h2 class="section-title">🇪🇨 Tema 3: Ecuador — Diagnóstico del Ecosistema Emprendedor</h2>
+
+  <p>Ecuador tiene una realidad emprendedora intensa pero desigual. Somos un país con <strong>alta actividad emprendedora</strong> medida por el GEM, pero también con grandes desafíos estructurales que limitan que esos emprendimientos crezcan y se consoliden.</p>
+
+  <h3 class="subsection">Ecuador en los datos del GEM</h3>
+  <div class="concept-box">
+    <strong>¿Qué dice el GEM sobre Ecuador?</strong>
+    Según el Global Entrepreneurship Monitor (GEM Ecuador), Ecuador ha registrado consistentemente una de las tasas TEA (Total Early-Stage Entrepreneurial Activity) más altas de Latinoamérica, ubicándose entre 25% y 35% en varios años. Esto significa que más de 1 de cada 4 adultos está involucrado en algún emprendimiento en etapa temprana. Sin embargo, la tasa de discontinuación (cierre de negocios) también es alta, lo que revela una brecha entre la creación y la sostenibilidad.
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-card"><div class="stat-num">~30%</div><div class="stat-label">Tasa TEA de Ecuador (uno de los más altos de LATAM)</div></div>
+    <div class="stat-card"><div class="stat-num">70%</div><div class="stat-label">emprendimientos que no superan los 3 años</div></div>
+    <div class="stat-card"><div class="stat-num">65%</div><div class="stat-label">de emprendedores ecuatorianos emprendió por necesidad</div></div>
+    <div class="stat-card"><div class="stat-num">90%</div><div class="stat-label">de empresas ecuatorianas son micro, pequeñas o medianas</div></div>
+  </div>
+
+  <h3 class="subsection">El mapa del ecosistema ecuatoriano</h3>
+  <p>El ecosistema emprendedor de Ecuador está en proceso de maduración. Sus actores principales son:</p>
+
+  <table>
+    <tr><th>Actor</th><th>Rol en el ecosistema</th><th>Ejemplos reales</th></tr>
+    <tr><td>🏛️ Gobierno</td><td>Política pública, regulación, financiamiento</td><td>MIPRO, CFN (Corporación Financiera Nacional), BanEcuador</td></tr>
+    <tr><td>🎓 Universidades</td><td>Formación, investigación, incubadoras</td><td>U. de Guayaquil, ESPOL, PUCE, UDLA</td></tr>
+    <tr><td>🏢 Sector privado</td><td>Mentoría, inversión, mercado</td><td>Cámara de Comercio, CAPEIPI</td></tr>
+    <tr><td>💻 Aceleradoras e incubadoras</td><td>Apoyo técnico y financiero a startups</td><td>Kruger Labs, InnovaHub, iDEAS Incubadora ESPOL</td></tr>
+    <tr><td>🌐 Comunidades</td><td>Networking, eventos, cultura emprendedora</td><td>Startup Weekend Ecuador, TEDx Guayaquil</td></tr>
+    <tr><td>💳 Fintech y financiamiento alternativo</td><td>Capital para emprendedores sin acceso bancario</td><td>Kushki, Siembro (crowdfunding), cooperativas</td></tr>
+  </table>
+
+  <h3 class="subsection">Fortalezas del ecosistema ecuatoriano</h3>
+  <ul>
+    <li><strong>Alta mentalidad emprendedora:</strong> El ecuatoriano tiene una disposición natural a emprender, incluso en condiciones adversas.</li>
+    <li><strong>Diversidad de sectores:</strong> Agroindustria, turismo, tecnología, artesanías, economía creativa.</li>
+    <li><strong>Posición geográfica estratégica:</strong> Acceso a mercados del Pacífico, Caribe y conexión con economías vecinas (Colombia, Perú).</li>
+    <li><strong>Ecosistema universitario en crecimiento:</strong> Programas de emprendimiento e innovación en expansión.</li>
+    <li><strong>Dolarización:</strong> Estabilidad monetaria que reduce el riesgo cambiario para inversores y emprendedores.</li>
+  </ul>
+
+  <h3 class="subsection">Desafíos estructurales</h3>
+  <ul>
+    <li><strong>Acceso limitado al financiamiento:</strong> Los bancos exigen garantías que los emprendedores jóvenes no tienen. El crédito formal para startups es escaso.</li>
+    <li><strong>Informalidad:</strong> Gran parte de los emprendimientos no están legalmente constituidos, lo que les impide acceder a contratos públicos, crédito formal y mercados internacionales.</li>
+    <li><strong>Exceso regulatorio:</strong> Procesos burocráticos lentos y costosos para constituir empresas.</li>
+    <li><strong>Cultura del fracaso:</strong> Socialmente, el fracaso empresarial aún genera estigma, lo que inhibe el riesgo calculado.</li>
+    <li><strong>Baja inversión en I+D:</strong> Ecuador invierte menos del 0,5% de su PIB en investigación y desarrollo, muy por debajo del promedio latinoamericano.</li>
+  </ul>
+
+  <div class="example-box">
+    <span class="ex-label">🇪🇨 Casos de éxito ecuatorianos</span>
+    <p><strong>Datil:</strong> Startup guayaquileña de facturación electrónica que pasó de ser una solución local a procesar millones de facturas y expandirse regionalmente. Un ejemplo de emprendimiento por oportunidad en el sector tecnológico.<br><br>
+    <strong>Kushki:</strong> Plataforma de pagos digitales fundada en Ecuador que opera en varios países de Latinoamérica y ha recibido decenas de millones de dólares en inversión internacional. Comenzó identificando la necesidad de procesar pagos en economías con baja bancarización.<br><br>
+    <strong>Farmacias Cruz Azul:</strong> Red farmacéutica ecuatoriana que comenzó como emprendimiento familiar y se convirtió en una de las cadenas más grandes del país, demostrando que el emprendimiento de largo plazo es posible en Ecuador.</p>
+  </div>
+
+  <div class="key-idea">
+    <strong>💡 Idea Clave</strong>
+    Ecuador tiene todos los ingredientes para un ecosistema emprendedor vibrante: gente con iniciativa, diversidad de recursos naturales, posición geográfica privilegiada. El reto está en fortalecer las instituciones, reducir la informalidad y crear cultura de innovación sostenida. Y aquí entra tu rol: un/a contador/a o auditor/a que entiende el ecosistema puede asesorar, formalizar y acompañar a los emprendedores en su camino hacia la sostenibilidad.
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     TEMA 4 — Políticas públicas y el rol de la universidad
+═══════════════════════════════════════════ -->
+<div id="t4" class="tab-content">
+  <h2 class="section-title">🌱 Tema 4: Políticas Públicas de Emprendimiento y el Rol de la Universidad</h2>
+
+  <p>El ecosistema emprendedor no surge de forma espontánea. Detrás de cada Silicon Valley, cada Tel Aviv, cada Medellín transformada, hay <strong>decisiones de política pública</strong> que crearon las condiciones para que el emprendimiento floreciera. Entender estas políticas es fundamental para quienes aspiran a ejercer en el sector público, en consultoría o en la gestión empresarial.</p>
+
+  <h3 class="subsection">¿Qué son las políticas públicas de emprendimiento?</h3>
+  <div class="concept-box">
+    <strong>Políticas Públicas de Emprendimiento</strong>
+    Son el conjunto de decisiones, normativas, programas e inversiones que los gobiernos realizan para crear un entorno favorable al surgimiento y crecimiento de empresas. Van desde la simplificación de trámites para crear una empresa hasta la creación de fondos de capital semilla, pasando por incentivos tributarios, programas de capacitación y acuerdos de propiedad intelectual.
+  </div>
+
+  <h3 class="subsection">Instrumentos de política más usados en el mundo</h3>
+  <table>
+    <tr><th>Instrumento</th><th>¿Qué hace?</th><th>Aplicado en Ecuador</th></tr>
+    <tr><td>Simplificación de registro empresarial</td><td>Reduce tiempo y costo para crear una empresa</td><td>SUPERCIAS permite constitución online</td></tr>
+    <tr><td>Incentivos tributarios</td><td>Reducción de impuestos para startups en primeros años</td><td>Exoneraciones en Código Orgánico de la Producción</td></tr>
+    <tr><td>Capital semilla público</td><td>Fondos no reembolsables para ideas innovadoras</td><td>Fondos Concursables del MIPRO e INIAP</td></tr>
+    <tr><td>Compras públicas preferenciales</td><td>El Estado compra primero a emprendedores locales</td><td>SERCOP establece márgenes de preferencia</td></tr>
+    <tr><td>Zonas económicas especiales</td><td>Áreas con regulación y tributos favorables</td><td>ZEDE Yachay (Ciudad del Conocimiento)</td></tr>
+    <tr><td>Propiedad intelectual ágil</td><td>Protección rápida de innovaciones</td><td>SENADI (Servicio Nacional de Derechos Intelectuales)</td></tr>
+  </table>
+
+  <h3 class="subsection">Yachay: la apuesta ecuatoriana por la innovación</h3>
+  <div class="example-box">
+    <span class="ex-label">🏗️ Caso: Ciudad del Conocimiento Yachay (Urcuquí, Imbabura)</span>
+    <p>Yachay Tech es un proyecto emblemático del Ecuador: una ciudad planificada alrededor de una universidad de ciencia y tecnología, con la visión de convertirse en un polo de innovación similar a Silicon Valley. Aunque ha enfrentado dificultades presupuestarias, su existencia representa un reconocimiento de que el conocimiento y la innovación son la clave del desarrollo a largo plazo. Emprendedores con formación técnica y científica podrán en el futuro conectarse con este ecosistema.</p>
+  </div>
+
+  <h3 class="subsection">El rol irrenunciable de la universidad</h3>
+  <p>Las universidades tienen un papel triple en el ecosistema emprendedor, conocido como el <strong>modelo de la Triple Hélice</strong> (Etzkowitz & Leydesdorff, 1995):</p>
+
+  <ul>
+    <li>🎓 <strong>Formación:</strong> Desarrollan las competencias, el conocimiento y la mentalidad emprendedora de los futuros empresarios, profesionales y líderes.</li>
+    <li>🔬 <strong>Investigación e innovación:</strong> Generan el conocimiento nuevo que puede convertirse en productos, servicios o procesos innovadores (spin-offs universitarios).</li>
+    <li>🤝 <strong>Vinculación con la sociedad:</strong> Conectan a estudiantes y docentes con el sector productivo, el gobierno y las comunidades para resolver problemas reales.</li>
+  </ul>
+
+  <div class="concept-box">
+    <strong>Triple Hélice (Etzkowitz y Leydesdorff, 1995)</strong>
+    Modelo que describe la interacción entre tres actores clave del desarrollo: <strong>Universidad</strong> (conocimiento), <strong>Empresa</strong> (producción) y <strong>Estado</strong> (regulación). Cuando estos tres se alinean, el ecosistema de innovación se activa. Cuando actúan de forma aislada, el desarrollo es lento y desarticulado. Ecuador está en proceso de construir esta articulación.
+  </div>
+
+  <h3 class="subsection">Tu rol como futuro/a profesional de Contabilidad y Auditoría</h3>
+  <p>No pienses en este tema como algo ajeno a tu carrera. El/la contador/a y auditor/a es un actor clave del ecosistema emprendedor:</p>
+  <ul>
+    <li>Acompaña la <strong>formalización</strong> de los emprendimientos (de informales a legalmente constituidos).</li>
+    <li>Asegura la <strong>transparencia financiera</strong> necesaria para acceder a crédito e inversión.</li>
+    <li>Ayuda a diseñar <strong>estructuras tributarias eficientes</strong> que no asfixien a los nuevos negocios.</li>
+    <li>Puede ser el primer <strong>mentor financiero</strong> de un emprendedor que no sabe cómo leer un balance.</li>
+    <li>En auditoría, verifica que los <strong>fondos públicos</strong> destinados al emprendimiento se usen correctamente.</li>
+  </ul>
+
+  <div class="key-idea">
+    <strong>💡 Idea Clave</strong>
+    El emprendimiento es un fenómeno sistémico: nadie triunfa solo. Detrás de cada empresa exitosa hay políticas que lo habilitaron, instituciones que lo formaron, redes que lo conectaron y profesionales que lo asesoraron. La pregunta no es si participarás en este ecosistema — la pregunta es en qué rol y con qué nivel de impacto. Esta materia te prepara para ser un actor de cambio, no un espectador.
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     EJERCICIO INTERACTIVO
+═══════════════════════════════════════════ -->
+<div id="ejercicio" class="tab-content">
+  <h2 class="section-title">✏️ Ejercicio Interactivo — Clasifica los Actores del Ecosistema</h2>
+  <p style="margin-bottom:20px;">Lee cada descripción y selecciona el <strong>dominio del ecosistema emprendedor de Isenberg</strong> al que pertenece. Responde TODAS las preguntas antes de verificar.</p>
+
+  <!-- Pregunta 1 -->
+  <div class="quiz-question">
+    <p>1. El Gobierno ecuatoriano lanzó un programa que exonera de impuesto a la renta durante 5 años a las startups tecnológicas constituidas en 2024. ¿A qué dominio del ecosistema pertenece esta medida?</p>
+    <div class="quiz-option"><input type="radio" name="ei1" value="a"><label>a) Capital Humano</label></div>
+    <div class="quiz-option"><input type="radio" name="ei1" value="b"><label>b) Finanzas</label></div>
+    <div class="quiz-option"><input type="radio" name="ei1" value="c"><label>c) Políticas</label></div>
+    <div class="quiz-option"><input type="radio" name="ei1" value="d"><label>d) Mercados</label></div>
+  </div>
+
+  <!-- Pregunta 2 -->
+  <div class="quiz-question">
+    <p>2. La ESPOL ofrece una incubadora donde estudiantes desarrollan prototipos, reciben mentoría de docentes y conectan con empresas. ¿Qué dominio representa principalmente?</p>
+    <div class="quiz-option"><input type="radio" name="ei2" value="a"><label>a) Infraestructura</label></div>
+    <div class="quiz-option"><input type="radio" name="ei2" value="b"><label>b) Redes y comunidades</label></div>
+    <div class="quiz-option"><input type="radio" name="ei2" value="c"><label>c) Capital Humano</label></div>
+    <div class="quiz-option"><input type="radio" name="ei2" value="d"><label>d) Finanzas</label></div>
+  </div>
+
+  <!-- Pregunta 3 -->
+  <div class="quiz-question">
+    <p>3. Un fondo de inversión privado ofrece capital de riesgo a startups ecuatorianas a cambio de participación accionaria. ¿A qué dominio pertenece esta institución?</p>
+    <div class="quiz-option"><input type="radio" name="ei3" value="a"><label>a) Políticas</label></div>
+    <div class="quiz-option"><input type="radio" name="ei3" value="b"><label>b) Finanzas</label></div>
+    <div class="quiz-option"><input type="radio" name="ei3" value="c"><label>c) Mercados</label></div>
+    <div class="quiz-option"><input type="radio" name="ei3" value="d"><label>d) Infraestructura</label></div>
+  </div>
+
+  <!-- Pregunta 4 -->
+  <div class="quiz-question">
+    <p>4. Startup Weekend Ecuador organiza eventos de 54 horas donde emprendedores se conocen, forman equipos y lanzan prototipos. ¿Qué dominio activa principalmente?</p>
+    <div class="quiz-option"><input type="radio" name="ei4" value="a"><label>a) Finanzas</label></div>
+    <div class="quiz-option"><input type="radio" name="ei4" value="b"><label>b) Mercados</label></div>
+    <div class="quiz-option"><input type="radio" name="ei4" value="c"><label>c) Redes y comunidades</label></div>
+    <div class="quiz-option"><input type="radio" name="ei4" value="d"><label>d) Políticas</label></div>
+  </div>
+
+  <!-- Pregunta 5 -->
+  <div class="quiz-question">
+    <p>5. Un emprendedor ecuatoriano usa la plataforma MercadoLibre para vender artesanías a compradores en Colombia y Perú. ¿Qué dominio del ecosistema está aprovechando?</p>
+    <div class="quiz-option"><input type="radio" name="ei5" value="a"><label>a) Capital Humano</label></div>
+    <div class="quiz-option"><input type="radio" name="ei5" value="b"><label>b) Infraestructura</label></div>
+    <div class="quiz-option"><input type="radio" name="ei5" value="c"><label>c) Redes y comunidades</label></div>
+    <div class="quiz-option"><input type="radio" name="ei5" value="d"><label>d) Mercados</label></div>
+  </div>
+
+  <!-- Pregunta 6 -->
+  <div class="quiz-question">
+    <p>6. Ecuador registra una tasa TEA de aproximadamente 30%, una de las más altas de Latinoamérica, pero el 65% de esos emprendedores lo hicieron por necesidad. ¿Qué conclusión es más correcta?</p>
+    <div class="quiz-option"><input type="radio" name="ei6" value="a"><label>a) Ecuador tiene el ecosistema emprendedor más maduro de la región porque más personas emprenden.</label></div>
+    <div class="quiz-option"><input type="radio" name="ei6" value="b"><label>b) Una alta tasa TEA combinada con alta motivación por necesidad indica debilidad del mercado laboral formal, no dinamismo innovador.</label></div>
+    <div class="quiz-option"><input type="radio" name="ei6" value="c"><label>c) La tasa TEA alta significa que Ecuador no necesita políticas de apoyo al emprendimiento.</label></div>
+    <div class="quiz-option"><input type="radio" name="ei6" value="d"><label>d) El emprendimiento por necesidad es siempre más innovador que el emprendimiento por oportunidad.</label></div>
+  </div>
+
+  <!-- Pregunta 7 -->
+  <div class="quiz-question">
+    <p>7. Israel, con apenas 9 millones de habitantes, tiene más empresas en el NASDAQ que China o Europa. Según lo estudiado, ¿cuál es el factor diferenciador más relevante de su ecosistema?</p>
+    <div class="quiz-option"><input type="radio" name="ei7" value="a"><label>a) Su tamaño poblacional pequeño que facilita la comunicación entre emprendedores.</label></div>
+    <div class="quiz-option"><input type="radio" name="ei7" value="b"><label>b) Su ubicación geográfica privilegiada en el Mediterráneo.</label></div>
+    <div class="quiz-option"><input type="radio" name="ei7" value="c"><label>c) La combinación de fuerte inversión estatal en I+D y una cultura que celebra el cuestionamiento y la innovación.</label></div>
+    <div class="quiz-option"><input type="radio" name="ei7" value="d"><label>d) El hecho de que sus universidades son las mejores del mundo en todas las áreas del conocimiento.</label></div>
+  </div>
+
+  <!-- Pregunta 8 -->
+  <div class="quiz-question">
+    <p>8. El modelo de la Triple Hélice propone que el ecosistema de innovación se activa cuando tres actores trabajan de forma articulada. ¿Cuáles son esos tres actores?</p>
+    <div class="quiz-option"><input type="radio" name="ei8" value="a"><label>a) Inversores, emprendedores y clientes</label></div>
+    <div class="quiz-option"><input type="radio" name="ei8" value="b"><label>b) Universidad, Empresa y Estado</label></div>
+    <div class="quiz-option"><input type="radio" name="ei8" value="c"><label>c) ONG, medios de comunicación y bancos</label></div>
+    <div class="quiz-option"><input type="radio" name="ei8" value="d"><label>d) Docentes, estudiantes y padres de familia</label></div>
+  </div>
+
+  <div style="margin-top:24px; display:flex; flex-wrap:wrap; gap:10px;">
+    <button class="btn btn-primary" onclick="verificarEjercicio()">✅ Verificar Respuestas</button>
+    <button class="btn btn-secondary" onclick="reiniciarEjercicio()">🔄 Reiniciar</button>
+  </div>
+
+  <div id="ejercicio-feedback" style="margin-top:20px;"></div>
+  <div id="ejercicio-score" class="score-panel"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     CUESTIONARIO
+═══════════════════════════════════════════ -->
+<div id="cuestionario" class="tab-content">
+  <h2 class="section-title">📝 Cuestionario — 10 Preguntas</h2>
+  <p style="margin-bottom:20px;">Responde las 10 preguntas. Solo cuando hayas respondido todas, presiona <strong>Verificar Respuestas</strong>.</p>
+
+  <!-- Q1 -->
+  <div class="quiz-question">
+    <span class="badge badge-theory">Teórica</span>
+    <p>1. ¿Qué mide el indicador TEA (Total Early-Stage Entrepreneurial Activity) del GEM?</p>
+    <div class="quiz-option"><input type="radio" name="qi1" value="a"><label>a) El porcentaje de adultos que han cerrado un negocio en el último año.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi1" value="b"><label>b) El porcentaje de adultos involucrados en un negocio de menos de 3,5 años de existencia.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi1" value="c"><label>c) El número total de empresas formalmente registradas en un país.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi1" value="d"><label>d) El valor en dólares de todos los emprendimientos de un país en un año.</label></div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="quiz-question">
+    <span class="badge badge-theory">Teórica</span>
+    <p>2. Según los datos del GEM, ¿cuál es la relación entre nivel de desarrollo económico y tasa de emprendimiento?</p>
+    <div class="quiz-option"><input type="radio" name="qi2" value="a"><label>a) A mayor desarrollo económico, mayor tasa de emprendimiento por necesidad.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi2" value="b"><label>b) Los países más desarrollados tienen las tasas de emprendimiento más altas del mundo.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi2" value="c"><label>c) Los países de menor desarrollo tienden a tener tasas TEA más altas, pero dominadas por emprendimiento por necesidad.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi2" value="d"><label>d) No existe ninguna relación entre desarrollo económico y tipo de emprendimiento.</label></div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="quiz-question">
+    <span class="badge badge-theory">Teórica</span>
+    <p>3. ¿Cuál de los siguientes dominios del ecosistema emprendedor (modelo de Isenberg) corresponde a los fondos de capital de riesgo y el crédito para startups?</p>
+    <div class="quiz-option"><input type="radio" name="qi3" value="a"><label>a) Políticas</label></div>
+    <div class="quiz-option"><input type="radio" name="qi3" value="b"><label>b) Capital Humano</label></div>
+    <div class="quiz-option"><input type="radio" name="qi3" value="c"><label>c) Finanzas</label></div>
+    <div class="quiz-option"><input type="radio" name="qi3" value="d"><label>d) Infraestructura</label></div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="quiz-question">
+    <span class="badge badge-theory">Teórica</span>
+    <p>4. El modelo de la Triple Hélice, propuesto por Etzkowitz y Leydesdorff, sostiene que el ecosistema de innovación se activa cuando trabajan articuladamente:</p>
+    <div class="quiz-option"><input type="radio" name="qi4" value="a"><label>a) Los medios de comunicación, las ONG y las cámaras de comercio.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi4" value="b"><label>b) La Universidad, la Empresa y el Estado.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi4" value="c"><label>c) Los inversores ángel, las startups y los organismos internacionales.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi4" value="d"><label>d) Los docentes, los estudiantes y los egresados de las universidades.</label></div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="quiz-question">
+    <span class="badge badge-theory">Teórica</span>
+    <p>5. ¿Cuál es la principal característica que diferencia a Israel como ecosistema emprendedor exitoso, según el material estudiado?</p>
+    <div class="quiz-option"><input type="radio" name="qi5" value="a"><label>a) Su gran tamaño poblacional que genera una demanda interna enorme para los emprendedores.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi5" value="b"><label>b) La combinación de fuerte inversión pública en I+D y una cultura que valora el cuestionamiento y la innovación.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi5" value="c"><label>c) El hecho de que su gobierno prohíbe las importaciones, forzando a los emprendedores a producir localmente.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi5" value="d"><label>d) Su sistema educativo que selecciona a los más talentosos desde la infancia y los entrena exclusivamente para emprender.</label></div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="quiz-question">
+    <span class="badge badge-theory">Teórica</span>
+    <p>6. Según el contenido estudiado, ¿cuál es uno de los desafíos estructurales más críticos del ecosistema emprendedor ecuatoriano?</p>
+    <div class="quiz-option"><input type="radio" name="qi6" value="a"><label>a) Exceso de inversión extranjera directa que desplaza a los emprendedores locales.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi6" value="b"><label>b) Alta informalidad y acceso limitado al financiamiento formal para startups.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi6" value="c"><label>c) Una cultura emprendedora demasiado competitiva que impide la colaboración.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi6" value="d"><label>d) La excesiva cantidad de aceleradoras e incubadoras que fragmentan el ecosistema.</label></div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="quiz-question">
+    <span class="badge badge-theory">Teórica</span>
+    <p>7. ¿Cuál de las siguientes opciones describe correctamente el programa "Start-Up Chile"?</p>
+    <div class="quiz-option"><input type="radio" name="qi7" value="a"><label>a) Un fondo privado chileno que invierte en startups chilenas a cambio del 30% de sus acciones.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi7" value="b"><label>b) El primer programa de gobierno que atrajo startups extranjeras ofreciéndoles capital semilla sin pedir participación accionaria.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi7" value="c"><label>c) Un acuerdo comercial entre Chile y Silicon Valley para exportar emprendedores chilenos a Estados Unidos.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi7" value="d"><label>d) Una incubadora universitaria de la Universidad de Santiago que solo acepta ingenieros.</label></div>
+  </div>
+
+  <!-- Q8 — Análisis -->
+  <div class="quiz-question">
+    <span class="badge badge-case">Análisis de Caso</span>
+    <p>8. Una joven abogada de Cuenca decide crear una aplicación para que artesanos indígenas vendan directamente a turistas extranjeros sin intermediarios. Sin embargo, no puede acceder a crédito porque no tiene historial crediticio, y el proceso de registrar su empresa tarda 45 días. ¿Qué dominios del ecosistema están fallando en este caso?</p>
+    <div class="quiz-option"><input type="radio" name="qi8" value="a"><label>a) Capital Humano y Mercados, porque la emprendedora no tiene la formación adecuada ni los clientes suficientes.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi8" value="b"><label>b) Finanzas y Políticas, porque hay fallas en el acceso al crédito y en la burocracia de registro empresarial.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi8" value="c"><label>c) Infraestructura y Redes, porque no hay internet suficiente ni eventos de networking en Cuenca.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi8" value="d"><label>d) Solo el dominio de Mercados, porque el turismo internacional ha disminuido.</label></div>
+  </div>
+
+  <!-- Q9 — Análisis -->
+  <div class="quiz-question">
+    <span class="badge badge-case">Análisis de Caso</span>
+    <p>9. Un ingeniero de sistemas en Quito desarrolla un software de gestión contable para pequeñas empresas. Lo ofrece gratis durante 6 meses y luego cobra una suscripción mensual de $15. Después de 2 años, tiene 800 empresas clientes. ¿Este emprendimiento corresponde principalmente a cuál tipo de motivación?</p>
+    <div class="quiz-option"><input type="radio" name="qi9" value="a"><label>a) Emprendimiento por necesidad, porque el programador no encontró empleo en empresas grandes.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi9" value="b"><label>b) Emprendimiento por oportunidad, porque identificó una necesidad del mercado y creó una solución innovadora y escalable.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi9" value="c"><label>c) Emprendimiento social, porque su objetivo principal es ayudar a las pequeñas empresas sin ánimo de lucro.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi9" value="d"><label>d) Emprendimiento corporativo, porque trabaja dentro de una empresa grande que lo financia.</label></div>
+  </div>
+
+  <!-- Q10 — Análisis -->
+  <div class="quiz-question">
+    <span class="badge badge-case">Análisis de Caso</span>
+    <p>10. Una contadora recién graduada de la Universidad de Guayaquil decide ofrecer sus servicios exclusivamente a startups y emprendimientos en etapa inicial, ayudándolos a formalizarse, llevar su contabilidad y preparar información financiera para inversores. ¿Cuál es la función más importante que cumple en el ecosistema emprendedor?</p>
+    <div class="quiz-option"><input type="radio" name="qi10" value="a"><label>a) Actúa únicamente como proveedora de un servicio técnico sin mayor impacto en el ecosistema.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi10" value="b"><label>b) Contribuye a la formalización, la transparencia financiera y el acceso a financiamiento de los emprendimientos, siendo un actor clave del ecosistema.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi10" value="c"><label>c) Su rol es irrelevante para el ecosistema porque los emprendedores no necesitan contabilidad en etapas tempranas.</label></div>
+    <div class="quiz-option"><input type="radio" name="qi10" value="d"><label>d) Su función es exclusivamente tributaria: calcular y pagar los impuestos del emprendimiento.</label></div>
+  </div>
+
+  <div style="margin-top:24px; display:flex; flex-wrap:wrap; gap:10px;">
+    <button class="btn btn-primary" onclick="verificarCuestionario()">✅ Verificar Respuestas</button>
+    <button class="btn btn-secondary" onclick="reiniciarCuestionario()">🔄 Reiniciar</button>
+  </div>
+
+  <div id="quiz-feedback" style="margin-top:20px;"></div>
+  <div id="quiz-score" class="score-panel"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     ACTIVIDAD CON IA
+═══════════════════════════════════════════ -->
+<div id="ia" class="tab-content">
+  <h2 class="section-title">🤖 Actividad con Inteligencia Artificial</h2>
+
+  <div class="ia-box">
+    <h3>🎯 Objetivo de la Actividad</h3>
+    <p>Usar la IA como herramienta de <strong>pensamiento crítico comparado</strong>: le pedirás que analice el ecosistema emprendedor de Ecuador y luego tú evaluarás y enriquecerás su respuesta con lo que aprendiste en este widget. No se trata de copiar — se trata de dialogar inteligentemente con la IA.</p>
+  </div>
+
+  <div class="ia-box">
+    <h3>🔧 Herramienta recomendada</h3>
+    <p>Usa <strong>Claude en <a href="https://claude.ai" target="_blank" style="color:#003366;">claude.ai</a></strong> (Anthropic) — es gratuito y tiene excelente capacidad de análisis contextual. También puedes usar ChatGPT (chat.openai.com) o Gemini (gemini.google.com).</p>
+  </div>
+
+  <div class="ia-box">
+    <h3>📋 El Prompt Exacto</h3>
+    <p>Copia y pega este texto exactamente en el chat de Claude:</p>
+    <div class="prompt-code">Actúa como un experto en ecosistemas emprendedores latinoamericanos. Quiero que analices el ecosistema emprendedor de Ecuador respondiendo estas preguntas de forma estructurada:
+
+1. ¿Cuáles son las 3 fortalezas más distintivas del ecosistema emprendedor ecuatoriano comparado con otros países de Latinoamérica?
+
+2. ¿Cuáles son los 3 obstáculos estructurales más críticos que impiden que los emprendimientos ecuatorianos escalen y se vuelvan sostenibles?
+
+3. Si tuvieras que recomendar UNA sola política pública prioritaria para fortalecer el ecosistema en Ecuador en los próximos 5 años, ¿cuál sería y por qué?
+
+4. ¿Qué lección concreta podría Ecuador aprender del caso de Israel o de Chile en términos de política de emprendimiento?
+
+Basa tu análisis en datos actuales y sé específico. Menciona actores reales del ecosistema ecuatoriano cuando sea posible.</div>
+  </div>
+
+  <div class="ia-box">
+    <h3>📌 ¿Qué hacer con la respuesta de la IA?</h3>
+    <div class="step-row"><span class="step-num">1</span><p><strong>Lee la respuesta completa</strong> sin interrumpirla. Luego, identifica: ¿qué coincide con lo que aprendiste en este widget? ¿Qué es diferente o nuevo?</p></div>
+    <div class="step-row"><span class="step-num">2</span><p><strong>Elige UNO de los obstáculos</strong> que la IA mencionó y reflexiona: ¿cómo podría un contador o auditor ayudar a reducir ese obstáculo específico? Escribe al menos 3 ideas concretas.</p></div>
+    <div class="step-row"><span class="step-num">3</span><p><strong>Cuestiona a la IA:</strong> Escríbele un mensaje de seguimiento preguntando: "¿Estás de acuerdo en que la alta informalidad es el principal obstáculo? ¿Por qué o por qué no? ¿Hay datos que lo respalden?" Analiza cómo responde.</p></div>
+    <div class="step-row"><span class="step-num">4</span><p><strong>Redacta un párrafo de conclusión propio</strong> (mínimo 150 palabras) donde integres: lo que aprendiste en el widget, lo que aportó la IA y tu perspectiva personal como futuro/a profesional de Contabilidad y Auditoría.</p></div>
+  </div>
+
+  <div class="ia-box">
+    <h3>📊 Criterio de Evaluación</h3>
+    <table>
+      <tr><th>Nivel</th><th>¿Qué hace el estudiante?</th></tr>
+      <tr><td>✅ <strong>Pensamiento Crítico</strong></td><td>Compara la respuesta de la IA con el contenido del widget, identifica coincidencias y diferencias, añade perspectiva propia y conecta con su carrera profesional.</td></tr>
+      <tr><td>⚠️ <strong>Análisis Parcial</strong></td><td>Resume la respuesta de la IA pero añade poco análisis propio. No conecta con su rol profesional o con datos del widget.</td></tr>
+      <tr><td>❌ <strong>Copia simple</strong></td><td>Transcribe directamente lo que dijo la IA sin ningún análisis, cuestionamiento ni perspectiva personal.</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     REFLEXIÓN
+═══════════════════════════════════════════ -->
+<div id="reflexion" class="tab-content">
+  <h2 class="section-title">💭 Preguntas para la Reflexión Personal</h2>
+  <p style="margin-bottom:20px;">No hay respuestas correctas ni incorrectas. Estas preguntas tienen un solo propósito: conectar lo que estudiaste hoy con tu propia vida, tus experiencias y tu futuro.</p>
+
+  <div class="reflection-q">
+    <div class="q-num">🌱 Pregunta 1 — Tu propio ecosistema</div>
+    <p>Piensa en tu entorno más cercano: familia, barrio, comunidad, universidad. ¿Tienes personas que han emprendido o que están emprendiendo? ¿Qué recursos (apoyo, dinero, redes, conocimiento) tuvieron o les faltaron? Compara ese entorno real con los 6 dominios del ecosistema de Isenberg. ¿Cuál dominio está más ausente en tu entorno cercano?</p>
+  </div>
+
+  <div class="reflection-q">
+    <div class="q-num">🪞 Pregunta 2 — El espejo del fracaso</div>
+    <p>Estudimos que en Ecuador hay una "cultura del fracaso" que inhibe el riesgo. ¿Recuerdas alguna vez en tu vida que dejaste de intentar algo por miedo a que saliera mal, o por lo que dirían los demás? ¿Qué habrías hecho diferente si la "cultura del fracaso" no existiera en tu entorno? ¿Qué relación tiene esto con el autoboicot del que habla Jack Canfield?</p>
+  </div>
+
+  <div class="reflection-q">
+    <div class="q-num">🤝 Pregunta 3 — Las tres hélices en tu vida</div>
+    <p>El modelo de la Triple Hélice dice que el ecosistema funciona cuando Universidad + Empresa + Estado trabajan juntos. Imagina tu propia vida como un pequeño ecosistema. ¿Qué representa cada "hélice" en tu trayectoria personal: quién te forma, quién te conecta con el mundo laboral, y qué estructuras o normas rigen tu vida? ¿Están articuladas esas tres partes o actúan de forma separada?</p>
+  </div>
+
+  <div class="reflection-q">
+    <div class="q-num">🌍 Pregunta 4 — Lo que te dio el lugar donde naciste</div>
+    <p>Silicon Valley, Israel, Estonia: su éxito no fue solo talento individual — fue el entorno. Reflexiona honestamente: ¿qué ventajas te ha dado el lugar y la familia donde naciste? ¿Y qué obstáculos? Stephen Covey habla de la responsabilidad de usar lo que tenemos, no de lamentarnos por lo que nos faltó. ¿Qué podrías hacer con lo que tienes, desde donde estás?</p>
+  </div>
+
+  <div class="reflection-q">
+    <div class="q-num">💼 Pregunta 5 — Tu rol en el ecosistema</div>
+    <p>Cuando termines tu carrera de Contabilidad y Auditoría, ¿en qué parte del ecosistema emprendedor te imaginas? ¿Trabajando en una empresa grande, asesorando a emprendedores, creando tu propio negocio, en el sector público? ¿Qué decisión de vida tendrías que tomar para que ese futuro que imaginas se vuelva real? ¿Qué hábito, según Covey, deberías comenzar a cultivar desde hoy?</p>
+  </div>
+
+  <div class="key-idea">
+    <strong>🔑 Para llevar</strong>
+    El ecosistema emprendedor no es solo un tema académico. Es el aire que respiras cuando decides crear algo. Conocerlo te da poder: el poder de entender las reglas del juego, de identificar qué falta, y de decidir conscientemente tu rol en él. Eso — esa consciencia — es ya una forma de liderazgo.
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     BIBLIOGRAFÍA
+═══════════════════════════════════════════ -->
+<div id="biblio" class="tab-content">
+  <h2 class="section-title">📚 Bibliografía</h2>
+
+  <div class="ref-card">
+    <span class="ref-author">Kelley, D., Bosma, N., & Amorós, J. E.</span> (2011). <em>Global Entrepreneurship Monitor 2010 Global Report.</em> Global Entrepreneurship Research Association (GERA). https://www.gemconsortium.org/report/gem-2010-global-report
+  </div>
+
+  <div class="ref-card">
+    <span class="ref-author">Isenberg, D. J.</span> (2010). How to start an entrepreneurial revolution. <em>Harvard Business Review, 88</em>(6), 40–50.
+  </div>
+
+  <div class="ref-card">
+    <span class="ref-author">Etzkowitz, H., & Leydesdorff, L.</span> (2000). The dynamics of innovation: From national systems and "mode 2" to a triple helix of university-industry-government relations. <em>Research Policy, 29</em>(2), 109–123. https://doi.org/10.1016/S0048-7333(99)00055-4
+  </div>
+
+  <div class="ref-card">
+    <span class="ref-author">Senor, D., & Singer, S.</span> (2009). <em>Start-up nation: The story of Israel's economic miracle.</em> Twelve.
+  </div>
+
+  <div class="ref-card">
+    <span class="ref-author">Ministerio de Producción, Comercio Exterior, Inversiones y Pesca del Ecuador (MIPRO).</span> (2020). <em>Política de fomento al emprendimiento e innovación en Ecuador.</em> Gobierno de Ecuador.
+  </div>
+
+  <div class="ref-card">
+    <span class="ref-author">Bosma, N., Hill, S., Ionescu-Somers, A., Kelley, D., Guerrero, M., & Schøtt, T.</span> (2021). <em>Global Entrepreneurship Monitor 2020/2021 Global Report.</em> Global Entrepreneurship Research Association. https://www.gemconsortium.org/report/gem-20202021-global-report
+  </div>
+
+  <div class="ref-card">
+    <span class="ref-author">Amorós, J. E., & Bosma, N.</span> (2014). <em>Global Entrepreneurship Monitor 2013 Global Report.</em> Global Entrepreneurship Research Association (GERA).
+  </div>
+
+  <div class="ref-note">
+    📌 <strong>Nota:</strong> Se recomienda verificar cada referencia en Google Scholar (<a href="https://scholar.google.com" target="_blank" style="color:#003366;">scholar.google.com</a>) o en el repositorio institucional antes de citar en trabajos académicos.
+  </div>
+</div>
+
+</main>
+
+<!-- ═══════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════ -->
+<script>
+// ——— Navegación entre pestañas ———
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  // Buscar botón correspondiente
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    if (btn.getAttribute('onclick').includes("'" + id + "'")) btn.classList.add('active');
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ——— EJERCICIO INTERACTIVO ———
+const ejercicioCorrects = {
+  ei1: 'c', // Políticas
+  ei2: 'c', // Capital Humano
+  ei3: 'b', // Finanzas
+  ei4: 'c', // Redes y comunidades
+  ei5: 'd', // Mercados
+  ei6: 'b', // Alta TEA + necesidad = debilidad laboral
+  ei7: 'c', // Inversión I+D + cultura
+  ei8: 'b', // Universidad, Empresa, Estado
+};
+
+const ejercicioFeedbacks = {
+  ei1: {
+    correct: '✅ Correcto. Las exoneraciones tributarias son una herramienta del dominio POLÍTICAS, ya que son decisiones del Estado para crear un entorno favorable al emprendimiento.',
+    incorrect: '❌ La respuesta correcta es Políticas. Los incentivos tributarios son instrumentos de política pública, no de financiamiento directo, capital humano ni mercados.'
+  },
+  ei2: {
+    correct: '✅ Correcto. Una incubadora universitaria que forma, mentorea y conecta a estudiantes con el sector productivo corresponde principalmente al dominio de CAPITAL HUMANO.',
+    incorrect: '❌ La respuesta correcta es Capital Humano. Aunque hay elementos de redes, la función principal de una incubadora universitaria es desarrollar competencias y conocimientos — eso es capital humano.'
+  },
+  ei3: {
+    correct: '✅ Correcto. Los fondos de capital de riesgo y la inversión privada pertenecen al dominio FINANZAS del ecosistema, que incluye todo el acceso al financiamiento para startups.',
+    incorrect: '❌ La respuesta correcta es Finanzas. El capital de riesgo es una forma de financiamiento privado, no una política, un mercado de ventas ni infraestructura física.'
+  },
+  ei4: {
+    correct: '✅ Correcto. Startup Weekend es un evento que conecta emprendedores, construye comunidad y fomenta la colaboración — eso es el dominio de REDES Y COMUNIDADES.',
+    incorrect: '❌ La respuesta correcta es Redes y comunidades. Los eventos de networking y comunidades emprendedoras activan el dominio social e informal del ecosistema, no el financiero ni el de mercados.'
+  },
+  ei5: {
+    correct: '✅ Correcto. Usar MercadoLibre para llegar a compradores en otros países es aprovechar el dominio MERCADOS, específicamente la expansión a mercados internacionales.',
+    incorrect: '❌ La respuesta correcta es Mercados. Vender a clientes en otros países a través de una plataforma es acceso a mercados — el dominio que incluye clientes, canales de distribución y exportaciones.'
+  },
+  ei6: {
+    correct: '✅ Correcto. Una alta tasa TEA motivada principalmente por necesidad indica que las personas emprenden porque no tienen empleo formal, lo cual es una señal de debilidad del mercado laboral, no de un ecosistema maduro.',
+    incorrect: '❌ La respuesta correcta es B. El GEM enseña que cantidad de emprendedores no equivale a calidad. Un ecosistema maduro busca emprendimiento por oportunidad, no por necesidad.'
+  },
+  ei7: {
+    correct: '✅ Correcto. Israel destaca por la combinación de inversión pública en I+D y una cultura que celebra el cuestionamiento, la innovación y el aprendizaje del fracaso — no por su tamaño o geografía.',
+    incorrect: '❌ La respuesta correcta es C. El éxito de Israel como ecosistema emprendedor se explica por sus políticas de I+D y su cultura de innovación, factores que pueden replicarse en otros países.'
+  },
+  ei8: {
+    correct: '✅ Correcto. La Triple Hélice de Etzkowitz y Leydesdorff identifica a la Universidad (conocimiento), la Empresa (producción) y el Estado (regulación) como los tres actores cuya articulación activa el ecosistema de innovación.',
+    incorrect: '❌ La respuesta correcta es B: Universidad, Empresa y Estado. El modelo Triple Hélice fue diseñado específicamente para describir la relación entre estos tres actores institucionales, no entre actores del mercado o de la sociedad civil.'
+  }
+};
+
+function verificarEjercicio() {
+  const names = ['ei1','ei2','ei3','ei4','ei5','ei6','ei7','ei8'];
+  let allAnswered = true;
+  let score = 0;
+  let feedbackHtml = '';
+
+  names.forEach(name => {
+    const selected = document.querySelector(`input[name="${name}"]:checked`);
+    if (!selected) { allAnswered = false; }
+  });
+
+  if (!allAnswered) {
+    alert('⚠️ Por favor responde TODAS las preguntas antes de verificar.');
+    return;
+  }
+
+  names.forEach((name, i) => {
+    const selected = document.querySelector(`input[name="${name}"]:checked`).value;
+    const correct = ejercicioCorrects[name];
+    const isCorrect = selected === correct;
+    if (isCorrect) score++;
+    const fb = ejercicioFeedbacks[name];
+    feedbackHtml += `<div class="feedback-item ${isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
+      <strong>Pregunta ${i+1}:</strong> ${isCorrect ? fb.correct : fb.incorrect}
+    </div>`;
+  });
+
+  document.getElementById('ejercicio-feedback').innerHTML = feedbackHtml;
+
+  const pct = Math.round((score / names.length) * 100);
+  let emoji = '📖', msg = 'Revisa el material y vuelve a intentarlo.';
+  if (pct === 100) { emoji = '🏆'; msg = '¡Perfecto! Dominas completamente el ecosistema emprendedor.'; }
+  else if (pct >= 80) { emoji = '🎯'; msg = '¡Excelente! Tienes una comprensión sólida del tema.'; }
+  else if (pct >= 60) { emoji = '📘'; msg = 'Buen avance. Repasa los dominios donde tuviste dudas.'; }
+  else if (pct >= 40) { emoji = '⚠️'; msg = 'Necesitas reforzar algunos conceptos clave del ecosistema.'; }
+
+  const scorePanel = document.getElementById('ejercicio-score');
+  scorePanel.style.display = 'block';
+  scorePanel.innerHTML = `
+    <div class="score-emoji">${emoji}</div>
+    <div class="score-num">${score} / ${names.length} correctas</div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="ej-bar" style="width:0%"></div></div>
+    <div class="score-msg">${pct}% — ${msg}</div>
+  `;
+  setTimeout(() => { document.getElementById('ej-bar').style.width = pct + '%'; }, 100);
+  scorePanel.scrollIntoView({ behavior: 'smooth' });
+
+  // Deshabilitar inputs
+  names.forEach(name => {
+    document.querySelectorAll(`input[name="${name}"]`).forEach(r => r.disabled = true);
+  });
+}
+
+function reiniciarEjercicio() {
+  ['ei1','ei2','ei3','ei4','ei5','ei6','ei7','ei8'].forEach(name => {
+    document.querySelectorAll(`input[name="${name}"]`).forEach(r => { r.checked = false; r.disabled = false; });
+  });
+  document.getElementById('ejercicio-feedback').innerHTML = '';
+  document.getElementById('ejercicio-score').style.display = 'none';
+}
+
+// ——— CUESTIONARIO ———
+const quizCorrects = {
+  qi1: 'b',
+  qi2: 'c',
+  qi3: 'c',
+  qi4: 'b',
+  qi5: 'b',
+  qi6: 'b',
+  qi7: 'b',
+  qi8: 'b',
+  qi9: 'b',
+  qi10: 'b'
+};
+
+const quizFeedbacks = {
+  qi1: {
+    correct: '✅ Correcto. La TEA mide el porcentaje de adultos (18–64 años) involucrados en emprendimientos en etapa temprana (menos de 3,5 años), lo que permite comparar países de forma homogénea.',
+    incorrect: '❌ La respuesta correcta es B. La TEA mide adultos en emprendimientos de menos de 3,5 años, no cierres de negocios, empresas registradas ni valores monetarios.'
+  },
+  qi2: {
+    correct: '✅ Correcto. El GEM muestra que los países de menor desarrollo tienen tasas TEA altas, pero dominadas por emprendimiento por necesidad. Los países desarrollados tienen tasas menores pero con mayor proporción de emprendimiento por oportunidad.',
+    incorrect: '❌ La respuesta correcta es C. Contraintuitivamente, los países más ricos no son los que más emprenden cuantitativamente, pero sí tienen emprendimientos de mayor calidad e impacto.'
+  },
+  qi3: {
+    correct: '✅ Correcto. El dominio FINANZAS en el modelo de Isenberg incluye todo el acceso al capital: crédito, capital de riesgo, inversores ángel y fondos semilla.',
+    incorrect: '❌ La respuesta correcta es C (Finanzas). Los fondos de capital de riesgo son instrumentos financieros, parte del dominio de Finanzas, no de Políticas ni de Capital Humano.'
+  },
+  qi4: {
+    correct: '✅ Correcto. La Triple Hélice de Etzkowitz y Leydesdorff identifica exactamente a la Universidad, la Empresa y el Estado como los tres actores cuya interacción activa el ecosistema de innovación.',
+    incorrect: '❌ La respuesta correcta es B. El modelo Triple Hélice fue diseñado específicamente para describir la relación entre instituciones académicas, productivas y gubernamentales.'
+  },
+  qi5: {
+    correct: '✅ Correcto. El éxito de Israel se atribuye a la combinación de fuerte inversión pública en Investigación y Desarrollo (I+D) y una cultura nacional que valora el cuestionamiento, el riesgo y la innovación.',
+    incorrect: '❌ La respuesta correcta es B. Ni el tamaño, ni la geografía, ni el sistema educativo por sí solos explican el éxito de Israel. Es la combinación de inversión en I+D y cultura de innovación lo que lo diferencia.'
+  },
+  qi6: {
+    correct: '✅ Correcto. La informalidad (negocios no registrados legalmente) y el acceso limitado al crédito formal son los obstáculos estructurales más críticos del ecosistema ecuatoriano, según el contenido estudiado.',
+    incorrect: '❌ La respuesta correcta es B. Ecuador no enfrenta exceso de inversión extranjera ni demasiadas aceleradoras. El problema central es que los emprendedores no pueden acceder a crédito ni formalizarse fácilmente.'
+  },
+  qi7: {
+    correct: '✅ Correcto. Start-Up Chile (2010) fue el primer programa de gobierno del mundo en atraer startups extranjeras ofreciéndoles capital semilla sin exigir participación accionaria, innovando radicalmente en política de emprendimiento.',
+    incorrect: '❌ La respuesta correcta es B. Start-Up Chile no es un fondo privado, no exige acciones, no es un acuerdo con Silicon Valley ni es una incubadora universitaria restringida.'
+  },
+  qi8: {
+    correct: '✅ Correcto. El caso describe fallos en el dominio FINANZAS (no puede acceder a crédito por falta de historial) y en el dominio POLÍTICAS (proceso burocrático excesivamente lento de 45 días para registrar la empresa).',
+    incorrect: '❌ La respuesta correcta es B (Finanzas y Políticas). La emprendedora tiene formación, tiene clientes potenciales y tiene acceso a internet — lo que falla es el sistema financiero y la burocracia estatal.'
+  },
+  qi9: {
+    correct: '✅ Correcto. El ingeniero identificó una necesidad del mercado (software contable para PYMEs), diseñó una solución innovadora, la validó con un modelo freemium y escaló a 800 clientes. Este es emprendimiento por oportunidad.',
+    incorrect: '❌ La respuesta correcta es B. No es por necesidad (tenía una opción de trabajo), no es social (cobra y busca rentabilidad) y no es corporativo (es independiente). Es un emprendimiento por oportunidad identificada en el mercado.'
+  },
+  qi10: {
+    correct: '✅ Correcto. La contadora contribuye a la formalización (sacar a los emprendimientos de la informalidad), a la transparencia financiera (condición para acceder a crédito) y a la presentación de información para inversores — todos roles de alto impacto en el ecosistema.',
+    incorrect: '❌ La respuesta correcta es B. Un/a contador/a que trabaja con emprendimientos cumple un rol estratégico en el ecosistema: no solo calcula impuestos, sino que habilita el crecimiento y el acceso a financiamiento de los emprendedores.'
+  }
+};
+
+function verificarCuestionario() {
+  const names = ['qi1','qi2','qi3','qi4','qi5','qi6','qi7','qi8','qi9','qi10'];
+  let allAnswered = true;
+  let score = 0;
+  let feedbackHtml = '';
+
+  names.forEach(name => {
+    const selected = document.querySelector(`input[name="${name}"]:checked`);
+    if (!selected) allAnswered = false;
+  });
+
+  if (!allAnswered) {
+    alert('⚠️ Por favor responde TODAS las preguntas antes de verificar.');
+    return;
+  }
+
+  names.forEach((name, i) => {
+    const selected = document.querySelector(`input[name="${name}"]:checked`).value;
+    const correct = quizCorrects[name];
+    const isCorrect = selected === correct;
+    if (isCorrect) score++;
+    const fb = quizFeedbacks[name];
+    feedbackHtml += `<div class="feedback-item ${isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
+      <strong>Pregunta ${i+1}:</strong> ${isCorrect ? fb.correct : fb.incorrect}
+    </div>`;
+  });
+
+  document.getElementById('quiz-feedback').innerHTML = feedbackHtml;
+
+  const pct = Math.round((score / 10) * 100);
+  let emoji = '📖', msg = 'Revisa los temas y vuelve a intentarlo. ¡Puedes mejorar!';
+  if (pct === 100) { emoji = '🏆'; msg = '¡Perfecto! Dominas completamente el contenido de esta semana.'; }
+  else if (pct >= 80) { emoji = '🎯'; msg = '¡Excelente comprensión! Tienes una base muy sólida.'; }
+  else if (pct >= 60) { emoji = '📘'; msg = 'Buen trabajo. Refuerza los temas donde tuviste dudas.'; }
+  else if (pct >= 40) { emoji = '⚠️'; msg = 'Necesitas repasar el material con más detenimiento.'; }
+
+  const scorePanel = document.getElementById('quiz-score');
+  scorePanel.style.display = 'block';
+  scorePanel.innerHTML = `
+    <div class="score-emoji">${emoji}</div>
+    <div class="score-num">${score} / 10</div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="qz-bar" style="width:0%"></div></div>
+    <div class="score-msg">${pct}% — ${msg}</div>
+  `;
+  setTimeout(() => { document.getElementById('qz-bar').style.width = pct + '%'; }, 100);
+  scorePanel.scrollIntoView({ behavior: 'smooth' });
+
+  names.forEach(name => {
+    document.querySelectorAll(`input[name="${name}"]`).forEach(r => r.disabled = true);
+  });
+}
+
+function reiniciarCuestionario() {
+  ['qi1','qi2','qi3','qi4','qi5','qi6','qi7','qi8','qi9','qi10'].forEach(name => {
+    document.querySelectorAll(`input[name="${name}"]`).forEach(r => { r.checked = false; r.disabled = false; });
+  });
+  document.getElementById('quiz-feedback').innerHTML = '';
+  document.getElementById('quiz-score').style.display = 'none';
+}
+</script>
+</body>
+</html>
