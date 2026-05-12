@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 2 – Innovación | Emprendimiento e Innovación</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: #f4f6f9;
+    color: #222;
+    min-height: 100vh;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    background: #003366;
+    color: #fff;
+    padding: 18px 28px 14px;
+  }
+  .header-inst {
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 0.82;
+    margin-bottom: 4px;
+  }
+  .header-title {
+    font-family: 'Lora', serif;
+    font-size: 1.45rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .header-meta {
+    margin-top: 6px;
+    font-size: 0.85rem;
+    opacity: 0.78;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .badge {
+    background: rgba(255,255,255,0.18);
+    border-radius: 20px;
+    padding: 2px 10px;
+    font-size: 0.78rem;
+  }
+
+  /* ===== TAB NAV ===== */
+  .tab-nav-wrap {
+    background: #87CEEB;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-bottom: 2px solid #5ba8cc;
+  }
+  .tab-nav {
+    display: inline-flex;
+    padding: 0 8px;
+  }
+  .tab-btn {
+    display: inline-block;
+    padding: 11px 18px;
+    border: none;
+    background: transparent;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.85rem;
+    color: #111;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+  .tab-btn:hover { background: rgba(255,255,255,0.4); }
+  .tab-btn.active {
+    background: #fff;
+    color: #003366;
+    font-weight: 700;
+    border-bottom: 3px solid #003366;
+  }
+
+  /* ===== CONTENT ===== */
+  .content-area {
+    max-width: 960px;
+    margin: 24px auto;
+    padding: 0 18px 40px;
+  }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  h2 {
+    font-family: 'Lora', serif;
+    color: #003366;
+    font-size: 1.4rem;
+    margin-bottom: 14px;
+    border-left: 5px solid #87CEEB;
+    padding-left: 12px;
+  }
+  h3 {
+    font-family: 'Lora', serif;
+    color: #003366;
+    font-size: 1.1rem;
+    margin: 20px 0 8px;
+  }
+  p { line-height: 1.75; margin-bottom: 12px; font-size: 0.97rem; }
+
+  .concept-box {
+    border-left: 5px solid #003366;
+    background: #f0f4fa;
+    padding: 14px 18px;
+    margin: 16px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .concept-box strong { color: #003366; display: block; margin-bottom: 4px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  .example-box {
+    background: #ddeeff;
+    border: 1px solid #aac8e8;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+  .example-box .ex-label {
+    font-weight: 700;
+    color: #003366;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+
+  .key-idea {
+    background: #003366;
+    color: #fff;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 20px 0;
+    font-style: italic;
+  }
+  .key-idea strong { display: block; font-style: normal; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.07em; opacity: 0.75; margin-bottom: 6px; }
+
+  .alert-box {
+    background: #fff8e1;
+    border: 1px solid #ffe082;
+    border-left: 5px solid #f9a825;
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+  .alert-box strong { color: #7a5c00; display:block; margin-bottom:4px; font-size:0.9rem; text-transform:uppercase; }
+
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
+  th { background: #003366; color: #fff; padding: 10px 12px; text-align: left; }
+  td { padding: 9px 12px; border-bottom: 1px solid #dde3ea; }
+  tr:nth-child(even) td { background: #f0f4fa; }
+
+  ul.check-list { list-style: none; padding: 0; }
+  ul.check-list li { padding: 5px 0 5px 26px; position: relative; line-height: 1.6; font-size: 0.95rem; }
+  ul.check-list li::before { content:'✔'; position:absolute; left:0; color:#003366; font-size:0.9rem; }
+
+  /* innovación cards */
+  .inno-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:14px; margin:16px 0; }
+  .inno-card { background:#fff; border:1px solid #d0dae8; border-top:4px solid #003366; border-radius:8px; padding:16px; }
+  .inno-card .ic-icon { font-size:2rem; margin-bottom:8px; }
+  .inno-card .ic-title { font-weight:700; color:#003366; margin-bottom:6px; font-size:0.95rem; }
+  .inno-card p { font-size:0.87rem; margin:0; }
+
+  /* ===== EXERCISE ===== */
+  .exercise-item {
+    background: #fff;
+    border: 1px solid #d0dae8;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 14px;
+  }
+  .exercise-item .q-label {
+    font-weight: 700;
+    color: #003366;
+    margin-bottom: 10px;
+    font-size: 0.97rem;
+  }
+  .options-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+  .opt-btn {
+    padding: 8px 14px;
+    border: 2px solid #aac8e8;
+    border-radius: 8px;
+    background: #f0f7ff;
+    cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.88rem;
+    transition: all 0.2s;
+  }
+  .opt-btn:hover { background: #ddeeff; border-color: #003366; }
+  .opt-btn.selected { background: #003366; color: #fff; border-color: #003366; }
+  .opt-btn.correct { background: #d4edda; border-color: #28a745; color: #155724; }
+  .opt-btn.incorrect { background: #f8d7da; border-color: #dc3545; color: #721c24; }
+
+  .feedback-box {
+    margin-top: 10px; padding: 10px 14px; border-radius: 8px;
+    font-size: 0.9rem; display: none;
+  }
+  .feedback-box.show { display: block; }
+  .feedback-box.ok { background: #d4edda; color: #155724; border-left: 4px solid #28a745; }
+  .feedback-box.nok { background: #f8d7da; color: #721c24; border-left: 4px solid #dc3545; }
+
+  /* ===== QUIZ ===== */
+  .quiz-item {
+    background: #fff; border: 1px solid #d0dae8;
+    border-radius: 10px; padding: 16px 20px; margin-bottom: 16px;
+  }
+  .quiz-q { font-weight: 600; margin-bottom: 12px; line-height: 1.5; font-size: 0.97rem; }
+  .quiz-type-badge {
+    display: inline-block; font-size: 0.72rem; font-weight: 700;
+    padding: 2px 8px; border-radius: 20px; margin-bottom: 8px;
+    text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  .badge-teoria { background: #e8f0fe; color: #003366; }
+  .badge-analisis { background: #fff3cd; color: #7a5c00; }
+  .quiz-option {
+    display: block; padding: 9px 14px; margin: 6px 0;
+    border: 2px solid #dde3ea; border-radius: 8px;
+    cursor: pointer; transition: all 0.2s; font-size: 0.93rem;
+  }
+  .quiz-option:hover { border-color: #003366; background: #f0f7ff; }
+  .quiz-option.selected { border-color: #003366; background: #003366; color: #fff; }
+  .quiz-option.correct { background: #d4edda; border-color: #28a745; color: #155724; }
+  .quiz-option.incorrect { background: #f8d7da; border-color: #dc3545; color: #721c24; }
+
+  .score-section {
+    background: #fff; border-radius: 12px; padding: 24px;
+    text-align: center; margin-top: 20px;
+    border: 1px solid #d0dae8; display: none;
+  }
+  .score-section.show { display: block; }
+  .score-number { font-family:'Lora',serif; font-size:2.5rem; color:#003366; font-weight:700; }
+  .score-pct { font-size:1.1rem; color:#555; margin-top:4px; }
+  .progress-bar-wrap { background:#e0e7ef; border-radius:20px; height:18px; margin:14px 0; overflow:hidden; }
+  .progress-bar-fill { height:100%; border-radius:20px; background:linear-gradient(90deg,#003366,#5ba8cc); transition:width 1s ease; }
+  .score-msg { font-size:1rem; margin-top:10px; font-style:italic; }
+
+  .btn-primary {
+    background:#003366; color:#fff; border:none; padding:12px 28px;
+    border-radius:8px; font-family:'Source Sans 3',sans-serif; font-size:1rem;
+    font-weight:700; cursor:pointer; margin-top:18px; transition:background 0.2s;
+  }
+  .btn-primary:hover { background:#00509e; }
+  .btn-secondary {
+    background:#e0e7ef; color:#003366; border:2px solid #003366;
+    padding:10px 22px; border-radius:8px; font-family:'Source Sans 3',sans-serif;
+    font-size:0.95rem; font-weight:600; cursor:pointer; margin-top:10px; margin-left:10px;
+    transition:all 0.2s;
+  }
+  .btn-secondary:hover { background:#003366; color:#fff; }
+
+  /* IA */
+  .ai-card { background:#fff; border:1px solid #d0dae8; border-radius:12px; padding:22px; margin-bottom:16px; }
+  .prompt-box {
+    background:#0d1117; color:#c9d1d9; border-radius:8px; padding:16px;
+    font-family:monospace; font-size:0.88rem; line-height:1.7; white-space:pre-wrap; margin:10px 0;
+  }
+  .step-item { display:flex; gap:14px; margin-bottom:14px; }
+  .step-num { min-width:32px; height:32px; background:#003366; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.9rem; }
+
+  .reflection-q {
+    background:#fff; border-left:5px solid #87CEEB;
+    border-radius:0 10px 10px 0; padding:16px 20px;
+    margin-bottom:14px; font-style:italic; font-size:0.97rem; line-height:1.7;
+  }
+  .reflection-q strong { display:block; font-style:normal; color:#003366; margin-bottom:4px; font-size:0.82rem; text-transform:uppercase; }
+
+  .ref-card { background:#fff; border:1px solid #d0dae8; border-radius:10px; padding:16px 20px; margin-bottom:12px; }
+  .ref-card .ref-author { font-weight:700; color:#003366; margin-bottom:2px; font-size:0.92rem; }
+  .ref-card .ref-title { font-style:italic; color:#222; margin-bottom:4px; font-size:0.92rem; }
+  .ref-card .ref-source { color:#555; font-size:0.87rem; }
+  .ref-note { background:#fff3cd; border:1px solid #ffe082; border-radius:8px; padding:12px 16px; margin-top:16px; font-size:0.87rem; }
+
+  @media(max-width:600px){
+    .header-title { font-size:1.15rem; }
+    .content-area { padding:0 10px 30px; }
+    .tab-btn { padding:10px 12px; font-size:0.8rem; }
+    .inno-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inst">Universidad de Guayaquil &nbsp;|&nbsp; Facultad de Ciencias Administrativas &nbsp;|&nbsp; Carrera en Contabilidad y Auditoría</div>
+  <div class="header-title">Emprendimiento e Innovación</div>
+  <div class="header-meta">
+    <span class="badge">Unidad 1</span>
+    <span class="badge">Semana 2</span>
+    <span class="badge">Teoría y Concepto de la Innovación</span>
+  </div>
+</header>
+
+<div class="tab-nav-wrap">
+  <nav class="tab-nav" role="tablist">
+    <button class="tab-btn active" onclick="showTab('repaso')" role="tab">📋 Repaso S1</button>
+    <button class="tab-btn" onclick="showTab('t1')" role="tab">1. ¿Qué es Innovación?</button>
+    <button class="tab-btn" onclick="showTab('t2')" role="tab">2. Tipos de Innovación</button>
+    <button class="tab-btn" onclick="showTab('t3')" role="tab">3. Modelos de Innovación</button>
+    <button class="tab-btn" onclick="showTab('t4')" role="tab">4. Innovación Disruptiva</button>
+    <button class="tab-btn" onclick="showTab('t5')" role="tab">5. Innovación & Contabilidad</button>
+    <button class="tab-btn" onclick="showTab('ejercicio')" role="tab">6. Ejercicio Interactivo</button>
+    <button class="tab-btn" onclick="showTab('cuestionario')" role="tab">7. Cuestionario</button>
+    <button class="tab-btn" onclick="showTab('ia')" role="tab">8. Actividad con IA</button>
+    <button class="tab-btn" onclick="showTab('reflexion')" role="tab">9. Reflexión Personal</button>
+    <button class="tab-btn" onclick="showTab('biblio')" role="tab">10. Bibliografía</button>
+  </nav>
+</div>
+
+<div class="content-area">
+
+  <!-- REPASO S1 -->
+  <div id="tab-repaso" class="tab-panel active">
+    <h2>📋 Repaso: Semana 1 — Emprendimiento</h2>
+    <p>En la semana anterior establecimos los fundamentos del emprendimiento. Esta semana nos enfocaremos en la innovación, que es un concepto relacionado pero claramente distinto. Antes de avanzar, asegurémonos de que los puntos clave de la semana 1 están consolidados.</p>
+
+    <div class="concept-box">
+      <strong>Definición Central (Semana 1)</strong>
+      El emprendimiento es el proceso mediante el cual un individuo o grupo identifica oportunidades en un contexto de incertidumbre, moviliza recursos y crea valor económico, social o cultural (Shane & Venkataraman, 2000).
+    </div>
+
+    <h3>Puntos clave de la Semana 1</h3>
+    <ul class="check-list">
+      <li><strong>Cantillon (1755):</strong> el emprendedor asume riesgo comprando a precios conocidos y vendiendo a precios inciertos.</li>
+      <li><strong>Schumpeter:</strong> destrucción creativa — el emprendedor destruye el orden establecido para crear algo nuevo.</li>
+      <li><strong>Drucker (1985):</strong> el emprendimiento es una disciplina aprendible, no un talento innato.</li>
+      <li><strong>Tipos de emprendedor:</strong> por oportunidad, por necesidad, serial, intraemprendedor y social.</li>
+      <li><strong>El Proceso Emprendedor:</strong> Descubrimiento → Evaluación → Concepto → Validación → Lanzamiento → Escalamiento.</li>
+      <li><strong>Valle de la muerte:</strong> fase crítica entre lanzamiento y escalamiento donde el flujo de caja puede agotar el negocio.</li>
+      <li><strong>Ecosistema Ecuador:</strong> Ley Orgánica de Emprendimiento 2020, SAS, alta TEA pero baja tasa de negocios establecidos.</li>
+    </ul>
+
+    <div class="alert-box">
+      <strong>Pregunta de conexión entre semanas</strong>
+      En la semana 1 aprendiste que Schumpeter definía al emprendedor como agente de cambio que destruye y crea. Esa destrucción creativa implica necesariamente algo que estudiaremos hoy: <em>innovación</em>. ¿Puede haber emprendimiento sin innovación? ¿Puede haber innovación sin emprendimiento? Esta semana responderás esas preguntas con rigor conceptual.
+    </div>
+
+    <div class="key-idea">
+      <strong>La gran distinción de esta semana</strong>
+      Emprendimiento y innovación no son sinónimos. El emprendimiento es el proceso de crear valor a través de la identificación y explotación de oportunidades. La innovación es la herramienta, el mecanismo o el resultado que diferencia a un emprendimiento de simplemente abrir una copia de algo que ya existe.
+    </div>
+  </div>
+
+  <!-- TEMA 1 -->
+  <div id="tab-t1" class="tab-panel">
+    <h2>1. ¿Qué es la Innovación?</h2>
+
+    <p>La palabra "innovar" viene del latín <em>innovare</em>: "renovar", "introducir algo nuevo". Pero en el contexto académico y empresarial, su significado es mucho más preciso y complejo. No toda novedad es innovación, y no toda innovación es tecnológica.</p>
+
+    <div class="concept-box">
+      <strong>Definición del Manual de Oslo (OCDE, 2018) — Referencia Internacional</strong>
+      "Una innovación es un producto o proceso nuevo o mejorado (o una combinación de ellos) que difiere significativamente de los productos o procesos previos de una unidad y que ha sido puesto a disposición de los potenciales usuarios o puesto en uso por la unidad."
+    </div>
+
+    <p>Esta definición —la más usada en investigación y política pública— contiene tres condiciones que debemos analizar:</p>
+
+    <table>
+      <tr><th>Condición</th><th>Qué exige</th><th>Ejemplo que NO es innovación</th></tr>
+      <tr><td><strong>Nuevo o mejorado significativamente</strong></td><td>El cambio debe ser sustancial, no cosmético</td><td>Cambiar el color de la caja de un producto sin modificar nada más</td></tr>
+      <tr><td><strong>Difiere de lo previo</strong></td><td>Debe compararse con la versión anterior de la misma organización</td><td>Copiar exactamente lo que ya hace el competidor</td></tr>
+      <tr><td><strong>Puesto en uso o disponible</strong></td><td>Una idea en el cajón NO es innovación hasta que se implementa</td><td>Un prototipo que nunca llega al cliente</td></tr>
+    </table>
+
+    <div class="alert-box">
+      <strong>Atención: la innovación requiere implementación</strong>
+      Este es el error más común: creer que tener una idea brillante equivale a innovar. La OCDE es explícita: la innovación ocurre cuando el cambio se implementa y llega al usuario o al proceso. Una idea sin acción es solo creatividad.
+    </div>
+
+    <h3>Innovación ≠ Invención</h3>
+    <p>Otro error frecuente es confundir innovación con invención. La diferencia es crítica:</p>
+
+    <table>
+      <tr><th>Concepto</th><th>Definición</th><th>Ejemplo</th></tr>
+      <tr><td><strong>Invención</strong></td><td>Creación de algo completamente nuevo desde el conocimiento científico o técnico; puede o no tener aplicación práctica.</td><td>Thomas Edison inventó el fonógrafo.</td></tr>
+      <tr><td><strong>Innovación</strong></td><td>Aplicación exitosa de una invención o idea al mercado para generar valor; combina conocimiento con acción comercial.</td><td>Spotify no inventó la música digital, pero innovó en el modelo de distribución y acceso a ella.</td></tr>
+    </table>
+
+    <p>Peter Drucker lo expresó claramente: "La innovación no requiere necesariamente ser técnica ni siquiera tangible. Pocas innovaciones técnicas pueden competir en impacto con las innovaciones sociales como el periódico o el seguro."</p>
+
+    <h3>Innovación, Creatividad y Emprendimiento: el triángulo</h3>
+    <div class="example-box" style="background:#f0f7ff;">
+      <p style="text-align:center;font-size:0.95rem;line-height:2;">
+        <strong>Creatividad</strong> = generar ideas nuevas (pensamiento divergente)<br>
+        <strong>Innovación</strong> = implementar esas ideas para crear valor (pensamiento convergente + acción)<br>
+        <strong>Emprendimiento</strong> = el proceso de convertir la innovación en un modelo de negocio viable
+      </p>
+      <p style="margin-top:10px;font-size:0.88rem;">Puedes ser creativo sin ser innovador (si nunca implementas). Puedes ser innovador sin ser emprendedor (si innovas dentro de una empresa). Puedes emprender sin innovar (copiando un modelo existente, aunque esto limita tu ventaja competitiva).</p>
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">📍 Ejemplo ecuatoriano</div>
+      <p><strong>Kruger Labs</strong>, con sede en Quito, es un hub de innovación y tecnología que desarrolla soluciones digitales para empresas grandes en Ecuador y la región. Su innovación no fue tecnológica en el sentido de inventar un algoritmo nuevo: fue de modelo de negocio. Reunieron talento tech local, crearon un ambiente de trabajo ágil y ofrecieron a grandes corporaciones servicios de transformación digital que antes solo conseguían con consultoras extranjeras. Innovación de proceso + modelo de negocio, no solo tecnología.</p>
+    </div>
+
+    <div class="key-idea">
+      <strong>Idea Clave</strong>
+      Innovar es convertir una idea nueva en valor real para alguien. No necesitas inventar algo desde cero: puedes innovar aplicando algo que ya existe de una manera que nadie ha probado antes en tu contexto, mercado o industria.
+    </div>
+  </div>
+
+  <!-- TEMA 2 -->
+  <div id="tab-t2" class="tab-panel">
+    <h2>2. Tipos de Innovación</h2>
+    <p>El Manual de Oslo (OCDE, 2018) clasifica la innovación en cuatro tipos. Conocer esta taxonomía te permite identificar dónde está ocurriendo la innovación en cualquier organización, incluyendo un estudio contable o una firma de auditoría.</p>
+
+    <div class="inno-grid">
+      <div class="inno-card">
+        <div class="ic-icon">📦</div>
+        <div class="ic-title">Innovación de Producto</div>
+        <p>Introducción de un bien o servicio nuevo, o significativamente mejorado. Incluye cambios en especificaciones técnicas, componentes, materiales, software integrado o funciones.</p>
+      </div>
+      <div class="inno-card">
+        <div class="ic-icon">⚙️</div>
+        <div class="ic-title">Innovación de Proceso</div>
+        <p>Implementación de un método de producción o distribución nuevo o significativamente mejorado. Incluye cambios en técnicas, equipamiento o software interno.</p>
+      </div>
+      <div class="inno-card">
+        <div class="ic-icon">📣</div>
+        <div class="ic-title">Innovación de Mercadotecnia</div>
+        <p>Implementación de un nuevo método de comercialización: cambios en el diseño del producto, su posicionamiento, su precio o su canal de distribución.</p>
+      </div>
+      <div class="inno-card">
+        <div class="ic-icon">🏢</div>
+        <div class="ic-title">Innovación Organizacional</div>
+        <p>Implementación de un nuevo método organizativo en las prácticas de la empresa, la organización del trabajo o las relaciones externas.</p>
+      </div>
+    </div>
+
+    <h3>Aplicación práctica para Contabilidad y Auditoría</h3>
+    <table>
+      <tr><th>Tipo de Innovación</th><th>Ejemplo en Contabilidad/Auditoría</th></tr>
+      <tr><td><strong>Producto</strong></td><td>Una firma de auditoría que desarrolla un servicio de "auditoría forense digital" que antes no ofrecía</td></tr>
+      <tr><td><strong>Proceso</strong></td><td>Implementar software de RPA (Automatización Robótica de Procesos) para hacer conciliaciones bancarias automáticamente en lugar de hacerlas manualmente</td></tr>
+      <tr><td><strong>Mercadotecnia</strong></td><td>Un contador independiente que pasa de cobrar por hora a cobrar suscripción mensual (modelo SaaS aplicado a servicios profesionales)</td></tr>
+      <tr><td><strong>Organizacional</strong></td><td>Una firma que adopta trabajo completamente remoto con equipos distribuidos en distintas ciudades, eliminando la necesidad de oficina física</td></tr>
+    </table>
+
+    <h3>Clasificación adicional: por grado de ruptura</h3>
+    <p>Más allá de los cuatro tipos del Manual de Oslo, la investigación en management distingue innovaciones según cuánto rompen con lo existente:</p>
+
+    <table>
+      <tr><th>Grado</th><th>Descripción</th><th>Ejemplo</th></tr>
+      <tr>
+        <td><strong>Incremental</strong></td>
+        <td>Mejoras graduales sobre productos/procesos existentes. Es el tipo más común.</td>
+        <td>Una app de contabilidad que añade una nueva función para calcular retenciones en la fuente</td>
+      </tr>
+      <tr>
+        <td><strong>Radical</strong></td>
+        <td>Cambio fundamental en la tecnología o el modelo de negocio. Crea nuevas industrias o destruye las existentes.</td>
+        <td>El surgimiento de la facturación electrónica obligatoria del SRI, que eliminó la industria de imprenta de comprobantes físicos</td>
+      </tr>
+      <tr>
+        <td><strong>Disruptiva</strong></td>
+        <td>Comienza en un mercado pequeño o ignorado y desplaza progresivamente a los líderes establecidos (Christensen, 1997).</td>
+        <td>Los sistemas de contabilidad en la nube (cloud accounting) desplazando software local instalado en computadoras</td>
+      </tr>
+      <tr>
+        <td><strong>Arquitectónica</strong></td>
+        <td>Reconfigura cómo se conectan los componentes de un sistema, aunque cada componente individual cambie poco.</td>
+        <td>El modelo de ecosistema tributario del SRI, que conectó facturación → declaración → pago en una sola plataforma digital</td>
+      </tr>
+    </table>
+
+    <div class="example-box">
+      <div class="ex-label">📍 Caso ecuatoriano: innovación incremental vs. radical</div>
+      <p><strong>Incremento:</strong> El SRI actualiza cada año el anexo transaccional simplificado (ATS) añadiendo nuevos campos de información. Es innovación incremental de proceso: mejora el sistema existente sin reemplazarlo.</p>
+      <p style="margin-top:8px;"><strong>Radical:</strong> La implementación obligatoria de facturación electrónica en Ecuador (2014–2016) fue una innovación radical de proceso a nivel de todo el sistema tributario nacional: eliminó el papel, cambió flujos de trabajo, y creó nuevas industrias de software tributario como Datil, SIF y otros proveedores autorizados.</p>
+    </div>
+
+    <div class="key-idea">
+      <strong>Idea Clave</strong>
+      No existe una innovación "mejor que otra". Las innovaciones incrementales sostienen el negocio; las radicales lo transforman; las disruptivas lo redefinen. Un profesional que entiende esta diferencia puede anticipar qué tipo de cambio le conviene impulsar según su contexto.
+    </div>
+  </div>
+
+  <!-- TEMA 3 -->
+  <div id="tab-t3" class="tab-panel">
+    <h2>3. Modelos y Marcos de Innovación</h2>
+    <p>A lo largo del siglo XX y XXI, académicos y empresas han desarrollado distintos modelos para entender cómo funciona la innovación dentro de las organizaciones. Conocer estos modelos te da herramientas concretas para aplicar la innovación de forma deliberada.</p>
+
+    <h3>3.1 El Proceso Lineal (Modelo Tecnológico Clásico)</h3>
+    <div class="concept-box">
+      <strong>Modelo Lineal</strong>
+      El primer modelo formal de innovación (décadas 1950–1970) describía la innovación como una cadena unidireccional: Investigación Básica → Investigación Aplicada → Desarrollo → Producción → Comercialización. Su debilidad: ignora la retroalimentación del mercado y el rol del usuario.
+    </div>
+    <p>Este modelo quedó superado porque en la práctica muchas innovaciones no comienzan en laboratorios: comienzan con la observación de un problema real de un cliente o de un proceso operativo deficiente.</p>
+
+    <h3>3.2 El Modelo de la Triple Hélice</h3>
+    <p>Desarrollado por Etzkowitz y Leydesdorff (1995), propone que la innovación sostenida en una sociedad requiere la interacción de tres actores:</p>
+    <div class="example-box" style="background:#f0f7ff;">
+      <div style="display:flex;gap:20px;flex-wrap:wrap;text-align:center;">
+        <div style="flex:1;min-width:100px;background:#003366;color:#fff;border-radius:10px;padding:14px;">
+          <div style="font-size:2rem;">🏛️</div>
+          <strong>UNIVERSIDAD</strong>
+          <p style="font-size:0.82rem;margin-top:6px;opacity:0.9;">Genera conocimiento científico y forma talento humano</p>
+        </div>
+        <div style="flex:1;min-width:100px;background:#003366;color:#fff;border-radius:10px;padding:14px;">
+          <div style="font-size:2rem;">🏭</div>
+          <strong>INDUSTRIA</strong>
+          <p style="font-size:0.82rem;margin-top:6px;opacity:0.9;">Aplica el conocimiento para crear productos y servicios</p>
+        </div>
+        <div style="flex:1;min-width:100px;background:#003366;color:#fff;border-radius:10px;padding:14px;">
+          <div style="font-size:2rem;">🏛️</div>
+          <strong>GOBIERNO</strong>
+          <p style="font-size:0.82rem;margin-top:6px;opacity:0.9;">Crea el marco legal, financia y articula el ecosistema</p>
+        </div>
+      </div>
+      <p style="margin-top:14px;font-size:0.88rem;">En Ecuador: la Universidad de Guayaquil genera investigación contable → la industria (firmas de auditoría, empresas) la aplica → el SRI y el gobierno establecen el marco normativo tributario que define qué innovaciones son necesarias.</p>
+    </div>
+
+    <h3>3.3 El Modelo de Innovación Abierta (Open Innovation)</h3>
+    <div class="concept-box">
+      <strong>Open Innovation — Henry Chesbrough (2003)</strong>
+      Las empresas no pueden depender exclusivamente de su propio I+D (Investigación y Desarrollo) para innovar. Deben incorporar ideas, tecnologías y conocimiento externo (de otras empresas, universidades, startups, clientes) y también dejar fluir hacia afuera su propio conocimiento no utilizado.
+    </div>
+    <p>El concepto contrasta con el modelo "cerrado" (silos corporativos) que dominaba el siglo XX. Hoy es estándar en empresas tecnológicas, farmacéuticas y de servicios financieros. En Ecuador, es el modelo detrás de iniciativas como hackatones bancarios donde startups proponen soluciones a bancos establecidos.</p>
+
+    <h3>3.4 Design Thinking: Innovación centrada en el ser humano</h3>
+    <div class="concept-box">
+      <strong>Design Thinking (IDEO / Stanford d.school)</strong>
+      Metodología de innovación que coloca al usuario en el centro del proceso. Sus cinco etapas son: (1) Empatizar — entender profundamente al usuario; (2) Definir — enunciar el problema real; (3) Idear — generar múltiples soluciones; (4) Prototipar — hacer tangible la idea rápidamente; (5) Testear — evaluar con usuarios reales y ajustar.
+    </div>
+
+    <table>
+      <tr><th>Etapa</th><th>Pregunta guía</th><th>Herramienta</th></tr>
+      <tr><td>Empatizar</td><td>¿Qué siente, piensa y hace el usuario?</td><td>Entrevistas, observación directa, mapa de empatía</td></tr>
+      <tr><td>Definir</td><td>¿Cuál es el problema real (no el síntoma)?</td><td>Punto de vista (POV), "¿Cómo podríamos...?"</td></tr>
+      <tr><td>Idear</td><td>¿Cuántas soluciones podemos generar?</td><td>Brainstorming, SCAMPER, mapas mentales</td></tr>
+      <tr><td>Prototipar</td><td>¿Cómo hacemos tangible nuestra mejor idea?</td><td>Maquetas, wireframes, simulaciones</td></tr>
+      <tr><td>Testear</td><td>¿Funciona con usuarios reales?</td><td>Pruebas de usuario, métricas, retroalimentación</td></tr>
+    </table>
+
+    <div class="example-box">
+      <div class="ex-label">📍 Aplicación a Contabilidad</div>
+      <p>Una firma de auditoría que aplica Design Thinking comienza por <strong>empatizar</strong> con sus clientes PyME: ¿qué es lo más doloroso del proceso de auditoría? (Respuesta real: los tiempos de entrega y la dificultad para entender los informes técnicos.) Luego <strong>define</strong> el problema: "Los gerentes de PyMEs no entienden los informes de auditoría porque usan lenguaje técnico no accesible." Luego <strong>idea</strong> soluciones: informes visuales con dashboards, sesiones de explicación en video, resúmenes ejecutivos en lenguaje simple. Esto es innovación de producto+proceso en servicios profesionales.</p>
+    </div>
+
+    <div class="key-idea">
+      <strong>Idea Clave</strong>
+      Los modelos de innovación no son recetas rígidas; son mapas de ruta. Lo que tienen en común es que todos parten de un problema real, involucran al usuario y requieren iteración (probar, fallar, ajustar). Ninguna innovación exitosa se diseñó perfectamente en la primera versión.
+    </div>
+  </div>
+
+  <!-- TEMA 4 -->
+  <div id="tab-t4" class="tab-panel">
+    <h2>4. Innovación Disruptiva: el concepto que cambió los negocios</h2>
+
+    <p>El concepto de <strong>innovación disruptiva</strong> fue desarrollado por el profesor Clayton Christensen de Harvard Business School y publicado en su libro <em>The Innovator's Dilemma</em> (1997). Es uno de los conceptos más influyentes e incomprendidos del management moderno.</p>
+
+    <div class="concept-box">
+      <strong>Definición rigurosa de Innovación Disruptiva (Christensen, 1997)</strong>
+      Una innovación disruptiva es aquella que comienza en un segmento ignorado por los líderes del mercado (por ser pequeño, poco rentable o de menor calidad inicial), y que progresivamente mejora hasta desplazar a los competidores establecidos. No es simplemente una "gran innovación" ni cualquier cambio radical: tiene una trayectoria específica y predecible.
+    </div>
+
+    <h3>4.1 ¿Cómo funciona la disrupción?</h3>
+    <p>El mecanismo tiene tres momentos clave:</p>
+    <ul class="check-list">
+      <li><strong>Momento 1 — Entrada por abajo:</strong> El disruptor entra al mercado con un producto más simple, más barato o más accesible, pero de menor rendimiento. Los líderes lo ignoran porque sus clientes premium no quieren ese producto.</li>
+      <li><strong>Momento 2 — Mejora progresiva:</strong> El disruptor mejora gradualmente su producto usando sus ganancias iniciales, hasta alcanzar un rendimiento "suficientemente bueno" para los clientes del mercado principal.</li>
+      <li><strong>Momento 3 — Desplazamiento:</strong> Cuando el disruptor alcanza ese umbral, los clientes del líder comienzan a migrar hacia la alternativa más económica. Para entonces, suele ser demasiado tarde para que el líder responda.</li>
+    </ul>
+
+    <h3>4.2 Casos clásicos y ecuatorianos</h3>
+    <table>
+      <tr><th>Industria</th><th>Líder desplazado</th><th>Disruptor</th><th>Mecanismo</th></tr>
+      <tr><td>Alquiler de videos</td><td>Blockbuster</td><td>Netflix</td><td>Streaming reemplazó el DVD físico</td></tr>
+      <tr><td>Fotografía</td><td>Kodak (película)</td><td>Cámaras digitales → smartphones</td><td>Eliminó el gasto en revelado</td></tr>
+      <tr><td>Banca tradicional Ecuador</td><td>Bancos con sedes físicas</td><td>Aplicaciones de banca móvil + billeteras digitales</td><td>El cliente no necesita ir a la agencia</td></tr>
+      <tr><td>Contabilidad física Ecuador</td><td>Libros contables manuales</td><td>Software SRI + ERP en la nube (Fidelio, Contabilidad Mónica, Datil)</td><td>Eliminó la dependencia del papel y del proceso manual</td></tr>
+    </table>
+
+    <h3>4.3 El dilema del innovador</h3>
+    <div class="concept-box">
+      <strong>El Dilema del Innovador</strong>
+      Christensen mostró que las empresas líderes no fracasan por incompetencia: fracasan precisamente porque siguen las prácticas correctas de gestión (escuchan a sus mejores clientes, invierten en sus productos más rentables). Eso las hace ciegas ante los disruptores que atacan desde abajo. "Hacer todo bien" puede ser la receta para el fracaso cuando el mercado cambia de forma disruptiva.
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">📍 Implicación directa para el Contador Auditor</div>
+      <p>La automatización contable (RPA, inteligencia artificial para auditoría de datos, blockchain para trazabilidad de transacciones) son innovaciones disruptivas para la profesión contable. Los firmas que ofrecen contabilidad manual, procesos en Excel y entrega de informes en papel están siendo desplazadas por quienes adoptan tecnología. El Contador Auditor del futuro no hará lo que hoy hace un software; analizará lo que el software produce, identificará anomalías, tomará decisiones estratégicas y asesorará al gerente. Eso no es amenaza: es oportunidad para quien se prepare.</p>
+    </div>
+
+    <div class="key-idea">
+      <strong>Idea Clave</strong>
+      La innovación disruptiva no llega con fanfarria: llega silenciosa, desde abajo, hasta que un día es demasiado tarde para el líder que la ignoró. La clave no es temerla: es reconocerla a tiempo y posicionarse en el lado correcto del cambio.
+    </div>
+  </div>
+
+  <!-- TEMA 5 -->
+  <div id="tab-t5" class="tab-panel">
+    <h2>5. Innovación y la Profesión Contable</h2>
+    <p>Hasta aquí hemos estudiado la innovación en términos generales. Esta pestaña conecta directamente los conceptos con tu futuro profesional como Contador Auditor en Ecuador. El objetivo es que entiendas que la innovación no es solo para ingenieros o emprendedores tecnológicos: es una competencia profesional que tú necesitas desarrollar.</p>
+
+    <h3>5.1 Las Cuatro Olas Tecnológicas que están cambiando la Contabilidad</h3>
+    <table>
+      <tr><th>Tecnología</th><th>¿Qué es?</th><th>Impacto en Contabilidad/Auditoría</th></tr>
+      <tr>
+        <td><strong>Cloud Computing</strong></td>
+        <td>Almacenamiento y procesamiento en servidores remotos accesibles por internet</td>
+        <td>Eliminó la necesidad de instalar software localmente; permite acceso a la contabilidad desde cualquier dispositivo</td>
+      </tr>
+      <tr>
+        <td><strong>RPA (Automatización Robótica de Procesos)</strong></td>
+        <td>Software que automatiza tareas repetitivas basadas en reglas (como conciliaciones, ingreso de datos)</td>
+        <td>Reduce horas de trabajo manual en conciliaciones bancarias, generación de reportes y llenado de formularios SRI</td>
+      </tr>
+      <tr>
+        <td><strong>Inteligencia Artificial & Machine Learning</strong></td>
+        <td>Sistemas que aprenden de datos y generan predicciones o detectan patrones</td>
+        <td>Detección de anomalías en transacciones (auditoría forense), predicción de errores, análisis de riesgo</td>
+      </tr>
+      <tr>
+        <td><strong>Blockchain</strong></td>
+        <td>Registro distribuido, inmutable y verificable de transacciones</td>
+        <td>Trazabilidad de transacciones financieras, contratos inteligentes, potencial para reemplazar algunos procesos de auditoría física</td>
+      </tr>
+    </table>
+
+    <h3>5.2 El Contador Innovador: cuatro roles emergentes</h3>
+    <div class="inno-grid">
+      <div class="inno-card">
+        <div class="ic-icon">📊</div>
+        <div class="ic-title">Analista de Datos Financieros</div>
+        <p>Usa herramientas de BI (Business Intelligence) como Power BI o Tableau para transformar datos contables en dashboards visuales para la toma de decisiones gerenciales.</p>
+      </div>
+      <div class="inno-card">
+        <div class="ic-icon">🔍</div>
+        <div class="ic-title">Auditor Forense Digital</div>
+        <p>Especializado en detectar fraudes usando análisis de grandes volúmenes de datos (Data Analytics), tecnología blockchain y patrones estadísticos anómalos.</p>
+      </div>
+      <div class="inno-card">
+        <div class="ic-icon">🌱</div>
+        <div class="ic-title">Asesor de Sostenibilidad</div>
+        <p>Apoya a empresas en la medición y reporte de impacto ambiental y social (ESG: Environmental, Social, Governance), una exigencia creciente de mercados internacionales.</p>
+      </div>
+      <div class="inno-card">
+        <div class="ic-icon">🚀</div>
+        <div class="ic-title">CFO de Startups</div>
+        <p>El Director Financiero de una startup necesita innovar continuamente en modelos de financiamiento, métricas de crecimiento (KPIs) y estructura de costos escalable.</p>
+      </div>
+    </div>
+
+    <h3>5.3 Cómo innovar en un estudio contable</h3>
+    <p>Si en el futuro tienes tu propio estudio contable o de auditoría, estas son las innovaciones más accesibles y de alto impacto:</p>
+    <ul class="check-list">
+      <li><strong>Modelo de precios:</strong> Pasar de cobrar por hora a cobrar por resultado o suscripción mensual (valor fijo, predecible para el cliente).</li>
+      <li><strong>Automatización de procesos:</strong> Implementar software contable en la nube desde el inicio (Datil, Defontana, Alegra) en lugar de hojas de Excel manuales.</li>
+      <li><strong>Especialización de nicho:</strong> En lugar de ser un contador generalista, especializarse en una industria (turismo, exportación, salud) y cobrar una prima por ese conocimiento específico.</li>
+      <li><strong>Servicios de valor agregado:</strong> Añadir asesoría financiera estratégica y planificación tributaria preventiva, no solo declaraciones y registros.</li>
+      <li><strong>Expansión digital:</strong> Servir a clientes en otras ciudades o países usando herramientas remotas, eliminando la barrera geográfica.</li>
+    </ul>
+
+    <div class="example-box">
+      <div class="ex-label">📍 Referencia: La Transformación Digital del SRI Ecuador</div>
+      <p>El Servicio de Rentas Internas de Ecuador ha implementado en los últimos 15 años una innovación de proceso continua: desde la declaración en papel hasta el sistema de facturación electrónica XML, pasando por el SRI Online, la aplicación móvil y el cruce de información automático entre contribuyentes. Esto ha obligado a todos los contadores del país a innovar continuamente en sus propios procesos. Quien no se adaptó quedó desactualizado. Quien aprovechó cada cambio del SRI para ofrecer mejores servicios a sus clientes, creció. Eso es innovación adaptativa en la práctica contable.</p>
+    </div>
+
+    <div class="key-idea">
+      <strong>Idea Clave</strong>
+      La pregunta no es si la tecnología va a cambiar la profesión contable: ya la está cambiando. La pregunta es si serás de los que observan el cambio o de los que lo lideran. La innovación en la profesión contable no requiere ser programador; requiere curiosidad, disposición al aprendizaje continuo y visión de negocio.
+    </div>
+  </div>
+
+  <!-- EJERCICIO -->
+  <div id="tab-ejercicio" class="tab-panel">
+    <h2>6. Ejercicio Interactivo: Identifica el Tipo de Innovación</h2>
+    <p>Lee cada situación y selecciona el tipo de innovación que mejor la describe. <strong>Responde TODOS los ítems primero</strong> y luego presiona "Verificar respuestas".</p>
+
+    <!-- EI1 -->
+    <div class="exercise-item" id="ei1-wrap">
+      <div class="q-label">1. Una firma de auditoría implementa un sistema de inteligencia artificial que revisa automáticamente el 100% de las transacciones en lugar de una muestra del 10%. El servicio de auditoría en sí no cambia, pero el proceso interno se transforma completamente.</div>
+      <div class="options-grid">
+        <button class="opt-btn" onclick="selectEj('ei1','a')">a) Innovación de producto</button>
+        <button class="opt-btn" onclick="selectEj('ei1','b')">b) Innovación de proceso</button>
+        <button class="opt-btn" onclick="selectEj('ei1','c')">c) Innovación organizacional</button>
+        <button class="opt-btn" onclick="selectEj('ei1','d')">d) Innovación de mercadotecnia</button>
+      </div>
+      <div class="feedback-box" id="ei1-fb"></div>
+    </div>
+
+    <!-- EI2 -->
+    <div class="exercise-item" id="ei2-wrap">
+      <div class="q-label">2. Un contador independiente deja de cobrar por hora y lanza un plan de "suscripción contable mensual": por $80/mes el cliente recibe declaraciones, asesoría tributaria y un reporte financiero simplificado. Nadie más en su ciudad lo hace así.</div>
+      <div class="options-grid">
+        <button class="opt-btn" onclick="selectEj('ei2','a')">a) Innovación de proceso</button>
+        <button class="opt-btn" onclick="selectEj('ei2','b')">b) Innovación de mercadotecnia</button>
+        <button class="opt-btn" onclick="selectEj('ei2','c')">c) Innovación de producto</button>
+        <button class="opt-btn" onclick="selectEj('ei2','d')">d) Innovación radical</button>
+      </div>
+      <div class="feedback-box" id="ei2-fb"></div>
+    </div>
+
+    <!-- EI3 -->
+    <div class="exercise-item" id="ei3-wrap">
+      <div class="q-label">3. El SRI de Ecuador implementó en 2014 la facturación electrónica obligatoria, que eliminó completamente el papel y automatizó la entrega de comprobantes. Esto destruyó la industria de imprentas autorizadas y creó nuevas empresas de software tributario.</div>
+      <div class="options-grid">
+        <button class="opt-btn" onclick="selectEj('ei3','a')">a) Innovación incremental</button>
+        <button class="opt-btn" onclick="selectEj('ei3','b')">b) Innovación de mercadotecnia</button>
+        <button class="opt-btn" onclick="selectEj('ei3','c')">c) Innovación radical</button>
+        <button class="opt-btn" onclick="selectEj('ei3','d')">d) Innovación organizacional</button>
+      </div>
+      <div class="feedback-box" id="ei3-fb"></div>
+    </div>
+
+    <!-- EI4 -->
+    <div class="exercise-item" id="ei4-wrap">
+      <div class="q-label">4. Según el Manual de Oslo (OCDE, 2018), una idea que nunca se implementa ni llega al usuario:</div>
+      <div class="options-grid">
+        <button class="opt-btn" onclick="selectEj('ei4','a')">a) Es innovación si es suficientemente original</button>
+        <button class="opt-btn" onclick="selectEj('ei4','b')">b) Es innovación si fue protegida con patente</button>
+        <button class="opt-btn" onclick="selectEj('ei4','c')">c) No es innovación; puede ser creatividad o invención, pero no innovación</button>
+        <button class="opt-btn" onclick="selectEj('ei4','d')">d) Es innovación radical porque no existe en el mercado</button>
+      </div>
+      <div class="feedback-box" id="ei4-fb"></div>
+    </div>
+
+    <!-- EI5 -->
+    <div class="exercise-item" id="ei5-wrap">
+      <div class="q-label">5. Netflix comenzó rentando DVDs por correo (más barato que Blockbuster pero de menor comodidad) y gradualmente mejoró hasta ofrecer streaming. Este es un ejemplo de:</div>
+      <div class="options-grid">
+        <button class="opt-btn" onclick="selectEj('ei5','a')">a) Innovación incremental</button>
+        <button class="opt-btn" onclick="selectEj('ei5','b')">b) Innovación organizacional</button>
+        <button class="opt-btn" onclick="selectEj('ei5','c')">c) Innovación disruptiva</button>
+        <button class="opt-btn" onclick="selectEj('ei5','d')">d) Innovación de mercadotecnia</button>
+      </div>
+      <div class="feedback-box" id="ei5-fb"></div>
+    </div>
+
+    <!-- EI6 -->
+    <div class="exercise-item" id="ei6-wrap">
+      <div class="q-label">6. Una empresa de contabilidad que antes tenía 5 gerentes de área ahora adopta equipos autodirigidos donde cada contador tiene acceso directo al cliente sin intermediarios, eliminando las jerarquías intermedias.</div>
+      <div class="options-grid">
+        <button class="opt-btn" onclick="selectEj('ei6','a')">a) Innovación de producto</button>
+        <button class="opt-btn" onclick="selectEj('ei6','b')">b) Innovación de proceso</button>
+        <button class="opt-btn" onclick="selectEj('ei6','c')">c) Innovación organizacional</button>
+        <button class="opt-btn" onclick="selectEj('ei6','d')">d) Innovación disruptiva</button>
+      </div>
+      <div class="feedback-box" id="ei6-fb"></div>
+    </div>
+
+    <!-- EI7 -->
+    <div class="exercise-item" id="ei7-wrap">
+      <div class="q-label">7. El Design Thinking centra su proceso en:</div>
+      <div class="options-grid">
+        <button class="opt-btn" onclick="selectEj('ei7','a')">a) La tecnología disponible para crear el producto más avanzado posible</button>
+        <button class="opt-btn" onclick="selectEj('ei7','b')">b) El usuario y sus necesidades reales como punto de partida del proceso de innovación</button>
+        <button class="opt-btn" onclick="selectEj('ei7','c')">c) Los ingresos proyectados del negocio antes de definir el producto</button>
+        <button class="opt-btn" onclick="selectEj('ei7','d')">d) La investigación básica de laboratorio como fuente de innovación</button>
+      </div>
+      <div class="feedback-box" id="ei7-fb"></div>
+    </div>
+
+    <!-- EI8 -->
+    <div class="exercise-item" id="ei8-wrap">
+      <div class="q-label">8. El "dilema del innovador" (Christensen, 1997) explica que las empresas líderes fracasan ante la disrupción porque:</div>
+      <div class="options-grid">
+        <button class="opt-btn" onclick="selectEj('ei8','a')">a) Sus directivos son incompetentes y no ven venir el cambio</button>
+        <button class="opt-btn" onclick="selectEj('ei8','b')">b) No invierten suficiente en investigación y desarrollo</button>
+        <button class="opt-btn" onclick="selectEj('ei8','c')">c) Siguen correctamente las prácticas de gestión establecidas, que las vuelven ciegas ante los disruptores que atacan desde mercados ignorados</button>
+        <button class="opt-btn" onclick="selectEj('ei8','d')">d) Copian las innovaciones de sus competidores en lugar de crear las propias</button>
+      </div>
+      <div class="feedback-box" id="ei8-fb"></div>
+    </div>
+
+    <div style="margin-top:20px;">
+      <button class="btn-primary" onclick="verificarEjercicio()">✅ Verificar respuestas</button>
+      <button class="btn-secondary" onclick="reiniciarEjercicio()">🔄 Reiniciar</button>
+    </div>
+    <div class="score-section" id="ej-score">
+      <div class="score-number" id="ej-score-num"></div>
+      <div class="score-pct" id="ej-score-pct"></div>
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="ej-bar" style="width:0%"></div></div>
+      <div class="score-msg" id="ej-score-msg"></div>
+    </div>
+  </div>
+
+  <!-- CUESTIONARIO -->
+  <div id="tab-cuestionario" class="tab-panel">
+    <h2>7. Cuestionario de Evaluación</h2>
+    <p>Responde las <strong>10 preguntas</strong> completas antes de presionar "Verificar respuestas".</p>
+
+    <!-- Q1 -->
+    <div class="quiz-item">
+      <div class="quiz-type-badge badge-teoria">Teórica</div>
+      <div class="quiz-q">1. Según el Manual de Oslo (OCDE, 2018), ¿cuáles son las tres condiciones que debe cumplir algo para ser considerado innovación?</div>
+      <label class="quiz-option" onclick="selectQ('qi1','a')">a) Ser tecnológico, ser patentable y haber requerido inversión en I+D.</label>
+      <label class="quiz-option" onclick="selectQ('qi1','b')">b) Ser nuevo o mejorado significativamente, diferir de lo previo y haber sido puesto en uso o disponible para usuarios.</label>
+      <label class="quiz-option" onclick="selectQ('qi1','c')">c) Ser creativo, ser original y haber sido registrado en el IEPI o institución equivalente.</label>
+      <label class="quiz-option" onclick="selectQ('qi1','d')">d) Generar utilidades, tener mercado definido y ser reproducible a escala.</label>
+      <div class="feedback-box" id="qi1-fb"></div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="quiz-item">
+      <div class="quiz-type-badge badge-teoria">Teórica</div>
+      <div class="quiz-q">2. ¿Cuál es la diferencia fundamental entre "invención" e "innovación"?</div>
+      <label class="quiz-option" onclick="selectQ('qi2','a')">a) La invención siempre requiere patente; la innovación no.</label>
+      <label class="quiz-option" onclick="selectQ('qi2','b')">b) La invención es la creación de algo nuevo desde el conocimiento; la innovación es la aplicación exitosa de una idea al mercado para generar valor.</label>
+      <label class="quiz-option" onclick="selectQ('qi2','c')">c) La innovación siempre implica tecnología avanzada; la invención puede ser artesanal.</label>
+      <label class="quiz-option" onclick="selectQ('qi2','d')">d) Son sinónimos; la distinción es solo terminológica según el idioma.</label>
+      <div class="feedback-box" id="qi2-fb"></div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="quiz-item">
+      <div class="quiz-type-badge badge-teoria">Teórica</div>
+      <div class="quiz-q">3. El Manual de Oslo (OCDE, 2018) clasifica la innovación en cuatro tipos. ¿Cuáles son?</div>
+      <label class="quiz-option" onclick="selectQ('qi3','a')">a) Tecnológica, social, ambiental y económica.</label>
+      <label class="quiz-option" onclick="selectQ('qi3','b')">b) Producto, Proceso, Mercadotecnia y Organizacional.</label>
+      <label class="quiz-option" onclick="selectQ('qi3','c')">c) Incremental, radical, disruptiva y arquitectónica.</label>
+      <label class="quiz-option" onclick="selectQ('qi3','d')">d) Abierta, cerrada, lineal y sistémica.</label>
+      <div class="feedback-box" id="qi3-fb"></div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="quiz-item">
+      <div class="quiz-type-badge badge-teoria">Teórica</div>
+      <div class="quiz-q">4. El concepto de "Open Innovation" (Innovación Abierta), desarrollado por Henry Chesbrough (2003), sostiene que:</div>
+      <label class="quiz-option" onclick="selectQ('qi4','a')">a) Las empresas deben mantener sus proyectos de innovación en secreto para protegerse de la competencia.</label>
+      <label class="quiz-option" onclick="selectQ('qi4','b')">b) Las empresas no pueden depender solo de su I+D interno y deben incorporar ideas y conocimiento externo, además de compartir el propio.</label>
+      <label class="quiz-option" onclick="selectQ('qi4','c')">c) La innovación debe hacerse exclusivamente en laboratorios universitarios para garantizar rigor científico.</label>
+      <label class="quiz-option" onclick="selectQ('qi4','d')">d) Las startups son la única fuente de innovación genuina en el mercado.</label>
+      <div class="feedback-box" id="qi4-fb"></div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="quiz-item">
+      <div class="quiz-type-badge badge-teoria">Teórica</div>
+      <div class="quiz-q">5. En el modelo de la Triple Hélice (Etzkowitz y Leydesdorff, 1995), ¿cuáles son los tres actores cuya interacción genera innovación sostenida en una sociedad?</div>
+      <label class="quiz-option" onclick="selectQ('qi5','a')">a) Emprendedores, inversionistas y consumidores.</label>
+      <label class="quiz-option" onclick="selectQ('qi5','b')">b) Universidad, Industria y Gobierno.</label>
+      <label class="quiz-option" onclick="selectQ('qi5','c')">c) Startups, corporaciones y medios de comunicación.</label>
+      <label class="quiz-option" onclick="selectQ('qi5','d')">d) Diseñadores, ingenieros y mercadólogos.</label>
+      <div class="feedback-box" id="qi5-fb"></div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="quiz-item">
+      <div class="quiz-type-badge badge-teoria">Teórica</div>
+      <div class="quiz-q">6. La innovación disruptiva (Christensen, 1997) se caracteriza por:</div>
+      <label class="quiz-option" onclick="selectQ('qi6','a')">a) Comenzar con un producto premium de alta calidad que atrae a los mejores clientes desde el inicio.</label>
+      <label class="quiz-option" onclick="selectQ('qi6','b')">b) Iniciar en un segmento ignorado por los líderes (simple, barato o menor calidad) y mejorar progresivamente hasta desplazar a los establecidos.</label>
+      <label class="quiz-option" onclick="selectQ('qi6','c')">c) Ser siempre de naturaleza tecnológica y requerir grandes inversiones en I+D desde el inicio.</label>
+      <label class="quiz-option" onclick="selectQ('qi6','d')">d) Surgir exclusivamente de grandes corporaciones con presupuestos de investigación elevados.</label>
+      <div class="feedback-box" id="qi6-fb"></div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="quiz-item">
+      <div class="quiz-type-badge badge-teoria">Teórica</div>
+      <div class="quiz-q">7. ¿Cuál es el orden correcto de las cinco etapas del Design Thinking según el modelo de la Universidad de Stanford?</div>
+      <label class="quiz-option" onclick="selectQ('qi7','a')">a) Idear → Empatizar → Definir → Testear → Prototipar.</label>
+      <label class="quiz-option" onclick="selectQ('qi7','b')">b) Empatizar → Definir → Idear → Prototipar → Testear.</label>
+      <label class="quiz-option" onclick="selectQ('qi7','c')">c) Definir → Prototipar → Idear → Empatizar → Testear.</label>
+      <label class="quiz-option" onclick="selectQ('qi7','d')">d) Prototipar → Testear → Empatizar → Definir → Idear.</label>
+      <div class="feedback-box" id="qi7-fb"></div>
+    </div>
+
+    <!-- Q8 ANÁLISIS -->
+    <div class="quiz-item">
+      <div class="quiz-type-badge badge-analisis">Análisis</div>
+      <div class="quiz-q">8. <strong>Caso:</strong> Una firma contable tradicional agrega a su servicio de declaraciones un dashboard digital mensual que muestra al cliente sus indicadores financieros (liquidez, endeudamiento, utilidades) de forma visual y fácil de entender. Antes enviaban solo un estado de cuenta en PDF. ¿Qué tipo de innovación es esta y por qué?</div>
+      <label class="quiz-option" onclick="selectQ('qi8','a')">a) Innovación radical, porque implica un cambio tecnológico de gran magnitud que destruye el modelo anterior.</label>
+      <label class="quiz-option" onclick="selectQ('qi8','b')">b) Innovación de producto incremental: añaden un servicio nuevo (dashboard) que mejora significativamente la experiencia del cliente sin reemplazar el modelo de negocio completo.</label>
+      <label class="quiz-option" onclick="selectQ('qi8','c')">c) Invención, porque el dashboard no existía antes en el mercado local.</label>
+      <label class="quiz-option" onclick="selectQ('qi8','d')">d) Innovación organizacional, porque cambia la estructura interna de la firma.</label>
+      <div class="feedback-box" id="qi8-fb"></div>
+    </div>
+
+    <!-- Q9 ANÁLISIS -->
+    <div class="quiz-item">
+      <div class="quiz-type-badge badge-analisis">Análisis</div>
+      <div class="quiz-q">9. <strong>Caso:</strong> Una aplicación móvil de microcréditos en Ecuador aprobaba préstamos de hasta $500 en 5 minutos, sin sucursal física, solo con cédula y selfie. Los bancos tradicionales ignoraron este segmento porque los montos eran "pequeños e insignificantes". Con el tiempo, la app ganó millones de usuarios. ¿Cuál concepto de innovación describe mejor este caso?</div>
+      <label class="quiz-option" onclick="selectQ('qi9','a')">a) Innovación organizacional, porque la empresa cambió su estructura interna para atender el mercado.</label>
+      <label class="quiz-option" onclick="selectQ('qi9','b')">b) Innovación de mercadotecnia, porque usó publicidad digital en lugar de publicidad tradicional.</label>
+      <label class="quiz-option" onclick="selectQ('qi9','c')">c) Innovación disruptiva: comenzó en un segmento ignorado (microcréditos de poco monto), simplificó el proceso y gradualmente fue ganando mercado que los bancos tradicionales no atendían.</label>
+      <label class="quiz-option" onclick="selectQ('qi9','d')">d) Innovación incremental, porque el crédito ya existía y solo mejoró el proceso de solicitud.</label>
+      <div class="feedback-box" id="qi9-fb"></div>
+    </div>
+
+    <!-- Q10 ANÁLISIS -->
+    <div class="quiz-item">
+      <div class="quiz-type-badge badge-analisis">Análisis</div>
+      <div class="quiz-q">10. <strong>Caso:</strong> Una empresa líder de software contable en Ecuador llevaba 20 años en el mercado con su versión instalable de escritorio. Su modelo era vender licencias anuales de $800. Una startup lanzó el mismo tipo de software en la nube por $15/mes. La empresa líder no reaccionó porque sus clientes premium seguían prefiriendo el software instalado. Dos años después, la startup tenía más clientes que el líder. ¿Qué concepto explica mejor por qué el líder no reaccionó a tiempo?</div>
+      <label class="quiz-option" onclick="selectQ('qi10','a')">a) Falta de recursos financieros: el líder no tenía capital para desarrollar una versión en la nube.</label>
+      <label class="quiz-option" onclick="selectQ('qi10','b')">b) El dilema del innovador: el líder seguía correctamente las prácticas de gestión (atendía a sus mejores clientes), lo que lo volvió ciego ante la disrupción que venía desde un segmento que consideraba poco importante.</label>
+      <label class="quiz-option" onclick="selectQ('qi10','c')">c) Falta de creatividad: los directivos no eran innovadores por naturaleza.</label>
+      <label class="quiz-option" onclick="selectQ('qi10','d')">d) El modelo lineal de innovación: la empresa dependía solo de su I+D interno y no miraba al mercado.</label>
+      <div class="feedback-box" id="qi10-fb"></div>
+    </div>
+
+    <div style="margin-top:20px;">
+      <button class="btn-primary" onclick="verificarQuiz()">✅ Verificar respuestas</button>
+      <button class="btn-secondary" onclick="reiniciarQuiz()">🔄 Reiniciar</button>
+    </div>
+    <div class="score-section" id="q-score">
+      <div class="score-number" id="q-score-num"></div>
+      <div class="score-pct" id="q-score-pct"></div>
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="q-bar" style="width:0%"></div></div>
+      <div class="score-msg" id="q-score-msg"></div>
+    </div>
+  </div>
+
+  <!-- IA -->
+  <div id="tab-ia" class="tab-panel">
+    <h2>8. Actividad con Inteligencia Artificial</h2>
+    <div class="ai-card">
+      <h3>🤖 Actividad: "Auditoría de Innovación Sectorial"</h3>
+      <p>En esta actividad usarás la IA para analizar si un sector específico ha sido innovado, está siendo disrumpido o tiene oportunidades de innovación no aprovechadas. Luego evaluarás críticamente la respuesta de la IA aplicando los conceptos aprendidos esta semana.</p>
+
+      <h3>Herramienta recomendada</h3>
+      <p>👉 <strong>Claude en <a href="https://claude.ai" target="_blank">claude.ai</a></strong> (Anthropic) — Acceso gratuito. Alternativas: ChatGPT (chat.openai.com) o Gemini (gemini.google.com).</p>
+
+      <h3>Prompt exacto para usar con la IA</h3>
+      <div class="prompt-box">Actúa como un experto en innovación empresarial con conocimiento del contexto ecuatoriano.
+
+Quiero que analices el sector de servicios contables y de auditoría en Ecuador desde la perspectiva de la innovación. Por favor desarrolla:
+
+1. ¿Qué tipo de innovaciones (producto, proceso, mercadotecnia, organizacional) han ocurrido en este sector en los últimos 10 años en Ecuador?
+
+2. ¿Existen fuerzas disruptivas que amenacen el modelo tradicional de la firma contable? ¿Cuáles?
+
+3. ¿Qué oportunidades de innovación identifica que aún no están siendo aprovechadas en Ecuador?
+
+4. ¿Cuál crees que es la innovación más urgente que un contador recién graduado podría implementar en su propio ejercicio profesional?
+
+Usa ejemplos concretos del contexto ecuatoriano cuando sea posible.</div>
+
+      <h3>¿Qué hacer con la respuesta?</h3>
+      <div class="step-item"><div class="step-num">1</div><div><strong>Clasifica:</strong> Por cada innovación que mencione la IA, identifica a qué tipo corresponde según el Manual de Oslo (producto, proceso, mercadotecnia u organizacional) y si es incremental, radical o disruptiva.</div></div>
+      <div class="step-item"><div class="step-num">2</div><div><strong>Verifica:</strong> ¿Alguna de las "innovaciones" mencionadas es en realidad solo una invención no implementada, o solo creatividad sin aplicación? Señálalo con argumentos del material de esta semana.</div></div>
+      <div class="step-item"><div class="step-num">3</div><div><strong>Cuestiona:</strong> Escribe a la IA: "¿Cuál de estas innovaciones podría volverse disruptiva para las grandes firmas de auditoría en Ecuador en los próximos 5 años, y por qué no lo han visto venir?" Analiza la respuesta.</div></div>
+      <div class="step-item"><div class="step-num">4</div><div><strong>Propón:</strong> Redacta tu propia propuesta de innovación (mínimo 150 palabras) para el sector contable en Ecuador, aplicando Design Thinking: empatiza con el cliente, define el problema real, y propone una solución concreta.</div></div>
+
+      <h3>Criterio de evaluación</h3>
+      <table>
+        <tr><th>✅ Pensamiento Crítico</th><th>❌ Copia Simple</th></tr>
+        <tr><td>Clasifica correctamente las innovaciones usando los tipos del Manual de Oslo</td><td>Lista la respuesta de la IA sin categorizar nada</td></tr>
+        <tr><td>Identifica si alguna idea de la IA no cumple los criterios de innovación (sin implementación)</td><td>Acepta todo como innovación sin cuestionarlo</td></tr>
+        <tr><td>Aplica Design Thinking con los 5 pasos para su propuesta propia</td><td>Describe una "buena idea" sin proceso ni estructura</td></tr>
+        <tr><td>Conecta la respuesta de la IA con el dilema del innovador de Christensen</td><td>No referencia ningún concepto del curso en su análisis</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- REFLEXIÓN -->
+  <div id="tab-reflexion" class="tab-panel">
+    <h2>9. Reflexión Personal</h2>
+    <p>Esta sección conecta la innovación con tu vida cotidiana. No hay respuestas correctas. Solo hay respuestas honestas. Tómate el tiempo necesario.</p>
+
+    <div class="reflection-q">
+      <strong>Pregunta 1 — Tu innovación cotidiana invisible</strong>
+      Piensa en tu rutina diaria: ¿alguna vez has hecho algo de una manera diferente a como te lo enseñaron porque la forma original no funcionaba bien para ti? Eso fue innovación. ¿Qué fue? ¿Cómo te sentiste cuando funcionó? ¿Le contaste a alguien?
+    </div>
+
+    <div class="reflection-q">
+      <strong>Pregunta 2 — El miedo a "hacerlo mal"</strong>
+      Una de las mayores barreras para innovar es el miedo al ridículo o al error. Stephen Covey en "Los 7 Hábitos" habla de actuar desde el círculo de influencia, no desde el de preocupación. ¿En qué área de tu vida profesional o académica sientes que podrías hacer algo diferente, pero el miedo a equivocarte te frena? ¿Qué pasaría en el peor de los casos?
+    </div>
+
+    <div class="reflection-q">
+      <strong>Pregunta 3 — Disrupción en tu entorno personal</strong>
+      Christensen mostró que la disrupción llega silenciosa. ¿Ha llegado alguna tecnología o cambio externo que haya transformado algún aspecto de tu vida o la de tu familia de manera que no esperabas? (Puede ser el comercio electrónico, las plataformas de streaming, el trabajo remoto, las aplicaciones bancarias.) ¿Cómo te adaptaste?
+    </div>
+
+    <div class="reflection-q">
+      <strong>Pregunta 4 — ¿Qué cosa que haces hoy podría ser reemplazada mañana?</strong>
+      Jack Canfield enseña que el éxito requiere honestidad radical con uno mismo. Si piensas en tu futuro rol como contador o auditor: ¿qué parte de ese trabajo crees que podría hacer una máquina en 10 años? ¿Qué parte crees que nunca podrá reemplazarte? ¿Qué te dice eso sobre cómo deberías prepararte?
+    </div>
+
+    <div class="reflection-q">
+      <strong>Pregunta 5 — Innovar en tu forma de estudiar</strong>
+      El Design Thinking dice: empatiza con el usuario, define el problema, idea soluciones. Si aplicaras este proceso a tu propia experiencia de estudiar, ¿cuál sería el "problema real" que enfrentas como estudiante? ¿No es el tiempo, el dinero o la motivación? ¿Qué solución innovadora podrías probar esta semana?
+    </div>
+
+    <div class="reflection-q">
+      <strong>Pregunta 6 — Tu zona de confort y la innovación</strong>
+      La innovación, por definición, requiere hacer algo diferente. Eso implica salir de la zona de confort. ¿Cuál es la zona de confort que más te cuesta abandonar en tu vida? ¿Tiene relación con cómo estudias, cómo te relacionas, cómo enfrentas lo desconocido? ¿Cómo la PNL (Programación Neurolingüística) podría ayudarte a reformular tu narrativa interna sobre el cambio?
+    </div>
+
+    <div class="key-idea">
+      <strong>Para llevar</strong>
+      La innovación no es solo un concepto empresarial. Es una postura ante la vida: la disposición a cuestionar lo que "siempre se ha hecho así" y a buscar una forma mejor. Cada vez que dices "¿por qué no podría hacerse de otra manera?", estás innovando en tu mente. El siguiente paso es actuar sobre esa pregunta.
+    </div>
+  </div>
+
+  <!-- BIBLIOGRAFÍA -->
+  <div id="tab-biblio" class="tab-panel">
+    <h2>10. Bibliografía</h2>
+
+    <div class="ref-card">
+      <div class="ref-author">OCDE & Eurostat. (2018).</div>
+      <div class="ref-title">Oslo Manual 2018: Guidelines for Collecting, Reporting and Using Data on Innovation (4th ed.).</div>
+      <div class="ref-source">OECD Publishing. https://doi.org/10.1787/9789264304604-en</div>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-author">Christensen, C. M. (1997).</div>
+      <div class="ref-title">The innovator's dilemma: When new technologies cause great firms to fail.</div>
+      <div class="ref-source">Harvard Business School Press.</div>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-author">Drucker, P. F. (1985).</div>
+      <div class="ref-title">Innovation and entrepreneurship: Practice and principles.</div>
+      <div class="ref-source">Harper & Row.</div>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-author">Chesbrough, H. W. (2003).</div>
+      <div class="ref-title">Open innovation: The new imperative for creating and profiting from technology.</div>
+      <div class="ref-source">Harvard Business School Press.</div>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-author">Etzkowitz, H., & Leydesdorff, L. (1995).</div>
+      <div class="ref-title">The Triple Helix — University-Industry-Government relations: A laboratory for knowledge based economic development.</div>
+      <div class="ref-source">EASST Review, 14(1), 14–19.</div>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-author">Brown, T. (2009).</div>
+      <div class="ref-title">Change by design: How design thinking transforms organizations and inspires innovation.</div>
+      <div class="ref-source">HarperBusiness.</div>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-author">Tidd, J., & Bessant, J. (2018).</div>
+      <div class="ref-title">Managing innovation: Integrating technological, market and organizational change (6th ed.).</div>
+      <div class="ref-source">Wiley.</div>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-author">Asamblea Nacional del Ecuador. (2020).</div>
+      <div class="ref-title">Ley Orgánica de Emprendimiento e Innovación.</div>
+      <div class="ref-source">Registro Oficial Suplemento No. 151, 28 de febrero de 2020.</div>
+    </div>
+
+    <div class="ref-note">
+      📌 <strong>Nota:</strong> Se recomienda verificar cada referencia en Google Scholar (<a href="https://scholar.google.com" target="_blank">scholar.google.com</a>) o en el repositorio institucional antes de citar en trabajos académicos.
+    </div>
+  </div>
+
+</div><!-- end content-area -->
+
+<script>
+// ===== TABS =====
+function showTab(id) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+
+// ===== EJERCICIO =====
+const ejAnswers = {};
+const ejCorrects = {
+  ei1:'b', ei2:'b', ei3:'c', ei4:'c',
+  ei5:'c', ei6:'c', ei7:'b', ei8:'c'
+};
+const ejFeedbacks = {
+  ei1: {
+    ok: '✅ Correcto. Cambiar el método interno de revisión (de muestra al 100% con IA) sin cambiar el servicio externo es innovación de proceso.',
+    nok: '❌ Incorrecto. El servicio de auditoría no cambia (no es producto), la estructura tampoco (no es organizacional), ni el modelo de comercialización (no es mercadotecnia). Es el proceso interno el que se transforma: innovación de proceso.'
+  },
+  ei2: {
+    ok: '✅ Correcto. Cambiar la forma de cobrar (de por hora a suscripción) y de posicionar el servicio es innovación de mercadotecnia: nuevo método de comercialización.',
+    nok: '❌ Incorrecto. El servicio en sí no cambia sustancialmente (no es producto). Lo que cambia es el modelo de precio y entrega al cliente: eso es innovación de mercadotecnia según el Manual de Oslo.'
+  },
+  ei3: {
+    ok: '✅ Correcto. La facturación electrónica fue un cambio fundamental que eliminó el sistema anterior y creó un nuevo ecosistema: innovación radical de proceso a nivel sistémico.',
+    nok: '❌ Incorrecto. No fue incremental (no mejoró el papel; lo eliminó). No fue de mercadotecnia. No fue organizacional a nivel de empresa. Fue radical: destruyó el sistema previo y creó uno completamente nuevo.'
+  },
+  ei4: {
+    ok: '✅ Correcto. El Manual de Oslo exige que la innovación sea implementada y llegue al usuario. Una idea que no se ejecuta no es innovación; puede ser creatividad o invención.',
+    nok: '❌ Incorrecto. La OCDE es explícita: la innovación requiere implementación. Una idea en el cajón, por muy creativa que sea, es solo creatividad. La patente tampoco convierte algo en innovación si nadie la usa.'
+  },
+  ei5: {
+    ok: '✅ Correcto. Netflix comenzó en un segmento ignorado (DVD por correo, incómodo para los clientes premium de Blockbuster), mejoró progresivamente y desplazó al líder. Es el patrón clásico de innovación disruptiva.',
+    nok: '❌ Incorrecto. No es incremental (la mejora fue de ruptura). No es organizacional (cambió la industria, no solo la estructura interna). No es de mercadotecnia (fue un nuevo modelo de negocio completo). Es disruptiva: el patrón de Christensen.'
+  },
+  ei6: {
+    ok: '✅ Correcto. Cambiar la estructura interna de trabajo (de jerarquías a equipos autodirigidos) es innovación organizacional: nuevo método de organización del trabajo.',
+    nok: '❌ Incorrecto. No cambia el servicio (no es producto), ni cómo se vende (no es mercadotecnia), ni las herramientas técnicas del proceso (no es proceso). El cambio es en la estructura organizativa interna: innovación organizacional.'
+  },
+  ei7: {
+    ok: '✅ Correcto. El Design Thinking (Stanford d.school / IDEO) centra todo su proceso en el usuario: comienza con empatía (entender al usuario) y termina con testeo con usuarios reales.',
+    nok: '❌ Incorrecto. El Design Thinking no parte de la tecnología, los ingresos ni el laboratorio. Parte del usuario: sus necesidades, emociones y comportamientos son el punto de partida de todo el proceso de innovación.'
+  },
+  ei8: {
+    ok: '✅ Correcto. Christensen demostró que los líderes no fracasan por incompetencia: fracasan porque siguen correctamente las prácticas establecidas (atienden a sus mejores clientes), lo que los vuelve ciegos ante los disruptores que atacan desde segmentos ignorados.',
+    nok: '❌ Incorrecto. El dilema del innovador no es falta de recursos ni de creatividad, sino una paradoja de la buena gestión: hacer todo bien para los clientes actuales genera ceguera ante las amenazas que vienen de segmentos que hoy se consideran poco importantes.'
+  }
+};
+
+function selectEj(name, val) {
+  ejAnswers[name] = val;
+  document.querySelectorAll(`#${name}-wrap .opt-btn`).forEach(b => b.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+}
+
+function verificarEjercicio() {
+  const total = Object.keys(ejCorrects).length;
+  if (Object.keys(ejAnswers).length < total) {
+    alert('⚠️ Por favor responde todas las preguntas antes de verificar.');
+    return;
+  }
+  let score = 0;
+  Object.keys(ejCorrects).forEach(name => {
+    const correct = ejCorrects[name];
+    const chosen = ejAnswers[name];
+    const isOk = chosen === correct;
+    if (isOk) score++;
+    document.querySelectorAll(`#${name}-wrap .opt-btn`).forEach(b => {
+      b.disabled = true;
+      const val = b.getAttribute('onclick').match(/'([a-d])'\)/)[1];
+      if (val === correct) b.classList.add('correct');
+      else if (val === chosen && !isOk) b.classList.add('incorrect');
+    });
+    const fb = document.getElementById(name + '-fb');
+    fb.textContent = isOk ? ejFeedbacks[name].ok : ejFeedbacks[name].nok;
+    fb.className = 'feedback-box show ' + (isOk ? 'ok' : 'nok');
+  });
+  const pct = Math.round((score / total) * 100);
+  const scoreSection = document.getElementById('ej-score');
+  scoreSection.classList.add('show');
+  document.getElementById('ej-score-num').textContent = score + ' / ' + total;
+  document.getElementById('ej-score-pct').textContent = pct + '%';
+  setTimeout(() => { document.getElementById('ej-bar').style.width = pct + '%'; }, 100);
+  const msgs = [[100,'🏆 ¡Perfecto! Dominas la clasificación de la innovación.'],[80,'🎯 ¡Muy bien! Sólido manejo del tema.'],[60,'📘 Bien encaminado. Refuerza los tipos de innovación.'],[40,'⚠️ Revisa los cuatro tipos del Manual de Oslo y el concepto de disrupción.'],[0,'📖 Vuelve a leer el material. ¡Puedes lograrlo!']];
+  const msg = msgs.find(m => pct >= m[0]);
+  document.getElementById('ej-score-msg').textContent = msg[1];
+  scoreSection.scrollIntoView({ behavior: 'smooth' });
+}
+
+function reiniciarEjercicio() {
+  Object.keys(ejAnswers).forEach(k => delete ejAnswers[k]);
+  document.querySelectorAll('.exercise-item .opt-btn').forEach(b => { b.classList.remove('selected','correct','incorrect'); b.disabled = false; });
+  document.querySelectorAll('.feedback-box').forEach(f => { f.className = 'feedback-box'; f.textContent = ''; });
+  document.getElementById('ej-score').classList.remove('show');
+  document.getElementById('ej-bar').style.width = '0%';
+}
+
+// ===== CUESTIONARIO =====
+const qAnswers = {};
+const qCorrects = {
+  qi1:'b', qi2:'b', qi3:'b', qi4:'b', qi5:'b',
+  qi6:'b', qi7:'b', qi8:'b', qi9:'c', qi10:'b'
+};
+const qFeedbacks = {
+  qi1: { ok: '✅ Correcto. El Manual de Oslo exige: nuevo/mejorado significativamente, diferir de lo previo, y estar puesto en uso o disponible para usuarios.', nok: '❌ Incorrecto. El Manual de Oslo no exige patente, ni tecnología, ni I+D. Las tres condiciones son: nuevo o mejorado, diferir de lo previo, y estar implementado o disponible.' },
+  qi2: { ok: '✅ Correcto. Invención = crear algo nuevo desde el conocimiento. Innovación = aplicar exitosamente una idea al mercado para generar valor.', nok: '❌ Incorrecto. Drucker y Schumpeter son claros: innovar no es inventar. Es llevar una idea al mercado y generar valor con ella. La patente no es determinante.' },
+  qi3: { ok: '✅ Correcto. El Manual de Oslo (OCDE, 2018) clasifica la innovación en: Producto, Proceso, Mercadotecnia y Organizacional.', nok: '❌ Incorrecto. La clasificación incremental/radical/disruptiva es por grado de ruptura, no la tipología del Manual de Oslo. La tipología oficial es: Producto, Proceso, Mercadotecnia y Organizacional.' },
+  qi4: { ok: '✅ Correcto. Chesbrough (2003) propuso que las empresas deben combinar I+D interno con conocimiento externo y compartir el propio con el ecosistema.', nok: '❌ Incorrecto. Open Innovation es exactamente lo contrario al secreto corporativo: propone abrir las fronteras del conocimiento para innovar más rápido combinando fuentes internas y externas.' },
+  qi5: { ok: '✅ Correcto. La Triple Hélice (Etzkowitz y Leydesdorff) identifica Universidad, Industria y Gobierno como los tres actores cuya interacción genera innovación sostenida.', nok: '❌ Incorrecto. La Triple Hélice no es un modelo de equipo empresarial ni de cadena de valor: es un modelo de ecosistema de innovación nacional que involucra Universidad, Industria y Gobierno.' },
+  qi6: { ok: '✅ Correcto. La innovación disruptiva comienza en un segmento ignorado (simple, barato o de menor calidad percibida) y mejora progresivamente hasta desplazar al líder.', nok: '❌ Incorrecto. La disrupción no empieza con lo premium ni requiere grandes laboratorios. Su característica definitoria es que nace "desde abajo", en segmentos que los líderes desprecian.' },
+  qi7: { ok: '✅ Correcto. El orden de Design Thinking es: Empatizar → Definir → Idear → Prototipar → Testear.', nok: '❌ Incorrecto. El proceso siempre comienza con Empatizar (entender al usuario) y termina con Testear (validar con usuarios reales). No puede empezar por el prototipo ni por la idea.' },
+  qi8: { ok: '✅ Correcto. Añadir un dashboard visual a un servicio existente es una mejora significativa del producto (servicio) sin reemplazar el modelo completo: innovación de producto incremental.', nok: '❌ Incorrecto. No es radical (no destruye el modelo anterior). No es invención (se implementa y llega al cliente). No es organizacional (no cambia la estructura interna). Es innovación de producto, de tipo incremental.' },
+  qi9: { ok: '✅ Correcto. Comenzar en microcréditos (segmento ignorado por los bancos), simplificar el proceso y ganar mercado progresivamente sigue exactamente el patrón de innovación disruptiva de Christensen.', nok: '❌ Incorrecto. No es organizacional (no cambió su estructura interna). No es solo de mercadotecnia (cambió el producto completo). No es incremental si desplaza a los líderes. Es disruptiva: el patrón clásico de Christensen desde abajo.' },
+  qi10: { ok: '✅ Correcto. El dilema del innovador explica exactamente esto: el líder hacía todo bien para sus clientes actuales, lo que lo volvió ciego ante una amenaza que venía de un segmento que consideraba poco rentable.', nok: '❌ Incorrecto. No faltaban recursos ni creatividad. La causa fue el dilema del innovador: las buenas prácticas de gestión (atender a los mejores clientes) generaron ceguera ante el disruptor que atacaba desde abajo.' }
+};
+
+function selectQ(name, val) {
+  qAnswers[name] = val;
+  document.querySelectorAll(`.quiz-item:has(#${name}-fb) .quiz-option`).forEach(o => o.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+}
+
+function verificarQuiz() {
+  const total = Object.keys(qCorrects).length;
+  if (Object.keys(qAnswers).length < total) {
+    alert('⚠️ Por favor responde todas las preguntas antes de verificar.');
+    return;
+  }
+  let score = 0;
+  Object.keys(qCorrects).forEach(name => {
+    const correct = qCorrects[name];
+    const chosen = qAnswers[name];
+    const isOk = chosen === correct;
+    if (isOk) score++;
+    const item = document.getElementById(name + '-fb').closest('.quiz-item');
+    item.querySelectorAll('.quiz-option').forEach(o => {
+      o.style.pointerEvents = 'none';
+      const val = o.getAttribute('onclick').match(/'([a-d])'\)/)[1];
+      if (val === correct) o.classList.add('correct');
+      else if (val === chosen && !isOk) o.classList.add('incorrect');
+    });
+    const fb = document.getElementById(name + '-fb');
+    fb.textContent = isOk ? qFeedbacks[name].ok : qFeedbacks[name].nok;
+    fb.className = 'feedback-box show ' + (isOk ? 'ok' : 'nok');
+  });
+  const pct = Math.round((score / total) * 100);
+  const scoreSection = document.getElementById('q-score');
+  scoreSection.classList.add('show');
+  document.getElementById('q-score-num').textContent = score + ' / ' + total;
+  document.getElementById('q-score-pct').textContent = pct + '%';
+  setTimeout(() => { document.getElementById('q-bar').style.width = pct + '%'; }, 100);
+  const msgs = [[100,'🏆 ¡Excelente! Dominio completo de innovación.'],[80,'🎯 ¡Muy bien! Sólido manejo del tema.'],[60,'📘 Buen avance. Refuerza los tipos y modelos de innovación.'],[40,'⚠️ Revisa el material con calma. Puedes mejorar.'],[0,'📖 Vuelve a las pestañas de contenido antes de reintentar.']];
+  const msg = msgs.find(m => pct >= m[0]);
+  document.getElementById('q-score-msg').textContent = msg[1];
+  scoreSection.scrollIntoView({ behavior: 'smooth' });
+}
+
+function reiniciarQuiz() {
+  Object.keys(qAnswers).forEach(k => delete qAnswers[k]);
+  document.querySelectorAll('.quiz-option').forEach(o => { o.classList.remove('selected','correct','incorrect'); o.style.pointerEvents = ''; });
+  document.querySelectorAll('.feedback-box').forEach(f => { f.className = 'feedback-box'; f.textContent = ''; });
+  document.getElementById('q-score').classList.remove('show');
+  document.getElementById('q-bar').style.width = '0%';
+}
+</script>
+</body>
+</html>

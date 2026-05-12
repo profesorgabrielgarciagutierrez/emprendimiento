@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 1 – Emprendimiento | Emprendimiento e Innovación</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: #f4f6f9;
+    color: #222;
+    min-height: 100vh;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    background: #003366;
+    color: #fff;
+    padding: 18px 28px 14px;
+  }
+  .header-inst {
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 0.82;
+    margin-bottom: 4px;
+  }
+  .header-title {
+    font-family: 'Lora', serif;
+    font-size: 1.45rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .header-meta {
+    margin-top: 6px;
+    font-size: 0.85rem;
+    opacity: 0.78;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .badge {
+    background: rgba(255,255,255,0.18);
+    border-radius: 20px;
+    padding: 2px 10px;
+    font-size: 0.78rem;
+  }
+
+  /* ===== TAB NAV ===== */
+  .tab-nav-wrap {
+    background: #87CEEB;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-bottom: 2px solid #5ba8cc;
+  }
+  .tab-nav {
+    display: inline-flex;
+    padding: 0 8px;
+  }
+  .tab-btn {
+    display: inline-block;
+    padding: 11px 18px;
+    border: none;
+    background: transparent;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.85rem;
+    color: #111;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+  .tab-btn:hover { background: rgba(255,255,255,0.4); }
+  .tab-btn.active {
+    background: #fff;
+    color: #003366;
+    font-weight: 700;
+    border-bottom: 3px solid #003366;
+  }
+
+  /* ===== CONTENT AREA ===== */
+  .content-area {
+    max-width: 960px;
+    margin: 24px auto;
+    padding: 0 18px 40px;
+  }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  h2 {
+    font-family: 'Lora', serif;
+    color: #003366;
+    font-size: 1.4rem;
+    margin-bottom: 14px;
+    border-left: 5px solid #87CEEB;
+    padding-left: 12px;
+  }
+  h3 {
+    font-family: 'Lora', serif;
+    color: #003366;
+    font-size: 1.1rem;
+    margin: 20px 0 8px;
+  }
+  p { line-height: 1.75; margin-bottom: 12px; font-size: 0.97rem; }
+
+  /* ===== CONCEPT BOX ===== */
+  .concept-box {
+    border-left: 5px solid #003366;
+    background: #f0f4fa;
+    padding: 14px 18px;
+    margin: 16px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .concept-box strong { color: #003366; display: block; margin-bottom: 4px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  /* ===== EXAMPLE BOX ===== */
+  .example-box {
+    background: #ddeeff;
+    border: 1px solid #aac8e8;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+  .example-box .ex-label {
+    font-weight: 700;
+    color: #003366;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* ===== KEY IDEA BOX ===== */
+  .key-idea {
+    background: #003366;
+    color: #fff;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 20px 0;
+    font-style: italic;
+  }
+  .key-idea strong { display: block; font-style: normal; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.07em; opacity: 0.75; margin-bottom: 6px; }
+
+  /* ===== TABLES ===== */
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
+  th { background: #003366; color: #fff; padding: 10px 12px; text-align: left; }
+  td { padding: 9px 12px; border-bottom: 1px solid #dde3ea; }
+  tr:nth-child(even) td { background: #f0f4fa; }
+
+  /* ===== TIMELINE ===== */
+  .timeline { position: relative; padding-left: 28px; margin: 16px 0; }
+  .timeline::before { content:''; position:absolute; left:8px; top:0; bottom:0; width:2px; background:#87CEEB; }
+  .tl-item { position: relative; margin-bottom: 18px; }
+  .tl-dot { position:absolute; left:-24px; top:4px; width:12px; height:12px; border-radius:50%; background:#003366; border:2px solid #87CEEB; }
+  .tl-year { font-weight: 700; color: #003366; font-size: 0.85rem; }
+  .tl-desc { font-size: 0.9rem; line-height: 1.6; }
+
+  /* ===== LIST STYLES ===== */
+  ul.check-list { list-style: none; padding: 0; }
+  ul.check-list li { padding: 5px 0 5px 26px; position: relative; line-height: 1.6; font-size: 0.95rem; }
+  ul.check-list li::before { content:'✔'; position:absolute; left:0; color:#003366; font-size:0.9rem; }
+
+  /* ===== INTERACTIVE EXERCISE ===== */
+  .exercise-item {
+    background: #fff;
+    border: 1px solid #d0dae8;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 14px;
+  }
+  .exercise-item .q-label {
+    font-weight: 700;
+    color: #003366;
+    margin-bottom: 10px;
+    font-size: 0.97rem;
+  }
+  .options-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+  .opt-btn {
+    padding: 8px 14px;
+    border: 2px solid #aac8e8;
+    border-radius: 8px;
+    background: #f0f7ff;
+    cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.88rem;
+    transition: all 0.2s;
+    text-align: left;
+  }
+  .opt-btn:hover { background: #ddeeff; border-color: #003366; }
+  .opt-btn.selected { background: #003366; color: #fff; border-color: #003366; }
+  .opt-btn.correct { background: #d4edda; border-color: #28a745; color: #155724; }
+  .opt-btn.incorrect { background: #f8d7da; border-color: #dc3545; color: #721c24; }
+
+  .feedback-box {
+    margin-top: 10px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    display: none;
+  }
+  .feedback-box.show { display: block; }
+  .feedback-box.ok { background: #d4edda; color: #155724; border-left: 4px solid #28a745; }
+  .feedback-box.nok { background: #f8d7da; color: #721c24; border-left: 4px solid #dc3545; }
+
+  /* ===== QUIZ ===== */
+  .quiz-item {
+    background: #fff;
+    border: 1px solid #d0dae8;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+  }
+  .quiz-q { font-weight: 600; margin-bottom: 12px; line-height: 1.5; font-size: 0.97rem; }
+  .quiz-type-badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .badge-teoria { background: #e8f0fe; color: #003366; }
+  .badge-analisis { background: #fff3cd; color: #7a5c00; }
+  .quiz-option {
+    display: block;
+    padding: 9px 14px;
+    margin: 6px 0;
+    border: 2px solid #dde3ea;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.93rem;
+  }
+  .quiz-option:hover { border-color: #003366; background: #f0f7ff; }
+  .quiz-option.selected { border-color: #003366; background: #003366; color: #fff; }
+  .quiz-option.correct { background: #d4edda; border-color: #28a745; color: #155724; }
+  .quiz-option.incorrect { background: #f8d7da; border-color: #dc3545; color: #721c24; }
+
+  /* ===== SCORE SECTION ===== */
+  .score-section {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    margin-top: 20px;
+    border: 1px solid #d0dae8;
+    display: none;
+  }
+  .score-section.show { display: block; }
+  .score-number { font-family:'Lora',serif; font-size: 2.5rem; color: #003366; font-weight: 700; }
+  .score-pct { font-size: 1.1rem; color: #555; margin-top: 4px; }
+  .progress-bar-wrap { background: #e0e7ef; border-radius: 20px; height: 18px; margin: 14px 0; overflow: hidden; }
+  .progress-bar-fill { height: 100%; border-radius: 20px; background: linear-gradient(90deg,#003366,#5ba8cc); transition: width 1s ease; }
+  .score-msg { font-size: 1rem; margin-top: 10px; font-style: italic; }
+
+  /* ===== BUTTONS ===== */
+  .btn-primary {
+    background: #003366;
+    color: #fff;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 18px;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: #00509e; }
+  .btn-secondary {
+    background: #e0e7ef;
+    color: #003366;
+    border: 2px solid #003366;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 10px;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { background: #003366; color: #fff; }
+
+  /* ===== AI ACTIVITY ===== */
+  .ai-card { background: #fff; border: 1px solid #d0dae8; border-radius: 12px; padding: 22px; margin-bottom: 16px; }
+  .ai-card h3 { margin-top: 0; }
+  .prompt-box {
+    background: #0d1117;
+    color: #c9d1d9;
+    border-radius: 8px;
+    padding: 16px;
+    font-family: monospace;
+    font-size: 0.88rem;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    margin: 10px 0;
+  }
+  .step-item { display: flex; gap: 14px; margin-bottom: 14px; }
+  .step-num { min-width:32px; height:32px; background:#003366; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.9rem; }
+
+  /* ===== REFLECTION ===== */
+  .reflection-q {
+    background: #fff;
+    border-left: 5px solid #87CEEB;
+    border-radius: 0 10px 10px 0;
+    padding: 16px 20px;
+    margin-bottom: 14px;
+    font-style: italic;
+    font-size: 0.97rem;
+    line-height: 1.7;
+  }
+  .reflection-q strong { display:block; font-style:normal; color:#003366; margin-bottom:4px; font-size:0.82rem; text-transform:uppercase; }
+
+  /* ===== BIBLIOGRAPHY ===== */
+  .ref-card { background:#fff; border:1px solid #d0dae8; border-radius:10px; padding:16px 20px; margin-bottom:12px; }
+  .ref-card .ref-author { font-weight:700; color:#003366; margin-bottom:2px; font-size:0.92rem; }
+  .ref-card .ref-title { font-style:italic; color:#222; margin-bottom:4px; font-size:0.92rem; }
+  .ref-card .ref-source { color:#555; font-size:0.87rem; }
+  .ref-note { background:#fff3cd; border:1px solid #ffe082; border-radius:8px; padding:12px 16px; margin-top:16px; font-size:0.87rem; }
+
+  /* ===== RESPONSIVE ===== */
+  @media(max-width:600px){
+    .header-title { font-size: 1.15rem; }
+    .content-area { padding: 0 10px 30px; }
+    .tab-btn { padding: 10px 12px; font-size: 0.8rem; }
+    .options-grid { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="header-inst">Universidad de Guayaquil &nbsp;|&nbsp; Facultad de Ciencias Administrativas &nbsp;|&nbsp; Carrera en Contabilidad y Auditoría</div>
+  <div class="header-title">Emprendimiento e Innovación</div>
+  <div class="header-meta">
+    <span class="badge">Unidad 1</span>
+    <span class="badge">Semana 1</span>
+    <span class="badge">Teoría y Concepto del Emprendimiento</span>
+  </div>
+</header>
+
+<!-- ===== TABS NAV ===== -->
+<div class="tab-nav-wrap">
+  <nav class="tab-nav" role="tablist">
+    <button class="tab-btn active" onclick="showTab('repaso')" role="tab">📋 Repaso</button>
+    <button class="tab-btn" onclick="showTab('t1')" role="tab">1. ¿Qué es Emprender?</button>
+    <button class="tab-btn" onclick="showTab('t2')" role="tab">2. Historia & Pensadores</button>
+    <button class="tab-btn" onclick="showTab('t3')" role="tab">3. Tipos de Emprendedor</button>
+    <button class="tab-btn" onclick="showTab('t4')" role="tab">4. El Proceso Emprendedor</button>
+    <button class="tab-btn" onclick="showTab('t5')" role="tab">5. Emprendimiento en Ecuador</button>
+    <button class="tab-btn" onclick="showTab('ejercicio')" role="tab">6. Ejercicio Interactivo</button>
+    <button class="tab-btn" onclick="showTab('cuestionario')" role="tab">7. Cuestionario</button>
+    <button class="tab-btn" onclick="showTab('ia')" role="tab">8. Actividad con IA</button>
+    <button class="tab-btn" onclick="showTab('reflexion')" role="tab">9. Reflexión Personal</button>
+    <button class="tab-btn" onclick="showTab('biblio')" role="tab">10. Bibliografía</button>
+  </nav>
+</div>
+
+<!-- ===== CONTENT AREA ===== -->
+<div class="content-area">
+
+  <!-- REPASO -->
+  <div id="tab-repaso" class="tab-panel active">
+    <h2>📋 Introducción al Curso</h2>
+    <p>Bienvenido a la primera semana de <strong>Emprendimiento e Innovación</strong>. Esta materia forma parte de tu formación como Contador Auditor en la Universidad de Guayaquil. En este primer encuentro virtual no hay repaso previo, ya que es el punto de partida del curso. Lo que sí haremos es establecer el contexto general de por qué esta materia es fundamental para tu vida profesional y personal.</p>
+
+    <div class="concept-box">
+      <strong>¿Por qué un Contador Auditor necesita saber de emprendimiento?</strong>
+      Porque el profesional contable del siglo XXI no solo registra transacciones: analiza viabilidad financiera de negocios, audita startups, asesora a emprendedores sobre estructura societaria, tributación y control interno, y puede fundar su propio estudio contable. Emprender es una competencia transversal, no un lujo.
+    </div>
+
+    <p>Esta semana nos centraremos exclusivamente en el <strong>emprendimiento</strong>: su definición, historia, tipos, proceso y realidad ecuatoriana. La semana siguiente abordaremos en profundidad el concepto de <strong>innovación</strong>, que aunque está relacionado, merece un análisis independiente y detallado.</p>
+
+    <div class="key-idea">
+      <strong>Idea que guía esta semana</strong>
+      "El emprendimiento no es un talento que se nace con él; es una disciplina que se aprende, una actitud que se cultiva y un proceso que se puede diseñar." — Peter F. Drucker
+    </div>
+
+    <h3>Estructura de la Semana 1</h3>
+    <ul class="check-list">
+      <li>Definición profunda del concepto de emprendimiento desde múltiples perspectivas teóricas.</li>
+      <li>Evolución histórica del pensamiento emprendedor: de Cantillon a Blank.</li>
+      <li>Tipología del emprendedor: quién emprende, cómo y para qué.</li>
+      <li>El proceso emprendedor paso a paso: desde la idea hasta la tracción.</li>
+      <li>El ecosistema emprendedor ecuatoriano: datos reales y referencias locales.</li>
+    </ul>
+  </div>
+
+  <!-- TEMA 1 -->
+  <div id="tab-t1" class="tab-panel">
+    <h2>1. ¿Qué significa realmente emprender?</h2>
+
+    <p>La palabra "emprender" proviene del latín <em>in prehendere</em>, que significa "tomar entre manos" o "asumir una acción hacia adelante". En francés medieval, <em>entreprendre</em> designaba a quien asumía riesgos en nombre de otros. Esta raíz lingüística ya revela su esencia: <strong>alguien que actúa con intención frente a la incertidumbre</strong>.</p>
+
+    <div class="concept-box">
+      <strong>Definición académica central</strong>
+      El emprendimiento es el proceso mediante el cual un individuo o grupo identifica oportunidades de valor en un contexto de incertidumbre, moviliza recursos (humanos, financieros, relacionales) y crea una nueva organización o actividad con el fin de generar valor económico, social o cultural (Shane & Venkataraman, 2000).
+    </div>
+
+    <p>Esta definición contiene cuatro elementos que debemos analizar por separado, porque cada uno es relevante para tu formación:</p>
+
+    <h3>Los cuatro pilares del emprendimiento</h3>
+    <table>
+      <tr><th>Elemento</th><th>Qué significa</th><th>Por qué importa</th></tr>
+      <tr><td><strong>Oportunidad</strong></td><td>Una brecha entre lo que existe y lo que la gente necesita o desea</td><td>Sin oportunidad real, el negocio no tiene mercado</td></tr>
+      <tr><td><strong>Incertidumbre</strong></td><td>No existe garantía de éxito; el futuro es incierto por naturaleza</td><td>El emprendedor asume riesgo calculado, no impulsivo</td></tr>
+      <tr><td><strong>Recursos</strong></td><td>Capital, personas, conocimiento, redes de contacto</td><td>La escasez de recursos exige creatividad y gestión eficiente</td></tr>
+      <tr><td><strong>Valor</strong></td><td>Beneficio tangible o intangible para alguien (cliente, comunidad, mercado)</td><td>Sin valor entregado, no hay negocio sostenible</td></tr>
+    </table>
+
+    <h3>Emprendimiento ≠ crear una empresa</h3>
+    <p>Un error común es creer que emprender es sinónimo de fundar una empresa formal. Si bien crear una empresa es la forma más visible, el emprendimiento también incluye:</p>
+    <ul class="check-list">
+      <li><strong>Emprendimiento interno (intraemprendimiento):</strong> innovar dentro de una organización existente.</li>
+      <li><strong>Emprendimiento social:</strong> crear soluciones a problemas sociales con o sin ánimo de lucro.</li>
+      <li><strong>Autoempleo calificado:</strong> un contador que abre su propio estudio ejerce una forma de emprendimiento.</li>
+      <li><strong>Emprendimiento digital:</strong> servicios o productos entregados por canales virtuales.</li>
+    </ul>
+
+    <div class="example-box">
+      <div class="ex-label">📍 Ejemplo ecuatoriano</div>
+      <p><strong>Datil</strong> es una startup ecuatoriana que desarrolló un sistema de facturación electrónica y gestión contable para pequeñas empresas en Ecuador. Sus fundadores —contadores y desarrolladores— identificaron que el cumplimiento tributario con el SRI era un dolor real para miles de negocios. No crearon una empresa tradicional: crearon una solución tecnológica a un problema contable. Hoy Datil es una referencia del ecosistema tech de la región. Esto es emprendimiento en su forma más pura: oportunidad + incertidumbre + recursos + valor.</p>
+    </div>
+
+    <h3>La pregunta que distingue al emprendedor</h3>
+    <p>El economista Israel Kirzner argumentaba que la diferencia entre alguien que emprende y alguien que no radica en la <strong>vigilancia empresarial</strong> (<em>entrepreneurial alertness</em>): la capacidad de ver oportunidades que otros no ven porque no estaban buscando. No se trata de tener más información, sino de procesar la misma información de manera diferente.</p>
+
+    <div class="concept-box">
+      <strong>Emprendimiento según Howard Stevenson (Harvard)</strong>
+      "El emprendimiento es la persecución de una oportunidad sin importar los recursos que uno controla actualmente." Esta definición es especialmente útil para el contexto latinoamericano, donde la escasez de recursos no debe ser excusa para no emprender.
+    </div>
+
+    <div class="key-idea">
+      <strong>Idea Clave</strong>
+      Emprender no es tener dinero, una idea brillante ni un título universitario. Es desarrollar la actitud de ver el mundo no como está, sino como podría estar, y actuar para hacer esa diferencia.
+    </div>
+  </div>
+
+  <!-- TEMA 2 -->
+  <div id="tab-t2" class="tab-panel">
+    <h2>2. Historia del Pensamiento Emprendedor</h2>
+    <p>El emprendimiento como fenómeno económico y social es tan antiguo como la humanidad, pero su estudio sistemático comenzó hace aproximadamente tres siglos. Conocer esta historia te permite entender que las teorías que estudias no son arbitrarias: cada una respondió a los problemas y preguntas de su época.</p>
+
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">1755 — Richard Cantillon</div>
+        <div class="tl-desc">Economista irlandés-francés, considerado el padre del concepto de emprendedor. En su obra <em>Essai sur la Nature du Commerce en Général</em> definió al entrepreneur como el agente que compra factores de producción a precios conocidos para venderlos a precios inciertos. <strong>El emprendedor es quien asume el riesgo económico.</strong></div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">1803 — Jean-Baptiste Say</div>
+        <div class="tl-desc">Economista francés que amplió el concepto: el empresario no solo asume riesgo, sino que <strong>coordina factores de producción</strong> (tierra, trabajo, capital) para crear valor. Say introdujo la idea del emprendedor como coordinador, figura distinta al capitalista que solo aporta dinero.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">1911–1950 — Joseph Schumpeter</div>
+        <div class="tl-desc">Economista austriaco, el pensador más influyente en emprendimiento del siglo XX. Su concepto de <strong>"destrucción creativa"</strong> (<em>creative destruction</em>) sostiene que el progreso económico avanza cuando innovadores destruyen el orden establecido para crear algo nuevo. Para Schumpeter, el emprendedor es un agente de cambio, no solo alguien que abre un negocio.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">1985 — Peter Drucker</div>
+        <div class="tl-desc">Autor de <em>Innovation and Entrepreneurship</em>, Drucker desmitificó al emprendedor como genio solitario o aventurero. Demostró que <strong>el emprendimiento es una disciplina sistemática que puede aprenderse y practicarse</strong>. Introdujo el concepto de innovación como herramienta gerencial deliberada.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">1988 — William Bygrave & Jeffry Timmons</div>
+        <div class="tl-desc">Desarrollaron el primer <strong>modelo de proceso emprendedor</strong> en academia: el Timmons Model, que relaciona oportunidad, equipo y recursos como los tres vértices que el emprendedor debe equilibrar. Fue la base de muchos programas universitarios modernos de entrepreneurship.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2000 — Shane & Venkataraman</div>
+        <div class="tl-desc">Publicaron en <em>Academy of Management Review</em> el artículo que estableció el marco dominante de investigación: el emprendimiento como campo de estudio se ocupa de cómo, por quién y con qué efectos se <strong>descubren, evalúan y explotan oportunidades</strong> económicas.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2003–presente — Steve Blank & Eric Ries</div>
+        <div class="tl-desc">Blank desarrolló el <strong>Customer Development</strong>: salir a validar hipótesis con clientes reales antes de construir nada. Ries lo llevó al movimiento <strong>Lean Startup</strong>: construir-medir-aprender en ciclos cortos. Revolucionaron la práctica del emprendimiento tecnológico y hoy son referencia global.</div>
+      </div>
+
+    </div>
+
+    <div class="example-box">
+      <div class="ex-label">📍 Conexión con Contabilidad y Auditoría</div>
+      <p>Cuando Schumpeter hablaba de destrucción creativa, describía exactamente lo que le pasó a la contabilidad manual cuando llegaron los sistemas ERP (Enterprise Resource Planning) como SAP o el propio Datil en Ecuador. Los contadores que se adaptaron y aprendieron nuevas herramientas prosperaron; quienes resistieron quedaron desplazados. Esto no es solo historia empresarial: es tu presente profesional.</p>
+    </div>
+
+    <div class="key-idea">
+      <strong>Idea Clave</strong>
+      Cada teoría refleja su contexto histórico: Cantillon pensaba en el riesgo, Say en la coordinación, Schumpeter en el cambio, Drucker en el método, y Blank en la validación. El emprendimiento moderno integra todas estas perspectivas.
+    </div>
+  </div>
+
+  <!-- TEMA 3 -->
+  <div id="tab-t3" class="tab-panel">
+    <h2>3. Tipos de Emprendedor</h2>
+    <p>No todos los emprendedores son iguales. La literatura académica y la práctica del campo han identificado múltiples perfiles, cada uno con motivaciones, recursos y contextos distintos. Clasificarlos nos permite entender qué tipo de emprendedor eres tú, o qué tipo podrías ser en el futuro.</p>
+
+    <h3>3.1 Clasificación por Motivación</h3>
+    <table>
+      <tr><th>Tipo</th><th>Motivación principal</th><th>Características</th><th>Ejemplo</th></tr>
+      <tr>
+        <td><strong>Emprendedor por oportunidad</strong></td>
+        <td>Ve una brecha de mercado que puede explotar</td>
+        <td>Orientado al crecimiento, búsqueda activa de mercados</td>
+        <td>Joven que crea una app de pagos porque ve que el mercado no tiene solución accesible</td>
+      </tr>
+      <tr>
+        <td><strong>Emprendedor por necesidad</strong></td>
+        <td>No tiene alternativas laborales formales</td>
+        <td>Busca subsistencia inmediata, menor planificación estratégica</td>
+        <td>Persona que vende comida en un puesto callejero tras perder su empleo</td>
+      </tr>
+      <tr>
+        <td><strong>Emprendedor serial</strong></td>
+        <td>Crear y vender empresas como modo de vida</td>
+        <td>Alta tolerancia al riesgo, aprende de cada fracaso</td>
+        <td>Fundador que vende su segunda empresa para financiar la tercera</td>
+      </tr>
+      <tr>
+        <td><strong>Intraemprendedor</strong></td>
+        <td>Innovar dentro de una organización existente</td>
+        <td>Trabaja como empleado pero piensa como emprendedor</td>
+        <td>Contador que propone e implementa un nuevo sistema de auditoría interna</td>
+      </tr>
+    </table>
+
+    <h3>3.2 Clasificación por Impacto</h3>
+    <div class="concept-box">
+      <strong>Emprendedor de Estilo de Vida</strong>
+      Crea un negocio para sostener un modo de vida particular, sin ambición de escalar masivamente. Un fotógrafo freelance o un contador independiente que trabaja desde casa son ejemplos. No hay nada "menor" en este tipo: muchos prefieren la libertad a la escala.
+    </div>
+    <div class="concept-box">
+      <strong>Emprendedor de Alto Impacto (Gazelle)</strong>
+      Negocios que crecen más del 20% anual durante al menos tres años consecutivos. Son los que generan la mayor parte del empleo nuevo en las economías. El GEM (Global Entrepreneurship Monitor) los estudia específicamente por su efecto multiplicador.
+    </div>
+    <div class="concept-box">
+      <strong>Emprendedor Social</strong>
+      Definido por Gregory Dees (Duke University): utiliza principios empresariales para generar transformación social. No necesariamente sin fines de lucro, pero el impacto social es el objetivo principal. Ejemplo ecuatoriano: <strong>Granda Asociados</strong>, firma que ofrece servicios contables a cooperativas rurales en condiciones preferenciales.
+    </div>
+
+    <h3>3.3 El Perfil del Emprendedor: ¿Se nace o se hace?</h3>
+    <p>Durante décadas se debatió si el emprendedor era un "tipo especial de persona" con rasgos innatos. La investigación actual demuestra que las competencias emprendedoras son aprendibles. El marco <strong>EntreComp</strong> (Bacigalupo et al., 2016), publicado por la Comisión Europea, identifica 15 competencias emprendedoras agrupadas en tres áreas:</p>
+
+    <table>
+      <tr><th>Área</th><th>Competencias incluidas</th></tr>
+      <tr><td><strong>Ideas & Oportunidades</strong></td><td>Creatividad, visión, valoración de ideas, pensamiento ético, sostenibilidad</td></tr>
+      <tr><td><strong>Recursos</strong></td><td>Autoeficacia, motivación, movilización de recursos, gestión financiera y económica</td></tr>
+      <tr><td><strong>En Acción</strong></td><td>Toma de iniciativa, planificación, gestión de la incertidumbre, trabajo colaborativo, aprendizaje del fracaso</td></tr>
+    </table>
+
+    <div class="example-box">
+      <div class="ex-label">📍 Ejemplo ecuatoriano</div>
+      <p><strong>Kushki</strong>, la fintech ecuatoriana de pagos digitales fundada en 2017 por Aron Schwarzkopf, es un caso de emprendedor de alto impacto que empezó siendo un emprendedor serial. Kushki procesa miles de millones de dólares en transacciones al año y emplea a cientos de personas en varios países de la región. Schwarzkopf no tenía experiencia específica en pagos: tenía la habilidad de identificar oportunidades y armar equipos competentes. Eso lo convierte en un emprendedor por oportunidad de alto impacto.</p>
+    </div>
+
+    <div class="key-idea">
+      <strong>Idea Clave</strong>
+      El tipo de emprendedor que seas dependerá de tu contexto, tus motivaciones y tus competencias. Ningún tipo es superior al otro. Lo importante es actuar desde la consciencia: saber por qué emprendes y hacia dónde vas.
+    </div>
+  </div>
+
+  <!-- TEMA 4 -->
+  <div id="tab-t4" class="tab-panel">
+    <h2>4. El Proceso Emprendedor</h2>
+    <p>Emprender no es un evento puntual ("tuve una idea y la ejecuté"). Es un <strong>proceso secuencial e iterativo</strong> con fases identificables. Conocer este proceso te permite no solo entenderlo académicamente, sino también diseñar tu propio camino emprendedor con intención.</p>
+
+    <h3>4.1 El Modelo de Timmons (versión académica)</h3>
+    <p>Jeffry Timmons (Babson College) propuso que el proceso emprendedor exitoso requiere equilibrar tres elementos simultáneamente:</p>
+
+    <div class="example-box" style="background:#f0f7ff;">
+      <div style="display:flex;gap:20px;flex-wrap:wrap;text-align:center;">
+        <div style="flex:1;min-width:120px;background:#003366;color:#fff;border-radius:10px;padding:16px;">
+          <div style="font-size:2rem;">🎯</div>
+          <strong>OPORTUNIDAD</strong>
+          <p style="font-size:0.82rem;margin-top:6px;opacity:0.9;">Atractiva, durable, oportuna y anclada en un producto/servicio que crea valor real</p>
+        </div>
+        <div style="flex:1;min-width:120px;background:#003366;color:#fff;border-radius:10px;padding:16px;">
+          <div style="font-size:2rem;">👥</div>
+          <strong>EQUIPO</strong>
+          <p style="font-size:0.82rem;margin-top:6px;opacity:0.9;">Complementario en habilidades, comprometido, con integridad y experiencia relevante</p>
+        </div>
+        <div style="flex:1;min-width:120px;background:#003366;color:#fff;border-radius:10px;padding:16px;">
+          <div style="font-size:2rem;">💼</div>
+          <strong>RECURSOS</strong>
+          <p style="font-size:0.82rem;margin-top:6px;opacity:0.9;">Capital, personas, tecnología, relaciones. Mínimos necesarios, no máximos ideales</p>
+        </div>
+      </div>
+      <p style="margin-top:14px;font-size:0.9rem;"><strong>El emprendedor</strong> está en el centro, equilibrando estos tres vértices con liderazgo, visión y toma de decisiones.</p>
+    </div>
+
+    <h3>4.2 Las fases del proceso emprendedor</h3>
+    <table>
+      <tr><th>#</th><th>Fase</th><th>¿Qué ocurre?</th><th>Herramientas clave</th></tr>
+      <tr>
+        <td>1</td>
+        <td><strong>Descubrimiento de la oportunidad</strong></td>
+        <td>El emprendedor detecta una necesidad insatisfecha o un problema recurrente</td>
+        <td>Observación, entrevistas, análisis de tendencias</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><strong>Evaluación de la oportunidad</strong></td>
+        <td>Se analiza si el problema es real, si hay mercado, si hay recursos disponibles</td>
+        <td>Análisis de mercado, FODA, entrevistas a clientes potenciales</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><strong>Desarrollo del concepto</strong></td>
+        <td>Se define la propuesta de valor: qué se ofrece, a quién, cómo y a qué precio</td>
+        <td>Business Model Canvas, propuesta de valor, prototipo mínimo</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><strong>Validación</strong></td>
+        <td>Se prueba el modelo con clientes reales antes de invertir masivamente</td>
+        <td>MVP (Producto Mínimo Viable), métricas de validación</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td><strong>Lanzamiento</strong></td>
+        <td>Se entra al mercado con el producto/servicio, captando primeros clientes</td>
+        <td>Plan de marketing, ventas iniciales, gestión operativa</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td><strong>Escalamiento</strong></td>
+        <td>El modelo funciona y se replica: más clientes, más mercados, más ingresos</td>
+        <td>Financiamiento, gestión de equipos, indicadores de desempeño (KPIs)</td>
+      </tr>
+    </table>
+
+    <div class="concept-box">
+      <strong>MVP — Producto Mínimo Viable (Eric Ries, 2011)</strong>
+      Un MVP es la versión más simple posible de un producto que permite recoger el máximo aprendizaje sobre los clientes con el mínimo esfuerzo. No es un producto malo: es un producto deliberadamente limitado para aprender rápido y barato antes de invertir mucho. Ejemplo: antes de crear una app completa de contabilidad, lanzar una hoja de Excel automatizada y ver si la gente la usa y paga por ella.
+    </div>
+
+    <h3>4.3 La Curva del Emprendedor: el valle de la muerte</h3>
+    <p>Entre el lanzamiento y el escalamiento existe una fase crítica conocida como el <strong>"valle de la muerte"</strong> (Death Valley Curve). En esta etapa:</p>
+    <ul class="check-list">
+      <li>Los ingresos aún no cubren los costos operativos.</li>
+      <li>El entusiasmo inicial se enfrenta a la realidad del mercado.</li>
+      <li>Muchos emprendedores abandonan porque no anticiparon esta etapa.</li>
+      <li>Los que sobreviven suelen haber planeado con reserva de capital o buscan financiamiento puente.</li>
+    </ul>
+
+    <div class="example-box">
+      <div class="ex-label">📍 Aplicación para Contadores</div>
+      <p>Un contador que decide abrir su propio estudio de auditoría pasa exactamente por estas fases: descubre que muchas PyMEs en Ecuador no tienen auditoría externa por el costo; evalúa que puede ofrecerla a un precio accesible; desarrolla su propuesta de valor (auditoría + consultoría tributaria SRI); valida con tres primeros clientes; lanza, y enfrenta el valle de la muerte mientras consigue clientes suficientes. Conocer el proceso no elimina el riesgo, pero lo hace manejable.</p>
+    </div>
+
+    <div class="key-idea">
+      <strong>Idea Clave</strong>
+      El proceso emprendedor es iterativo, no lineal. Puedes regresar a fases anteriores, pivotar (cambiar el modelo) o incluso reiniciar. El fracaso en una fase no es el fin: es información.
+    </div>
+  </div>
+
+  <!-- TEMA 5 -->
+  <div id="tab-t5" class="tab-panel">
+    <h2>5. El Emprendimiento en Ecuador</h2>
+    <p>Entender el contexto local es esencial. Las teorías importan, pero un emprendedor que no conoce su ecosistema toma decisiones con los ojos cerrados. Ecuador tiene un ecosistema emprendedor joven, dinámico y lleno de desafíos particulares que debes conocer.</p>
+
+    <h3>5.1 Ecuador y el GEM: ¿Dónde estamos?</h3>
+    <div class="concept-box">
+      <strong>¿Qué es el GEM? (Global Entrepreneurship Monitor)</strong>
+      El GEM es el proyecto de investigación más grande del mundo sobre emprendimiento. Desde 1999 mide indicadores de actividad emprendedora en más de 50 países. Ecuador participa en este estudio, que arroja datos cruciales sobre la actividad emprendedora nacional.
+    </div>
+
+    <p>Según los reportes del GEM Ecuador, el país ha sido históricamente uno de los de mayor tasa de Actividad Emprendedora Temprana (TEA — Total Early-stage Entrepreneurial Activity) en América Latina. Sin embargo, existe una brecha importante entre quienes <em>inician</em> un negocio y quienes logran <em>consolidarlo</em> más allá de 3.5 años (umbral que el GEM denomina "emprendimiento establecido").</p>
+
+    <table>
+      <tr><th>Indicador</th><th>Significado</th><th>Situación Ecuador</th></tr>
+      <tr><td>TEA</td><td>% de adultos en proceso de iniciar o que poseen un negocio menor de 3.5 años</td><td>Alta en comparación regional</td></tr>
+      <tr><td>Negocios establecidos</td><td>% de adultos con negocio mayor a 3.5 años</td><td>Significativamente menor que el TEA</td></tr>
+      <tr><td>Emprendimiento por oportunidad</td><td>Ratio de emprendedores que actúan por oportunidad vs. necesidad</td><td>En mejora gradual pero aún bajo</td></tr>
+      <tr><td>Miedo al fracaso</td><td>% que no emprendería por temor al fracaso</td><td>Elevado, especialmente en zonas urbanas</td></tr>
+    </table>
+
+    <h3>5.2 El Ecosistema Emprendedor Ecuatoriano</h3>
+    <p>El modelo de <strong>Daniel Isenberg</strong> (Babson Entrepreneurship Ecosystem Project) describe el ecosistema emprendedor como seis dominios interrelacionados. Aplicado a Ecuador:</p>
+
+    <table>
+      <tr><th>Dominio</th><th>Estado en Ecuador</th><th>Actores relevantes</th></tr>
+      <tr><td><strong>Política</strong></td><td>Avances en marcos legales de emprendimiento, Ley Orgánica de Emprendimiento e Innovación (2020)</td><td>MIPRO, SRI, Ministerio de Producción</td></tr>
+      <tr><td><strong>Finanzas</strong></td><td>Acceso limitado al crédito formal para startups; crecimiento de fondos de inversión ángel</td><td>BanEcuador, CFN, inversores ángel, Kruger Labs</td></tr>
+      <tr><td><strong>Cultura</strong></td><td>Cambio generacional positivo; el fracaso empieza a verse menos como estigma</td><td>Comunidad emprendedora, medios especializados</td></tr>
+      <tr><td><strong>Mercados</strong></td><td>Mercado interno limitado; exportación como necesidad para escalar</td><td>ProEcuador, exportadores, plataformas digitales</td></tr>
+      <tr><td><strong>Capital Humano</strong></td><td>Universidades incrementando programas de emprendimiento; brecha técnica en áreas STEM</td><td>ESPOL, USFQ, Universidad de Guayaquil, YACHAY</td></tr>
+      <tr><td><strong>Soporte</strong></td><td>Incubadoras, aceleradoras y hubs en crecimiento</td><td>Kruger Labs, iF! Incuba, StartUp Ecuador</td></tr>
+    </table>
+
+    <h3>5.3 La Ley Orgánica de Emprendimiento e Innovación (2020)</h3>
+    <p>En febrero de 2020, Ecuador aprobó la primera ley específica para emprendedores. Sus principales aportes fueron:</p>
+    <ul class="check-list">
+      <li>Creación de la <strong>Sociedad por Acciones Simplificada (SAS)</strong>: permite constituir una empresa unipersonal por medios electrónicos en menos de 24 horas.</li>
+      <li>Regula el <strong>empleo en startups</strong> con contratos especiales (remuneración variable, opciones de acciones).</li>
+      <li>Establece un <strong>Fondo de Inversión para Emprendimientos</strong> gestionado por la CFN.</li>
+      <li>Reconoce legalmente a las <strong>incubadoras y aceleradoras</strong> como entidades de soporte al ecosistema.</li>
+    </ul>
+
+    <div class="example-box">
+      <div class="ex-label">📍 Referencia local</div>
+      <p><strong>La Favorita Corp</strong>, el grupo empresarial que opera Supermaxi, Megamaxi y más de 20 marcas en Ecuador, comenzó en 1952 como una pequeña tienda en Quito fundada por Gonzalo Merino. Durante décadas fue ejemplo de crecimiento basado en reinversión de utilidades, gestión familiar y expansión gradual. Hoy es el mayor empleador privado del país. Su historia ilustra que el emprendimiento ecuatoriano de largo plazo es posible cuando se combina disciplina financiera, servicio al cliente y reinversión estratégica.</p>
+    </div>
+
+    <div class="key-idea">
+      <strong>Idea Clave</strong>
+      Ecuador tiene condiciones favorables para emprender: mercado interno activo, marco legal mejorado, y una generación joven con alta conectividad digital. Los desafíos reales son el acceso al financiamiento y la transición de emprendimientos por necesidad a emprendimientos por oportunidad con proyección de escala.
+    </div>
+  </div>
+
+  <!-- EJERCICIO INTERACTIVO -->
+  <div id="tab-ejercicio" class="tab-panel">
+    <h2>6. Ejercicio Interactivo: Clasificación de Escenarios</h2>
+    <p>Lee cada situación y selecciona la categoría correcta. <strong>Responde TODOS los ítems primero</strong> y luego presiona "Verificar respuestas".</p>
+
+    <!-- EI1 -->
+    <div class="exercise-item" id="ei1-wrap">
+      <div class="q-label">1. Richard Cantillon definió al emprendedor como el agente que:</div>
+      <div class="options-grid">
+        <button class="opt-btn" onclick="selectEj('ei1','a')">a) Coordina factores de producción para crear valor social</button>
+        <button class="opt-btn" onclick="selectEj('ei1','b')">b) Compra a precios conocidos y vende a precios inciertos, asumiendo el riesgo económico</button>
+        <button class="opt-btn" onclick="selectEj('ei1','c')">c) Destruye industrias antiguas para crear nuevas mediante la innovación</button>
+        <button class="opt-btn" onclick="selectEj('ei1','d')">d) Persigue oportunidades sin importar los recursos que controla actualmente</button>
+      </div>
+      <div class="feedback-box" id="ei1-fb"></div>
+    </div>
+
+    <!-- EI2 -->
+    <div class="exercise-item" id="ei2-wrap">
+      <div class="q-label">2. La "destrucción creativa" es un concepto desarrollado por:</div>
+      <div class="options-grid">
+        <button class="opt-btn" onclick="selectEj('ei2','a')">a) Peter Drucker</button>
+        <button class="opt-btn" onclick="selectEj('ei2','b')">b) Steve Blank</button>
+        <button class="opt-btn" onclick="selectEj('ei2','c')">c) Joseph Schumpeter</button>
+        <button class="opt-btn" onclick="selectEj('ei2','d')">d) Jean-Baptiste Say</button>
+      </div>
+      <div class="feedback-box" id="ei2-fb"></div>
+    </div>
+
+    <!-- EI3 -->
+    <div class="exercise-item" id="ei3-wrap">
+      <div class="q-label">3. Un contador que propone e implementa un nuevo sistema de auditoría interna dentro de la empresa donde trabaja sin crear una empresa nueva, es un ejemplo de:</div>
+      <div class="options-grid">
+        <button class="opt-btn" onclick="selectEj('ei3','a')">a) Emprendedor social</button>
+        <button class="opt-btn" onclick="selectEj('ei3','b')">b) Intraemprendedor</button>
+        <button class="opt-btn" onclick="selectEj('ei3','c')">c) Emprendedor de alto impacto</button>
+        <button class="opt-btn" onclick="selectEj('ei3','d')">d) Emprendedor por necesidad</button>
+      </div>
+      <div class="feedback-box" id="ei3-fb"></div>
+    </div>
+
+    <!-- EI4 -->
+    <div class="exercise-item" id="ei4-wrap">
+      <div class="q-label">4. En el Modelo de Timmons, los tres vértices que el emprendedor debe equilibrar son:</div>
+      <div class="options-grid">
+        <button class="opt-btn" onclick="selectEj('ei4','a')">a) Producto, precio y plaza</button>
+        <button class="opt-btn" onclick="selectEj('ei4','b')">b) Visión, misión y valores</button>
+        <button class="opt-btn" onclick="selectEj('ei4','c')">c) Oportunidad, equipo y recursos</button>
+        <button class="opt-btn" onclick="selectEj('ei4','d')">d) Capital, tecnología y mercado</button>
+      </div>
+      <div class="feedback-box" id="ei4-fb"></div>
+    </div>
+
+    <!-- EI5 -->
+    <div class="exercise-item" id="ei5-wrap">
+      <div class="q-label">5. El "valle de la muerte" en el proceso emprendedor se produce entre:</div>
+      <div class="options-grid">
+        <button class="opt-btn" onclick="selectEj('ei5','a')">a) El descubrimiento de la oportunidad y la evaluación</button>
+        <button class="opt-btn" onclick="selectEj('ei5','b')">b) El lanzamiento y el escalamiento, cuando los ingresos aún no cubren costos</button>
+        <button class="opt-btn" onclick="selectEj('ei5','c')">c) La evaluación y el desarrollo del concepto</td></button>
+        <button class="opt-btn" onclick="selectEj('ei5','d')">d) La validación y el lanzamiento del producto</button>
+      </div>
+      <div class="feedback-box" id="ei5-fb"></div>
+    </div>
+
+    <!-- EI6 -->
+    <div class="exercise-item" id="ei6-wrap">
+      <div class="q-label">6. La startup ecuatoriana Datil es un ejemplo de emprendimiento porque:</div>
+      <div class="options-grid">
+        <button class="opt-btn" onclick="selectEj('ei6','a')">a) Es una empresa de gran escala con décadas de trayectoria</button>
+        <button class="opt-btn" onclick="selectEj('ei6','b')">b) Identificó el dolor de la facturación electrónica del SRI y creó una solución tecnológica para resolverlo</button>
+        <button class="opt-btn" onclick="selectEj('ei6','c')">c) Nació por necesidad económica de sus fundadores sin planificación previa</button>
+        <button class="opt-btn" onclick="selectEj('ei6','d')">d) Es una empresa pública financiada por el Estado ecuatoriano</button>
+      </div>
+      <div class="feedback-box" id="ei6-fb"></div>
+    </div>
+
+    <!-- EI7 -->
+    <div class="exercise-item" id="ei7-wrap">
+      <div class="q-label">7. Un MVP (Producto Mínimo Viable) es:</div>
+      <div class="options-grid">
+        <button class="opt-btn" onclick="selectEj('ei7','a')">a) El producto más barato posible para maximizar ganancias desde el inicio</button>
+        <button class="opt-btn" onclick="selectEj('ei7','b')">b) La versión más simple de un producto para aprender del cliente con el mínimo esfuerzo antes de invertir en grande</button>
+        <button class="opt-btn" onclick="selectEj('ei7','c')">c) Un producto de baja calidad lanzado rápido para ganar mercado</button>
+        <button class="opt-btn" onclick="selectEj('ei7','d')">d) El prototipo final que se entrega al cliente después de mucha inversión</button>
+      </div>
+      <div class="feedback-box" id="ei7-fb"></div>
+    </div>
+
+    <!-- EI8 -->
+    <div class="exercise-item" id="ei8-wrap">
+      <div class="q-label">8. La Sociedad por Acciones Simplificada (SAS) introducida por la Ley Orgánica de Emprendimiento e Innovación 2020 en Ecuador permite:</div>
+      <div class="options-grid">
+        <button class="opt-btn" onclick="selectEj('ei8','a')">a) Constituir una empresa únicamente si se tiene un socio internacional</button>
+        <button class="opt-btn" onclick="selectEj('ei8','b')">b) Crear una empresa unipersonal por medios electrónicos en menos de 24 horas</button>
+        <button class="opt-btn" onclick="selectEj('ei8','c')">c) Eximirse del pago de impuestos durante los primeros cinco años</button>
+        <button class="opt-btn" onclick="selectEj('ei8','d')">d) Obtener financiamiento automático del Estado sin requisitos</button>
+      </div>
+      <div class="feedback-box" id="ei8-fb"></div>
+    </div>
+
+    <div style="margin-top:20px;">
+      <button class="btn-primary" onclick="verificarEjercicio()">✅ Verificar respuestas</button>
+      <button class="btn-secondary" onclick="reiniciarEjercicio()">🔄 Reiniciar</button>
+    </div>
+
+    <div class="score-section" id="ej-score">
+      <div class="score-number" id="ej-score-num"></div>
+      <div class="score-pct" id="ej-score-pct"></div>
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="ej-bar" style="width:0%"></div></div>
+      <div class="score-msg" id="ej-score-msg"></div>
+    </div>
+  </div>
+
+  <!-- CUESTIONARIO -->
+  <div id="tab-cuestionario" class="tab-panel">
+    <h2>7. Cuestionario de Evaluación</h2>
+    <p>Responde las <strong>10 preguntas</strong> completas antes de presionar "Verificar respuestas".</p>
+
+    <!-- Q1 -->
+    <div class="quiz-item">
+      <div class="quiz-type-badge badge-teoria">Teórica</div>
+      <div class="quiz-q">1. ¿Cuál es la raíz etimológica de la palabra "emprendimiento" y qué revela sobre su naturaleza?</div>
+      <label class="quiz-option" onclick="selectQ('qi1','a')">a) Del griego "emporos" (comerciante): revela su naturaleza exclusivamente comercial.</label>
+      <label class="quiz-option" onclick="selectQ('qi1','b')">b) Del latín "in prehendere" (tomar entre manos): revela la idea de actuar con intención frente a la incertidumbre.</label>
+      <label class="quiz-option" onclick="selectQ('qi1','c')">c) Del inglés "enterprise": revela que solo aplica al mundo anglosajón.</label>
+      <label class="quiz-option" onclick="selectQ('qi1','d')">d) Del alemán "unternehmen" (empresa): revela que siempre implica crear una organización formal.</label>
+      <div class="feedback-box" id="qi1-fb"></div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="quiz-item">
+      <div class="quiz-type-badge badge-teoria">Teórica</div>
+      <div class="quiz-q">2. Según Shane y Venkataraman (2000), el emprendimiento como campo de estudio se ocupa de:</div>
+      <label class="quiz-option" onclick="selectQ('qi2','a')">a) La gestión financiera de empresas grandes en contextos de crisis económica.</label>
+      <label class="quiz-option" onclick="selectQ('qi2','b')">b) Cómo, por quién y con qué efectos se descubren, evalúan y explotan oportunidades económicas.</label>
+      <label class="quiz-option" onclick="selectQ('qi2','c')">c) El estudio de la personalidad del emprendedor y sus rasgos innatos.</label>
+      <label class="quiz-option" onclick="selectQ('qi2','d')">d) Los procedimientos administrativos para constituir empresas ante organismos del Estado.</label>
+      <div class="feedback-box" id="qi2-fb"></div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="quiz-item">
+      <div class="quiz-type-badge badge-teoria">Teórica</div>
+      <div class="quiz-q">3. ¿Qué distingue al "emprendedor de oportunidad" del "emprendedor por necesidad"?</div>
+      <label class="quiz-option" onclick="selectQ('qi3','a')">a) El emprendedor de oportunidad tiene más capital inicial que el de necesidad.</label>
+      <label class="quiz-option" onclick="selectQ('qi3','b')">b) El emprendedor de oportunidad detecta una brecha de mercado activamente; el de necesidad busca subsistencia ante la falta de alternativas laborales.</label>
+      <label class="quiz-option" onclick="selectQ('qi3','c')">c) El emprendedor de oportunidad siempre tiene estudios universitarios; el de necesidad, no.</label>
+      <label class="quiz-option" onclick="selectQ('qi3','d')">d) Son sinónimos; la distinción es solo de terminología regional.</label>
+      <div class="feedback-box" id="qi3-fb"></div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="quiz-item">
+      <div class="quiz-type-badge badge-teoria">Teórica</div>
+      <div class="quiz-q">4. Peter Drucker, en "Innovation and Entrepreneurship" (1985), argumentó que el emprendimiento es:</div>
+      <label class="quiz-option" onclick="selectQ('qi4','a')">a) Una habilidad innata reservada a personas con alto coeficiente intelectual.</label>
+      <label class="quiz-option" onclick="selectQ('qi4','b')">b) Una disciplina sistemática que puede aprenderse y practicarse.</label>
+      <label class="quiz-option" onclick="selectQ('qi4','c')">c) Un proceso exclusivo de las economías capitalistas desarrolladas.</label>
+      <label class="quiz-option" onclick="selectQ('qi4','d')">d) Una actividad de alto riesgo que debe evitarse sin suficiente capital.</label>
+      <div class="feedback-box" id="qi4-fb"></div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="quiz-item">
+      <div class="quiz-type-badge badge-teoria">Teórica</div>
+      <div class="quiz-q">5. El concepto de "vigilancia empresarial" (entrepreneurial alertness) propuesto por Israel Kirzner se refiere a:</div>
+      <label class="quiz-option" onclick="selectQ('qi5','a')">a) La supervisión constante de empleados dentro de la empresa.</label>
+      <label class="quiz-option" onclick="selectQ('qi5','b')">b) La capacidad de ver oportunidades que otros no ven porque procesan la misma información de manera diferente.</label>
+      <label class="quiz-option" onclick="selectQ('qi5','c')">c) El monitoreo de competidores en el mercado para reaccionar rápido.</label>
+      <label class="quiz-option" onclick="selectQ('qi5','d')">d) La habilidad técnica de analizar estados financieros de forma ágil.</label>
+      <div class="feedback-box" id="qi5-fb"></div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="quiz-item">
+      <div class="quiz-type-badge badge-teoria">Teórica</div>
+      <div class="quiz-q">6. El marco EntreComp (Bacigalupo et al., 2016) organizó las competencias emprendedoras en tres áreas. ¿Cuáles son?</div>
+      <label class="quiz-option" onclick="selectQ('qi6','a')">a) Finanzas, Marketing y Operaciones.</label>
+      <label class="quiz-option" onclick="selectQ('qi6','b')">b) Ideas y Oportunidades, Recursos, y En Acción.</label>
+      <label class="quiz-option" onclick="selectQ('qi6','c')">c) Liderazgo, Comunicación y Negociación.</label>
+      <label class="quiz-option" onclick="selectQ('qi6','d')">d) Creatividad, Tecnología y Sostenibilidad.</label>
+      <div class="feedback-box" id="qi6-fb"></div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="quiz-item">
+      <div class="quiz-type-badge badge-teoria">Teórica</div>
+      <div class="quiz-q">7. ¿En qué orden correcto se ubican las primeras cuatro fases del proceso emprendedor según el modelo académico?</div>
+      <label class="quiz-option" onclick="selectQ('qi7','a')">a) Lanzamiento → Evaluación → Descubrimiento → Validación.</label>
+      <label class="quiz-option" onclick="selectQ('qi7','b')">b) Descubrimiento → Evaluación → Desarrollo del concepto → Validación.</label>
+      <label class="quiz-option" onclick="selectQ('qi7','c')">c) Validación → Lanzamiento → Escalamiento → Evaluación.</label>
+      <label class="quiz-option" onclick="selectQ('qi7','d')">d) Desarrollo del concepto → Descubrimiento → Evaluación → Lanzamiento.</label>
+      <div class="feedback-box" id="qi7-fb"></div>
+    </div>
+
+    <!-- Q8 — ANÁLISIS -->
+    <div class="quiz-item">
+      <div class="quiz-type-badge badge-analisis">Análisis</div>
+      <div class="quiz-q">8. <strong>Caso:</strong> Sofía es contadora graduada que nota que decenas de pequeñas empresas en su ciudad pagan multas al SRI por errores en declaraciones, aunque contratan a contadores externos. Ella decide desarrollar una guía digital gratuita paso a paso para declarar correctamente el IVA, y luego cobra por una asesoría premium mensual. ¿Qué fase del proceso emprendedor describe la decisión de lanzar primero la guía gratuita?</div>
+      <label class="quiz-option" onclick="selectQ('qi8','a')">a) Escalamiento, porque ya está generando ingresos con el modelo premium.</label>
+      <label class="quiz-option" onclick="selectQ('qi8','b')">b) Validación: la guía gratuita es un MVP que le permite comprobar si hay interés real antes de invertir en un producto mayor.</label>
+      <label class="quiz-option" onclick="selectQ('qi8','c')">c) Descubrimiento de la oportunidad, porque apenas está detectando el problema.</label>
+      <label class="quiz-option" onclick="selectQ('qi8','d')">d) Lanzamiento, porque ya ha terminado su desarrollo del concepto.</label>
+      <div class="feedback-box" id="qi8-fb"></div>
+    </div>
+
+    <!-- Q9 — ANÁLISIS -->
+    <div class="quiz-item">
+      <div class="quiz-type-badge badge-analisis">Análisis</div>
+      <div class="quiz-q">9. <strong>Caso:</strong> Mateo trabaja en una empresa de transporte y propone al gerente implementar un sistema de rastreo GPS para reducir el uso indebido de combustible. No renuncia, no crea una empresa nueva, pero lidera el proyecto y logra reducir costos en 18%. ¿Cómo se clasifica mejor a Mateo?</div>
+      <label class="quiz-option" onclick="selectQ('qi9','a')">a) Emprendedor de estilo de vida.</label>
+      <label class="quiz-option" onclick="selectQ('qi9','b')">b) Emprendedor social.</label>
+      <label class="quiz-option" onclick="selectQ('qi9','c')">c) Intraemprendedor.</label>
+      <label class="quiz-option" onclick="selectQ('qi9','d')">d) Emprendedor serial.</label>
+      <div class="feedback-box" id="qi9-fb"></div>
+    </div>
+
+    <!-- Q10 — ANÁLISIS -->
+    <div class="quiz-item">
+      <div class="quiz-type-badge badge-analisis">Análisis</div>
+      <div class="quiz-q">10. <strong>Caso:</strong> Una joven emprendedora lanza su app de entrega de comida en Guayaquil. Tras 6 meses, tiene usuarios pero sus ingresos aún no cubren los costos operativos. Está a punto de cerrar porque el dinero inicial se agotó. ¿En qué fase del proceso emprendedor se encuentra?</div>
+      <label class="quiz-option" onclick="selectQ('qi10','a')">a) Etapa de escalamiento exitoso.</label>
+      <label class="quiz-option" onclick="selectQ('qi10','b')">b) El "valle de la muerte": el punto crítico entre el lanzamiento y el escalamiento donde los ingresos aún no cubren costos.</label>
+      <label class="quiz-option" onclick="selectQ('qi10','c')">c) Fase de descubrimiento: aún está identificando el problema.</label>
+      <label class="quiz-option" onclick="selectQ('qi10','d')">d) Fase de evaluación: está analizando si el mercado existe.</label>
+      <div class="feedback-box" id="qi10-fb"></div>
+    </div>
+
+    <div style="margin-top:20px;">
+      <button class="btn-primary" onclick="verificarQuiz()">✅ Verificar respuestas</button>
+      <button class="btn-secondary" onclick="reiniciarQuiz()">🔄 Reiniciar</button>
+    </div>
+
+    <div class="score-section" id="q-score">
+      <div class="score-number" id="q-score-num"></div>
+      <div class="score-pct" id="q-score-pct"></div>
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="q-bar" style="width:0%"></div></div>
+      <div class="score-msg" id="q-score-msg"></div>
+    </div>
+  </div>
+
+  <!-- ACTIVIDAD IA -->
+  <div id="tab-ia" class="tab-panel">
+    <h2>8. Actividad con Inteligencia Artificial</h2>
+    <div class="ai-card">
+      <h3>🤖 Actividad: "Auditor de Oportunidades con IA"</h3>
+      <p>En esta actividad usarás IA como un <em>espejo crítico</em>: ella identificará oportunidades de emprendimiento para un contador en Ecuador, y tú evaluarás si sus respuestas son válidas, realistas y aplicables a tu contexto real.</p>
+
+      <h3>Herramienta recomendada</h3>
+      <p>👉 <strong>Claude en <a href="https://claude.ai" target="_blank">claude.ai</a></strong> (Anthropic) — Acceso gratuito sin necesidad de cuenta en muchos países. Alternativas: ChatGPT (chat.openai.com) o Gemini (gemini.google.com).</p>
+
+      <h3>Prompt exacto para usar con la IA</h3>
+      <div class="prompt-box">Actúa como un consultor experto en emprendimiento con amplio conocimiento del ecosistema empresarial ecuatoriano.
+
+Necesito que identifiques 5 oportunidades concretas de emprendimiento específicamente para un profesional graduado en Contabilidad y Auditoría en Ecuador en el año 2024-2025.
+
+Para cada oportunidad incluye:
+1. Nombre del emprendimiento propuesto
+2. Problema que resuelve (explica el dolor real del cliente)
+3. Cliente objetivo (¿quién pagaría por esto?)
+4. Propuesta de valor diferenciadora
+5. Riesgo principal
+
+Considera el contexto ecuatoriano: normativa del SRI, digitalización contable, PyMEs, Ley Orgánica de Emprendimiento, y ecosistema de startups local.</div>
+
+      <h3>¿Qué hacer con la respuesta de la IA?</h3>
+      <div class="step-item"><div class="step-num">1</div><div><strong>Lee críticamente:</strong> ¿Las 5 oportunidades son realmente viables en Ecuador hoy? ¿O son genéricas, copiadas de otro contexto?</div></div>
+      <div class="step-item"><div class="step-num">2</div><div><strong>Elige la más relevante</strong> para tu perfil y región (Guayaquil, Quito, tu ciudad natal).</div></div>
+      <div class="step-item"><div class="step-num">3</div><div><strong>Cuestiona a la IA:</strong> Escribe un segundo mensaje con: "¿Cuál sería el mayor error que comete un contador al intentar esta idea? ¿Y qué debería validar primero antes de invertir?"</div></div>
+      <div class="step-item"><div class="step-num">4</div><div><strong>Redacta tu análisis personal</strong> (mínimo 200 palabras): Compara la respuesta de la IA con lo que aprendiste esta semana sobre el proceso emprendedor. ¿En qué fase del proceso emprendedor ubicarías cada oportunidad que la IA propuso? ¿Identificas algún "valle de la muerte" potencial? ¿Qué recursos necesitarías?</div></div>
+
+      <h3>Criterio de evaluación: ¿Qué es pensamiento crítico vs. copia?</h3>
+      <table>
+        <tr><th>✅ Pensamiento Crítico</th><th>❌ Copia Simple</th></tr>
+        <tr><td>Cuestiona si las ideas de la IA aplican realmente a Ecuador y explica por qué sí o no</td><td>Pega la respuesta de la IA sin análisis propio</td></tr>
+        <tr><td>Conecta las oportunidades con las fases del proceso emprendedor aprendidas esta semana</td><td>Lista las oportunidades sin relacionarlas con conceptos del curso</td></tr>
+        <tr><td>Identifica brechas o errores en las propuestas de la IA con argumentos propios</td><td>Acepta todo lo que dice la IA como verdad absoluta</td></tr>
+        <tr><td>Propone una mejora o variación propia a la mejor idea identificada</td><td>No aporta nada original</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- REFLEXIÓN -->
+  <div id="tab-reflexion" class="tab-panel">
+    <h2>9. Reflexión Personal</h2>
+    <p>Esta sección no tiene respuestas correctas ni incorrectas. Su objetivo es conectar los conceptos del emprendimiento con tu vida real, tu historia personal y tus emociones. Tómate el tiempo que necesites para pensar genuinamente antes de responder.</p>
+
+    <div class="reflection-q">
+      <strong>Pregunta 1 — Tu primer "emprendimiento"</strong>
+      ¿Recuerdas alguna vez en tu vida en que hayas resuelto un problema propio o ajeno de una manera que nadie te enseñó? Puede haber sido en tu casa, con amigos, en el colegio. ¿Qué hiciste? ¿Cómo te sentiste cuando funcionó? Eso fue emprendimiento, aunque no lo hayas llamado así.
+    </div>
+
+    <div class="reflection-q">
+      <strong>Pregunta 2 — El miedo al fracaso</strong>
+      El GEM Ecuador indica que el miedo al fracaso es uno de los factores que más frena el emprendimiento. ¿Has sentido ese miedo alguna vez frente a algo nuevo? ¿Qué te decías internamente para no intentarlo? ¿Cuánto de ese miedo era real y cuánto era una historia que te contabas?
+    </div>
+
+    <div class="reflection-q">
+      <strong>Pregunta 3 — Tu identidad y el emprendimiento</strong>
+      Stephen Covey en "Los 7 Hábitos de la Gente Altamente Efectiva" invita a comenzar con el fin en mente. Si imaginas tu vida profesional en 10 años como contador: ¿estás trabajando para alguien o has construido algo propio? ¿Qué te gustaría que fuera diferente a hoy?
+    </div>
+
+    <div class="reflection-q">
+      <strong>Pregunta 4 — Recursos y creatividad</strong>
+      Howard Stevenson definió el emprendimiento como "perseguir oportunidades sin importar los recursos que uno controla actualmente." ¿En qué áreas de tu vida personal o estudiantil has creado algo con recursos limitados? ¿Cómo lo lograste? ¿Qué dice eso de ti?
+    </div>
+
+    <div class="reflection-q">
+      <strong>Pregunta 5 — El intraemprendedor que llevas dentro</strong>
+      No necesitas crear una empresa para emprender. ¿Hay algo en tu entorno actual (universidad, trabajo, familia, comunidad) donde ves un problema que nadie está resolviendo? ¿Qué pasaría si lo intentaras, aunque fuera pequeño? ¿Qué te detiene?
+    </div>
+
+    <div class="reflection-q">
+      <strong>Pregunta 6 — Fracaso y aprendizaje</strong>
+      Jack Canfield, en "El Principio del Éxito", enseña que el fracaso es solo retroalimentación: el universo te dice que ajustes tu estrategia. ¿Cuándo fallaste en algo (un examen, un proyecto, una relación) y en qué te convirtió esa experiencia? ¿Fue realmente un fracaso o fue el inicio de algo mejor?
+    </div>
+
+    <div class="key-idea">
+      <strong>Para llevar</strong>
+      El emprendimiento no es una carrera paralela a tu vida: es una forma de vivir tu vida. Cada vez que enfrentas un problema con creatividad en vez de resignación, estás siendo emprendedor. Esta semana te invita a reconocer que ya tienes esa capacidad, y que el curso te ayudará a desarrollarla con método, rigor y consciencia.
+    </div>
+  </div>
+
+  <!-- BIBLIOGRAFÍA -->
+  <div id="tab-biblio" class="tab-panel">
+    <h2>10. Bibliografía</h2>
+
+    <div class="ref-card">
+      <div class="ref-author">Drucker, P. F. (1985).</div>
+      <div class="ref-title">Innovation and entrepreneurship: Practice and principles.</div>
+      <div class="ref-source">Harper & Row.</div>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-author">Shane, S., & Venkataraman, S. (2000).</div>
+      <div class="ref-title">The promise of entrepreneurship as a field of research.</div>
+      <div class="ref-source">Academy of Management Review, 25(1), 217–226. https://doi.org/10.5465/amr.2000.2791611</div>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-author">Timmons, J. A., & Spinelli, S. (2007).</div>
+      <div class="ref-title">New venture creation: Entrepreneurship for the 21st century (7th ed.).</div>
+      <div class="ref-source">McGraw-Hill/Irwin.</div>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-author">Ries, E. (2011).</div>
+      <div class="ref-title">The lean startup: How today's entrepreneurs use continuous innovation to create radically successful businesses.</div>
+      <div class="ref-source">Crown Business.</div>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-author">Bacigalupo, M., Kampylis, P., Punie, Y., & Van den Brande, G. (2016).</div>
+      <div class="ref-title">EntreComp: The Entrepreneurship Competence Framework.</div>
+      <div class="ref-source">European Commission, Joint Research Centre. https://doi.org/10.2791/593884</div>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-author">Isenberg, D. J. (2010).</div>
+      <div class="ref-title">How to start an entrepreneurial revolution.</div>
+      <div class="ref-source">Harvard Business Review, 88(6), 40–50.</div>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-author">Stevenson, H. H., & Jarillo, J. C. (1990).</div>
+      <div class="ref-title">A paradigm of entrepreneurship: Entrepreneurial management.</div>
+      <div class="ref-source">Strategic Management Journal, 11(Special Issue), 17–27. https://doi.org/10.1002/smj.4250110903</div>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-author">Asamblea Nacional del Ecuador. (2020).</div>
+      <div class="ref-title">Ley Orgánica de Emprendimiento e Innovación.</div>
+      <div class="ref-source">Registro Oficial Suplemento No. 151, 28 de febrero de 2020. https://www.gob.ec/regulaciones/ley-organica-de-emprendimiento-e-innovacion</div>
+    </div>
+
+    <div class="ref-note">
+      📌 <strong>Nota:</strong> Se recomienda verificar cada referencia en Google Scholar (<a href="https://scholar.google.com" target="_blank">scholar.google.com</a>) o en el repositorio institucional antes de citar en trabajos académicos.
+    </div>
+  </div>
+
+</div><!-- end content-area -->
+
+<script>
+// ===== TAB NAVIGATION =====
+function showTab(id) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+
+// ===== EJERCICIO =====
+const ejAnswers = {};
+const ejCorrects = {
+  ei1: 'b', ei2: 'c', ei3: 'b', ei4: 'c',
+  ei5: 'b', ei6: 'b', ei7: 'b', ei8: 'b'
+};
+const ejFeedbacks = {
+  ei1: {
+    ok: '✅ Correcto. Cantillon (1755) definió al entrepreneur como quien compra a precios conocidos y vende a precios inciertos: la esencia del riesgo económico.',
+    nok: '❌ Incorrecto. Cantillon es el padre del concepto de riesgo económico en el emprendimiento. La coordinación es de Say; la destrucción creativa es de Schumpeter; la persecución de oportunidades es de Stevenson.'
+  },
+  ei2: {
+    ok: '✅ Correcto. Joseph Schumpeter desarrolló el concepto de destrucción creativa: el progreso económico avanza cuando innovadores destruyen el orden establecido.',
+    nok: '❌ Incorrecto. La destrucción creativa es el aporte central de Joseph Schumpeter. Drucker habló de disciplina emprendedora; Blank del Customer Development; Say de la coordinación.'
+  },
+  ei3: {
+    ok: '✅ Correcto. El intraemprendedor innova dentro de una organización existente sin crear una empresa nueva. Es exactamente el caso descrito.',
+    nok: '❌ Incorrecto. Este perfil corresponde al intraemprendedor: alguien que actúa como emprendedor dentro de su organización, sin crear una empresa nueva.'
+  },
+  ei4: {
+    ok: '✅ Correcto. El Modelo de Timmons tiene tres vértices que el emprendedor debe equilibrar: Oportunidad, Equipo y Recursos.',
+    nok: '❌ Incorrecto. El Modelo de Timmons (Babson College) se basa en tres vértices: Oportunidad, Equipo y Recursos. El emprendedor está en el centro equilibrando los tres.'
+  },
+  ei5: {
+    ok: '✅ Correcto. El valle de la muerte ocurre entre el lanzamiento y el escalamiento: el negocio está activo pero los ingresos aún no cubren los costos operativos.',
+    nok: '❌ Incorrecto. El "valle de la muerte" es la fase crítica entre el lanzamiento al mercado y el escalamiento, cuando los recursos iniciales se agotan pero los ingresos aún no son suficientes.'
+  },
+  ei6: {
+    ok: '✅ Correcto. Datil es un ejemplo de emprendimiento por oportunidad: identificó el dolor real de la facturación electrónica y creó una solución tecnológica para resolverlo.',
+    nok: '❌ Incorrecto. Datil es una startup ecuatoriana que identificó una oportunidad real (el dolor de la facturación SRI) y creó una solución tecnológica. Es privada, no pública, y joven, no de décadas.'
+  },
+  ei7: {
+    ok: '✅ Correcto. El MVP (Eric Ries, 2011) es la versión más simple posible del producto que permite aprender del cliente con el mínimo esfuerzo e inversión.',
+    nok: '❌ Incorrecto. El MVP no es un producto barato ni de baja calidad. Es deliberadamente mínimo para maximizar el aprendizaje sobre los clientes antes de una gran inversión.'
+  },
+  ei8: {
+    ok: '✅ Correcto. La Ley Orgánica de Emprendimiento e Innovación (2020) introdujo la SAS, que permite constituir una empresa unipersonal electrónicamente en menos de 24 horas.',
+    nok: '❌ Incorrecto. La SAS creada por la Ley 2020 permite crear una empresa unipersonal por medios electrónicos en menos de 24 horas. No requiere socio extranjero ni exime de impuestos automáticamente.'
+  }
+};
+
+function selectEj(name, val) {
+  ejAnswers[name] = val;
+  document.querySelectorAll(`#${name}-wrap .opt-btn`).forEach(b => b.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+}
+
+function verificarEjercicio() {
+  const total = Object.keys(ejCorrects).length;
+  if (Object.keys(ejAnswers).length < total) {
+    alert('⚠️ Por favor responde todas las preguntas antes de verificar.');
+    return;
+  }
+  let score = 0;
+  Object.keys(ejCorrects).forEach(name => {
+    const correct = ejCorrects[name];
+    const chosen = ejAnswers[name];
+    const isOk = chosen === correct;
+    if (isOk) score++;
+
+    document.querySelectorAll(`#${name}-wrap .opt-btn`).forEach(b => {
+      b.disabled = true;
+      const val = b.getAttribute('onclick').match(/'([a-d])'\)/)[1];
+      if (val === correct) b.classList.add('correct');
+      else if (val === chosen && !isOk) b.classList.add('incorrect');
+    });
+
+    const fb = document.getElementById(name + '-fb');
+    fb.textContent = isOk ? ejFeedbacks[name].ok : ejFeedbacks[name].nok;
+    fb.className = 'feedback-box show ' + (isOk ? 'ok' : 'nok');
+  });
+
+  const pct = Math.round((score / total) * 100);
+  const scoreSection = document.getElementById('ej-score');
+  scoreSection.classList.add('show');
+  document.getElementById('ej-score-num').textContent = score + ' / ' + total;
+  document.getElementById('ej-score-pct').textContent = pct + '%';
+  setTimeout(() => { document.getElementById('ej-bar').style.width = pct + '%'; }, 100);
+
+  const msgs = [
+    [100, '🏆 ¡Perfecto! Dominas todos los conceptos de esta semana.'],
+    [80, '🎯 ¡Muy bien! Sólido manejo del tema. Repasa los ítems incorrectos.'],
+    [60, '📘 Bien encaminado. Refuerza los conceptos donde fallaste.'],
+    [40, '⚠️ Hay conceptos que necesitan repaso. Revisa las pestañas de contenido.'],
+    [0, '📖 Vuelve a leer el material antes de intentarlo de nuevo. ¡Tú puedes!']
+  ];
+  const msg = msgs.find(m => pct >= m[0]);
+  document.getElementById('ej-score-msg').textContent = msg[1];
+  scoreSection.scrollIntoView({ behavior: 'smooth' });
+}
+
+function reiniciarEjercicio() {
+  Object.keys(ejAnswers).forEach(k => delete ejAnswers[k]);
+  document.querySelectorAll('.exercise-item .opt-btn').forEach(b => {
+    b.classList.remove('selected', 'correct', 'incorrect');
+    b.disabled = false;
+  });
+  document.querySelectorAll('.feedback-box').forEach(f => { f.className = 'feedback-box'; f.textContent = ''; });
+  document.getElementById('ej-score').classList.remove('show');
+  document.getElementById('ej-bar').style.width = '0%';
+}
+
+// ===== CUESTIONARIO =====
+const qAnswers = {};
+const qCorrects = {
+  qi1:'b', qi2:'b', qi3:'b', qi4:'b', qi5:'b',
+  qi6:'b', qi7:'b', qi8:'b', qi9:'c', qi10:'b'
+};
+const qFeedbacks = {
+  qi1: {
+    ok: '✅ Correcto. "In prehendere" (tomar entre manos) revela que emprender es actuar con intención frente a la incertidumbre.',
+    nok: '❌ Incorrecto. La raíz es latina: "in prehendere", que significa tomar entre manos o asumir una acción hacia adelante. Revela la esencia de actuar frente a lo incierto.'
+  },
+  qi2: {
+    ok: '✅ Correcto. Shane & Venkataraman (2000) definieron el emprendimiento como el estudio de cómo, por quién y con qué efectos se descubren, evalúan y explotan oportunidades económicas.',
+    nok: '❌ Incorrecto. Shane y Venkataraman (2000) enfocaron el campo en el proceso de descubrimiento, evaluación y explotación de oportunidades económicas, no en rasgos de personalidad ni en procedimientos administrativos.'
+  },
+  qi3: {
+    ok: '✅ Correcto. El de oportunidad detecta brechas activamente y orienta su negocio al crecimiento; el de necesidad busca subsistencia ante la falta de alternativas laborales.',
+    nok: '❌ Incorrecto. La distinción no es de capital ni de educación formal, sino de motivación: el de oportunidad actúa desde el reconocimiento de una brecha de mercado; el de necesidad, desde la urgencia de sobrevivir.'
+  },
+  qi4: {
+    ok: '✅ Correcto. Drucker argumentó que el emprendimiento es una disciplina que puede aprenderse, desmitificando al emprendedor como genio innato.',
+    nok: '❌ Incorrecto. Drucker (1985) fue enfático en que el emprendimiento es una práctica sistemática aprendible, no un talento nato ni un privilegio de países ricos.'
+  },
+  qi5: {
+    ok: '✅ Correcto. Kirzner describió la "alertness" como la habilidad de procesar la misma información disponible de manera diferente para ver oportunidades que otros no ven.',
+    nok: '❌ Incorrecto. La vigilancia empresarial de Kirzner no es supervisión de empleados ni monitoreo competitivo: es la capacidad cognitiva de ver oportunidades en información que todos tienen pero que nadie más notó.'
+  },
+  qi6: {
+    ok: '✅ Correcto. EntreComp organizó 15 competencias en: Ideas y Oportunidades, Recursos, y En Acción.',
+    nok: '❌ Incorrecto. El marco EntreComp (Comisión Europea, 2016) tiene tres áreas: Ideas y Oportunidades, Recursos, y En Acción. No es un modelo de gestión tradicional (finanzas, marketing, operaciones).'
+  },
+  qi7: {
+    ok: '✅ Correcto. El orden es: Descubrimiento → Evaluación → Desarrollo del concepto → Validación.',
+    nok: '❌ Incorrecto. El orden correcto es: Descubrimiento de la oportunidad → Evaluación → Desarrollo del concepto → Validación → Lanzamiento → Escalamiento.'
+  },
+  qi8: {
+    ok: '✅ Correcto. La guía gratuita es un MVP: la versión más simple para validar si hay interés real antes de invertir en un producto mayor. Es la fase de Validación.',
+    nok: '❌ Incorrecto. Lanzar primero la guía gratuita como prueba de interés antes de cobrar es exactamente lo que define un MVP en la fase de Validación, no de escalamiento ni de descubrimiento.'
+  },
+  qi9: {
+    ok: '✅ Correcto. Mateo es un intraemprendedor clásico: innova y lidera un proyecto transformador dentro de la organización donde trabaja, sin crear una empresa nueva.',
+    nok: '❌ Incorrecto. Mateo no crea una empresa nueva, no trabaja por estilo de vida propio, no tiene impacto social primario: es un intraemprendedor. Innova dentro de su empresa con mentalidad emprendedora.'
+  },
+  qi10: {
+    ok: '✅ Correcto. La app está lanzada y tiene usuarios, pero los ingresos no cubren costos. Es el "valle de la muerte": la fase crítica entre lanzamiento y escalamiento.',
+    nok: '❌ Incorrecto. La app ya fue lanzada y tiene usuarios (superó el descubrimiento y la validación). El problema es financiero: está en el "valle de la muerte", esperando que los ingresos superen los costos operativos.'
+  }
+};
+
+function selectQ(name, val) {
+  qAnswers[name] = val;
+  document.querySelectorAll(`.quiz-item:has(#${name}-fb) .quiz-option`).forEach(o => o.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+}
+
+function verificarQuiz() {
+  const total = Object.keys(qCorrects).length;
+  if (Object.keys(qAnswers).length < total) {
+    alert('⚠️ Por favor responde todas las preguntas antes de verificar.');
+    return;
+  }
+  let score = 0;
+  Object.keys(qCorrects).forEach(name => {
+    const correct = qCorrects[name];
+    const chosen = qAnswers[name];
+    const isOk = chosen === correct;
+    if (isOk) score++;
+
+    const item = document.getElementById(name + '-fb').closest('.quiz-item');
+    item.querySelectorAll('.quiz-option').forEach(o => {
+      o.style.pointerEvents = 'none';
+      const onclick = o.getAttribute('onclick');
+      const val = onclick.match(/'([a-d])'\)/)[1];
+      if (val === correct) o.classList.add('correct');
+      else if (val === chosen && !isOk) o.classList.add('incorrect');
+    });
+
+    const fb = document.getElementById(name + '-fb');
+    fb.textContent = isOk ? qFeedbacks[name].ok : qFeedbacks[name].nok;
+    fb.className = 'feedback-box show ' + (isOk ? 'ok' : 'nok');
+  });
+
+  const pct = Math.round((score / total) * 100);
+  const scoreSection = document.getElementById('q-score');
+  scoreSection.classList.add('show');
+  document.getElementById('q-score-num').textContent = score + ' / ' + total;
+  document.getElementById('q-score-pct').textContent = pct + '%';
+  setTimeout(() => { document.getElementById('q-bar').style.width = pct + '%'; }, 100);
+
+  const msgs = [
+    [100, '🏆 ¡Perfecto! Excelente dominio del emprendimiento.'],
+    [80, '🎯 ¡Muy bien! Comprensión sólida. Revisa los errores.'],
+    [60, '📘 Buen avance. Vuelve a los temas donde fallaste.'],
+    [40, '⚠️ Necesitas reforzar. Revisa el material de las pestañas.'],
+    [0, '📖 Vuelve a leer el material con calma y vuelve a intentarlo.']
+  ];
+  const msg = msgs.find(m => pct >= m[0]);
+  document.getElementById('q-score-msg').textContent = msg[1];
+  scoreSection.scrollIntoView({ behavior: 'smooth' });
+}
+
+function reiniciarQuiz() {
+  Object.keys(qAnswers).forEach(k => delete qAnswers[k]);
+  document.querySelectorAll('.quiz-option').forEach(o => {
+    o.classList.remove('selected','correct','incorrect');
+    o.style.pointerEvents = '';
+  });
+  document.querySelectorAll('.feedback-box').forEach(f => { f.className = 'feedback-box'; f.textContent = ''; });
+  document.getElementById('q-score').classList.remove('show');
+  document.getElementById('q-bar').style.width = '0%';
+}
+</script>
+</body>
+</html>
