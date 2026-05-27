@@ -1,0 +1,2259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Thinking Lab · UG Emprendimiento</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════
+   VARIABLES & RESET
+══════════════════════════════════════════════ */
+:root {
+  --ink:    #0d0f14;
+  --paper:  #f5f2eb;
+  --white:  #ffffff;
+  --mist:   #e8e4dc;
+
+  --ph1: #e63946; /* Empatizar  — rojo */
+  --ph2: #f4a261; /* Definir    — naranja */
+  --ph3: #e9c46a; /* Idear      — amarillo */
+  --ph4: #2a9d8f; /* Prototipar — verde azulado */
+  --ph5: #457b9d; /* Testear    — azul */
+
+  --ph1-light: #fde8ea;
+  --ph2-light: #fef0e3;
+  --ph3-light: #fdf7e0;
+  --ph4-light: #ddf2ef;
+  --ph5-light: #ddeaf4;
+
+  --shadow-sm: 0 2px 8px rgba(13,15,20,0.08);
+  --shadow-md: 0 8px 32px rgba(13,15,20,0.12);
+  --shadow-lg: 0 20px 60px rgba(13,15,20,0.18);
+
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ══════════════════════════════════════════════
+   HERO / HEADER
+══════════════════════════════════════════════ */
+.hero {
+  background: var(--ink);
+  color: var(--white);
+  padding: 48px 32px 40px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(230,57,70,0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: 30%;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(69,123,157,0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 14px;
+}
+.hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.9rem, 5vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
+}
+.hero h1 span {
+  background: linear-gradient(90deg, var(--ph1), var(--ph2), var(--ph3), var(--ph4), var(--ph5));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero p {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.68);
+  max-width: 580px;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+/* progress strip */
+.progress-strip {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.ps-phase {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 40px;
+  padding: 6px 14px 6px 8px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: rgba(255,255,255,0.7);
+}
+.ps-phase:hover { background: rgba(255,255,255,0.14); color: #fff; }
+.ps-phase.done { border-color: currentColor; }
+.ps-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+}
+.ps-phase[data-ph="1"] .ps-dot { background: var(--ph1); }
+.ps-phase[data-ph="2"] .ps-dot { background: var(--ph2); }
+.ps-phase[data-ph="3"] .ps-dot { background: var(--ph3); }
+.ps-phase[data-ph="4"] .ps-dot { background: var(--ph4); }
+.ps-phase[data-ph="5"] .ps-dot { background: var(--ph5); }
+.ps-phase.done { color: #fff; }
+
+/* ══════════════════════════════════════════════
+   CONTEXT BANNER
+══════════════════════════════════════════════ */
+.context-banner {
+  background: var(--white);
+  border-bottom: 2px solid var(--mist);
+  padding: 20px 32px;
+}
+.context-banner label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #888;
+  display: block;
+  margin-bottom: 8px;
+}
+.context-input {
+  width: 100%;
+  max-width: 700px;
+  border: 2px solid var(--mist);
+  border-radius: var(--radius-sm);
+  padding: 12px 18px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  background: var(--paper);
+  color: var(--ink);
+  transition: border 0.2s;
+  outline: none;
+}
+.context-input:focus { border-color: var(--ph1); }
+.context-hint {
+  font-size: 0.82rem;
+  color: #aaa;
+  margin-top: 6px;
+}
+
+/* ══════════════════════════════════════════════
+   MAIN LAYOUT
+══════════════════════════════════════════════ */
+.lab-container {
+  padding: 32px 24px 80px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ══════════════════════════════════════════════
+   PHASE BLOCK
+══════════════════════════════════════════════ */
+.phase-block {
+  margin-bottom: 36px;
+  border-radius: var(--radius);
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  border: 1.5px solid var(--mist);
+  transition: box-shadow 0.3s;
+}
+.phase-block:hover { box-shadow: var(--shadow-md); }
+
+.phase-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 22px 28px;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+.ph-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1;
+  opacity: 0.18;
+  flex-shrink: 0;
+  width: 48px;
+  text-align: right;
+}
+.ph-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 40px;
+  padding: 6px 16px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+}
+.ph-info { flex: 1; }
+.ph-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+.ph-subtitle {
+  font-size: 0.87rem;
+  color: #777;
+  line-height: 1.5;
+}
+.ph-toggle {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  transition: transform 0.3s, background 0.2s;
+  background: var(--paper);
+}
+.phase-block.open .ph-toggle { transform: rotate(180deg); }
+
+.ph-status {
+  position: absolute;
+  right: 72px; top: 22px;
+  font-size: 0.72rem;
+  font-family: 'DM Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3px 10px;
+  border-radius: 20px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.phase-block.phase-done .ph-status { opacity: 1; }
+
+/* phase color theming */
+.phase-block[data-ph="1"] .ph-num       { color: var(--ph1); }
+.phase-block[data-ph="1"] .ph-badge     { background: var(--ph1-light); color: var(--ph1); }
+.phase-block[data-ph="1"] .phase-header { border-left: 5px solid var(--ph1); }
+.phase-block[data-ph="1"] .ph-status    { background: var(--ph1-light); color: var(--ph1); }
+.phase-block[data-ph="1"].phase-done    { border-color: var(--ph1); }
+
+.phase-block[data-ph="2"] .ph-num       { color: var(--ph2); }
+.phase-block[data-ph="2"] .ph-badge     { background: var(--ph2-light); color: #b35e1a; }
+.phase-block[data-ph="2"] .phase-header { border-left: 5px solid var(--ph2); }
+.phase-block[data-ph="2"] .ph-status    { background: var(--ph2-light); color: #b35e1a; }
+.phase-block[data-ph="2"].phase-done    { border-color: var(--ph2); }
+
+.phase-block[data-ph="3"] .ph-num       { color: #c9a810; }
+.phase-block[data-ph="3"] .ph-badge     { background: var(--ph3-light); color: #8a7010; }
+.phase-block[data-ph="3"] .phase-header { border-left: 5px solid var(--ph3); }
+.phase-block[data-ph="3"] .ph-status    { background: var(--ph3-light); color: #8a7010; }
+.phase-block[data-ph="3"].phase-done    { border-color: var(--ph3); }
+
+.phase-block[data-ph="4"] .ph-num       { color: var(--ph4); }
+.phase-block[data-ph="4"] .ph-badge     { background: var(--ph4-light); color: #1d6e64; }
+.phase-block[data-ph="4"] .phase-header { border-left: 5px solid var(--ph4); }
+.phase-block[data-ph="4"] .ph-status    { background: var(--ph4-light); color: #1d6e64; }
+.phase-block[data-ph="4"].phase-done    { border-color: var(--ph4); }
+
+.phase-block[data-ph="5"] .ph-num       { color: var(--ph5); }
+.phase-block[data-ph="5"] .ph-badge     { background: var(--ph5-light); color: #2c5a78; }
+.phase-block[data-ph="5"] .phase-header { border-left: 5px solid var(--ph5); }
+.phase-block[data-ph="5"] .ph-status    { background: var(--ph5-light); color: #2c5a78; }
+.phase-block[data-ph="5"].phase-done    { border-color: var(--ph5); }
+
+/* ══════════════════════════════════════════════
+   PHASE BODY
+══════════════════════════════════════════════ */
+.phase-body {
+  display: none;
+  padding: 0 28px 28px;
+  animation: slideDown 0.3s ease;
+}
+.phase-block.open .phase-body { display: block; }
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.phase-intro {
+  background: var(--paper);
+  border-radius: var(--radius-sm);
+  padding: 18px 20px;
+  margin-bottom: 24px;
+  font-size: 0.94rem;
+  line-height: 1.75;
+  color: #444;
+  border-left: 3px solid var(--mist);
+}
+.phase-intro strong { color: var(--ink); }
+
+/* ══════════════════════════════════════════════
+   TOOL TABS
+══════════════════════════════════════════════ */
+.tool-tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.tool-tab {
+  padding: 7px 16px;
+  border-radius: 40px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px solid var(--mist);
+  background: var(--white);
+  color: #666;
+  transition: all 0.2s;
+  font-family: 'DM Sans', sans-serif;
+}
+.tool-tab:hover { border-color: #ccc; color: var(--ink); }
+.tool-tab.active { color: var(--white); border-color: transparent; }
+
+.phase-block[data-ph="1"] .tool-tab.active { background: var(--ph1); }
+.phase-block[data-ph="2"] .tool-tab.active { background: var(--ph2); color: var(--ink); }
+.phase-block[data-ph="3"] .tool-tab.active { background: #c9a810; }
+.phase-block[data-ph="4"] .tool-tab.active { background: var(--ph4); }
+.phase-block[data-ph="5"] .tool-tab.active { background: var(--ph5); }
+
+.tool-panel { display: none; }
+.tool-panel.active { display: block; animation: fadeIn 0.25s ease; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ══════════════════════════════════════════════
+   TOOL CARD
+══════════════════════════════════════════════ */
+.tool-card {
+  background: var(--paper);
+  border-radius: var(--radius-sm);
+  padding: 20px;
+  margin-bottom: 18px;
+}
+.tool-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.tool-icon {
+  width: 42px; height: 42px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+.tool-name {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.2;
+  margin-bottom: 3px;
+}
+.tool-desc { font-size: 0.84rem; color: #666; line-height: 1.5; }
+
+/* form elements */
+.field-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #888;
+  display: block;
+  margin-bottom: 6px;
+  margin-top: 14px;
+}
+.field-label:first-of-type { margin-top: 0; }
+
+textarea, input[type="text"], input[type="number"], select {
+  width: 100%;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.92rem;
+  background: var(--white);
+  color: var(--ink);
+  outline: none;
+  transition: border 0.2s;
+  resize: vertical;
+}
+textarea:focus, input:focus, select:focus { border-color: var(--ink); }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+
+/* ══════════════════════════════════════════════
+   EMPATHY MAP VISUAL
+══════════════════════════════════════════════ */
+.empathy-map {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 3px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 14px;
+  background: #ccc;
+}
+.em-cell {
+  background: var(--white);
+  padding: 14px 16px;
+  min-height: 120px;
+}
+.em-cell.center {
+  grid-column: 1 / 3;
+  background: var(--ink);
+  color: var(--white);
+  text-align: center;
+  padding: 16px;
+  min-height: unset;
+}
+.em-cell.bottom-l { background: var(--ph1-light); }
+.em-cell.bottom-r { background: var(--ph4-light); }
+.em-label {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+  display: block;
+}
+.em-cell.center .em-label { color: var(--ph3); font-size: 0.85rem; }
+.em-icon { font-size: 1.1rem; margin-right: 5px; }
+.em-cell textarea {
+  min-height: 80px;
+  background: transparent;
+  border-color: rgba(0,0,0,0.1);
+  font-size: 0.85rem;
+}
+.em-cell.center input {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.2);
+  color: var(--white);
+  text-align: center;
+  font-size: 1rem;
+}
+.em-cell.center input::placeholder { color: rgba(255,255,255,0.4); }
+
+/* ══════════════════════════════════════════════
+   POEMS GRID
+══════════════════════════════════════════════ */
+.poems-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+}
+.poems-cell {
+  background: var(--white);
+  border-radius: 10px;
+  padding: 14px;
+  border-top: 3px solid var(--ph1);
+}
+.poems-cell:nth-child(2) { border-top-color: var(--ph2); }
+.poems-cell:nth-child(3) { border-top-color: var(--ph3); }
+.poems-cell:nth-child(4) { border-top-color: var(--ph4); }
+.poems-cell:nth-child(5) { border-top-color: var(--ph5); }
+.poems-cell-label {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+  color: #555;
+}
+.poems-cell textarea { min-height: 80px; font-size: 0.82rem; border-color: rgba(0,0,0,0.08); }
+
+/* ══════════════════════════════════════════════
+   INTERVIEW GUIDE
+══════════════════════════════════════════════ */
+.interview-row {
+  display: grid;
+  grid-template-columns: 40px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.interview-num {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--ph1);
+  color: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+.btn-add {
+  border: 2px dashed #ccc;
+  background: transparent;
+  border-radius: 8px;
+  padding: 10px;
+  width: 100%;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  color: #aaa;
+  font-size: 0.88rem;
+  transition: all 0.2s;
+  margin-top: 8px;
+}
+.btn-add:hover { border-color: var(--ph1); color: var(--ph1); }
+.btn-remove {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: #f0f0f0;
+  color: #aaa;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+.btn-remove:hover { background: var(--ph1-light); color: var(--ph1); }
+
+/* ══════════════════════════════════════════════
+   POV BUILDER (Phase 2)
+══════════════════════════════════════════════ */
+.pov-builder {
+  background: var(--ink);
+  border-radius: var(--radius-sm);
+  padding: 24px;
+  color: var(--white);
+  margin-top: 14px;
+}
+.pov-live {
+  background: rgba(255,255,255,0.07);
+  border-radius: 8px;
+  padding: 18px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.85);
+  margin-top: 16px;
+  border-left: 4px solid var(--ph2);
+  min-height: 80px;
+  transition: all 0.3s;
+}
+.pov-live em { color: var(--ph2); font-style: normal; font-weight: 600; }
+.pov-live .pov-blank { color: rgba(255,255,255,0.3); font-style: italic; }
+.pov-builder label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.5);
+  display: block;
+  margin-bottom: 6px;
+  margin-top: 16px;
+}
+.pov-builder input {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.15);
+  color: var(--white);
+}
+.pov-builder input::placeholder { color: rgba(255,255,255,0.3); }
+.pov-builder input:focus { border-color: var(--ph2); }
+
+/* HMW */
+.hmw-tag {
+  display: inline-block;
+  background: var(--paper);
+  border: 2px solid var(--mist);
+  border-radius: 40px;
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  margin: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.hmw-tag:hover { border-color: var(--ph2); color: var(--ph2); }
+
+/* ══════════════════════════════════════════════
+   BRAINSTORM BOARD (Phase 3)
+══════════════════════════════════════════════ */
+.idea-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+  min-height: 100px;
+}
+.idea-card {
+  background: var(--ph3-light);
+  border-radius: 10px;
+  padding: 14px;
+  border: 2px solid #e9c46a33;
+  position: relative;
+  animation: popIn 0.25s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.idea-card textarea {
+  background: transparent;
+  border: none;
+  font-size: 0.88rem;
+  min-height: 70px;
+  resize: none;
+  padding: 0;
+}
+.idea-card textarea:focus { border: none; outline: none; }
+.idea-del {
+  position: absolute;
+  top: 6px; right: 6px;
+  background: none; border: none;
+  color: rgba(0,0,0,0.25);
+  cursor: pointer; font-size: 0.85rem;
+  transition: color 0.2s;
+}
+.idea-del:hover { color: var(--ph1); }
+.idea-count {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  color: #999;
+  margin-top: 8px;
+}
+
+/* SCAMPER */
+.scamper-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+.scamper-card {
+  background: var(--white);
+  border-radius: 10px;
+  padding: 16px;
+  border-left: 4px solid #e9c46a;
+}
+.scamper-letter {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #c9a810;
+  line-height: 1;
+}
+.scamper-word {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+.scamper-prompt {
+  font-size: 0.8rem;
+  color: #888;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+/* ══════════════════════════════════════════════
+   PROTOTYPE CANVAS (Phase 4)
+══════════════════════════════════════════════ */
+.prototype-canvas {
+  border: 2px dashed #ccc;
+  border-radius: var(--radius-sm);
+  padding: 20px;
+  text-align: center;
+  background: var(--white);
+  margin-bottom: 14px;
+}
+.mockup-area {
+  width: 100%;
+  min-height: 200px;
+  border: none;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.85rem;
+  resize: vertical;
+  background: transparent;
+  outline: none;
+  color: #555;
+}
+.proto-steps {
+  counter-reset: ps;
+  list-style: none;
+}
+.proto-steps li {
+  counter-increment: ps;
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 12px;
+  align-items: start;
+  margin-bottom: 12px;
+}
+.proto-steps li::before {
+  content: counter(ps);
+  width: 36px; height: 36px;
+  background: var(--ph4);
+  color: white;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+
+/* materials */
+.materials-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+.material-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--ph4-light);
+  border: 2px solid transparent;
+  border-radius: 40px;
+  padding: 6px 14px;
+  font-size: 0.83rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #1d6e64;
+  font-weight: 500;
+}
+.material-chip.selected { border-color: var(--ph4); background: var(--ph4); color: white; }
+
+/* ══════════════════════════════════════════════
+   TEST PROTOCOL (Phase 5)
+══════════════════════════════════════════════ */
+.test-matrix {
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 2px solid var(--mist);
+}
+.test-matrix table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.test-matrix th {
+  background: var(--ph5);
+  color: white;
+  padding: 11px 14px;
+  text-align: left;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+}
+.test-matrix td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--mist);
+  vertical-align: middle;
+}
+.test-matrix tr:last-child td { border-bottom: none; }
+.test-matrix tr:nth-child(even) td { background: var(--ph5-light); }
+.test-matrix td input { border: 1.5px solid #ddd; }
+
+.rating-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background: var(--white);
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  border: 1.5px solid var(--mist);
+}
+.rating-label { flex: 1; font-size: 0.9rem; }
+.stars { display: flex; gap: 4px; }
+.star {
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.1s;
+  color: #ddd;
+}
+.star:hover, .star.lit { color: var(--ph3); transform: scale(1.15); }
+
+/* ══════════════════════════════════════════════
+   SAVE BUTTON & EXPORT
+══════════════════════════════════════════════ */
+.save-bar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 2px solid var(--mist);
+}
+.btn-save {
+  padding: 11px 24px;
+  border-radius: 40px;
+  border: none;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.02em;
+}
+.btn-save.primary {
+  background: var(--ink);
+  color: white;
+}
+.btn-save.primary:hover { background: #222; transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+.btn-save.secondary {
+  background: transparent;
+  color: var(--ink);
+  border: 2px solid var(--ink);
+}
+.btn-save.secondary:hover { background: var(--ink); color: white; }
+.save-note {
+  font-size: 0.78rem;
+  color: #aaa;
+  font-family: 'DM Mono', monospace;
+}
+
+/* ══════════════════════════════════════════════
+   SUMMARY PANEL
+══════════════════════════════════════════════ */
+.summary-panel {
+  background: var(--ink);
+  border-radius: var(--radius);
+  padding: 32px;
+  margin-top: 40px;
+  color: white;
+  display: none;
+}
+.summary-panel.visible { display: block; animation: fadeIn 0.4s ease; }
+.summary-panel h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+.summary-panel .sub { color: rgba(255,255,255,0.5); font-size: 0.85rem; margin-bottom: 28px; }
+
+.summary-phases {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.summary-ph {
+  background: rgba(255,255,255,0.06);
+  border-radius: 12px;
+  padding: 18px;
+}
+.summary-ph .sph-name {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+.summary-ph .sph-status {
+  font-size: 0.78rem;
+  font-family: 'DM Mono', monospace;
+  color: rgba(255,255,255,0.4);
+}
+.summary-ph.done .sph-status { color: var(--ph3); }
+
+.btn-export {
+  background: linear-gradient(135deg, var(--ph1), var(--ph5));
+  color: white;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 40px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.02em;
+}
+.btn-export:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+
+/* ══════════════════════════════════════════════
+   TOAST
+══════════════════════════════════════════════ */
+.toast {
+  position: fixed;
+  bottom: 30px; right: 30px;
+  background: var(--ink);
+  color: white;
+  padding: 14px 22px;
+  border-radius: 40px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  font-size: 0.88rem;
+  box-shadow: var(--shadow-lg);
+  transform: translateY(80px);
+  opacity: 0;
+  transition: all 0.35s cubic-bezier(.34,1.56,.64,1);
+  z-index: 999;
+  pointer-events: none;
+}
+.toast.show { transform: translateY(0); opacity: 1; }
+.toast.green { background: var(--ph4); }
+
+/* ══════════════════════════════════════════════
+   UTILITY
+══════════════════════════════════════════════ */
+.divider {
+  height: 2px;
+  background: var(--mist);
+  margin: 20px 0;
+}
+.tip-box {
+  display: flex;
+  gap: 10px;
+  background: var(--ph3-light);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 0.84rem;
+  color: #666;
+  margin-bottom: 14px;
+  align-items: flex-start;
+}
+.tip-box span:first-child { font-size: 1rem; flex-shrink: 0; }
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+.tag {
+  background: var(--mist);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 0.78rem;
+  color: #666;
+}
+
+@media (max-width: 680px) {
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .empathy-map { grid-template-columns: 1fr; }
+  .em-cell.center { grid-column: 1; }
+  .phase-header { padding: 16px 18px; }
+  .phase-body { padding: 0 16px 20px; }
+  .hero { padding: 32px 20px 28px; }
+  .context-banner { padding: 16px 20px; }
+  .lab-container { padding: 20px 14px 60px; }
+  .ph-num { display: none; }
+  .summary-phases { grid-template-columns: 1fr 1fr; }
+  .poems-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════ HERO ════════════ -->
+<div class="hero">
+  <div class="hero-tag">Universidad de Guayaquil · Emprendimiento e Innovación · Semana 09</div>
+  <h1>Design Thinking<br><span>Lab Interactivo</span></h1>
+  <p>Practica las 5 fases del Design Thinking aplicando las herramientas de cada una. Completa las fases en orden, guarda tu trabajo y exporta tu resultado al final.</p>
+  <div class="progress-strip">
+    <div class="ps-phase" data-ph="1" onclick="jumpPhase(0)"><div class="ps-dot"></div> Empatizar</div>
+    <div class="ps-phase" data-ph="2" onclick="jumpPhase(1)"><div class="ps-dot"></div> Definir</div>
+    <div class="ps-phase" data-ph="3" onclick="jumpPhase(2)"><div class="ps-dot"></div> Idear</div>
+    <div class="ps-phase" data-ph="4" onclick="jumpPhase(3)"><div class="ps-dot"></div> Prototipar</div>
+    <div class="ps-phase" data-ph="5" onclick="jumpPhase(4)"><div class="ps-dot"></div> Testear</div>
+  </div>
+</div>
+
+<!-- ════════════ CONTEXT ════════════ -->
+<div class="context-banner">
+  <label for="projectCtx">Tu reto / problema de diseño</label>
+  <input type="text" class="context-input" id="projectCtx"
+    placeholder='Ej: "Mejorar el proceso de declaración de impuestos para PYME en Ecuador"'
+    oninput="updateContext()">
+  <div class="context-hint">Este reto será tu referencia durante todo el proceso. Puedes ajustarlo a medida que avanzas.</div>
+</div>
+
+<!-- ════════════ LAB ════════════ -->
+<div class="lab-container">
+
+<!-- ══════════════════════════════
+     FASE 1 · EMPATIZAR
+══════════════════════════════ -->
+<div class="phase-block" data-ph="1" id="phase-1">
+  <div class="phase-header" onclick="togglePhase(this)">
+    <div class="ph-num">1</div>
+    <div class="ph-badge">❤️ Fase 1</div>
+    <div class="ph-info">
+      <div class="ph-title">Empatizar</div>
+      <div class="ph-subtitle">Comprende profundamente a las personas que viven el problema</div>
+    </div>
+    <div class="ph-status">✓ Completada</div>
+    <div class="ph-toggle">▼</div>
+  </div>
+  <div class="phase-body">
+    <div class="phase-intro">
+      <strong>¿Qué es empatizar?</strong> Es la práctica de salir al campo para observar, escuchar y sentir lo que vive el usuario. No se trata de asumir — se trata de descubrir. Un contador que empatiza con su cliente no le pregunta "¿qué quieres?" sino "cuéntame cómo vives este proceso día a día." Usa las cuatro herramientas a continuación.
+    </div>
+
+    <div class="tool-tabs" id="tabs-1">
+      <div class="tool-tab active" onclick="showTool('1','mapa')">🗺️ Mapa de Empatía</div>
+      <div class="tool-tab" onclick="showTool('1','entrevista')">🎙️ Guía de Entrevista</div>
+      <div class="tool-tab" onclick="showTool('1','observacion')">👁️ Observación Contextual</div>
+      <div class="tool-tab" onclick="showTool('1','poems')">📋 POEMS</div>
+    </div>
+
+    <!-- HERRAMIENTA: Mapa de Empatía -->
+    <div class="tool-panel active" id="tool-1-mapa">
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-icon" style="background:var(--ph1-light)">🗺️</div>
+          <div>
+            <div class="tool-name">Mapa de Empatía</div>
+            <div class="tool-desc">Organiza lo que descubres sobre tu usuario en cuatro dimensiones: qué dice, qué piensa, qué hace y qué siente. Más las síntesis de dolor y ganancia.</div>
+          </div>
+        </div>
+        <div class="tip-box"><span>💡</span><span>Primero escribe el nombre o perfil de tu usuario en el centro, luego completa cada cuadrante con lo que observaste o escuchaste — no lo que asumes.</span></div>
+        <div class="empathy-map">
+          <div class="em-cell" style="border-right:3px solid #eee;">
+            <span class="em-label"><span class="em-icon">💬</span>DICE</span>
+            <div class="field-label">Frases textuales que pronuncia</div>
+            <textarea id="em-dice" placeholder='Ej: "No entiendo estos formularios del SRI..."'></textarea>
+          </div>
+          <div class="em-cell">
+            <span class="em-label"><span class="em-icon">💭</span>PIENSA</span>
+            <div class="field-label">Lo que piensa pero no dice</div>
+            <textarea id="em-piensa" placeholder='Ej: Teme cometer errores que le generen multas...'></textarea>
+          </div>
+          <div class="em-cell center">
+            <span class="em-label">👤 USUARIO / PERSONA</span>
+            <input type="text" id="em-usuario" placeholder="Nombre o perfil del usuario (Ej: Contador de PYME, 35 años, Guayaquil)">
+          </div>
+          <div class="em-cell" style="border-right:3px solid #eee; border-top:3px solid #eee;">
+            <span class="em-label"><span class="em-icon">🏃</span>HACE</span>
+            <div class="field-label">Comportamientos observables</div>
+            <textarea id="em-hace" placeholder='Ej: Usa hojas de Excel para llevar el control...'></textarea>
+          </div>
+          <div class="em-cell" style="border-top:3px solid #eee;">
+            <span class="em-label"><span class="em-icon">❤️</span>SIENTE</span>
+            <div class="field-label">Sus emociones y actitudes</div>
+            <textarea id="em-siente" placeholder='Ej: Frustrado, ansioso cuando se acercan las fechas de declaración...'></textarea>
+          </div>
+          <div class="em-cell bottom-l" style="border-top:3px solid #eee; border-right:3px solid #eee;">
+            <span class="em-label" style="color:var(--ph1)">😣 DOLORES</span>
+            <div class="field-label">Miedos, frustraciones, obstáculos</div>
+            <textarea id="em-dolores" placeholder='Ej: Miedo a equivocarse en el SRI...'></textarea>
+          </div>
+          <div class="em-cell bottom-r" style="border-top:3px solid #eee;">
+            <span class="em-label" style="color:#1d6e64">🌟 GANANCIAS</span>
+            <div class="field-label">Deseos, sueños, medida del éxito</div>
+            <textarea id="em-ganancias" placeholder='Ej: Quiere terminar sus declaraciones en menos tiempo...'></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HERRAMIENTA: Guía de Entrevista -->
+    <div class="tool-panel" id="tool-1-entrevista">
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-icon" style="background:var(--ph1-light)">🎙️</div>
+          <div>
+            <div class="tool-name">Guía de Entrevista en Profundidad</div>
+            <div class="tool-desc">Las entrevistas abiertas son el corazón de la empatía. Diseña tus preguntas aquí. Regla clave: pregunta "¿cómo?", "¿por qué?" y "cuéntame" — nunca sí/no.</div>
+          </div>
+        </div>
+        <div class="tip-box"><span>💡</span><span>Una buena pregunta de entrevista invita a narrar una experiencia, no a dar una respuesta. Evita: "¿Te gustaría X?" Prefiere: "Cuéntame la última vez que tuviste que hacer X."</span></div>
+
+        <div class="field-label">Perfil del entrevistado</div>
+        <input type="text" id="int-perfil" placeholder="Ej: Contador independiente con 5+ clientes PYME en Guayaquil">
+
+        <div class="field-label">Objetivo de la entrevista</div>
+        <input type="text" id="int-objetivo" placeholder="Ej: Entender cómo vive el proceso de declaraciones tributarias mensualmente">
+
+        <div class="divider"></div>
+
+        <div class="field-label">Preguntas de la entrevista (mínimo 5)</div>
+        <div id="interview-questions">
+          <div class="interview-row">
+            <div class="interview-num">1</div>
+            <input type="text" placeholder="Ej: Cuéntame cómo es tu proceso típico cuando tienes que preparar una declaración tributaria...">
+            <button class="btn-remove" onclick="removeQuestion(this)">✕</button>
+          </div>
+          <div class="interview-row">
+            <div class="interview-num">2</div>
+            <input type="text" placeholder="Ej: ¿Cuál es el momento más difícil o frustrante de ese proceso?">
+            <button class="btn-remove" onclick="removeQuestion(this)">✕</button>
+          </div>
+          <div class="interview-row">
+            <div class="interview-num">3</div>
+            <input type="text" placeholder="Ej: ¿Cómo sabes si lo hiciste bien? ¿Qué te genera incertidumbre?">
+            <button class="btn-remove" onclick="removeQuestion(this)">✕</button>
+          </div>
+          <div class="interview-row">
+            <div class="interview-num">4</div>
+            <input type="text" placeholder="Ej: Cuéntame sobre una vez en que algo salió mal. ¿Qué pasó?">
+            <button class="btn-remove" onclick="removeQuestion(this)">✕</button>
+          </div>
+          <div class="interview-row">
+            <div class="interview-num">5</div>
+            <input type="text" placeholder="Ej: Si pudieras cambiar una sola cosa de este proceso, ¿qué sería?">
+            <button class="btn-remove" onclick="removeQuestion(this)">✕</button>
+          </div>
+        </div>
+        <button class="btn-add" onclick="addQuestion()">+ Agregar pregunta</button>
+
+        <div class="divider"></div>
+        <div class="field-label">Hallazgos clave de la entrevista</div>
+        <textarea id="int-hallazgos" rows="3" placeholder="Anota aquí los insights más importantes que descubriste..."></textarea>
+      </div>
+    </div>
+
+    <!-- HERRAMIENTA: Observación Contextual -->
+    <div class="tool-panel" id="tool-1-observacion">
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-icon" style="background:var(--ph1-light)">👁️</div>
+          <div>
+            <div class="tool-name">Guía de Observación Contextual</div>
+            <div class="tool-desc">Observa al usuario en su entorno real sin intervenir. Lo que hace es más honesto que lo que dice. Registra lo que ves, no lo que interpretas.</div>
+          </div>
+        </div>
+        <div class="tip-box"><span>💡</span><span>Observar ≠ participar. Tu rol es el de "mosca en la pared": registra sin opinar, corregir ni ayudar. Anota lo que el usuario hace, en qué orden, cuánto tarda, qué ignora, qué repite.</span></div>
+
+        <div class="grid-2">
+          <div>
+            <div class="field-label">Lugar y contexto de observación</div>
+            <input type="text" id="obs-lugar" placeholder="Ej: Oficina del contador, viernes por la tarde">
+          </div>
+          <div>
+            <div class="field-label">Duración de la observación</div>
+            <input type="text" id="obs-duracion" placeholder="Ej: 90 minutos">
+          </div>
+        </div>
+
+        <div class="field-label">¿Qué tarea/actividad se observó?</div>
+        <input type="text" id="obs-tarea" placeholder="Ej: El contador prepara una declaración mensual de IVA">
+
+        <div class="divider"></div>
+        <div class="field-label">Registro de comportamientos observados</div>
+
+        <div id="obs-rows">
+          <div class="grid-3" style="margin-bottom:6px;">
+            <input type="text" placeholder="Acción observada">
+            <input type="text" placeholder="Herramienta usada">
+            <input type="text" placeholder="Reacción / emoción visible">
+          </div>
+          <div class="grid-3" style="margin-bottom:6px;">
+            <input type="text" placeholder="Acción observada">
+            <input type="text" placeholder="Herramienta usada">
+            <input type="text" placeholder="Reacción / emoción visible">
+          </div>
+          <div class="grid-3" style="margin-bottom:6px;">
+            <input type="text" placeholder="Acción observada">
+            <input type="text" placeholder="Herramienta usada">
+            <input type="text" placeholder="Reacción / emoción visible">
+          </div>
+        </div>
+        <button class="btn-add" onclick="addObsRow()" style="border-color: var(--ph1); color:var(--ph1); margin-top:4px;">+ Agregar fila de observación</button>
+
+        <div class="divider"></div>
+        <div class="field-label">Momentos de frustración detectados</div>
+        <textarea id="obs-frustracion" rows="2" placeholder="Ej: Se confundió con los códigos del formulario 104, tardó 12 minutos buscando en internet..."></textarea>
+
+        <div class="field-label">Hallazgos inesperados (cosas que no esperabas ver)</div>
+        <textarea id="obs-inesperado" rows="2" placeholder="Ej: El contador tenía un cuaderno físico como respaldo aunque usa Excel..."></textarea>
+      </div>
+    </div>
+
+    <!-- HERRAMIENTA: POEMS -->
+    <div class="tool-panel" id="tool-1-poems">
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-icon" style="background:var(--ph1-light)">📋</div>
+          <div>
+            <div class="tool-name">Método POEMS</div>
+            <div class="tool-desc">Marco de observación que organiza el entorno del usuario en cinco categorías: Personas, Objetos, Entornos, Mensajes y Servicios.</div>
+          </div>
+        </div>
+        <div class="tip-box"><span>💡</span><span>POEMS te ayuda a ver el sistema completo alrededor del usuario, no solo al usuario aislado. Cada elemento puede esconder una oportunidad de diseño.</span></div>
+        <div class="poems-grid">
+          <div class="poems-cell">
+            <div class="poems-cell-label">👥 P — Personas</div>
+            <div style="font-size:0.75rem;color:#999;margin-bottom:8px;">¿Quiénes más están en el entorno?</div>
+            <textarea placeholder="Ej: Asistente contable, clientes que envían documentos, representante del SRI..."></textarea>
+          </div>
+          <div class="poems-cell">
+            <div class="poems-cell-label">🔧 O — Objetos</div>
+            <div style="font-size:0.75rem;color:#999;margin-bottom:8px;">¿Qué objetos/herramientas usa?</div>
+            <textarea placeholder="Ej: Laptop con Excel, impresora, sellos, carpetas físicas..."></textarea>
+          </div>
+          <div class="poems-cell">
+            <div class="poems-cell-label">🏢 E — Entornos</div>
+            <div style="font-size:0.75rem;color:#999;margin-bottom:8px;">¿En qué espacios ocurre?</div>
+            <textarea placeholder="Ej: Oficina pequeña, en casa, en el local del cliente..."></textarea>
+          </div>
+          <div class="poems-cell">
+            <div class="poems-cell-label">💬 M — Mensajes</div>
+            <div style="font-size:0.75rem;color:#999;margin-bottom:8px;">¿Qué comunicaciones recibe/envía?</div>
+            <textarea placeholder="Ej: Correos del SRI, alertas de vencimiento, facturas por WhatsApp..."></textarea>
+          </div>
+          <div class="poems-cell">
+            <div class="poems-cell-label">⚙️ S — Servicios</div>
+            <div style="font-size:0.75rem;color:#999;margin-bottom:8px;">¿Qué servicios utiliza?</div>
+            <textarea placeholder="Ej: Portal SRI, Datil, banco, sistema de facturación..."></textarea>
+          </div>
+        </div>
+        <div class="field-label">Síntesis: ¿Qué reveló POEMS sobre el sistema del usuario?</div>
+        <textarea id="poems-sintesis" rows="2" placeholder="Describe el sistema completo en 2-3 oraciones..."></textarea>
+      </div>
+    </div>
+
+    <div class="save-bar">
+      <button class="btn-save primary" onclick="savePhase(1)">💾 Guardar Fase 1</button>
+      <button class="btn-save secondary" onclick="openPhaseNext(1)">Continuar → Definir</button>
+      <span class="save-note">Tu trabajo se guarda en esta sesión</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     FASE 2 · DEFINIR
+══════════════════════════════ -->
+<div class="phase-block" data-ph="2" id="phase-2">
+  <div class="phase-header" onclick="togglePhase(this)">
+    <div class="ph-num">2</div>
+    <div class="ph-badge">🎯 Fase 2</div>
+    <div class="ph-info">
+      <div class="ph-title">Definir</div>
+      <div class="ph-subtitle">Sintetiza lo aprendido en una declaración clara del problema real</div>
+    </div>
+    <div class="ph-status">✓ Completada</div>
+    <div class="ph-toggle">▼</div>
+  </div>
+  <div class="phase-body">
+    <div class="phase-intro">
+      <strong>¿Qué es Definir?</strong> Después de empatizar, tienes muchos datos e impresiones. Ahora necesitas sintetizarlos en un enunciado claro y accionable que capture el problema real del usuario — no el síntoma, sino la causa profunda. Este enunciado, llamado POV (Point of View), guiará todo el resto del proceso.
+    </div>
+
+    <div class="tool-tabs" id="tabs-2">
+      <div class="tool-tab active" onclick="showTool('2','pov')">🎯 Constructor POV</div>
+      <div class="tool-tab" onclick="showTool('2','insights')">💡 Síntesis de Insights</div>
+      <div class="tool-tab" onclick="showTool('2','hmw')">❓ ¿Cómo Podríamos?</div>
+    </div>
+
+    <!-- POV Builder -->
+    <div class="tool-panel active" id="tool-2-pov">
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-icon" style="background:var(--ph2-light)">🎯</div>
+          <div>
+            <div class="tool-name">Constructor de Point of View (POV)</div>
+            <div class="tool-desc">El POV es la declaración del problema centrada en el usuario. Tiene tres partes: quién es el usuario, qué necesita y por qué (el insight profundo).</div>
+          </div>
+        </div>
+        <div class="tip-box"><span>💡</span><span>El insight es la parte más importante: no es "porque es difícil" sino "porque confunde la terminología técnica con la legal y teme cometer errores que le generen sanciones económicas."</span></div>
+
+        <div class="pov-builder">
+          <label>👤 USUARIO</label>
+          <input type="text" id="pov-usuario" placeholder="Describe quién es tu usuario..." oninput="updatePOV()">
+          <label>💡 NECESIDAD REAL</label>
+          <input type="text" id="pov-necesidad" placeholder="¿Qué necesita verdaderamente? (verbo + objeto)" oninput="updatePOV()">
+          <label>🔍 PORQUE (INSIGHT PROFUNDO)</label>
+          <input type="text" id="pov-porque" placeholder="¿Por qué es importante? La razón profunda, no obvia..." oninput="updatePOV()">
+
+          <div class="pov-live" id="pov-preview">
+            <span class="pov-blank">Tu declaración POV aparecerá aquí mientras escribes...</span>
+          </div>
+        </div>
+
+        <div class="field-label">¿Qué hace que este POV sea bueno? Autoevalúate:</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:8px;">
+          <label style="display:flex;gap:8px;align-items:center;cursor:pointer;font-size:0.88rem;"><input type="checkbox" id="chk1"> ¿Está centrado en el usuario, no en la tecnología?</label>
+          <label style="display:flex;gap:8px;align-items:center;cursor:pointer;font-size:0.88rem;"><input type="checkbox" id="chk2"> ¿Es lo suficientemente específico para guiar soluciones?</label>
+          <label style="display:flex;gap:8px;align-items:center;cursor:pointer;font-size:0.88rem;"><input type="checkbox" id="chk3"> ¿El insight va más allá de lo obvio?</label>
+          <label style="display:flex;gap:8px;align-items:center;cursor:pointer;font-size:0.88rem;"><input type="checkbox" id="chk4"> ¿Podría inspirar múltiples soluciones diferentes?</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Síntesis de Insights -->
+    <div class="tool-panel" id="tool-2-insights">
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-icon" style="background:var(--ph2-light)">💡</div>
+          <div>
+            <div class="tool-name">Síntesis de Insights</div>
+            <div class="tool-desc">Un insight es una verdad no obvia sobre el usuario que abre nuevas posibilidades de diseño. Se construye agrupando patrones de lo que observaste y escuchaste.</div>
+          </div>
+        </div>
+        <div class="tip-box"><span>💡</span><span>Los insights NO son observaciones. Observación: "el usuario usa Excel." Insight: "el usuario usa Excel porque los sistemas especializados le generan desconfianza — prefiere algo que puede ver y controlar."</span></div>
+
+        <div class="field-label">Patrón 1: Comportamiento repetido que observaste</div>
+        <textarea id="ins-patron1" rows="2" placeholder="Ej: Todos los contadores entrevistados tienen un cuaderno físico además del sistema digital..."></textarea>
+        <div class="field-label">→ ¿Qué insight revela ese patrón?</div>
+        <textarea id="ins-insight1" rows="2" placeholder="Ej: Los contadores necesitan una capa adicional de confianza en sus registros porque los sistemas digitales aún no les generan total seguridad..."></textarea>
+
+        <div class="divider"></div>
+        <div class="field-label">Patrón 2: Emoción dominante que detectaste</div>
+        <textarea id="ins-patron2" rows="2" placeholder="Ej: Todos expresaron ansiedad en los días previos al vencimiento de obligaciones..."></textarea>
+        <div class="field-label">→ ¿Qué insight revela esa emoción?</div>
+        <textarea id="ins-insight2" rows="2" placeholder="Ej: La presión de las fechas no viene de la dificultad técnica sino del miedo a la penalización por error..."></textarea>
+
+        <div class="divider"></div>
+        <div class="field-label">Patrón 3: Contradicción o paradoja que encontraste</div>
+        <textarea id="ins-patron3" rows="2" placeholder="Ej: Dicen que quieren un sistema más simple, pero cuando lo tienen lo usan junto con el anterior..."></textarea>
+        <div class="field-label">→ ¿Qué insight revela esa contradicción?</div>
+        <textarea id="ins-insight3" rows="2" placeholder="Ej: El cambio de herramientas no es un problema de capacidad sino de confianza acumulada..."></textarea>
+      </div>
+    </div>
+
+    <!-- HMW -->
+    <div class="tool-panel" id="tool-2-hmw">
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-icon" style="background:var(--ph2-light)">❓</div>
+          <div>
+            <div class="tool-name">Preguntas "¿Cómo Podríamos…?" (How Might We)</div>
+            <div class="tool-desc">Las preguntas HMW transforman el problema en un espacio de posibilidades. Cada una abre una dirección diferente de solución. Son el puente entre Definir e Idear.</div>
+          </div>
+        </div>
+        <div class="tip-box"><span>💡</span><span>La pregunta HMW perfecta no sugiere la solución. "¿Cómo podríamos <em>hacer una app</em>?" ya dice la solución. "¿Cómo podríamos <em>reducir la ansiedad</em> del contador en fechas de vencimiento?" abre infinitas posibilidades.</span></div>
+
+        <div class="field-label">Escribe de 4 a 6 preguntas HMW a partir de tu POV</div>
+        <div id="hmw-rows">
+          <div class="interview-row" style="margin-bottom:10px;">
+            <div class="interview-num" style="background:var(--ph2);color:var(--ink)">1</div>
+            <input type="text" placeholder="¿Cómo podríamos...?">
+            <button class="btn-remove" onclick="removeHMW(this)">✕</button>
+          </div>
+          <div class="interview-row" style="margin-bottom:10px;">
+            <div class="interview-num" style="background:var(--ph2);color:var(--ink)">2</div>
+            <input type="text" placeholder="¿Cómo podríamos...?">
+            <button class="btn-remove" onclick="removeHMW(this)">✕</button>
+          </div>
+          <div class="interview-row" style="margin-bottom:10px;">
+            <div class="interview-num" style="background:var(--ph2);color:var(--ink)">3</div>
+            <input type="text" placeholder="¿Cómo podríamos...?">
+            <button class="btn-remove" onclick="removeHMW(this)">✕</button>
+          </div>
+        </div>
+        <button class="btn-add" onclick="addHMW()">+ Agregar pregunta HMW</button>
+
+        <div class="divider"></div>
+        <div class="field-label">Selecciona la pregunta HMW que guiará tu ideación (cópiala aquí)</div>
+        <textarea id="hmw-selected" rows="2" placeholder="¿Cómo podríamos...?  — Esta será tu pregunta guía para la Fase 3"></textarea>
+      </div>
+    </div>
+
+    <div class="save-bar">
+      <button class="btn-save primary" onclick="savePhase(2)">💾 Guardar Fase 2</button>
+      <button class="btn-save secondary" onclick="openPhaseNext(2)">Continuar → Idear</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     FASE 3 · IDEAR
+══════════════════════════════ -->
+<div class="phase-block" data-ph="3" id="phase-3">
+  <div class="phase-header" onclick="togglePhase(this)">
+    <div class="ph-num">3</div>
+    <div class="ph-badge">💡 Fase 3</div>
+    <div class="ph-info">
+      <div class="ph-title">Idear</div>
+      <div class="ph-subtitle">Genera la mayor cantidad posible de ideas sin juzgar ninguna</div>
+    </div>
+    <div class="ph-status">✓ Completada</div>
+    <div class="ph-toggle">▼</div>
+  </div>
+  <div class="phase-body">
+    <div class="phase-intro">
+      <strong>¿Qué es Idear?</strong> El cerebro humano genera sus mejores ideas cuando ya está "calentado" por muchas ideas previas. La regla de oro: primero cantidad, luego calidad. Durante la ideación, ninguna idea es mala o imposible. El juicio viene después.
+    </div>
+
+    <div class="tool-tabs" id="tabs-3">
+      <div class="tool-tab active" onclick="showTool('3','brainstorm')">🧠 Brainstorming</div>
+      <div class="tool-tab" onclick="showTool('3','scamper')">🔧 SCAMPER</div>
+      <div class="tool-tab" onclick="showTool('3','seleccion')">⭐ Selección de Ideas</div>
+    </div>
+
+    <!-- Brainstorming -->
+    <div class="tool-panel active" id="tool-3-brainstorm">
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-icon" style="background:var(--ph3-light)">🧠</div>
+          <div>
+            <div class="tool-name">Brainstorming Visual</div>
+            <div class="tool-desc">Genera ideas libremente. Cada tarjeta es una idea. Apunta a 15+ ideas — incluye las locas. Las mejores ideas suelen llegar después de la número 10.</div>
+          </div>
+        </div>
+        <div class="tip-box"><span>💡</span><span>Reglas del brainstorming: 1) Diferir el juicio, 2) Construir sobre las ideas de otros, 3) Alentar ideas salvajes, 4) Buscar cantidad, 5) Mantener el foco en la pregunta HMW.</span></div>
+        <div class="field-label">Tu pregunta guía HMW</div>
+        <input type="text" id="bs-hmw" placeholder="Pega tu pregunta HMW aquí para mantener el foco...">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;margin-bottom:4px;">
+          <div class="field-label" style="margin:0">Tablero de ideas</div>
+          <span class="idea-count" id="idea-count">0 ideas</span>
+        </div>
+        <div class="idea-board" id="idea-board"></div>
+        <button class="btn-add" onclick="addIdea()" style="border-color:#c9a810;color:#8a7010;margin-top:4px;">+ Nueva idea (o presiona Enter en cualquier tarjeta)</button>
+      </div>
+    </div>
+
+    <!-- SCAMPER -->
+    <div class="tool-panel" id="tool-3-scamper">
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-icon" style="background:var(--ph3-light)">🔧</div>
+          <div>
+            <div class="tool-name">SCAMPER</div>
+            <div class="tool-desc">Técnica de creatividad que aplica 7 operaciones mentales a una solución o producto existente para generar alternativas innovadoras.</div>
+          </div>
+        </div>
+        <div class="tip-box"><span>💡</span><span>SCAMPER funciona mejor si primero identificas un servicio/proceso existente y luego lo sometes a cada operación. No todas las operaciones generarán ideas útiles — eso es normal.</span></div>
+        <div class="field-label">Servicio/proceso que vas a transformar</div>
+        <input type="text" id="scamper-base" placeholder="Ej: Servicio de declaración tributaria mensual para PYME">
+        <div class="divider"></div>
+        <div class="scamper-grid">
+          <div class="scamper-card">
+            <div class="scamper-letter">S</div>
+            <div class="scamper-word">Sustituir</div>
+            <div class="scamper-prompt">¿Qué componentes, personas, procesos o materiales podrías reemplazar?</div>
+            <textarea rows="3" id="sc-s" placeholder="Ej: Sustituir el formulario PDF por un chat conversacional..."></textarea>
+          </div>
+          <div class="scamper-card">
+            <div class="scamper-letter">C</div>
+            <div class="scamper-word">Combinar</div>
+            <div class="scamper-prompt">¿Qué podrías fusionar con otra cosa para crear algo nuevo?</div>
+            <textarea rows="3" id="sc-c" placeholder="Ej: Combinar la declaración con un módulo de recomendaciones tributarias..."></textarea>
+          </div>
+          <div class="scamper-card">
+            <div class="scamper-letter">A</div>
+            <div class="scamper-word">Adaptar</div>
+            <div class="scamper-prompt">¿Qué ideas de otros contextos podrías adaptar aquí?</div>
+            <textarea rows="3" id="sc-a" placeholder="Ej: Adaptar el modelo de Waze (alertas de tráfico) para alertas tributarias..."></textarea>
+          </div>
+          <div class="scamper-card">
+            <div class="scamper-letter">M</div>
+            <div class="scamper-word">Modificar / Magnificar</div>
+            <div class="scamper-prompt">¿Qué podrías ampliar, reducir, exagerar o cambiar?</div>
+            <textarea rows="3" id="sc-m" placeholder="Ej: Reducir el proceso a un solo paso móvil..."></textarea>
+          </div>
+          <div class="scamper-card">
+            <div class="scamper-letter">P</div>
+            <div class="scamper-word">Poner otros usos</div>
+            <div class="scamper-prompt">¿Para qué otros propósitos podría usarse?</div>
+            <textarea rows="3" id="sc-p" placeholder="Ej: El mismo motor de cálculo podría usarse para proyectar impuestos futuros..."></textarea>
+          </div>
+          <div class="scamper-card">
+            <div class="scamper-letter">E</div>
+            <div class="scamper-word">Eliminar</div>
+            <div class="scamper-prompt">¿Qué podrías quitar sin perder el valor esencial?</div>
+            <textarea rows="3" id="sc-e" placeholder="Ej: Eliminar la necesidad de ingresar datos manuales con integración automática al SRI..."></textarea>
+          </div>
+          <div class="scamper-card">
+            <div class="scamper-letter">R</div>
+            <div class="scamper-word">Reorganizar / Revertir</div>
+            <div class="scamper-prompt">¿Qué pasaría si invirtieras el proceso o el orden?</div>
+            <textarea rows="3" id="sc-r" placeholder="Ej: En lugar de que el contador busque errores, el sistema predice qué va a salir mal..."></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Selección -->
+    <div class="tool-panel" id="tool-3-seleccion">
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-icon" style="background:var(--ph3-light)">⭐</div>
+          <div>
+            <div class="tool-name">Matriz de Selección de Ideas</div>
+            <div class="tool-desc">Evalúa tus mejores ideas con dos criterios: impacto para el usuario y factibilidad de implementación. La idea ganadora es tu candidata a prototipar.</div>
+          </div>
+        </div>
+        <div class="tip-box"><span>💡</span><span>No busques la idea perfecta — busca la idea que más aprendizaje genere. A veces vale la pena prototipar la idea más arriesgada, no la más segura.</span></div>
+        <div id="sel-ideas">
+          <div class="grid-3" style="font-family:'DM Mono',monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;color:#888;margin-bottom:8px;padding:0 12px;">
+            <span>Idea</span><span>Impacto (1-5) ⭐</span><span>Factibilidad (1-5) ⚙️</span>
+          </div>
+          <div class="rating-row">
+            <div class="rating-label"><input type="text" placeholder="Describe la idea..."></div>
+            <div class="stars" data-group="imp1">${stars(5)}</div>
+            <div class="stars" data-group="fac1">${stars(5)}</div>
+          </div>
+          <div class="rating-row">
+            <div class="rating-label"><input type="text" placeholder="Describe la idea..."></div>
+            <div class="stars" data-group="imp2">${stars(5)}</div>
+            <div class="stars" data-group="fac2">${stars(5)}</div>
+          </div>
+          <div class="rating-row">
+            <div class="rating-label"><input type="text" placeholder="Describe la idea..."></div>
+            <div class="stars" data-group="imp3">${stars(5)}</div>
+            <div class="stars" data-group="fac3">${stars(5)}</div>
+          </div>
+        </div>
+        <button class="btn-add" onclick="addSelRow()">+ Agregar idea a evaluar</button>
+        <div class="divider"></div>
+        <div class="field-label">Idea ganadora seleccionada para prototipar</div>
+        <textarea id="idea-ganadora" rows="2" placeholder="Describe la idea que prototiparás y por qué la elegiste..."></textarea>
+      </div>
+    </div>
+
+    <div class="save-bar">
+      <button class="btn-save primary" onclick="savePhase(3)">💾 Guardar Fase 3</button>
+      <button class="btn-save secondary" onclick="openPhaseNext(3)">Continuar → Prototipar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     FASE 4 · PROTOTIPAR
+══════════════════════════════ -->
+<div class="phase-block" data-ph="4" id="phase-4">
+  <div class="phase-header" onclick="togglePhase(this)">
+    <div class="ph-num">4</div>
+    <div class="ph-badge">🔨 Fase 4</div>
+    <div class="ph-info">
+      <div class="ph-title">Prototipar</div>
+      <div class="ph-subtitle">Construye representaciones rápidas y tangibles para aprender</div>
+    </div>
+    <div class="ph-status">✓ Completada</div>
+    <div class="ph-toggle">▼</div>
+  </div>
+  <div class="phase-body">
+    <div class="phase-intro">
+      <strong>¿Qué es Prototipar?</strong> Un prototipo no es el producto terminado — es la representación más simple y rápida que te permita aprender algo sobre tu idea. Puede ser un dibujo, una maqueta de cartón, una pantalla en papel o un guión de servicio. Lo importante: debe poderse hacer en horas, no meses.
+    </div>
+
+    <div class="tool-tabs" id="tabs-4">
+      <div class="tool-tab active" onclick="showTool('4','planif')">📋 Plan del Prototipo</div>
+      <div class="tool-tab" onclick="showTool('4','storyboard')">🎬 Storyboard</div>
+      <div class="tool-tab" onclick="showTool('4','criterios')">✅ Criterios de Aprendizaje</div>
+    </div>
+
+    <!-- Plan del Prototipo -->
+    <div class="tool-panel active" id="tool-4-planif">
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-icon" style="background:var(--ph4-light)">📋</div>
+          <div>
+            <div class="tool-name">Plan de Prototipado Rápido</div>
+            <div class="tool-desc">Define qué vas a construir, con qué materiales, en cuánto tiempo y qué pregunta específica quieres responder con el prototipo.</div>
+          </div>
+        </div>
+        <div class="tip-box"><span>💡</span><span>Pregúntate: "¿Cuál es la parte más incierta de mi idea?" — prototipa esa parte primero. No construyas todo el sistema cuando solo necesitas validar una suposición.</span></div>
+
+        <div class="field-label">Idea que vas a prototipar (de la Fase 3)</div>
+        <textarea id="proto-idea" rows="2" placeholder="Copia tu idea ganadora aquí..."></textarea>
+
+        <div class="grid-2">
+          <div>
+            <div class="field-label">Tipo de prototipo</div>
+            <select id="proto-tipo">
+              <option value="">— Selecciona —</option>
+              <option>Boceto / dibujo en papel</option>
+              <option>Maqueta física (cartón, materiales)</option>
+              <option>Pantallas dibujadas a mano (wireframe)</option>
+              <option>Guión de servicio / roleplay</option>
+              <option>Presentación de diapositivas</option>
+              <option>Vídeo de 1 minuto explicativo</option>
+              <option>Mockup digital simple (Canva, Figma gratuito)</option>
+              <option>Folleto / brochure del servicio</option>
+            </select>
+          </div>
+          <div>
+            <div class="field-label">Tiempo estimado de construcción</div>
+            <select id="proto-tiempo">
+              <option>30 minutos</option>
+              <option>1 hora</option>
+              <option>2-3 horas</option>
+              <option>1 día</option>
+              <option>2 días</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field-label">Materiales necesarios</div>
+        <div class="materials-grid" id="materials-grid">
+          <div class="material-chip" onclick="toggleMaterial(this)">📄 Papel / cartón</div>
+          <div class="material-chip" onclick="toggleMaterial(this)">✏️ Lápices / marcadores</div>
+          <div class="material-chip" onclick="toggleMaterial(this)">✂️ Tijeras / cinta</div>
+          <div class="material-chip" onclick="toggleMaterial(this)">💻 Laptop / computadora</div>
+          <div class="material-chip" onclick="toggleMaterial(this)">📱 Celular</div>
+          <div class="material-chip" onclick="toggleMaterial(this)">🖨️ Impresora</div>
+          <div class="material-chip" onclick="toggleMaterial(this)">📸 Cámara / fotos</div>
+          <div class="material-chip" onclick="toggleMaterial(this)">🗒️ Post-its</div>
+          <div class="material-chip" onclick="toggleMaterial(this)">🎭 Personas para roleplay</div>
+        </div>
+
+        <div class="divider"></div>
+        <div class="field-label">Pregunta central que quieres responder con este prototipo</div>
+        <textarea id="proto-pregunta" rows="2" placeholder="Ej: ¿Entiende el usuario cómo funcionaría el sistema de alertas automáticas de vencimiento?"></textarea>
+
+        <div class="field-label">Descripción de cómo será el prototipo (qué mostrará)</div>
+        <textarea id="proto-descripcion" rows="3" placeholder="Describe paso a paso qué construirás y cómo lo presentarás al usuario..."></textarea>
+      </div>
+    </div>
+
+    <!-- Storyboard -->
+    <div class="tool-panel" id="tool-4-storyboard">
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-icon" style="background:var(--ph4-light)">🎬</div>
+          <div>
+            <div class="tool-name">Storyboard del Servicio / Solución</div>
+            <div class="tool-desc">Narra visualmente cómo el usuario interactúa con tu solución, escena por escena. El storyboard convierte ideas abstractas en experiencias concretas y comprensibles.</div>
+          </div>
+        </div>
+        <div class="tip-box"><span>💡</span><span>No necesitas saber dibujar — usa descripciones textuales de cada escena. El storyboard ayuda a descubrir huecos en tu idea: "¿qué pasa si el usuario no tiene internet?" o "¿cómo se enteró de que existe esta solución?"</span></div>
+        <ol class="proto-steps">
+          <li>
+            <div>
+              <div class="field-label" style="margin-top:0">Escena 1: El problema / situación inicial</div>
+              <textarea rows="3" id="sb1" placeholder="Ej: María, contadora independiente, recibe un correo del SRI a las 6pm del día de vencimiento. Se da cuenta que olvidó la declaración. Pánico..."></textarea>
+            </div>
+          </li>
+          <li>
+            <div>
+              <div class="field-label" style="margin-top:0">Escena 2: El usuario descubre / accede a tu solución</div>
+              <textarea rows="3" id="sb2" placeholder="Ej: María recibe una notificación push 72 horas antes del vencimiento con un checklist simple..."></textarea>
+            </div>
+          </li>
+          <li>
+            <div>
+              <div class="field-label" style="margin-top:0">Escena 3: Interacción clave con la solución</div>
+              <textarea rows="3" id="sb3" placeholder="Ej: Abre la app, en 3 pasos confirma los valores, el sistema pre-llena el formulario con datos del mes anterior..."></textarea>
+            </div>
+          </li>
+          <li>
+            <div>
+              <div class="field-label" style="margin-top:0">Escena 4: El resultado / transformación</div>
+              <textarea rows="3" id="sb4" placeholder="Ej: María completa la declaración en 8 minutos. Recibe confirmación del SRI. Cierra el laptop. Respira."></textarea>
+            </div>
+          </li>
+          <li>
+            <div>
+              <div class="field-label" style="margin-top:0">Escena 5: Impacto en la vida del usuario</div>
+              <textarea rows="3" id="sb5" placeholder="Ej: Al mes siguiente no siente ansiedad porque sabe que el sistema le avisará con tiempo..."></textarea>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- Criterios de Aprendizaje -->
+    <div class="tool-panel" id="tool-4-criterios">
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-icon" style="background:var(--ph4-light)">✅</div>
+          <div>
+            <div class="tool-name">Criterios de Aprendizaje del Prototipo</div>
+            <div class="tool-desc">Antes de testear, define qué considerarás "éxito" y qué "fracaso". Sin criterios claros, cualquier reacción del usuario puede interpretarse de múltiples formas.</div>
+          </div>
+        </div>
+        <div class="tip-box"><span>💡</span><span>Un prototipo que "falla" no es un fracaso — es un aprendizaje costoso ahorrado. Cada error descubierto con un prototipo de cartón es un error no cometido en el producto final.</span></div>
+
+        <div class="field-label">Hipótesis 1: Si el prototipo funciona, el usuario debería...</div>
+        <textarea id="crit-hip1" rows="2" placeholder="Ej: Completar el flujo de la declaración en menos de 5 minutos sin necesitar ayuda externa..."></textarea>
+
+        <div class="field-label">Hipótesis 2: La mayor incertidumbre de mi idea es...</div>
+        <textarea id="crit-hip2" rows="2" placeholder="Ej: No sé si el usuario confiará en que el sistema calculó correctamente sin verificar manualmente..."></textarea>
+
+        <div class="field-label">Señal de que debo rediseñar (señal de alerta)</div>
+        <textarea id="crit-alerta" rows="2" placeholder="Ej: Si el usuario pide acceder al formulario completo del SRI en paralelo, significa que no confía en mi simplificación..."></textarea>
+
+        <div class="field-label">Señal de que voy por buen camino (señal de validación)</div>
+        <textarea id="crit-ok" rows="2" placeholder="Ej: Si el usuario pregunta cuándo estará disponible la versión real, significa que lo vio útil..."></textarea>
+      </div>
+    </div>
+
+    <div class="save-bar">
+      <button class="btn-save primary" onclick="savePhase(4)">💾 Guardar Fase 4</button>
+      <button class="btn-save secondary" onclick="openPhaseNext(4)">Continuar → Testear</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     FASE 5 · TESTEAR
+══════════════════════════════ -->
+<div class="phase-block" data-ph="5" id="phase-5">
+  <div class="phase-header" onclick="togglePhase(this)">
+    <div class="ph-num">5</div>
+    <div class="ph-badge">🧪 Fase 5</div>
+    <div class="ph-info">
+      <div class="ph-title">Testear</div>
+      <div class="ph-subtitle">Prueba con usuarios reales y aprende de su reacción</div>
+    </div>
+    <div class="ph-status">✓ Completada</div>
+    <div class="ph-toggle">▼</div>
+  </div>
+  <div class="phase-body">
+    <div class="phase-intro">
+      <strong>¿Qué es Testear?</strong> Testear no es validar que tu idea es buena — es aprender qué funciona, qué no y por qué. Pon tu prototipo frente a usuarios reales y <em>observa</em> más que <em>preguntas</em>. Lo que el usuario hace con tu prototipo es más honesto que lo que dice.
+    </div>
+
+    <div class="tool-tabs" id="tabs-5">
+      <div class="tool-tab active" onclick="showTool('5','protocolo')">📝 Protocolo de Test</div>
+      <div class="tool-tab" onclick="showTool('5','registro')">📊 Registro de Resultados</div>
+      <div class="tool-tab" onclick="showTool('5','iteracion')">🔄 Plan de Iteración</div>
+    </div>
+
+    <!-- Protocolo -->
+    <div class="tool-panel active" id="tool-5-protocolo">
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-icon" style="background:var(--ph5-light)">📝</div>
+          <div>
+            <div class="tool-name">Protocolo de Sesión de Testeo</div>
+            <div class="tool-desc">Diseña la sesión de testeo antes de realizarla. Un buen protocolo garantiza que aprendas lo máximo posible de cada sesión con cada usuario.</div>
+          </div>
+        </div>
+        <div class="tip-box"><span>💡</span><span>Regla de oro del testeo: "Muéstrame cómo lo usarías" es mejor que "¿Te gusta?" No preguntes si les gusta — observa si lo usan. El silencio del usuario frente al prototipo dice más que sus palabras.</span></div>
+
+        <div class="grid-2">
+          <div>
+            <div class="field-label">Perfil del usuario a testear</div>
+            <input type="text" id="test-perfil" placeholder="Ej: Contador independiente, 30-45 años, Guayaquil">
+          </div>
+          <div>
+            <div class="field-label">Número de sesiones planificadas</div>
+            <select id="test-sesiones">
+              <option>1 sesión</option>
+              <option>2 sesiones</option>
+              <option selected>3 sesiones</option>
+              <option>4 sesiones</option>
+              <option>5 o más sesiones</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field-label">Guión de introducción (qué le dirás al usuario al inicio)</div>
+        <textarea id="test-intro" rows="3" placeholder="Ej: Hola, gracias por tu tiempo. Hoy voy a mostrarte una idea preliminar — no es un producto terminado. No hay respuestas correctas o incorrectas. Lo que más me ayuda es que pienses en voz alta mientras lo usas. Si algo no te queda claro, dímelo — eso es exactamente lo que necesito saber..."></textarea>
+
+        <div class="field-label">Tarea que le pedirás al usuario que realice</div>
+        <textarea id="test-tarea" rows="2" placeholder="Ej: Imagina que tienes que preparar tu declaración de IVA de este mes. Usa esto como si fuera real y cuéntame qué estás pensando mientras avanzas..."></textarea>
+
+        <div class="field-label">Preguntas de seguimiento (después de la tarea)</div>
+        <div id="test-preguntas">
+          <div class="interview-row" style="margin-bottom:8px;">
+            <div class="interview-num" style="background:var(--ph5)">1</div>
+            <input type="text" placeholder="Ej: ¿Qué fue lo primero que notaste?">
+            <button class="btn-remove" onclick="removeTestQ(this)">✕</button>
+          </div>
+          <div class="interview-row" style="margin-bottom:8px;">
+            <div class="interview-num" style="background:var(--ph5)">2</div>
+            <input type="text" placeholder="Ej: ¿Hubo algún momento en que dudaste de qué hacer?">
+            <button class="btn-remove" onclick="removeTestQ(this)">✕</button>
+          </div>
+          <div class="interview-row" style="margin-bottom:8px;">
+            <div class="interview-num" style="background:var(--ph5)">3</div>
+            <input type="text" placeholder="Ej: ¿Qué cambiarías de lo que viste?">
+            <button class="btn-remove" onclick="removeTestQ(this)">✕</button>
+          </div>
+        </div>
+        <button class="btn-add" onclick="addTestQ()">+ Agregar pregunta de seguimiento</button>
+      </div>
+    </div>
+
+    <!-- Registro -->
+    <div class="tool-panel" id="tool-5-registro">
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-icon" style="background:var(--ph5-light)">📊</div>
+          <div>
+            <div class="tool-name">Registro de Resultados del Testeo</div>
+            <div class="tool-desc">Documenta lo que observaste durante las sesiones. Separa hechos (lo que viste/escuchaste) de interpretaciones (lo que crees que significa).</div>
+          </div>
+        </div>
+
+        <div class="test-matrix">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:20%">Usuario</th>
+                <th style="width:35%">Lo que hizo / dijo (hecho)</th>
+                <th style="width:45%">Lo que aprendiste (interpretación)</th>
+              </tr>
+            </thead>
+            <tbody id="test-matrix-body">
+              <tr>
+                <td><input type="text" placeholder="Usuario 1"></td>
+                <td><input type="text" placeholder="Ej: Se detuvo 30 seg en el paso 2..."></td>
+                <td><input type="text" placeholder="Ej: El botón no es lo suficientemente claro..."></td>
+              </tr>
+              <tr>
+                <td><input type="text" placeholder="Usuario 2"></td>
+                <td><input type="text" placeholder="Ej: Preguntó '¿esto va directo al SRI?'"></td>
+                <td><input type="text" placeholder="Ej: La integración con el SRI es un diferenciador clave..."></td>
+              </tr>
+              <tr>
+                <td><input type="text" placeholder="Usuario 3"></td>
+                <td><input type="text" placeholder=""></td>
+                <td><input type="text" placeholder=""></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <button class="btn-add" onclick="addTestRow()" style="border-color:var(--ph5);color:var(--ph5);">+ Agregar fila de usuario</button>
+
+        <div class="divider"></div>
+        <div class="field-label">Patrones detectados (algo que más de un usuario hizo o dijo)</div>
+        <textarea id="test-patrones" rows="2" placeholder="Ej: Los tres usuarios preguntaron sobre seguridad de sus datos — es una preocupación central no anticipada..."></textarea>
+
+        <div class="field-label">Lo que definitivamente funcionó ✅</div>
+        <textarea id="test-funciono" rows="2" placeholder="Ej: La alerta de 72 horas fue valorada por todos — uno dijo 'ojalá existiera esto ya'..."></textarea>
+
+        <div class="field-label">Lo que definitivamente NO funcionó ❌</div>
+        <textarea id="test-nofunciono" rows="2" placeholder="Ej: El paso de confirmación de valores generó desconfianza — nadie quiso presionar 'Enviar' sin revisar el PDF primero..."></textarea>
+      </div>
+    </div>
+
+    <!-- Iteración -->
+    <div class="tool-panel" id="tool-5-iteracion">
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-icon" style="background:var(--ph5-light)">🔄</div>
+          <div>
+            <div class="tool-name">Plan de Iteración</div>
+            <div class="tool-desc">El testeo no termina el proceso — lo reinicia. Basado en lo que aprendiste, decide qué cambiarás y a qué fase regresarás para mejorar tu solución.</div>
+          </div>
+        </div>
+        <div class="tip-box"><span>💡</span><span>El Design Thinking es iterativo, no lineal. Regresar a Empatizar después de testear no es retroceder — es avanzar con más información. Las startups más exitosas iteran docenas de veces antes de lanzar.</span></div>
+
+        <div class="field-label">¿A qué fase regresas y por qué?</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:10px 0 16px;">
+          <label style="display:flex;gap:8px;align-items:center;cursor:pointer;"><input type="radio" name="iter-fase" value="1"> ❤️ Vuelvo a Empatizar</label>
+          <label style="display:flex;gap:8px;align-items:center;cursor:pointer;"><input type="radio" name="iter-fase" value="2"> 🎯 Vuelvo a Definir</label>
+          <label style="display:flex;gap:8px;align-items:center;cursor:pointer;"><input type="radio" name="iter-fase" value="3"> 💡 Vuelvo a Idear</label>
+          <label style="display:flex;gap:8px;align-items:center;cursor:pointer;"><input type="radio" name="iter-fase" value="4"> 🔨 Vuelvo a Prototipar</label>
+          <label style="display:flex;gap:8px;align-items:center;cursor:pointer;"><input type="radio" name="iter-fase" value="5"> ✅ El prototipo ya es suficiente</label>
+        </div>
+        <div class="field-label">¿Por qué regresas a esa fase?</div>
+        <textarea id="iter-razon" rows="2" placeholder="Ej: Regreso a Prototipar porque el testeo reveló que necesitamos agregar una pantalla de confirmación con PDF previsualizable..."></textarea>
+
+        <div class="field-label">Los tres cambios más importantes que harás en la próxima iteración</div>
+        <textarea id="iter-cambios" rows="3" placeholder="1. Agregar pantalla de previsualización PDF antes de enviar&#10;2. Cambiar el lenguaje del botón de 'Enviar' a 'Revisar y confirmar'&#10;3. Testear con usuarios que hayan tenido multas del SRI anteriormente..."></textarea>
+
+        <div class="divider"></div>
+        <div class="field-label">🌟 Reflexión final: ¿Qué aprendiste sobre tu usuario que no sabías al inicio?</div>
+        <textarea id="iter-aprendizaje" rows="3" placeholder="Esta es la pregunta más importante del proceso. La respuesta honesta a esta pregunta es el producto más valioso de todo el Design Thinking..."></textarea>
+      </div>
+    </div>
+
+    <div class="save-bar">
+      <button class="btn-save primary" onclick="savePhase(5)">💾 Guardar Fase 5</button>
+      <button class="btn-save secondary" onclick="showSummary()">🎉 Ver resumen final</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     SUMMARY
+══════════════════════════════ -->
+<div class="summary-panel" id="summary">
+  <h2>🎉 ¡Proceso completo!</h2>
+  <div class="sub">Aquí tienes el estado de tu proyecto de Design Thinking</div>
+  <div class="summary-phases" id="summary-phases"></div>
+  <div style="margin-bottom:20px;">
+    <div class="field-label" style="color:rgba(255,255,255,0.5);">Tu reto trabajado</div>
+    <div style="font-size:1.05rem;font-weight:500;margin-top:4px;" id="summary-context">—</div>
+    <div class="field-label" style="color:rgba(255,255,255,0.5);margin-top:16px;">Tu declaración POV</div>
+    <div style="font-size:0.95rem;color:rgba(255,255,255,0.75);margin-top:4px;font-family:'DM Mono',monospace;line-height:1.7;" id="summary-pov">—</div>
+  </div>
+  <button class="btn-export" onclick="exportReport()">⬇️ Exportar reporte completo</button>
+</div>
+
+</div><!-- /lab-container -->
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ═══════════════════════════════════════
+   PHASE TOGGLE
+═══════════════════════════════════════ */
+function togglePhase(header) {
+  const block = header.closest('.phase-block');
+  block.classList.toggle('open');
+}
+
+function jumpPhase(idx) {
+  const blocks = document.querySelectorAll('.phase-block');
+  const block = blocks[idx];
+  block.classList.add('open');
+  setTimeout(() => block.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+}
+
+function openPhaseNext(currentPh) {
+  savePhase(currentPh);
+  const next = document.getElementById('phase-' + (currentPh + 1));
+  if (next) {
+    next.classList.add('open');
+    setTimeout(() => next.scrollIntoView({ behavior: 'smooth', block: 'start' }), 300);
+  }
+}
+
+/* ═══════════════════════════════════════
+   TOOL TABS
+═══════════════════════════════════════ */
+function showTool(phase, tool) {
+  // deactivate all tabs in this phase
+  const tabs = document.querySelectorAll(`#tabs-${phase} .tool-tab`);
+  tabs.forEach(t => t.classList.remove('active'));
+
+  // deactivate all panels in this phase
+  const phaseBody = document.getElementById('phase-' + phase).querySelector('.phase-body');
+  phaseBody.querySelectorAll('.tool-panel').forEach(p => p.classList.remove('active'));
+
+  // activate the clicked tab
+  event.target.classList.add('active');
+
+  // activate matching panel
+  const panel = document.getElementById(`tool-${phase}-${tool}`);
+  if (panel) panel.classList.add('active');
+}
+
+/* ═══════════════════════════════════════
+   POV LIVE PREVIEW
+═══════════════════════════════════════ */
+function updatePOV() {
+  const u = document.getElementById('pov-usuario').value.trim();
+  const n = document.getElementById('pov-necesidad').value.trim();
+  const p = document.getElementById('pov-porque').value.trim();
+  const preview = document.getElementById('pov-preview');
+
+  const blankU = u || '<span class="pov-blank">[usuario]</span>';
+  const blankN = n || '<span class="pov-blank">[necesidad real]</span>';
+  const blankP = p || '<span class="pov-blank">[insight profundo]</span>';
+
+  preview.innerHTML = `<em>${u ? u : '[usuario]'}</em> necesita <em>${n ? n : '[necesidad real]'}</em> porque <em>${p ? p : '[insight profundo]'}</em>.`;
+  if (!u && !n && !p) preview.innerHTML = '<span class="pov-blank">Tu declaración POV aparecerá aquí mientras escribes...</span>';
+}
+
+function updateContext() {
+  const val = document.getElementById('projectCtx').value;
+  document.getElementById('summary-context').textContent = val || '—';
+}
+
+/* ═══════════════════════════════════════
+   DYNAMIC ROWS
+═══════════════════════════════════════ */
+function addQuestion() {
+  const container = document.getElementById('interview-questions');
+  const rows = container.querySelectorAll('.interview-row');
+  const n = rows.length + 1;
+  const row = document.createElement('div');
+  row.className = 'interview-row';
+  row.innerHTML = `<div class="interview-num">${n}</div><input type="text" placeholder="Nueva pregunta..."><button class="btn-remove" onclick="removeQuestion(this)">✕</button>`;
+  container.appendChild(row);
+  renumberRows(container, 'interview-num');
+}
+function removeQuestion(btn) {
+  const row = btn.closest('.interview-row');
+  const container = row.parentElement;
+  row.remove();
+  renumberRows(container, 'interview-num');
+}
+
+function addHMW() {
+  const container = document.getElementById('hmw-rows');
+  const n = container.querySelectorAll('.interview-row').length + 1;
+  const row = document.createElement('div');
+  row.className = 'interview-row';
+  row.style.marginBottom = '10px';
+  row.innerHTML = `<div class="interview-num" style="background:var(--ph2);color:var(--ink)">${n}</div><input type="text" placeholder="¿Cómo podríamos...?"><button class="btn-remove" onclick="removeHMW(this)">✕</button>`;
+  container.appendChild(row);
+}
+function removeHMW(btn) {
+  btn.closest('.interview-row').remove();
+}
+
+function addObsRow() {
+  const container = document.getElementById('obs-rows');
+  const div = document.createElement('div');
+  div.className = 'grid-3';
+  div.style.marginBottom = '6px';
+  div.innerHTML = `<input type="text" placeholder="Acción observada"><input type="text" placeholder="Herramienta usada"><input type="text" placeholder="Reacción / emoción visible">`;
+  container.appendChild(div);
+}
+
+function addTestQ() {
+  const container = document.getElementById('test-preguntas');
+  const n = container.querySelectorAll('.interview-row').length + 1;
+  const row = document.createElement('div');
+  row.className = 'interview-row';
+  row.style.marginBottom = '8px';
+  row.innerHTML = `<div class="interview-num" style="background:var(--ph5)">${n}</div><input type="text" placeholder="Nueva pregunta de seguimiento..."><button class="btn-remove" onclick="removeTestQ(this)">✕</button>`;
+  container.appendChild(row);
+}
+function removeTestQ(btn) { btn.closest('.interview-row').remove(); }
+
+function addTestRow() {
+  const tbody = document.getElementById('test-matrix-body');
+  const row = document.createElement('tr');
+  row.innerHTML = `<td><input type="text" placeholder="Usuario ${tbody.children.length + 1}"></td><td><input type="text" placeholder="Lo que hizo / dijo..."></td><td><input type="text" placeholder="Lo que aprendiste..."></td>`;
+  tbody.appendChild(row);
+}
+
+function renumberRows(container, cls) {
+  container.querySelectorAll('.' + cls).forEach((el, i) => el.textContent = i + 1);
+}
+
+/* ═══════════════════════════════════════
+   IDEA BOARD
+═══════════════════════════════════════ */
+let ideaCount = 0;
+function addIdea(text) {
+  ideaCount++;
+  const board = document.getElementById('idea-board');
+  const card = document.createElement('div');
+  card.className = 'idea-card';
+  card.innerHTML = `<button class="idea-del" onclick="deleteIdea(this)">✕</button><textarea placeholder="Escribe tu idea aquí..." onkeydown="ideaEnter(event)">${text || ''}</textarea>`;
+  board.appendChild(card);
+  updateIdeaCount();
+  card.querySelector('textarea').focus();
+}
+function deleteIdea(btn) {
+  btn.closest('.idea-card').remove();
+  ideaCount = document.getElementById('idea-board').querySelectorAll('.idea-card').length;
+  updateIdeaCount();
+}
+function ideaEnter(e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); addIdea(); }
+}
+function updateIdeaCount() {
+  const n = document.getElementById('idea-board').querySelectorAll('.idea-card').length;
+  document.getElementById('idea-count').textContent = n + ' idea' + (n !== 1 ? 's' : '');
+}
+
+/* ═══════════════════════════════════════
+   STARS RATING
+═══════════════════════════════════════ */
+function stars(n) {
+  let html = '';
+  for (let i = 1; i <= n; i++) html += `<span class="star" onclick="rateStar(this,${i})" data-v="${i}">★</span>`;
+  return html;
+}
+
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('star')) {
+    const group = e.target.closest('.stars');
+    const val = parseInt(e.target.dataset.v);
+    group.querySelectorAll('.star').forEach((s, i) => s.classList.toggle('lit', i < val));
+    group.dataset.value = val;
+  }
+});
+
+function addSelRow() {
+  const container = document.getElementById('sel-ideas');
+  const n = container.querySelectorAll('.rating-row').length + 1;
+  const row = document.createElement('div');
+  row.className = 'rating-row';
+  row.innerHTML = `<div class="rating-label"><input type="text" placeholder="Describe la idea..."></div><div class="stars" data-group="imp${n}">${stars(5)}</div><div class="stars" data-group="fac${n}">${stars(5)}</div>`;
+  container.appendChild(row);
+}
+
+/* ═══════════════════════════════════════
+   MATERIALS
+═══════════════════════════════════════ */
+function toggleMaterial(el) { el.classList.toggle('selected'); }
+
+/* ═══════════════════════════════════════
+   SAVE PHASE
+═══════════════════════════════════════ */
+const phaseNames = ['Empatizar','Definir','Idear','Prototipar','Testear'];
+const phaseDone = [false, false, false, false, false];
+
+function savePhase(n) {
+  phaseDone[n - 1] = true;
+  document.getElementById('phase-' + n).classList.add('phase-done');
+  document.querySelector(`.ps-phase[data-ph="${n}"]`).classList.add('done');
+  showToast('✓ Fase ' + n + ' guardada · ' + phaseNames[n-1], 'green');
+}
+
+/* ═══════════════════════════════════════
+   SUMMARY & EXPORT
+═══════════════════════════════════════ */
+function showSummary() {
+  savePhase(5);
+  const panel = document.getElementById('summary');
+  panel.classList.add('visible');
+
+  const container = document.getElementById('summary-phases');
+  container.innerHTML = '';
+  phaseNames.forEach((name, i) => {
+    const done = phaseDone[i];
+    const div = document.createElement('div');
+    div.className = 'summary-ph' + (done ? ' done' : '');
+    div.innerHTML = `<div class="sph-name">${['❤️','🎯','💡','🔨','🧪'][i]} ${name}</div><div class="sph-status">${done ? '✓ Completada' : 'Pendiente'}</div>`;
+    container.appendChild(div);
+  });
+
+  const u = document.getElementById('pov-usuario').value.trim();
+  const n = document.getElementById('pov-necesidad').value.trim();
+  const p = document.getElementById('pov-porque').value.trim();
+  if (u || n || p) {
+    document.getElementById('summary-pov').textContent =
+      `"${u || '[usuario]'} necesita ${n || '[necesidad]'} porque ${p || '[insight]'}."`;
+  }
+
+  panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function exportReport() {
+  const ctx   = document.getElementById('projectCtx').value || '(sin definir)';
+  const u     = document.getElementById('pov-usuario').value || '—';
+  const nec   = document.getElementById('pov-necesidad').value || '—';
+  const por   = document.getElementById('pov-porque').value || '—';
+  const pov   = `"${u} necesita ${nec} porque ${por}."`;
+  const ig    = document.getElementById('idea-ganadora').value || '—';
+  const pt    = document.getElementById('proto-tipo').value || '—';
+  const pd    = document.getElementById('proto-descripcion').value || '—';
+  const tf    = document.getElementById('test-funciono').value || '—';
+  const tnf   = document.getElementById('test-nofunciono').value || '—';
+  const apr   = document.getElementById('iter-aprendizaje').value || '—';
+
+  const ideas = Array.from(document.querySelectorAll('#idea-board textarea'))
+    .map((t,i) => `  ${i+1}. ${t.value || '(vacía)'}`)
+    .join('\n') || '  (sin ideas registradas)';
+
+  const now = new Date().toLocaleDateString('es-EC', { year:'numeric', month:'long', day:'numeric' });
+  const report = `╔═══════════════════════════════════════════════════════════════╗
+║         REPORTE DE DESIGN THINKING — EMPRENDIMIENTO E INNOVACIÓN        ║
+║              Universidad de Guayaquil · Semana 09                        ║
+╚═══════════════════════════════════════════════════════════════╝
+
+Fecha: ${now}
+Reto de diseño: ${ctx}
+
+══════════════════════════════════════
+FASE 1 · EMPATIZAR
+══════════════════════════════════════
+Usuario observado: ${document.getElementById('em-usuario').value || '—'}
+Dice: ${document.getElementById('em-dice').value || '—'}
+Piensa: ${document.getElementById('em-piensa').value || '—'}
+Hace: ${document.getElementById('em-hace').value || '—'}
+Siente: ${document.getElementById('em-siente').value || '—'}
+Dolores: ${document.getElementById('em-dolores').value || '—'}
+Ganancias: ${document.getElementById('em-ganancias').value || '—'}
+Hallazgos de entrevista: ${document.getElementById('int-hallazgos').value || '—'}
+Síntesis POEMS: ${document.getElementById('poems-sintesis').value || '—'}
+
+══════════════════════════════════════
+FASE 2 · DEFINIR
+══════════════════════════════════════
+Point of View (POV):
+${pov}
+
+Insights clave:
+1. ${document.getElementById('ins-insight1').value || '—'}
+2. ${document.getElementById('ins-insight2').value || '—'}
+3. ${document.getElementById('ins-insight3').value || '—'}
+
+Pregunta HMW seleccionada: ${document.getElementById('hmw-selected').value || '—'}
+
+══════════════════════════════════════
+FASE 3 · IDEAR
+══════════════════════════════════════
+Ideas generadas (Brainstorming):
+${ideas}
+
+Idea ganadora seleccionada:
+${ig}
+
+══════════════════════════════════════
+FASE 4 · PROTOTIPAR
+══════════════════════════════════════
+Tipo de prototipo: ${pt}
+Descripción del prototipo:
+${pd}
+
+Pregunta a responder: ${document.getElementById('proto-pregunta').value || '—'}
+Señal de validación: ${document.getElementById('crit-ok').value || '—'}
+Señal de alerta: ${document.getElementById('crit-alerta').value || '—'}
+
+══════════════════════════════════════
+FASE 5 · TESTEAR
+══════════════════════════════════════
+Lo que funcionó: ${tf}
+Lo que no funcionó: ${tnf}
+Patrones detectados: ${document.getElementById('test-patrones').value || '—'}
+
+══════════════════════════════════════
+REFLEXIÓN FINAL
+══════════════════════════════════════
+¿Qué aprendiste sobre tu usuario que no sabías al inicio?
+${apr}
+
+═══════════════════════════════════════════════════════════════
+Generado con Design Thinking Lab · UG Emprendimiento e Innovación
+`;
+
+  const blob = new Blob([report], { type: 'text/plain;charset=utf-8' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = 'design-thinking-reporte.txt';
+  link.click();
+  showToast('📄 Reporte exportado correctamente', 'green');
+}
+
+/* ═══════════════════════════════════════
+   TOAST
+═══════════════════════════════════════ */
+function showToast(msg, type) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (type ? ' ' + type : '');
+  setTimeout(() => t.className = 'toast', 2800);
+}
+
+/* ═══════════════════════════════════════
+   INIT — open phase 1 by default
+═══════════════════════════════════════ */
+document.getElementById('phase-1').classList.add('open');
+
+// seed 3 initial ideas
+['','',''].forEach(() => addIdea());
+</script>
+</body>
+</html>
