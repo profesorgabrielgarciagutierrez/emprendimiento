@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 10 | Corporate Venturing | Emprendimiento e Innovación</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    background: #f4f6f9;
+    color: #1a1a2e;
+  }
+
+  /* ===== HEADER ===== */
+  .site-header {
+    background: #003366;
+    color: #fff;
+    padding: 20px 24px 16px;
+  }
+  .site-header .institution {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    opacity: 0.85;
+    margin-bottom: 6px;
+  }
+  .site-header h1 {
+    font-family: 'Lora', serif;
+    font-size: clamp(18px, 3vw, 26px);
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+  .header-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 8px;
+  }
+  .badge {
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 20px;
+    padding: 3px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.5px;
+  }
+
+  /* ===== TAB NAV ===== */
+  .tab-nav-wrapper {
+    background: #87CEEB;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #003366 #87CEEB;
+  }
+  .tab-nav-wrapper::-webkit-scrollbar { height: 5px; }
+  .tab-nav-wrapper::-webkit-scrollbar-thumb { background: #003366; border-radius: 3px; }
+  .tab-nav {
+    display: flex;
+    min-width: max-content;
+    padding: 0 8px;
+  }
+  .tab-btn {
+    padding: 12px 18px;
+    border: none;
+    background: transparent;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a2e;
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+  }
+  .tab-btn:hover { background: rgba(255,255,255,0.4); }
+  .tab-btn.active {
+    background: #fff;
+    color: #003366;
+    font-weight: 700;
+    border-bottom: 3px solid #003366;
+  }
+
+  /* ===== TAB CONTENT ===== */
+  .tab-content { display: none; padding: 28px 20px 48px; max-width: 900px; margin: 0 auto; }
+  .tab-content.active { display: block; }
+
+  /* ===== CONTENT COMPONENTS ===== */
+  h2 {
+    font-family: 'Lora', serif;
+    font-size: clamp(20px, 3vw, 28px);
+    color: #003366;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #87CEEB;
+  }
+  h3 {
+    font-family: 'Lora', serif;
+    font-size: 18px;
+    color: #003366;
+    margin: 24px 0 10px;
+  }
+  h4 {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #003366;
+    margin: 16px 0 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  p { margin-bottom: 14px; }
+
+  /* Concept box */
+  .concept-box {
+    border-left: 5px solid #003366;
+    background: #f0f5ff;
+    padding: 16px 20px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+  }
+  .concept-box .label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #003366;
+    margin-bottom: 6px;
+  }
+  .concept-box p { margin: 0; }
+
+  /* Example / history box */
+  .example-box {
+    background: #ddf0fa;
+    border: 1px solid #87CEEB;
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 20px 0;
+  }
+  .example-box .ex-label {
+    display: inline-block;
+    background: #003366;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 10px;
+  }
+
+  /* Key idea box */
+  .key-idea {
+    background: #003366;
+    color: #fff;
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 24px 0;
+  }
+  .key-idea .ki-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.75;
+    margin-bottom: 6px;
+  }
+  .key-idea p { color: #fff; margin: 0; }
+
+  /* Comparison table */
+  .table-wrap { overflow-x: auto; margin: 20px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  thead { background: #003366; color: #fff; }
+  thead th { padding: 11px 14px; text-align: left; font-weight: 600; }
+  tbody tr:nth-child(even) { background: #f0f5ff; }
+  tbody td { padding: 10px 14px; border-bottom: 1px solid #d5e3f5; }
+
+  /* Info list */
+  .info-list { list-style: none; margin: 12px 0 20px; }
+  .info-list li {
+    padding: 8px 14px 8px 36px;
+    position: relative;
+    border-bottom: 1px solid #e8edf5;
+  }
+  .info-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 12px;
+    color: #003366;
+    font-weight: 700;
+  }
+
+  /* Two-column grid */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
+  @media(max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* Card */
+  .card {
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #d5e3f5;
+    padding: 18px 20px;
+    box-shadow: 0 2px 6px rgba(0,51,102,0.07);
+  }
+  .card h4 { margin-top: 0; }
+
+  /* Template / tool box */
+  .tool-box {
+    background: #fff;
+    border: 2px solid #003366;
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin: 24px 0;
+  }
+  .tool-box .tool-title {
+    font-family: 'Lora', serif;
+    font-size: 17px;
+    color: #003366;
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tool-box .tool-title::before { content: '🛠️'; }
+
+  /* Number step */
+  .steps { counter-reset: step; }
+  .step {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 18px;
+    align-items: flex-start;
+  }
+  .step-num {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    background: #003366;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    margin-top: 2px;
+  }
+
+  /* ===== INTERACTIVE EXERCISE ===== */
+  .exercise-container { max-width: 900px; margin: 0 auto; }
+  .ex-item {
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #d5e3f5;
+    padding: 18px 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 6px rgba(0,51,102,0.06);
+  }
+  .ex-item .question-text { font-weight: 600; color: #003366; margin-bottom: 12px; }
+  .option-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 9px 14px;
+    border: 1.5px solid #d5e3f5;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .option-label:hover { background: #f0f5ff; border-color: #87CEEB; }
+  .option-label input { margin-top: 3px; flex-shrink: 0; accent-color: #003366; }
+  .feedback-box {
+    display: none;
+    margin-top: 12px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .feedback-box.correct { background: #d4edda; border-left: 4px solid #28a745; color: #155724; }
+  .feedback-box.incorrect { background: #f8d7da; border-left: 4px solid #dc3545; color: #721c24; }
+
+  /* Result panel */
+  .result-panel {
+    display: none;
+    background: #fff;
+    border-radius: 12px;
+    border: 2px solid #003366;
+    padding: 24px;
+    margin-top: 20px;
+    text-align: center;
+  }
+  .result-panel.visible { display: block; }
+  .score-big { font-family: 'Lora', serif; font-size: 40px; color: #003366; font-weight: 700; }
+  .progress-bar-wrap {
+    background: #e0e8f5;
+    border-radius: 20px;
+    height: 14px;
+    margin: 14px auto;
+    max-width: 400px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #003366, #87CEEB);
+    border-radius: 20px;
+    transition: width 0.8s ease;
+  }
+  .motivational { font-size: 18px; font-weight: 600; color: #003366; margin-top: 10px; }
+
+  /* Action buttons */
+  .btn-primary {
+    background: #003366;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 28px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 16px;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .btn-primary:hover { background: #004080; transform: translateY(-1px); }
+  .btn-secondary {
+    background: #87CEEB;
+    color: #003366;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 22px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 10px;
+    transition: background 0.2s;
+  }
+  .btn-secondary:hover { background: #6db8d8; }
+
+  /* Question badge */
+  .q-badge {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .badge-teoria { background: #d0eaff; color: #003366; }
+  .badge-analisis { background: #ffe8cc; color: #7d4000; }
+
+  /* ===== AI ACTIVITY ===== */
+  .ai-box {
+    background: #fff;
+    border-radius: 12px;
+    border: 2px dashed #003366;
+    padding: 24px 26px;
+    margin: 20px 0;
+  }
+  .prompt-block {
+    background: #1a1a2e;
+    color: #e8f0fe;
+    border-radius: 10px;
+    padding: 18px 20px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 14px;
+    line-height: 1.8;
+    white-space: pre-wrap;
+    margin: 14px 0;
+  }
+  .rubric-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 14px 0; }
+  @media(max-width:580px){ .rubric-grid { grid-template-columns: 1fr; } }
+  .rubric-card { border-radius: 8px; padding: 14px 16px; }
+  .rubric-card.good { background: #d4edda; border-left: 4px solid #28a745; }
+  .rubric-card.bad { background: #f8d7da; border-left: 4px solid #dc3545; }
+  .rubric-card h5 { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+
+  /* ===== REFLECTION ===== */
+  .reflection-item {
+    background: #fff;
+    border-radius: 10px;
+    border-left: 5px solid #87CEEB;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 6px rgba(0,51,102,0.05);
+  }
+  .reflection-item p { margin: 0; }
+  .reflection-num {
+    font-family: 'Lora', serif;
+    font-size: 22px;
+    color: #003366;
+    opacity: 0.35;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  /* ===== BIBLIOGRAPHY ===== */
+  .bib-card {
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #d5e3f5;
+    padding: 18px 22px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 6px rgba(0,51,102,0.06);
+  }
+  .bib-card .bib-authors { font-weight: 700; color: #003366; font-size: 14px; margin-bottom: 4px; }
+  .bib-card .bib-title { font-style: italic; color: #333; font-size: 14px; margin-bottom: 4px; }
+  .bib-card .bib-meta { font-size: 13px; color: #666; }
+  .bib-note {
+    background: #fff8e1;
+    border: 1px solid #ffe082;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 13px;
+    color: #555;
+    margin-top: 24px;
+  }
+
+  /* Template canvas */
+  .canvas-template {
+    border: 2px solid #003366;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 20px 0;
+    font-size: 13px;
+  }
+  .canvas-header {
+    background: #003366;
+    color: #fff;
+    text-align: center;
+    padding: 12px;
+    font-family: 'Lora', serif;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .canvas-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+  @media(max-width:600px){ .canvas-grid { grid-template-columns: 1fr; } }
+  .canvas-cell {
+    border: 1px solid #d5e3f5;
+    padding: 14px 16px;
+    background: #fff;
+    min-height: 90px;
+  }
+  .canvas-cell.blue { background: #f0f5ff; }
+  .canvas-cell .cc-title {
+    font-weight: 700;
+    color: #003366;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .canvas-cell p { font-size: 12px; color: #555; margin: 0; }
+  .canvas-span2 { grid-column: span 2; }
+  @media(max-width:600px){ .canvas-span2 { grid-column: span 1; } }
+
+  /* Highlight text */
+  mark {
+    background: #fff3cd;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-weight: 600;
+  }
+
+  /* Alert */
+  .alert-msg {
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: #856404;
+    font-weight: 600;
+    font-size: 14px;
+    margin: 10px 0;
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="institution">Universidad de Guayaquil &bull; Facultad de Ciencias Administrativas &bull; Contabilidad y Auditoría</div>
+  <h1>El Corporate Venturing: Una nueva forma de emprendimiento corporativo</h1>
+  <div class="header-meta">
+    <span class="badge">📘 Semana 10</span>
+    <span class="badge">Unidad 3: Corporate Venturing y Startups</span>
+    <span class="badge">Emprendimiento e Innovación</span>
+  </div>
+</header>
+
+<!-- ===== TAB NAV ===== -->
+<div class="tab-nav-wrapper">
+  <nav class="tab-nav" role="tablist">
+    <button class="tab-btn active" onclick="showTab('repaso')">📋 Repaso</button>
+    <button class="tab-btn" onclick="showTab('t1')">1. ¿Qué es Corporate Venturing?</button>
+    <button class="tab-btn" onclick="showTab('t2')">2. Modalidades y Tipos</button>
+    <button class="tab-btn" onclick="showTab('t3')">3. Ecosistema y Contabilidad</button>
+    <button class="tab-btn" onclick="showTab('t4')">4. Plantilla CV Canvas</button>
+    <button class="tab-btn" onclick="showTab('ejercicio')">✏️ Ejercicio</button>
+    <button class="tab-btn" onclick="showTab('cuestionario')">📝 Cuestionario</button>
+    <button class="tab-btn" onclick="showTab('ia')">🤖 Actividad IA</button>
+    <button class="tab-btn" onclick="showTab('reflexion')">💭 Reflexión</button>
+    <button class="tab-btn" onclick="showTab('bibliografia')">📚 Bibliografía</button>
+  </nav>
+</div>
+
+<!-- ===================================== -->
+<!-- PESTAÑA: REPASO -->
+<!-- ===================================== -->
+<div id="tab-repaso" class="tab-content active">
+  <h2>📋 Repaso: Semanas 1–9</h2>
+  <p>Antes de entrar al tema de hoy, es fundamental recordar el recorrido que hemos hecho juntos. Esta semana abre un capítulo nuevo: la <strong>Unidad 3</strong>, que parte de todo lo construido previamente.</p>
+
+  <div class="concept-box">
+    <div class="label">Unidad 1 (Sem. 1–5): El Emprendimiento y el Proceso Emprendedor</div>
+    <p>Estudiamos qué significa emprender: desde las teorías clásicas (Cantillon, Schumpeter, Drucker) hasta los enfoques contemporáneos como la Efectuación de Sarasvathy y el Modelo Timmons. Aprendimos que el emprendimiento no es solo abrir un negocio, sino una actitud ante los problemas y las oportunidades. Exploramos el ecosistema emprendedor ecuatoriano —con casos como Kushki, Datil y Kruger Labs— y analizamos la capacidad emprendedora: los tipos de emprendedor y cómo identificar oportunidades a través del análisis de tendencias.</p>
+  </div>
+
+  <div class="concept-box">
+    <div class="label">Unidad 2 (Sem. 6–7): Creatividad, Innovación y Metodologías Innovadoras</div>
+    <p>Pasamos de la teoría a las herramientas. Trabajamos con técnicas de creatividad como SCAMPER, Brainstorming estructurado, Mapas Mentales y los Seis Sombreros de De Bono. Luego profundizamos en <strong>Design Thinking</strong>, la metodología de IDEO compuesta por 5 fases: Empatizar, Definir, Idear, Prototipar y Testear. Vimos cómo esta metodología transforma la forma en que un profesional contable puede diseñar soluciones a problemas reales en empresas ecuatorianas, cooperativas y organismos como el SRI.</p>
+  </div>
+
+  <div class="concept-box">
+    <div class="label">Semana 9: Afianzamiento del Primer Parcial</div>
+    <p>Repasamos los contenidos esenciales de las Unidades 1 y 2 con énfasis en su aplicación: el <strong>Business Model Canvas</strong> (los 9 bloques), el pensamiento sistémico y la mentalidad emprendedora del contador como agente de cambio en su organización.</p>
+  </div>
+
+  <div class="key-idea">
+    <div class="ki-label">Conexión con la Semana 10</div>
+    <p>Todo lo aprendido —emprendimiento, creatividad, Design Thinking, modelo canvas— converge hoy en una forma avanzada de emprendimiento: el <strong>Corporate Venturing</strong>. Ya no se trata de emprender desde cero, sino de innovar desde adentro de las empresas y corporaciones existentes. Este es el punto de encuentro entre el mundo corporativo y el mundo emprendedor.</p>
+  </div>
+</div>
+
+<!-- ===================================== -->
+<!-- PESTAÑA: TEMA 1 -->
+<!-- ===================================== -->
+<div id="tab-t1" class="tab-content">
+  <h2>1. ¿Qué es el Corporate Venturing?</h2>
+
+  <p>Imagina que trabajas en una empresa grande —un banco, una cadena de supermercados, una firma de auditoría— y propones una idea innovadora que podría abrir un nuevo mercado. La empresa, en lugar de ignorarte, te da recursos, un equipo y autonomía para que desarrolles esa idea como si fuera un negocio propio. Eso es, en esencia, el <strong>Corporate Venturing</strong>.</p>
+
+  <div class="concept-box">
+    <div class="label">Definición Precisa</div>
+    <p><strong>Corporate Venturing</strong> (emprendimiento corporativo o intraemprendimiento a escala institucional) es el conjunto de iniciativas mediante las cuales <mark>una empresa establecida destina recursos, capital y capacidades para crear, desarrollar o apoyar nuevos negocios</mark>, ya sea dentro de su estructura o a través de alianzas con emprendimientos externos, con el objetivo de innovar, diversificar y mantener su competitividad a largo plazo.</p>
+  </div>
+
+  <h3>¿Por qué surge el Corporate Venturing?</h3>
+  <p>Las grandes empresas enfrentan una paradoja: son estables y rentables, pero esa misma estabilidad las hace lentas e inflexibles ante los cambios del mercado. Las startups, en cambio, son ágiles pero carecen de recursos, redes y credibilidad. El Corporate Venturing nace para resolver esta tensión: combina <strong>la solidez corporativa con la agilidad emprendedora</strong>.</p>
+
+  <div class="two-col">
+    <div class="card">
+      <h4>⚡ El problema de las corporaciones</h4>
+      <ul class="info-list">
+        <li>Estructuras jerárquicas que frenan la innovación</li>
+        <li>Procesos de aprobación lentos</li>
+        <li>Miedo al fracaso por proteger resultados actuales</li>
+        <li>Talento innovador que se va a startups</li>
+        <li>Dificultad para explorar mercados emergentes</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>🚀 La solución que ofrece el CV</h4>
+      <ul class="info-list">
+        <li>Crear unidades de negocio con autonomía operativa</li>
+        <li>Invertir en startups externas con potencial estratégico</li>
+        <li>Retener talento emprendedor interno</li>
+        <li>Explorar nuevos mercados sin arriesgar el core del negocio</li>
+        <li>Absorber tecnologías e innovaciones disruptivas</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Origen histórico y académico</h3>
+  <p>El término fue popularizado en los años 1960-70 por empresas como General Electric, 3M y Xerox, que crearon unidades internas para innovar. En 1985, Gifford Pinchot III acuñó el término <strong>"intrapreneur"</strong> (intraemprendedor) para describir al empleado que actúa como emprendedor dentro de una organización. Más recientemente, autores como <strong>Robert Burgelman</strong> (Stanford) y <strong>Zenas Block & MacMillan</strong> sistematizaron el campo con estudios sobre cómo las corporaciones gestionan el riesgo de la innovación interna.</p>
+
+  <div class="example-box">
+    <span class="ex-label">🌎 Caso Ecuador / Latinoamérica</span>
+    <p><strong>Grupo Pichincha y sus unidades de innovación:</strong> El Banco Pichincha, el banco privado más grande de Ecuador, creó laboratorios de innovación y unidades especializadas (como Pichincha Lab) para desarrollar productos fintech sin comprometer la operación bancaria tradicional. Esto es Corporate Venturing Interno: la entidad utiliza sus propios recursos para crear nuevos servicios digitales que compiten con startups fintech, pero con el respaldo regulatorio y financiero del banco.</p>
+    <p style="margin-top:10px"><strong>En Latinoamérica:</strong> Empresas como FEMSA (México) o Bancolombia han creado fondos de Corporate Venturing para invertir en startups de tecnología logística, fintech y agtech, combinando capital corporativo con agilidad emprendedora.</p>
+  </div>
+
+  <h3>Diferencia entre Corporate Venturing e Intraemprendimiento</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Dimensión</th><th>Intraemprendimiento</th><th>Corporate Venturing</th></tr></thead>
+      <tbody>
+        <tr><td>Escala</td><td>Individual (empleado que innova)</td><td>Institucional (programa/unidad/fondo)</td></tr>
+        <tr><td>Recursos</td><td>Informales, no siempre asignados</td><td>Formalmente presupuestados</td></tr>
+        <tr><td>Estructura</td><td>Dentro de la jerarquía normal</td><td>Unidad separada o inversión en externo</td></tr>
+        <tr><td>Objetivo</td><td>Mejora de procesos existentes</td><td>Creación de nuevos negocios o mercados</td></tr>
+        <tr><td>Riesgo para la empresa</td><td>Bajo</td><td>Medio-alto (intencional)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="key-idea">
+    <div class="ki-label">💡 Idea Clave</div>
+    <p>El Corporate Venturing no es solo una herramienta de negocios: es una filosofía de gestión que reconoce que <strong>la innovación puede —y debe— coexistir con la operación cotidiana</strong> de una empresa madura. No se trata de destruir lo que funciona, sino de construir lo que vendrá.</p>
+  </div>
+</div>
+
+<!-- ===================================== -->
+<!-- PESTAÑA: TEMA 2 -->
+<!-- ===================================== -->
+<div id="tab-t2" class="tab-content">
+  <h2>2. Modalidades y Tipos de Corporate Venturing</h2>
+
+  <p>El Corporate Venturing no es un modelo único. Dependiendo del grado de autonomía, la fuente de los recursos y la relación con la empresa matriz, se distinguen varias modalidades. Conocerlas es fundamental para que —como futuro profesional contable o auditor— puedas identificarlas, evaluarlas y registrarlas correctamente.</p>
+
+  <h3>Clasificación principal: Interno vs. Externo</h3>
+
+  <div class="two-col">
+    <div class="card" style="border-top: 4px solid #003366;">
+      <h4>🏢 Corporate Venturing Interno (CVI)</h4>
+      <p>La empresa crea un nuevo negocio <strong>desde dentro</strong> de su propia estructura. Puede ser una unidad autónoma, un laboratorio de innovación, o una subsidiaria.</p>
+      <ul class="info-list" style="margin-top:10px">
+        <li>Aprovecha recursos humanos y tecnológicos propios</li>
+        <li>Mayor control de la empresa matriz</li>
+        <li>Riesgo de "cultura corporativa" que inhibe la agilidad</li>
+        <li>Ejemplo: Laboratorio de innovación de un banco</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top: 4px solid #87CEEB;">
+      <h4>🌐 Corporate Venturing Externo (CVE)</h4>
+      <p>La empresa <strong>invierte en startups o emprendimientos externos</strong> que desarrollan tecnologías o modelos de negocio relevantes para su estrategia.</p>
+      <ul class="info-list" style="margin-top:10px">
+        <li>Acceso a innovación ya desarrollada</li>
+        <li>Menor control, pero menor inversión inicial</li>
+        <li>Requiere gestión de portafolio de inversiones</li>
+        <li>Ejemplo: Fondo de Corporate Venture Capital (CVC)</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Las 5 modalidades específicas del Corporate Venturing</h3>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div>
+        <strong>Corporate Venture Capital (CVC)</strong> — La empresa crea un fondo de inversión para financiar startups externas. La empresa actúa como "venture capitalist" pero con objetivos estratégicos (no solo financieros). <em>Ejemplo:</em> Google Ventures (GV), Wayra de Telefónica. En Ecuador, Kruger Labs ha funcionado como aceleradora con lógica de CVC para el ecosistema tecnológico.
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div>
+        <strong>Spin-offs corporativos</strong> — La empresa separa una unidad de negocio innovadora y la convierte en una empresa independiente. La matriz puede mantener participación accionaria. <em>Ejemplo:</em> PayPal nació como spin-off de Confinity, que luego fue absorbida por eBay y más tarde re-independizada. En Ecuador, algunas unidades de negocios digitales bancarias operan con esta lógica.
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div>
+        <strong>Aceleradoras e Incubadoras corporativas</strong> — La empresa crea un programa para identificar, desarrollar y escalar startups externas, ofreciéndoles acceso a sus recursos (mentores, datos, clientes, infraestructura). <em>Ejemplo:</em> Wayra (Telefónica), que opera en Ecuador; o el programa de emprendimiento de Pronaca para startups agroalimentarias.
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div>
+        <strong>Joint Ventures de innovación</strong> — Dos o más empresas (o una empresa y una startup) crean una entidad nueva de forma conjunta para explorar un mercado o tecnología específica. Comparten recursos, riesgos y beneficios. <em>Ejemplo:</em> Alianzas entre bancos y fintechs ecuatorianas para ofrecer billeteras digitales.
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div>
+        <strong>Laboratorios de innovación internos (Innovation Labs)</strong> — Unidades internas con cultura y metodologías de startup: equipos pequeños, ciclos cortos, metodología ágil, presupuesto propio. <em>Ejemplo:</em> Deloitte Greenhouse, McKinsey Solutions, Ernst &amp; Young Wavespace, o los equipos de innovación del IESS o la Contraloría en Ecuador.
+      </div>
+    </div>
+  </div>
+
+  <div class="example-box">
+    <span class="ex-label">📊 Caso de análisis: Telefónica Wayra en Ecuador</span>
+    <p>Wayra es la aceleradora corporativa de Telefónica. Opera en más de 10 países de América Latina y selecciona startups tecnológicas a las que ofrece inversión (entre USD 20.000 y USD 200.000), acceso a la red de clientes de Telefónica, y mentoría especializada. En Ecuador, Wayra ha apoyado startups de sectores como salud digital, logística y educación. Para la empresa matriz, el beneficio no es solo financiero: se trata de integrar innovación en sus propios servicios, retener talento y mantener relevancia frente a competidores digitales como WhatsApp Business o Zoom.</p>
+  </div>
+
+  <h3>¿Qué distingue al Corporate Venturing de una simple inversión?</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Característica</th><th>Inversión financiera tradicional</th><th>Corporate Venturing</th></tr></thead>
+      <tbody>
+        <tr><td>Objetivo principal</td><td>Rentabilidad financiera</td><td>Rentabilidad financiera + estratégica</td></tr>
+        <tr><td>Horizonte temporal</td><td>Corto / mediano plazo</td><td>Mediano / largo plazo</td></tr>
+        <tr><td>Participación del inversor</td><td>Pasiva (solo capital)</td><td>Activa (capital + conocimiento + red)</td></tr>
+        <tr><td>Relación con la startup</td><td>Independiente</td><td>Estratégica y colaborativa</td></tr>
+        <tr><td>Criterio de selección</td><td>Valor de mercado / retorno esperado</td><td>Alineación con la visión corporativa</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="key-idea">
+    <div class="ki-label">💡 Idea Clave</div>
+    <p>El Corporate Venturing no es solo invertir dinero: es <strong>invertir estrategia</strong>. Una empresa que hace Corporate Venturing está construyendo su futuro antes de que el mercado la obligue a cambiar. Por eso, los profesionales contables y auditores deben comprender sus modalidades para registrar, controlar y evaluar estas inversiones con criterio técnico y visión de largo plazo.</p>
+  </div>
+</div>
+
+<!-- ===================================== -->
+<!-- PESTAÑA: TEMA 3 -->
+<!-- ===================================== -->
+<div id="tab-t3" class="tab-content">
+  <h2>3. Ecosistema de Corporate Venturing y Rol del Contador-Auditor</h2>
+
+  <h3>Los actores del ecosistema de Corporate Venturing</h3>
+  <p>El Corporate Venturing no ocurre en el vacío: requiere un ecosistema de actores que se relacionan entre sí. Conocer este ecosistema permite al contador o auditor identificar dónde está parado y qué rol puede jugar profesionalmente.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Actor</th><th>Rol en el ecosistema CV</th><th>Ejemplo en Ecuador</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Corporaciones (empresa matriz)</strong></td><td>Proveen capital, acceso a mercados y recursos</td><td>Banco Pichincha, Pronaca, Difare</td></tr>
+        <tr><td><strong>Startups / Spin-offs</strong></td><td>Aportan innovación, agilidad y tecnología</td><td>Kushki, Datil, Siembro</td></tr>
+        <tr><td><strong>Fondos de CVC</strong></td><td>Intermedian capital entre corporaciones y startups</td><td>Wayra, Endeavor Ecuador</td></tr>
+        <tr><td><strong>Universidades / Centros de I+D</strong></td><td>Generan conocimiento y talento emprendedor</td><td>ESPOL, Yachay Tech, U. de Guayaquil</td></tr>
+        <tr><td><strong>Gobierno / Reguladores</strong></td><td>Crean marcos legales y fondos de fomento</td><td>SRI, SENESCYT, MIPRO</td></tr>
+        <tr><td><strong>Mentores y Redes profesionales</strong></td><td>Aceleran el aprendizaje y conectan actores</td><td>Kruger Labs, Startup Grind Ecuador</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Factores de éxito del Corporate Venturing</h3>
+  <p>No todos los programas de Corporate Venturing tienen éxito. La investigación de Burgelman (1984) y estudios más recientes de CB Insights identifican los factores que marcan la diferencia:</p>
+
+  <div class="two-col">
+    <div class="card">
+      <h4>✅ Factores de éxito</h4>
+      <ul class="info-list">
+        <li>Autonomía real de la unidad innovadora</li>
+        <li>Apoyo explícito de la alta dirección</li>
+        <li>Métricas separadas del negocio principal (no comparar con el core)</li>
+        <li>Cultura de tolerancia al fracaso</li>
+        <li>Talento con perfil mixto: técnico + emprendedor</li>
+        <li>Horizonte temporal mínimo de 3-5 años</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>❌ Causas de fracaso</h4>
+      <ul class="info-list">
+        <li>Interferencia excesiva de la burocracia corporativa</li>
+        <li>Confusión de objetivos: ¿financiero o estratégico?</li>
+        <li>Falta de presupuesto sostenido</li>
+        <li>Choque cultural entre startup y corporación</li>
+        <li>Métricas inadecuadas (exigir rentabilidad inmediata)</li>
+        <li>Abandono al primer fracaso o cambio de directivos</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>El Contador y Auditor en el ecosistema de Corporate Venturing</h3>
+  <p>Los profesionales de Contabilidad y Auditoría tienen un rol <strong>estratégico y no solo operativo</strong> en el Corporate Venturing. A continuación, los roles específicos:</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div>
+        <strong>Valoración financiera de startups (Valuation)</strong> — El contador evalúa el valor de una startup usando métodos como Flujo de Caja Descontado (DCF), múltiplos de mercado o el método Berkus. Esta función es crítica para decidir cuánto invertir en un emprendimiento externo y cómo registrar la inversión en los estados financieros de la corporación.
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div>
+        <strong>Due Diligence financiero</strong> — Antes de que una corporación invierta en o adquiera una startup, el auditor realiza un análisis profundo de sus finanzas, contratos, pasivos ocultos, cumplimiento tributario (SRI) y situación laboral. Este es uno de los procesos más críticos y mejor remunerados del Corporate Venturing.
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div>
+        <strong>Diseño de estructuras de control interno</strong> — Las unidades de Corporate Venturing necesitan sistemas de control adaptados a su naturaleza ágil. El contador diseña procesos contables y de reporte que sean simples pero trazables, compatibles con las NIIF (Normas Internacionales de Información Financiera) y con los requerimientos del SRI ecuatoriano.
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div>
+        <strong>Gestión tributaria de estructuras complejas</strong> — Los spin-offs, joint ventures y fondos de CVC generan situaciones tributarias complejas: ¿Cómo se gravan las inversiones? ¿Cuál es el tratamiento del IVA en servicios de innovación? ¿Cómo afecta el Impuesto a la Renta? El contador-auditor es indispensable en estas decisiones.
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div>
+        <strong>Reporting e indicadores de innovación</strong> — Diferente a una empresa tradicional, las métricas de una unidad de Corporate Venturing incluyen: número de prototipos desarrollados, tasa de conversión de pilotos, retorno estratégico (no solo financiero) y velocidad de aprendizaje. El contador adapta los sistemas de información gerencial (SIG) para reflejar estas realidades.
+      </div>
+    </div>
+  </div>
+
+  <div class="example-box">
+    <span class="ex-label">💼 Aplicación profesional Ecuador</span>
+    <p><strong>Caso Big Four y Corporate Venturing:</strong> Las grandes firmas de auditoría —Deloitte, PWC, KPMG y EY— que operan en Ecuador, han creado sus propias unidades de innovación y Corporate Venturing. Deloitte Ventures y PwC Ventures invierten en startups de tecnología contable (RegTech, AuditTech) que automatizan procesos de auditoría. Para el estudiante de Contabilidad y Auditoría, esto significa que su futuro empleador ya no es solo una firma tradicional: es también una corporación que invierte en innovación. Conocer el Corporate Venturing abre puertas en el mercado laboral.</p>
+  </div>
+
+  <div class="key-idea">
+    <div class="ki-label">💡 Idea Clave</div>
+    <p>El contador del siglo XXI no solo registra transacciones: <strong>participa activamente en las decisiones de inversión en innovación</strong>. El Corporate Venturing es el espacio donde las habilidades técnicas contables se combinan con la visión estratégica. Dominar este tema es una ventaja competitiva real en el mercado laboral ecuatoriano y latinoamericano.</p>
+  </div>
+</div>
+
+<!-- ===================================== -->
+<!-- PESTAÑA: TEMA 4 — PLANTILLA CV CANVAS -->
+<!-- ===================================== -->
+<div id="tab-t4" class="tab-content">
+  <h2>4. Plantilla: Corporate Venturing Canvas</h2>
+  <p>A continuación encontrarás una herramienta práctica diseñada para este curso: el <strong>Corporate Venturing Canvas</strong>. Es una plantilla de 9 bloques que adapta la lógica del Business Model Canvas al contexto específico del emprendimiento corporativo. Úsala para analizar, diseñar o evaluar una iniciativa de Corporate Venturing.</p>
+
+  <div class="concept-box">
+    <div class="label">¿Para qué sirve esta plantilla?</div>
+    <p>Permite a un equipo corporativo o a un profesional contable-auditor estructurar una propuesta de Corporate Venturing de manera visual, ordenada y estratégica. Responde a la pregunta: <strong>"¿Cómo vamos a emprender dentro (o desde) nuestra corporación de manera sostenible?"</strong></p>
+  </div>
+
+  <div class="canvas-template">
+    <div class="canvas-header">🏗️ CORPORATE VENTURING CANVAS — Herramienta de Diseño Estratégico</div>
+    <div class="canvas-grid">
+      <div class="canvas-cell blue" style="border-top:3px solid #003366">
+        <span class="cc-title">1. 🎯 Problema / Oportunidad Estratégica</span>
+        <p>¿Qué problema del mercado o qué oportunidad de crecimiento justifica esta iniciativa? ¿Por qué ahora y no antes?</p>
+      </div>
+      <div class="canvas-cell" style="border-top:3px solid #003366">
+        <span class="cc-title">2. 🏢 Activo Corporativo Clave</span>
+        <p>¿Qué recursos únicos de la corporación se pondrán a disposición? (marca, datos, clientes, tecnología, capital, red de distribución)</p>
+      </div>
+      <div class="canvas-cell blue" style="border-top:3px solid #003366">
+        <span class="cc-title">3. 💡 Propuesta de Valor Innovadora</span>
+        <p>¿Qué solución nueva (producto, servicio, modelo de negocio) se creará? ¿Qué la hace diferente de lo existente en el mercado?</p>
+      </div>
+
+      <div class="canvas-cell">
+        <span class="cc-title">4. 📐 Modalidad Elegida</span>
+        <p>¿Es Corporate Venturing Interno, CVC, spin-off, aceleradora, joint venture, o laboratorio de innovación? ¿Por qué se eligió esta modalidad?</p>
+      </div>
+      <div class="canvas-cell blue canvas-span2">
+        <span class="cc-title">5. 🤝 Equipo y Talento</span>
+        <p>¿Quiénes conforman el equipo de esta iniciativa? ¿Tienen perfil técnico, emprendedor, comercial, contable-financiero? ¿Se integra talento externo (startups) o se trabaja solo con talento interno?</p>
+      </div>
+
+      <div class="canvas-cell blue">
+        <span class="cc-title">6. 🎯 Mercado Objetivo</span>
+        <p>¿A qué clientes o segmentos está dirigida esta iniciativa? ¿Son los mismos del negocio principal o se buscan nuevos mercados?</p>
+      </div>
+      <div class="canvas-cell">
+        <span class="cc-title">7. 📏 Métricas de Innovación</span>
+        <p>¿Cómo se medirá el éxito? Indicadores: # prototipos lanzados, tasa de adopción, ROI estratégico, velocidad de aprendizaje, NPS del cliente piloto.</p>
+      </div>
+      <div class="canvas-cell blue">
+        <span class="cc-title">8. ⚖️ Gobierno y Control</span>
+        <p>¿Cómo se toman las decisiones? ¿Quién aprueba el presupuesto? ¿Qué sistema contable-financiero aplica? ¿Qué normas NIIF rigen las inversiones?</p>
+      </div>
+
+      <div class="canvas-cell" style="grid-column: span 3; border-top: 2px solid #87CEEB; background:#fff3e0">
+        <span class="cc-title" style="color:#7d4000">9. 💰 Estructura Financiera y Tributaria</span>
+        <p><strong>Inversión inicial:</strong> ______ | <strong>Fuente:</strong> Capital corporativo / Fondo CVC / Deuda / Mixta &nbsp;&nbsp;&nbsp; <strong>Horizonte:</strong> ______ meses &nbsp;&nbsp;&nbsp; <strong>Umbral de decisión (Go/No-Go):</strong> ______ <br>Tratamiento contable (NIIF 9 / NIIF 10 / NIIF 11): ______ | Implicaciones tributarias SRI: ______</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tool-box">
+    <div class="tool-title">Guía para Completar el CV Canvas</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div><strong>Parte del problema, no de la solución.</strong> El error más común es comenzar con "queremos crear una app". Primero define qué problema real del mercado justifica esta inversión corporativa. Usa datos: tamaño del mercado, frecuencia del problema, costos actuales para el cliente.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div><strong>Identifica el activo diferenciador.</strong> ¿Qué tiene tu corporación que una startup NO tiene? Puede ser: base de clientes, licencias regulatorias, datos históricos, red de distribución, o credibilidad institucional. Este activo es el corazón del Corporate Venturing.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div><strong>Elige la modalidad con criterio.</strong> Si la tecnología ya existe en el mercado → CVC o aceleradora. Si la innovación requiere conocimiento interno exclusivo → Laboratorio o spin-off. Si necesitas velocidad → Joint Venture. La elección correcta ahorra recursos y reduce riesgos.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div><strong>El bloque 9 es el más importante para el contador.</strong> Define la estructura legal-contable desde el inicio: ¿Cuál NIIF aplica a esta inversión? ¿Es una subsidiaria, asociada o acuerdo conjunto? ¿Cómo se registra en los estados financieros? ¿Cuál es el impacto tributario?</div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div><strong>Establece un proceso de revisión periódico.</strong> El CV Canvas no es estático: se actualiza cada trimestre con datos reales. El equipo financiero-contable es responsable de generar los reportes de seguimiento para la Alta Dirección.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="example-box">
+    <span class="ex-label">✏️ Ejemplo completado: Banco Regional Ecuatoriano</span>
+    <p><strong>Bloque 1:</strong> El 68% de los clientes PYME del banco no accede a crédito por falta de historial crediticio digital. <strong>Bloque 2:</strong> El banco tiene acceso a datos transaccionales de 200.000 clientes y licencia de entidad financiera. <strong>Bloque 3:</strong> Plataforma de scoring crediticio basada en inteligencia artificial que usa datos alternativos (pagos de servicios, flujo de caja de cuentas bancarias). <strong>Bloque 4:</strong> Laboratorio de innovación interno con equipo de 8 personas. <strong>Bloque 8:</strong> NIIF 9 para instrumentos financieros; NIIF 15 para reconocimiento de ingresos del nuevo producto. Impuesto a la Renta: aplica régimen general; IVA: gravado al 0% si es servicio financiero. <strong>Bloque 9:</strong> USD 500.000 inversión inicial, horizonte 18 meses, umbral Go/No-Go: 500 clientes piloto con repago al 90%.</p>
+  </div>
+
+  <div class="key-idea">
+    <div class="ki-label">💡 Idea Clave</div>
+    <p>El CV Canvas es una herramienta de <strong>diálogo entre la dirección estratégica y el equipo financiero-contable</strong>. Permite que todos los actores hablen el mismo idioma: el del valor, el riesgo y la sostenibilidad. Si puedes completar este canvas, puedes participar en las conversaciones más importantes de cualquier corporación moderna.</p>
+  </div>
+</div>
+
+<!-- ===================================== -->
+<!-- PESTAÑA: EJERCICIO INTERACTIVO -->
+<!-- ===================================== -->
+<div id="tab-ejercicio" class="tab-content">
+  <h2>✏️ Ejercicio Interactivo</h2>
+  <p>Lee cada situación o pregunta con cuidado. <strong>Selecciona TODAS tus respuestas primero</strong> y luego presiona "Verificar respuestas". Las respuestas se evaluarán al mismo tiempo.</p>
+
+  <div class="exercise-container">
+
+    <!-- EI1 -->
+    <div class="ex-item" id="ei1-item">
+      <div class="question-text">1. El Banco Austro de Ecuador crea una unidad interna con presupuesto propio, equipo autónomo y metodología ágil para desarrollar un nuevo sistema de pagos digitales. Esta iniciativa corresponde a:</div>
+      <label class="option-label"><input type="radio" name="ei1" value="a"> a) Corporate Venture Capital (CVC)</label>
+      <label class="option-label"><input type="radio" name="ei1" value="b"> b) Corporate Venturing Interno — Laboratorio de innovación</label>
+      <label class="option-label"><input type="radio" name="ei1" value="c"> c) Joint Venture de innovación</label>
+      <label class="option-label"><input type="radio" name="ei1" value="d"> d) Inversión financiera tradicional</label>
+      <div class="feedback-box" id="fb-ei1"></div>
+    </div>
+
+    <!-- EI2 -->
+    <div class="ex-item" id="ei2-item">
+      <div class="question-text">2. Wayra (Telefónica) identifica tres startups ecuatorianas de logística y les ofrece USD 50.000, acceso a la red de clientes corporativos de Telefónica y mentores especialistas. ¿Qué modalidad de Corporate Venturing representa esto?</div>
+      <label class="option-label"><input type="radio" name="ei2" value="a"> a) Spin-off corporativo</label>
+      <label class="option-label"><input type="radio" name="ei2" value="b"> b) Laboratorio de innovación interno</label>
+      <label class="option-label"><input type="radio" name="ei2" value="c"> c) Aceleradora corporativa</label>
+      <label class="option-label"><input type="radio" name="ei2" value="d"> d) Corporate Venturing Interno (CVI)</label>
+      <div class="feedback-box" id="fb-ei2"></div>
+    </div>
+
+    <!-- EI3 -->
+    <div class="ex-item" id="ei3-item">
+      <div class="question-text">3. Una empresa de retail ecuatoriana que quiere innovar pide al equipo contable-financiero que evalúe la situación legal, pasivos ocultos, cumplimiento tributario y estados financieros de una startup antes de invertir en ella. Esta función se llama:</div>
+      <label class="option-label"><input type="radio" name="ei3" value="a"> a) Valoración por múltiplos de mercado</label>
+      <label class="option-label"><input type="radio" name="ei3" value="b"> b) Due Diligence financiero</label>
+      <label class="option-label"><input type="radio" name="ei3" value="c"> c) Auditoría de gestión interna</label>
+      <label class="option-label"><input type="radio" name="ei3" value="d"> d) Análisis de costo-beneficio</label>
+      <div class="feedback-box" id="fb-ei3"></div>
+    </div>
+
+    <!-- EI4 -->
+    <div class="ex-item" id="ei4-item">
+      <div class="question-text">4. ¿Cuál de las siguientes afirmaciones describe CORRECTAMENTE la diferencia entre el Corporate Venturing y una inversión financiera tradicional?</div>
+      <label class="option-label"><input type="radio" name="ei4" value="a"> a) El Corporate Venturing busca únicamente rentabilidad financiera a corto plazo, igual que una inversión tradicional.</label>
+      <label class="option-label"><input type="radio" name="ei4" value="b"> b) El Corporate Venturing combina objetivo financiero con objetivo estratégico, y el inversor tiene un rol activo en el emprendimiento apoyado.</label>
+      <label class="option-label"><input type="radio" name="ei4" value="c"> c) El Corporate Venturing es solo para startups tecnológicas y no aplica a empresas de servicios financieros.</label>
+      <label class="option-label"><input type="radio" name="ei4" value="d"> d) En el Corporate Venturing, la corporación siempre compra el 100% de la startup para garantizar el control total.</label>
+      <div class="feedback-box" id="fb-ei4"></div>
+    </div>
+
+    <!-- EI5 -->
+    <div class="ex-item" id="ei5-item">
+      <div class="question-text">5. Una empresa farmacéutica ecuatoriana y una startup de telemedicina crean juntas una nueva empresa para ofrecer consultas médicas digitales con despacho de medicamentos a domicilio. Ambas comparten capital, riesgos y beneficios por partes iguales. Esto corresponde a un:</div>
+      <label class="option-label"><input type="radio" name="ei5" value="a"> a) Spin-off corporativo unilateral</label>
+      <label class="option-label"><input type="radio" name="ei5" value="b"> b) Joint Venture de innovación</label>
+      <label class="option-label"><input type="radio" name="ei5" value="c"> c) Corporate Venture Capital donde la farmacéutica actúa como fondo</label>
+      <label class="option-label"><input type="radio" name="ei5" value="d"> d) Fusión corporativa convencional</label>
+      <div class="feedback-box" id="fb-ei5"></div>
+    </div>
+
+    <!-- EI6 -->
+    <div class="ex-item" id="ei6-item">
+      <div class="question-text">6. Identifica el factor de FRACASO más común en programas de Corporate Venturing según la literatura académica y la práctica empresarial:</div>
+      <label class="option-label"><input type="radio" name="ei6" value="a"> a) Que el equipo de la unidad de innovación sea demasiado pequeño</label>
+      <label class="option-label"><input type="radio" name="ei6" value="b"> b) Interferencia excesiva de la burocracia corporativa que elimina la agilidad de la unidad innovadora</label>
+      <label class="option-label"><input type="radio" name="ei6" value="c"> c) Que la propuesta de valor sea demasiado innovadora para el mercado</label>
+      <label class="option-label"><input type="radio" name="ei6" value="d"> d) Exceso de autonomía presupuestaria que genera despilfarro de recursos</label>
+      <div class="feedback-box" id="fb-ei6"></div>
+    </div>
+
+    <!-- EI7 -->
+    <div class="ex-item" id="ei7-item">
+      <div class="question-text">7. En el Corporate Venturing Canvas, el bloque que tiene mayor relevancia para el perfil del contador-auditor es:</div>
+      <label class="option-label"><input type="radio" name="ei7" value="a"> a) Bloque 3 (Propuesta de valor innovadora), porque define el producto</label>
+      <label class="option-label"><input type="radio" name="ei7" value="b"> b) Bloque 5 (Equipo y talento), porque define las competencias necesarias</label>
+      <label class="option-label"><input type="radio" name="ei7" value="c"> c) Bloque 9 (Estructura financiera y tributaria), porque define la inversión, las NIIF aplicables y las implicaciones tributarias</label>
+      <label class="option-label"><input type="radio" name="ei7" value="d"> d) Bloque 6 (Mercado objetivo), porque determina a quién se vende el producto</label>
+      <div class="feedback-box" id="fb-ei7"></div>
+    </div>
+
+    <!-- EI8 -->
+    <div class="ex-item" id="ei8-item">
+      <div class="question-text">8. Gifford Pinchot III (1985) introdujo el concepto de "intrapreneur" para describir a:</div>
+      <label class="option-label"><input type="radio" name="ei8" value="a"> a) El fundador de una startup tecnológica que busca financiamiento externo</label>
+      <label class="option-label"><input type="radio" name="ei8" value="b"> b) El empleado que actúa con mentalidad y comportamiento emprendedor dentro de una organización ya establecida</label>
+      <label class="option-label"><input type="radio" name="ei8" value="c"> c) El directivo corporativo que gestiona fondos de inversión de riesgo</label>
+      <label class="option-label"><input type="radio" name="ei8" value="d"> d) El consultor externo que diseña estrategias de innovación para corporaciones</label>
+      <div class="feedback-box" id="fb-ei8"></div>
+    </div>
+
+    <div class="alert-msg" id="ex-alert">⚠️ Por favor, responde TODAS las preguntas antes de verificar.</div>
+    <div style="text-align:center">
+      <button class="btn-primary" onclick="verificarEjercicio()">✅ Verificar respuestas</button>
+    </div>
+
+    <div class="result-panel" id="ex-result">
+      <div class="score-big" id="ex-score-text"></div>
+      <div style="font-size:15px;color:#555;margin-top:4px" id="ex-percent-text"></div>
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="ex-bar"></div></div>
+      <div class="motivational" id="ex-motivational"></div>
+      <div><button class="btn-secondary" onclick="reiniciarEjercicio()">🔄 Reiniciar ejercicio</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================================== -->
+<!-- PESTAÑA: CUESTIONARIO -->
+<!-- ===================================== -->
+<div id="tab-cuestionario" class="tab-content">
+  <h2>📝 Cuestionario de Evaluación</h2>
+  <p>Responde las <strong>10 preguntas</strong> — 7 teóricas y 3 de análisis de caso. Selecciona una opción en cada pregunta y luego presiona <strong>"Verificar cuestionario"</strong>.</p>
+
+  <div class="exercise-container">
+
+    <!-- Q1 -->
+    <div class="ex-item">
+      <span class="q-badge badge-teoria">Teórica</span>
+      <div class="question-text">1. ¿Cuál es la definición más precisa de Corporate Venturing?</div>
+      <label class="option-label"><input type="radio" name="qi1" value="a"> a) La creación de una empresa desde cero por un emprendedor individual con fondos personales</label>
+      <label class="option-label"><input type="radio" name="qi1" value="b"> b) Las iniciativas mediante las cuales una empresa establecida destina recursos para crear o apoyar nuevos negocios con objetivos estratégicos y/o financieros</label>
+      <label class="option-label"><input type="radio" name="qi1" value="c"> c) La compra total de una empresa competidora para eliminarla del mercado</label>
+      <label class="option-label"><input type="radio" name="qi1" value="d"> d) Un programa gubernamental para financiar startups en países en desarrollo</label>
+      <div class="feedback-box" id="fb-qi1"></div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="ex-item">
+      <span class="q-badge badge-teoria">Teórica</span>
+      <div class="question-text">2. ¿Qué distingue al Corporate Venture Capital (CVC) de un fondo de Venture Capital tradicional?</div>
+      <label class="option-label"><input type="radio" name="qi2" value="a"> a) El CVC solo invierte en empresas del mismo sector industrial, mientras que el VC tradicional diversifica</label>
+      <label class="option-label"><input type="radio" name="qi2" value="b"> b) El CVC combina objetivos financieros con objetivos estratégicos alineados al negocio de la corporación inversora, mientras el VC tradicional busca principalmente retorno financiero</label>
+      <label class="option-label"><input type="radio" name="qi2" value="c"> c) El CVC invierte montos más grandes que el VC tradicional en todos los casos</label>
+      <label class="option-label"><input type="radio" name="qi2" value="d"> d) El CVC es exclusivo de países desarrollados; en Latinoamérica no existe esta figura</label>
+      <div class="feedback-box" id="fb-qi2"></div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="ex-item">
+      <span class="q-badge badge-teoria">Teórica</span>
+      <div class="question-text">3. ¿Qué es un spin-off corporativo en el contexto del Corporate Venturing?</div>
+      <label class="option-label"><input type="radio" name="qi3" value="a"> a) Una fusión entre dos corporaciones del mismo tamaño para competir juntas</label>
+      <label class="option-label"><input type="radio" name="qi3" value="b"> b) La separación de una unidad de negocio innovadora de la empresa matriz para convertirla en una empresa independiente, donde la matriz puede mantener participación</label>
+      <label class="option-label"><input type="radio" name="qi3" value="c"> c) Un programa de capacitación interna para desarrollar habilidades emprendedoras en empleados</label>
+      <label class="option-label"><input type="radio" name="qi3" value="d"> d) La liquidación de una división no rentable para reducir costos operativos</label>
+      <div class="feedback-box" id="fb-qi3"></div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="ex-item">
+      <span class="q-badge badge-teoria">Teórica</span>
+      <div class="question-text">4. En el ecosistema del Corporate Venturing, ¿cuál es el rol principal de las universidades como Yachay Tech o la ESPOL en Ecuador?</div>
+      <label class="option-label"><input type="radio" name="qi4" value="a"> a) Invertir capital de riesgo en startups tecnológicas del sector privado</label>
+      <label class="option-label"><input type="radio" name="qi4" value="b"> b) Generar conocimiento científico-tecnológico y talento emprendedor que alimenta el ecosistema de Corporate Venturing</label>
+      <label class="option-label"><input type="radio" name="qi4" value="c"> c) Regular y supervisar las inversiones de las corporaciones en startups</label>
+      <label class="option-label"><input type="radio" name="qi4" value="d"> d) Proveer infraestructura legal y tributaria para la creación de spin-offs</label>
+      <div class="feedback-box" id="fb-qi4"></div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="ex-item">
+      <span class="q-badge badge-teoria">Teórica</span>
+      <div class="question-text">5. ¿Cuál de los siguientes NO es un factor de éxito del Corporate Venturing según la literatura académica (Burgelman, CB Insights)?</div>
+      <label class="option-label"><input type="radio" name="qi5" value="a"> a) Autonomía real de la unidad innovadora respecto a la burocracia corporativa</label>
+      <label class="option-label"><input type="radio" name="qi5" value="b"> b) Apoyo explícito y sostenido de la alta dirección de la empresa matriz</label>
+      <label class="option-label"><input type="radio" name="qi5" value="c"> c) Exigir rentabilidad financiera positiva desde el primer trimestre de operaciones</label>
+      <label class="option-label"><input type="radio" name="qi5" value="d"> d) Cultura organizacional que tolera el fracaso como parte del aprendizaje</label>
+      <div class="feedback-box" id="fb-qi5"></div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="ex-item">
+      <span class="q-badge badge-teoria">Teórica</span>
+      <div class="question-text">6. El "due diligence financiero" en el contexto del Corporate Venturing es:</div>
+      <label class="option-label"><input type="radio" name="qi6" value="a"> a) El proceso de marketing para presentar una startup a posibles inversores corporativos</label>
+      <label class="option-label"><input type="radio" name="qi6" value="b"> b) El análisis profundo que realiza el equipo contable-auditor sobre finanzas, contratos, pasivos ocultos y cumplimiento tributario de la startup antes de que la corporación invierta</label>
+      <label class="option-label"><input type="radio" name="qi6" value="c"> c) La elaboración del plan de negocios de la startup patrocinada por la corporación</label>
+      <label class="option-label"><input type="radio" name="qi6" value="d"> d) La negociación del precio de venta entre la startup y la corporación inversora</label>
+      <div class="feedback-box" id="fb-qi6"></div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="ex-item">
+      <span class="q-badge badge-teoria">Teórica</span>
+      <div class="question-text">7. ¿Qué autor acuñó el término "intrapreneur" en 1985 para describir al empleado emprendedor dentro de una organización?</div>
+      <label class="option-label"><input type="radio" name="qi7" value="a"> a) Peter Drucker</label>
+      <label class="option-label"><input type="radio" name="qi7" value="b"> b) Joseph Schumpeter</label>
+      <label class="option-label"><input type="radio" name="qi7" value="c"> c) Gifford Pinchot III</label>
+      <label class="option-label"><input type="radio" name="qi7" value="d"> d) Robert Burgelman</label>
+      <div class="feedback-box" id="fb-qi7"></div>
+    </div>
+
+    <!-- Q8 ANÁLISIS -->
+    <div class="ex-item">
+      <span class="q-badge badge-analisis">Análisis de caso</span>
+      <div class="question-text">8. Una cadena de supermercados con 200 tiendas en Ecuador contrata a un equipo de 5 personas (2 ingenieros, 1 diseñadora, 1 contador y 1 especialista en marketing) con presupuesto de USD 300.000 y 12 meses para crear una app de compras con entrega en 2 horas. El equipo reporta directamente al Gerente General y no debe seguir los procedimientos de compras corporativas. ¿Cuál es la modalidad de Corporate Venturing más apropiada para describir esta iniciativa?</div>
+      <label class="option-label"><input type="radio" name="qi8" value="a"> a) Corporate Venture Capital, porque la empresa invierte capital en un nuevo proyecto</label>
+      <label class="option-label"><input type="radio" name="qi8" value="b"> b) Laboratorio de innovación interno (Innovation Lab), porque es un equipo autónomo con presupuesto propio, metodología ágil y reporta directamente a la dirección</label>
+      <label class="option-label"><input type="radio" name="qi8" value="c"> c) Joint Venture, porque involucra múltiples disciplinas profesionales trabajando juntas</label>
+      <label class="option-label"><input type="radio" name="qi8" value="d"> d) Aceleradora corporativa, porque la empresa está acelerando el desarrollo de la app</label>
+      <div class="feedback-box" id="fb-qi8"></div>
+    </div>
+
+    <!-- Q9 ANÁLISIS -->
+    <div class="ex-item">
+      <span class="q-badge badge-analisis">Análisis de caso</span>
+      <div class="question-text">9. Un auditor de una firma Big Four en Guayaquil recibe el encargo de revisar la situación financiera de una startup de AgriTech que la firma cliente quiere adquirir parcialmente. Al revisar los estados financieros, descubre que la startup tiene USD 120.000 en pasivos laborales no registrados y que sus ingresos proyectados están inflados un 35% respecto a datos reales de ventas. ¿Cuál es la acción más adecuada del auditor y su impacto en la decisión de Corporate Venturing?</div>
+      <label class="option-label"><input type="radio" name="qi9" value="a"> a) Reportar los hallazgos a la empresa cliente para que renegocie las condiciones de inversión o reconsidere la operación, ajustando el valor de la inversión al riesgo real identificado</label>
+      <label class="option-label"><input type="radio" name="qi9" value="b"> b) Ignorar los pasivos laborales porque son comunes en startups en etapa temprana</label>
+      <label class="option-label"><input type="radio" name="qi9" value="c"> c) Recomendar la inversión de todas formas, ya que el potencial de crecimiento futuro compensa los problemas actuales</label>
+      <label class="option-label"><input type="radio" name="qi9" value="d"> d) Solicitar a la startup que corrija los estados financieros antes de entregárselos a la empresa cliente, sin informarle de los hallazgos previos</label>
+      <div class="feedback-box" id="fb-qi9"></div>
+    </div>
+
+    <!-- Q10 ANÁLISIS -->
+    <div class="ex-item">
+      <span class="q-badge badge-analisis">Análisis de caso</span>
+      <div class="question-text">10. Una empresa de telecomunicaciones ecuatoriana lanza un programa anual donde startups tecnológicas pueden postular para recibir: USD 30.000 de inversión, acceso a 50 clientes corporativos como pilotos, espacio físico en las oficinas de la empresa y mentoría de directivos senior. A cambio, la empresa obtiene el 8% del capital de cada startup seleccionada. ¿Cuál es el principal beneficio estratégico (no solo financiero) que obtiene la empresa con este programa?</div>
+      <label class="option-label"><input type="radio" name="qi10" value="a"> a) Reducir el costo de nómina al usar a los emprendedores como empleados temporales</label>
+      <label class="option-label"><input type="radio" name="qi10" value="b"> b) Acceder a innovación tecnológica externa que puede integrar en sus propios servicios, mantenerse competitiva frente a disrupciones del mercado y retener talento de alto potencial</label>
+      <label class="option-label"><input type="radio" name="qi10" value="c"> c) Garantizar la compra futura de las startups a precios preferenciales antes de que crezcan</label>
+      <label class="option-label"><input type="radio" name="qi10" value="d"> d) Cumplir con requisitos de responsabilidad social empresarial exigidos por el gobierno ecuatoriano</label>
+      <div class="feedback-box" id="fb-qi10"></div>
+    </div>
+
+    <div class="alert-msg" id="quiz-alert">⚠️ Por favor, responde TODAS las preguntas antes de verificar.</div>
+    <div style="text-align:center">
+      <button class="btn-primary" onclick="verificarCuestionario()">✅ Verificar cuestionario</button>
+    </div>
+
+    <div class="result-panel" id="quiz-result">
+      <div class="score-big" id="quiz-score-text"></div>
+      <div style="font-size:15px;color:#555;margin-top:4px" id="quiz-percent-text"></div>
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="quiz-bar"></div></div>
+      <div class="motivational" id="quiz-motivational"></div>
+      <div><button class="btn-secondary" onclick="reiniciarCuestionario()">🔄 Reiniciar cuestionario</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================================== -->
+<!-- PESTAÑA: ACTIVIDAD IA -->
+<!-- ===================================== -->
+<div id="tab-ia" class="tab-content">
+  <h2>🤖 Actividad con Inteligencia Artificial</h2>
+
+  <div class="ai-box">
+    <h3 style="margin-top:0">Diseña tu propia propuesta de Corporate Venturing usando IA como consultor estratégico</h3>
+    <p><strong>Objetivo:</strong> Aplicar los conceptos de Corporate Venturing a un contexto ecuatoriano real, usando la IA para explorar, cuestionar y profundizar —no para copiar.</p>
+
+    <h4>📌 Herramienta recomendada</h4>
+    <p>Usa <strong>Claude en <a href="https://claude.ai" target="_blank" style="color:#003366">claude.ai</a></strong> (gratuito, sin registro si usas el modo de conversación). También puedes usar ChatGPT (chat.openai.com) o Gemini (gemini.google.com).</p>
+
+    <h4>📋 El Prompt Exacto (cópialo y úsalo)</h4>
+    <div class="prompt-block">Actúa como un consultor experto en Corporate Venturing e innovación corporativa con experiencia en América Latina y específicamente en Ecuador.
+
+Voy a describir una empresa ficticia y necesito que me ayudes a diseñar una propuesta de Corporate Venturing. Aquí está el contexto:
+
+**Empresa:** [ELIGE UNA: una cooperativa de ahorro y crédito mediana de Guayaquil / una empresa exportadora de camarón / una cadena de farmacias ecuatoriana / una firma de auditoría y consultoría contable de tamaño medio]
+
+**Desafío actual:** La empresa enfrenta competencia de nuevas startups digitales que están captando a sus clientes más jóvenes.
+
+Por favor responde lo siguiente de forma estructurada:
+1. ¿Qué modalidad de Corporate Venturing recomiendas para esta empresa y por qué?
+2. ¿Qué tipo de startups o tecnologías debería buscar o crear?
+3. ¿Cuáles son los 3 principales riesgos financieros que el equipo contable-auditor debe evaluar antes de proceder?
+4. ¿Cómo debería estructurarse el gobierno y control financiero de esta iniciativa?
+5. Dame un ejemplo de una empresa latinoamericana similar que ya haya implementado algo parecido.
+
+Sé específico, usa ejemplos concretos y lenguaje accesible para estudiantes universitarios de Contabilidad y Auditoría.
+    </div>
+
+    <h4>📝 ¿Qué hacer con la respuesta de la IA?</h4>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div><strong>Lee y comprende</strong> la respuesta completa. ¿Qué modalidad recomendó? ¿Por qué? ¿Coincide con lo que aprendiste en este widget?</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div><strong>Cuestiona al menos dos afirmaciones.</strong> Por ejemplo: "La IA dice que debo usar un CVC. Pero según el widget, para empresas medianas puede ser más adecuado un laboratorio interno. ¿Tiene razón la IA? ¿Por qué o por qué no?"</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div><strong>Usa el CV Canvas</strong> (pestaña anterior) para organizar visualmente la propuesta que construiste con la ayuda de la IA. Completa los 9 bloques con tus propias palabras y criterios.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div><strong>Escribe un párrafo de reflexión</strong> (mínimo 150 palabras) que responda: ¿En qué difiere mi análisis del de la IA? ¿Qué agregaría yo como futuro contador-auditor que la IA no consideró? ¿Qué limitaciones tiene la respuesta de la IA?</div>
+      </div>
+    </div>
+
+    <h4>📊 Criterio de Evaluación</h4>
+    <div class="rubric-grid">
+      <div class="rubric-card good">
+        <h5>✅ Pensamiento crítico (Excelente)</h5>
+        <ul style="font-size:13px;margin:0;padding-left:16px">
+          <li>Identifica al menos 2 diferencias entre la propuesta de la IA y lo aprendido</li>
+          <li>Justifica con argumentos propios cada elección del Canvas</li>
+          <li>El párrafo reflexivo muestra criterio profesional contable</li>
+          <li>Demuestra que entiende las implicaciones tributarias y financieras</li>
+        </ul>
+      </div>
+      <div class="rubric-card bad">
+        <h5>❌ Copia simple (Insuficiente)</h5>
+        <ul style="font-size:13px;margin:0;padding-left:16px">
+          <li>Transcribe la respuesta de la IA sin modificar</li>
+          <li>El Canvas repite textualmente lo que dijo la IA</li>
+          <li>No hay cuestionamiento ni comparación con el material del widget</li>
+          <li>El párrafo reflexivo es vago o genérico</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="concept-box" style="margin-top:16px">
+      <div class="label">💡 Consejo del Docente</div>
+      <p>La IA comete errores y tiene sesgos, especialmente en contextos locales como Ecuador. Tu valor como profesional no está en usar la IA, sino en <strong>saber cuándo confiar en ella, cuándo corregirla y cómo enriquecerla con tu conocimiento técnico</strong>. Eso es lo que forma a un contador-auditor del siglo XXI.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===================================== -->
+<!-- PESTAÑA: REFLEXIÓN -->
+<!-- ===================================== -->
+<div id="tab-reflexion" class="tab-content">
+  <h2>💭 Preguntas para la Reflexión Personal</h2>
+  <p>No hay respuestas correctas ni incorrectas aquí. Estas preguntas están diseñadas para conectar lo que aprendiste hoy con tu vida, tu historia y tu camino profesional. Tómate unos minutos en silencio y respóndelas con honestidad.</p>
+
+  <div class="reflection-item">
+    <div class="reflection-num">01</div>
+    <p><strong>El Corporate Venturing parte de una pregunta fundamental: ¿cómo innova algo que ya funciona?</strong> Piensa en ti mismo: ¿hay alguna "versión anterior" de ti que ya no funciona —un hábito, una creencia, una forma de estudiar o relacionarte— que necesitas transformar sin perder lo bueno que tienes? ¿Qué sería tu propio "Corporate Venturing personal"?</p>
+  </div>
+
+  <div class="reflection-item">
+    <div class="reflection-num">02</div>
+    <p><strong>Una de las grandes paradojas del CV es que las empresas grandes tienen recursos pero les falta agilidad; las startups tienen agilidad pero les faltan recursos.</strong> ¿Cómo te describes tú en este momento? ¿Tienes más "recursos" (conocimiento, red, experiencia) o más "agilidad" (capacidad de cambiar, aprender rápido, adaptarte)? ¿Qué necesitas cultivar más?</p>
+  </div>
+
+  <div class="reflection-item">
+    <div class="reflection-num">03</div>
+    <p><strong>El "intrapreneur" —el emprendedor dentro de una organización— es alguien que ve problemas donde otros solo ven procesos, y propone soluciones donde otros se quedan en las queja.</strong> En tu propia vida universitaria o familiar, ¿hay algún problema recurrente que nadie ha resuelto porque "así siempre ha sido"? ¿Qué harías si tuvieras el respaldo y los recursos para cambiarlo?</p>
+  </div>
+
+  <div class="reflection-item">
+    <div class="reflection-num">04</div>
+    <p><strong>El due diligence financiero nos enseña a revisar con cuidado lo que no es evidente a primera vista: los pasivos ocultos, los números inflados, los riesgos no declarados.</strong> ¿Practicas ese mismo rigor contigo mismo? ¿Hay alguna "deuda emocional" no reconocida, algún patrón de comportamiento que infla tus expectativas o minimiza tus riesgos personales? ¿Cuándo fue la última vez que te hiciste tu propio "due diligence" personal?</p>
+  </div>
+
+  <div class="reflection-item">
+    <div class="reflection-num">05</div>
+    <p><strong>El Corporate Venturing requiere cultura de tolerancia al fracaso.</strong> ¿Cómo es tu relación personal con el error y el fracaso? ¿Te paralizas, te críticas con dureza o aprendes y avanzas? La inteligencia emocional (Goleman) nos dice que la forma en que procesamos el fracaso determina nuestra capacidad de innovar. ¿Qué te diría tu mejor amigo sobre cómo reaccionas cuando algo no sale como esperabas?</p>
+  </div>
+
+  <div class="reflection-item">
+    <div class="reflection-num">06</div>
+    <p><strong>En el CV Canvas, el Bloque 2 pregunta: "¿Qué activo diferenciador tienes que otros no tienen?"</strong> Imagina que estás completando ese bloque sobre ti mismo para presentarte a un trabajo o emprendimiento. ¿Qué pondrías en ese bloque? ¿Qué tiene de único tu combinación de habilidades, experiencias, valores y conocimientos? Si te cuesta responder, ¿qué te dice eso sobre el trabajo de autoconocimiento que quizás aún tienes pendiente?</p>
+  </div>
+
+  <div class="key-idea" style="margin-top:28px">
+    <div class="ki-label">✨ Mensaje final de la semana</div>
+    <p>El emprendimiento corporativo no nació en Silicon Valley: nació en el cerebro de personas que se negaron a creer que "así siempre ha sido" era una razón suficiente para no cambiar. Tú estás en esa misma posición hoy: en un sistema educativo, en una familia, en una sociedad que tiene sus formas establecidas. La pregunta no es si vas a innovar. La pregunta es cuándo y desde dónde.</p>
+  </div>
+</div>
+
+<!-- ===================================== -->
+<!-- PESTAÑA: BIBLIOGRAFÍA -->
+<!-- ===================================== -->
+<div id="tab-bibliografia" class="tab-content">
+  <h2>📚 Bibliografía</h2>
+  <p>Referencias en formato APA 7.ª edición. Solo fuentes verificadas y existentes.</p>
+
+  <div class="bib-card">
+    <div class="bib-authors">Burgelman, R. A. (1984).</div>
+    <div class="bib-title">Designs for corporate entrepreneurship in established firms.</div>
+    <div class="bib-meta"><em>California Management Review</em>, 26(3), 154–166. https://doi.org/10.2307/41165086</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">Pinchot, G. (1985).</div>
+    <div class="bib-title">Intrapreneuring: Why you don't have to leave the corporation to become an entrepreneur.</div>
+    <div class="bib-meta">Harper & Row.</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">Chesbrough, H. W. (2002).</div>
+    <div class="bib-title">Making sense of corporate venture capital.</div>
+    <div class="bib-meta"><em>Harvard Business Review</em>, 80(3), 90–99.</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">Block, Z., & MacMillan, I. C. (1993).</div>
+    <div class="bib-title">Corporate venturing: Creating new businesses within the firm.</div>
+    <div class="bib-meta">Harvard Business School Press.</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">Drucker, P. F. (1985).</div>
+    <div class="bib-title">Innovation and entrepreneurship: Practice and principles.</div>
+    <div class="bib-meta">Harper & Row.</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">Zahra, S. A., & Covin, J. G. (1995).</div>
+    <div class="bib-title">Contextual influences on the corporate entrepreneurship-performance relationship: A longitudinal analysis.</div>
+    <div class="bib-meta"><em>Journal of Business Venturing</em>, 10(1), 43–58. https://doi.org/10.1016/0883-9026(94)00004-E</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">Álvarez Medina, M. L., & Dávila Lazo, G. (2019).</div>
+    <div class="bib-title">Emprendimiento corporativo e innovación abierta en empresas latinoamericanas.</div>
+    <div class="bib-meta"><em>Innovar: Revista de Ciencias Administrativas y Sociales</em>, 29(74), 9–24. https://doi.org/10.15446/innovar.v29n74.82059</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">SENESCYT. (2021).</div>
+    <div class="bib-title">Informe de ecosistema de emprendimiento e innovación en Ecuador 2021.</div>
+    <div class="bib-meta">Secretaría de Educación Superior, Ciencia, Tecnología e Innovación del Ecuador. www.senescyt.gob.ec</div>
+  </div>
+
+  <div class="bib-note">
+    📌 <strong>Nota de verificación académica:</strong> Se recomienda verificar cada referencia en Google Scholar (<a href="https://scholar.google.com" target="_blank">scholar.google.com</a>) o en el repositorio institucional antes de citar en trabajos académicos. Las referencias institucionales (SENESCYT) pueden consultarse directamente en el sitio oficial indicado.
+  </div>
+</div>
+
+<!-- ===================================== -->
+<!-- JAVASCRIPT -->
+<!-- ===================================== -->
+<script>
+// ===== TAB NAVIGATION =====
+function showTab(tabId) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tabId).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ===== EXERCISE =====
+const ejercicioCorrects = {
+  ei1: 'b',
+  ei2: 'c',
+  ei3: 'b',
+  ei4: 'b',
+  ei5: 'b',
+  ei6: 'b',
+  ei7: 'c',
+  ei8: 'b'
+};
+
+const ejercicioFeedbacks = {
+  ei1: {
+    correct: '✅ Correcto. Una unidad interna con presupuesto propio, equipo autónomo y metodología ágil es la definición de un Laboratorio de Innovación Interno, que es la modalidad más prototípica del Corporate Venturing Interno (CVI).',
+    a: '❌ Incorrecto. El CVC implica invertir en startups EXTERNAS a la empresa. Aquí el equipo es interno al Banco Austro.',
+    c: '❌ Incorrecto. Un Joint Venture requiere la participación de al menos dos entidades distintas que crean juntas una nueva. En este caso solo hay una organización: el Banco Austro.',
+    d: '❌ Incorrecto. Una inversión financiera tradicional es pasiva (capital sin participación estratégica). Aquí hay un equipo interno, metodología y objetivo de innovación: eso es Corporate Venturing.'
+  },
+  ei2: {
+    correct: '✅ Correcto. Wayra es el programa de aceleración corporativa de Telefónica. Ofrece capital, recursos (clientes, espacio, mentores) a startups externas para desarrollarlas y acceder a su innovación. Esta es la definición exacta de una Aceleradora Corporativa.',
+    a: '❌ Incorrecto. En un spin-off, la empresa separa una parte de sí misma para crear una empresa independiente. Aquí Wayra trabaja con startups externas ya existentes.',
+    b: '❌ Incorrecto. El laboratorio de innovación es interno: usa empleados de la propia empresa. Wayra trabaja con emprendedores externos.',
+    d: '❌ Incorrecto. El CVI implica que los recursos y el equipo son internos. Wayra selecciona startups externas, lo cual corresponde a Corporate Venturing Externo (CVE), específicamente en la modalidad de aceleradora.'
+  },
+  ei3: {
+    correct: '✅ Correcto. El Due Diligence financiero es exactamente este proceso: antes de invertir, el equipo contable-auditor revisa en profundidad los estados financieros, contratos, pasivos (incluyendo los ocultos), cumplimiento tributario y situación laboral de la empresa objetivo.',
+    a: '❌ Incorrecto. La valoración por múltiplos es un método para estimar el valor de una empresa (cuánto pagar), no un proceso de revisión profunda de riesgos e irregularidades.',
+    c: '❌ Incorrecto. La auditoría de gestión interna evalúa los procesos de la propia empresa del auditor, no de una empresa externa que se va a adquirir.',
+    d: '❌ Incorrecto. El análisis costo-beneficio compara ventajas y desventajas de una decisión, pero no implica la revisión detallada de estados financieros, contratos y cumplimiento legal que caracteriza al Due Diligence.'
+  },
+  ei4: {
+    correct: '✅ Correcto. Esta es la diferencia central: el Corporate Venturing tiene un doble objetivo (financiero + estratégico) y el inversor corporativo tiene un rol activo, aportando no solo capital sino también recursos, conocimiento y acceso a su red de clientes y proveedores.',
+    a: '❌ Incorrecto. Esta afirmación describe una inversión financiera tradicional, no el Corporate Venturing. El CV siempre tiene un componente estratégico que supera la búsqueda de rentabilidad inmediata.',
+    c: '❌ Incorrecto. El Corporate Venturing se aplica en todos los sectores: servicios financieros (bancos, cooperativas, firmas de auditoría), manufactura, retail, salud, agroindustria y más.',
+    d: '❌ Incorrecto. En muchas modalidades de CV (especialmente CVC y aceleradoras), la corporación adquiere participaciones minoritarias (5-20%) para mantener la agilidad y cultura emprendedora de la startup. Comprar el 100% puede destruir exactamente lo que se busca aprovechar.'
+  },
+  ei5: {
+    correct: '✅ Correcto. Un Joint Venture es una entidad nueva creada por dos o más partes que comparten capital, control, riesgos y beneficios. Aquí la farmacéutica y la startup de telemedicina crean juntas una empresa nueva con participación igualitaria: es el modelo exacto del Joint Venture de innovación.',
+    a: '❌ Incorrecto. Un spin-off es cuando UNA empresa separa una de sus unidades para hacerla independiente. Aquí son DOS entidades distintas que se unen para crear algo nuevo.',
+    c: '❌ Incorrecto. En un CVC, la corporación invierte capital en una startup que mantiene su independencia. En este caso se crea una NUEVA empresa compartida, lo que implica co-propiedad y co-gestión.',
+    d: '❌ Incorrecto. Una fusión implica que dos empresas se integran en UNA sola entidad, generalmente una absorbe a la otra. Aquí no hay fusión de las empresas existentes: se crea una tercera empresa nueva manteniendo las dos originales.'
+  },
+  ei6: {
+    correct: '✅ Correcto. Tanto Burgelman (1984) como los estudios de CB Insights identifican la interferencia burocrática como la causa más frecuente de fracaso: cuando la unidad innovadora debe seguir los mismos procesos, aprobaciones y ritmos que el negocio principal, pierde la agilidad que la hace valiosa.',
+    a: '❌ Incorrecto. Equipos pequeños son en realidad una característica deseable en unidades de innovación: facilitan la comunicación, la toma de decisiones rápida y la adaptación. El tamaño pequeño no es una causa de fracaso.',
+    c: '❌ Incorrecto. Que la innovación sea disruptiva o "demasiado adelantada" puede ser un riesgo de mercado, pero no es la causa principal de fracaso interno de los programas de CV. Los problemas suelen ser organizacionales, no tecnológicos.',
+    d: '❌ Incorrecto. La autonomía presupuestaria es necesaria para la agilidad de la unidad. Los fracasos por exceso de presupuesto sin control ocurren, pero son mucho menos frecuentes que los causados por restricción burocrática excesiva.'
+  },
+  ei7: {
+    correct: '✅ Correcto. El Bloque 9 (Estructura Financiera y Tributaria) es el más directamente vinculado al perfil del contador-auditor: define la inversión, la norma NIIF aplicable (NIIF 9, 10 u 11 según el nivel de control), las implicaciones tributarias ante el SRI y el umbral de decisión (Go/No-Go). Es el bloque donde el criterio técnico contable es indispensable.',
+    a: '❌ Incorrecto. El bloque de Propuesta de Valor define el "qué" del negocio. Aunque el contador puede entenderlo, es principalmente responsabilidad del equipo de innovación y marketing, no del área financiera.',
+    b: '❌ Incorrecto. El bloque de equipo es importante para la gestión de recursos humanos, pero no es donde el contador-auditor aporta su mayor valor diferencial.',
+    d: '❌ Incorrecto. El mercado objetivo determina a quién se vende. Esta es información relevante para proyecciones financieras, pero el diseño del mercado es responsabilidad del equipo comercial, no del contador.'
+  },
+  ei8: {
+    correct: '✅ Correcto. Gifford Pinchot III acuñó el término "intrapreneur" en su libro Intrapreneuring (1985) para describir a las personas que, dentro de organizaciones establecidas, actúan con la mentalidad, creatividad y orientación a la acción de un emprendedor externo.',
+    a: '❌ Incorrecto. El fundador de una startup que busca financiamiento externo es un emprendedor convencional (entrepreneur), no un intrapreneur. La clave del concepto de Pinchot es que el intrapreneur trabaja DENTRO de una organización ya establecida.',
+    c: '❌ Incorrecto. El directivo que gestiona fondos de CVC es un corporate venture capitalist o gestor de inversiones, no un intrapreneur. El intrapreneur genera innovación desde su posición como empleado, no administrando dinero de otros.',
+    d: '❌ Incorrecto. El consultor externo no forma parte de la organización. El intrapreneur es, por definición, alguien que pertenece a la empresa y opera desde dentro de su estructura.'
+  }
+};
+
+function verificarEjercicio() {
+  const names = ['ei1','ei2','ei3','ei4','ei5','ei6','ei7','ei8'];
+  let allAnswered = true;
+  names.forEach(n => {
+    if (!document.querySelector(`input[name="${n}"]:checked`)) allAnswered = false;
+  });
+  if (!allAnswered) {
+    document.getElementById('ex-alert').style.display = 'block';
+    return;
+  }
+  document.getElementById('ex-alert').style.display = 'none';
+  let score = 0;
+  names.forEach(n => {
+    const selected = document.querySelector(`input[name="${n}"]:checked`).value;
+    const fb = document.getElementById('fb-' + n);
+    fb.style.display = 'block';
+    if (selected === ejercicioCorrects[n]) {
+      score++;
+      fb.className = 'feedback-box correct';
+      fb.textContent = ejercicioFeedbacks[n].correct;
+    } else {
+      fb.className = 'feedback-box incorrect';
+      fb.textContent = ejercicioFeedbacks[n][selected] || '❌ Respuesta incorrecta.';
+    }
+    // Disable all options
+    document.querySelectorAll(`input[name="${n}"]`).forEach(i => i.disabled = true);
+  });
+  const pct = Math.round(score / names.length * 100);
+  document.getElementById('ex-score-text').textContent = `${score} / ${names.length}`;
+  document.getElementById('ex-percent-text').textContent = `${pct}% de respuestas correctas`;
+  document.getElementById('ex-bar').style.width = pct + '%';
+  const msgs = {
+    100: '🏆 ¡Perfecto! Dominas el Corporate Venturing.',
+    75: '🎯 Muy bien. Tienes una base sólida.',
+    50: '📘 Buen intento. Revisa los conceptos marcados en rojo.',
+    25: '⚠️ Sigue adelante. Relee el material con calma.',
+    0: '📖 No te desanimes. Cada error es una oportunidad de aprender.'
+  };
+  const key = pct === 100 ? 100 : pct >= 75 ? 75 : pct >= 50 ? 50 : pct >= 25 ? 25 : 0;
+  document.getElementById('ex-motivational').textContent = msgs[key];
+  document.getElementById('ex-result').classList.add('visible');
+}
+
+function reiniciarEjercicio() {
+  ['ei1','ei2','ei3','ei4','ei5','ei6','ei7','ei8'].forEach(n => {
+    document.querySelectorAll(`input[name="${n}"]`).forEach(i => { i.disabled = false; i.checked = false; });
+    const fb = document.getElementById('fb-' + n);
+    fb.style.display = 'none'; fb.textContent = '';
+  });
+  document.getElementById('ex-result').classList.remove('visible');
+  document.getElementById('ex-bar').style.width = '0%';
+}
+
+// ===== QUIZ =====
+const quizCorrects = {
+  qi1: 'b', qi2: 'b', qi3: 'b', qi4: 'b', qi5: 'c',
+  qi6: 'b', qi7: 'c', qi8: 'b', qi9: 'a', qi10: 'b'
+};
+
+const quizFeedbacks = {
+  qi1: {
+    correct: '✅ Correcto. El Corporate Venturing es la iniciativa institucional —no individual— mediante la cual una empresa ya establecida crea o apoya nuevos negocios con objetivos tanto estratégicos (posicionamiento, innovación) como financieros (retorno de inversión).',
+    a: '❌ Incorrecto. Eso describe el emprendimiento individual convencional (startup desde cero), no el Corporate Venturing, que parte de una corporación existente.',
+    c: '❌ Incorrecto. La compra de un competidor para eliminarlo es una adquisición o fusión estratégica, no Corporate Venturing. El CV busca crear e innovar, no eliminar competencia.',
+    d: '❌ Incorrecto. El Corporate Venturing es una iniciativa del sector privado-corporativo, no un programa de gobierno. Los fondos gubernamentales de apoyo a startups son instrumentos de política pública (SENESCYT, MIPRO), distintos del CV.'
+  },
+  qi2: {
+    correct: '✅ Correcto. Esta es la distinción definitoria del CVC: combina el retorno financiero (como cualquier fondo de VC) con el beneficio estratégico para la corporación (acceso a tecnología, nuevos mercados, talento). Un fondo VC tradicional solo busca maximizar el retorno financiero.',
+    a: '❌ Incorrecto. No existe esa regla de sector único. Muchos fondos de CVC invierten en startups de sectores diferentes al suyo para explorar oportunidades de diversificación.',
+    c: '❌ Incorrecto. Los montos de inversión en CVC varían enormemente según la corporación y la etapa de la startup. No hay una regla de que el CVC siempre invierta más que el VC tradicional.',
+    d: '❌ Incorrecto. El CVC existe y está activo en América Latina. En Ecuador, programas como Wayra (Telefónica) y fondos de varios bancos operan bajo esta lógica.'
+  },
+  qi3: {
+    correct: '✅ Correcto. Un spin-off corporativo es exactamente la separación de una unidad interna para crear una empresa independiente. La empresa matriz puede conservar participación accionaria, manteniendo así una relación estratégica con la nueva entidad.',
+    a: '❌ Incorrecto. Eso describe una fusión entre iguales (merger of equals), no un spin-off. En un spin-off solo participa una empresa que "lanza" una parte de sí misma al mercado.',
+    c: '❌ Incorrecto. Un programa de capacitación interna es una iniciativa de desarrollo de talento, no una separación legal y operativa de una unidad de negocio.',
+    d: '❌ Incorrecto. La liquidación de divisiones no rentables es una decisión de reestructuración corporativa orientada a reducir pérdidas, opuesta en intención al spin-off, que busca crear y liberar valor innovador.'
+  },
+  qi4: {
+    correct: '✅ Correcto. Las universidades son el nodo de conocimiento y talento del ecosistema de Corporate Venturing: generan investigación aplicada, forman profesionales con mentalidad emprendedora y crean el capital humano que luego se integra en startups y corporaciones.',
+    a: '❌ Incorrecto. Las universidades públicas ecuatorianas como Yachay Tech o la ESPOL no son fondos de inversión de riesgo. Su rol es académico y de generación de conocimiento, aunque pueden tener oficinas de transferencia tecnológica.',
+    c: '❌ Incorrecto. La regulación de inversiones corporativas corresponde a organismos como la Superintendencia de Compañías, la Superintendencia de Bancos y el SRI, no a las universidades.',
+    d: '❌ Incorrecto. La infraestructura legal y tributaria es responsabilidad del sistema jurídico y la administración tributaria (SRI), no de las universidades.'
+  },
+  qi5: {
+    correct: '✅ Correcto. Exigir rentabilidad inmediata es precisamente una causa de fracaso, no de éxito. Las iniciativas de Corporate Venturing requieren horizontes de 3-5 años para madurar. Aplicar métricas de corto plazo a procesos de innovación destruye el programa antes de que pueda demostrar su valor.',
+    a: '❌ Incorrecto. La autonomía real sí es un factor de éxito. Sin ella, la burocracia corporativa asfixia la agilidad que el CV necesita para funcionar.',
+    b: '❌ Incorrecto. El apoyo de la alta dirección sí es un factor de éxito crítico. Sin él, la iniciativa pierde presupuesto, protección y legitimidad al primer obstáculo.',
+    d: '❌ Incorrecto. La tolerancia al fracaso sí es un factor de éxito. La innovación implica incertidumbre; si el equipo teme ser castigado por intentar y fallar, dejará de intentar cosas nuevas.'
+  },
+  qi6: {
+    correct: '✅ Correcto. El due diligence financiero es el proceso de investigación exhaustiva que el equipo contable-auditor realiza antes de que una corporación decida invertir en o adquirir una startup. Analiza estados financieros, contratos, pasivos ocultos, litigios pendientes, cumplimiento del SRI y situación laboral.',
+    a: '❌ Incorrecto. El proceso de presentar una empresa a inversores se llama roadshow o pitch. El due diligence es el proceso inverso: el inversor investiga a la empresa, no al revés.',
+    c: '❌ Incorrecto. El plan de negocios lo elabora el equipo emprendedor o de innovación, no el auditor. El due diligence parte de documentos existentes para verificar su veracidad.',
+    d: '❌ Incorrecto. La negociación del precio es parte del proceso de negociación posterior al due diligence. El due diligence provee la información que fundamenta esa negociación, pero no es la negociación en sí.'
+  },
+  qi7: {
+    correct: '✅ Correcto. Gifford Pinchot III popularizó el concepto de "intrapreneur" en su libro Intrapreneuring (1985), describiendo a personas que, desde dentro de empresas establecidas, actúan con mentalidad emprendedora para crear nuevos productos, procesos o negocios.',
+    a: '❌ Incorrecto. Peter Drucker hizo contribuciones fundamentales sobre innovación y emprendimiento (Innovation and Entrepreneurship, 1985), pero fue Pinchot quien acuñó específicamente el término "intrapreneur".',
+    b: '❌ Incorrecto. Joseph Schumpeter desarrolló los conceptos de "destrucción creativa" e innovación como motor del capitalismo, pero no el término intrapreneur.',
+    d: '❌ Incorrecto. Robert Burgelman es reconocido por sus investigaciones sobre emprendimiento corporativo y estrategia de innovación (Stanford), pero el término intrapreneur fue creado por Pinchot.'
+  },
+  qi8: {
+    correct: '✅ Correcto. Los indicadores clave son: equipo interno de tamaño reducido (5 personas), presupuesto propio asignado, metodología ágil implícita, autonomía de procedimientos (no sigue las normas de compras corporativas) y reporte directo al máximo nivel. Todo eso define un Innovation Lab, la modalidad más flexible del Corporate Venturing Interno.',
+    a: '❌ Incorrecto. El CVC implica invertir en startups EXTERNAS a la empresa. Aquí el equipo es completamente interno a la cadena de supermercados.',
+    c: '❌ Incorrecto. Un Joint Venture requiere dos entidades distintas que crean conjuntamente una nueva empresa. Aquí hay una sola empresa.',
+    d: '❌ Incorrecto. Una aceleradora corporativa trabaja con emprendedores externos a la empresa, seleccionando y apoyando startups de terceros. El equipo descrito son empleados directos de la cadena de supermercados.'
+  },
+  qi9: {
+    correct: '✅ Correcto. La función principal del auditor en el due diligence es exactamente esta: revelar los riesgos reales a la empresa cliente para que pueda tomar una decisión informada. Ocultar hallazgos o ignorarlos viola los principios de ética profesional y podría tener consecuencias legales graves para el auditor y la firma.',
+    b: '❌ Incorrecto. Los pasivos laborales no registrados son un riesgo financiero real y un posible incumplimiento legal. Ignorarlos viola el principio de objetividad e integridad del auditor, definido en el Código de Ética del IFAC adoptado en Ecuador.',
+    c: '❌ Incorrecto. El potencial futuro no compensa, por sí solo, los riesgos presentes no revelados. La decisión de invertir es del cliente, no del auditor; el auditor debe revelar los hallazgos completos y dejar que el cliente decida.',
+    d: '❌ Incorrecto. Solicitar a la startup que corrija sus estados financieros sin informar al cliente de los hallazgos es una grave violación ética: el cliente contrató al auditor precisamente para detectar este tipo de irregularidades. No revelarlos equivale a actuar a favor de la startup y en contra del cliente.'
+  },
+  qi10: {
+    correct: '✅ Correcto. El beneficio estratégico principal del programa es triple: (1) acceder a innovación tecnológica que la empresa no podría desarrollar internamente con la misma velocidad, (2) mantenerse competitiva frente a disrupciones de mercado (otras empresas telecom, apps de comunicación), y (3) atraer y retener talento emprendedor que de otro modo iría a startups independientes.',
+    a: '❌ Incorrecto. Los emprendedores en una aceleradora corporativa NO son empleados de la empresa. Son fundadores independientes que conservan el control de sus startups. La empresa no puede usarlos como mano de obra a bajo costo sin violar acuerdos.',
+    c: '❌ Incorrecto. La intención del programa no es la compra futura garantizada. El 8% de participación accionaria da a la empresa acceso estratégico, pero las startups conservan su independencia y pueden tener otros inversores o rutas de salida.',
+    d: '❌ Incorrecto. Aunque el Corporate Venturing puede tener componentes de RSE, no existe en Ecuador una ley que obligue a las empresas de telecomunicaciones a invertir en startups como requisito de responsabilidad social. La motivación es estratégica y competitiva.'
+  }
+};
+
+function verificarCuestionario() {
+  const names = ['qi1','qi2','qi3','qi4','qi5','qi6','qi7','qi8','qi9','qi10'];
+  let allAnswered = true;
+  names.forEach(n => {
+    if (!document.querySelector(`input[name="${n}"]:checked`)) allAnswered = false;
+  });
+  if (!allAnswered) {
+    document.getElementById('quiz-alert').style.display = 'block';
+    return;
+  }
+  document.getElementById('quiz-alert').style.display = 'none';
+  let score = 0;
+  names.forEach(n => {
+    const selected = document.querySelector(`input[name="${n}"]:checked`).value;
+    const fb = document.getElementById('fb-' + n);
+    fb.style.display = 'block';
+    if (selected === quizCorrects[n]) {
+      score++;
+      fb.className = 'feedback-box correct';
+      fb.textContent = quizFeedbacks[n].correct;
+    } else {
+      fb.className = 'feedback-box incorrect';
+      fb.textContent = quizFeedbacks[n][selected] || '❌ Respuesta incorrecta. Revisa el material.';
+    }
+    document.querySelectorAll(`input[name="${n}"]`).forEach(i => i.disabled = true);
+  });
+  const pct = Math.round(score / 10 * 100);
+  document.getElementById('quiz-score-text').textContent = `${score} / 10`;
+  document.getElementById('quiz-percent-text').textContent = `${pct}% de respuestas correctas`;
+  document.getElementById('quiz-bar').style.width = pct + '%';
+  let emoji, msg;
+  if (pct === 100) { emoji = '🏆'; msg = '¡Excelente! Dominio total del tema.'; }
+  else if (pct >= 80) { emoji = '🎯'; msg = 'Muy buen desempeño. ¡Sigue así!'; }
+  else if (pct >= 60) { emoji = '📘'; msg = 'Buen nivel. Refuerza los temas marcados en rojo.'; }
+  else if (pct >= 40) { emoji = '⚠️'; msg = 'Progreso moderado. Relee el material con atención.'; }
+  else { emoji = '📖'; msg = 'El material está aquí para ti. ¡No te rindas!'; }
+  document.getElementById('quiz-motivational').textContent = `${emoji} ${msg}`;
+  document.getElementById('quiz-result').classList.add('visible');
+}
+
+function reiniciarCuestionario() {
+  ['qi1','qi2','qi3','qi4','qi5','qi6','qi7','qi8','qi9','qi10'].forEach(n => {
+    document.querySelectorAll(`input[name="${n}"]`).forEach(i => { i.disabled = false; i.checked = false; });
+    const fb = document.getElementById('fb-' + n);
+    fb.style.display = 'none'; fb.textContent = '';
+  });
+  document.getElementById('quiz-result').classList.remove('visible');
+  document.getElementById('quiz-bar').style.width = '0%';
+}
+</script>
+</body>
+</html>
