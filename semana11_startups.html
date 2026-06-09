@@ -1,0 +1,1611 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 11 | Naturaleza de las StartUps | Emprendimiento e Innovación</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Source Sans 3', sans-serif; background: #f0f4f8; color: #1a1a2e; font-size: 16px; line-height: 1.7; }
+  h1, h2, h3, h4 { font-family: 'Lora', serif; }
+
+  /* ===== HEADER ===== */
+  .header { background: #003366; color: #fff; padding: 20px 24px 16px; }
+  .header-inst { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; opacity: .82; margin-bottom: 4px; }
+  .header-title { font-family: 'Lora', serif; font-size: clamp(1.25rem, 3vw, 1.75rem); font-weight: 700; line-height: 1.3; }
+  .header-meta { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 10px; }
+  .badge { background: rgba(255,255,255,.18); border-radius: 20px; padding: 3px 12px; font-size: 12px; font-weight: 600; letter-spacing:.04em; }
+
+  /* ===== TAB NAV ===== */
+  .tab-nav-wrap { background: #87CEEB; overflow-x: auto; white-space: nowrap; border-bottom: 3px solid #003366; scrollbar-width: thin; scrollbar-color: #003366 #b0d8ef; }
+  .tab-nav-wrap::-webkit-scrollbar { height: 5px; }
+  .tab-nav-wrap::-webkit-scrollbar-thumb { background: #003366; border-radius: 4px; }
+  .tab-nav { display: inline-flex; min-width: 100%; }
+  .tab-btn { display: inline-block; padding: 12px 18px; font-family: 'Source Sans 3', sans-serif; font-size: 13px; font-weight: 600; color: #1a1a2e; background: transparent; border: none; cursor: pointer; white-space: nowrap; transition: all .22s; border-bottom: 3px solid transparent; margin-bottom: -3px; }
+  .tab-btn:hover { background: rgba(255,255,255,.55); }
+  .tab-btn.active { background: #fff; color: #003366; font-weight: 700; border-bottom: 3px solid #003366; }
+
+  /* ===== CONTENT ===== */
+  .tab-content { display: none; padding: 28px 24px 40px; max-width: 960px; margin: 0 auto; animation: fadeIn .3s ease; }
+  .tab-content.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ===== TYPOGRAPHY ===== */
+  .section-title { font-family: 'Lora', serif; font-size: 1.45rem; color: #003366; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid #87CEEB; }
+  .subsection-title { font-family: 'Lora', serif; font-size: 1.1rem; color: #003366; margin: 22px 0 10px; }
+  p { margin-bottom: 14px; }
+
+  /* ===== BOXES ===== */
+  .box-concept { border-left: 5px solid #003366; background: #f8fbff; padding: 16px 20px; border-radius: 0 8px 8px 0; margin: 18px 0; }
+  .box-concept strong { color: #003366; font-family: 'Lora', serif; }
+  .box-example { background: #dceefb; border-radius: 8px; padding: 16px 20px; margin: 18px 0; border: 1px solid #b3d4f0; }
+  .box-example .ex-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: #003366; margin-bottom: 6px; }
+  .box-key { background: #003366; color: #fff; border-radius: 8px; padding: 16px 20px; margin: 24px 0; }
+  .box-key strong { color: #87CEEB; }
+  .box-warn { background: #fff8e1; border-left: 5px solid #f9a825; padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 18px 0; }
+  .box-tool { background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 16px 20px; border-radius: 0 8px 8px 0; margin: 18px 0; }
+  .box-tool strong { color: #1b5e20; }
+
+  /* ===== TABLES ===== */
+  .tbl-wrap { overflow-x: auto; margin: 18px 0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+  table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  th { background: #003366; color: #fff; padding: 11px 14px; text-align: left; font-family: 'Source Sans 3', sans-serif; font-weight: 600; }
+  td { padding: 10px 14px; border-bottom: 1px solid #e0e8f0; vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f9ff; }
+  tr:last-child td { border-bottom: none; }
+
+  /* ===== LISTS ===== */
+  ul.styled, ol.styled { padding-left: 20px; margin-bottom: 14px; }
+  ul.styled li, ol.styled li { margin-bottom: 8px; padding-left: 4px; }
+  ul.check li::marker { content: "✔ "; color: #003366; }
+
+  /* ===== FRAMEWORK CANVAS ===== */
+  .canvas-grid { display: grid; gap: 12px; margin: 20px 0; }
+  .canvas-grid-2 { grid-template-columns: 1fr 1fr; }
+  .canvas-grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .canvas-card { background: #fff; border: 2px solid #87CEEB; border-radius: 10px; padding: 14px 16px; }
+  .canvas-card h4 { font-size: .9rem; color: #003366; margin-bottom: 8px; font-family: 'Lora', serif; }
+  .canvas-card p { font-size: 13.5px; margin: 0; color: #333; }
+  .canvas-card textarea { width: 100%; border: 1px solid #c0d8ee; border-radius: 6px; padding: 8px; font-family: 'Source Sans 3', sans-serif; font-size: 13px; resize: vertical; min-height: 80px; color: #1a1a2e; }
+  .canvas-card textarea:focus { outline: 2px solid #003366; }
+  .canvas-header { grid-column: 1 / -1; background: #003366; color: #fff; border-radius: 10px; padding: 10px 16px; text-align: center; font-family: 'Lora', serif; font-size: 1rem; }
+  @media(max-width:600px) { .canvas-grid-2, .canvas-grid-3 { grid-template-columns: 1fr; } }
+
+  /* ===== STARTUP CANVAS ===== */
+  .startup-canvas { background: #fff; border: 2px solid #003366; border-radius: 12px; overflow: hidden; margin: 20px 0; }
+  .startup-canvas-header { background: #003366; color: #fff; padding: 12px 20px; font-family: 'Lora', serif; font-size: 1rem; text-align: center; }
+  .startup-canvas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+  .sc-cell { border: 1px solid #c0d8ee; padding: 12px 14px; min-height: 110px; }
+  .sc-cell h5 { font-size: .8rem; font-weight: 700; color: #003366; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 6px; }
+  .sc-cell textarea { width: 100%; border: none; background: transparent; font-family: 'Source Sans 3', sans-serif; font-size: 13px; resize: none; min-height: 70px; color: #333; }
+  .sc-cell textarea:focus { outline: 1px dashed #003366; border-radius: 4px; }
+  .sc-full { grid-column: 1 / -1; }
+  .sc-half { grid-column: span 1; }
+  .sc-two { grid-column: span 2; }
+  @media(max-width:600px) { .startup-canvas-grid { grid-template-columns: 1fr; } .sc-two, .sc-full { grid-column: 1; } }
+
+  /* ===== FACTORES TRACKER ===== */
+  .factor-tracker { background: #fff; border-radius: 10px; border: 1px solid #c0d8ee; margin: 20px 0; overflow: hidden; }
+  .factor-tracker-header { background: #003366; color: #fff; padding: 12px 18px; font-family: 'Lora', serif; }
+  .factor-row { display: grid; grid-template-columns: 2fr 1fr 2fr; gap: 10px; padding: 12px 18px; border-bottom: 1px solid #e8eef5; align-items: center; }
+  .factor-row:last-child { border-bottom: none; }
+  .factor-row:nth-child(even) { background: #f8fbff; }
+  .factor-label { font-weight: 600; font-size: 14px; color: #003366; }
+  .factor-stars { display: flex; gap: 4px; }
+  .star-btn { font-size: 20px; cursor: pointer; color: #ccc; transition: color .15s; background: none; border: none; padding: 0; }
+  .star-btn.active { color: #f9a825; }
+  .factor-notes { font-size: 13px; color: #666; font-style: italic; }
+  @media(max-width:600px) { .factor-row { grid-template-columns: 1fr; } }
+
+  /* ===== INTERACTIVE EXERCISE ===== */
+  .exercise-item { background: #fff; border: 1px solid #c0d8ee; border-radius: 10px; padding: 18px 20px; margin-bottom: 16px; transition: border-color .2s; }
+  .exercise-item.correct { border-color: #2e7d32; background: #f1f8f1; }
+  .exercise-item.incorrect { border-color: #c62828; background: #fff5f5; }
+  .exercise-item h4 { font-size: .95rem; color: #003366; margin-bottom: 12px; }
+  .options label { display: flex; align-items: flex-start; gap: 10px; padding: 8px 10px; border-radius: 6px; cursor: pointer; margin-bottom: 6px; transition: background .15s; font-size: 14.5px; }
+  .options label:hover { background: #eef5ff; }
+  .options input[type="radio"] { margin-top: 3px; accent-color: #003366; flex-shrink: 0; }
+  .feedback-msg { margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 14px; display: none; }
+  .feedback-msg.show { display: block; }
+  .feedback-msg.ok { background: #e8f5e9; color: #1b5e20; border-left: 4px solid #2e7d32; }
+  .feedback-msg.fail { background: #ffebee; color: #b71c1c; border-left: 4px solid #c62828; }
+
+  /* ===== BUTTONS ===== */
+  .btn-primary { background: #003366; color: #fff; border: none; padding: 13px 28px; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; transition: background .2s; font-family: 'Source Sans 3', sans-serif; }
+  .btn-primary:hover { background: #00509e; }
+  .btn-secondary { background: #87CEEB; color: #003366; border: none; padding: 11px 24px; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; transition: background .2s; font-family: 'Source Sans 3', sans-serif; }
+  .btn-secondary:hover { background: #5bb8de; }
+  .btn-row { display: flex; gap: 12px; margin-top: 22px; flex-wrap: wrap; }
+
+  /* ===== SCORE ===== */
+  .score-box { background: #003366; color: #fff; border-radius: 12px; padding: 24px; text-align: center; margin-top: 24px; display: none; }
+  .score-box.show { display: block; }
+  .score-number { font-family: 'Lora', serif; font-size: 2.8rem; font-weight: 700; }
+  .score-label { font-size: 14px; opacity: .85; margin-bottom: 12px; }
+  .progress-bar-wrap { background: rgba(255,255,255,.25); border-radius: 20px; height: 14px; margin: 10px 0 14px; overflow: hidden; }
+  .progress-bar { height: 100%; border-radius: 20px; background: #87CEEB; transition: width 1s ease; }
+  .score-msg { font-size: 1.1rem; font-weight: 600; margin-top: 8px; }
+
+  /* ===== QUIZ BADGES ===== */
+  .badge-teorica { background: #003366; color: #fff; font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 700; vertical-align: middle; margin-left: 6px; }
+  .badge-analisis { background: #1565c0; color: #fff; font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 700; vertical-align: middle; margin-left: 6px; }
+
+  /* ===== AI ACTIVITY ===== */
+  .ai-prompt-box { background: #1a1a2e; color: #e0e8ff; border-radius: 10px; padding: 20px 22px; font-family: monospace; font-size: 13.5px; line-height: 1.7; margin: 16px 0; white-space: pre-wrap; border-left: 5px solid #87CEEB; }
+  .ai-step { display: flex; gap: 14px; margin-bottom: 18px; align-items: flex-start; }
+  .ai-step-num { background: #003366; color: #fff; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: .9rem; flex-shrink: 0; }
+
+  /* ===== REFLECTION ===== */
+  .reflex-card { background: #fff; border-radius: 10px; border-left: 5px solid #87CEEB; padding: 16px 20px; margin-bottom: 14px; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+  .reflex-card p { margin: 0; font-size: 15px; color: #1a1a2e; }
+  .reflex-card .reflex-num { font-size: 11px; font-weight: 700; text-transform: uppercase; color: #87CEEB; letter-spacing: .08em; margin-bottom: 5px; }
+
+  /* ===== BIBLIOGRAPHY ===== */
+  .bib-card { background: #fff; border-radius: 10px; padding: 16px 20px; margin-bottom: 14px; box-shadow: 0 2px 6px rgba(0,0,0,.07); border-left: 4px solid #87CEEB; }
+  .bib-card .bib-authors { font-weight: 700; color: #003366; font-size: 14px; }
+  .bib-card .bib-title { font-style: italic; color: #1a1a2e; }
+  .bib-card .bib-source { font-size: 13px; color: #555; margin-top: 4px; }
+  .bib-note { background: #fff8e1; border: 1px solid #f9a825; border-radius: 8px; padding: 12px 16px; margin-top: 20px; font-size: 13px; color: #4a3000; }
+
+  /* ===== REPASO ===== */
+  .repaso-item { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 14px; }
+  .repaso-icon { background: #003366; color: #fff; border-radius: 8px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+  .repaso-content h4 { color: #003366; font-family: 'Lora', serif; font-size: .95rem; margin-bottom: 4px; }
+  .repaso-content p { font-size: 14px; margin: 0; color: #333; }
+
+  /* ===== STARTUP DNA VISUALIZATION ===== */
+  .dna-visual { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin: 20px 0; }
+  .dna-card { background: linear-gradient(135deg, #003366 0%, #00509e 100%); color: #fff; border-radius: 12px; padding: 16px 14px; text-align: center; }
+  .dna-card .dna-icon { font-size: 2rem; margin-bottom: 8px; }
+  .dna-card h5 { font-family: 'Lora', serif; font-size: .9rem; margin-bottom: 6px; color: #87CEEB; }
+  .dna-card p { font-size: 12.5px; margin: 0; opacity: .9; }
+
+  /* ===== GROWTH STAGES ===== */
+  .stages-flow { display: flex; gap: 0; margin: 20px 0; overflow-x: auto; }
+  .stage { flex: 1; min-width: 110px; text-align: center; position: relative; }
+  .stage::after { content: '→'; position: absolute; right: -12px; top: 28px; font-size: 1.4rem; color: #003366; font-weight: 700; z-index: 2; }
+  .stage:last-child::after { display: none; }
+  .stage-circle { width: 60px; height: 60px; border-radius: 50%; background: #003366; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin: 0 auto 8px; }
+  .stage h5 { font-size: .78rem; color: #003366; font-family: 'Lora', serif; margin-bottom: 4px; }
+  .stage p { font-size: 11.5px; color: #555; }
+
+  /* ===== DOWNLOAD BTN ===== */
+  .download-btn { background: #2e7d32; color: #fff; border: none; padding: 10px 20px; border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: 'Source Sans 3', sans-serif; display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; }
+  .download-btn:hover { background: #1b5e20; }
+
+  /* ===== ALERT ===== */
+  .alert-msg { background: #fff3cd; border: 1px solid #ffc107; color: #856404; padding: 10px 16px; border-radius: 8px; margin-top: 12px; font-size: 14px; display: none; }
+  .alert-msg.show { display: block; }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="header">
+  <div class="header-inst">Universidad de Guayaquil · Facultad de Ciencias Administrativas · Contabilidad y Auditoría</div>
+  <div class="header-title">Naturaleza de las Startups &amp; Factores de Éxito</div>
+  <div class="header-meta">
+    <span class="badge">Unidad 3</span>
+    <span class="badge">Semana 11</span>
+    <span class="badge">Emprendimiento e Innovación</span>
+    <span class="badge">Corporate Venturing &amp; Startups</span>
+  </div>
+</header>
+
+<!-- ===== TAB NAV ===== -->
+<div class="tab-nav-wrap">
+  <nav class="tab-nav" role="tablist">
+    <button class="tab-btn active" onclick="showTab('repaso')" role="tab">📋 Repaso</button>
+    <button class="tab-btn" onclick="showTab('t1')" role="tab">1. Naturaleza de la Startup</button>
+    <button class="tab-btn" onclick="showTab('t2')" role="tab">2. Etapas de Vida</button>
+    <button class="tab-btn" onclick="showTab('t3')" role="tab">3. Factores de Éxito</button>
+    <button class="tab-btn" onclick="showTab('t4')" role="tab">4. Herramientas Prácticas</button>
+    <button class="tab-btn" onclick="showTab('t5')" role="tab">5. Startup &amp; Contabilidad</button>
+    <button class="tab-btn" onclick="showTab('ejercicio')" role="tab">6. Ejercicio</button>
+    <button class="tab-btn" onclick="showTab('cuestionario')" role="tab">7. Cuestionario</button>
+    <button class="tab-btn" onclick="showTab('ia')" role="tab">8. Actividad IA</button>
+    <button class="tab-btn" onclick="showTab('reflexion')" role="tab">9. Reflexión</button>
+    <button class="tab-btn" onclick="showTab('biblio')" role="tab">📚 Bibliografía</button>
+    <button class="tab-btn" onclick="showTab('glosario')" role="tab">📖 Glosario</button>
+  </nav>
+</div>
+
+<!-- ==================== REPASO ==================== -->
+<section id="tab-repaso" class="tab-content active">
+  <h2 class="section-title">📋 Repaso: ¿Dónde estamos en el itinerario?</h2>
+  <p>En las semanas anteriores de esta Unidad 3 hemos construido una base conceptual esencial para entender las nuevas formas de crear valor empresarial. Aquí un mapa rápido de lo que ya hemos trabajado:</p>
+
+  <div class="repaso-item">
+    <div class="repaso-icon">🔬</div>
+    <div class="repaso-content">
+      <h4>Semanas 1–5 · Unidad 1: Fundamentos del Emprendimiento</h4>
+      <p>Exploramos la teoría clásica del emprendimiento (Schumpeter, Drucker, Sarasvathy), el ecosistema ecuatoriano, los tipos de emprendedor y cómo se identifican oportunidades a partir del análisis de tendencias. Entendimos que emprender no es solo crear una empresa: es una actitud ante la vida.</p>
+    </div>
+  </div>
+  <div class="repaso-item">
+    <div class="repaso-icon">💡</div>
+    <div class="repaso-content">
+      <h4>Semanas 6–7 · Unidad 2: Creatividad y Design Thinking</h4>
+      <p>Aprendimos herramientas de creatividad sistémica (mapa mental, SCAMPER, seis sombreros) y la metodología Design Thinking (Empatizar → Definir → Idear → Prototipar → Testear) como proceso humano-centrado para resolver problemas reales.</p>
+    </div>
+  </div>
+  <div class="repaso-item">
+    <div class="repaso-icon">🏢</div>
+    <div class="repaso-content">
+      <h4>Semana 10 · Unidad 3: Corporate Venturing</h4>
+      <p>Analizamos el Corporate Venturing: cuando grandes organizaciones crean unidades internas o invierten en proyectos externos para innovar sin perder su operación principal. Vimos diferencias entre spin-offs, joint ventures y aceleradoras corporativas, con ejemplos ecuatorianos como Pacifictel y el Banco del Pacífico.</p>
+    </div>
+  </div>
+
+  <div class="box-key">
+    <strong>Esta semana avanzamos a:</strong> La startup como fenómeno contemporáneo de emprendimiento de alto impacto. Entenderemos qué la hace única, cómo evoluciona a lo largo del tiempo y cuáles son los factores que determinan su éxito o fracaso. Este conocimiento es clave para que, como futuros contadores y auditores, puedan asesorar, auditar y acompañar a empresas en etapas tempranas.
+  </div>
+</section>
+
+<!-- ==================== TEMA 1: NATURALEZA ==================== -->
+<section id="tab-t1" class="tab-content">
+  <h2 class="section-title">1. Naturaleza de la Startup: ¿Qué es y qué no es?</h2>
+
+  <div class="box-concept">
+    <strong>Definición canónica:</strong> Una <em>startup</em> es una organización temporal diseñada para buscar un modelo de negocio repetible y escalable bajo condiciones de extrema incertidumbre. (Blank &amp; Dorf, 2012). No es simplemente una empresa pequeña: es una institución en modo de búsqueda, no en modo de ejecución.
+  </div>
+
+  <p>La palabra <em>startup</em> proviene del inglés y significa literalmente "arranque" o "puesta en marcha". En el ámbito empresarial contemporáneo, describe un tipo muy específico de organización que comparte características que la diferencian radicalmente de una PyME (Pequeña y Mediana Empresa) tradicional o de una gran corporación.</p>
+
+  <h3 class="subsection-title">1.1 El ADN de una Startup</h3>
+  <p>Toda startup genuina comparte un conjunto de rasgos estructurales que definen su naturaleza. Comprender este "ADN" permite identificar cuándo una idea tiene el potencial de convertirse en una startup de alto impacto:</p>
+
+  <div class="dna-visual">
+    <div class="dna-card">
+      <div class="dna-icon">🚀</div>
+      <h5>Escalabilidad</h5>
+      <p>El modelo de negocio puede crecer exponencialmente sin que los costos crezcan en la misma proporción.</p>
+    </div>
+    <div class="dna-card">
+      <div class="dna-icon">🔁</div>
+      <h5>Repetibilidad</h5>
+      <p>El proceso de adquirir clientes y generar ingresos puede replicarse de forma sistemática y predecible.</p>
+    </div>
+    <div class="dna-card">
+      <div class="dna-icon">❓</div>
+      <h5>Incertidumbre</h5>
+      <p>No existe un mercado probado ni un modelo conocido. Todo es hipótesis que debe validarse con datos reales.</p>
+    </div>
+    <div class="dna-card">
+      <div class="dna-icon">💻</div>
+      <h5>Tecnología</h5>
+      <p>Usa la tecnología como palanca para crear soluciones innovadoras y llegar a más personas a menor costo.</p>
+    </div>
+    <div class="dna-card">
+      <div class="dna-icon">🌍</div>
+      <h5>Impacto</h5>
+      <p>Busca transformar industrias completas o resolver problemas sociales a escala global o regional.</p>
+    </div>
+  </div>
+
+  <h3 class="subsection-title">1.2 Startup vs. Empresa Tradicional vs. PyME: Diferencias clave</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr><th>Dimensión</th><th>PyME Tradicional</th><th>Startup</th><th>Gran Corporación</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Objetivo primario</strong></td><td>Rentabilidad estable</td><td>Encontrar un modelo escalable</td><td>Maximizar valor para accionistas</td></tr>
+        <tr><td><strong>Crecimiento esperado</strong></td><td>Lineal (gradual)</td><td>Exponencial ("hockey stick")</td><td>Orgánico + adquisiciones</td></tr>
+        <tr><td><strong>Fuente de capital</strong></td><td>Banco, recursos propios</td><td>Ángeles, VC, aceleradoras</td><td>Bolsa de valores, bonos</td></tr>
+        <tr><td><strong>Tolerancia al riesgo</strong></td><td>Baja a moderada</td><td>Muy alta (puede quebrar)</td><td>Baja (gestión conservadora)</td></tr>
+        <tr><td><strong>Modelo de negocio</strong></td><td>Conocido y probado</td><td>En búsqueda activa</td><td>Establecido y optimizado</td></tr>
+        <tr><td><strong>Pivotes</strong></td><td>Raros, costosos</td><td>Frecuentes y necesarios</td><td>Casi imposibles sin reestructura</td></tr>
+        <tr><td><strong>Horizonte temporal</strong></td><td>Largo plazo (décadas)</td><td>3-7 años hasta salida o quiebra</td><td>Indefinido</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="subsection-title">1.3 Tipos de Startup según su sector y propósito</h3>
+  <p>No todas las startups son iguales. Se pueden clasificar según múltiples criterios:</p>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr><th>Tipo</th><th>Descripción</th><th>Ejemplo en Ecuador / Latinoamérica</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Fintech</strong></td><td>Servicios financieros digitales</td><td>Kushki (pagos en línea, Ecuador)</td></tr>
+        <tr><td><strong>Agritech</strong></td><td>Tecnología aplicada al agro</td><td>Siembro (plataforma agrícola, Ecuador)</td></tr>
+        <tr><td><strong>Edtech</strong></td><td>Educación digital escalable</td><td>Platzi (Colombia/Latinoamérica)</td></tr>
+        <tr><td><strong>Healthtech</strong></td><td>Salud y bienestar digital</td><td>Medicsen (España/LATAM)</td></tr>
+        <tr><td><strong>Legaltech</strong></td><td>Servicios jurídicos tecnológicos</td><td>Lexlation (Ecuador)</td></tr>
+        <tr><td><strong>SaaS B2B</strong></td><td>Software como servicio para empresas</td><td>Datil (facturación electrónica, Ecuador)</td></tr>
+        <tr><td><strong>Social Startup</strong></td><td>Impacto social con sostenibilidad financiera</td><td>Wasi (vivienda social, Ecuador)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="box-example">
+    <div class="ex-label">📍 Ejemplo Ecuatoriano Destacado</div>
+    <strong>Datil</strong> — fundada en Guayaquil en 2013 — es un caso paradigmático de startup SaaS ecuatoriana. Comenzó como una solución de facturación electrónica (cuando la obligación tributaria del SRI apenas se masificaba) y escaló hasta convertirse en una plataforma integral de gestión financiera con miles de usuarios a nivel regional. Su éxito ilustra perfectamente el ADN startup: escalable, tecnológica, repetible y surgida de identificar una necesidad real del mercado (cumplimiento fiscal digital).
+  </div>
+
+  <h3 class="subsection-title">1.4 El ecosistema startup en Ecuador</h3>
+  <p>Ecuador ha desarrollado gradualmente un ecosistema emprendedor que, aunque más joven que el de Colombia o Chile, muestra señales robustas de crecimiento. Los actores principales incluyen:</p>
+  <ul class="styled">
+    <li><strong>Academia:</strong> Yachay Tech (Ciudad del Conocimiento), ESPOL, Universidad de Guayaquil — generando talento y patentes.</li>
+    <li><strong>Capital:</strong> Venture South, Ángeles Ecuador, programas de inversión del Banco del Pacífico.</li>
+    <li><strong>Aceleradoras:</strong> Kruger Labs, StartUps Ecuador, SENESCYT con programas de financiamiento.</li>
+    <li><strong>Marco legal:</strong> Ley Orgánica de Emprendimiento e Innovación (2020) — crea la figura jurídica de la "empresa de innovación de base tecnológica" con beneficios tributarios especiales.</li>
+    <li><strong>Estado:</strong> Ministerio de Economía y Finanzas, EmprendEcuador, Concurso Nacional de Emprendimiento.</li>
+  </ul>
+
+  <div class="box-key">
+    <strong>Idea Clave:</strong> Una startup no es una empresa pequeña que espera crecer despacio. Es una organización diseñada desde su fundación para escalar rápido, transformar mercados y generar valor masivo. Comprender esta distinción es fundamental para que un contador o auditor pueda asesorar correctamente a estos negocios desde su nacimiento.
+  </div>
+</section>
+
+<!-- ==================== TEMA 2: ETAPAS DE VIDA ==================== -->
+<section id="tab-t2" class="tab-content">
+  <h2 class="section-title">2. Etapas de Vida de una Startup: Del sueño al mercado</h2>
+
+  <p>Las startups no nacen siendo lo que llegan a ser. Atraviesan etapas bien diferenciadas, cada una con sus propios desafíos, métricas y necesidades de capital. Conocer estas etapas es esencial para acompañar adecuadamente a un emprendimiento en cada fase de su desarrollo.</p>
+
+  <div class="box-concept">
+    <strong>El concepto de "curva de la muerte" (Death Valley Curve):</strong> Entre el momento en que una startup comienza a gastar recursos y el momento en que genera ingresos sostenidos, existe un período de flujo de caja negativo prolongado. Este intervalo — donde la mayoría fracasa — se conoce como el "valle de la muerte". Saber en qué etapa está una startup determina qué tipo de apoyo contable, financiero y estratégico necesita.
+  </div>
+
+  <h3 class="subsection-title">2.1 Las 5 Etapas del Ciclo de Vida de una Startup</h3>
+
+  <div class="stages-flow">
+    <div class="stage">
+      <div class="stage-circle">💡</div>
+      <h5>1. Ideación</h5>
+      <p>Surge la idea. Validación de supuestos básicos.</p>
+    </div>
+    <div class="stage">
+      <div class="stage-circle">🌱</div>
+      <h5>2. Semilla (Seed)</h5>
+      <p>Se construye el MVP. Primeros usuarios reales.</p>
+    </div>
+    <div class="stage">
+      <div class="stage-circle">📈</div>
+      <h5>3. Tracción</h5>
+      <p>El modelo comienza a funcionar. Métricas positivas.</p>
+    </div>
+    <div class="stage">
+      <div class="stage-circle">🚀</div>
+      <h5>4. Escala</h5>
+      <p>Expansión geográfica o de segmento. Series A/B.</p>
+    </div>
+    <div class="stage">
+      <div class="stage-circle">🏆</div>
+      <h5>5. Madurez / Salida</h5>
+      <p>IPO, adquisición o empresa consolidada.</p>
+    </div>
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr><th>Etapa</th><th>Duración aprox.</th><th>Pregunta central</th><th>Tipo de financiamiento</th><th>Riesgo dominante</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>1. Ideación</strong></td><td>1–6 meses</td><td>¿Existe el problema?</td><td>Bootstrapping / FFF*</td><td>Riesgo de mercado</td></tr>
+        <tr><td><strong>2. Semilla</strong></td><td>6–18 meses</td><td>¿Alguien paga por esto?</td><td>Ángeles inversionistas, aceleradoras</td><td>Riesgo de producto</td></tr>
+        <tr><td><strong>3. Tracción</strong></td><td>1–3 años</td><td>¿Podemos retener clientes?</td><td>Seed round, VC Serie A</td><td>Riesgo de ejecución</td></tr>
+        <tr><td><strong>4. Escala</strong></td><td>2–5 años</td><td>¿Cómo crecer más rápido?</td><td>VC Serie B, C+</td><td>Riesgo operacional</td></tr>
+        <tr><td><strong>5. Madurez</strong></td><td>Indefinida</td><td>¿Cómo maximizar el valor?</td><td>IPO / M&amp;A</td><td>Riesgo estratégico</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:13px;color:#555;">*FFF: Friends, Family &amp; Fools — la primera ronda informal de financiamiento, proveniente de personas cercanas al fundador.</p>
+
+  <h3 class="subsection-title">2.2 El MVP: Producto Mínimo Viable</h3>
+  <div class="box-concept">
+    <strong>MVP (Minimum Viable Product / Producto Mínimo Viable):</strong> Es la versión más simple de un producto que permite al equipo recopilar la máxima cantidad de información validada sobre los clientes con el menor esfuerzo posible. (Ries, 2011). El MVP no es un producto terminado: es un experimento diseñado para aprender.
+  </div>
+  <p>La lógica detrás del MVP es evitar el error más costoso de las startups: invertir meses o años construyendo algo que nadie quiere. En lugar de eso, se construye lo mínimo necesario, se lanza al mercado real, se miden las reacciones y se aprende para mejorar. Este ciclo se denomina <strong>Build-Measure-Learn</strong> (Construir-Medir-Aprender).</p>
+
+  <div class="box-example">
+    <div class="ex-label">📍 Ejemplo Aplicado al Ecuador</div>
+    <strong>El caso Kushki (MVP en pagos digitales):</strong> Cuando Aron Schwarzkopf fundó Kushki en 2017, el mercado ecuatoriano carecía de una pasarela de pagos robusta para e-commerce. El MVP inicial era una API básica que permitía procesar pagos con tarjeta en Ecuador. No tenía todas las funciones actuales: sin pagos en efectivo, sin múltiples monedas, sin facturación integrada. Pero resolvía el problema principal: cobrar en línea de forma segura. Con ese MVP sencillo validaron la demanda, obtuvieron sus primeros clientes y luego escalaron al resto de Latinoamérica.
+  </div>
+
+  <h3 class="subsection-title">2.3 El Pivote: Cambiar de rumbo sin perder el aprendizaje</h3>
+  <div class="box-concept">
+    <strong>Pivote:</strong> Es un cambio estructurado en uno o más aspectos del modelo de negocio (segmento de mercado, propuesta de valor, canal, tecnología) que se realiza como respuesta a los datos recopilados durante el proceso de validación. No es un fracaso: es aprendizaje aplicado.
+  </div>
+  <p>Instagram comenzó siendo Burbn, una app de check-in tipo Foursquare. Twitter nació de Odeo, una plataforma de podcasts. PayPal originalmente era software de cifrado para dispositivos Palm. Los pivotes más famosos de la historia tecnológica demuestran que la flexibilidad estratégica —basada en datos, no en caprichos— es uno de los mayores activos de una startup.</p>
+
+  <div class="box-key">
+    <strong>Idea Clave:</strong> Las startups no siguen una trayectoria lineal. Evolucionan, fallan, aprenden y se transforman. Para un auditor o contador, comprender las etapas de vida de una startup es fundamental para aplicar correctamente las NIIF según la fase (empresa en desarrollo, empresa en operación, empresa en liquidación), valorar activos intangibles y acompañar procesos de due diligence para inversionistas.
+  </div>
+</section>
+
+<!-- ==================== TEMA 3: FACTORES DE ÉXITO ==================== -->
+<section id="tab-t3" class="tab-content">
+  <h2 class="section-title">3. Factores de Éxito en las Startups</h2>
+
+  <p>Estudiar por qué fracasan las startups es, paradójicamente, el camino más eficiente para entender qué hace que las exitosas lo sean. Según datos de CB Insights (2023), el 38% de las startups fracasa porque se les acaba el capital o no consiguen nuevas rondas de inversión, y el 35% porque no existe mercado suficiente para su producto. Detrás de estas estadísticas se esconden factores concretos y gestionables.</p>
+
+  <div class="box-concept">
+    <strong>Factor de éxito:</strong> Variable interna o externa que, al gestionarse adecuadamente, incrementa significativamente la probabilidad de que una startup alcance sus objetivos de crecimiento, rentabilidad o impacto. Los factores de éxito no garantizan el resultado, pero su ausencia casi siempre predice el fracaso.
+  </div>
+
+  <h3 class="subsection-title">3.1 Los 7 Factores Críticos de Éxito (FCE)</h3>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr><th>#</th><th>Factor</th><th>Descripción</th><th>Indicador de salud</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>1</strong></td>
+          <td>🧑‍🤝‍🧑 <strong>Equipo fundador</strong></td>
+          <td>Es el factor más citado por inversionistas. Un equipo complementario, con habilidades técnicas, comerciales y de gestión, supera a un producto brillante con equipo mediocre.</td>
+          <td>Diversidad de perfiles, compromiso a tiempo completo, historial de colaboración previa</td>
+        </tr>
+        <tr>
+          <td><strong>2</strong></td>
+          <td>🎯 <strong>Ajuste problema-solución</strong></td>
+          <td>La solución debe resolver un problema real y urgente. No un problema percibido o imaginado por los fundadores, sino validado con usuarios reales.</td>
+          <td>Entrevistas de descubrimiento, Net Promoter Score (NPS), tasa de retención</td>
+        </tr>
+        <tr>
+          <td><strong>3</strong></td>
+          <td>📦 <strong>Ajuste producto-mercado (PMF)</strong></td>
+          <td>Product-Market Fit: el producto encaja tan bien con el mercado que los propios usuarios lo impulsan mediante recomendaciones orgánicas. Marc Andreessen lo definió como "el único momento que importa".</td>
+          <td>Tasa de crecimiento orgánico, retención a 30/60/90 días, respuesta a "¿qué pasaría si desaparecemos?"</td>
+        </tr>
+        <tr>
+          <td><strong>4</strong></td>
+          <td>💰 <strong>Gestión del capital</strong></td>
+          <td>Saber cuándo levantar fondos, cuánto pedir, cómo usarlo y cuándo ser frugal. El runway (tiempo que le queda a la startup con el capital actual) debe siempre estar visible.</td>
+          <td>Burn rate, runway en meses, ratio de eficiencia de capital</td>
+        </tr>
+        <tr>
+          <td><strong>5</strong></td>
+          <td>📊 <strong>Métricas y datos</strong></td>
+          <td>Las startups exitosas son empresas obsesionadas con los datos. Cada hipótesis se prueba, cada acción se mide. Sin métricas claras, las decisiones se basan en intuición no informada.</td>
+          <td>KPIs definidos, dashboards actualizados, ciclos de revisión semanales</td>
+        </tr>
+        <tr>
+          <td><strong>6</strong></td>
+          <td>🔄 <strong>Velocidad de iteración</strong></td>
+          <td>La capacidad de aprender rápido y adaptar el producto antes que la competencia o antes de quedarse sin capital. La velocidad es una ventaja competitiva, no solo una virtud.</td>
+          <td>Tiempo promedio entre lanzamientos, número de experimentos por mes</td>
+        </tr>
+        <tr>
+          <td><strong>7</strong></td>
+          <td>🌐 <strong>Ecosistema y red</strong></td>
+          <td>Acceso a mentores, inversionistas, clientes ancla, socios estratégicos y comunidad emprendedora. Una startup aislada tiene menores probabilidades de sobrevivir.</td>
+          <td>Número de alianzas activas, participación en aceleradoras, mentoría formal</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="subsection-title">3.2 El equipo fundador: El factor más determinante</h3>
+  <p>Cuando los inversionistas de capital de riesgo (Venture Capital o VC) evalúan una startup en etapa temprana, el 70-80% de su decisión está basada en el equipo, no en el producto. ¿Por qué? Porque los productos pivotarán, los mercados cambiarán, pero las personas que saben ejecutar, aprender y persistir son el activo que permanece.</p>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr><th>Perfil ideal en equipo fundador</th><th>Función clave</th><th>Lo que busca el inversionista</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>🛠️ <strong>El Constructor (Hacker)</strong></td><td>CTO / Desarrollador principal</td><td>¿Puede construir el producto sin depender de terceros?</td></tr>
+        <tr><td>💼 <strong>El Vendedor (Hustler)</strong></td><td>CEO / Director Comercial</td><td>¿Puede conseguir clientes y cerrar acuerdos?</td></tr>
+        <tr><td>🎨 <strong>El Diseñador (Hipster)</strong></td><td>UX / Product</td><td>¿Puede diseñar una experiencia que enamora usuarios?</td></tr>
+        <tr><td>📊 <strong>El Financiero</strong></td><td>CFO / Contador estratégico</td><td>¿Puede gestionar el capital y presentar estados transparentes?</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="subsection-title">3.3 Product-Market Fit: La señal más importante</h3>
+  <div class="box-concept">
+    <strong>Product-Market Fit (PMF):</strong> El momento en que un producto satisface una demanda de mercado tan bien que el crecimiento se vuelve relativamente orgánico, sostenido y predecible. Antes del PMF, la startup está en modo búsqueda. Después del PMF, está en modo escala.
+  </div>
+  <p>¿Cómo saber si una startup ha alcanzado el PMF? Sean Ellis (2009) propuso el "test del 40%": si al menos el 40% de los usuarios responden que estarían "muy decepcionados" si el producto desapareciera, se ha alcanzado el PMF. Empresas como Dropbox, Slack y Airbnb alcanzaron el PMF antes de escalar agresivamente.</p>
+
+  <div class="box-example">
+    <div class="ex-label">📍 Caso Ecuatoriano: Kushki y el PMF</div>
+    Kushki encontró su PMF al convertirse en la infraestructura financiera que los negocios digitales en Ecuador <em>no podían permitirse no tener</em>. Cuando una ferretería en Guayaquil, una tienda de ropa en Quito y una empresa de software en Cuenca empezaron a necesitarla para sobrevivir en el e-commerce, la señal fue clara: habían encontrado el ajuste producto-mercado. Hoy procesan millones de transacciones mensuales en varios países.
+  </div>
+
+  <h3 class="subsection-title">3.4 Gestión del capital: El combustible de la startup</h3>
+  <p>Dos conceptos financieros que todo equipo de startup debe dominar —y que son territorio natural del contador o auditor:</p>
+
+  <div class="canvas-grid canvas-grid-2">
+    <div class="canvas-card">
+      <h4>🔥 Burn Rate (Tasa de quema)</h4>
+      <p>Cuánto dinero gasta la startup cada mes para operar. Se distingue entre <em>gross burn</em> (gasto total) y <em>net burn</em> (gasto menos ingresos). Un burn rate de USD 15.000/mes sin ingresos es preocupante; con USD 10.000 de ingresos mensuales, el net burn es USD 5.000.</p>
+    </div>
+    <div class="canvas-card">
+      <h4>⏳ Runway (Pista de aterrizaje)</h4>
+      <p>Cuántos meses puede sobrevivir la startup con el capital actual. Fórmula: <strong>Runway = Capital disponible ÷ Net Burn mensual</strong>. Un runway menor a 6 meses exige acción inmediata: levantar capital, reducir gastos o generar ingresos urgentemente.</p>
+    </div>
+  </div>
+
+  <div class="box-key">
+    <strong>Idea Clave:</strong> Los factores de éxito de una startup no son misteriosos ni aleatorios. Son variables gestionables. El rol del contador y auditor es decisivo para monitorear, reportar y asesorar sobre los factores financieros (capital, burn rate, runway, métricas de ingresos), mientras que el equipo fundador lidera los factores de producto y mercado.
+  </div>
+</section>
+
+<!-- ==================== TEMA 4: HERRAMIENTAS PRÁCTICAS ==================== -->
+<section id="tab-t4" class="tab-content">
+  <h2 class="section-title">4. Herramientas Prácticas: Startup Blueprint Canvas &amp; Tracker de Factores</h2>
+
+  <p>En esta sección encontrarás dos herramientas interactivas diseñadas específicamente para explorar la naturaleza de tu propia idea de startup y analizar sus factores de éxito. Puedes completarlas directamente en el widget. Son herramientas de aprendizaje y autodiagnóstico, no documentos definitivos.</p>
+
+  <!-- ===== HERRAMIENTA 1: STARTUP BLUEPRINT CANVAS ===== -->
+  <h3 class="subsection-title">🛠️ Herramienta 1: Startup Blueprint Canvas</h3>
+  <p>Esta herramienta te guía a explorar los elementos fundamentales de una startup. A diferencia del Business Model Canvas (que veremos en la Semana 14), el <em>Startup Blueprint</em> se enfoca en validar si tu idea tiene naturaleza de startup: si es escalable, si resuelve un problema real y si cuenta con las condiciones para crecer.</p>
+
+  <div class="box-warn">
+    💡 <strong>Instrucción:</strong> Completa cada campo pensando en una idea de negocio que te apasione o en un problema que hayas identificado en tu entorno. No tienes que tener todo claro: el objetivo es reflexionar. Al terminar, puedes guardar tu trabajo con el botón "Guardar mi Canvas".
+  </div>
+
+  <div class="startup-canvas">
+    <div class="startup-canvas-header">🚀 STARTUP BLUEPRINT CANVAS — Mi Idea de Startup</div>
+    <div class="startup-canvas-grid">
+      <!-- Fila 1 -->
+      <div class="sc-cell">
+        <h5>💡 1. Problema Real</h5>
+        <textarea id="sc1" placeholder="¿Qué problema concreto y urgente resuelves? ¿A quién le duele y cuánto? Ejemplo: 'Los pequeños agricultores de la Costa ecuatoriana no tienen acceso a precios justos de mercado en tiempo real.'"></textarea>
+      </div>
+      <div class="sc-cell">
+        <h5>👥 2. Segmento de Clientes</h5>
+        <textarea id="sc2" placeholder="¿Quién específicamente tiene este problema? Sé tan preciso como puedas. Ejemplo: 'Agricultores de arroz de la provincia de Los Ríos, con menos de 10 hectáreas, sin acceso a smartphone de alta gama.'"></textarea>
+      </div>
+      <div class="sc-cell">
+        <h5>🌟 3. Propuesta de Valor</h5>
+        <textarea id="sc3" placeholder="¿Qué propones para resolver ese problema? ¿Por qué tu solución es mejor que las alternativas actuales? ¿Qué la hace única?"></textarea>
+      </div>
+      <!-- Fila 2 -->
+      <div class="sc-cell">
+        <h5>📦 4. MVP (Mínimo Viable)</h5>
+        <textarea id="sc4" placeholder="¿Cuál sería la versión más simple de tu solución que puedas construir rápido y barato para validar si el problema existe y si la gente pagaría por resolverlo?"></textarea>
+      </div>
+      <div class="sc-cell">
+        <h5>🚀 5. Escalabilidad</h5>
+        <textarea id="sc4b" placeholder="¿Cómo podría crecer exponencialmente? ¿Puedes llegar a 10x más clientes sin 10x más costos? ¿Funciona en otras ciudades o países sin cambiar todo?"></textarea>
+      </div>
+      <div class="sc-cell">
+        <h5>💰 6. Modelo de Ingresos</h5>
+        <textarea id="sc5" placeholder="¿Cómo gana dinero tu startup? Suscripción, comisión por transacción, freemium, venta directa, publicidad, licencias... ¿Cuánto pagaría un cliente?"></textarea>
+      </div>
+      <!-- Fila 3 -->
+      <div class="sc-cell">
+        <h5>🧑‍🤝‍🧑 7. Equipo Fundador</h5>
+        <textarea id="sc6" placeholder="¿Quiénes forman (o formarían) el equipo? ¿Qué perfil falta? Recuerda: Hacker (constructor), Hustler (vendedor), Hipster (diseñador), Financiero (contador)."></textarea>
+      </div>
+      <div class="sc-cell">
+        <h5>⚡ 8. Ventaja Injusta</h5>
+        <textarea id="sc7" placeholder="¿Qué tiene tu startup que la competencia no puede copiar fácilmente? ¿Acceso a datos únicos, relaciones, tecnología propia, conocimiento experto, red de usuarios?"></textarea>
+      </div>
+      <div class="sc-cell">
+        <h5>📊 9. Métricas Clave (KPIs)</h5>
+        <textarea id="sc8" placeholder="¿Cómo medirás el éxito en los primeros 6 meses? Ejemplos: número de usuarios activos, tasa de retención, ingresos mensuales recurrentes (MRR), Net Promoter Score (NPS)."></textarea>
+      </div>
+      <!-- Fila 4 completa -->
+      <div class="sc-cell sc-full" style="background:#f0f7ff;">
+        <h5>🌍 10. Impacto Social / Ambiental</h5>
+        <textarea id="sc9" placeholder="¿Qué impacto positivo genera tu startup más allá del beneficio económico? ¿Cómo contribuye a los ODS (Objetivos de Desarrollo Sostenible)? ¿Qué cambia en la vida de tus usuarios?" style="min-height:60px;"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <button class="download-btn" onclick="downloadCanvas()">💾 Guardar mi Canvas como .txt</button>
+
+  <!-- ===== HERRAMIENTA 2: TRACKER DE FACTORES ===== -->
+  <h3 class="subsection-title" style="margin-top:36px;">🛠️ Herramienta 2: Tracker de Factores de Éxito</h3>
+  <p>Este diagnóstico rápido te permite evaluar qué tan sólida es tu startup (real o imaginaria) en cada uno de los 7 Factores Críticos de Éxito. Califica de 1 a 5 estrellas cada factor y escribe una nota breve sobre tu situación actual.</p>
+
+  <div class="factor-tracker">
+    <div class="factor-tracker-header">⭐ Diagnóstico de Factores de Éxito — Mi Startup</div>
+    <div class="factor-row" style="background:#eef5ff;font-weight:700;font-size:13px;color:#003366;">
+      <div>Factor Crítico de Éxito</div>
+      <div>Calificación (1–5 ★)</div>
+      <div>¿Por qué esta calificación?</div>
+    </div>
+    <div class="factor-row">
+      <div class="factor-label">🧑‍🤝‍🧑 1. Equipo Fundador</div>
+      <div class="factor-stars" id="stars1"></div>
+      <div><input type="text" id="note1" placeholder="Ej: Solo soy yo, falta alguien técnico..." style="width:100%;border:1px solid #c0d8ee;border-radius:5px;padding:5px 8px;font-family:'Source Sans 3',sans-serif;font-size:13px;"></div>
+    </div>
+    <div class="factor-row">
+      <div class="factor-label">🎯 2. Ajuste Problema-Solución</div>
+      <div class="factor-stars" id="stars2"></div>
+      <div><input type="text" id="note2" placeholder="Ej: Validé con 5 entrevistas, pero necesito más..." style="width:100%;border:1px solid #c0d8ee;border-radius:5px;padding:5px 8px;font-family:'Source Sans 3',sans-serif;font-size:13px;"></div>
+    </div>
+    <div class="factor-row">
+      <div class="factor-label">📦 3. Ajuste Producto-Mercado (PMF)</div>
+      <div class="factor-stars" id="stars3"></div>
+      <div><input type="text" id="note3" placeholder="Ej: Aún no tengo producto, es solo idea..." style="width:100%;border:1px solid #c0d8ee;border-radius:5px;padding:5px 8px;font-family:'Source Sans 3',sans-serif;font-size:13px;"></div>
+    </div>
+    <div class="factor-row">
+      <div class="factor-label">💰 4. Gestión del Capital</div>
+      <div class="factor-stars" id="stars4"></div>
+      <div><input type="text" id="note4" placeholder="Ej: Sin capital externo, usando ahorros propios..." style="width:100%;border:1px solid #c0d8ee;border-radius:5px;padding:5px 8px;font-family:'Source Sans 3',sans-serif;font-size:13px;"></div>
+    </div>
+    <div class="factor-row">
+      <div class="factor-label">📊 5. Métricas y Datos</div>
+      <div class="factor-stars" id="stars5"></div>
+      <div><input type="text" id="note5" placeholder="Ej: No tengo KPIs definidos todavía..." style="width:100%;border:1px solid #c0d8ee;border-radius:5px;padding:5px 8px;font-family:'Source Sans 3',sans-serif;font-size:13px;"></div>
+    </div>
+    <div class="factor-row">
+      <div class="factor-label">🔄 6. Velocidad de Iteración</div>
+      <div class="factor-stars" id="stars6"></div>
+      <div><input type="text" id="note6" placeholder="Ej: Puedo iterar rápido porque soy flexible..." style="width:100%;border:1px solid #c0d8ee;border-radius:5px;padding:5px 8px;font-family:'Source Sans 3',sans-serif;font-size:13px;"></div>
+    </div>
+    <div class="factor-row">
+      <div class="factor-label">🌐 7. Ecosistema y Red</div>
+      <div class="factor-stars" id="stars7"></div>
+      <div><input type="text" id="note7" placeholder="Ej: Conozco mentores de Kruger Labs..." style="width:100%;border:1px solid #c0d8ee;border-radius:5px;padding:5px 8px;font-family:'Source Sans 3',sans-serif;font-size:13px;"></div>
+    </div>
+  </div>
+
+  <div id="tracker-result" style="display:none;background:#003366;color:#fff;border-radius:10px;padding:20px;margin-top:14px;">
+    <div style="font-family:'Lora',serif;font-size:1.1rem;margin-bottom:10px;">📊 Resultado de tu Diagnóstico</div>
+    <div id="tracker-score-text" style="font-size:2rem;font-weight:700;text-align:center;margin:10px 0;"></div>
+    <div class="progress-bar-wrap"><div class="progress-bar" id="tracker-bar" style="background:#87CEEB;"></div></div>
+    <div id="tracker-msg" style="text-align:center;margin-top:8px;font-size:.95rem;"></div>
+  </div>
+  <div class="btn-row">
+    <button class="btn-primary" onclick="calcTracker()">📊 Ver mi Diagnóstico</button>
+    <button class="download-btn" onclick="downloadTracker()">💾 Guardar Diagnóstico</button>
+  </div>
+
+  <div class="box-key" style="margin-top:24px;">
+    <strong>¿Para qué sirven estas herramientas?</strong> El Blueprint Canvas te ayuda a estructurar una idea con lógica de startup (escalable, validable, con modelo claro). El Tracker de Factores te permite identificar tus fortalezas y brechas antes de avanzar al siguiente paso. Juntas, forman el punto de partida para cualquier startup seria.
+  </div>
+</section>
+
+<!-- ==================== TEMA 5: STARTUPS Y CONTABILIDAD ==================== -->
+<section id="tab-t5" class="tab-content">
+  <h2 class="section-title">5. Startups y Contabilidad &amp; Auditoría: El rol estratégico del profesional</h2>
+
+  <p>Una startup puede tener el producto más innovador del mercado, pero si no tiene una gestión financiera sólida, transparente y alineada con estándares internacionales, su camino hacia la inversión, la expansión y la sostenibilidad será extremadamente difícil. Aquí es donde entra el profesional en Contabilidad y Auditoría.</p>
+
+  <div class="box-concept">
+    <strong>¿Por qué necesitan las startups a los contadores?</strong> Porque los inversionistas, los bancos, las aceleradoras, los socios estratégicos y las entidades reguladoras (SRI, Superintendencia de Compañías) exigen información financiera confiable, estructurada y comparable. Sin esa base, ninguna startup puede levantar capital serio ni escalar con gobernanza adecuada.
+  </div>
+
+  <h3 class="subsection-title">5.1 NIIF para Startups: ¿Qué estándares aplican en Ecuador?</h3>
+  <p>En Ecuador, la Superintendencia de Compañías, Valores y Seguros (SCVS) regula la aplicación de las Normas Internacionales de Información Financiera (NIIF). Las startups en etapas tempranas generalmente aplican las <strong>NIIF para Pymes</strong> (Pequeñas y Medianas Entidades), aunque cuando buscan inversión internacional, los inversionistas pueden requerir reportes bajo NIIF completas.</p>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr><th>Situación de la Startup</th><th>Marco NIIF aplicable</th><th>Consideración especial</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Etapa de ideación / pre-revenue</td><td>NIIF para Pymes (Sección 10)</td><td>Tratamiento de gastos de I+D (NIC 38): ¿activar o gastar?</td></tr>
+        <tr><td>Con inversión ángel o VC</td><td>NIIF completas o NIIF para Pymes</td><td>Instrumentos financieros (NIIF 9), convertible notes, SAFE</td></tr>
+        <tr><td>Con empleados y stock options</td><td>NIIF 2 (Pagos basados en acciones)</td><td>Valoración y revelación de equity compensation</td></tr>
+        <tr><td>En proceso de adquisición (M&amp;A)</td><td>NIIF 3 (Combinaciones de negocios)</td><td>Due diligence financiero, valoración de intangibles</td></tr>
+        <tr><td>Con deuda convertible</td><td>NIIF 9, NIIF 7</td><td>Clasificación y medición de instrumentos híbridos</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="subsection-title">5.2 El Due Diligence Financiero en Startups</h3>
+  <div class="box-concept">
+    <strong>Due Diligence (Debida Diligencia):</strong> Proceso de investigación y análisis exhaustivo que realiza un inversionista (o comprador) antes de invertir en o adquirir una startup. El contador y auditor son piezas centrales de este proceso, ya que deben verificar la veracidad, integridad y calidad de la información financiera presentada por la startup.
+  </div>
+
+  <p>Los 5 focos principales de un due diligence financiero en una startup ecuatoriana son:</p>
+  <ol class="styled">
+    <li><strong>Revisión de estados financieros:</strong> Coherencia entre ingresos reportados y flujos de caja, calidad de los ingresos (recurrentes vs. puntuales).</li>
+    <li><strong>Verificación de obligaciones tributarias:</strong> Estado de cumplimiento con el SRI (IVA, IR, retenciones), existencia de contingencias fiscales no reveladas.</li>
+    <li><strong>Estructura de capital y capitalización:</strong> Revisión del libro de accionistas, acuerdos de inversión, notas convertibles, SAFEs y sus implicaciones contables.</li>
+    <li><strong>Activos intangibles:</strong> Valoración de software propietario, base de datos, marca, patentes — siguiendo la NIC 38.</li>
+    <li><strong>Contratos y pasivos contingentes:</strong> Contratos de trabajo, acuerdos con proveedores clave, litigios pendientes, garantías emitidas.</li>
+  </ol>
+
+  <h3 class="subsection-title">5.3 El contador como co-fundador estratégico</h3>
+  <p>Existe una tendencia creciente en los ecosistemas de startups más maduros (Silicon Valley, Londres, Tel Aviv) de incorporar un perfil de <strong>CFO fraccionado</strong> (Chief Financial Officer a tiempo parcial) desde etapas tempranas. Este profesional aporta:</p>
+
+  <div class="canvas-grid canvas-grid-2">
+    <div class="canvas-card">
+      <h4>📋 Estructuración financiera</h4>
+      <p>Diseño del sistema contable desde cero, elección de software (contpaqi, SAP B1, Odoo), configuración del plan de cuentas adaptado a una startup tech.</p>
+    </div>
+    <div class="canvas-card">
+      <h4>📊 Reportes para inversionistas</h4>
+      <p>Construcción de dashboards financieros con KPIs clave: MRR, ARR, CAC, LTV, burn rate, runway. Lenguaje que los inversionistas entienden y exigen.</p>
+    </div>
+    <div class="canvas-card">
+      <h4>🏛️ Cumplimiento regulatorio</h4>
+      <p>Cumplimiento tributario con SRI, regulación laboral (IESS, Ministerio de Trabajo), registro en Superintendencia de Compañías bajo la Ley de Emprendimiento 2020.</p>
+    </div>
+    <div class="canvas-card">
+      <h4>🔮 Proyecciones y valoración</h4>
+      <p>Modelos financieros de 3-5 años para rondas de inversión, valoración de la empresa usando métodos como DCF, múltiplos de mercado o Berkus Method.</p>
+    </div>
+  </div>
+
+  <div class="box-example">
+    <div class="ex-label">📍 Caso de Aplicación: El contador en Datil</div>
+    Datil, la startup guayaquileña de facturación electrónica, necesitó desde sus primeras etapas un equipo contable que entendiera no solo los asientos contables, sino también la dinámica de los ingresos recurrentes por suscripción (modelo SaaS). Registrar correctamente el reconocimiento de ingresos bajo NIIF 15 (que distingue cuándo se reconoce el ingreso en contratos con clientes) fue crítico para presentar estados financieros que los inversionistas pudieran entender y confiar. El contador que domina estos estándares no es un costo para una startup: es una ventaja competitiva.
+  </div>
+
+  <div class="box-key">
+    <strong>Idea Clave:</strong> El contador y auditor que domina el ecosistema startup tiene una ventaja profesional extraordinaria en Ecuador: la Ley Orgánica de Emprendimiento e Innovación (2020) creó nuevas figuras jurídicas, nuevos incentivos tributarios y nuevas obligaciones de reporte. Quien entiende tanto las NIIF como el modelo de negocio de una startup puede convertirse en el asesor más valioso del equipo fundador.
+  </div>
+</section>
+
+<!-- ==================== EJERCICIO INTERACTIVO ==================== -->
+<section id="tab-ejercicio" class="tab-content">
+  <h2 class="section-title">6. Ejercicio Interactivo: Clasifica y Aplica</h2>
+  <p>Lee cada caso o afirmación y selecciona la opción correcta. Responde <strong>todas</strong> las preguntas antes de verificar. El contenido de este widget tiene todo lo necesario para responder correctamente.</p>
+
+  <div class="alert-msg" id="ej-alert">⚠️ Por favor responde todas las preguntas antes de verificar.</div>
+
+  <!-- EJ 1 -->
+  <div class="exercise-item" id="ej-item1">
+    <h4>1. Una empresa de ropa de la familia Gómez tiene 12 años en el mercado, 8 empleados, ventas estables de $80.000 anuales y no tiene planes de expandirse fuera de Guayaquil. ¿Cómo clasificarías esta empresa?</h4>
+    <div class="options">
+      <label><input type="radio" name="ei1" value="a"> a) Startup de consumo masivo</label>
+      <label><input type="radio" name="ei1" value="b"> b) PyME tradicional</label>
+      <label><input type="radio" name="ei1" value="c"> c) Startup en etapa de madurez</label>
+      <label><input type="radio" name="ei1" value="d"> d) Corporate Venture Unit</label>
+    </div>
+    <div class="feedback-msg" id="fb-ei1"></div>
+  </div>
+
+  <!-- EJ 2 -->
+  <div class="exercise-item" id="ej-item2">
+    <h4>2. Una startup fintech ecuatoriana tiene $90.000 de capital disponible y un gasto mensual neto de $15.000. ¿Cuál es su runway actual?</h4>
+    <div class="options">
+      <label><input type="radio" name="ei2" value="a"> a) 3 meses</label>
+      <label><input type="radio" name="ei2" value="b"> b) 6 meses</label>
+      <label><input type="radio" name="ei2" value="c"> c) 9 meses</label>
+      <label><input type="radio" name="ei2" value="d"> d) 12 meses</label>
+    </div>
+    <div class="feedback-msg" id="fb-ei2"></div>
+  </div>
+
+  <!-- EJ 3 -->
+  <div class="exercise-item" id="ej-item3">
+    <h4>3. Una startup de delivery agrícola construyó una app básica para conectar agricultores con compradores, sin todas las funciones planeadas, con el objetivo de probar si existía demanda real. ¿Qué concepto describe este primer lanzamiento?</h4>
+    <div class="options">
+      <label><input type="radio" name="ei3" value="a"> a) Prototipo de alta fidelidad</label>
+      <label><input type="radio" name="ei3" value="b"> b) Versión Beta final</label>
+      <label><input type="radio" name="ei3" value="c"> c) MVP (Producto Mínimo Viable)</label>
+      <label><input type="radio" name="ei3" value="d"> d) Producto en etapa de madurez</label>
+    </div>
+    <div class="feedback-msg" id="fb-ei3"></div>
+  </div>
+
+  <!-- EJ 4 -->
+  <div class="exercise-item" id="ej-item4">
+    <h4>4. Datil comenzó como una solución de facturación electrónica y luego expandió a una plataforma integral de gestión financiera. Este cambio estratégico basado en el aprendizaje del mercado se denomina:</h4>
+    <div class="options">
+      <label><input type="radio" name="ei4" value="a"> a) Bootstrapping</label>
+      <label><input type="radio" name="ei4" value="b"> b) Pivote</label>
+      <label><input type="radio" name="ei4" value="c"> c) Runway extension</label>
+      <label><input type="radio" name="ei4" value="d"> d) Burn rate reduction</label>
+    </div>
+    <div class="feedback-msg" id="fb-ei4"></div>
+  </div>
+
+  <!-- EJ 5 -->
+  <div class="exercise-item" id="ej-item5">
+    <h4>5. Un inversionista de Venture Capital evalúa tres startups ecuatorianas. Según el contenido de este tema, ¿en cuál factor pone mayor énfasis su evaluación cuando la startup está en etapa semilla?</h4>
+    <div class="options">
+      <label><input type="radio" name="ei5" value="a"> a) El diseño del logotipo y la identidad de marca</label>
+      <label><input type="radio" name="ei5" value="b"> b) Las ganancias netas del último trimestre</label>
+      <label><input type="radio" name="ei5" value="c"> c) El equipo fundador y sus capacidades</label>
+      <label><input type="radio" name="ei5" value="d"> d) El número de seguidores en redes sociales</label>
+    </div>
+    <div class="feedback-msg" id="fb-ei5"></div>
+  </div>
+
+  <!-- EJ 6 -->
+  <div class="exercise-item" id="ej-item6">
+    <h4>6. En la Ley Orgánica de Emprendimiento e Innovación del Ecuador (2020), ¿qué beneficio especial se creó para las startups de base tecnológica?</h4>
+    <div class="options">
+      <label><input type="radio" name="ei6" value="a"> a) Exoneración permanente del pago de IVA en todas sus ventas</label>
+      <label><input type="radio" name="ei6" value="b"> b) Se creó la figura jurídica de empresa de innovación de base tecnológica con beneficios tributarios especiales</label>
+      <label><input type="radio" name="ei6" value="c"> c) Las startups pueden operar sin registro en la Superintendencia de Compañías</label>
+      <label><input type="radio" name="ei6" value="d"> d) Los fundadores están exentos del pago del IESS durante 5 años</label>
+    </div>
+    <div class="feedback-msg" id="fb-ei6"></div>
+  </div>
+
+  <!-- EJ 7 -->
+  <div class="exercise-item" id="ej-item7">
+    <h4>7. Kushki encontró su Product-Market Fit (PMF) cuando los negocios digitales en Ecuador no podían prescindir de su plataforma. Según Sean Ellis, ¿qué porcentaje mínimo de usuarios debe decir que estaría "muy decepcionado" si el producto desaparece para considerar que se alcanzó el PMF?</h4>
+    <div class="options">
+      <label><input type="radio" name="ei7" value="a"> a) 20%</label>
+      <label><input type="radio" name="ei7" value="b"> b) 30%</label>
+      <label><input type="radio" name="ei7" value="c"> c) 40%</label>
+      <label><input type="radio" name="ei7" value="d"> d) 60%</label>
+    </div>
+    <div class="feedback-msg" id="fb-ei7"></div>
+  </div>
+
+  <!-- EJ 8 -->
+  <div class="exercise-item" id="ej-item8">
+    <h4>8. Un auditor está haciendo due diligence financiero a una startup SaaS ecuatoriana antes de que un fondo de inversión entre como accionista. ¿Cuál de los siguientes elementos NO forma parte del proceso de due diligence financiero?</h4>
+    <div class="options">
+      <label><input type="radio" name="ei8" value="a"> a) Revisión del cumplimiento tributario con el SRI</label>
+      <label><input type="radio" name="ei8" value="b"> b) Verificación de la estructura de capital y acuerdos de inversión</label>
+      <label><input type="radio" name="ei8" value="c"> c) Análisis del diseño visual de la aplicación móvil</label>
+      <label><input type="radio" name="ei8" value="d"> d) Valoración de activos intangibles como software y base de datos</label>
+    </div>
+    <div class="feedback-msg" id="fb-ei8"></div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn-primary" onclick="verificarEjercicio()">✅ Verificar Respuestas</button>
+    <button class="btn-secondary" onclick="reiniciarEjercicio()">🔄 Reiniciar</button>
+  </div>
+
+  <div class="score-box" id="ej-score">
+    <div class="score-label">Resultado del Ejercicio</div>
+    <div class="score-number" id="ej-score-num"></div>
+    <div class="progress-bar-wrap"><div class="progress-bar" id="ej-bar"></div></div>
+    <div class="score-msg" id="ej-score-msg"></div>
+  </div>
+</section>
+
+<!-- ==================== CUESTIONARIO ==================== -->
+<section id="tab-cuestionario" class="tab-content">
+  <h2 class="section-title">7. Cuestionario: 10 Preguntas de Evaluación</h2>
+  <p>Responde <strong>todas las preguntas</strong> antes de presionar "Verificar". Cada pregunta vale 1 punto. Las preguntas de análisis de caso son autónomas y no requieren lectura previa del material.</p>
+
+  <div class="alert-msg" id="quiz-alert">⚠️ Por favor responde todas las preguntas antes de verificar.</div>
+
+  <!-- Q1 -->
+  <div class="exercise-item" id="q-item1">
+    <h4>1. Según Blank y Dorf (2012), una startup es: <span class="badge-teorica">Teórica</span></h4>
+    <div class="options">
+      <label><input type="radio" name="qi1" value="a"> a) Una empresa pequeña con alto potencial de ventas locales</label>
+      <label><input type="radio" name="qi1" value="b"> b) Una organización temporal que busca un modelo de negocio repetible y escalable bajo extrema incertidumbre</label>
+      <label><input type="radio" name="qi1" value="c"> c) Una sucursal de una corporación que innova internamente</label>
+      <label><input type="radio" name="qi1" value="d"> d) Una empresa tecnológica que cotiza en bolsa</label>
+    </div>
+    <div class="feedback-msg" id="fb-qi1"></div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="exercise-item" id="q-item2">
+    <h4>2. ¿Cuál de los siguientes NO es un rasgo del "ADN" de una startup? <span class="badge-teorica">Teórica</span></h4>
+    <div class="options">
+      <label><input type="radio" name="qi2" value="a"> a) Escalabilidad del modelo de negocio</label>
+      <label><input type="radio" name="qi2" value="b"> b) Operación bajo extrema incertidumbre</label>
+      <label><input type="radio" name="qi2" value="c"> c) Crecimiento lineal y estabilidad a corto plazo</label>
+      <label><input type="radio" name="qi2" value="d"> d) Uso de tecnología como palanca de crecimiento</label>
+    </div>
+    <div class="feedback-msg" id="fb-qi2"></div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="exercise-item" id="q-item3">
+    <h4>3. El "Death Valley Curve" (Valle de la Muerte) en startups describe: <span class="badge-teorica">Teórica</span></h4>
+    <div class="options">
+      <label><input type="radio" name="qi3" value="a"> a) El período de alta rentabilidad previo a la salida del inversionista</label>
+      <label><input type="radio" name="qi3" value="b"> b) La fase de flujo de caja negativo entre el inicio del gasto y la generación de ingresos sostenidos</label>
+      <label><input type="radio" name="qi3" value="c"> c) El momento en que los fundadores venden su participación accionaria</label>
+      <label><input type="radio" name="qi3" value="d"> d) La etapa donde la startup alcanza el Product-Market Fit</label>
+    </div>
+    <div class="feedback-msg" id="fb-qi3"></div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="exercise-item" id="q-item4">
+    <h4>4. En el contexto de startups, un "pivote" es: <span class="badge-teorica">Teórica</span></h4>
+    <div class="options">
+      <label><input type="radio" name="qi4" value="a"> a) El fracaso definitivo de la startup por falta de fondos</label>
+      <label><input type="radio" name="qi4" value="b"> b) Un cambio estructurado en el modelo de negocio basado en datos y aprendizaje del mercado</label>
+      <label><input type="radio" name="qi4" value="c"> c) La decisión de fusionarse con una corporación más grande</label>
+      <label><input type="radio" name="qi4" value="d"> d) La incorporación de un nuevo socio al equipo fundador</label>
+    </div>
+    <div class="feedback-msg" id="fb-qi4"></div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="exercise-item" id="q-item5">
+    <h4>5. El "burn rate" de una startup se refiere a: <span class="badge-teorica">Teórica</span></h4>
+    <div class="options">
+      <label><input type="radio" name="qi5" value="a"> a) La velocidad a la que crece su base de usuarios</label>
+      <label><input type="radio" name="qi5" value="b"> b) El nivel de satisfacción de los clientes medido mensualmente</label>
+      <label><input type="radio" name="qi5" value="c"> c) La cantidad de dinero que la startup gasta cada mes para operar</label>
+      <label><input type="radio" name="qi5" value="d"> d) El porcentaje de ingresos que se reinvierte en marketing</label>
+    </div>
+    <div class="feedback-msg" id="fb-qi5"></div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="exercise-item" id="q-item6">
+    <h4>6. La Norma NIIF 15 es especialmente relevante para startups SaaS porque regula: <span class="badge-teorica">Teórica</span></h4>
+    <div class="options">
+      <label><input type="radio" name="qi6" value="a"> a) La valoración de instrumentos financieros derivados</label>
+      <label><input type="radio" name="qi6" value="b"> b) El reconocimiento de ingresos provenientes de contratos con clientes</label>
+      <label><input type="radio" name="qi6" value="c"> c) El tratamiento contable de las combinaciones de negocios</label>
+      <label><input type="radio" name="qi6" value="d"> d) La amortización de activos tangibles de larga duración</label>
+    </div>
+    <div class="feedback-msg" id="fb-qi6"></div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="exercise-item" id="q-item7">
+    <h4>7. Siembro y Datil son ejemplos de startups ecuatorianas que demuestran que el ecosistema local puede generar soluciones para: <span class="badge-teorica">Teórica</span></h4>
+    <div class="options">
+      <label><input type="radio" name="qi7" value="a"> a) Sectores exclusivamente de lujo y consumo premium</label>
+      <label><input type="radio" name="qi7" value="b"> b) Necesidades reales del mercado local como el agro y la gestión financiero-tributaria</label>
+      <label><input type="radio" name="qi7" value="c"> c) Exportación de tecnología sin enfoque en el mercado interno</label>
+      <label><input type="radio" name="qi7" value="d"> d) Corporaciones transnacionales que buscan subcontratación tecnológica</label>
+    </div>
+    <div class="feedback-msg" id="fb-qi7"></div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="exercise-item" id="q-item8">
+    <h4>8. Ana, Beatriz y Carlos fundan una startup de telemedicina en Quito. Ana es médica especialista, Beatriz es desarrolladora de software y Carlos es contador con experiencia en fintech. Un inversionista ángel les pregunta: "¿Quién hace las ventas y cierra contratos con hospitales?" ¿Cuál es el perfil que falta en el equipo? <span class="badge-analisis">Análisis</span></h4>
+    <div class="options">
+      <label><input type="radio" name="qi8" value="a"> a) Un segundo médico especialista para ampliar el equipo clínico</label>
+      <label><input type="radio" name="qi8" value="b"> b) Un perfil comercial/vendedor (Hustler) que gestione adquisición de clientes y alianzas</label>
+      <label><input type="radio" name="qi8" value="c"> c) Un diseñador gráfico para mejorar la estética de la aplicación</label>
+      <label><input type="radio" name="qi8" value="d"> d) Un segundo contador para los reportes tributarios</label>
+    </div>
+    <div class="feedback-msg" id="fb-qi8"></div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="exercise-item" id="q-item9">
+    <h4>9. Una startup de e-commerce de artesanías ecuatorianas tiene $60.000 en caja, ingresos mensuales de $4.000 y gastos totales de $14.000 al mes. ¿Cuál es su runway y qué acción es más urgente? <span class="badge-analisis">Análisis</span></h4>
+    <div class="options">
+      <label><input type="radio" name="qi9" value="a"> a) Runway de 15 meses; puede esperar tranquilamente a crecer orgánicamente</label>
+      <label><input type="radio" name="qi9" value="b"> b) Runway de 6 meses (net burn $10.000/mes); debe levantar capital, reducir costos o acelerar ingresos de inmediato</label>
+      <label><input type="radio" name="qi9" value="c"> c) Runway de 4 meses; lo más urgente es cerrar la empresa y devolver el capital</label>
+      <label><input type="radio" name="qi9" value="d"> d) Runway de 8 meses; no hay urgencia porque los ingresos cubren los gastos</label>
+    </div>
+    <div class="feedback-msg" id="fb-qi9"></div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="exercise-item" id="q-item10">
+    <h4>10. Un fondo de inversión colombiano quiere invertir $500.000 en una startup legaltech ecuatoriana. El equipo contable debe preparar un due diligence financiero. ¿Cuál de estas afirmaciones describe MEJOR lo que esto implica? <span class="badge-analisis">Análisis</span></h4>
+    <div class="options">
+      <label><input type="radio" name="qi10" value="a"> a) Preparar únicamente una declaración de IVA actualizada para demostrar cumplimiento</label>
+      <label><input type="radio" name="qi10" value="b"> b) Presentar el portfolio de diseño de la aplicación y los testimonios de clientes satisfechos</label>
+      <label><input type="radio" name="qi10" value="c"> c) Revisar estados financieros, obligaciones tributarias con SRI, estructura de capital, activos intangibles y pasivos contingentes</label>
+      <label><input type="radio" name="qi10" value="d"> d) Solicitar al SRI un certificado de buena conducta tributaria y entregarlo al inversionista</label>
+    </div>
+    <div class="feedback-msg" id="fb-qi10"></div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn-primary" onclick="verificarQuiz()">✅ Verificar Respuestas</button>
+    <button class="btn-secondary" onclick="reiniciarQuiz()">🔄 Reiniciar</button>
+  </div>
+
+  <div class="score-box" id="quiz-score">
+    <div class="score-label">Resultado del Cuestionario</div>
+    <div class="score-number" id="quiz-score-num"></div>
+    <div class="progress-bar-wrap"><div class="progress-bar" id="quiz-bar"></div></div>
+    <div class="score-msg" id="quiz-score-msg"></div>
+  </div>
+</section>
+
+<!-- ==================== ACTIVIDAD IA ==================== -->
+<section id="tab-ia" class="tab-content">
+  <h2 class="section-title">8. Actividad con Inteligencia Artificial</h2>
+
+  <div class="box-tool">
+    <strong>🤖 Herramienta recomendada:</strong> Claude en <a href="https://claude.ai" target="_blank" style="color:#1b5e20;font-weight:700;">claude.ai</a> (Anthropic) — gratuito. También puedes usar ChatGPT (chatgpt.com) o Gemini (gemini.google.com). Claude es especialmente bueno para análisis estratégico y pensamiento crítico empresarial.
+  </div>
+
+  <h3 class="subsection-title">🎯 Actividad: "Soy el CFO de mi Startup — Diagnóstico con IA"</h3>
+  <p>Esta actividad te pone en el rol de Chief Financial Officer (Director Financiero) de tu propia startup imaginaria. Usarás la IA como consultor estratégico para analizar los factores de éxito de tu idea y desarrollar un pensamiento crítico sobre la viabilidad del emprendimiento. <strong>El objetivo NO es copiar lo que diga la IA, sino cuestionarla, completarla y contrastarla con el contexto ecuatoriano.</strong></p>
+
+  <div class="ai-step">
+    <div class="ai-step-num">1</div>
+    <div>
+      <strong>Piensa en tu startup:</strong> Usa la idea que trabajaste en el Startup Blueprint Canvas (Tema 4), o crea una nueva para esta actividad. Necesitas definir brevemente: a qué sector pertenece, qué problema resuelve y para quién.
+    </div>
+  </div>
+
+  <div class="ai-step">
+    <div class="ai-step-num">2</div>
+    <div>
+      <strong>Copia este prompt exacto</strong> en Claude (o la IA de tu elección), reemplazando los corchetes con tu información:
+    </div>
+  </div>
+
+  <div class="ai-prompt-box">Actúa como un consultor experto en startups con experiencia en América Latina, especialmente en Ecuador. Voy a describir mi idea de startup y quiero que me hagas un análisis crítico de sus factores de éxito.
+
+Mi startup se llama [NOMBRE DE TU STARTUP].
+Sector: [ej. Fintech, Agritech, Edtech, Legaltech...]
+Problema que resuelve: [describe el problema en 2-3 oraciones]
+Solución propuesta: [describe brevemente tu solución]
+Segmento de clientes: [¿a quién va dirigido?]
+País de operación inicial: Ecuador
+
+Por favor, analiza:
+1. ¿Cuáles de los 7 factores críticos de éxito (equipo, ajuste problema-solución, PMF, gestión de capital, métricas, velocidad de iteración y ecosistema) están mejor cubiertos en mi propuesta y cuáles representan el mayor riesgo?
+2. ¿Qué validaciones mínimas debería hacer en los próximos 30 días antes de invertir más tiempo y dinero?
+3. ¿Qué características del mercado ecuatoriano (regulación, cultura, infraestructura tecnológica, nivel de bancarización) podrían ser barreras u oportunidades para esta startup?
+4. ¿Cuál sería el MVP más simple que podrías construir para validar la hipótesis central?
+
+Sé honesto y crítico. No me vendas la idea: ayúdame a ver sus puntos débiles.</div>
+
+  <div class="ai-step">
+    <div class="ai-step-num">3</div>
+    <div>
+      <strong>Con la respuesta de la IA, realiza estas acciones críticas:</strong>
+      <ul class="styled" style="margin-top:10px;">
+        <li>Identifica <strong>2 afirmaciones de la IA que consideres correctas</strong> y explica por qué, citando el contenido de este widget.</li>
+        <li>Identifica <strong>1 afirmación de la IA que creas que está incompleta o equivocada</strong> para el contexto ecuatoriano. ¿Qué faltó considerar? ¿Qué no conoce la IA sobre Ecuador?</li>
+        <li>Propón <strong>tu propio plan de validación de 30 días</strong> —con acciones concretas y realizables en Guayaquil o tu ciudad— que vayas más allá de lo que sugirió la IA.</li>
+        <li>Responde: <strong>¿Cambió tu percepción de tu startup después de este análisis?</strong> ¿Qué factor de éxito es tu mayor brecha?</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="ai-step">
+    <div class="ai-step-num">4</div>
+    <div>
+      <strong>Entregable:</strong> Un documento de 400-600 palabras que incluya: la respuesta resumida de la IA, tus 2 afirmaciones validadas, tu crítica fundamentada al punto débil de la IA, tu plan de validación propio y tu reflexión personal.
+    </div>
+  </div>
+
+  <div class="box-example">
+    <div class="ex-label">📊 Criterio de Evaluación</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Indicador</th><th>Pensamiento Crítico ✅</th><th>Copia Simple ❌</th></tr></thead>
+        <tbody>
+          <tr><td>Afirmaciones validadas</td><td>Cita el widget y da ejemplo propio ecuatoriano</td><td>Repite lo que dijo la IA sin contexto propio</td></tr>
+          <tr><td>Crítica a la IA</td><td>Identifica una limitación real de conocimiento contextual</td><td>Solo elogia la respuesta de la IA</td></tr>
+          <tr><td>Plan de validación</td><td>Acciones específicas, nombres reales de lugares, personas</td><td>Plan genérico copiado de la IA</td></tr>
+          <tr><td>Reflexión personal</td><td>Muestra cambio de perspectiva o duda fundamentada</td><td>Ausente o superficial</td></tr>
+          <tr><td>Conexión con NIIF/contabilidad</td><td>Menciona al menos un aspecto contable relevante</td><td>Ignora la dimensión financiero-contable</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== REFLEXIÓN ==================== -->
+<section id="tab-reflexion" class="tab-content">
+  <h2 class="section-title">9. Preguntas para la Reflexión Personal</h2>
+  <p>Esta sección no tiene respuestas correctas ni incorrectas. Su propósito es conectar los conceptos de esta semana con tu vida real, tu identidad profesional y tus sueños. Tómate el tiempo necesario para pensar con honestidad.</p>
+
+  <div class="reflex-card">
+    <div class="reflex-num">Reflexión 1 · El problema que ya vives</div>
+    <p>Piensa en un problema que hayas experimentado personalmente en Guayaquil o en tu entorno cercano: un trámite complicado, un servicio que no existe, una necesidad insatisfecha. ¿Podrías convertir ese problema en una oportunidad de startup? ¿Qué te ha impedido hacerlo hasta ahora? ¿Falta de conocimiento, de recursos, de confianza en ti mismo?</p>
+  </div>
+
+  <div class="reflex-card">
+    <div class="reflex-num">Reflexión 2 · Tu propio "burn rate" personal</div>
+    <p>Las startups tienen un burn rate: la velocidad a la que gastan sus recursos. ¿Y tú? ¿Estás invirtiendo tu tiempo, energía y atención en lo que realmente importa para tus metas de largo plazo, o hay "gastos" que no generan valor? ¿Cuál es tu "runway" personal si no cambias nada en tu vida?</p>
+  </div>
+
+  <div class="reflex-card">
+    <div class="reflex-num">Reflexión 3 · Tu equipo fundador de vida</div>
+    <p>Toda startup exitosa necesita un equipo complementario: el constructor, el vendedor, el diseñador, el financiero. En tu vida personal y profesional, ¿tienes un equipo así? ¿Hay personas en tu entorno que complementan tus fortalezas y compensan tus debilidades? ¿O intentas hacerlo todo solo? ¿Qué dice eso sobre tu estilo de relacionarte?</p>
+  </div>
+
+  <div class="reflex-card">
+    <div class="reflex-num">Reflexión 4 · El pivote que nunca hiciste</div>
+    <p>¿Ha habido un momento en tu vida en que seguiste en una dirección (carrera, relación, proyecto) que ya no funcionaba, pero no te animaste a pivotar? ¿Qué te detuvo: el miedo, la vergüenza, la presión social, la comodidad? ¿Qué habrías ganado si hubieras pivotado antes?</p>
+  </div>
+
+  <div class="reflex-card">
+    <div class="reflex-num">Reflexión 5 · Tu Product-Market Fit profesional</div>
+    <p>El PMF ocurre cuando un producto encaja tan bien con su mercado que el crecimiento es casi orgánico. ¿Has encontrado tu "PMF" profesional? ¿Existe un rol, actividad o área donde fluyes naturalmente, donde las personas te buscan y donde tu impacto es evidente? Si no lo has encontrado aún, ¿qué experimentos podrías hacer en los próximos 3 meses para ir validando cuál es ese espacio?</p>
+  </div>
+
+  <div class="reflex-card">
+    <div class="reflex-num">Reflexión 6 · Contabilidad como superpoder de emprendimiento</div>
+    <p>Muchos futuros emprendedores ignoran los números y fracasan por eso. Tú, como estudiante de Contabilidad y Auditoría, tienes una ventaja que muy pocos fundadores tienen: entiendes el lenguaje financiero. ¿Cómo cambiaría tu autopercepción profesional si te vieras no solo como "el que lleva los libros" sino como el estratega financiero que puede hacer o deshacer el éxito de una startup? ¿Qué cambiaría en tu forma de estudiar esta carrera?</p>
+  </div>
+
+  <div class="box-key">
+    <strong>Para cerrar:</strong> Las startups más exitosas del mundo no fueron construidas por personas perfectas. Fueron construidas por personas que se conocían a sí mismas, que sabían dónde eran fuertes y dónde necesitaban ayuda, y que tuvieron la valentía de empezar aunque no tuvieran todo resuelto. El autoconocimiento no es un lujo del coaching: es la base de cualquier emprendimiento sostenible.
+  </div>
+</section>
+
+<!-- ==================== BIBLIOGRAFÍA ==================== -->
+<section id="tab-biblio" class="tab-content">
+  <h2 class="section-title">📚 Bibliografía</h2>
+  <p>Referencias académicas e institucionales verificadas para profundizar en los temas de esta semana. Se recomienda verificar cada referencia antes de citar en trabajos académicos.</p>
+
+  <div class="bib-card">
+    <div class="bib-authors">Blank, S., &amp; Dorf, B. (2012).</div>
+    <div class="bib-title">The startup owner's manual: The step-by-step guide for building a great company.</div>
+    <div class="bib-source">K&amp;S Ranch Publishing. — El texto fundacional sobre el proceso de desarrollo de clientes y la metodología de búsqueda de modelos de negocio escalables.</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">Ries, E. (2011).</div>
+    <div class="bib-title">The lean startup: How today's entrepreneurs use continuous innovation to create radically successful businesses.</div>
+    <div class="bib-source">Crown Business. — Introduce el ciclo Build-Measure-Learn, el MVP y el pivote como fundamentos de la metodología ágil para startups.</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">Isenberg, D. J. (2010).</div>
+    <div class="bib-title">How to start an entrepreneurial revolution.</div>
+    <div class="bib-source"><em>Harvard Business Review</em>, 88(6), 40–50. — Artículo seminal sobre ecosistemas emprendedores y los factores que hacen viable o inviable el surgimiento de startups en distintos contextos.</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">CB Insights Research. (2023).</div>
+    <div class="bib-title">The top 12 reasons startups fail.</div>
+    <div class="bib-source">CB Insights. Recuperado de https://www.cbinsights.com/research/report/startup-failure-reasons-top/ — Análisis cuantitativo de los motivos de fracaso en más de 100 startups documentadas, con datos actualizados.</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">Asamblea Nacional del Ecuador. (2020).</div>
+    <div class="bib-title">Ley Orgánica de Emprendimiento e Innovación.</div>
+    <div class="bib-source">Registro Oficial, Suplemento No. 151, 28 de febrero de 2020. Quito, Ecuador. — Marco legal que establece incentivos tributarios, la figura de empresa de innovación de base tecnológica y mecanismos de apoyo al ecosistema emprendedor ecuatoriano.</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">Global Entrepreneurship Monitor (GEM). (2023).</div>
+    <div class="bib-title">GEM 2022/2023 global report: Adapting to a "new normal."</div>
+    <div class="bib-source">GEM Consortium. Recuperado de https://www.gemconsortium.org — Informe anual con estadísticas globales y regionales sobre actividad emprendedora, ecosistemas e indicadores de startups por país.</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">International Financial Reporting Standards Foundation (IFRS). (2021).</div>
+    <div class="bib-title">IFRS 15 Revenue from contracts with customers.</div>
+    <div class="bib-source">IFRS Foundation. Recuperado de https://www.ifrs.org — Estándar internacional que regula el reconocimiento de ingresos en contratos con clientes, especialmente relevante para startups SaaS con modelos de suscripción.</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-authors">Timmons, J. A., &amp; Spinelli, S. (2009).</div>
+    <div class="bib-title">New venture creation: Entrepreneurship for the 21st century (8th ed.).</div>
+    <div class="bib-source">McGraw-Hill/Irwin. — Texto clásico de referencia universitaria sobre la creación de nuevas empresas, el proceso emprendedor y los modelos de evaluación de oportunidades de negocio.</div>
+  </div>
+
+  <div class="bib-note">
+    📌 <strong>Nota importante:</strong> Se recomienda verificar cada referencia en <a href="https://scholar.google.com" target="_blank" style="color:#4a3000;font-weight:700;">Google Scholar (scholar.google.com)</a> o en el repositorio institucional de la Universidad de Guayaquil antes de citar en trabajos académicos. Las normas legales ecuatorianas pueden consultarse en el portal del <a href="https://www.registroficial.gob.ec" target="_blank" style="color:#4a3000;font-weight:700;">Registro Oficial (registroficial.gob.ec)</a>.
+  </div>
+</section>
+
+<!-- ==================== JAVASCRIPT ==================== -->
+<script>
+/* ===== TAB NAVIGATION ===== */
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+/* ===== STAR RATING ===== */
+(function initStars() {
+  for (let i = 1; i <= 7; i++) {
+    const container = document.getElementById('stars' + i);
+    if (!container) continue;
+    for (let s = 1; s <= 5; s++) {
+      const btn = document.createElement('button');
+      btn.className = 'star-btn';
+      btn.textContent = '★';
+      btn.dataset.val = s;
+      btn.dataset.group = i;
+      btn.addEventListener('click', function() {
+        const g = this.dataset.group;
+        const v = parseInt(this.dataset.val);
+        document.querySelectorAll(`.star-btn[data-group="${g}"]`).forEach(b => {
+          b.classList.toggle('active', parseInt(b.dataset.val) <= v);
+        });
+      });
+      container.appendChild(btn);
+    }
+  }
+})();
+
+function getStarVal(group) {
+  let val = 0;
+  document.querySelectorAll(`.star-btn[data-group="${group}"]`).forEach(b => {
+    if (b.classList.contains('active')) val = parseInt(b.dataset.val);
+  });
+  return val;
+}
+
+function calcTracker() {
+  let total = 0, count = 0;
+  for (let i = 1; i <= 7; i++) {
+    const v = getStarVal(i);
+    if (v > 0) { total += v; count++; }
+  }
+  if (count < 7) { alert('Por favor califica todos los factores (1-5 estrellas) antes de ver el diagnóstico.'); return; }
+  const avg = (total / 35 * 100).toFixed(0);
+  const pct = parseInt(avg);
+  const el = document.getElementById('tracker-result');
+  el.style.display = 'block';
+  document.getElementById('tracker-score-text').textContent = total + '/35 puntos (' + avg + '%)';
+  setTimeout(() => { document.getElementById('tracker-bar').style.width = pct + '%'; }, 100);
+  let msg = '';
+  if (pct >= 80) msg = '🏆 Startup muy sólida — tienes una base fuerte. ¡Es momento de avanzar!';
+  else if (pct >= 60) msg = '🎯 Buen punto de partida — fortalece las áreas más débiles antes de escalar.';
+  else if (pct >= 40) msg = '📘 Trabajo por hacer — identifica las 2-3 brechas críticas y actúa sobre ellas.';
+  else msg = '⚠️ Base frágil — reconocer las brechas es el primer paso. Busca mentores y refuerza el equipo.';
+  document.getElementById('tracker-msg').textContent = msg;
+}
+
+/* ===== CANVAS DOWNLOAD ===== */
+function downloadCanvas() {
+  const fields = [
+    ['1. Problema Real', 'sc1'], ['2. Segmento de Clientes', 'sc2'],
+    ['3. Propuesta de Valor', 'sc3'], ['4. MVP', 'sc4'],
+    ['5. Escalabilidad', 'sc4b'], ['6. Modelo de Ingresos', 'sc5'],
+    ['7. Equipo Fundador', 'sc6'], ['8. Ventaja Injusta', 'sc7'],
+    ['9. Métricas Clave', 'sc8'], ['10. Impacto Social', 'sc9']
+  ];
+  let txt = '==============================\nSTARTUP BLUEPRINT CANVAS\nSemana 11 | Emprendimiento e Innovación\nUniversidad de Guayaquil\n==============================\n\n';
+  fields.forEach(([label, id]) => {
+    const val = document.getElementById(id)?.value || '(sin completar)';
+    txt += `[${label}]\n${val}\n\n`;
+  });
+  txt += '==============================\nGenerado con el Widget Semana 11';
+  const blob = new Blob([txt], { type: 'text/plain;charset=utf-8' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = 'startup_blueprint_canvas.txt'; a.click();
+}
+
+function downloadTracker() {
+  const labels = ['Equipo Fundador', 'Ajuste Problema-Solución', 'PMF', 'Gestión del Capital', 'Métricas y Datos', 'Velocidad de Iteración', 'Ecosistema y Red'];
+  let txt = '==============================\nTRACKER DE FACTORES DE ÉXITO\nSemana 11 | Emprendimiento e Innovación\n==============================\n\n';
+  for (let i = 1; i <= 7; i++) {
+    const stars = getStarVal(i);
+    const note = document.getElementById('note' + i)?.value || '(sin notas)';
+    txt += `Factor ${i}: ${labels[i-1]}\nCalificación: ${'★'.repeat(stars)}${'☆'.repeat(5-stars)} (${stars}/5)\nNotas: ${note}\n\n`;
+  }
+  txt += '==============================\nGenerado con el Widget Semana 11';
+  const blob = new Blob([txt], { type: 'text/plain;charset=utf-8' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = 'tracker_factores_exito.txt'; a.click();
+}
+
+/* ===== EJERCICIO INTERACTIVO ===== */
+const ejercicioCorrects = {
+  ei1: 'b', ei2: 'b', ei3: 'c', ei4: 'b',
+  ei5: 'c', ei6: 'b', ei7: 'c', ei8: 'c'
+};
+const ejercicioFeedbacks = {
+  ei1: {
+    ok: '✅ Correcto. La empresa Gómez es una PyME tradicional: tiene más de una década, crecimiento estable y sin intención de escalar masivamente. No tiene las características de una startup (escalabilidad, incertidumbre extrema, búsqueda de modelo de negocio).',
+    fail: '❌ Incorrecto. Una startup es una organización diseñada para escalar rápidamente bajo incertidumbre. La empresa Gómez tiene 12 años, estabilidad y crecimiento lineal: eso la define como PyME tradicional, no como startup.'
+  },
+  ei2: {
+    ok: '✅ Correcto. Runway = Capital disponible ÷ Net Burn mensual = $90.000 ÷ $15.000 = 6 meses. Con 6 meses de pista, la startup debe actuar de inmediato para levantar capital, reducir costos o aumentar ingresos.',
+    fail: '❌ Incorrecto. La fórmula es: Runway = Capital disponible ÷ Burn Rate mensual = $90.000 ÷ $15.000 = 6 meses. Verifica la operación aritmética y recuerda que el burn rate en este caso es el gasto mensual neto.'
+  },
+  ei3: {
+    ok: '✅ Correcto. Un MVP (Minimum Viable Product / Producto Mínimo Viable) es la versión más simple del producto diseñada para validar hipótesis con el mínimo esfuerzo e inversión. No es el producto final, sino un experimento de aprendizaje.',
+    fail: '❌ Incorrecto. La descripción corresponde exactamente a un MVP: versión básica, lanzada rápido, para validar si existe demanda real. No es un prototipo final ni una versión beta completa.'
+  },
+  ei4: {
+    ok: '✅ Correcto. Un pivote es un cambio estructurado en el modelo de negocio basado en el aprendizaje del mercado. Datil evolucionó de facturación a gestión financiera integral, lo que es un ejemplo claro de pivote estratégico exitoso.',
+    fail: '❌ Incorrecto. El término correcto es "pivote": un cambio de dirección estratégico informado por los datos y el aprendizaje. Bootstrapping es autofinanciamiento, runway es el tiempo disponible de capital, y burn rate reduction es reducir gastos.'
+  },
+  ei5: {
+    ok: '✅ Correcto. Los inversionistas de VC en etapa semilla priorizan el equipo fundador por encima de todo lo demás. Un producto puede cambiar, pero las personas que saben aprender, ejecutar y persistir son el activo más duradero.',
+    fail: '❌ Incorrecto. En etapa semilla, donde el producto aún no está probado y el mercado es incierto, el 70-80% de la decisión del inversionista se basa en el equipo fundador y sus capacidades, no en factores superficiales.'
+  },
+  ei6: {
+    ok: '✅ Correcto. La Ley Orgánica de Emprendimiento e Innovación (2020) creó efectivamente la figura jurídica de "empresa de innovación de base tecnológica" con beneficios tributarios especiales, impulsando el ecosistema startup ecuatoriano.',
+    fail: '❌ Incorrecto. La Ley de 2020 no exoneró permanentemente el IVA ni elimino la obligación del registro ante la SCVS. Lo que sí creó fue la figura jurídica de empresa de innovación de base tecnológica con beneficios tributarios específicos.'
+  },
+  ei7: {
+    ok: '✅ Correcto. Sean Ellis propuso que si al menos el 40% de los usuarios responde que estaría "muy decepcionado" si el producto desaparece, se ha alcanzado el Product-Market Fit. Empresas como Slack y Dropbox superaron ese umbral antes de escalar.',
+    fail: '❌ Incorrecto. El umbral correcto del "test de Sean Ellis" es el 40%. Si menos del 40% responde que estaría muy decepcionado, el PMF aún no se ha alcanzado y la startup debe continuar iterando.'
+  },
+  ei8: {
+    ok: '✅ Correcto. El diseño visual de la aplicación es responsabilidad del equipo de producto y UX, no del proceso de due diligence financiero. Este proceso se enfoca en estados financieros, cumplimiento tributario, estructura de capital, activos intangibles y pasivos contingentes.',
+    fail: '❌ Incorrecto. El due diligence financiero se centra en información contable, tributaria y legal. El análisis del diseño visual de la app es una evaluación de producto, no financiera.'
+  }
+};
+
+function verificarEjercicio() {
+  const keys = Object.keys(ejercicioCorrects);
+  let allAnswered = true;
+  keys.forEach(k => {
+    if (!document.querySelector(`input[name="${k}"]:checked`)) allAnswered = false;
+  });
+  if (!allAnswered) {
+    const al = document.getElementById('ej-alert');
+    al.classList.add('show');
+    setTimeout(() => al.classList.remove('show'), 3000);
+    return;
+  }
+  let score = 0;
+  keys.forEach(k => {
+    const sel = document.querySelector(`input[name="${k}"]:checked`)?.value;
+    const correct = ejercicioCorrects[k];
+    const fb = ejercicioFeedbacks[k];
+    const item = document.getElementById('ej-item' + k.replace('ei',''));
+    const fbEl = document.getElementById('fb-' + k);
+    if (sel === correct) {
+      score++;
+      item.classList.add('correct'); item.classList.remove('incorrect');
+      fbEl.className = 'feedback-msg ok show';
+      fbEl.innerHTML = fb.ok;
+    } else {
+      item.classList.add('incorrect'); item.classList.remove('correct');
+      fbEl.className = 'feedback-msg fail show';
+      fbEl.innerHTML = fb.fail;
+    }
+    document.querySelectorAll(`input[name="${k}"]`).forEach(r => r.disabled = true);
+  });
+  const pct = Math.round(score / keys.length * 100);
+  const scoreBox = document.getElementById('ej-score');
+  scoreBox.classList.add('show');
+  document.getElementById('ej-score-num').textContent = score + '/' + keys.length + ' — ' + pct + '%';
+  setTimeout(() => { document.getElementById('ej-bar').style.width = pct + '%'; }, 100);
+  const msgs = [
+    [100, '🏆 ¡Perfecto! Dominas todos los conceptos de esta semana.'],
+    [75, '🎯 ¡Muy bien! Tienes sólidos fundamentos sobre startups.'],
+    [50, '📘 Buen avance. Repasa los temas donde tuviste dificultades.'],
+    [0, '📖 Continúa estudiando. Cada error es una oportunidad de aprender.']
+  ];
+  document.getElementById('ej-score-msg').textContent = msgs.find(([min]) => pct >= min)[1];
+}
+
+function reiniciarEjercicio() {
+  ['ei1','ei2','ei3','ei4','ei5','ei6','ei7','ei8'].forEach((k, idx) => {
+    document.querySelectorAll(`input[name="${k}"]`).forEach(r => { r.checked = false; r.disabled = false; });
+    const item = document.getElementById('ej-item' + (idx+1));
+    item.classList.remove('correct','incorrect');
+    const fbEl = document.getElementById('fb-' + k);
+    fbEl.className = 'feedback-msg'; fbEl.innerHTML = '';
+  });
+  document.getElementById('ej-score').classList.remove('show');
+  document.getElementById('ej-bar').style.width = '0';
+}
+
+/* ===== CUESTIONARIO ===== */
+const quizCorrects = {
+  qi1: 'b', qi2: 'c', qi3: 'b', qi4: 'b', qi5: 'c',
+  qi6: 'b', qi7: 'b', qi8: 'b', qi9: 'b', qi10: 'c'
+};
+const quizFeedbacks = {
+  qi1: {
+    ok: '✅ Correcto. Blank y Dorf definieron la startup como una organización temporal bajo incertidumbre extrema que busca un modelo de negocio repetible y escalable. Esta definición la diferencia radicalmente de una empresa establecida.',
+    fail: '❌ Incorrecto. La definición canónica de Blank y Dorf (2012) especifica que una startup no es una empresa pequeña con ventas locales, sino una organización temporal que busca un modelo escalable bajo incertidumbre extrema.'
+  },
+  qi2: {
+    ok: '✅ Correcto. El crecimiento lineal y la estabilidad a corto plazo son características de una PyME tradicional, NO de una startup. Las startups buscan crecimiento exponencial ("hockey stick") y operan bajo alta incertidumbre.',
+    fail: '❌ Incorrecto. La escalabilidad, la incertidumbre y el uso de tecnología SÍ son parte del ADN startup. Lo que NO corresponde a una startup es el crecimiento lineal y la estabilidad a corto plazo: eso describe a una PyME.'
+  },
+  qi3: {
+    ok: '✅ Correcto. El "Death Valley Curve" o Valle de la Muerte es el período crítico de flujo de caja negativo entre el inicio de operaciones (con sus costos) y el momento en que la startup genera ingresos sostenidos. Aquí fracasa la mayoría.',
+    fail: '❌ Incorrecto. El Valle de la Muerte no es una fase de rentabilidad ni el momento del PMF. Es el período de flujo de caja negativo —muchas veces prolongado— entre el inicio del gasto y la generación de ingresos sostenibles.'
+  },
+  qi4: {
+    ok: '✅ Correcto. Un pivote es un cambio estructurado basado en datos y aprendizaje, no un fracaso. Twitter nació de un pivote sobre Odeo, Instagram de un pivote sobre Burbn. El pivote es señal de madurez estratégica, no de derrota.',
+    fail: '❌ Incorrecto. Un pivote no es fracaso ni fusión con otra empresa. Es un cambio deliberado y estratégico en el modelo de negocio, basado en los datos recopilados durante el proceso de validación con usuarios reales.'
+  },
+  qi5: {
+    ok: '✅ Correcto. El burn rate (tasa de quema) es cuánto dinero gasta la startup cada mes. Puede ser "gross burn" (gasto total) o "net burn" (gasto menos ingresos). Junto con el runway, es uno de los indicadores financieros más vigilados.',
+    fail: '❌ Incorrecto. El burn rate no mide velocidad de crecimiento de usuarios ni satisfacción. Mide el gasto mensual de la startup para operar. Es fundamental para calcular el runway y saber cuánto tiempo le queda antes de quedarse sin capital.'
+  },
+  qi6: {
+    ok: '✅ Correcto. La NIIF 15 regula el reconocimiento de ingresos provenientes de contratos con clientes. Para startups SaaS que cobran suscripciones mensuales o anuales, esta norma determina exactamente cuándo y cómo se registra ese ingreso.',
+    fail: '❌ Incorrecto. La NIIF 15 trata específicamente el reconocimiento de ingresos en contratos con clientes. La NIIF 9 es de instrumentos financieros, la NIIF 3 de combinaciones de negocios, y la NIC 16 de activos fijos tangibles.'
+  },
+  qi7: {
+    ok: '✅ Correcto. Siembro y Datil son ejemplos de startups ecuatorianas que atacaron necesidades reales del mercado local: el sector agrícola y la gestión financiero-tributaria, respectivamente. Demuestran que el ecosistema ecuatoriano puede crear soluciones de impacto.',
+    fail: '❌ Incorrecto. Siembro (agritech) y Datil (facturación electrónica/gestión financiera) son ejemplos de startups que resolvieron necesidades reales del mercado ecuatoriano, no nicho de lujo ni exportación sin enfoque local.'
+  },
+  qi8: {
+    ok: '✅ Correcto. El equipo tiene un médico (perfil de dominio), una desarrolladora (constructora/hacker) y un contador (financiero). Falta el perfil comercial: alguien que pueda vender, cerrar contratos con hospitales y gestionar la adquisición de clientes.',
+    fail: '❌ Incorrecto. El equipo ya tiene médico (dominio), desarrolladora (producto) y contador (finanzas). Lo que falta es el perfil Hustler: alguien que venda, cierre contratos y desarrolle el canal comercial. Ese perfil es el cuello de botella que señaló el inversionista.'
+  },
+  qi9: {
+    ok: '✅ Correcto. Net burn = $14.000 - $4.000 = $10.000/mes. Runway = $60.000 ÷ $10.000 = 6 meses. Con solo 6 meses de pista, la startup debe actuar con urgencia: levantar capital, reducir costos o acelerar los ingresos.',
+    fail: '❌ Incorrecto. Primero se calcula el net burn: $14.000 (gastos) - $4.000 (ingresos) = $10.000/mes. Luego el runway: $60.000 ÷ $10.000 = 6 meses. Con 6 meses, la acción más urgente es levantar capital o reducir costos de inmediato.'
+  },
+  qi10: {
+    ok: '✅ Correcto. Un due diligence financiero completo requiere revisar estados financieros, cumplimiento tributario (SRI), estructura de capital, activos intangibles y pasivos contingentes. No se limita a un solo documento ni al aspecto visual del producto.',
+    fail: '❌ Incorrecto. El due diligence financiero es un proceso exhaustivo que abarca estados financieros, obligaciones con el SRI, estructura de capital, activos intangibles (software, datos, marca) y pasivos contingentes. Un certificado tributario aislado no es suficiente.'
+  }
+};
+
+function verificarQuiz() {
+  const keys = Object.keys(quizCorrects);
+  let allAnswered = true;
+  keys.forEach(k => {
+    if (!document.querySelector(`input[name="${k}"]:checked`)) allAnswered = false;
+  });
+  if (!allAnswered) {
+    const al = document.getElementById('quiz-alert');
+    al.classList.add('show');
+    setTimeout(() => al.classList.remove('show'), 3000);
+    return;
+  }
+  let score = 0;
+  keys.forEach((k, idx) => {
+    const sel = document.querySelector(`input[name="${k}"]:checked`)?.value;
+    const correct = quizCorrects[k];
+    const fb = quizFeedbacks[k];
+    const item = document.getElementById('q-item' + (idx+1));
+    const fbEl = document.getElementById('fb-' + k);
+    if (sel === correct) {
+      score++;
+      item.classList.add('correct'); item.classList.remove('incorrect');
+      fbEl.className = 'feedback-msg ok show';
+      fbEl.innerHTML = fb.ok;
+    } else {
+      item.classList.add('incorrect'); item.classList.remove('correct');
+      fbEl.className = 'feedback-msg fail show';
+      fbEl.innerHTML = fb.fail;
+    }
+    document.querySelectorAll(`input[name="${k}"]`).forEach(r => r.disabled = true);
+  });
+  const pct = Math.round(score / 10 * 100);
+  const scoreBox = document.getElementById('quiz-score');
+  scoreBox.classList.add('show');
+  const emojiMsg = pct === 100 ? '🏆 ¡Perfecto! Excelente dominio del tema.' :
+    pct >= 80 ? '🎯 ¡Muy bien! Comprensión sólida de los conceptos.' :
+    pct >= 60 ? '📘 Aprobado. Refuerza los conceptos donde fallaste.' :
+    pct >= 40 ? '⚠️ Cerca del límite. Repasa el material con calma.' : '📖 Necesitas repasar. ¡El material está aquí para apoyarte!';
+  document.getElementById('quiz-score-num').textContent = score + '/10 — ' + pct + '%';
+  setTimeout(() => { document.getElementById('quiz-bar').style.width = pct + '%'; }, 100);
+  document.getElementById('quiz-score-msg').textContent = emojiMsg;
+}
+
+function reiniciarQuiz() {
+  for (let i = 1; i <= 10; i++) {
+    const k = 'qi' + i;
+    document.querySelectorAll(`input[name="${k}"]`).forEach(r => { r.checked = false; r.disabled = false; });
+    const item = document.getElementById('q-item' + i);
+    item.classList.remove('correct','incorrect');
+    const fbEl = document.getElementById('fb-' + k);
+    fbEl.className = 'feedback-msg'; fbEl.innerHTML = '';
+  }
+  document.getElementById('quiz-score').classList.remove('show');
+  document.getElementById('quiz-bar').style.width = '0';
+}
+</script>
+
+<!-- ==================== GLOSARIO ==================== -->
+<section id="tab-glosario" class="tab-content">
+  <h2 class="section-title">📖 Glosario de Términos — Semana 11</h2>
+  <p>Este glosario explica todos los términos técnicos que aparecen en el widget. Está organizado por bloques temáticos. Léelo como material de apoyo cada vez que encuentres una palabra que no te resulte completamente clara.</p>
+
+  <!-- ===== BLOQUE 1: FINANCIAMIENTO ===== -->
+  <h3 class="subsection-title">💰 Tipos de Financiamiento: ¿De dónde viene el dinero de una startup?</h3>
+  <p>Una startup necesita dinero para operar y crecer. Ese dinero puede venir de fuentes muy distintas según el momento en que se encuentre la empresa. A continuación se explica cada una:</p>
+
+  <div class="box-concept">
+    <strong>FFF — Friends, Family &amp; Fools (Amigos, Familia y "Locos")</strong><br>
+    Es la primera fuente de dinero que tiene casi toda startup. Antes de que ningún banco o inversionista profesional confíe en una idea sin probar, los fundadores recurren a personas cercanas que invierten más por afecto o fe personal que por análisis financiero. Se llaman <em>"fools"</em> (locos) porque técnicamente es un riesgo muy alto prestarle dinero a una idea que aún no existe como empresa real. Es dinero informal, generalmente sin contrato sofisticado, y suele ser pequeño (desde $500 hasta $30.000 aproximadamente).
+  </div>
+
+  <div class="box-concept">
+    <strong>Bootstrapping (Autofinanciamiento)</strong><br>
+    Significa que los fundadores financian la startup con sus propios recursos: ahorros personales, ingresos de un empleo paralelo, o reinvirtiendo las primeras ventas del mismo negocio. Es la forma más común de arrancar en Ecuador. La ventaja es que no se cede control ni porcentaje de la empresa a nadie externo. La desventaja es que el crecimiento puede ser más lento porque el capital disponible es limitado. El término viene de una expresión inglesa que significa "salir adelante con lo que uno mismo tiene".
+  </div>
+
+  <div class="box-concept">
+    <strong>Ángel Inversionista (Angel Investor)</strong><br>
+    Es una persona natural —generalmente un empresario exitoso o profesional con capital disponible— que invierte su propio dinero en startups en etapas muy tempranas, a cambio de un porcentaje de propiedad (es decir, acciones) en la empresa. A diferencia de un banco, el ángel no exige garantías ni historial crediticio: apuesta por el equipo y la idea. Además de dinero, suelen aportar experiencia, contactos y orientación. En Ecuador existe la red Ángeles Ecuador que agrupa a estos inversionistas.
+  </div>
+
+  <div class="box-concept">
+    <strong>Aceleradoras</strong><br>
+    Son organizaciones —privadas, universitarias o gubernamentales— que reciben startups en etapa temprana, les dan financiamiento inicial (a cambio de un pequeño porcentaje de la empresa), capacitación intensiva, acceso a mentores y conexiones con inversionistas, todo en un programa de 3 a 6 meses. Al final del programa, la startup presenta su proyecto ante inversionistas en un evento llamado "Demo Day" (día de demostración). En Ecuador destacan Kruger Labs y programas de SENESCYT.
+  </div>
+
+  <div class="box-concept">
+    <strong>VC — Venture Capital (Capital de Riesgo)</strong><br>
+    Es dinero profesional gestionado por fondos de inversión especializados en startups. Estos fondos reúnen capital de grandes inversionistas —bancos, fondos de pensiones, familias con mucho patrimonio— y lo invierten en startups con alto potencial de crecimiento, a cambio de acciones. El término "riesgo" viene de que invierten en empresas sin historial probado: saben que muchas fracasarán, pero esperan que una o dos generen retornos extraordinarios que compensen a todas las demás.
+  </div>
+
+  <div class="box-concept">
+    <strong>Ronda Semilla (Seed Round)</strong><br>
+    Es la primera ronda formal de inversión, generalmente de ángeles inversionistas o fondos de capital de riesgo pequeños. El monto típico va de $100.000 a $2.000.000. En esta etapa, la startup ya tiene un producto inicial funcionando y algunos primeros usuarios, pero todavía no tiene un modelo de negocio completamente probado. El dinero se usa para contratar las primeras personas clave, mejorar el producto y conseguir más clientes.
+  </div>
+
+  <div class="box-concept">
+    <strong>Serie A</strong><br>
+    Es la primera ronda grande de financiamiento por parte de fondos de capital de riesgo institucionales. Ocurre cuando la startup ya demostró que su modelo funciona y tiene indicadores sólidos de crecimiento. Los montos típicos van de $2.000.000 a $15.000.000. El dinero se usa para escalar: contratar más personal, entrar a nuevos mercados e invertir fuerte en tecnología y ventas.
+  </div>
+
+  <div class="box-concept">
+    <strong>Serie B, C y siguientes</strong><br>
+    Son rondas de inversión posteriores y de mayor tamaño para continuar creciendo. La Serie B (generalmente entre $15M y $50M) sirve para escalar aún más. La Serie C ($50M en adelante) suele ser para expansión internacional o preparación para una salida (venta a otra empresa o ingreso a bolsa de valores). Cada ronda nueva indica que la startup creció, que sus indicadores mejoraron y que el riesgo para el inversionista disminuyó respecto a la ronda anterior.
+  </div>
+
+  <div class="box-concept">
+    <strong>IPO — Initial Public Offering (Oferta Pública Inicial de Acciones)</strong><br>
+    Es el momento en que una startup —ya convertida en empresa grande y consolidada— vende sus acciones al público general a través de una bolsa de valores (como la Bolsa de Nueva York o la Bolsa de Valores de Quito). Es la "salida" más conocida para los fundadores e inversionistas iniciales, porque pueden vender sus acciones a precios muy superiores a lo que invirtieron originalmente. Empresas como Airbnb, Spotify y el banco digital Nubank (Brasil) hicieron su IPO tras años de crecimiento. No todas las startups llegan aquí: es el destino de una minoría muy exitosa.
+  </div>
+
+  <div class="box-concept">
+    <strong>M&amp;A — Mergers &amp; Acquisitions (Fusiones y Adquisiciones)</strong><br>
+    Es cuando una empresa compra a otra —lo que se llama <em>adquisición</em>— o cuando dos empresas se unen para formar una sola —lo que se llama <em>fusión</em>. Para una startup, ser adquirida significa que una empresa más grande paga una suma de dinero para comprar la totalidad o la mayoría de sus acciones. Es otra forma de "salida" para los fundadores e inversionistas. Instagram fue adquirida por Facebook por $1.000 millones en 2012. En Ecuador, que una startup sea adquirida por una corporación regional es un escenario cada vez más posible.
+  </div>
+
+  <!-- ===== BLOQUE 2: MVP ===== -->
+  <h3 class="subsection-title">📦 El MVP: La herramienta central de validación</h3>
+
+  <div class="box-concept">
+    <strong>MVP — Minimum Viable Product (Producto Mínimo Viable)</strong><br>
+    Es la versión más simple posible de un producto que permite al equipo recopilar información real de usuarios reales con el menor esfuerzo y el menor costo posible. No es un producto terminado. No es un borrador mal hecho. Es un <em>experimento</em> diseñado para responder una pregunta específica: ¿la gente quiere esto y está dispuesta a pagar por ello?
+  </div>
+
+  <div class="box-example">
+    <div class="ex-label">📍 Ejemplo práctico en Ecuador</div>
+    Imagina que quieres crear una aplicación para conectar abogados con clientes en Guayaquil. Tu MVP no tiene que ser una app completa con inteligencia artificial y pagos integrados. Podría ser tan simple como un grupo de WhatsApp donde tú mismo conectas manualmente a abogados con personas que necesitan asesoría, cobras una comisión pequeña y verificas si la gente realmente paga y vuelve. Si funciona así de simple, ya validaste que existe demanda real. Después —y solo después— construyes la app completa.
+  </div>
+
+  <div class="box-warn">
+    ⚠️ <strong>Lo que NO es un MVP:</strong> No es una excusa para lanzar algo de mala calidad. No es el producto final con funciones recortadas. Es una herramienta de aprendizaje: lo más simple que permite probar si la hipótesis central del negocio es verdadera o falsa.
+  </div>
+
+  <p>El ciclo del MVP funciona así: <strong>Construir</strong> algo simple → <strong>Medir</strong> qué hacen los usuarios reales → <strong>Aprender</strong> qué funciona y qué no → volver a <strong>Construir</strong> algo mejor. Este ciclo se repite de forma continua hasta encontrar el modelo que funciona.</p>
+
+  <!-- ===== BLOQUE 3: INDICADORES DE SALUD ===== -->
+  <h3 class="subsection-title">📊 Indicadores de Salud: Los números que dicen la verdad</h3>
+  <p>Los indicadores de salud son números y métricas que permiten saber si una startup está funcionando bien o si hay problemas que atender antes de que sea demasiado tarde. Son el equivalente a los análisis médicos de una persona: te muestran el estado real del organismo antes de que los síntomas externos sean visibles.</p>
+
+  <div class="box-concept">
+    <strong>NPS — Net Promoter Score (Índice de Promotores Netos)</strong><br>
+    Mide qué tan probable es que un cliente recomiende el producto a otras personas. Se mide con una sola pregunta: <em>"Del 1 al 10, ¿qué tan probable es que recomiendes este producto a un amigo?"</em> Quienes responden 9 o 10 son "promotores" (embajadores del producto). Quienes responden 7 u 8 son "neutrales". Quienes responden 6 o menos son "detractores" (pueden hablar mal del producto). El NPS se calcula restando el porcentaje de detractores al porcentaje de promotores. Un NPS positivo es aceptable; sobre 50 es excelente.
+  </div>
+
+  <div class="box-concept">
+    <strong>Tasa de Retención de Usuarios</strong><br>
+    Mide cuántos de los usuarios que comenzaron a usar el producto siguen usándolo después de cierto tiempo. Si 100 personas se registraron en enero y en marzo solo 20 siguen activas, la retención a 60 días es del 20%. Una retención baja es señal de alarma: el producto no genera suficiente valor como para que la gente vuelva. Es el indicador más honesto del ajuste entre el producto y el mercado.
+  </div>
+
+  <div class="box-concept">
+    <strong>MRR — Monthly Recurring Revenue (Ingresos Mensuales Recurrentes)</strong><br>
+    Es el ingreso que la startup puede predecir con certeza que va a recibir cada mes, proveniente de suscripciones o contratos de largo plazo. Si tienes 50 clientes que pagan $20 al mes, tu MRR es $1.000. Es la métrica favorita de los inversionistas en startups de software, porque indica estabilidad y predecibilidad de ingresos futuros.
+  </div>
+
+  <div class="box-concept">
+    <strong>ARR — Annual Recurring Revenue (Ingresos Anuales Recurrentes)</strong><br>
+    Es el MRR multiplicado por 12. Si tu MRR es $1.000, tu ARR es $12.000. Sirve para hablar con inversionistas en términos anuales y para comparar el tamaño relativo de startups entre sí.
+  </div>
+
+  <div class="box-concept">
+    <strong>CAC — Customer Acquisition Cost (Costo de Adquirir un Cliente)</strong><br>
+    Es cuánto dinero gasta la startup en promedio para conseguir un nuevo cliente pagante. Se calcula dividiendo el total gastado en marketing y ventas entre el número de clientes nuevos obtenidos en ese período. Si gastaste $500 en publicidad y conseguiste 10 clientes nuevos, tu CAC es $50. Un CAC muy alto en relación a los ingresos que genera cada cliente es señal de que el modelo de negocio no es sostenible financieramente.
+  </div>
+
+  <div class="box-concept">
+    <strong>LTV — Lifetime Value (Valor Total que Genera un Cliente durante su Relación con la Empresa)</strong><br>
+    Es el ingreso total que la startup espera recibir de un cliente durante todo el tiempo que permanezca como cliente activo. Si un cliente paga $20 al mes y en promedio permanece 18 meses antes de cancelar, su LTV es $360. La regla general de salud financiera es que el LTV debe ser al menos 3 veces mayor que el CAC. Si cuesta $200 adquirir a alguien que solo pagará $100 en total, el modelo está perdiendo dinero con cada cliente nuevo.
+  </div>
+
+  <div class="box-concept">
+    <strong>Tasa de Crecimiento Orgánico</strong><br>
+    Mide cuántos clientes nuevos llegan sin que la startup haya gastado dinero en publicidad, simplemente porque otros usuarios recomendaron el producto de forma espontánea. Una alta tasa de crecimiento orgánico es una señal fuerte de que el producto encaja muy bien con su mercado: es tan bueno que la gente lo recomienda sola, sin incentivo externo.
+  </div>
+
+  <div class="box-concept">
+    <strong>KPI — Key Performance Indicator (Indicador Clave de Desempeño)</strong><br>
+    Es cualquier número o métrica que el equipo ha decidido monitorear de forma regular porque refleja el avance hacia los objetivos más importantes de la startup. No todos los números son KPIs: son KPIs aquellos que, si mejoran, indican que la empresa va bien; y si empeoran, exigen atención inmediata. Ejemplos de KPIs según el tipo de startup: número de transacciones diarias (fintech), porcentaje de entregas a tiempo (logística), tasa de aprobación de cursos (edtech).
+  </div>
+
+  <!-- ===== BLOQUE 4: EMPRESA CONSOLIDADA ===== -->
+  <h3 class="subsection-title">🏢 Empresa Consolidada y Adquisición</h3>
+
+  <div class="box-concept">
+    <strong>Empresa Consolidada</strong><br>
+    Es aquella que ya superó las etapas de incertidumbre e inestabilidad propias de una startup. Tiene un modelo de negocio probado y rentable, opera con procesos estandarizados, tiene una estructura organizacional estable, genera ingresos predecibles y cuenta con una posición reconocida en su mercado. Ya no está "buscando" cómo funcionar: está ejecutando y optimizando lo que ya sabe que funciona. Ejemplos en Ecuador: Corporación Favorita, Banco Pichincha, Claro Ecuador. Ejemplos que alguna vez fueron startups y hoy son empresas consolidadas globales: Google, Amazon, Mercado Libre, Rappi.
+  </div>
+
+  <div class="box-concept">
+    <strong>Adquisición (en el contexto de startups)</strong><br>
+    Es cuando una empresa más grande —frecuentemente una corporación consolidada— compra una startup pagando a sus fundadores e inversionistas el valor acordado de la empresa. Para los fundadores, es una "salida": reciben dinero en efectivo o acciones de la empresa compradora a cambio de ceder el control de su startup. La startup puede seguir operando como una unidad dentro de la corporación o puede fusionarse completamente con ella. Para el auditor o contador, una adquisición activa procesos de valoración de empresa, due diligence financiero y aplicación de la NIIF 3 (norma que regula las combinaciones de negocios).
+  </div>
+
+  <div class="box-key">
+    <strong>Consejo final:</strong> Ninguno de estos términos es exclusivo del mundo anglosajón o de Silicon Valley. Todos tienen aplicación directa en Ecuador bajo la Ley Orgánica de Emprendimiento e Innovación (2020) y en la práctica contable y auditora que enfrentarás como profesional. Dominar este vocabulario no es un lujo académico: es parte de la competencia profesional que el mercado laboral ecuatoriano cada vez más exige a los contadores y auditores que acompañan a startups.
+  </div>
+</section>
+
+</body>
+</html>
