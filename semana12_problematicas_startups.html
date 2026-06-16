@@ -1,0 +1,2197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Semana 12 – Problemáticas y Retos de las Startups</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ============================================================
+   RESET Y BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #1a1a1a;
+  background: #f0f4f8;
+  min-height: 100vh;
+}
+
+/* ============================================================
+   ENCABEZADO
+   ============================================================ */
+.header {
+  background: #003366;
+  color: #fff;
+  padding: 22px 28px 18px;
+}
+.header-top {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  opacity: 0.82;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.header h1 {
+  font-family: 'Lora', serif;
+  font-size: clamp(18px, 2.6vw, 26px);
+  font-weight: 700;
+  line-height: 1.25;
+}
+.header-meta {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 13px;
+  opacity: 0.88;
+}
+.header-meta span {
+  background: rgba(255,255,255,0.13);
+  border-radius: 4px;
+  padding: 2px 10px;
+}
+
+/* ============================================================
+   NAVEGACIÓN DE PESTAÑAS
+   ============================================================ */
+.tab-bar-wrapper {
+  background: #87CEEB;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: thin;
+  scrollbar-color: #003366 #b0d8f0;
+  border-bottom: 3px solid #003366;
+}
+.tab-bar-wrapper::-webkit-scrollbar { height: 5px; }
+.tab-bar-wrapper::-webkit-scrollbar-track { background: #b0d8f0; }
+.tab-bar-wrapper::-webkit-scrollbar-thumb { background: #003366; border-radius: 3px; }
+.tab-bar {
+  display: inline-flex;
+  min-width: 100%;
+}
+.tab-btn {
+  background: transparent;
+  border: none;
+  padding: 11px 18px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #1a1a1a;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+  border-right: 1px solid rgba(0,51,102,0.15);
+}
+.tab-btn:hover { background: rgba(255,255,255,0.55); }
+.tab-btn.active {
+  background: #fff;
+  color: #003366;
+  font-weight: 700;
+  border-top: 3px solid #003366;
+  margin-top: -3px;
+}
+
+/* ============================================================
+   CONTENEDOR PRINCIPAL
+   ============================================================ */
+.main { max-width: 1000px; margin: 0 auto; padding: 28px 18px 60px; }
+.tab-content { display: none; animation: fadeIn 0.3s ease; }
+.tab-content.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ============================================================
+   TIPOGRAFÍA DE CONTENIDO
+   ============================================================ */
+h2 {
+  font-family: 'Lora', serif;
+  color: #003366;
+  font-size: clamp(20px, 2.4vw, 26px);
+  margin-bottom: 14px;
+  border-bottom: 2px solid #87CEEB;
+  padding-bottom: 8px;
+}
+h3 {
+  font-family: 'Lora', serif;
+  color: #003366;
+  font-size: 18px;
+  margin: 22px 0 10px;
+}
+h4 {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 700;
+  color: #003366;
+  font-size: 15px;
+  margin: 16px 0 6px;
+}
+p { margin-bottom: 14px; }
+ul, ol { padding-left: 22px; margin-bottom: 14px; }
+li { margin-bottom: 6px; }
+strong { color: #003366; }
+
+/* ============================================================
+   CAJAS ESPECIALES
+   ============================================================ */
+.concept-box {
+  border-left: 5px solid #003366;
+  background: #f7faff;
+  padding: 14px 18px;
+  margin: 18px 0;
+  border-radius: 0 8px 8px 0;
+}
+.concept-box .concept-title {
+  font-weight: 700;
+  color: #003366;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+.example-box {
+  background: #daeef9;
+  border: 1px solid #87CEEB;
+  border-radius: 8px;
+  padding: 16px 18px;
+  margin: 18px 0;
+}
+.example-box .example-title {
+  font-weight: 700;
+  color: #003366;
+  font-size: 14px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.key-idea {
+  background: #003366;
+  color: #fff;
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 22px 0;
+  font-size: 15px;
+}
+.key-idea strong { color: #87CEEB; }
+.warning-box {
+  background: #fff8e1;
+  border-left: 5px solid #f9a825;
+  padding: 14px 18px;
+  border-radius: 0 8px 8px 0;
+  margin: 16px 0;
+}
+.warning-box .warning-title {
+  font-weight: 700;
+  color: #b26a00;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin: 18px 0;
+}
+.stat-card {
+  background: #fff;
+  border: 1px solid #cce0f5;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+}
+.stat-card .stat-num {
+  font-family: 'Lora', serif;
+  font-size: 30px;
+  font-weight: 700;
+  color: #003366;
+}
+.stat-card .stat-label {
+  font-size: 13px;
+  color: #555;
+  margin-top: 4px;
+}
+
+/* ============================================================
+   TABLAS
+   ============================================================ */
+.table-wrap { overflow-x: auto; margin: 18px 0; border-radius: 8px; box-shadow: 0 1px 6px rgba(0,0,0,0.08); }
+table { width: 100%; border-collapse: collapse; background: #fff; font-size: 14.5px; }
+thead { background: #003366; color: #fff; }
+thead th { padding: 11px 14px; text-align: left; font-weight: 600; }
+tbody tr:nth-child(even) { background: #f0f6ff; }
+tbody td { padding: 10px 14px; border-bottom: 1px solid #dde8f5; vertical-align: top; }
+
+/* ============================================================
+   HERRAMIENTA DE DIAGNÓSTICO
+   ============================================================ */
+.tool-section {
+  background: #fff;
+  border-radius: 10px;
+  padding: 24px;
+  box-shadow: 0 2px 10px rgba(0,51,102,0.1);
+  margin-bottom: 20px;
+}
+.tool-intro {
+  background: linear-gradient(135deg, #003366, #0055a5);
+  color: #fff;
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 22px;
+}
+.tool-intro h3 { color: #87CEEB; border: none; margin-top: 0; }
+.risk-area {
+  margin-bottom: 22px;
+  border: 1px solid #cce0f5;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.risk-area-header {
+  background: #003366;
+  color: #fff;
+  padding: 10px 16px;
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.risk-area-body { padding: 14px 16px; }
+.risk-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #edf2fb;
+}
+.risk-item:last-child { border-bottom: none; }
+.risk-question { flex: 1; font-size: 14px; }
+.risk-scale { display: flex; gap: 4px; flex-shrink: 0; }
+.risk-scale label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  font-size: 11px;
+  color: #555;
+  cursor: pointer;
+}
+.risk-scale input[type="radio"] { cursor: pointer; }
+.diag-result {
+  display: none;
+  margin-top: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.diag-result-header {
+  background: #003366;
+  color: #fff;
+  padding: 16px 20px;
+  font-family: 'Lora', serif;
+  font-size: 18px;
+}
+.diag-result-body { padding: 18px 20px; background: #f7faff; }
+.area-score-bar {
+  margin-bottom: 12px;
+}
+.area-score-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+.bar-track {
+  background: #dde8f5;
+  border-radius: 20px;
+  height: 10px;
+  overflow: hidden;
+}
+.bar-fill {
+  height: 100%;
+  border-radius: 20px;
+  transition: width 0.8s ease;
+}
+.risk-low { background: #4caf50; }
+.risk-med { background: #ff9800; }
+.risk-high { background: #f44336; }
+.diag-btn {
+  background: #003366;
+  color: #fff;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 6px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: block;
+  margin: 16px auto 0;
+}
+.diag-btn:hover { background: #0055a5; }
+
+/* ============================================================
+   EJERCICIO INTERACTIVO Y CUESTIONARIO
+   ============================================================ */
+.quiz-container { background: #fff; border-radius: 10px; padding: 24px; box-shadow: 0 2px 10px rgba(0,51,102,0.1); }
+.quiz-intro { margin-bottom: 22px; }
+.question-block {
+  background: #f7faff;
+  border: 1px solid #cce0f5;
+  border-radius: 8px;
+  padding: 18px;
+  margin-bottom: 16px;
+}
+.question-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.q-num {
+  background: #003366;
+  color: #fff;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+}
+.q-badge {
+  background: #87CEEB;
+  color: #003366;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-left: auto;
+  white-space: nowrap;
+}
+.q-badge.caso { background: #ffe0b2; color: #7a3f00; }
+.q-text { font-weight: 600; font-size: 15px; flex: 1; }
+.options { display: flex; flex-direction: column; gap: 8px; }
+.option-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #fff;
+  border: 1.5px solid #cce0f5;
+  border-radius: 6px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  font-size: 14.5px;
+}
+.option-label:hover { border-color: #003366; background: #f0f6ff; }
+.option-label input[type="radio"] { margin-top: 2px; flex-shrink: 0; }
+.option-label.correct { background: #e8f5e9; border-color: #4caf50; }
+.option-label.incorrect { background: #ffebee; border-color: #f44336; }
+.feedback-box {
+  display: none;
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+.feedback-box.correct { background: #e8f5e9; border-left: 4px solid #4caf50; color: #1b5e20; }
+.feedback-box.incorrect { background: #ffebee; border-left: 4px solid #f44336; color: #7f0000; }
+.verify-btn {
+  background: #003366;
+  color: #fff;
+  border: none;
+  padding: 13px 30px;
+  border-radius: 6px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: block;
+  margin: 24px auto 0;
+}
+.verify-btn:hover { background: #0055a5; }
+.reset-btn {
+  background: transparent;
+  color: #003366;
+  border: 2px solid #003366;
+  padding: 11px 28px;
+  border-radius: 6px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: none;
+  margin: 12px auto 0;
+}
+.reset-btn:hover { background: #003366; color: #fff; }
+.results-panel {
+  display: none;
+  margin-top: 24px;
+  background: #003366;
+  border-radius: 10px;
+  padding: 22px;
+  color: #fff;
+  text-align: center;
+}
+.results-panel .score-big {
+  font-family: 'Lora', serif;
+  font-size: 40px;
+  font-weight: 700;
+  color: #87CEEB;
+}
+.results-panel .score-label { font-size: 15px; opacity: 0.85; margin-bottom: 14px; }
+.progress-track {
+  background: rgba(255,255,255,0.2);
+  border-radius: 20px;
+  height: 14px;
+  overflow: hidden;
+  margin: 12px 0;
+}
+.progress-fill {
+  height: 100%;
+  border-radius: 20px;
+  background: #87CEEB;
+  transition: width 0.8s ease;
+}
+.results-panel .emoji-score { font-size: 32px; margin-bottom: 6px; }
+.results-panel .motivational { font-size: 15px; opacity: 0.9; }
+
+/* ============================================================
+   ACTIVIDAD IA
+   ============================================================ */
+.ia-step {
+  background: #fff;
+  border: 1px solid #cce0f5;
+  border-radius: 8px;
+  padding: 18px;
+  margin-bottom: 16px;
+}
+.ia-step-title {
+  font-weight: 700;
+  color: #003366;
+  font-size: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ia-step-num {
+  background: #003366;
+  color: #fff;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.prompt-box {
+  background: #1e1e2e;
+  color: #cdd6f4;
+  border-radius: 8px;
+  padding: 16px 18px;
+  font-family: monospace;
+  font-size: 13.5px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  margin: 10px 0;
+  position: relative;
+}
+.copy-btn {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: #003366;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.rubric-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13.5px; }
+.rubric-table th { background: #003366; color: #fff; padding: 8px 12px; text-align: left; }
+.rubric-table td { padding: 8px 12px; border-bottom: 1px solid #dde8f5; vertical-align: top; }
+.rubric-table tr:nth-child(even) td { background: #f0f6ff; }
+
+/* ============================================================
+   REFLEXIÓN
+   ============================================================ */
+.reflection-intro {
+  background: linear-gradient(135deg, #003366, #0055a5);
+  color: #fff;
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 22px;
+}
+.reflection-intro h2 { color: #87CEEB; border-bottom-color: rgba(135,206,235,0.4); }
+.reflection-card {
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #cce0f5;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+.reflection-card-header {
+  background: #87CEEB;
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  color: #003366;
+  font-size: 14px;
+}
+.reflection-card-body { padding: 16px 18px; }
+.reflection-q { font-size: 15px; margin-bottom: 10px; font-style: italic; color: #003366; }
+textarea.reflection-input {
+  width: 100%;
+  min-height: 90px;
+  border: 1.5px solid #cce0f5;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 14px;
+  resize: vertical;
+  transition: border-color 0.2s;
+}
+textarea.reflection-input:focus { outline: none; border-color: #003366; }
+
+/* ============================================================
+   BIBLIOGRAFÍA
+   ============================================================ */
+.bib-card {
+  background: #fff;
+  border: 1px solid #cce0f5;
+  border-radius: 8px;
+  padding: 16px 18px;
+  margin-bottom: 14px;
+  border-left: 5px solid #003366;
+}
+.bib-author { font-weight: 700; color: #003366; font-size: 14px; }
+.bib-title { font-style: italic; font-size: 14px; margin: 4px 0; }
+.bib-source { font-size: 13px; color: #555; }
+.bib-note {
+  background: #fff8e1;
+  border: 1px solid #ffe082;
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin-top: 22px;
+  font-size: 13.5px;
+  color: #5d4037;
+}
+
+/* ============================================================
+   REPASO SEMANAS
+   ============================================================ */
+.repaso-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+  margin: 18px 0;
+}
+.repaso-card {
+  background: #fff;
+  border: 1px solid #cce0f5;
+  border-radius: 8px;
+  padding: 14px 16px;
+  border-top: 4px solid #003366;
+}
+.repaso-card .week-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #0055a5;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.repaso-card h4 { margin: 0 0 6px; font-size: 14px; }
+.repaso-card p { font-size: 13px; color: #444; margin: 0; }
+
+/* ============================================================
+   TIMELINE / VALLE DE LA MUERTE
+   ============================================================ */
+.valley-visual {
+  position: relative;
+  background: #fff;
+  border: 1px solid #cce0f5;
+  border-radius: 10px;
+  padding: 30px 20px 20px;
+  margin: 20px 0;
+  overflow: hidden;
+}
+.valley-visual svg { width: 100%; max-width: 720px; display: block; margin: 0 auto; }
+
+/* ============================================================
+   CICLO DE VIDA
+   ============================================================ */
+.lifecycle-phases {
+  display: flex;
+  gap: 0;
+  margin: 20px 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #cce0f5;
+}
+.phase {
+  flex: 1;
+  padding: 14px 10px;
+  text-align: center;
+  font-size: 13px;
+  min-width: 100px;
+}
+.phase-1 { background: #daeef9; }
+.phase-2 { background: #fff8e1; }
+.phase-3 { background: #fce4ec; }
+.phase-4 { background: #e8f5e9; }
+.phase-label { font-weight: 700; color: #003366; font-size: 12px; margin-bottom: 4px; }
+.phase-sub { font-size: 12px; color: #555; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 600px) {
+  .main { padding: 16px 10px 50px; }
+  .header { padding: 16px 14px; }
+  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .lifecycle-phases { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     ENCABEZADO
+     ============================================================ -->
+<header class="header">
+  <div class="header-top">Universidad de Guayaquil · Facultad de Ciencias Administrativas</div>
+  <h1>Emprendimiento e Innovación</h1>
+  <div class="header-meta">
+    <span>Carrera: Contabilidad y Auditoría</span>
+    <span>Unidad 3: Corporate Venturing y las Startups</span>
+    <span>Semana 12</span>
+    <span>Modalidad: Virtual Asíncrona</span>
+  </div>
+</header>
+
+<!-- ============================================================
+     BARRA DE PESTAÑAS
+     ============================================================ -->
+<div class="tab-bar-wrapper">
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="showTab('repaso')">📋 Repaso</button>
+    <button class="tab-btn" onclick="showTab('tema1')">1. Valle de la Muerte</button>
+    <button class="tab-btn" onclick="showTab('tema2')">2. Equipo y Cultura</button>
+    <button class="tab-btn" onclick="showTab('tema3')">3. Mercado y PMF</button>
+    <button class="tab-btn" onclick="showTab('tema4')">4. Escalabilidad y Regulación</button>
+    <button class="tab-btn" onclick="showTab('herramienta')">🛠️ Diagnóstico de Riesgos</button>
+    <button class="tab-btn" onclick="showTab('ejercicio')">✏️ Ejercicio Interactivo</button>
+    <button class="tab-btn" onclick="showTab('cuestionario')">📝 Cuestionario</button>
+    <button class="tab-btn" onclick="showTab('ia')">🤖 Actividad con IA</button>
+    <button class="tab-btn" onclick="showTab('reflexion')">💭 Reflexión Personal</button>
+    <button class="tab-btn" onclick="showTab('biblio')">📚 Bibliografía</button>
+  </div>
+</div>
+
+<!-- ============================================================
+     CONTENIDO PRINCIPAL
+     ============================================================ -->
+<main class="main">
+
+  <!-- ========== REPASO ========== -->
+  <section id="repaso" class="tab-content active">
+    <h2>📋 Repaso: Semanas 1–11</h2>
+    <p>Antes de explorar las <strong>problemáticas y retos de las startups</strong>, revisemos el camino recorrido hasta aquí para conectar con claridad lo que aprenderemos hoy.</p>
+
+    <div class="repaso-grid">
+      <div class="repaso-card">
+        <div class="week-label">Semanas 1–2 · Unidad 1</div>
+        <h4>Teoría del Emprendimiento e Innovación</h4>
+        <p>Exploramos las definiciones de emprendimiento (Schumpeter, Drucker, Cantillon) e innovación. Aprendimos que emprender no es solo crear un negocio: es identificar y aprovechar oportunidades con impacto real.</p>
+      </div>
+      <div class="repaso-card">
+        <div class="week-label">Semanas 3–5 · Unidad 1</div>
+        <h4>Ecosistema Emprendedor y Tipos de Emprendedor</h4>
+        <p>Analizamos la situación mundial del emprendimiento y el ecosistema ecuatoriano: datos GEM Ecuador, la Ley Orgánica de Emprendimiento e Innovación 2020, y los diferentes tipos de emprendedor e innovación.</p>
+      </div>
+      <div class="repaso-card">
+        <div class="week-label">Semanas 6–7 · Unidad 2</div>
+        <h4>Creatividad, Design Thinking y Pensamiento Sistémico</h4>
+        <p>Aplicamos herramientas de creatividad y pensamiento sistémico. Profundizamos en el <em>Design Thinking</em> como metodología centrada en el ser humano para resolver problemas complejos de manera innovadora.</p>
+      </div>
+      <div class="repaso-card">
+        <div class="week-label">Semana 9 · Unidad 3</div>
+        <h4>Afianzamiento y Corporate Venturing</h4>
+        <p>Repasamos los contenidos del primer parcial e introdujimos el <em>Corporate Venturing</em> (emprendimiento corporativo), que es cuando grandes empresas crean o invierten en unidades de negocio innovadoras internas o externas.</p>
+      </div>
+      <div class="repaso-card">
+        <div class="week-label">Semana 10 · Unidad 3</div>
+        <h4>Corporate Venturing: Nueva Forma de Emprendimiento</h4>
+        <p>Analizamos en profundidad el modelo de Corporate Venturing, sus modalidades (interno y externo), ventajas y diferencias con el emprendimiento tradicional. Vimos casos de empresas ecuatorianas como Corporación Favorita.</p>
+      </div>
+      <div class="repaso-card">
+        <div class="week-label">Semana 11 · Unidad 3</div>
+        <h4>Naturaleza de las Startups y Factores de Éxito</h4>
+        <p>Definimos qué es una <em>startup</em> (empresa emergente de alto potencial de crecimiento bajo condiciones de incertidumbre), sus características diferenciadoras y los factores que determinan su éxito: equipo, mercado, modelo de negocio, financiamiento y timing.</p>
+      </div>
+    </div>
+
+    <div class="key-idea">
+      <strong>Hilo conductor de la semana 12:</strong> Si la semana pasada aprendimos QUÉ es una startup y QUÉ la lleva al éxito, hoy aprendemos los OBSTÁCULOS que enfrenta en el camino. Conocer los retos no es motivo de desánimo — es el mapa que necesita todo emprendedor para tomar decisiones estratégicas e inteligentes.
+    </div>
+
+    <div class="concept-box">
+      <div class="concept-title">🎯 Tema de esta semana</div>
+      <p><strong>Problemáticas y Retos de las Startups.</strong> Estudiaremos los cuatro grandes bloques de desafíos que enfrentan las empresas emergentes: (1) el reto financiero y el "valle de la muerte", (2) los problemas de equipo y cultura organizacional, (3) los retos de mercado y la búsqueda del ajuste producto-mercado, y (4) los desafíos de escalabilidad, regulación y contexto ecuatoriano.</p>
+    </div>
+  </section>
+
+  <!-- ========== TEMA 1: VALLE DE LA MUERTE ========== -->
+  <section id="tema1" class="tab-content">
+    <h2>1. El Valle de la Muerte y las Crisis Financieras</h2>
+
+    <div class="concept-box">
+      <div class="concept-title">📌 ¿Qué es el "Valle de la Muerte"?</div>
+      <p>El <strong>Valle de la Muerte</strong> (<em>Valley of Death</em>, en inglés) es la etapa crítica por la que pasan la mayoría de las startups entre el momento en que comienzan a gastar dinero para desarrollar su producto o servicio y el momento en que logran generar suficientes ingresos para sostenerse por sí solas. Durante este período, la empresa consume sus recursos económicos sin tener todavía una fuente de ingresos estable. Si no supera esta etapa, la startup muere financieramente.</p>
+    </div>
+
+    <p>Imagina que decides emprender: tienes una idea brillante, usas tus ahorros para construir un prototipo, alquilas una pequeña oficina y contratas dos personas. Pero los clientes no llegan de inmediato. Pasan dos, tres, seis meses. Los gastos siguen, los ingresos no alcanzan. Ese espacio oscuro y peligroso entre el inicio y la rentabilidad es el <strong>Valle de la Muerte</strong>.</p>
+
+    <div class="valley-visual">
+      <svg viewBox="0 0 720 220" xmlns="http://www.w3.org/2000/svg">
+        <!-- Fondo -->
+        <defs>
+          <linearGradient id="valleyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#e8f5e9;stop-opacity:1" />
+            <stop offset="20%" style="stop-color:#fff8e1;stop-opacity:1" />
+            <stop offset="55%" style="stop-color:#ffebee;stop-opacity:1" />
+            <stop offset="80%" style="stop-color:#fff8e1;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#e8f5e9;stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        <rect width="720" height="220" fill="url(#valleyGrad)" rx="8"/>
+        <!-- Eje X -->
+        <line x1="40" y1="160" x2="690" y2="160" stroke="#999" stroke-width="1.5"/>
+        <!-- Eje Y -->
+        <line x1="40" y1="20" x2="40" y2="175" stroke="#999" stroke-width="1.5"/>
+        <!-- Etiqueta eje Y -->
+        <text x="36" y="16" fill="#666" font-size="10" text-anchor="middle">$</text>
+        <!-- Línea de flujo financiero -->
+        <polyline points="40,90 120,120 200,155 300,185 380,175 460,140 560,90 680,50"
+                  fill="none" stroke="#003366" stroke-width="3" stroke-linejoin="round"/>
+        <!-- Zona roja (valle) -->
+        <polygon points="140,160 300,160 380,160 460,160 460,140 380,175 300,185 200,155 140,130"
+                 fill="rgba(244,67,54,0.13)"/>
+        <!-- Puntos de referencia -->
+        <circle cx="40" cy="90" r="6" fill="#4caf50"/>
+        <circle cx="300" cy="185" r="6" fill="#f44336"/>
+        <circle cx="680" cy="50" r="6" fill="#4caf50"/>
+        <!-- Línea de cero -->
+        <line x1="40" y1="160" x2="690" y2="160" stroke="#f44336" stroke-width="1" stroke-dasharray="5,4"/>
+        <!-- Etiquetas -->
+        <text x="42" y="85" fill="#003366" font-size="11" font-weight="bold">Inicio</text>
+        <text x="265" y="205" fill="#c62828" font-size="11" font-weight="bold">Punto más bajo</text>
+        <text x="640" y="45" fill="#2e7d32" font-size="11" font-weight="bold">PMF</text>
+        <!-- Flechas de etapas -->
+        <text x="90" y="145" fill="#555" font-size="10">Pre-seed</text>
+        <text x="210" y="200" fill="#c62828" font-size="10">Valle de la Muerte ⚠️</text>
+        <text x="520" y="85" fill="#2e7d32" font-size="10">Crecimiento</text>
+        <!-- Eje X labels -->
+        <text x="40" y="175" fill="#777" font-size="9">T0</text>
+        <text x="690" y="175" fill="#777" font-size="9">Tiempo →</text>
+      </svg>
+      <p style="text-align:center; font-size:12px; color:#555; margin-top:8px;">Curva de flujo financiero de una startup. La zona roja muestra el período crítico del Valle de la Muerte.</p>
+    </div>
+
+    <h3>1.1 Los Principales Retos Financieros</h3>
+
+    <h4>🔥 Burn Rate (Ritmo de Consumo de Caja)</h4>
+    <div class="concept-box">
+      <div class="concept-title">Definición</div>
+      <p>El <strong>burn rate</strong> (tasa de quema, en español: <em>ritmo de consumo de caja</em>) es la velocidad a la que una startup gasta su dinero antes de comenzar a generar ingresos suficientes. Se mide generalmente en dólares por mes. Si una startup gasta $10.000 al mes y tiene $60.000 en caja, tiene 6 meses de "runway" (tiempo de vuelo).</p>
+    </div>
+
+    <h4>✈️ Runway (Tiempo de Operación con Fondos Actuales)</h4>
+    <p>El <strong>runway</strong> (<em>pista de despegue</em> o tiempo de operación disponible) es el tiempo que le queda a una startup para operar con el dinero que tiene actualmente, antes de que se quede sin fondos. La fórmula es simple:</p>
+    <div class="example-box">
+      <div class="example-title">📐 Fórmula del Runway</div>
+      <p><strong>Runway (meses) = Dinero disponible en caja ÷ Burn rate mensual</strong></p>
+      <p>Ejemplo: Si Kushki (startup ecuatoriana de pagos digitales) en sus primeros meses tuviera $120.000 en caja y gastara $15.000 al mes, su runway sería de 8 meses. Tiene 8 meses para encontrar nuevos ingresos o conseguir más inversión antes de quebrar.</p>
+    </div>
+
+    <h4>💰 Fuentes de Financiamiento y sus Retos</h4>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Fuente</th>
+            <th>Qué es</th>
+            <th>Reto principal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Bootstrapping</strong></td>
+            <td>Autofinanciamiento con recursos propios, sin inversión externa. El emprendedor usa sus propios ahorros o ganancias del negocio.</td>
+            <td>Crecimiento muy lento; el fundador asume todo el riesgo personal.</td>
+          </tr>
+          <tr>
+            <td><strong>FFF</strong> (Friends, Family & Fools)</td>
+            <td>Primera inversión de amigos, familiares y personas cercanas al fundador.</td>
+            <td>Montos pequeños y puede dañar relaciones personales si el negocio fracasa.</td>
+          </tr>
+          <tr>
+            <td><strong>Angel Investors</strong> (Inversionistas Ángel)</td>
+            <td>Personas naturales con patrimonio propio que invierten en startups a cambio de participación accionaria. Son "ángeles" porque aparecen en las etapas más tempranas y arriesgadas.</td>
+            <td>Son difíciles de encontrar en Ecuador; piden alto porcentaje de la empresa.</td>
+          </tr>
+          <tr>
+            <td><strong>Venture Capital (VC)</strong></td>
+            <td>Fondos de inversión de riesgo que aportan capital a startups con alto potencial de crecimiento, a cambio de acciones. Son fondos profesionales que administran dinero de múltiples inversionistas.</td>
+            <td>Muy exigentes; buscan startups que puedan crecer 10x o más. Escasos en Ecuador.</td>
+          </tr>
+          <tr>
+            <td><strong>Crowdfunding</strong></td>
+            <td>Financiamiento colectivo: muchas personas aportan pequeñas cantidades de dinero a través de plataformas digitales.</td>
+            <td>Requiere capacidad de comunicación y marketing; regulación aún limitada en Ecuador.</td>
+          </tr>
+          <tr>
+            <td><strong>Aceleradoras e incubadoras</strong></td>
+            <td>Organizaciones que brindan capital, mentorías y redes de contacto a cambio de un pequeño porcentaje de la empresa. Ayudan a acelerar el crecimiento en etapas tempranas.</td>
+            <td>Son pocas en Ecuador; proceso selectivo y competitivo.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>📊 Estadísticas que todo emprendedor debe conocer</h4>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-num">90%</div>
+        <div class="stat-label">de las startups fracasan antes de los 5 años (CB Insights, 2023)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">38%</div>
+        <div class="stat-label">fracasan por quedarse sin dinero (run out of cash)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">29%</div>
+        <div class="stat-label">fracasan por no tener el mercado que creían tener</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">23%</div>
+        <div class="stat-label">fracasan por problemas en el equipo fundador</div>
+      </div>
+    </div>
+
+    <div class="example-box">
+      <div class="example-title">🇪🇨 Caso Ecuatoriano: Retos de Financiamiento</div>
+      <p>Según el Global Entrepreneurship Monitor (GEM) Ecuador, uno de los principales obstáculos para los emprendedores ecuatorianos es el acceso al financiamiento. El sistema financiero tradicional exige garantías que un emprendedor inicial no tiene. Las tasas de interés para microcréditos productivos en Ecuador oscilan entre el 20% y el 27% anual, lo que hace prácticamente imposible financiar una startup con deuda bancaria. Esto explica por qué muchos emprendedores ecuatorianos dependen casi exclusivamente del <em>bootstrapping</em> y los recursos familiares, alargando el tiempo que pasan en el Valle de la Muerte.</p>
+    </div>
+
+    <h3>1.2 El Problema de las Rondas de Financiamiento</h3>
+    <p>Cuando una startup necesita más capital del que puede obtener de inversores ángel, busca rondas de inversión más formales. Estas tienen nombres específicos:</p>
+    <ul>
+      <li><strong>Pre-seed:</strong> Primera etapa. Capital mínimo para probar que la idea funciona. Generalmente de FFF o ángeles.</li>
+      <li><strong>Seed (semilla):</strong> Se usa para construir el producto mínimo viable y validar el mercado.</li>
+      <li><strong>Series A:</strong> Primera ronda de inversión institucional (Venture Capital). Se usa para escalar. Requiere demostrar tracción real.</li>
+      <li><strong>Series B, C, D...</strong> Rondas sucesivas para expansión a nuevos mercados o adquisiciones. Cada ronda es más grande y más exigente.</li>
+      <li><strong>IPO (Oferta Pública Inicial):</strong> El proceso mediante el cual una empresa ofrece sus acciones al público general en una bolsa de valores por primera vez. Es la "salida" que muchos inversores buscan para recuperar y multiplicar su dinero.</li>
+    </ul>
+
+    <div class="warning-box">
+      <div class="warning-title">⚠️ Reto clave para el contador/auditor</div>
+      <p>Como futuro contador o auditor, tu rol en una startup es crítico durante el valle de la muerte: llevar registros contables precisos del burn rate, proyectar cuántos meses de runway quedan, preparar estados financieros que sean atractivos para inversores y asegurar que la empresa cumpla con sus obligaciones tributarias con el <strong>SRI (Servicio de Rentas Internas)</strong> incluso en etapas de pérdida. Un contador estratégico puede salvarle la vida a una startup.</p>
+    </div>
+
+    <div class="key-idea">
+      <strong>💡 Idea clave:</strong> El reto financiero no es solo una cuestión de "conseguir dinero". Es una cuestión de gestión inteligente: saber cuánto tiempo te queda, gastar en lo que realmente importa, y tener la disciplina de no crecer más rápido de lo que tu caja lo permite. Un emprendedor que no entiende sus números está volando a ciegas.
+    </div>
+  </section>
+
+  <!-- ========== TEMA 2: EQUIPO Y CULTURA ========== -->
+  <section id="tema2" class="tab-content">
+    <h2>2. Fallas del Equipo y la Cultura Organizacional</h2>
+
+    <div class="concept-box">
+      <div class="concept-title">📌 ¿Por qué el equipo es el mayor reto?</div>
+      <p>Existe un dicho en el mundo emprendedor: <em>"Los inversores invierten en personas, no en ideas"</em>. Esto resume una verdad estadística: el 23% de los fracasos de startups se deben a problemas en el equipo. Una gran idea con un mal equipo fracasará. Una idea mediocre con un equipo excepcional puede encontrar el camino al éxito. El equipo no solo ejecuta: toma decisiones bajo presión, gestiona conflictos y define la cultura de la organización.</p>
+    </div>
+
+    <h3>2.1 Los Conflictos entre Cofundadores</h3>
+    <p>Un <strong>cofundador</strong> es cada uno de los socios que inician una startup juntos. La mayoría de las startups exitosas tienen más de un fundador: uno suele tener visión de negocio, otro habilidades técnicas y otro habilidades comerciales. Sin embargo, esta sociedad puede volverse el principal enemigo de la startup si no se gestiona bien.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Problema frecuente entre cofundadores</th>
+            <th>Por qué ocurre</th>
+            <th>Cómo prevenirlo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Desacuerdo sobre la visión del negocio</td>
+            <td>Cada fundador tiene una imagen diferente de hacia dónde debe ir la empresa.</td>
+            <td>Documentar la misión y visión desde el día uno. Revisarla juntos periódicamente.</td>
+          </tr>
+          <tr>
+            <td>División inequitativa del trabajo</td>
+            <td>Un cofundador trabaja más que otro, generando resentimiento.</td>
+            <td>Definir roles claros por escrito antes de empezar.</td>
+          </tr>
+          <tr>
+            <td>Conflicto por participación accionaria</td>
+            <td>No acordaron desde el inicio cuánto porcentaje de la empresa le corresponde a cada uno.</td>
+            <td>Firmar un <em>founders agreement</em> (pacto entre fundadores) desde el inicio, con asesoría legal.</td>
+          </tr>
+          <tr>
+            <td>Diferencias en tolerancia al riesgo</td>
+            <td>Uno quiere crecer agresivamente; el otro prefiere ser conservador.</td>
+            <td>Conversaciones abiertas y honestas sobre expectativas desde antes de fundar.</td>
+          </tr>
+          <tr>
+            <td>Burnout (agotamiento extremo)</td>
+            <td>La presión de la startup es enorme; un fundador se rinde antes que el otro.</td>
+            <td>Cláusulas de <em>vesting</em> (adquisición gradual de acciones según permanencia) para proteger a la empresa si un cofundador se va.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>2.2 El Problema del Talento Humano</h3>
+    <p>Una startup no puede pagar los mismos salarios que una multinacional. Esto crea una paradoja: necesita a los mejores profesionales para competir, pero no puede permitirse contratarlos. Algunos retos específicos:</p>
+    <ul>
+      <li><strong>Alta rotación:</strong> Los empleados se van a empresas más grandes y estables que ofrecen mejores sueldos y beneficios.</li>
+      <li><strong>Fuga de talento:</strong> En Ecuador, muchos profesionales talentosos emigran al exterior o son captados por empresas trasnacionales.</li>
+      <li><strong>Cultura de <em>hustle</em> insostenible:</strong> El <em>hustle</em> es la cultura de "trabajar sin parar" que muchas startups promueven. Aunque puede generar resultados a corto plazo, a mediano plazo destruye la salud del equipo y genera burnout (agotamiento laboral severo).</li>
+      <li><strong>Falta de procesos:</strong> En las etapas iniciales, todo se hace "a mano" y de manera improvisada. Cuando la empresa crece, la falta de procesos documentados genera caos.</li>
+    </ul>
+
+    <h3>2.3 La Cultura Organizacional como Ventaja Competitiva (o como Problema)</h3>
+    <div class="concept-box">
+      <div class="concept-title">📌 ¿Qué es la Cultura Organizacional?</div>
+      <p>La <strong>cultura organizacional</strong> es el conjunto de valores, creencias, comportamientos y normas no escritas que definen cómo se hacen las cosas en una organización. Es el "ADN invisible" de una empresa: no aparece en los contratos, pero determina si las personas se quedan o se van, si colaboran o compiten, si innovan o se estancan.</p>
+    </div>
+
+    <p>En una startup, la cultura la define el fundador desde el primer día, muchas veces sin darse cuenta. Si el fundador es transparente, el equipo será transparente. Si el fundador microgestiona (controla cada pequeño detalle sin dejar que otros decidan), el equipo se volverá dependiente e incapaz de tomar iniciativas.</p>
+
+    <div class="example-box">
+      <div class="example-title">🇪🇨 Caso: Datil y la Cultura del Equipo en Ecuador</div>
+      <p><strong>Datil</strong> es una empresa ecuatoriana de tecnología tributaria fundada en Quito que desarrolla software para la emisión de comprobantes electrónicos válidos para el SRI. Parte del éxito de Datil ha sido construir una cultura orientada al producto y a la experiencia del usuario. Su equipo técnico y comercial trabaja con metodologías ágiles (<em>agile</em>: metodologías de trabajo que priorizan la entrega continua de valor en ciclos cortos). Un reto que enfrentaron fue mantener la cultura colaborativa cuando el equipo creció: lo que funciona para 5 personas necesita ser sistematizado para 50.</p>
+    </div>
+
+    <h3>2.4 Problemas de Liderazgo y Toma de Decisiones</h3>
+    <p>El liderazgo en una startup es diferente al liderazgo en una empresa establecida. Los fundadores deben tomar decisiones críticas con información incompleta, bajo presión de tiempo y con recursos limitados. Los problemas más comunes incluyen:</p>
+    <ul>
+      <li><strong>Síndrome del fundador:</strong> El fundador no puede delegar, siente que nadie puede hacer las cosas tan bien como él/ella, y se convierte en el cuello de botella (obstáculo) de toda la organización.</li>
+      <li><strong>Exceso de reuniones, déficit de ejecución:</strong> Algunas startups caen en la trampa de planificar infinitamente sin ejecutar.</li>
+      <li><strong>Ausencia de mentores:</strong> Los fundadores sin experiencia previa cometen errores predecibles que podrían evitarse con la guía de mentores experimentados.</li>
+    </ul>
+
+    <div class="warning-box">
+      <div class="warning-title">⚠️ Señales de alerta en la cultura de una startup</div>
+      <ul>
+        <li>Alta rotación de personal en los primeros 6 meses.</li>
+        <li>Los cofundadores no se comunican con fluidez o evitan conversaciones difíciles.</li>
+        <li>No existen políticas claras de recursos humanos.</li>
+        <li>El equipo no sabe cuál es la visión o el propósito de la empresa.</li>
+        <li>Las decisiones las toma solo una persona, sin consultar al equipo.</li>
+      </ul>
+    </div>
+
+    <div class="key-idea">
+      <strong>💡 Idea clave:</strong> La cultura de una startup no se declara: se vive. Un poster con "valores corporativos" en la pared no construye cultura. La construyen las decisiones cotidianas: cómo se trata a un empleado que comete un error, cómo se reacciona ante el fracaso de un proyecto, cómo se celebran los logros. El equipo es la startup. Sin equipo sólido, todo lo demás es irrelevante.
+    </div>
+  </section>
+
+  <!-- ========== TEMA 3: MERCADO Y PMF ========== -->
+  <section id="tema3" class="tab-content">
+    <h2>3. Mercado, Competencia y el Problema del Ajuste Producto-Mercado</h2>
+
+    <div class="concept-box">
+      <div class="concept-title">📌 El problema más subestimado: no tener mercado</div>
+      <p>El 29% de las startups fracasan por una razón que parece simple pero es devastadora: <strong>crean un producto o servicio que nadie quiere comprar</strong>. No es que el producto sea malo técnicamente — a veces es brillante. El problema es que no resuelve un problema real, o lo resuelve para un mercado demasiado pequeño, o lo hace de una manera que los clientes no valoran. A este fenómeno se le llama <strong>falta de ajuste producto-mercado</strong>.</p>
+    </div>
+
+    <h3>3.1 Product-Market Fit (Ajuste Producto-Mercado): La Meta más Urgente</h3>
+    <div class="concept-box">
+      <div class="concept-title">📌 Definición de PMF</div>
+      <p>El <strong>PMF</strong> (Product-Market Fit, traducido como <em>ajuste producto-mercado</em>) es el momento en que un producto o servicio satisface de manera efectiva las necesidades de un segmento de mercado suficientemente grande. Es cuando los propios clientes empiezan a "jalar" el producto porque lo quieren, en lugar de que la startup tenga que "empujarlo" constantemente con publicidad. Marc Andreessen, uno de los inversores de Silicon Valley más importantes, lo describió así: <em>"Puedes sentir el PMF cuando está pasando: los clientes compran el producto tan rápido como puedes producirlo"</em>.</p>
+    </div>
+
+    <h4>¿Cómo saber si tienes PMF?</h4>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Señal de que SÍ tienes PMF</th>
+            <th>Señal de que NO tienes PMF</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Los clientes regresan solos a comprar más.</td>
+            <td>Cada venta requiere un enorme esfuerzo de convencimiento.</td>
+          </tr>
+          <tr>
+            <td>Los clientes te recomiendan a otros sin que se los pidas.</td>
+            <td>La tasa de abandono (churn) es alta: compran una vez y no vuelven.</td>
+          </tr>
+          <tr>
+            <td>Recibes más pedidos de los que puedes atender.</td>
+            <td>Tienes que bajar el precio constantemente para vender.</td>
+          </tr>
+          <tr>
+            <td>Los medios y las redes hablan de ti espontáneamente.</td>
+            <td>Los clientes dicen que "está bien" pero no están entusiasmados.</td>
+          </tr>
+          <tr>
+            <td>El MRR (Monthly Recurring Revenue: ingresos recurrentes mensuales) crece de manera orgánica.</td>
+            <td>El crecimiento de ingresos depende exclusivamente del gasto en publicidad.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>3.2 El Problema de Definir el Mercado Objetivo</h3>
+    <p>Uno de los errores más frecuentes de startups novatas es definir su mercado de manera demasiado amplia. <em>"Nuestro mercado son todas las personas de Ecuador"</em> o <em>"Cualquier empresa puede ser nuestro cliente"</em> son señales de alerta. Un mercado muy amplio implica que no hay un problema concreto que resolver, que los mensajes de marketing serán vagos y que los recursos se desperdiciarán en todos lados sin impacto.</p>
+
+    <div class="example-box">
+      <div class="example-title">🇪🇨 Caso: Siembro (Ecuador)</div>
+      <p><strong>Siembro</strong> es una plataforma ecuatoriana de comercio electrónico agrícola que conecta directamente a agricultores con compradores institucionales (supermercados, restaurantes, empresas). En lugar de atacar "el mercado de alimentos de Ecuador en general" (enorme e indefinido), Siembro se enfocó en un segmento específico: pequeños productores agrícolas que no tienen acceso a cadenas de distribución formales. Esta especificidad les permitió diseñar una solución exactamente adecuada para ese segmento y encontrar su PMF más rápidamente.</p>
+    </div>
+
+    <h3>3.3 Análisis de Competencia: El Problema de la Ceguera Competitiva</h3>
+    <p>La <strong>ceguera competitiva</strong> ocurre cuando una startup ignora o subestima a sus competidores. Puede manifestarse de tres maneras:</p>
+    <ul>
+      <li><strong>"No tenemos competencia":</strong> Esta afirmación es casi siempre falsa. Si no hay nadie haciendo algo similar, puede ser porque el mercado no existe todavía (reto de creación de mercado) o porque ya alguien lo intentó y fracasó (señal de alerta).</li>
+      <li><strong>Competencia directa ignorada:</strong> Startups similares que resuelven el mismo problema para el mismo cliente.</li>
+      <li><strong>Competencia indirecta ignorada:</strong> Soluciones alternativas que el cliente ya usa para resolver el problema, aunque no sean iguales a tu producto. Ejemplo: una app de gestión financiera compite no solo con otras apps, sino con las hojas de Excel que los usuarios ya manejan.</li>
+    </ul>
+
+    <h4>Herramientas para analizar el mercado</h4>
+    <ul>
+      <li><strong>TAM / SAM / SOM:</strong> Son tres capas del análisis de mercado. TAM (Total Addressable Market: mercado total disponible), SAM (Serviceable Addressable Market: parte del TAM que puedes atender con tu modelo de negocio) y SOM (Serviceable Obtainable Market: parte del SAM que puedes capturar de manera realista en el corto plazo).</li>
+      <li><strong>Mapa de empatía:</strong> Herramienta que describe detalladamente qué piensa, siente, ve, oye y hace tu cliente objetivo.</li>
+      <li><strong>Análisis de competidores:</strong> Tabla comparativa de características, precios, segmentos y propuesta de valor de cada competidor.</li>
+    </ul>
+
+    <h3>3.4 El Problema del Pivote: ¿Cuándo cambiar de dirección?</h3>
+    <div class="concept-box">
+      <div class="concept-title">📌 ¿Qué es un Pivote?</div>
+      <p>Un <strong>pivote</strong> (en emprendimiento) es un cambio estratégico significativo en la dirección de una startup, basado en la evidencia obtenida del mercado, sin abandonar completamente la visión original. No es rendirse: es aprender y adaptarse. La metodología Lean Startup de Eric Ries (que estudiaremos en la semana 15) formaliza este concepto.</p>
+    </div>
+
+    <p>El dilema del pivote es uno de los más difíciles para un emprendedor: ¿cuándo debo cambiar de rumbo y cuándo debo perseverar? Cambiar demasiado pronto puede impedir que una buena idea madure. No cambiar cuando los datos muestran que algo no funciona es igualmente fatal.</p>
+
+    <div class="key-idea">
+      <strong>💡 Idea clave:</strong> No encontrar el Product-Market Fit no es un fracaso — es información valiosa. El fracaso real ocurre cuando una startup sigue gastando recursos en una dirección que los datos ya indican que es incorrecta. Los emprendedores exitosos aprenden a leer las señales del mercado y actúan con rapidez, sin apego emocional a sus ideas iniciales.
+    </div>
+  </section>
+
+  <!-- ========== TEMA 4: ESCALABILIDAD Y REGULACIÓN ========== -->
+  <section id="tema4" class="tab-content">
+    <h2>4. Escalabilidad, Regulación y Retos en el Contexto Ecuatoriano</h2>
+
+    <div class="concept-box">
+      <div class="concept-title">📌 ¿Qué significa "escalar" una startup?</div>
+      <p><strong>Escalar</strong> (o <em>scale</em>, en inglés) significa hacer crecer el negocio de manera exponencial, aumentando los ingresos mucho más rápido de lo que aumentan los costos. Una startup que escala puede pasar de atender a 100 clientes a atender a 100.000 sin necesitar 1.000 veces más empleados. Esto la diferencia de un negocio tradicional, donde para vender el doble, necesitas el doble de recursos. El <strong>modelo de escalabilidad</strong> es precisamente lo que hace a las startups tan atractivas para los inversores.</p>
+    </div>
+
+    <h3>4.1 Los Retos de la Escalabilidad</h3>
+    <p>Paradójicamente, crecer demasiado rápido puede matar a una startup. Este fenómeno se llama <strong>blitzscaling fallido</strong>: escalar de manera acelerada sin tener aún los procesos, el equipo o la infraestructura para soportar ese crecimiento.</p>
+
+    <h4>Principales retos al escalar:</h4>
+    <ul>
+      <li><strong>Infraestructura tecnológica que no soporta el crecimiento:</strong> Un sistema que funciona bien para 500 usuarios puede colapsar con 50.000.</li>
+      <li><strong>Pérdida de calidad:</strong> Al crecer rápido, la atención al cliente, la calidad del producto o la experiencia del usuario pueden deteriorarse.</li>
+      <li><strong>Costos ocultos del crecimiento:</strong> Nuevas contrataciones, nuevo software, nuevas oficinas, cumplimiento de más regulaciones — todo eso tiene un costo que no siempre se planifica.</li>
+      <li><strong>Cultura diluida:</strong> Con más empleados, la cultura que el fundador construyó cuidadosamente puede perderse si no se sistematiza.</li>
+      <li><strong>Expansión geográfica prematura:</strong> Intentar entrar a nuevos países o ciudades antes de dominar el mercado inicial.</li>
+    </ul>
+
+    <div class="lifecycle-phases">
+      <div class="phase phase-1">
+        <div class="phase-label">ETAPA 1</div>
+        <div>💡 Ideación</div>
+        <div class="phase-sub">Validar el problema</div>
+      </div>
+      <div class="phase phase-2">
+        <div class="phase-label">ETAPA 2</div>
+        <div>🔬 Validación</div>
+        <div class="phase-sub">Encontrar PMF</div>
+      </div>
+      <div class="phase phase-3">
+        <div class="phase-label">ETAPA 3</div>
+        <div>⚠️ Escalar</div>
+        <div class="phase-sub">El reto más peligroso</div>
+      </div>
+      <div class="phase phase-4">
+        <div class="phase-label">ETAPA 4</div>
+        <div>🚀 Consolidación</div>
+        <div class="phase-sub">Modelo sostenible</div>
+      </div>
+    </div>
+
+    <h3>4.2 Retos Regulatorios y Legales</h3>
+    <p>Una startup no opera en el vacío: opera dentro de un marco legal y regulatorio que puede ser una ventaja o un obstáculo dependiendo de cómo se gestione. Los retos legales más comunes incluyen:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Área</th>
+            <th>Reto Específico</th>
+            <th>Relevancia para Contabilidad y Auditoría</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Tributación (SRI)</strong></td>
+            <td>Desde el primer día, la empresa debe registrarse en el RUC (Registro Único de Contribuyentes), emitir facturas electrónicas y declarar impuestos, incluso si tiene pérdidas.</td>
+            <td>Alta. El contador debe asegurar cumplimiento tributario desde la constitución.</td>
+          </tr>
+          <tr>
+            <td><strong>Constitución jurídica</strong></td>
+            <td>¿Cómo se registra la startup? ¿Como persona natural, compañía limitada, sociedad anónima? Cada figura tiene implicaciones tributarias y de responsabilidad diferentes.</td>
+            <td>Alta. La elección de figura jurídica afecta la contabilidad y la carga fiscal.</td>
+          </tr>
+          <tr>
+            <td><strong>Propiedad intelectual</strong></td>
+            <td>Registrar marcas, patentes y derechos de autor en el SENADI (Servicio Nacional de Derechos Intelectuales) para proteger la innovación.</td>
+            <td>Media. Los activos intangibles deben registrarse contablemente.</td>
+          </tr>
+          <tr>
+            <td><strong>Ley de Emprendimiento 2020</strong></td>
+            <td>La Ley Orgánica de Emprendimiento e Innovación 2020 crea beneficios para startups: simplificación de trámites, acceso a financiamiento público y figura de "Sociedad por Acciones Simplificada (SAS)".</td>
+            <td>Alta. La SAS tiene régimen contable y tributario específico.</td>
+          </tr>
+          <tr>
+            <td><strong>Regulación sectorial</strong></td>
+            <td>Startups en fintech (tecnología financiera), salud digital, transporte o educación pueden estar reguladas por la Junta de Política y Regulación Financiera, el Ministerio de Salud, la ANT u otras entidades.</td>
+            <td>Media-Alta. Cada regulador puede exigir reportes financieros específicos.</td>
+          </tr>
+          <tr>
+            <td><strong>Protección de datos</strong></td>
+            <td>La Ley Orgánica de Protección de Datos Personales (2021) en Ecuador exige que las empresas que manejan datos de usuarios implementen medidas de seguridad y transparencia.</td>
+            <td>Media. Implica costos de cumplimiento que deben previsupuestarse.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>4.3 Retos Específicos del Ecosistema Emprendedor Ecuatoriano</h3>
+    <div class="example-box">
+      <div class="example-title">🇪🇨 Contexto Ecuador: Desafíos Locales</div>
+      <ul>
+        <li><strong>Mercado pequeño:</strong> Ecuador tiene aproximadamente 18 millones de habitantes. Para muchas startups digitales, este mercado es insuficiente y deben pensar en expansión regional desde el inicio.</li>
+        <li><strong>Baja cultura de inversión en startups:</strong> La figura del <em>angel investor</em> (inversionista ángel) existe pero es limitada. No hay una cultura consolidada de invertir en empresas de alto riesgo y alto potencial.</li>
+        <li><strong>Dolarización:</strong> Una ventaja es que Ecuador usa el dólar, lo que facilita transacciones con inversionistas internacionales y elimina el riesgo de devaluación cambiaria.</li>
+        <li><strong>Conectividad:</strong> Aunque ha mejorado, la conectividad a internet en zonas rurales sigue siendo un reto para startups que quieren llegar a todo el territorio nacional.</li>
+        <li><strong>Talento técnico:</strong> Ecuador produce ingenieros y desarrolladores de software de calidad, pero muchos emigran o son contratados por empresas extranjeras de manera remota.</li>
+        <li><strong>Yachay Tech:</strong> Esta universidad de investigación científica en Urcuquí (Imbabura) fue concebida como un polo de innovación para generar talento y startups tecnológicas. Su impacto real aún está en consolidación.</li>
+      </ul>
+    </div>
+
+    <h3>4.4 El Reto de la Sostenibilidad y el Impacto Social</h3>
+    <p>Una tendencia global que se afianza en Ecuador es la exigencia de que las startups no solo sean rentables, sino también <strong>sostenibles</strong> (que no agoten los recursos naturales o sociales) y con <strong>impacto social positivo</strong>. Esto es especialmente relevante para contadores y auditores, porque implica nuevos reportes:</p>
+    <ul>
+      <li><strong>Reportes ESG:</strong> Ambiental (Environmental), Social y de Gobernanza (Governance). Cada vez más inversores exigen que las startups reporten no solo resultados financieros, sino también su impacto ambiental y social.</li>
+      <li><strong>B Corps:</strong> Certificación internacional para empresas que equilibran propósito con ganancias. Algunas startups ecuatorianas buscan esta certificación para diferenciarse.</li>
+    </ul>
+
+    <div class="key-idea">
+      <strong>💡 Idea clave:</strong> Los retos regulatorios y de escalabilidad no son obstáculos para evitar — son realidades para gestionar de manera inteligente. Una startup que entiende el marco legal desde el inicio, que cumple sus obligaciones tributarias con el SRI y que planifica su crecimiento con criterios financieros sólidos, tiene muchas más probabilidades de sobrevivir. Aquí es donde el contador y el auditor se convierten en aliados estratégicos del emprendedor, no simplemente en "los que llevan las cuentas".
+    </div>
+  </section>
+
+  <!-- ========== HERRAMIENTA: DIAGNÓSTICO DE RIESGOS ========== -->
+  <section id="herramienta" class="tab-content">
+    <div class="tool-intro">
+      <h3>🛠️ Herramienta Guiada: Diagnóstico de Riesgos de tu Startup</h3>
+      <p>Esta herramienta te permite evaluar los principales riesgos que enfrenta (o enfrentaría) tu startup en las cuatro áreas críticas que estudiamos esta semana. Para cada afirmación, califica del 1 al 5 (1 = totalmente en desacuerdo / situación muy crítica; 5 = totalmente de acuerdo / situación ideal). Al terminar, presiona "Ver Diagnóstico" para obtener tu análisis personalizado.</p>
+      <p style="margin-bottom:0; font-size:13px; opacity:0.85;">💡 Puedes usar esta herramienta para una startup real, una idea que tengas, o inventar una para practicar. Lo importante es ser honesto/a en tus respuestas.</p>
+    </div>
+
+    <!-- ÁREA 1: FINANCIERA -->
+    <div class="risk-area">
+      <div class="risk-area-header">💰 Área 1: Riesgos Financieros</div>
+      <div class="risk-area-body">
+        <div class="risk-item">
+          <div class="risk-question">1. Tengo claridad sobre el burn rate (gasto mensual) de mi startup y sé exactamente cuántos meses de runway me quedan.</div>
+          <div class="risk-scale">
+            <label><input type="radio" name="r1" value="1"> <span>1</span></label>
+            <label><input type="radio" name="r1" value="2"> <span>2</span></label>
+            <label><input type="radio" name="r1" value="3"> <span>3</span></label>
+            <label><input type="radio" name="r1" value="4"> <span>4</span></label>
+            <label><input type="radio" name="r1" value="5"> <span>5</span></label>
+          </div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-question">2. Tengo identificadas las fuentes de financiamiento (ángeles, aceleradoras, ingresos propios) que puedo activar antes de que se agote mi runway.</div>
+          <div class="risk-scale">
+            <label><input type="radio" name="r2" value="1"> <span>1</span></label>
+            <label><input type="radio" name="r2" value="2"> <span>2</span></label>
+            <label><input type="radio" name="r2" value="3"> <span>3</span></label>
+            <label><input type="radio" name="r2" value="4"> <span>4</span></label>
+            <label><input type="radio" name="r2" value="5"> <span>5</span></label>
+          </div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-question">3. Mi startup tiene registros contables actualizados y cumple con sus obligaciones tributarias ante el SRI.</div>
+          <div class="risk-scale">
+            <label><input type="radio" name="r3" value="1"> <span>1</span></label>
+            <label><input type="radio" name="r3" value="2"> <span>2</span></label>
+            <label><input type="radio" name="r3" value="3"> <span>3</span></label>
+            <label><input type="radio" name="r3" value="4"> <span>4</span></label>
+            <label><input type="radio" name="r3" value="5"> <span>5</span></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ÁREA 2: EQUIPO -->
+    <div class="risk-area">
+      <div class="risk-area-header">👥 Área 2: Riesgos de Equipo y Cultura</div>
+      <div class="risk-area-body">
+        <div class="risk-item">
+          <div class="risk-question">4. Los cofundadores y el equipo tienen roles claramente definidos por escrito, con acuerdos sobre propiedad y responsabilidades.</div>
+          <div class="risk-scale">
+            <label><input type="radio" name="r4" value="1"> <span>1</span></label>
+            <label><input type="radio" name="r4" value="2"> <span>2</span></label>
+            <label><input type="radio" name="r4" value="3"> <span>3</span></label>
+            <label><input type="radio" name="r4" value="4"> <span>4</span></label>
+            <label><input type="radio" name="r4" value="5"> <span>5</span></label>
+          </div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-question">5. El equipo comparte una visión común sobre el propósito y la dirección de la startup, y puede articularla con claridad.</div>
+          <div class="risk-scale">
+            <label><input type="radio" name="r5" value="1"> <span>1</span></label>
+            <label><input type="radio" name="r5" value="2"> <span>2</span></label>
+            <label><input type="radio" name="r5" value="3"> <span>3</span></label>
+            <label><input type="radio" name="r5" value="4"> <span>4</span></label>
+            <label><input type="radio" name="r5" value="5"> <span>5</span></label>
+          </div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-question">6. Existe una cultura organizacional saludable: se tolera el error con aprendizaje, se celebran los logros y se comunican los problemas abiertamente.</div>
+          <div class="risk-scale">
+            <label><input type="radio" name="r6" value="1"> <span>1</span></label>
+            <label><input type="radio" name="r6" value="2"> <span>2</span></label>
+            <label><input type="radio" name="r6" value="3"> <span>3</span></label>
+            <label><input type="radio" name="r6" value="4"> <span>4</span></label>
+            <label><input type="radio" name="r6" value="5"> <span>5</span></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ÁREA 3: MERCADO -->
+    <div class="risk-area">
+      <div class="risk-area-header">🎯 Área 3: Riesgos de Mercado y PMF</div>
+      <div class="risk-area-body">
+        <div class="risk-item">
+          <div class="risk-question">7. He validado mi solución con clientes reales (no solo con amigos o familiares) y tengo evidencia de que están dispuestos a pagar por ella.</div>
+          <div class="risk-scale">
+            <label><input type="radio" name="r7" value="1"> <span>1</span></label>
+            <label><input type="radio" name="r7" value="2"> <span>2</span></label>
+            <label><input type="radio" name="r7" value="3"> <span>3</span></label>
+            <label><input type="radio" name="r7" value="4"> <span>4</span></label>
+            <label><input type="radio" name="r7" value="5"> <span>5</span></label>
+          </div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-question">8. Tengo claridad sobre quiénes son mis competidores directos e indirectos y en qué me diferencio de ellos.</div>
+          <div class="risk-scale">
+            <label><input type="radio" name="r8" value="1"> <span>1</span></label>
+            <label><input type="radio" name="r8" value="2"> <span>2</span></label>
+            <label><input type="radio" name="r8" value="3"> <span>3</span></label>
+            <label><input type="radio" name="r8" value="4"> <span>4</span></label>
+            <label><input type="radio" name="r8" value="5"> <span>5</span></label>
+          </div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-question">9. Mi segmento de mercado está claramente definido (quién es mi cliente ideal: edad, ubicación, comportamiento, necesidad específica).</div>
+          <div class="risk-scale">
+            <label><input type="radio" name="r9" value="1"> <span>1</span></label>
+            <label><input type="radio" name="r9" value="2"> <span>2</span></label>
+            <label><input type="radio" name="r9" value="3"> <span>3</span></label>
+            <label><input type="radio" name="r9" value="4"> <span>4</span></label>
+            <label><input type="radio" name="r9" value="5"> <span>5</span></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ÁREA 4: ESCALABILIDAD -->
+    <div class="risk-area">
+      <div class="risk-area-header">🚀 Área 4: Riesgos de Escalabilidad y Regulación</div>
+      <div class="risk-area-body">
+        <div class="risk-item">
+          <div class="risk-question">10. Mi modelo de negocio puede crecer sin que los costos crezcan en la misma proporción (tiene potencial de escalabilidad).</div>
+          <div class="risk-scale">
+            <label><input type="radio" name="r10" value="1"> <span>1</span></label>
+            <label><input type="radio" name="r10" value="2"> <span>2</span></label>
+            <label><input type="radio" name="r10" value="3"> <span>3</span></label>
+            <label><input type="radio" name="r10" value="4"> <span>4</span></label>
+            <label><input type="radio" name="r10" value="5"> <span>5</span></label>
+          </div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-question">11. Conozco los requisitos legales y regulatorios que aplican a mi startup en Ecuador (constitución jurídica, SRI, permisos sectoriales).</div>
+          <div class="risk-scale">
+            <label><input type="radio" name="r11" value="1"> <span>1</span></label>
+            <label><input type="radio" name="r11" value="2"> <span>2</span></label>
+            <label><input type="radio" name="r11" value="3"> <span>3</span></label>
+            <label><input type="radio" name="r11" value="4"> <span>4</span></label>
+            <label><input type="radio" name="r11" value="5"> <span>5</span></label>
+          </div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-question">12. Tengo un plan de crecimiento que contempla cómo la infraestructura, el equipo y los procesos se adaptarán cuando la demanda aumente significativamente.</div>
+          <div class="risk-scale">
+            <label><input type="radio" name="r12" value="1"> <span>1</span></label>
+            <label><input type="radio" name="r12" value="2"> <span>2</span></label>
+            <label><input type="radio" name="r12" value="3"> <span>3</span></label>
+            <label><input type="radio" name="r12" value="4"> <span>4</span></label>
+            <label><input type="radio" name="r12" value="5"> <span>5</span></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="diag-btn" onclick="runDiagnosis()">📊 Ver Diagnóstico</button>
+
+    <!-- RESULTADO -->
+    <div class="diag-result" id="diagResult">
+      <div class="diag-result-header">📋 Tu Diagnóstico de Riesgos</div>
+      <div class="diag-result-body" id="diagBody"></div>
+    </div>
+  </section>
+
+  <!-- ========== EJERCICIO INTERACTIVO ========== -->
+  <section id="ejercicio" class="tab-content">
+    <div class="quiz-container">
+      <div class="quiz-intro">
+        <h2>✏️ Ejercicio Interactivo</h2>
+        <p><strong>Instrucciones:</strong> Lee cada situación o afirmación con atención. Selecciona la respuesta que consideres correcta en TODOS los ítems. Cuando hayas respondido todo, presiona <strong>"Verificar respuestas"</strong> para conocer tus resultados con explicación. Si no respondes todo, el sistema te avisará.</p>
+      </div>
+
+      <!-- E1 -->
+      <div class="question-block" id="eq-block-1">
+        <div class="question-header">
+          <div class="q-num">1</div>
+          <div class="q-text">Una startup lleva 4 meses sin generar ingresos significativos. Gasta $8.000 al mes y le quedan $24.000 en caja. ¿Cuántos meses de "runway" le quedan antes de quedarse sin fondos?</div>
+          <div class="q-badge">Aplicación</div>
+        </div>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="ei1" value="a"> a) 2 meses</label>
+          <label class="option-label"><input type="radio" name="ei1" value="b"> b) 3 meses</label>
+          <label class="option-label"><input type="radio" name="ei1" value="c"> c) 4 meses</label>
+          <label class="option-label"><input type="radio" name="ei1" value="d"> d) 6 meses</label>
+        </div>
+        <div class="feedback-box" id="ef1"></div>
+      </div>
+
+      <!-- E2 -->
+      <div class="question-block" id="eq-block-2">
+        <div class="question-header">
+          <div class="q-num">2</div>
+          <div class="q-text">Los cofundadores de una startup tecnológica discuten constantemente sobre si deben expandirse a Colombia o seguir consolidando Ecuador. ¿Qué herramienta preventiva habrían necesitado establecer desde el inicio?</div>
+          <div class="q-badge">Aplicación</div>
+        </div>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="ei2" value="a"> a) Un pitch deck para inversores</label>
+          <label class="option-label"><input type="radio" name="ei2" value="b"> b) Un founders agreement (pacto entre fundadores) con visión, roles y mecanismos de decisión</label>
+          <label class="option-label"><input type="radio" name="ei2" value="c"> c) Un análisis de competidores internacionales</label>
+          <label class="option-label"><input type="radio" name="ei2" value="d"> d) Un modelo de crowdfunding para financiar la expansión</label>
+        </div>
+        <div class="feedback-box" id="ef2"></div>
+      </div>
+
+      <!-- E3 -->
+      <div class="question-block" id="eq-block-3">
+        <div class="question-header">
+          <div class="q-num">3</div>
+          <div class="q-text">Una startup de delivery de comida ecuatoriana nota que sus clientes piden el servicio cada semana sin que la empresa haga publicidad adicional. ¿Qué fenómeno describe esto?</div>
+          <div class="q-badge">Conceptual</div>
+        </div>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="ei3" value="a"> a) Valley of Death (Valle de la Muerte)</label>
+          <label class="option-label"><input type="radio" name="ei3" value="b"> b) Bootstrapping exitoso</label>
+          <label class="option-label"><input type="radio" name="ei3" value="c"> c) Product-Market Fit (ajuste producto-mercado)</label>
+          <label class="option-label"><input type="radio" name="ei3" value="d"> d) Blitzscaling acelerado</label>
+        </div>
+        <div class="feedback-box" id="ef3"></div>
+      </div>
+
+      <!-- E4 -->
+      <div class="question-block" id="eq-block-4">
+        <div class="question-header">
+          <div class="q-num">4</div>
+          <div class="q-text">El fundador de una startup de software controla personalmente cada decisión, desde el diseño de la interfaz hasta los correos al cliente, sin delegar nada. ¿Cómo se llama este problema?</div>
+          <div class="q-badge">Conceptual</div>
+        </div>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="ei4" value="a"> a) Burnout organizacional</label>
+          <label class="option-label"><input type="radio" name="ei4" value="b"> b) Síndrome del fundador</label>
+          <label class="option-label"><input type="radio" name="ei4" value="c"> c) Pivote estratégico</label>
+          <label class="option-label"><input type="radio" name="ei4" value="d"> d) Cultura de hustle sostenible</label>
+        </div>
+        <div class="feedback-box" id="ef4"></div>
+      </div>
+
+      <!-- E5 -->
+      <div class="question-block" id="eq-block-5">
+        <div class="question-header">
+          <div class="q-num">5</div>
+          <div class="q-text">Una startup ecuatoriana afirma: "Nuestro mercado es toda persona mayor de 18 años en Ecuador". ¿Cuál es el principal problema estratégico de esta afirmación?</div>
+          <div class="q-badge">Análisis</div>
+        </div>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="ei5" value="a"> a) El mercado es demasiado pequeño para crecer</label>
+          <label class="option-label"><input type="radio" name="ei5" value="b"> b) La definición es demasiado amplia: no identifica un problema específico ni un cliente ideal, lo que hace imposible diseñar una solución enfocada</label>
+          <label class="option-label"><input type="radio" name="ei5" value="c"> c) No tiene en cuenta a los competidores internacionales</label>
+          <label class="option-label"><input type="radio" name="ei5" value="d"> d) No menciona la fuente de financiamiento</label>
+        </div>
+        <div class="feedback-box" id="ef5"></div>
+      </div>
+
+      <!-- E6 -->
+      <div class="question-block" id="eq-block-6">
+        <div class="question-header">
+          <div class="q-num">6</div>
+          <div class="q-text">¿Cuál de las siguientes acciones describe correctamente un "pivote" en el contexto de una startup?</div>
+          <div class="q-badge">Conceptual</div>
+        </div>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="ei6" value="a"> a) Cerrar definitivamente el negocio porque no fue rentable</label>
+          <label class="option-label"><input type="radio" name="ei6" value="b"> b) Continuar exactamente con el plan original aunque los datos indiquen que no funciona</label>
+          <label class="option-label"><input type="radio" name="ei6" value="c"> c) Cambiar estratégicamente la dirección del negocio basándose en evidencia del mercado, sin abandonar la visión original</label>
+          <label class="option-label"><input type="radio" name="ei6" value="d"> d) Fusionarse con un competidor más grande</label>
+        </div>
+        <div class="feedback-box" id="ef6"></div>
+      </div>
+
+      <!-- E7 -->
+      <div class="question-block" id="eq-block-7">
+        <div class="question-header">
+          <div class="q-num">7</div>
+          <div class="q-text">Una startup de pagos digitales en Ecuador crece de 500 a 50.000 usuarios en 6 meses, pero su sistema colapsa y la atención al cliente se deteriora gravemente. ¿Qué nombre recibe este fenómeno?</div>
+          <div class="q-badge">Conceptual</div>
+        </div>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="ei7" value="a"> a) Valle de la Muerte por crecimiento acelerado</label>
+          <label class="option-label"><input type="radio" name="ei7" value="b"> b) Blitzscaling fallido: escalar sin la infraestructura ni los procesos necesarios</label>
+          <label class="option-label"><input type="radio" name="ei7" value="c"> c) Product-Market Fit negativo</label>
+          <label class="option-label"><input type="radio" name="ei7" value="d"> d) Síndrome del fundador aplicado al área tecnológica</label>
+        </div>
+        <div class="feedback-box" id="ef7"></div>
+      </div>
+
+      <!-- E8 -->
+      <div class="question-block" id="eq-block-8">
+        <div class="question-header">
+          <div class="q-num">8</div>
+          <div class="q-text">Como contador/a en una startup, ¿cuál es tu responsabilidad más urgente durante el Valle de la Muerte?</div>
+          <div class="q-badge">Aplicación Profesional</div>
+        </div>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="ei8" value="a"> a) Diseñar el logo y la identidad visual de la marca</label>
+          <label class="option-label"><input type="radio" name="ei8" value="b"> b) Buscar socios comerciales en el exterior</label>
+          <label class="option-label"><input type="radio" name="ei8" value="c"> c) Controlar el burn rate, proyectar el runway disponible, mantener registros tributarios al día y preparar información financiera confiable para potenciales inversores</label>
+          <label class="option-label"><input type="radio" name="ei8" value="d"> d) Desarrollar el producto mínimo viable (MVP)</label>
+        </div>
+        <div class="feedback-box" id="ef8"></div>
+      </div>
+
+      <button class="verify-btn" id="verifyEj" onclick="verifyEjercicio()">✅ Verificar respuestas</button>
+      <button class="reset-btn" id="resetEj" onclick="resetEjercicio()">🔄 Reiniciar ejercicio</button>
+
+      <div class="results-panel" id="resultsEj">
+        <div class="emoji-score" id="emojiEj"></div>
+        <div class="score-big" id="scoreEjNum"></div>
+        <div class="score-label" id="scoreEjLabel"></div>
+        <div class="progress-track"><div class="progress-fill" id="barEj" style="width:0%"></div></div>
+        <div class="motivational" id="motivEj"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CUESTIONARIO ========== -->
+  <section id="cuestionario" class="tab-content">
+    <div class="quiz-container">
+      <div class="quiz-intro">
+        <h2>📝 Cuestionario — 10 preguntas</h2>
+        <p><strong>Instrucciones:</strong> Responde las 10 preguntas. Las primeras 7 son teóricas y las últimas 3 son de análisis de caso. Selecciona todas tus respuestas ANTES de verificar. Luego presiona <strong>"Verificar respuestas"</strong>.</p>
+      </div>
+
+      <!-- Q1 -->
+      <div class="question-block">
+        <div class="question-header">
+          <div class="q-num">1</div>
+          <div class="q-text">¿Cómo se denomina el período en que una startup gasta más dinero del que genera, antes de alcanzar la rentabilidad?</div>
+          <div class="q-badge">Teórica</div>
+        </div>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="qi1" value="a"> a) Runway financiero</label>
+          <label class="option-label"><input type="radio" name="qi1" value="b"> b) Valle de la Muerte (Valley of Death)</label>
+          <label class="option-label"><input type="radio" name="qi1" value="c"> c) Blitzscaling</label>
+          <label class="option-label"><input type="radio" name="qi1" value="d"> d) Bootstrapping crítico</label>
+        </div>
+        <div class="feedback-box" id="qf1"></div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question-block">
+        <div class="question-header">
+          <div class="q-num">2</div>
+          <div class="q-text">¿Qué es el "burn rate" en el contexto financiero de una startup?</div>
+          <div class="q-badge">Teórica</div>
+        </div>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="qi2" value="a"> a) El porcentaje de acciones que recibe un inversionista ángel</label>
+          <label class="option-label"><input type="radio" name="qi2" value="b"> b) La tasa de interés que cobra el banco por un microcrédito</label>
+          <label class="option-label"><input type="radio" name="qi2" value="c"> c) La velocidad a la que una startup consume su dinero disponible por mes, antes de generar ingresos suficientes</label>
+          <label class="option-label"><input type="radio" name="qi2" value="d"> d) El tiempo que le queda a la startup para operar con sus fondos actuales</label>
+        </div>
+        <div class="feedback-box" id="qf2"></div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question-block">
+        <div class="question-header">
+          <div class="q-num">3</div>
+          <div class="q-text">¿Qué son los "angel investors" (inversionistas ángel)?</div>
+          <div class="q-badge">Teórica</div>
+        </div>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="qi3" value="a"> a) Fondos de inversión institucionales que gestionan capital de múltiples inversionistas</label>
+          <label class="option-label"><input type="radio" name="qi3" value="b"> b) Personas naturales con patrimonio propio que invierten en startups en sus etapas más tempranas y arriesgadas, a cambio de participación accionaria</label>
+          <label class="option-label"><input type="radio" name="qi3" value="c"> c) Plataformas de financiamiento colectivo en internet</label>
+          <label class="option-label"><input type="radio" name="qi3" value="d"> d) Entidades del gobierno que financian emprendimientos con capital no reembolsable</label>
+        </div>
+        <div class="feedback-box" id="qf3"></div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question-block">
+        <div class="question-header">
+          <div class="q-num">4</div>
+          <div class="q-text">Según los datos presentados, ¿cuál es la principal causa de fracaso de las startups a nivel mundial?</div>
+          <div class="q-badge">Teórica</div>
+        </div>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="qi4" value="a"> a) Problemas de regulación legal en sus países de origen</label>
+          <label class="option-label"><input type="radio" name="qi4" value="b"> b) Conflictos entre cofundadores que no se resuelven</label>
+          <label class="option-label"><input type="radio" name="qi4" value="c"> c) Quedarse sin dinero (run out of cash): 38% de los casos</label>
+          <label class="option-label"><input type="radio" name="qi4" value="d"> d) No tener acceso a tecnología suficientemente avanzada</label>
+        </div>
+        <div class="feedback-box" id="qf4"></div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question-block">
+        <div class="question-header">
+          <div class="q-num">5</div>
+          <div class="q-text">¿Qué es el "síndrome del fundador" en el contexto de la gestión de startups?</div>
+          <div class="q-badge">Teórica</div>
+        </div>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="qi5" value="a"> a) El agotamiento extremo (burnout) que sufre el fundador por trabajar demasiadas horas</label>
+          <label class="option-label"><input type="radio" name="qi5" value="b"> b) La tendencia del fundador a no delegar, controlar todo personalmente y convertirse en el cuello de botella de la organización</label>
+          <label class="option-label"><input type="radio" name="qi5" value="c"> c) El conflicto entre cofundadores por la distribución de acciones</label>
+          <label class="option-label"><input type="radio" name="qi5" value="d"> d) La pérdida de la visión original de la startup cuando el fundador se aleja del negocio</label>
+        </div>
+        <div class="feedback-box" id="qf5"></div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="question-block">
+        <div class="question-header">
+          <div class="q-num">6</div>
+          <div class="q-text">¿Cuál de las siguientes opciones define correctamente el concepto de "escalar" una startup?</div>
+          <div class="q-badge">Teórica</div>
+        </div>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="qi6" value="a"> a) Aumentar el número de empleados en la misma proporción que crecen los ingresos</label>
+          <label class="option-label"><input type="radio" name="qi6" value="b"> b) Reducir los costos operativos a través de la automatización</label>
+          <label class="option-label"><input type="radio" name="qi6" value="c"> c) Hacer crecer los ingresos de manera exponencial sin que los costos aumenten en la misma proporción</label>
+          <label class="option-label"><input type="radio" name="qi6" value="d"> d) Expandirse geográficamente a nuevos países en los primeros 6 meses</label>
+        </div>
+        <div class="feedback-box" id="qf6"></div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="question-block">
+        <div class="question-header">
+          <div class="q-num">7</div>
+          <div class="q-text">¿Qué establece la Ley Orgánica de Emprendimiento e Innovación 2020 de Ecuador en beneficio de las startups?</div>
+          <div class="q-badge">Teórica</div>
+        </div>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="qi7" value="a"> a) Exime a las startups de pagar impuestos durante los primeros 10 años</label>
+          <label class="option-label"><input type="radio" name="qi7" value="b"> b) Crea beneficios como simplificación de trámites, acceso a financiamiento público y la figura jurídica de Sociedad por Acciones Simplificada (SAS)</label>
+          <label class="option-label"><input type="radio" name="qi7" value="c"> c) Obliga al SRI a otorgar créditos directos a las startups registradas</label>
+          <label class="option-label"><input type="radio" name="qi7" value="d"> d) Prohíbe la inversión extranjera en startups ecuatorianas sin autorización previa</label>
+        </div>
+        <div class="feedback-box" id="qf7"></div>
+      </div>
+
+      <!-- Q8 - CASO -->
+      <div class="question-block">
+        <div class="question-header">
+          <div class="q-num">8</div>
+          <div class="q-text"><strong>Caso:</strong> Andrea y Pedro fundan una startup de software educativo para colegios en Guayaquil. Tras 8 meses, los colegios prueban el sistema gratis pero no pagan por él. Sin embargo, un grupo de empresas usa el módulo de capacitación corporativa y paga mensualmente. ¿Cuál sería la decisión estratégica más recomendable?</div>
+          <div class="q-badge caso">Caso</div>
+        </div>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="qi8" value="a"> a) Eliminar el módulo corporativo para enfocarse 100% en los colegios</label>
+          <label class="option-label"><input type="radio" name="qi8" value="b"> b) Realizar un pivote estratégico hacia el segmento corporativo, que ya muestra señales de PMF, mientras se reevalúa el modelo con colegios</label>
+          <label class="option-label"><input type="radio" name="qi8" value="c"> c) Continuar con el plan original de colegios e ignorar el segmento corporativo por no estar en el plan de negocio inicial</label>
+          <label class="option-label"><input type="radio" name="qi8" value="d"> d) Vender la empresa al mayor competidor y reiniciar con otra idea</label>
+        </div>
+        <div class="feedback-box" id="qf8"></div>
+      </div>
+
+      <!-- Q9 - CASO -->
+      <div class="question-block">
+        <div class="question-header">
+          <div class="q-num">9</div>
+          <div class="q-text"><strong>Caso:</strong> La startup "AgriConecta" ha crecido de 200 a 8.000 agricultores registrados en 4 meses gracias a un convenio con el MAGAP. Sin embargo, su plataforma digital colapsa frecuentemente y el equipo de 5 personas no puede atender los problemas. ¿Cuál es el reto principal que enfrenta?</div>
+          <div class="q-badge caso">Caso</div>
+        </div>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="qi9" value="a"> a) Falta de Product-Market Fit: los agricultores no quieren realmente la plataforma</label>
+          <label class="option-label"><input type="radio" name="qi9" value="b"> b) Valle de la Muerte financiero: el convenio con el MAGAP genera deudas insostenibles</label>
+          <label class="option-label"><input type="radio" name="qi9" value="c"> c) Blitzscaling fallido: escaló la base de usuarios antes de tener la infraestructura tecnológica y el equipo necesarios para soportar ese crecimiento</label>
+          <label class="option-label"><input type="radio" name="qi9" value="d"> d) Síndrome del fundador: el CEO no delega decisiones al equipo técnico</label>
+        </div>
+        <div class="feedback-box" id="qf9"></div>
+      </div>
+
+      <!-- Q10 - CASO -->
+      <div class="question-block">
+        <div class="question-header">
+          <div class="q-num">10</div>
+          <div class="q-text"><strong>Caso:</strong> Valentina es contadora en una startup de logística con 18 meses de operación. El CEO le pide un informe urgente para presentar a un inversionista ángel interesado. ¿Qué información financiera es IMPRESCINDIBLE incluir para que el inversionista tome una decisión informada?</div>
+          <div class="q-badge caso">Caso</div>
+        </div>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="qi10" value="a"> a) El presupuesto de marketing para el siguiente año</label>
+          <label class="option-label"><input type="radio" name="qi10" value="b"> b) Burn rate mensual actual, runway disponible, proyecciones de ingresos y el estado de cumplimiento tributario con el SRI</label>
+          <label class="option-label"><input type="radio" name="qi10" value="c"> c) El árbol genealógico de los fundadores y su experiencia académica</label>
+          <label class="option-label"><input type="radio" name="qi10" value="d"> d) El análisis de las redes sociales de la competencia</label>
+        </div>
+        <div class="feedback-box" id="qf10"></div>
+      </div>
+
+      <button class="verify-btn" id="verifyQ" onclick="verifyQuiz()">✅ Verificar respuestas</button>
+      <button class="reset-btn" id="resetQ" onclick="resetQuiz()">🔄 Reiniciar cuestionario</button>
+
+      <div class="results-panel" id="resultsQ">
+        <div class="emoji-score" id="emojiQ"></div>
+        <div class="score-big" id="scoreQNum"></div>
+        <div class="score-label" id="scoreQLabel"></div>
+        <div class="progress-track"><div class="progress-fill" id="barQ" style="width:0%"></div></div>
+        <div class="motivational" id="motivQ"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ACTIVIDAD CON IA ========== -->
+  <section id="ia" class="tab-content">
+    <h2>🤖 Actividad con Inteligencia Artificial</h2>
+
+    <div class="concept-box">
+      <div class="concept-title">🎯 Objetivo de la Actividad</div>
+      <p>Usar la inteligencia artificial como interlocutora para analizar críticamente las problemáticas reales de una startup ecuatoriana, identificar cuáles son los retos más relevantes en el contexto local y proponer soluciones informadas. Esta actividad busca desarrollar tu pensamiento crítico, no reemplazarlo.</p>
+    </div>
+
+    <div class="ia-step">
+      <div class="ia-step-title"><div class="ia-step-num">1</div> Herramienta recomendada</div>
+      <p>Usa <strong>Claude en claude.ai</strong> (recomendado) como herramienta principal. También puedes usar ChatGPT (versión gratuita en chat.openai.com) o Gemini (gemini.google.com). Todas son gratuitas y accesibles desde el navegador.</p>
+    </div>
+
+    <div class="ia-step">
+      <div class="ia-step-title"><div class="ia-step-num">2</div> El Prompt que debes usar</div>
+      <p>Copia el siguiente prompt tal como aparece y pégalo en la IA que elijas:</p>
+      <div class="prompt-box" id="promptText">Actúa como un experto en startups y ecosistemas de emprendimiento latinoamericano. Voy a describirte una startup ficticia del Ecuador y necesito que analices sus principales riesgos y problemáticas.
+
+La startup se llama "EduFinanzas EC". Es una plataforma digital que ofrece cursos de educación financiera básica para personas entre 18 y 35 años en Ecuador, a través de una app móvil. El modelo de negocio es freemium: el contenido básico es gratuito y el avanzado cuesta $4,99 al mes. Tiene 3 fundadores (un contador, un diseñador y un experto en marketing digital), lleva 6 meses operando, tiene 800 usuarios registrados pero solo 40 pagan, gasta $3.500 al mes y tiene $21.000 en caja.
+
+Por favor:
+1. Calcula su runway actual y evalúa si es suficiente.
+2. Identifica al menos 4 problemáticas o retos críticos que enfrenta, clasificándolas en: financiero, equipo/cultura, mercado y escalabilidad.
+3. Para cada problemática, propón una acción concreta que podría tomar esta startup en los próximos 60 días.
+4. Desde el rol de contador/auditor en esta startup, ¿cuáles serían las 3 acciones financieras más urgentes?
+
+Responde de manera estructurada, con secciones claras para cada punto.
+      <button class="copy-btn" onclick="copyPrompt()">📋 Copiar</button></div>
+    </div>
+
+    <div class="ia-step">
+      <div class="ia-step-title"><div class="ia-step-num">3</div> ¿Qué hacer con la respuesta de la IA?</div>
+      <ol>
+        <li><strong>Lee la respuesta completa</strong> de la IA y toma nota de los puntos con los que estás de acuerdo y los que te generan duda.</li>
+        <li><strong>Compara</strong> el análisis de la IA con lo que aprendiste en el widget de esta semana. ¿Coincide con los cuatro grandes bloques de riesgos que estudiamos? ¿Hay algo que la IA no mencionó y tú sí sabes?</li>
+        <li><strong>Cuestiona al menos 2 puntos</strong> de la respuesta: ¿es aplicable ese consejo al contexto ecuatoriano específicamente? ¿Qué limitaciones tiene?</li>
+        <li><strong>Escribe un párrafo de análisis propio</strong> (mínimo 150 palabras) donde: (a) describes qué aprendiste del diálogo con la IA, (b) explicas en qué difiere tu análisis del de la IA, y (c) propones una acción adicional que la IA no consideró pero que tú, como futuro contador, añadirías.</li>
+      </ol>
+    </div>
+
+    <div class="ia-step">
+      <div class="ia-step-title"><div class="ia-step-num">4</div> Criterio de Evaluación</div>
+      <table class="rubric-table">
+        <thead>
+          <tr>
+            <th>Criterio</th>
+            <th>Pensamiento Crítico ✅</th>
+            <th>Copia Simple ❌</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Análisis</strong></td>
+            <td>Compara la respuesta de la IA con los conceptos del widget y señala coincidencias y diferencias.</td>
+            <td>Pega la respuesta de la IA sin ningún comentario propio.</td>
+          </tr>
+          <tr>
+            <td><strong>Contextualización</strong></td>
+            <td>Evalúa si las recomendaciones de la IA son aplicables al contexto ecuatoriano (SRI, Ley de Emprendimiento, mercado local).</td>
+            <td>Acepta todo lo que dice la IA como verdad universal sin cuestionarlo.</td>
+          </tr>
+          <tr>
+            <td><strong>Aporte propio</strong></td>
+            <td>Propone al menos una idea o acción que la IA no mencionó, fundamentada en el contenido del widget.</td>
+            <td>No aporta ningún elemento que no haya generado la IA.</td>
+          </tr>
+          <tr>
+            <td><strong>Rol profesional</strong></td>
+            <td>Conecta el análisis con su función específica como contador/auditor en una startup.</td>
+            <td>El análisis es genérico y no refleja aplicación al perfil profesional.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="warning-box">
+      <div class="warning-title">💡 Recuerda</div>
+      <p>La IA es una herramienta poderosa, pero comete errores y no siempre conoce las particularidades del contexto ecuatoriano. Tu valor como profesional está en saber usar la IA con criterio y complementar sus respuestas con conocimiento situado y juicio propio.</p>
+    </div>
+  </section>
+
+  <!-- ========== REFLEXIÓN PERSONAL ========== -->
+  <section id="reflexion" class="tab-content">
+    <div class="reflection-intro">
+      <h2>💭 Reflexión Personal</h2>
+      <p>Esta sección no tiene respuestas correctas ni incorrectas. Su propósito es conectar los contenidos de esta semana con tu vida cotidiana, tu historia personal y tu mundo emocional. Los conceptos que aprendemos no están separados de quien somos: viven en nuestras decisiones, nuestras relaciones y nuestras actitudes frente a los desafíos.</p>
+    </div>
+
+    <div class="reflection-card">
+      <div class="reflection-card-header">💰 Reflexión 1: Tu "Valle de la Muerte" Personal</div>
+      <div class="reflection-card-body">
+        <div class="reflection-q">En el mundo de las startups, el Valle de la Muerte es ese momento en que se gasta mucho y se recibe poco, antes de que las cosas funcionen. ¿Has vivido algo similar en tu propia vida? Puede ser un proceso de aprendizaje largo que al final valió la pena, una relación difícil que te formó, un período de trabajo duro sin resultados visibles. ¿Cómo lo atravesaste? ¿Qué te sostuvo cuando no había "rentabilidad" emocional o material inmediata?</div>
+        <textarea class="reflection-input" placeholder="Escribe aquí tu reflexión..."></textarea>
+      </div>
+    </div>
+
+    <div class="reflection-card">
+      <div class="reflection-card-header">👥 Reflexión 2: El Equipo que te Rodea</div>
+      <div class="reflection-card-body">
+        <div class="reflection-q">Estudiamos que el 23% de las startups fracasan por problemas en el equipo: conflictos entre socios, roles no definidos, culturas tóxicas. Piensa en los "equipos" que forman parte de tu vida: tu familia, tus amistades, tus compañeros de estudio o trabajo. ¿Qué roles juegas tú en esos equipos? ¿Tiendes a controlar todo (como el fundador con "síndrome del fundador") o a delegar y confiar? ¿Qué tipo de cultura construyes tú con las personas que te rodean?</div>
+        <textarea class="reflection-input" placeholder="Escribe aquí tu reflexión..."></textarea>
+      </div>
+    </div>
+
+    <div class="reflection-card">
+      <div class="reflection-card-header">🎯 Reflexión 3: Tu "Product-Market Fit" en la Vida</div>
+      <div class="reflection-card-body">
+        <div class="reflection-q">El PMF (ajuste producto-mercado) ocurre cuando lo que ofreces encaja perfectamente con lo que el mundo necesita. ¿Has vivido momentos en tu vida en que sentiste que "encajabas" perfectamente? Puede ser en una actividad académica, un trabajo, un grupo de amigos, un proyecto que disfrutaste. ¿Qué lo hacía tan diferente? Y al contrario: ¿ha habido situaciones en que sentiste que estabas "empujando" constantemente sin que las cosas fluyeran naturalmente? ¿Qué aprendiste de eso?</div>
+        <textarea class="reflection-input" placeholder="Escribe aquí tu reflexión..."></textarea>
+      </div>
+    </div>
+
+    <div class="reflection-card">
+      <div class="reflection-card-header">🔄 Reflexión 4: Tu Capacidad de Pivotar</div>
+      <div class="reflection-card-body">
+        <div class="reflection-q">Un pivote es cambiar de dirección con base en evidencia, sin abandonar la esencia de lo que eres. En la vida personal, a veces la evidencia (una nota, una conversación difícil, una derrota) nos indica que algo no está funcionando. ¿Cómo te relacionas tú con esa evidencia? ¿Tiendes a resistirte al cambio y "perseverar" incluso cuando los datos indican que debes ajustar el rumbo? ¿O pivoteas con demasiada facilidad, sin dar tiempo a que las cosas maduren? ¿Cómo podrías encontrar el equilibrio?</div>
+        <textarea class="reflection-input" placeholder="Escribe aquí tu reflexión..."></textarea>
+      </div>
+    </div>
+
+    <div class="reflection-card">
+      <div class="reflection-card-header">🌱 Reflexión 5: Escalar sin Perder la Esencia</div>
+      <div class="reflection-card-body">
+        <div class="reflection-q">Las startups que escalan muy rápido sin estar preparadas deterioran su cultura, su calidad y su propósito. ¿Has sentido algo similar cuando las responsabilidades o compromisos "escalaron" en tu vida más rápido de lo que tú podías asimilar? Podría ser cuando llegaron más materias, más trabajos, más compromisos familiares de lo que esperabas. ¿Cómo impacta ese crecimiento acelerado en tu bienestar emocional, en tu autoconocimiento, en la calidad de lo que produces? ¿Qué "infraestructura interna" (hábitos, descanso, claridad de propósito) necesitas desarrollar para crecer sin romperte?</div>
+        <textarea class="reflection-input" placeholder="Escribe aquí tu reflexión..."></textarea>
+      </div>
+    </div>
+
+    <div class="reflection-card">
+      <div class="reflection-card-header">⚖️ Reflexión 6: El Marco Regulatorio de tu Propia Vida</div>
+      <div class="reflection-card-body">
+        <div class="reflection-q">Las startups deben operar dentro de un marco legal y regulatorio. Las personas también vivimos dentro de marcos: leyes, normas sociales, valores familiares, principios éticos, fe. ¿Cuáles son los "marcos regulatorios" que guían tus decisiones? ¿Los vives como una limitación o como una estructura que te da seguridad y dirección? ¿Hay algún "valor regulatorio" en tu vida —un principio, una creencia, una enseñanza— que te ha ayudado a no perderte en los momentos de mayor presión o incertidumbre?</div>
+        <textarea class="reflection-input" placeholder="Escribe aquí tu reflexión..."></textarea>
+      </div>
+    </div>
+
+    <div class="key-idea" style="margin-top:22px;">
+      <strong>💡 Para recordar:</strong> Los contenidos de esta materia no son abstractos ni ajenos a tu vida. El emprendimiento, la innovación, los retos, los equipos, la adaptación y la regulación son realidades que ya estás viviendo en tu historia personal, estudiantil y profesional. Conectar la teoría con tu experiencia es la forma más poderosa de aprender.
+    </div>
+  </section>
+
+  <!-- ========== BIBLIOGRAFÍA ========== -->
+  <section id="biblio" class="tab-content">
+    <h2>📚 Bibliografía</h2>
+    <p>Referencias utilizadas para el desarrollo de los contenidos de esta semana, en formato APA 7.ª edición.</p>
+
+    <div class="bib-card">
+      <div class="bib-author">Blank, S., & Dorf, B.</div>
+      <div class="bib-title">The Startup Owner's Manual: The Step-by-Step Guide for Building a Great Company</div>
+      <div class="bib-source">K&S Ranch Press. (2012).</div>
+    </div>
+
+    <div class="bib-card">
+      <div class="bib-author">Ries, E.</div>
+      <div class="bib-title">The Lean Startup: How Today's Entrepreneurs Use Continuous Innovation to Create Radically Successful Businesses</div>
+      <div class="bib-source">Crown Business. (2011).</div>
+    </div>
+
+    <div class="bib-card">
+      <div class="bib-author">CB Insights.</div>
+      <div class="bib-title">The Top 12 Reasons Startups Fail</div>
+      <div class="bib-source">CB Insights Research. (2023). https://www.cbinsights.com/research/startup-failure-reasons-top/</div>
+    </div>
+
+    <div class="bib-card">
+      <div class="bib-author">Wasserman, N.</div>
+      <div class="bib-title">The Founder's Dilemmas: Anticipating and Avoiding the Pitfalls That Can Sink a Startup</div>
+      <div class="bib-source">Princeton University Press. (2012).</div>
+    </div>
+
+    <div class="bib-card">
+      <div class="bib-author">Isenberg, D.</div>
+      <div class="bib-title">Worthless, Impossible, and Stupid: How Contrarian Entrepreneurs Create and Capture Extraordinary Value</div>
+      <div class="bib-source">Harvard Business Review Press. (2013).</div>
+    </div>
+
+    <div class="bib-card">
+      <div class="bib-author">Global Entrepreneurship Monitor (GEM).</div>
+      <div class="bib-title">GEM Ecuador Report 2022/2023: Condiciones del Marco Emprendedor</div>
+      <div class="bib-source">Global Entrepreneurship Research Association. (2023). https://www.gemconsortium.org/</div>
+    </div>
+
+    <div class="bib-card">
+      <div class="bib-author">Asamblea Nacional del Ecuador.</div>
+      <div class="bib-title">Ley Orgánica de Emprendimiento e Innovación</div>
+      <div class="bib-source">Registro Oficial Suplemento 151. (2020, 28 de febrero). https://www.registroficial.gob.ec/</div>
+    </div>
+
+    <div class="bib-card">
+      <div class="bib-author">Moore, G. A.</div>
+      <div class="bib-title">Crossing the Chasm: Marketing and Selling Disruptive Products to Mainstream Customers (3rd ed.)</div>
+      <div class="bib-source">HarperBusiness. (2014).</div>
+    </div>
+
+    <div class="bib-card">
+      <div class="bib-author">Harnish, V.</div>
+      <div class="bib-title">Scaling Up: How a Few Companies Make It...and Why the Rest Don't</div>
+      <div class="bib-source">Gazelles Inc. (2014).</div>
+    </div>
+
+    <div class="bib-note">
+      📌 <strong>Nota académica:</strong> Se recomienda verificar cada referencia en Google Scholar (scholar.google.com) o en el repositorio institucional antes de citar en trabajos académicos. Las URLs pueden cambiar con el tiempo.
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script>
+// ============================================================
+// NAVEGACIÓN DE PESTAÑAS
+// ============================================================
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+
+// ============================================================
+// COPY PROMPT
+// ============================================================
+function copyPrompt() {
+  const text = document.getElementById('promptText').innerText.replace('📋 Copiar','').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    alert('Prompt copiado al portapapeles. Pégalo en Claude, ChatGPT o Gemini.');
+  }).catch(() => {
+    alert('No se pudo copiar automáticamente. Selecciona el texto y cópialo manualmente.');
+  });
+}
+
+// ============================================================
+// HERRAMIENTA DE DIAGNÓSTICO
+// ============================================================
+function runDiagnosis() {
+  const areas = [
+    { name: 'Financiero', qs: ['r1','r2','r3'], color: '#1976d2', desc: ['Claridad sobre burn rate y runway', 'Fuentes de financiamiento identificadas', 'Cumplimiento tributario y contable'] },
+    { name: 'Equipo y Cultura', qs: ['r4','r5','r6'], color: '#7b1fa2', desc: ['Roles y acuerdos documentados', 'Visión compartida del equipo', 'Cultura organizacional saludable'] },
+    { name: 'Mercado y PMF', qs: ['r7','r8','r9'], color: '#c62828', desc: ['Validación con clientes reales', 'Análisis competitivo claro', 'Segmento de mercado definido'] },
+    { name: 'Escalabilidad y Regulación', qs: ['r10','r11','r12'], color: '#2e7d32', desc: ['Modelo de negocio escalable', 'Conocimiento del marco legal ecuatoriano', 'Plan de crecimiento estructurado'] }
+  ];
+
+  let allAnswered = true;
+  const areaScores = [];
+
+  for (const area of areas) {
+    let total = 0;
+    for (const q of area.qs) {
+      const val = document.querySelector(`input[name="${q}"]:checked`);
+      if (!val) { allAnswered = false; break; }
+      total += parseInt(val.value);
+    }
+    areaScores.push({ ...area, score: total, max: 15 });
+  }
+
+  if (!allAnswered) {
+    alert('Por favor, responde todas las afirmaciones antes de ver el diagnóstico.');
+    return;
+  }
+
+  const totalScore = areaScores.reduce((a, b) => a + b.score, 0);
+  const totalMax = 60;
+  const pct = Math.round((totalScore / totalMax) * 100);
+
+  let overallMsg = '';
+  let overallClass = '';
+  if (pct >= 80) {
+    overallMsg = '🌟 Excelente preparación. Tu startup tiene una base sólida en las cuatro áreas. Continúa monitoreando y mejorando.';
+    overallClass = 'risk-low';
+  } else if (pct >= 60) {
+    overallMsg = '📊 Preparación moderada. Hay áreas que requieren atención inmediata para reducir el riesgo de fracaso.';
+    overallClass = 'risk-med';
+  } else {
+    overallMsg = '⚠️ Atención urgente requerida. Varias áreas muestran vulnerabilidades críticas. Trabaja en estas áreas antes de escalar.';
+    overallClass = 'risk-high';
+  }
+
+  let html = `<p style="font-size:15px; margin-bottom:16px;"><strong>Puntuación total: ${totalScore}/${totalMax} (${pct}%)</strong></p>`;
+  html += `<div class="area-score-bar"><div style="height:16px; background:#dde8f5; border-radius:20px; overflow:hidden; margin-bottom:12px;"><div style="height:100%; width:${pct}%; background:${pct>=80?'#4caf50':pct>=60?'#ff9800':'#f44336'}; border-radius:20px; transition: width 0.8s ease;"></div></div></div>`;
+
+  for (const a of areaScores) {
+    const aPct = Math.round((a.score / a.max) * 100);
+    const barColor = aPct >= 80 ? '#4caf50' : aPct >= 60 ? '#ff9800' : '#f44336';
+    const level = aPct >= 80 ? 'Riesgo bajo ✅' : aPct >= 60 ? 'Riesgo moderado ⚠️' : 'Riesgo alto ❌';
+    html += `
+      <div class="area-score-bar" style="margin-bottom:16px;">
+        <div class="area-score-label">
+          <span style="font-weight:700; color:#003366;">${a.name}</span>
+          <span>${a.score}/${a.max} — ${level}</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:${aPct}%; background:${barColor};"></div>
+        </div>
+        <ul style="font-size:12px; color:#555; margin-top:6px; padding-left:18px;">
+          ${a.desc.map((d, i) => `<li>${d}</li>`).join('')}
+        </ul>
+      </div>`;
+  }
+
+  html += `<div style="background:rgba(0,51,102,0.08); border-radius:8px; padding:14px 16px; margin-top:10px; font-size:14px;">${overallMsg}</div>`;
+  html += `<p style="font-size:12px; color:#777; margin-top:12px;">💡 Este diagnóstico es una herramienta de reflexión educativa, no un análisis financiero profesional. Para una evaluación real, consulta con asesores especializados.</p>`;
+
+  document.getElementById('diagBody').innerHTML = html;
+  document.getElementById('diagResult').style.display = 'block';
+  document.getElementById('diagResult').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+// ============================================================
+// EJERCICIO INTERACTIVO
+// ============================================================
+const ejercicioCorrects = {
+  ei1: 'b',
+  ei2: 'b',
+  ei3: 'c',
+  ei4: 'b',
+  ei5: 'b',
+  ei6: 'c',
+  ei7: 'b',
+  ei8: 'c'
+};
+
+const ejercicioFeedbacks = {
+  ei1: { correct: '✅ Correcto. Runway = $24.000 ÷ $8.000/mes = 3 meses. Es un período muy corto que exige acción inmediata.', incorrect: '❌ Incorrecto. La fórmula es: Runway = Dinero disponible ÷ Burn rate mensual. $24.000 ÷ $8.000 = 3 meses.' },
+  ei2: { correct: '✅ Correcto. Un pacto entre fundadores (founders agreement) establece visión, roles, participación y mecanismos de decisión desde el inicio, previniendo conflictos estratégicos.', incorrect: '❌ Incorrecto. El problema es un desacuerdo estratégico entre cofundadores. La herramienta preventiva correcta es el founders agreement, que define reglas del juego desde el inicio.' },
+  ei3: { correct: '✅ Correcto. Cuando los clientes regresan solos y de manera orgánica sin necesidad de publicidad constante, es la señal más clara de que se ha alcanzado el Product-Market Fit.', incorrect: '❌ Incorrecto. Esta situación describe el Product-Market Fit: los clientes "jalan" el producto porque lo necesitan y lo valoran, en lugar de que la startup deba "empujarlo".' },
+  ei4: { correct: '✅ Correcto. El síndrome del fundador describe exactamente esta situación: el fundador no puede delegar, se convierte en el cuello de botella de todas las decisiones de la organización.', incorrect: '❌ Incorrecto. El síndrome del fundador es el patrón en que el fundador siente que nadie puede hacer las cosas como él/ella y controla todo personalmente, impidiendo que la organización crezca.' },
+  ei5: { correct: '✅ Correcto. Una definición tan amplia del mercado impide diseñar una solución específica, dispersa los recursos y hace imposible identificar un problema concreto que resolver.', incorrect: '❌ Incorrecto. El problema principal es la amplitud excesiva del mercado definido. Sin un segmento específico, es imposible diseñar una propuesta de valor enfocada o medir el PMF.' },
+  ei6: { correct: '✅ Correcto. Un pivote es un cambio estratégico basado en evidencia, no un abandono del negocio ni una rendición, sino una adaptación inteligente que mantiene la visión pero ajusta la dirección.', incorrect: '❌ Incorrecto. El pivote es un concepto específico: cambio estratégico fundamentado en evidencia del mercado, que mantiene la visión esencial pero modifica el camino para llegar a ella.' },
+  ei7: { correct: '✅ Correcto. El blitzscaling fallido ocurre cuando se escala la base de usuarios antes de tener la infraestructura y el equipo para soportar ese crecimiento, lo que deteriora la calidad del servicio.', incorrect: '❌ Incorrecto. Este es un caso clásico de blitzscaling fallido: la startup creció en usuarios más rápido que su capacidad tecnológica y humana para atenderlos.' },
+  ei8: { correct: '✅ Correcto. Durante el Valle de la Muerte, el contador cumple un rol estratégico: controla el burn rate, proyecta el runway, mantiene el cumplimiento tributario y prepara información financiera confiable para inversores.', incorrect: '❌ Incorrecto. El rol más crítico del contador durante el Valle de la Muerte es la gestión financiera estratégica: burn rate, runway, cumplimiento tributario y preparación de información para inversores.' }
+};
+
+function verifyEjercicio() {
+  const names = Object.keys(ejercicioCorrects);
+  let unanswered = names.filter(n => !document.querySelector(`input[name="${n}"]:checked`));
+  if (unanswered.length > 0) {
+    alert(`Aún tienes ${unanswered.length} pregunta(s) sin responder. Por favor responde todas antes de verificar.`);
+    return;
+  }
+  let correct = 0;
+  names.forEach(n => {
+    const selected = document.querySelector(`input[name="${n}"]:checked`).value;
+    const isCorrect = selected === ejercicioCorrects[n];
+    if (isCorrect) correct++;
+    const num = n.replace('ei','');
+    const fb = document.getElementById(`ef${num}`);
+    fb.textContent = isCorrect ? ejercicioFeedbacks[n].correct : ejercicioFeedbacks[n].incorrect;
+    fb.className = `feedback-box ${isCorrect ? 'correct' : 'incorrect'}`;
+    fb.style.display = 'block';
+    document.querySelectorAll(`input[name="${n}"]`).forEach(radio => {
+      radio.disabled = true;
+      const lbl = radio.closest('.option-label');
+      if (radio.value === ejercicioCorrects[n]) lbl.classList.add('correct');
+      else if (radio.checked) lbl.classList.add('incorrect');
+    });
+  });
+  const pct = Math.round((correct / names.length) * 100);
+  const emoji = pct === 100 ? '🏆' : pct >= 80 ? '🎯' : pct >= 60 ? '📘' : pct >= 40 ? '⚠️' : '📖';
+  const msg = pct === 100 ? '¡Perfecto! Dominaste todos los retos de la semana.' : pct >= 80 ? '¡Muy bien! Tienes una comprensión sólida del tema.' : pct >= 60 ? 'Buen avance. Repasa las respuestas incorrectas para reforzar.' : pct >= 40 ? 'Puedes mejorar. Vuelve al material y revisa los conceptos.' : 'Te recomendamos releer el contenido y volver a intentarlo.';
+  document.getElementById('emojiEj').textContent = emoji;
+  document.getElementById('scoreEjNum').textContent = `${correct}/${names.length}`;
+  document.getElementById('scoreEjLabel').textContent = `${pct}% de respuestas correctas`;
+  document.getElementById('barEj').style.width = pct + '%';
+  document.getElementById('motivEj').textContent = msg;
+  document.getElementById('resultsEj').style.display = 'block';
+  document.getElementById('verifyEj').style.display = 'none';
+  document.getElementById('resetEj').style.display = 'block';
+  document.getElementById('resultsEj').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function resetEjercicio() {
+  Object.keys(ejercicioCorrects).forEach(n => {
+    document.querySelectorAll(`input[name="${n}"]`).forEach(r => { r.checked = false; r.disabled = false; });
+    const num = n.replace('ei','');
+    const fb = document.getElementById(`ef${num}`);
+    if(fb){ fb.style.display = 'none'; fb.textContent = ''; fb.className = 'feedback-box'; }
+    document.querySelectorAll(`input[name="${n}"]`).forEach(r => {
+      const lbl = r.closest('.option-label');
+      lbl.classList.remove('correct','incorrect');
+    });
+  });
+  document.getElementById('resultsEj').style.display = 'none';
+  document.getElementById('verifyEj').style.display = 'block';
+  document.getElementById('resetEj').style.display = 'none';
+}
+
+// ============================================================
+// CUESTIONARIO
+// ============================================================
+const quizCorrects = {
+  qi1: 'b',
+  qi2: 'c',
+  qi3: 'b',
+  qi4: 'c',
+  qi5: 'b',
+  qi6: 'c',
+  qi7: 'b',
+  qi8: 'b',
+  qi9: 'c',
+  qi10: 'b'
+};
+
+const quizFeedbacks = {
+  qi1: { correct: '✅ Correcto. El Valle de la Muerte (Valley of Death) es el período crítico en que la startup gasta más de lo que genera, entre el inicio y la rentabilidad.', incorrect: '❌ Incorrecto. El Valley of Death es el concepto correcto: el período previo a la rentabilidad en que los gastos superan los ingresos y la empresa consume sus reservas.' },
+  qi2: { correct: '✅ Correcto. El burn rate es la velocidad (generalmente en $/mes) a la que una startup consume su dinero disponible antes de generar ingresos suficientes.', incorrect: '❌ Incorrecto. El burn rate es la tasa mensual de consumo de dinero. El runway, en cambio, es el tiempo que le queda a la startup con sus fondos actuales (burn rate y runway son conceptos relacionados pero diferentes).' },
+  qi3: { correct: '✅ Correcto. Los inversionistas ángel son personas naturales con patrimonio propio que financian startups en sus etapas más tempranas, cuando el riesgo es mayor.', incorrect: '❌ Incorrecto. Los inversionistas ángel son personas naturales (individuos, no fondos) que invierten su propio dinero en startups tempranas. No son fondos institucionales ni plataformas de crowdfunding.' },
+  qi4: { correct: '✅ Correcto. Según CB Insights (2023), el 38% de los fracasos de startups se debe a quedarse sin dinero (run out of cash), siendo la causa principal de mortalidad.', incorrect: '❌ Incorrecto. La principal causa de fracaso de startups es quedarse sin dinero (38% de los casos), por encima de los problemas de equipo (23%) o de mercado (29%).' },
+  qi5: { correct: '✅ Correcto. El síndrome del fundador describe la incapacidad de delegar: el fundador controla todo personalmente, se vuelve cuello de botella y frena el crecimiento organizacional.', incorrect: '❌ Incorrecto. El síndrome del fundador es específicamente el patrón de no delegar y controlar todo personalmente. No debe confundirse con el burnout (agotamiento) aunque pueden coexistir.' },
+  qi6: { correct: '✅ Correcto. Escalar significa crecer en ingresos de manera exponencial sin que los costos crezcan proporcionalmente, lo que define la capacidad de una startup de generar rentabilidad masiva.', incorrect: '❌ Incorrecto. Escalar es hacer crecer los ingresos exponencialmente sin que los costos crezcan en la misma proporción. No implica simplemente contratar más personas ni expandirse geográficamente de forma prematura.' },
+  qi7: { correct: '✅ Correcto. La Ley Orgánica de Emprendimiento e Innovación 2020 introduce la Sociedad por Acciones Simplificada (SAS), simplifica trámites y mejora el acceso al financiamiento público.', incorrect: '❌ Incorrecto. La ley no exime de impuestos ni prohíbe inversión extranjera. Crea la figura de la SAS, simplifica trámites y facilita el acceso a financiamiento, sin eliminar obligaciones tributarias.' },
+  qi8: { correct: '✅ Correcto. El segmento corporativo está mostrando señales claras de PMF (pagan voluntariamente). El pivote estratégico hacia ese segmento, mientras se reevalúa el modelo con colegios, es la decisión más inteligente.', incorrect: '❌ Incorrecto. Los datos muestran PMF en el segmento corporativo (pagan) pero no en el de colegios (no pagan). La decisión más estratégica es pivotear hacia donde el mercado ya está respondiendo.' },
+  qi9: { correct: '✅ Correcto. Es un caso clásico de blitzscaling fallido: la startup creció en usuarios antes de tener la infraestructura tecnológica y el equipo humano necesarios para soportar ese volumen.', incorrect: '❌ Incorrecto. La startup tiene PMF (el convenio con el MAGAP demuestra demanda real). El problema es el blitzscaling fallido: crecer en usuarios antes de poder atenderlos con calidad.' },
+  qi10: { correct: '✅ Correcto. Un inversionista ángel necesita conocer el burn rate, el runway, las proyecciones de ingresos y el estado tributario para evaluar el riesgo y el potencial de la startup.', incorrect: '❌ Incorrecto. La información financiera esencial para un inversionista incluye: burn rate, runway, proyecciones de ingresos y cumplimiento tributario. Son los datos que permiten evaluar viabilidad y riesgo.' }
+};
+
+function verifyQuiz() {
+  const names = Object.keys(quizCorrects);
+  let unanswered = names.filter(n => !document.querySelector(`input[name="${n}"]:checked`));
+  if (unanswered.length > 0) {
+    alert(`Aún tienes ${unanswered.length} pregunta(s) sin responder. Por favor responde todas antes de verificar.`);
+    return;
+  }
+  let correct = 0;
+  names.forEach(n => {
+    const selected = document.querySelector(`input[name="${n}"]:checked`).value;
+    const isCorrect = selected === quizCorrects[n];
+    if (isCorrect) correct++;
+    const num = n.replace('qi','');
+    const fb = document.getElementById(`qf${num}`);
+    fb.textContent = isCorrect ? quizFeedbacks[n].correct : quizFeedbacks[n].incorrect;
+    fb.className = `feedback-box ${isCorrect ? 'correct' : 'incorrect'}`;
+    fb.style.display = 'block';
+    document.querySelectorAll(`input[name="${n}"]`).forEach(radio => {
+      radio.disabled = true;
+      const lbl = radio.closest('.option-label');
+      if (radio.value === quizCorrects[n]) lbl.classList.add('correct');
+      else if (radio.checked) lbl.classList.add('incorrect');
+    });
+  });
+  const pct = Math.round((correct / names.length) * 100);
+  const emoji = pct === 100 ? '🏆' : pct >= 80 ? '🎯' : pct >= 60 ? '📘' : pct >= 40 ? '⚠️' : '📖';
+  const msg = pct === 100 ? '¡Perfecto! Dominas todos los conceptos de la semana.' : pct >= 80 ? '¡Muy buen resultado! Tienes una comprensión sólida.' : pct >= 60 ? 'Progreso visible. Refuerza los conceptos en los que fallaste.' : pct >= 40 ? 'Necesitas reforzar. Revisa el material y vuelve a intentarlo.' : 'Te recomendamos releer todo el contenido del widget.';
+  document.getElementById('emojiQ').textContent = emoji;
+  document.getElementById('scoreQNum').textContent = `${correct}/10`;
+  document.getElementById('scoreQLabel').textContent = `${pct}% de respuestas correctas`;
+  document.getElementById('barQ').style.width = pct + '%';
+  document.getElementById('motivQ').textContent = msg;
+  document.getElementById('resultsQ').style.display = 'block';
+  document.getElementById('verifyQ').style.display = 'none';
+  document.getElementById('resetQ').style.display = 'block';
+  document.getElementById('resultsQ').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function resetQuiz() {
+  Object.keys(quizCorrects).forEach(n => {
+    document.querySelectorAll(`input[name="${n}"]`).forEach(r => { r.checked = false; r.disabled = false; });
+    const num = n.replace('qi','');
+    const fb = document.getElementById(`qf${num}`);
+    if(fb){ fb.style.display = 'none'; fb.textContent = ''; fb.className = 'feedback-box'; }
+    document.querySelectorAll(`input[name="${n}"]`).forEach(r => {
+      const lbl = r.closest('.option-label');
+      lbl.classList.remove('correct','incorrect');
+    });
+  });
+  document.getElementById('resultsQ').style.display = 'none';
+  document.getElementById('verifyQ').style.display = 'block';
+  document.getElementById('resetQ').style.display = 'none';
+}
+
+// ============================================================
+// ANIMACIÓN DE BARRAS AL CARGAR
+// ============================================================
+window.addEventListener('load', () => {
+  // Asegurar que las barras se animen cuando sean visibles
+});
+</script>
+</body>
+</html>
