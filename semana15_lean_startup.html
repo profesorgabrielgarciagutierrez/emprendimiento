@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 15 | Metodología Lean Startup | Emprendimiento e Innovación</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#003366;
+    --skyblue:#87CEEB;
+    --lightblue:#eaf4fb;
+    --ink:#1a1a1a;
+    --green:#1e7e34;
+    --green-bg:#e6f4ea;
+    --red:#b00020;
+    --red-bg:#fdeaea;
+    --amber:#9a6700;
+    --amber-bg:#fff6e0;
+    --border:#cfd8e3;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Source Sans 3', sans-serif;
+    color:var(--ink);
+    background:#f4f7fa;
+    line-height:1.6;
+  }
+  h1,h2,h3,h4{font-family:'Lora', serif; color:var(--navy); margin-top:0;}
+  header.main-header{
+    background:var(--navy);
+    color:#ffffff;
+    padding:22px 18px;
+    text-align:center;
+  }
+  header.main-header .institucion{
+    font-size:0.95rem;
+    letter-spacing:0.4px;
+    opacity:0.95;
+  }
+  header.main-header h1{
+    color:#ffffff;
+    font-size:1.6rem;
+    margin:8px 0 4px 0;
+  }
+  header.main-header .subt{
+    font-size:1.05rem;
+    font-weight:600;
+    margin-bottom:2px;
+  }
+  header.main-header .tema-title{
+    font-size:1.0rem;
+    font-weight:400;
+    opacity:0.95;
+  }
+  nav.tabs-wrapper{
+    background:var(--skyblue);
+    overflow-x:auto;
+    white-space:nowrap;
+    -webkit-overflow-scrolling:touch;
+    border-bottom:3px solid var(--navy);
+  }
+  nav.tabs-wrapper::-webkit-scrollbar{height:8px;}
+  nav.tabs-wrapper::-webkit-scrollbar-thumb{background:var(--navy); border-radius:4px;}
+  .tabs{
+    display:inline-flex;
+    padding:0 6px;
+  }
+  .tab-btn{
+    background:transparent;
+    border:none;
+    color:#0b2b40;
+    font-family:'Source Sans 3', sans-serif;
+    font-weight:600;
+    font-size:0.88rem;
+    padding:13px 16px;
+    cursor:pointer;
+    white-space:nowrap;
+    border-right:1px solid rgba(0,51,102,0.15);
+    transition:background .15s ease;
+  }
+  .tab-btn:hover{background:rgba(255,255,255,0.35);}
+  .tab-btn.active{
+    background:#ffffff;
+    color:var(--navy);
+    font-weight:700;
+    box-shadow:inset 0 -3px 0 var(--navy);
+  }
+  main{
+    max-width:920px;
+    margin:0 auto;
+    padding:22px 18px 60px 18px;
+  }
+  .panel{display:none; animation:fadeIn .25s ease;}
+  .panel.active{display:block;}
+  @keyframes fadeIn{from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);}}
+
+  .concept-box{
+    border-left:5px solid var(--navy);
+    background:#ffffff;
+    padding:14px 16px;
+    margin:16px 0;
+    border-radius:0 6px 6px 0;
+    box-shadow:0 1px 3px rgba(0,0,0,0.06);
+  }
+  .concept-box strong.label{color:var(--navy);}
+  .example-box{
+    background:var(--lightblue);
+    border:1px solid #bcdcef;
+    padding:14px 16px;
+    margin:16px 0;
+    border-radius:8px;
+  }
+  .example-box .tag{
+    display:inline-block;
+    background:var(--navy);
+    color:#fff;
+    font-size:0.72rem;
+    font-weight:700;
+    padding:2px 9px;
+    border-radius:12px;
+    margin-bottom:8px;
+    letter-spacing:0.3px;
+  }
+  .conclusion-box{
+    background:#003366;
+    color:#ffffff;
+    padding:14px 16px;
+    margin:18px 0 6px 0;
+    border-radius:8px;
+  }
+  .conclusion-box h4{color:#ffffff; margin-bottom:6px;}
+  .def{
+    font-style:italic;
+    color:#0b4a7a;
+  }
+  table.comp-table{
+    width:100%;
+    border-collapse:collapse;
+    margin:16px 0;
+    font-size:0.92rem;
+    background:#fff;
+  }
+  table.comp-table th{
+    background:var(--navy);
+    color:#fff;
+    padding:9px 10px;
+    text-align:left;
+  }
+  table.comp-table td{
+    padding:9px 10px;
+    border-bottom:1px solid var(--border);
+    vertical-align:top;
+  }
+  table.comp-table tr:nth-child(even){background:#f7fafc;}
+  ul.visual-list{padding-left:20px;}
+  ul.visual-list li{margin-bottom:8px;}
+  .pivot-list{list-style:none; padding:0; margin:14px 0;}
+  .pivot-list li{
+    background:#fff;
+    border:1px solid var(--border);
+    border-left:4px solid var(--navy);
+    padding:9px 12px;
+    margin-bottom:7px;
+    border-radius:0 6px 6px 0;
+    font-size:0.93rem;
+  }
+  .pivot-list b{color:var(--navy);}
+
+  /* Botones */
+  .btn{
+    background:var(--navy);
+    color:#fff;
+    border:none;
+    padding:11px 22px;
+    border-radius:6px;
+    font-weight:700;
+    font-size:0.95rem;
+    cursor:pointer;
+    font-family:'Source Sans 3', sans-serif;
+  }
+  .btn:hover{background:#024a8c;}
+  .btn-secondary{
+    background:#fff;
+    color:var(--navy);
+    border:2px solid var(--navy);
+  }
+  .btn-secondary:hover{background:var(--lightblue);}
+  .btn-row{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px;}
+
+  /* Ejercicio / Quiz */
+  .question-block{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:14px 16px;
+    margin-bottom:14px;
+  }
+  .q-header{display:flex; align-items:center; gap:10px; margin-bottom:8px; flex-wrap:wrap;}
+  .badge{
+    font-size:0.7rem;
+    font-weight:700;
+    padding:3px 9px;
+    border-radius:10px;
+    color:#fff;
+  }
+  .badge.teorica{background:#0b6e4f;}
+  .badge.analisis{background:#a85d00;}
+  .q-text{font-weight:600;}
+  .option-label{
+    display:block;
+    background:#f7fafc;
+    border:1px solid var(--border);
+    border-radius:6px;
+    padding:9px 12px;
+    margin:6px 0;
+    cursor:pointer;
+    font-size:0.93rem;
+  }
+  .option-label:hover{background:#eef4fa;}
+  .option-label input{margin-right:8px;}
+  .feedback{
+    margin-top:10px;
+    padding:10px 12px;
+    border-radius:6px;
+    font-size:0.9rem;
+    display:none;
+  }
+  .feedback.correct{background:var(--green-bg); color:var(--green); border:1px solid #b7e0c2; display:block;}
+  .feedback.incorrect{background:var(--red-bg); color:var(--red); border:1px solid #f0bcbc; display:block;}
+  .option-label.correct-ans{border-color:var(--green); background:var(--green-bg);}
+  .option-label.incorrect-ans{border-color:var(--red); background:var(--red-bg);}
+
+  .score-panel{
+    background:#fff;
+    border:2px solid var(--navy);
+    border-radius:10px;
+    padding:20px;
+    text-align:center;
+    margin-top:18px;
+    display:none;
+  }
+  .score-panel.show{display:block;}
+  .score-num{font-size:2.1rem; font-weight:700; color:var(--navy); font-family:'Lora', serif;}
+  .progress-bar-bg{
+    background:#e2e8f0;
+    border-radius:8px;
+    height:18px;
+    overflow:hidden;
+    margin:14px 0;
+  }
+  .progress-bar-fill{
+    height:100%;
+    background:linear-gradient(90deg, #003366, #2a6fb0);
+    width:0%;
+    transition:width 1s ease;
+    border-radius:8px;
+  }
+  .alert-box{
+    background:var(--amber-bg);
+    border:1px solid #e8c873;
+    color:var(--amber);
+    padding:10px 14px;
+    border-radius:6px;
+    margin-top:12px;
+    display:none;
+    font-weight:600;
+  }
+  .alert-box.show{display:block;}
+
+  /* Herramienta guiada */
+  .step-block{
+    background:#fff;
+    border:1px solid var(--border);
+    border-left:5px solid var(--navy);
+    border-radius:0 8px 8px 0;
+    padding:16px;
+    margin-bottom:16px;
+  }
+  .step-num{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:28px;
+    height:28px;
+    background:var(--navy);
+    color:#fff;
+    border-radius:50%;
+    font-weight:700;
+    font-size:0.85rem;
+    margin-right:8px;
+  }
+  .form-group{margin:12px 0;}
+  .form-group label{display:block; font-weight:700; color:var(--navy); margin-bottom:5px; font-size:0.93rem;}
+  .form-group .hint{font-size:0.83rem; color:#555; margin-bottom:6px; font-style:italic;}
+  .form-group input[type=text], .form-group textarea, .form-group select{
+    width:100%;
+    padding:9px 10px;
+    border:1px solid var(--border);
+    border-radius:6px;
+    font-family:'Source Sans 3', sans-serif;
+    font-size:0.93rem;
+  }
+  .form-group textarea{min-height:70px; resize:vertical;}
+  .radio-inline{display:flex; gap:18px; flex-wrap:wrap; margin-top:6px;}
+  .radio-inline label{font-weight:600; font-size:0.93rem; cursor:pointer;}
+  .summary-output{
+    background:var(--lightblue);
+    border:2px dashed var(--navy);
+    border-radius:8px;
+    padding:16px;
+    margin-top:16px;
+    display:none;
+  }
+  .summary-output.show{display:block;}
+  .summary-output h4{color:var(--navy);}
+  .summary-output p{margin:6px 0; font-size:0.93rem;}
+
+  /* Bibliografía */
+  .biblio-card{
+    background:#fff;
+    border:1px solid var(--border);
+    border-left:5px solid var(--navy);
+    border-radius:0 8px 8px 0;
+    padding:14px 16px;
+    margin-bottom:12px;
+  }
+  .biblio-card .autor-anio{font-weight:700; color:var(--navy);}
+  .biblio-card .titulo{font-style:italic;}
+  .footnote{
+    font-size:0.85rem;
+    color:#555;
+    border-top:1px solid var(--border);
+    padding-top:10px;
+    margin-top:18px;
+  }
+
+  /* AI Activity */
+  .prompt-box{
+    background:#0b2b40;
+    color:#e8f3fb;
+    padding:16px;
+    border-radius:8px;
+    font-family:'Source Sans 3', sans-serif;
+    font-size:0.9rem;
+    white-space:pre-wrap;
+    margin:14px 0;
+    line-height:1.55;
+  }
+  .rubric-table th{background:var(--navy); color:#fff;}
+
+  /* Reflexión */
+  .reflex-q{
+    background:#fff;
+    border-left:5px solid var(--skyblue);
+    border:1px solid var(--border);
+    padding:13px 16px;
+    margin-bottom:12px;
+    border-radius:0 8px 8px 0;
+  }
+  .reflex-q b{color:var(--navy);}
+  textarea.reflex-area{
+    width:100%; min-height:60px; margin-top:8px;
+    border:1px solid var(--border); border-radius:6px; padding:8px;
+    font-family:'Source Sans 3', sans-serif; font-size:0.9rem; resize:vertical;
+  }
+
+  @media (max-width:600px){
+    header.main-header h1{font-size:1.25rem;}
+    .score-num{font-size:1.6rem;}
+  }
+</style>
+</head>
+<body>
+
+<header class="main-header">
+  <div class="institucion">Universidad de Guayaquil · Facultad de Ciencias Administrativas · Carrera de Contabilidad y Auditoría</div>
+  <h1>Emprendimiento e Innovación</h1>
+  <div class="subt">Unidad 4: Desarrollo del Modelo de Negocios — Semana 15</div>
+  <div class="tema-title">Metodología Lean Startup: Introducción y Aplicación en Ideas de Negocio</div>
+</header>
+
+<nav class="tabs-wrapper">
+  <div class="tabs" id="tabsContainer">
+    <button class="tab-btn active" data-tab="repaso">Repaso</button>
+    <button class="tab-btn" data-tab="tema1">Tema 1</button>
+    <button class="tab-btn" data-tab="tema2">Tema 2</button>
+    <button class="tab-btn" data-tab="tema3">Tema 3</button>
+    <button class="tab-btn" data-tab="tema4">Tema 4</button>
+    <button class="tab-btn" data-tab="herramienta">Herramienta Guiada</button>
+    <button class="tab-btn" data-tab="ejercicio">7. Ejercicio Interactivo</button>
+    <button class="tab-btn" data-tab="quiz">8. Cuestionario</button>
+    <button class="tab-btn" data-tab="ia">9. Actividad con IA</button>
+    <button class="tab-btn" data-tab="reflexion">10. Reflexión Personal</button>
+    <button class="tab-btn" data-tab="biblio">11. Bibliografía</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ================= REPASO ================= -->
+<section class="panel active" id="repaso">
+  <h2>Repaso: ¿Dónde estamos en el recorrido?</h2>
+  <p>En la <strong>Semana 13</strong> trabajamos el <strong>Lienzo de la Propuesta de Valor</strong> <span class="def">(Value Proposition Canvas: una herramienta visual que conecta, de un lado, el perfil del cliente —sus tareas, dolores y alegrías— con, del otro lado, el mapa de valor de la empresa —los productos/servicios, los aliviadores de dolores y los creadores de alegrías)</span>. Esa herramienta nos permitió responder con precisión una pregunta esencial: <em>¿de verdad le importa a alguien lo que estamos ofreciendo?</em></p>
+  <p>En la <strong>Semana 14</strong> dimos un paso más amplio: aprendimos a presentar ideas de negocio completas usando el <strong>Modelo Canvas</strong> <span class="def">(Business Model Canvas: un lienzo de nueve bloques —segmentos de clientes, propuesta de valor, canales, relación con clientes, fuentes de ingresos, recursos clave, actividades clave, socios clave y estructura de costos— que describe de un vistazo cómo una organización crea, entrega y captura valor)</span>. El Canvas nos dio una <em>fotografía completa</em> de la idea de negocio: todas sus piezas, conectadas entre sí.</p>
+  <div class="concept-box">
+    <strong class="label">El problema que resolvemos hoy:</strong> un Modelo Canvas bien diseñado sigue siendo, en el fondo, un conjunto de <strong>suposiciones</strong>. Hasta que no se prueba con clientes reales, nadie sabe con certeza si esos nueve bloques realmente funcionan en el mundo real. La Semana 15 responde a esa pregunta: ¿cómo convertimos esas suposiciones en certezas, gastando el menor tiempo y dinero posible? La respuesta es la <strong>Metodología Lean Startup</strong>.
+  </div>
+  <p>Cerraremos la Unidad 4 —y el curso— con la Semana 16, dedicada al examen del segundo parcial, donde se evaluará de manera integral todo lo aprendido en las Unidades 3 y 4: Corporate Venturing, Startups, Lienzo de Propuesta de Valor, Modelo Canvas y, por supuesto, Lean Startup.</p>
+</section>
+
+<!-- ================= TEMA 1 ================= -->
+<section class="panel" id="tema1">
+  <h2>Tema 1: ¿Qué es la Metodología Lean Startup? Origen y Filosofía</h2>
+
+  <p>La <strong>Metodología Lean Startup</strong> <span class="def">(en español, "Startup Esbelta" o "de bajo desperdicio")</span> es un enfoque para crear y gestionar nuevos negocios bajo condiciones de extrema incertidumbre, propuesto formalmente por el emprendedor e ingeniero estadounidense <strong>Eric Ries</strong> en su libro <em>The Lean Startup</em> (2011). Antes de definir la metodología en detalle, conviene recordar qué es una <strong>startup</strong>: según Ries, es <em>"una institución humana diseñada para crear nuevos productos o servicios bajo condiciones de incertidumbre extrema"</em>, cuyo objetivo central no es vender de inmediato, sino <strong>encontrar</strong> un modelo de negocio repetible y escalable.</p>
+
+  <div class="concept-box">
+    <strong class="label">Origen de la metodología:</strong> Eric Ries construyó el Lean Startup combinando dos fuentes principales: (1) el <strong>Desarrollo de Clientes</strong> <span class="def">(Customer Development: metodología de Steve Blank que propone "salir del edificio" a conversar con clientes reales antes de construir el producto, en lugar de basarse solo en suposiciones de oficina)</span>, y (2) los principios de la <strong>Manufactura Esbelta</strong> <span class="def">(Lean Manufacturing: filosofía de producción originada en Toyota, Japón, enfocada en eliminar todo desperdicio de tiempo, dinero y esfuerzo que no agregue valor real al cliente)</span>. Ries aplicó esta lógica de "eliminar el desperdicio" al mundo de las startups: el mayor desperdicio de un emprendimiento no es construir mal un producto, sino construir <em>perfectamente</em> un producto que nadie quiere.</p>
+  </div>
+
+  <p>El principio fundamental de la metodología es el <strong>Aprendizaje Validado</strong> <span class="def">(Validated Learning: el proceso de demostrar empíricamente, mediante experimentos reales con clientes, que un equipo emprendedor ha descubierto verdades valiosas sobre el presente y el futuro de su negocio. No se trata de opiniones, encuestas hipotéticas o intuiciones, sino de evidencia obtenida del comportamiento real de las personas)</span>. En lugar de redactar un plan de negocios extenso basado en proyecciones no comprobadas, el Lean Startup propone diseñar pequeños experimentos que generen datos reales lo antes posible.</p>
+
+  <table class="comp-table">
+    <tr><th>Aspecto</th><th>Enfoque Tradicional (Plan de Negocios)</th><th>Enfoque Lean Startup</th></tr>
+    <tr><td>Punto de partida</td><td>Un plan detallado de 30-50 páginas con proyecciones a 5 años</td><td>Un conjunto de hipótesis claras y comprobables</td></tr>
+    <tr><td>Desarrollo del producto</td><td>Se construye el producto completo antes de mostrarlo al mercado</td><td>Se construye un MVP (Producto Mínimo Viable) y se itera</td></tr>
+    <tr><td>Rol del cliente</td><td>Aparece al final, como comprador del producto terminado</td><td>Aparece desde el inicio, como fuente de aprendizaje</td></tr>
+    <tr><td>Velocidad de detectar errores</td><td>Lenta: los errores se descubren tras meses o años de inversión</td><td>Rápida: los errores se descubren en semanas, con bajo costo</td></tr>
+    <tr><td>Actitud ante el fracaso</td><td>Se busca evitarlo a toda costa mediante planificación exhaustiva</td><td>Se acepta como fuente de aprendizaje, si ocurre rápido y barato</td></tr>
+  </table>
+
+  <div class="example-box">
+    <span class="tag">EJEMPLO APLICADO — ECUADOR</span>
+    <p><strong>Kushki</strong> es una empresa ecuatoriana de tecnología financiera <span class="def">(fintech: contracción de "financial technology", empresas que usan tecnología para ofrecer servicios financieros como pagos, créditos o transferencias de forma digital)</span> que provee infraestructura de procesamiento de pagos digitales para comercios en distintos países de Latinoamérica. Como toda startup tecnológica que crece en un mercado regional complejo —con regulaciones distintas en cada país y comportamientos de pago diferentes entre Ecuador, Colombia y México—, este tipo de empresas no puede permitirse construir una plataforma "perfecta" desde el primer día para cada mercado. La lógica Lean exige, en cambio, validar primero con un número reducido de comercios en un mercado, aprender de sus necesidades reales, y solo después expandir y robustecer la tecnología.</p>
+  </div>
+
+  <div class="conclusion-box">
+    <h4>Idea clave</h4>
+    <p>El Lean Startup no es "hacer las cosas a medias": es invertir el orden tradicional. En vez de planificar-construir-lanzar-aprender, el emprendedor lean aprende primero, en pequeño y rápido, antes de comprometer grandes recursos. El objetivo no es gastar menos por gastar menos, sino <strong>maximizar el aprendizaje validado por cada dólar y cada hora invertidos.</strong></p>
+  </div>
+</section>
+
+<!-- ================= TEMA 2 ================= -->
+<section class="panel" id="tema2">
+  <h2>Tema 2: El Ciclo Crear-Medir-Aprender y el Producto Mínimo Viable (MVP)</h2>
+
+  <p>El motor operativo del Lean Startup es el ciclo <strong>Crear–Medir–Aprender</strong> <span class="def">(Build-Measure-Learn: el bucle continuo mediante el cual una idea se convierte en un producto (Crear), el producto genera datos de uso real (Medir), y esos datos generan conocimiento que retroalimenta nuevas ideas (Aprender), reiniciando el ciclo)</span>. A diferencia de un proceso lineal que termina, este ciclo se repite una y otra vez, cada vez con mayor velocidad, hasta que el equipo encuentra un modelo de negocio que funciona —o decide cambiar de rumbo.</p>
+
+  <div class="concept-box">
+    <strong class="label">Las tres fases del ciclo:</strong>
+    <ul class="visual-list">
+      <li><strong>Crear (Build):</strong> se construye la versión más simple posible de una solución —el MVP— diseñada específicamente para poner a prueba una hipótesis concreta del negocio.</li>
+      <li><strong>Medir (Measure):</strong> se observa el comportamiento real de los clientes frente al MVP, utilizando métricas previamente definidas (no impresiones subjetivas del equipo).</li>
+      <li><strong>Aprender (Learn):</strong> se interpretan los datos obtenidos para responder una pregunta esencial: ¿la hipótesis se confirmó o se refutó? Esa respuesta alimenta la siguiente decisión: perseverar o pivotar (tema que veremos en el Tema 3).</li>
+    </ul>
+  </div>
+
+  <p>El elemento central de la fase "Crear" es el <strong>Producto Mínimo Viable (MVP)</strong> <span class="def">(Minimum Viable Product: la versión de un producto o servicio con las características mínimas indispensables para que un grupo de clientes tempranos pueda usarlo y, con su comportamiento, generar Aprendizaje Validado para el equipo emprendedor)</span>. Es importante aclarar un error muy común: el objetivo del MVP <strong>no</strong> es construir "lo más pequeño posible" sin sentido, sino construir <strong>lo que permita aprender lo máximo posible, con el menor esfuerzo posible.</strong> Un MVP puede incluso no ser un producto tecnológico en absoluto.</p>
+
+  <h3>Tipos de MVP más utilizados</h3>
+  <table class="comp-table">
+    <tr><th>Tipo de MVP</th><th>Definición</th></tr>
+    <tr><td><strong>Landing Page</strong> <span class="def">(Página de aterrizaje)</span></td><td>Una página web sencilla que describe la propuesta de valor y ofrece un botón de acción (ej. "Quiero unirme" o "Regístrate"), para medir interés real antes de construir nada más.</td></tr>
+    <tr><td><strong>Concierge</strong></td><td>Los propios fundadores entregan el servicio de forma manual y personalizada a un grupo reducido de clientes, sin automatizar nada todavía, para entender a fondo sus necesidades.</td></tr>
+    <tr><td><strong>Mago de Oz</strong> <span class="def">(Wizard of Oz)</span></td><td>El cliente percibe un servicio aparentemente automatizado o tecnológico, pero detrás de escena el proceso es ejecutado manualmente por personas, sin que el cliente lo sepa.</td></tr>
+    <tr><td><strong>Crowdfunding</strong> <span class="def">(financiamiento colectivo)</span></td><td>Se lanza una campaña en plataformas como Kickstarter o Indiegogo para conseguir pre-compras o aportes antes de fabricar el producto, validando demanda real con dinero real.</td></tr>
+    <tr><td><strong>Prototipo de papel / maqueta</strong></td><td>Una representación visual muy simple (dibujos, maquetas de cartón, pantallas de papel) usada para probar la usabilidad y comprensión del concepto, con costo casi nulo.</td></tr>
+  </table>
+
+  <div class="example-box">
+    <span class="tag">CASO ILUSTRATIVO</span>
+    <p>Imaginemos a un grupo de estudiantes de Contabilidad y Auditoría de Guayaquil que detecta que muchos microempresarios del sector La Bahía llevan sus cuentas en cuadernos físicos y pierden tiempo cuadrando caja al final del día. En vez de programar una aplicación contable completa, deciden primero atender manualmente —vía WhatsApp y una hoja de Excel— a cinco comerciantes durante dos semanas (<strong>MVP Concierge</strong>), enviándoles cada noche su resumen de caja. Esto les permite descubrir, sin escribir una sola línea de código, qué reportes valoran realmente los comerciantes antes de invertir en desarrollar software.</p>
+  </div>
+
+  <div class="conclusion-box">
+    <h4>Idea clave</h4>
+    <p>El MVP no es una versión "barata" o "incompleta" del producto final: es un <strong>experimento diseñado a propósito</strong> para responder la pregunta más riesgosa del negocio, con el menor costo y tiempo posible. Cada tipo de MVP es una herramienta distinta para un propósito de aprendizaje distinto.</p>
+  </div>
+</section>
+
+<!-- ================= TEMA 3 ================= -->
+<section class="panel" id="tema3">
+  <h2>Tema 3: Pivotar o Perseverar — Las Métricas que Realmente Importan</h2>
+
+  <p>Al cerrar cada vuelta del ciclo Crear–Medir–Aprender, el equipo emprendedor enfrenta una decisión crítica conocida como <strong>"pivotar o perseverar"</strong> <span class="def">(pivot or persevere)</span>. Esta decisión solo puede tomarse bien si se cuenta con métricas confiables; por eso, antes de explicar la decisión en sí, es indispensable distinguir entre dos tipos de métricas.</p>
+
+  <div class="concept-box">
+    <strong class="label">Métricas de Vanidad</strong> <span class="def">(Vanity Metrics)</span>: cifras que parecen impresionantes —número total de usuarios registrados, visitas acumuladas, descargas totales— pero que <strong>no explican una relación causa-efecto</strong> ni permiten tomar una decisión concreta. Suelen crecer con el tiempo casi sin importar lo que haga el equipo, lo cual genera una falsa sensación de progreso.
+    <br><br>
+    <strong class="label">Métricas Accionables</strong> <span class="def">(Actionable Metrics)</span>: cifras vinculadas a acciones específicas y repetibles, que muestran con claridad causa y efecto —por ejemplo, la tasa de conversión por cohorte <span class="def">(cohorte: un grupo de clientes que comenzaron a usar el producto en un mismo periodo, lo cual permite comparar su comportamiento de forma justa frente a otros grupos)</span>, el costo de adquisición por cliente, o la tasa de retención semanal. Estas sí permiten decidir con fundamento.
+  </div>
+
+  <p>Vinculado a estas métricas aparece un concepto especialmente relevante para la profesión contable: la <strong>Contabilidad de la Innovación</strong> <span class="def">(Innovation Accounting: un enfoque cuantitativo propuesto por Eric Ries para medir el progreso de una startup cuando los estados financieros tradicionales —pensados para empresas con historial estable de ventas— todavía no son suficientes, porque la empresa aún está buscando su modelo de negocio)</span>. Este enfoque exige definir indicadores propios (KPI) <span class="def">(KPI: Key Performance Indicator o Indicador Clave de Desempeño, una métrica seleccionada deliberadamente por ser la más relevante para evaluar el avance hacia un objetivo concreto)</span> para cada etapa del experimento, en lugar de limitarse a un estado de resultados tradicional.</p>
+
+  <p>Dos términos financieros resultan inseparables de esta discusión: el <strong>burn rate</strong> <span class="def">(ritmo de quema de caja: la velocidad a la que una startup gasta su efectivo disponible, generalmente medida en dólares por mes, antes de generar un flujo de caja positivo)</span> y el <strong>runway</strong> <span class="def">(pista financiera: la cantidad de meses que una empresa puede seguir operando antes de quedarse sin efectivo, calculada normalmente dividiendo el efectivo disponible entre el burn rate mensual)</span>. Estos dos indicadores —de naturaleza profundamente contable— determinan cuánto tiempo real tiene el equipo para validar (o pivotar) su modelo de negocio antes de quedarse sin recursos.</p>
+
+  <h3>¿Qué es pivotar y qué es perseverar?</h3>
+  <p><strong>Perseverar</strong> significa continuar por el mismo camino estratégico porque la evidencia recogida confirma que la hipótesis actual va en la dirección correcta. <strong>Pivotar</strong> <span class="def">(Pivot)</span> significa realizar un cambio estructurado en alguna dimensión fundamental de la estrategia —pero conservando lo aprendido en los ciclos anteriores—, no es "empezar de cero" ni abandonar el proyecto.</p>
+
+  <ul class="pivot-list">
+    <li><b>Pivote de acercamiento (Zoom-in):</b> una sola función de un producto más grande se convierte en el producto completo.</li>
+    <li><b>Pivote de alejamiento (Zoom-out):</b> lo que era el producto completo pasa a ser solo una función dentro de un producto más amplio.</li>
+    <li><b>Pivote de segmento de clientes:</b> la solución se mantiene, pero se redirige hacia un tipo de cliente distinto al originalmente planteado.</li>
+    <li><b>Pivote de necesidad del cliente:</b> se descubre que el cliente correcto tiene un problema distinto al que se pensaba resolver originalmente.</li>
+    <li><b>Pivote de plataforma:</b> se pasa de ofrecer una aplicación específica a ofrecer una plataforma sobre la cual otros pueden construir, o viceversa.</li>
+    <li><b>Pivote de arquitectura de negocio:</b> se cambia entre un modelo de alto margen/bajo volumen y uno de bajo margen/alto volumen (por ejemplo, de vender a pocas grandes empresas — B2B — a vender a muchos consumidores — B2C).</li>
+    <li><b>Pivote de captura de valor:</b> se cambia la forma en que el negocio genera ingresos (de venta única a suscripción, por ejemplo).</li>
+    <li><b>Pivote de motor de crecimiento:</b> se cambia la estrategia principal usada para conseguir nuevos clientes de forma sostenida.</li>
+    <li><b>Pivote de canal:</b> se cambia el medio por el cual el producto llega al cliente (de venta directa a venta a través de distribuidores, por ejemplo).</li>
+    <li><b>Pivote de tecnología:</b> se mantiene la misma solución para el cliente, pero se cambia la tecnología usada para entregarla.</li>
+  </ul>
+
+  <div class="conclusion-box">
+    <h4>Idea clave</h4>
+    <p>Pivotar no es fracasar: es la capacidad de cambiar de dirección <strong>con evidencia</strong>, antes de quedarse sin runway. La diferencia entre una startup que sobrevive y una que desaparece rara vez está en tener "la idea perfecta" desde el inicio; está en su capacidad de medir con honestidad y decidir a tiempo.</p>
+  </div>
+</section>
+
+<!-- ================= TEMA 4 ================= -->
+<section class="panel" id="tema4">
+  <h2>Tema 4: Lean Startup en el Ecuador y el Rol del Contador y Auditor</h2>
+
+  <p>El ecosistema emprendedor ecuatoriano ofrece un terreno fértil —aunque desafiante— para aplicar la metodología Lean Startup. Empresas como <strong>Kushki</strong> (fintech de procesamiento de pagos digitales), <strong>Datil</strong> (proptech ecuatoriano <span class="def">(proptech: contracción de "property technology", empresas que aplican tecnología al sector inmobiliario)</span> orientado a soluciones para el alquiler y administración de propiedades), <strong>Siembro</strong> (agritech <span class="def">(agritech: contracción de "agricultural technology", tecnología aplicada al sector agrícola)</span> enfocada en financiamiento y soluciones para el sector agrícola) y <strong>Kruger Labs</strong> (un venture builder o "constructor de startups" <span class="def">(venture builder: una organización que crea startups de forma sistemática, aportando capital, equipo y metodología desde el inicio, en lugar de simplemente invertir en startups ya existentes)</span> ecuatoriano que ha contribuido a impulsar nuevos emprendimientos tecnológicos en el país) forman parte de un ecosistema cada vez más consciente de que validar antes de escalar reduce drásticamente el riesgo de fracaso.</p>
+
+  <p>La <strong>Ley Orgánica de Emprendimiento e Innovación (LOEI, 2020)</strong> —ya revisada en semanas anteriores de este curso— resulta coherente con la filosofía Lean: al simplificar trámites y reducir cargas administrativas para emprendimientos en etapas tempranas, el marco legal ecuatoriano acompaña precisamente el espíritu de "reducir el desperdicio" que defiende esta metodología, permitiendo que los recursos del emprendedor se concentren en aprender del mercado y no en burocracia innecesaria.</p>
+
+  <div class="concept-box">
+    <strong class="label">¿Por qué esto le importa directamente a un contador o auditor?</strong> Porque en una startup, el área financiera-contable deja de ser solo un área de "registro histórico" y pasa a cumplir un rol estratégico central en, al menos, cuatro frentes:
+    <ul class="visual-list">
+      <li><strong>Diseño de la Contabilidad de la Innovación:</strong> el contador ayuda a definir qué KPI realmente reflejan el progreso del negocio, evitando que el equipo se guíe por métricas de vanidad.</li>
+      <li><strong>Control del burn rate y del runway:</strong> el seguimiento riguroso del gasto mensual y del efectivo disponible es, en esencia, una tarea contable-financiera que determina cuánto tiempo tiene el equipo para validar su modelo.</li>
+      <li><strong>Costeo realista de los experimentos:</strong> cada MVP tiene un costo (tiempo, materiales, horas de trabajo) que debe registrarse y analizarse para tomar decisiones de pivotar o perseverar con información financiera real, no solo intuición.</li>
+      <li><strong>Cumplimiento tributario desde etapas tempranas:</strong> incluso un MVP tipo Concierge que genera ingresos reales debe cumplir con las obligaciones de facturación ante el <strong>SRI</strong> <span class="def">(Servicio de Rentas Internas: la entidad del Estado ecuatoriano encargada de la administración tributaria, es decir, de la recaudación de impuestos)</span>; un emprendedor que valida su idea sin atender estas obligaciones desde el inicio puede enfrentar problemas legales que comprometan todo lo aprendido.</li>
+    </ul>
+  </div>
+
+  <p>Los estudios del <strong>Global Entrepreneurship Monitor (GEM) Ecuador</strong> —un programa internacional de investigación sobre actividad emprendedora, con equipo nacional liderado por instituciones académicas ecuatorianas— han mostrado de manera consistente que Ecuador presenta una de las tasas de actividad emprendedora más altas de la región, pero enfrenta también tasas relativamente bajas de supervivencia e innovación de esos emprendimientos en el mediano plazo. Esta combinación —mucha actividad emprendedora, pero baja validación previa— es exactamente el tipo de brecha que la metodología Lean Startup busca cerrar: no se trata de emprender menos, sino de emprender <strong>aprendiendo más rápido y más barato.</strong></p>
+
+  <div class="conclusion-box">
+    <h4>Idea clave</h4>
+    <p>En el contexto ecuatoriano, el profesional contable que comprende el Lean Startup deja de ser un simple "registrador de cifras" para convertirse en un socio estratégico capaz de diseñar indicadores de progreso, proteger el runway del emprendimiento y asegurar que la validación del modelo de negocio ocurra dentro del marco legal y tributario vigente.</p>
+  </div>
+</section>
+
+<!-- ================= HERRAMIENTA GUIADA ================= -->
+<section class="panel" id="herramienta">
+  <h2>Herramienta Guiada: Mi Experimento Lean Startup</h2>
+  <p>Esta herramienta te permite aplicar, paso a paso, todo lo aprendido en los Temas 1 a 4 sobre tu propia idea de negocio (puede ser la misma idea que trabajaste en el Modelo Canvas de la Semana 14). Antes de empezar, revisa el <strong>ejemplo resuelto</strong> a continuación, basado en una idea ficticia llamada "EcoRuta".</p>
+
+  <div class="example-box">
+    <span class="tag">EJEMPLO RESUELTO — "EcoRuta" (transporte compartido en Guayaquil)</span>
+    <p><strong>Hipótesis de Valor:</strong> "Creo que los empleados de oficina en el centro de Guayaquil que gastan más de $80 mensuales en taxi o gasolina tienen el problema de altos costos y tiempo perdido en el tráfico, y estarían dispuestos a pagar $15 mensuales por coordinar viajes compartidos con compañeros de trabajo que viven cerca."</p>
+    <p><strong>Hipótesis de Crecimiento:</strong> "Creo que conseguiré nuevos usuarios principalmente por recomendación dentro de las mismas empresas (un usuario invita a compañeros de su departamento), a un ritmo de 15 nuevos usuarios por semana durante el primer mes."</p>
+    <p><strong>MVP elegido:</strong> Landing Page + Concierge combinado: una página simple con botón "Quiero unirme", y coordinación manual vía WhatsApp para los primeros 10 interesados, sin ninguna aplicación todavía.</p>
+    <p><strong>Métrica accionable y meta:</strong> Tasa de conversión de visitas a registros (meta: 20%) y tasa de retención de los 10 usuarios concierge tras 3 semanas (meta: 6 de 10).</p>
+    <p><strong>Resultado del experimento:</strong> 180 visitas, 25 registros (13.8% de conversión, por debajo de la meta). De los 10 usuarios concierge, solo 4 siguieron usando el servicio tras 3 semanas (40%, por debajo de la meta de 60%). En entrevistas, varios usuarios explicaron que su freno real no era el costo, sino la desconfianza de compartir auto con desconocidos de otras empresas del mismo edificio.</p>
+    <p><strong>Decisión:</strong> Pivotar — <em>Pivote de necesidad del cliente</em>. El problema real no es el ahorro económico sino la seguridad y la confianza; el siguiente experimento debería enfocarse en verificación de identidad y calificaciones entre usuarios, no solo en bajo costo.</p>
+  </div>
+
+  <p style="text-align:center; font-weight:700; color:var(--navy); margin-top:22px;">Ahora completa tu propio experimento ↓</p>
+
+  <div class="step-block">
+    <h4><span class="step-num">1</span>Nombre de tu idea de negocio</h4>
+    <div class="form-group">
+      <input type="text" id="toolNombre" placeholder="Ej: EcoRuta, ContaFácil, RecicloYa...">
+    </div>
+  </div>
+
+  <div class="step-block">
+    <h4><span class="step-num">2</span>Hipótesis de Valor</h4>
+    <div class="hint">Completa la frase: "Creo que [tipo de cliente] tiene el problema de [problema], y estaría dispuesto a pagar por [tu solución] porque..."</div>
+    <div class="form-group">
+      <textarea id="toolHipValor" placeholder="Escribe aquí tu hipótesis de valor..."></textarea>
+    </div>
+  </div>
+
+  <div class="step-block">
+    <h4><span class="step-num">3</span>Hipótesis de Crecimiento</h4>
+    <div class="hint">Completa la frase: "Creo que conseguiré nuevos clientes a través de [canal], a un ritmo de..."</div>
+    <div class="form-group">
+      <textarea id="toolHipCrecimiento" placeholder="Escribe aquí tu hipótesis de crecimiento..."></textarea>
+    </div>
+  </div>
+
+  <div class="step-block">
+    <h4><span class="step-num">4</span>Diseña tu MVP</h4>
+    <div class="form-group">
+      <label>Tipo de MVP que utilizarás</label>
+      <select id="toolMVPTipo">
+        <option value="">-- Selecciona --</option>
+        <option value="Landing Page">Landing Page</option>
+        <option value="Concierge">Concierge</option>
+        <option value="Mago de Oz">Mago de Oz (Wizard of Oz)</option>
+        <option value="Crowdfunding">Crowdfunding</option>
+        <option value="Prototipo de papel">Prototipo de papel / maqueta</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Describe brevemente cómo lo construirías</label>
+      <textarea id="toolMVPDesc" placeholder="Ej: Crearé una página con un formulario de registro y atenderé manualmente a los primeros 10 interesados..."></textarea>
+    </div>
+  </div>
+
+  <div class="step-block">
+    <h4><span class="step-num">5</span>Métrica Accionable y Criterio de Éxito</h4>
+    <div class="form-group">
+      <label>¿Qué métrica accionable medirás? (evita métricas de vanidad)</label>
+      <input type="text" id="toolMetrica" placeholder="Ej: Tasa de conversión de visitantes a registros">
+    </div>
+    <div class="form-group">
+      <label>¿Cuál es tu meta numérica de éxito?</label>
+      <input type="text" id="toolCriterio" placeholder="Ej: 20% de conversión, o 6 de 10 usuarios activos tras 3 semanas">
+    </div>
+  </div>
+
+  <div class="step-block">
+    <h4><span class="step-num">6</span>Resultado del Experimento</h4>
+    <div class="hint">Si aún no lo has ejecutado, describe el resultado que esperas obtener; si ya lo hiciste, registra los datos reales.</div>
+    <div class="form-group">
+      <textarea id="toolResultado" placeholder="¿Qué aprendiste sobre tus clientes y tu producto?"></textarea>
+    </div>
+  </div>
+
+  <div class="step-block">
+    <h4><span class="step-num">7</span>Decisión Final: ¿Perseverar o Pivotar?</h4>
+    <div class="radio-inline">
+      <label><input type="radio" name="toolDecision" value="Perseverar" onchange="toggleTipoPivote()"> Perseverar</label>
+      <label><input type="radio" name="toolDecision" value="Pivotar" onchange="toggleTipoPivote()"> Pivotar</label>
+    </div>
+    <div class="form-group" id="tipoPivoteGroup" style="display:none; margin-top:12px;">
+      <label>Tipo de pivote (ver Tema 3)</label>
+      <select id="toolTipoPivote">
+        <option value="">-- Selecciona --</option>
+        <option>Pivote de acercamiento (Zoom-in)</option>
+        <option>Pivote de alejamiento (Zoom-out)</option>
+        <option>Pivote de segmento de clientes</option>
+        <option>Pivote de necesidad del cliente</option>
+        <option>Pivote de plataforma</option>
+        <option>Pivote de arquitectura de negocio</option>
+        <option>Pivote de captura de valor</option>
+        <option>Pivote de motor de crecimiento</option>
+        <option>Pivote de canal</option>
+        <option>Pivote de tecnología</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Justifica tu decisión</label>
+      <textarea id="toolJustificacion" placeholder="¿Por qué decides perseverar o pivotar, según los datos del paso 6?"></textarea>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn" onclick="generarResumen()">Generar mi Resumen del Experimento</button>
+  </div>
+
+  <div class="summary-output" id="resumenOutput"></div>
+</section>
+
+<!-- ================= EJERCICIO INTERACTIVO ================= -->
+<section class="panel" id="ejercicio">
+  <h2>7. Ejercicio Interactivo: Verdadero o Falso</h2>
+  <p>Lee cada afirmación con atención y marca si es <strong>Verdadera</strong> o <strong>Falsa</strong>, según el contenido revisado en los Temas 1 a 4. Responde <strong>todas</strong> las afirmaciones antes de presionar "Verificar respuestas".</p>
+
+  <div id="ejercicioContainer"></div>
+
+  <div class="alert-box" id="ejercicioAlert">⚠️ Debes responder todas las afirmaciones antes de verificar.</div>
+
+  <div class="btn-row">
+    <button class="btn" onclick="checkEjercicio()">Verificar respuestas</button>
+    <button class="btn btn-secondary" onclick="resetEjercicio()">Reiniciar</button>
+  </div>
+
+  <div class="score-panel" id="ejercicioScorePanel">
+    <div class="score-num" id="ejercicioScoreNum">0/8</div>
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="ejercicioBar"></div></div>
+    <div id="ejercicioMensaje" style="font-weight:600;"></div>
+  </div>
+</section>
+
+<!-- ================= CUESTIONARIO ================= -->
+<section class="panel" id="quiz">
+  <h2>8. Cuestionario</h2>
+  <p>Responde las 10 preguntas (7 teóricas + 3 de análisis de caso). Selecciona todas tus respuestas y luego presiona "Verificar respuestas".</p>
+
+  <div id="quizContainer"></div>
+
+  <div class="alert-box" id="quizAlert">⚠️ Debes responder todas las preguntas antes de verificar.</div>
+
+  <div class="btn-row">
+    <button class="btn" onclick="checkQuiz()">Verificar respuestas</button>
+    <button class="btn btn-secondary" onclick="resetQuiz()">Reiniciar</button>
+  </div>
+
+  <div class="score-panel" id="quizScorePanel">
+    <div class="score-num" id="quizScoreNum">0/10</div>
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="quizBar"></div></div>
+    <div id="quizMensaje" style="font-weight:600; font-size:1.05rem;"></div>
+  </div>
+</section>
+
+<!-- ================= ACTIVIDAD CON IA ================= -->
+<section class="panel" id="ia">
+  <h2>9. Actividad con Inteligencia Artificial</h2>
+  <p>Esta actividad busca que utilices una IA conversacional como <strong>interlocutor crítico</strong> para poner a prueba tu propia idea de negocio —no para que te entregue respuestas que copiarás sin pensar. Te recomendamos usar <strong>Claude</strong> en <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a> (versión gratuita de Anthropic) como herramienta principal; también puedes usar ChatGPT (versión gratuita) o Gemini de Google si lo prefieres.</p>
+
+  <h3>Paso 1: Copia y pega este prompt exacto en la IA</h3>
+  <div class="prompt-box">Actúa como un mentor de startups escéptico y riguroso, especializado en la metodología Lean Startup de Eric Ries.
+
+Te voy a presentar la hipótesis de valor y la hipótesis de crecimiento de mi idea de negocio:
+
+[PEGA AQUÍ TU HIPÓTESIS DE VALOR Y TU HIPÓTESIS DE CRECIMIENTO, COMPLETADAS EN LA HERRAMIENTA GUIADA DE ESTE WIDGET]
+
+Quiero que hagas lo siguiente:
+1) Identifica los supuestos más riesgosos y menos comprobados de mis hipótesis (los "supuestos de fe ciega").
+2) Propón dos tipos de MVP distintos que yo podría usar para poner a prueba esos supuestos con el menor costo y tiempo posible.
+3) Sugiere una métrica accionable concreta (no de vanidad) para cada MVP propuesto.
+4) Hazme un mínimo de tres preguntas incómodas que un inversionista escéptico me haría sobre mi idea.
+
+No me digas si mi idea es buena o mala: tu trabajo es ayudarme a diseñar experimentos para descubrirlo yo mismo/a.</div>
+
+  <h3>Paso 2: Qué hacer con la respuesta de la IA</h3>
+  <p>No copies ni pegues la respuesta de la IA en tu entrega. En su lugar:</p>
+  <ul class="visual-list">
+    <li>Elige <strong>un solo</strong> supuesto de fe ciega que la IA haya identificado.</li>
+    <li>Decide, con tus propias palabras, si estás de acuerdo, en desacuerdo, o si lo modificarías —y explica por qué, usando los conceptos de los Temas 1 a 4.</li>
+    <li>Redacta un párrafo (mínimo media página) comparando tu hipótesis original con el cuestionamiento que te hizo la IA: ¿qué descubriste que no habías considerado?</li>
+  </ul>
+
+  <h3>Criterio de evaluación</h3>
+  <table class="comp-table rubric-table">
+    <tr><th>Indicador</th><th>Demuestra pensamiento crítico</th><th>Es copia simple (no aceptable)</th></tr>
+    <tr><td>Uso de la respuesta de la IA</td><td>Se selecciona, cuestiona y argumenta sobre un punto específico</td><td>Se transcribe la respuesta completa de la IA sin análisis propio</td></tr>
+    <tr><td>Vocabulario técnico</td><td>Se usan correctamente los términos de los Temas 1-4 (MVP, pivote, métrica accionable, etc.)</td><td>Se repiten términos sin explicar su significado en el contexto propio</td></tr>
+    <tr><td>Postura personal</td><td>El estudiante toma una posición propia (de acuerdo / en desacuerdo / matiza)</td><td>No hay postura propia, solo se acepta lo dicho por la IA</td></tr>
+  </table>
+</section>
+
+<!-- ================= REFLEXIÓN PERSONAL ================= -->
+<section class="panel" id="reflexion">
+  <h2>10. Reflexión Personal</h2>
+  <p>No hay respuestas correctas o incorrectas en esta sección. El objetivo es que conectes los conceptos de Lean Startup con tu vida diaria, tus emociones y tu autoconocimiento. Puedes escribir tus respuestas en los espacios provistos como apoyo para tu reflexión personal.</p>
+
+  <div class="reflex-q"><b>1.</b> En tu vida diaria, ¿sueles tomar decisiones importantes basándote en suposiciones no comprobadas, o prefieres "probar primero en pequeño" antes de comprometerte por completo? Describe una situación reciente.
+    <textarea class="reflex-area" placeholder="Escribe tu reflexión..."></textarea>
+  </div>
+  <div class="reflex-q"><b>2.</b> Si tuvieras que presentar una "versión mínima viable" de ti mismo/a al iniciar una nueva etapa (un nuevo trabajo, una nueva relación, un nuevo proyecto), ¿qué cualidades esenciales mostrarías primero, sin necesidad de "tenerlo todo resuelto" desde el inicio?
+    <textarea class="reflex-area" placeholder="Escribe tu reflexión..."></textarea>
+  </div>
+  <div class="reflex-q"><b>3.</b> ¿Alguna vez cambiaste de opinión sobre algo importante (una carrera, una relación, una creencia) gracias a evidencia real y no solo a una corazonada? ¿Qué sentiste al aceptar esa nueva evidencia?
+    <textarea class="reflex-area" placeholder="Escribe tu reflexión..."></textarea>
+  </div>
+  <div class="reflex-q"><b>4.</b> En redes sociales solemos perseguir "métricas de vanidad" como el número de likes o seguidores. ¿Qué "métrica accionable" usarías para medir si realmente estás creciendo como persona, en vez de solo aparentarlo?
+    <textarea class="reflex-area" placeholder="Escribe tu reflexión..."></textarea>
+  </div>
+  <div class="reflex-q"><b>5.</b> Piensa en un proyecto personal o académico en el que hayas tenido que decidir entre "perseverar" (seguir igual) o "pivotar" (cambiar de enfoque). ¿Qué emociones estuvieron presentes en esa decisión? ¿Miedo, alivio, culpa, esperanza?
+    <textarea class="reflex-area" placeholder="Escribe tu reflexión..."></textarea>
+  </div>
+  <div class="reflex-q"><b>6.</b> La Programación Neurolingüística (PNL) propone que el lenguaje que usamos moldea nuestra forma de ver la realidad. Si reformularas tus "fracasos" pasados, no como errores definitivos, sino como "experimentos que generaron aprendizaje validado" (igual que en Lean Startup), ¿cómo cambiaría tu relación contigo mismo/a?
+    <textarea class="reflex-area" placeholder="Escribe tu reflexión..."></textarea>
+  </div>
+</section>
+
+<!-- ================= BIBLIOGRAFÍA ================= -->
+<section class="panel" id="biblio">
+  <h2>11. Bibliografía</h2>
+
+  <div class="biblio-card">
+    <p class="autor-anio">Ries, E. (2011).</p>
+    <p class="titulo">The Lean Startup: How Today's Entrepreneurs Use Continuous Innovation to Create Radically Successful Businesses.</p>
+    <p>Crown Business.</p>
+  </div>
+  <div class="biblio-card">
+    <p class="autor-anio">Ries, E. (2017).</p>
+    <p class="titulo">The Startup Way: How Modern Companies Use Entrepreneurial Management to Transform Culture and Drive Long-Term Growth.</p>
+    <p>Currency.</p>
+  </div>
+  <div class="biblio-card">
+    <p class="autor-anio">Blank, S. (2013).</p>
+    <p class="titulo">Why the Lean Start-Up Changes Everything.</p>
+    <p>Harvard Business Review, 91(5), 63-72.</p>
+  </div>
+  <div class="biblio-card">
+    <p class="autor-anio">Blank, S., & Dorf, B. (2012).</p>
+    <p class="titulo">The Startup Owner's Manual: The Step-by-Step Guide for Building a Great Company.</p>
+    <p>K&S Ranch Publishing.</p>
+  </div>
+  <div class="biblio-card">
+    <p class="autor-anio">Osterwalder, A., & Pigneur, Y. (2010).</p>
+    <p class="titulo">Business Model Generation: A Handbook for Visionaries, Game Changers, and Challengers.</p>
+    <p>John Wiley & Sons.</p>
+  </div>
+  <div class="biblio-card">
+    <p class="autor-anio">Osterwalder, A., Pigneur, Y., Bernarda, G., & Smith, A. (2014).</p>
+    <p class="titulo">Value Proposition Design: How to Create Products and Services Customers Want.</p>
+    <p>John Wiley & Sons.</p>
+  </div>
+  <div class="biblio-card">
+    <p class="autor-anio">Lasio, V., Caicedo, G., Ordeñana, X., & Izquierdo, E. (2020).</p>
+    <p class="titulo">Global Entrepreneurship Monitor: Ecuador 2019.</p>
+    <p>ESPOL — Escuela Superior Politécnica del Litoral.</p>
+  </div>
+
+  <p class="footnote">Nota: Se recomienda verificar cada referencia en Google Scholar (scholar.google.com) o en el repositorio institucional antes de citar en trabajos académicos.</p>
+</section>
+
+</main>
+
+<script>
+/* ============== NAVEGACIÓN DE PESTAÑAS ============== */
+document.querySelectorAll('.tab-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+});
+
+/* ============== HERRAMIENTA GUIADA ============== */
+function toggleTipoPivote(){
+  var val = document.querySelector('input[name="toolDecision"]:checked');
+  var group = document.getElementById('tipoPivoteGroup');
+  if(val && val.value === 'Pivotar'){
+    group.style.display = 'block';
+  } else {
+    group.style.display = 'none';
+  }
+}
+
+function generarResumen(){
+  var nombre = document.getElementById('toolNombre').value.trim();
+  var hipValor = document.getElementById('toolHipValor').value.trim();
+  var hipCrec = document.getElementById('toolHipCrecimiento').value.trim();
+  var mvpTipo = document.getElementById('toolMVPTipo').value;
+  var mvpDesc = document.getElementById('toolMVPDesc').value.trim();
+  var metrica = document.getElementById('toolMetrica').value.trim();
+  var criterio = document.getElementById('toolCriterio').value.trim();
+  var resultado = document.getElementById('toolResultado').value.trim();
+  var decisionEl = document.querySelector('input[name="toolDecision"]:checked');
+  var decision = decisionEl ? decisionEl.value : '';
+  var tipoPivote = document.getElementById('toolTipoPivote').value;
+  var justificacion = document.getElementById('toolJustificacion').value.trim();
+
+  if(!nombre || !hipValor || !hipCrec || !mvpTipo || !metrica || !decision){
+    alert('Por favor completa al menos el nombre, las dos hipótesis, el tipo de MVP, la métrica y tu decisión final antes de generar el resumen.');
+    return;
+  }
+
+  var html = '<h4>📋 Resumen de tu Experimento Lean Startup: ' + nombre + '</h4>';
+  html += '<p><strong>Hipótesis de Valor:</strong> ' + hipValor + '</p>';
+  html += '<p><strong>Hipótesis de Crecimiento:</strong> ' + hipCrec + '</p>';
+  html += '<p><strong>Tipo de MVP:</strong> ' + mvpTipo + (mvpDesc ? ' — ' + mvpDesc : '') + '</p>';
+  html += '<p><strong>Métrica accionable:</strong> ' + metrica + (criterio ? ' (meta: ' + criterio + ')' : '') + '</p>';
+  if(resultado){ html += '<p><strong>Resultado del experimento:</strong> ' + resultado + '</p>'; }
+  html += '<p><strong>Decisión final:</strong> ' + decision + (decision==='Pivotar' && tipoPivote ? ' — ' + tipoPivote : '') + '</p>';
+  if(justificacion){ html += '<p><strong>Justificación:</strong> ' + justificacion + '</p>'; }
+  html += '<p style="margin-top:10px; font-style:italic;">Guarda o imprime este resumen como evidencia de tu trabajo (Ctrl+P / Cmd+P).</p>';
+
+  var out = document.getElementById('resumenOutput');
+  out.innerHTML = html;
+  out.classList.add('show');
+  out.scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+/* ============== EJERCICIO INTERACTIVO (Verdadero/Falso) ============== */
+var ejercicioData = [
+  {id:'ei1', text:'El Lean Startup propone construir un producto totalmente terminado y pulido antes de mostrarlo por primera vez a los clientes reales.'},
+  {id:'ei2', text:'El Aprendizaje Validado (Validated Learning) se basa en datos obtenidos de experimentos reales con clientes, y no únicamente en las opiniones o intuiciones del equipo fundador.'},
+  {id:'ei3', text:'Un MVP tipo Concierge consiste en que los propios fundadores entreguen el servicio manualmente a un pequeño grupo de clientes, sin automatizar nada todavía.'},
+  {id:'ei4', text:'En un MVP tipo Mago de Oz (Wizard of Oz), el cliente es consciente de que detrás del "sistema automático" hay personas realizando el proceso manualmente.'},
+  {id:'ei5', text:'El número total de usuarios registrados en una aplicación es siempre un ejemplo de métrica accionable.'},
+  {id:'ei6', text:'Pivotar significa abandonar por completo la idea de negocio y empezar en un sector totalmente distinto, sin conservar nada de lo aprendido anteriormente.'},
+  {id:'ei7', text:'El runway (pista financiera) indica cuántos meses puede seguir operando una empresa antes de quedarse sin efectivo, dado su ritmo actual de gasto.'},
+  {id:'ei8', text:'La Contabilidad de la Innovación (Innovation Accounting) busca crear indicadores cuantitativos para evaluar el progreso de una startup cuando todavía no existen suficientes datos financieros históricos.'}
+];
+
+var ejercicioCorrects = {
+  ei1:'Falso', ei2:'Verdadero', ei3:'Verdadero', ei4:'Falso',
+  ei5:'Falso', ei6:'Falso', ei7:'Verdadero', ei8:'Verdadero'
+};
+
+var ejercicioFeedbacks = {
+  ei1:'Falso. La filosofía Lean Startup es exactamente la opuesta: en lugar de construir un producto completo a ciegas, se recomienda crear un MVP lo antes posible para someterlo al contacto real con los clientes y generar Aprendizaje Validado antes de invertir más recursos.',
+  ei2:'Verdadero. El Aprendizaje Validado es, por definición, evidencia empírica recogida mediante experimentos reales con clientes, no suposiciones ni intuiciones del equipo fundador.',
+  ei3:'Verdadero. En el MVP Concierge, el equipo fundador atiende personalmente y de forma manual a cada cliente para entender a profundidad sus necesidades, sin invertir aún en tecnología o automatización.',
+  ei4:'Falso. La característica esencial del MVP Mago de Oz es que el cliente percibe un servicio aparentemente automatizado, mientras que, sin que él lo sepa, el proceso se realiza manualmente detrás de escena.',
+  ei5:'Falso. El total acumulado de registros suele ser una métrica de vanidad: crece con el tiempo casi sin importar lo que haga el equipo y no explica por sí sola el comportamiento real de los clientes.',
+  ei6:'Falso. Pivotar es un cambio estructurado de estrategia que conserva lo aprendido en los ciclos anteriores; se mantiene "un pie en lo aprendido" mientras se prueba una nueva hipótesis, no se empieza de cero.',
+  ei7:'Verdadero. El runway se calcula dividiendo el efectivo disponible entre el burn rate mensual, y resulta clave para saber cuánto tiempo tiene el equipo para validar su modelo antes de quedarse sin recursos.',
+  ei8:'Verdadero. Eric Ries propuso la Contabilidad de la Innovación precisamente porque los estados financieros tradicionales no son suficientes para medir el progreso real de una startup en sus primeras etapas.'
+};
+
+function buildEjercicio(){
+  var container = document.getElementById('ejercicioContainer');
+  var html = '';
+  ejercicioData.forEach(function(q, idx){
+    html += '<div class="question-block">';
+    html += '<div class="q-header"><span class="q-text">' + (idx+1) + '. ' + q.text + '</span></div>';
+    html += '<label class="option-label" data-q="'+q.id+'" data-val="Verdadero"><input type="radio" name="'+q.id+'" value="Verdadero"> Verdadero</label>';
+    html += '<label class="option-label" data-q="'+q.id+'" data-val="Falso"><input type="radio" name="'+q.id+'" value="Falso"> Falso</label>';
+    html += '<div class="feedback" id="fb_'+q.id+'"></div>';
+    html += '</div>';
+  });
+  container.innerHTML = html;
+}
+buildEjercicio();
+
+function checkEjercicio(){
+  var allAnswered = true;
+  ejercicioData.forEach(function(q){
+    var sel = document.querySelector('input[name="'+q.id+'"]:checked');
+    if(!sel) allAnswered = false;
+  });
+  var alertBox = document.getElementById('ejercicioAlert');
+  if(!allAnswered){
+    alertBox.classList.add('show');
+    return;
+  }
+  alertBox.classList.remove('show');
+
+  var score = 0;
+  ejercicioData.forEach(function(q){
+    var sel = document.querySelector('input[name="'+q.id+'"]:checked');
+    var userVal = sel.value;
+    var correctVal = ejercicioCorrects[q.id];
+    var fb = document.getElementById('fb_'+q.id);
+    var labels = document.querySelectorAll('label[data-q="'+q.id+'"]');
+    labels.forEach(function(l){
+      if(l.dataset.val === correctVal) l.classList.add('correct-ans');
+      if(l.dataset.val === userVal && userVal !== correctVal) l.classList.add('incorrect-ans');
+    });
+    if(userVal === correctVal){
+      score++;
+      fb.className = 'feedback correct';
+      fb.innerHTML = '✅ Correcto. ' + ejercicioFeedbacks[q.id];
+    } else {
+      fb.className = 'feedback incorrect';
+      fb.innerHTML = '❌ Incorrecto. ' + ejercicioFeedbacks[q.id];
+    }
+  });
+
+  var total = ejercicioData.length;
+  var pct = Math.round((score/total)*100);
+  document.getElementById('ejercicioScoreNum').textContent = score + '/' + total;
+  document.getElementById('ejercicioBar').style.width = pct + '%';
+
+  var msg = '';
+  if(score === total){ msg = '🏆 ¡Excelente! Identificas con precisión los conceptos clave del Lean Startup.'; }
+  else if(score >= 6){ msg = '🎯 ¡Muy bien! Tienes una buena comprensión, revisa los puntos fallados.'; }
+  else if(score >= 4){ msg = '📘 Vas por buen camino, pero conviene reforzar algunos conceptos.'; }
+  else { msg = '📖 Te recomendamos repasar nuevamente los Temas 1 a 4 antes de continuar.'; }
+  document.getElementById('ejercicioMensaje').textContent = msg;
+  document.getElementById('ejercicioScorePanel').classList.add('show');
+  document.getElementById('ejercicioScorePanel').scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+function resetEjercicio(){
+  document.querySelectorAll('input[name^="ei"]').forEach(function(r){ r.checked = false; });
+  document.querySelectorAll('#ejercicioContainer .option-label').forEach(function(l){
+    l.classList.remove('correct-ans','incorrect-ans');
+  });
+  document.querySelectorAll('#ejercicioContainer .feedback').forEach(function(f){ f.className='feedback'; f.innerHTML=''; });
+  document.getElementById('ejercicioScorePanel').classList.remove('show');
+  document.getElementById('ejercicioAlert').classList.remove('show');
+}
+
+/* ============== CUESTIONARIO ============== */
+var quizData = [
+  {id:'qi1', tipo:'teorica', text:'¿Quién es el autor del libro "The Lean Startup" (2011), que dio origen formal a esta metodología?', opts:{a:'Steve Blank', b:'Eric Ries', c:'Alexander Osterwalder', d:'Clayton Christensen'}},
+  {id:'qi2', tipo:'teorica', text:'Según la metodología Lean Startup, ¿qué es un MVP (Producto Mínimo Viable)?', opts:{a:'El producto final, ya pulido y listo para escalar masivamente', b:'La versión de un producto con las características mínimas necesarias para generar Aprendizaje Validado en los primeros clientes', c:'Un prototipo que solo se usa internamente y nunca se muestra a clientes', d:'Un plan de negocios detallado de 40 páginas'}},
+  {id:'qi3', tipo:'teorica', text:'El ciclo central de la metodología Lean Startup es:', opts:{a:'Planificar - Ejecutar - Controlar', b:'Crear - Medir - Aprender', c:'Diseñar - Producir - Vender', d:'Idear - Financiar - Lanzar'}},
+  {id:'qi4', tipo:'teorica', text:'¿Cuál de las siguientes describe mejor a una métrica de vanidad (vanity metric)?', opts:{a:'Muestra una relación causa-efecto clara sobre el comportamiento de clientes específicos', b:'Permite tomar de inmediato una decisión de pivotar o perseverar', c:'Suele mostrar números grandes y atractivos, pero no explica el porqué de los resultados ni guía decisiones concretas', d:'Se mide siempre por cohortes de clientes'}},
+  {id:'qi5', tipo:'teorica', text:'En un MVP de tipo "Mago de Oz" (Wizard of Oz):', opts:{a:'El cliente sabe desde el inicio que el servicio aún no existe', b:'El proceso se automatiza por completo desde el primer día', c:'El cliente percibe un servicio aparentemente automatizado, pero detrás hay personas ejecutando el proceso manualmente', d:'Se utiliza únicamente para productos físicos, nunca para servicios digitales'}},
+  {id:'qi6', tipo:'teorica', text:'¿Qué significa "pivotar" en el contexto del Lean Startup?', opts:{a:'Cerrar definitivamente la empresa', b:'Repetir exactamente la misma estrategia sin ningún cambio', c:'Realizar un cambio estructurado de estrategia, conservando lo aprendido en el ciclo anterior', d:'Cambiar de país de operaciones'}},
+  {id:'qi7', tipo:'teorica', text:'El "burn rate" de una startup se define como:', opts:{a:'La ganancia neta mensual de la empresa', b:'El ritmo al que la empresa gasta su efectivo disponible antes de generar flujo de caja positivo', c:'El número de empleados contratados por mes', d:'El porcentaje de impuestos pagados al SRI'}},
+  {id:'qi8', tipo:'analisis', text:'Una emprendedora ecuatoriana cree que los pequeños comercios de barrio necesitan una forma más fácil de aceptar pagos digitales. Antes de construir una aplicación completa, crea una página web sencilla donde describe el servicio y mide cuántas personas dejan su correo para "ser las primeras en probarlo". ¿Qué tipo de MVP está utilizando?', opts:{a:'MVP Concierge', b:'MVP de Crowdfunding', c:'MVP tipo Landing Page', d:'Prototipo de papel'}},
+  {id:'qi9', tipo:'analisis', text:'Un equipo emprendedor mide que el 90% de los usuarios que se registran nunca regresan a usar el producto una segunda vez, aunque el número total de registros sigue creciendo cada semana. Según la lógica del Lean Startup, ¿qué debería hacer el equipo?', opts:{a:'Ignorar la tasa de retorno porque lo importante es el crecimiento del número total de registros', b:'Analizar la métrica accionable de retención (no solo el total de registros) y considerar pivotar si la causa raíz no se resuelve', c:'Aumentar inmediatamente la inversión en publicidad para registrar más usuarios', d:'Cerrar la empresa de inmediato sin investigar más'}},
+  {id:'qi10', tipo:'analisis', text:'Una startup ecuatoriana de logística descubre que su problema no es el producto, sino que está vendiendo al tipo de cliente equivocado (empresas grandes en vez de pequeños comercios). Decide mantener la misma solución tecnológica, pero redirigir todos sus esfuerzos comerciales hacia pequeños comercios. ¿Qué tipo de pivote representa mejor esta decisión?', opts:{a:'Pivote de segmento de clientes', b:'Pivote de plataforma', c:'Pivote de tecnología', d:'Pivote de canal'}}
+];
+
+var quizCorrects = {
+  qi1:'b', qi2:'b', qi3:'b', qi4:'c', qi5:'c', qi6:'c', qi7:'b', qi8:'c', qi9:'b', qi10:'a'
+};
+
+var quizFeedbacks = {
+  qi1:'Eric Ries publicó "The Lean Startup" en 2011, sistematizando esta metodología a partir de su propia experiencia como emprendedor y de las ideas de Customer Development de Steve Blank, su mentor.',
+  qi2:'El MVP es la versión de un producto con las características mínimas indispensables para generar Aprendizaje Validado en los primeros clientes, no el producto final ni un plan de negocios.',
+  qi3:'El ciclo Crear-Medir-Aprender es el motor operativo central del Lean Startup: se construye, se mide el comportamiento real de los clientes y se interpreta lo aprendido.',
+  qi4:'Una métrica de vanidad muestra números grandes y atractivos, pero no explica una relación causa-efecto ni guía una decisión concreta, a diferencia de una métrica accionable.',
+  qi5:'En el MVP Mago de Oz, el cliente percibe un servicio aparentemente automatizado, mientras un equipo humano ejecuta el proceso manualmente detrás de escena, sin que el cliente lo sepa.',
+  qi6:'Pivotar es un cambio estructurado de estrategia que conserva lo aprendido en el ciclo anterior; no es cerrar la empresa ni repetir la misma estrategia sin cambios.',
+  qi7:'El burn rate es el ritmo al que una startup gasta su efectivo disponible antes de generar flujo de caja positivo, un indicador clave para calcular el runway.',
+  qi8:'Una página web sencilla con un botón de acción para medir interés real, antes de construir el producto completo, es la definición exacta de un MVP tipo Landing Page.',
+  qi9:'El número total de registros es una métrica de vanidad; lo que realmente debe guiar la decisión es la métrica accionable de retención, que aquí muestra una señal de alerta clara.',
+  qi10:'Mantener la misma solución tecnológica pero redirigir los esfuerzos comerciales hacia un tipo de cliente distinto es, por definición, un pivote de segmento de clientes.'
+};
+
+function buildQuiz(){
+  var container = document.getElementById('quizContainer');
+  var html = '';
+  quizData.forEach(function(q, idx){
+    var badgeClass = q.tipo === 'teorica' ? 'teorica' : 'analisis';
+    var badgeText = q.tipo === 'teorica' ? 'Teórica' : 'Análisis de caso';
+    html += '<div class="question-block">';
+    html += '<div class="q-header"><span class="badge '+badgeClass+'">'+badgeText+'</span></div>';
+    html += '<div class="q-text" style="margin-bottom:8px;">' + (idx+1) + '. ' + q.text + '</div>';
+    ['a','b','c','d'].forEach(function(letra){
+      html += '<label class="option-label" data-q="'+q.id+'" data-val="'+letra+'"><input type="radio" name="'+q.id+'" value="'+letra+'"> ' + letra.toUpperCase() + ') ' + q.opts[letra] + '</label>';
+    });
+    html += '<div class="feedback" id="fb_'+q.id+'"></div>';
+    html += '</div>';
+  });
+  container.innerHTML = html;
+}
+buildQuiz();
+
+function checkQuiz(){
+  var allAnswered = true;
+  quizData.forEach(function(q){
+    var sel = document.querySelector('input[name="'+q.id+'"]:checked');
+    if(!sel) allAnswered = false;
+  });
+  var alertBox = document.getElementById('quizAlert');
+  if(!allAnswered){
+    alertBox.classList.add('show');
+    return;
+  }
+  alertBox.classList.remove('show');
+
+  var score = 0;
+  quizData.forEach(function(q){
+    var sel = document.querySelector('input[name="'+q.id+'"]:checked');
+    var userVal = sel.value;
+    var correctVal = quizCorrects[q.id];
+    var fb = document.getElementById('fb_'+q.id);
+    var labels = document.querySelectorAll('label[data-q="'+q.id+'"]');
+    labels.forEach(function(l){
+      if(l.dataset.val === correctVal) l.classList.add('correct-ans');
+      if(l.dataset.val === userVal && userVal !== correctVal) l.classList.add('incorrect-ans');
+    });
+    if(userVal === correctVal){
+      score++;
+      fb.className = 'feedback correct';
+      fb.innerHTML = '✅ Correcto. ' + quizFeedbacks[q.id];
+    } else {
+      fb.className = 'feedback incorrect';
+      fb.innerHTML = '❌ Incorrecto. ' + quizFeedbacks[q.id];
+    }
+  });
+
+  var total = quizData.length;
+  var pct = Math.round((score/total)*100);
+  document.getElementById('quizScoreNum').textContent = score + '/' + total;
+  document.getElementById('quizBar').style.width = pct + '%';
+
+  var msg = '';
+  if(score === total){ msg = '🏆 ¡Excelente! Dominas a la perfección los fundamentos del Lean Startup.'; }
+  else if(pct >= 80){ msg = '🎯 ¡Muy buen trabajo! Tienes un manejo sólido de la metodología.'; }
+  else if(pct >= 60){ msg = '📘 Bien. Comprendes lo esencial, pero conviene repasar algunos conceptos.'; }
+  else if(pct >= 40){ msg = '⚠️ Necesitas reforzar varios conceptos clave. Vuelve a leer los Temas 1 a 4.'; }
+  else { msg = '📖 Es importante que repases el contenido completo antes de continuar.'; }
+  document.getElementById('quizMensaje').textContent = msg;
+  document.getElementById('quizScorePanel').classList.add('show');
+  document.getElementById('quizScorePanel').scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+function resetQuiz(){
+  document.querySelectorAll('input[name^="qi"]').forEach(function(r){ r.checked = false; });
+  document.querySelectorAll('#quizContainer .option-label').forEach(function(l){
+    l.classList.remove('correct-ans','incorrect-ans');
+  });
+  document.querySelectorAll('#quizContainer .feedback').forEach(function(f){ f.className='feedback'; f.innerHTML=''; });
+  document.getElementById('quizScorePanel').classList.remove('show');
+  document.getElementById('quizAlert').classList.remove('show');
+}
+</script>
+</body>
+</html>
