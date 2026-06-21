@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 13 | El Lienzo de la Propuesta de Valor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================== */
+/* RESET Y BASE                   */
+/* ============================== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  background: #f4f6f8;
+  color: #1a1a1a;
+  line-height: 1.65;
+  font-size: 16px;
+}
+h1, h2, h3, h4 { font-family: 'Lora', serif; color: #003366; }
+.container { max-width: 1000px; margin: 0 auto; background: #ffffff; box-shadow: 0 0 18px rgba(0,0,0,0.08); }
+
+/* ============================== */
+/* ENCABEZADO                     */
+/* ============================== */
+header.main-header {
+  background: #003366;
+  color: #ffffff;
+  padding: 22px 28px;
+}
+header.main-header .inst {
+  font-size: 0.82rem;
+  letter-spacing: 0.4px;
+  opacity: 0.9;
+  margin-bottom: 6px;
+}
+header.main-header h1 {
+  color: #ffffff;
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+header.main-header .meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 0.85rem;
+}
+header.main-header .meta span {
+  background: rgba(255,255,255,0.15);
+  padding: 4px 12px;
+  border-radius: 14px;
+}
+
+/* ============================== */
+/* NAVEGACIÓN DE PESTAÑAS         */
+/* ============================== */
+nav.tabs-nav {
+  background: #87CEEB;
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  border-bottom: 2px solid #003366;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+nav.tabs-nav::-webkit-scrollbar { height: 7px; }
+nav.tabs-nav::-webkit-scrollbar-thumb { background: #003366; border-radius: 4px; }
+nav.tabs-nav button {
+  flex: 0 0 auto;
+  background: transparent;
+  border: none;
+  color: #00264d;
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 600;
+  font-size: 0.88rem;
+  padding: 13px 16px;
+  cursor: pointer;
+  border-right: 1px solid rgba(0,51,102,0.15);
+  transition: background 0.15s ease;
+}
+nav.tabs-nav button:hover { background: rgba(255,255,255,0.35); }
+nav.tabs-nav button.active {
+  background: #ffffff;
+  color: #003366;
+  font-weight: 700;
+  box-shadow: inset 0 -3px 0 #003366;
+}
+
+/* ============================== */
+/* CONTENIDO DE PESTAÑAS          */
+/* ============================== */
+.tab-content { display: none; padding: 26px 30px 40px; animation: fadeIn 0.25s ease; }
+.tab-content.active { display: block; }
+@keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+
+.tab-content h2 { font-size: 1.35rem; margin-bottom: 14px; border-bottom: 3px solid #87CEEB; padding-bottom: 8px; }
+.tab-content h3 { font-size: 1.08rem; margin: 20px 0 10px; }
+.tab-content p { margin-bottom: 12px; text-align: justify; }
+.tab-content ul, .tab-content ol { margin: 10px 0 14px 22px; }
+.tab-content li { margin-bottom: 6px; }
+
+/* Cajas de concepto */
+.concept-box {
+  background: #eef4fb;
+  border-left: 5px solid #003366;
+  padding: 14px 18px;
+  margin: 16px 0;
+  border-radius: 0 6px 6px 0;
+}
+.concept-box strong.term { color: #003366; }
+
+/* Cajas de ejemplo / historia */
+.example-box {
+  background: #e3f2fb;
+  border: 1px solid #87CEEB;
+  padding: 14px 18px;
+  margin: 16px 0;
+  border-radius: 8px;
+}
+.example-box .tag {
+  display: inline-block;
+  background: #003366;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Caja de conclusión */
+.conclusion-box {
+  background: #fff8e6;
+  border: 1px dashed #d9a514;
+  padding: 14px 18px;
+  margin: 18px 0 6px;
+  border-radius: 8px;
+}
+.conclusion-box .tag { color: #8a6200; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; }
+
+/* Tablas comparativas */
+table.comp-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.92rem; }
+table.comp-table th { background: #003366; color: #fff; padding: 10px; text-align: left; }
+table.comp-table td { padding: 10px; border-bottom: 1px solid #d8dee3; vertical-align: top; }
+table.comp-table tr:nth-child(even) td { background: #f7f9fb; }
+
+/* ============================== */
+/* HERRAMIENTA GUIADA (CANVAS)    */
+/* ============================== */
+.tool-intro { background: #eef4fb; border-left: 5px solid #003366; padding: 14px 18px; border-radius: 0 6px 6px 0; margin-bottom: 18px; }
+.vpc-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin: 18px 0;
+}
+.vpc-side { border-radius: 10px; padding: 16px; }
+.vpc-side.cliente { background: #fdf3e7; border: 2px solid #d9a514; }
+.vpc-side.mapa { background: #eef4fb; border: 2px solid #003366; }
+.vpc-side h4 { margin-bottom: 4px; font-size: 1rem; }
+.vpc-side .sub { font-size: 0.78rem; color: #555; margin-bottom: 10px; }
+.vpc-block { margin-bottom: 12px; }
+.vpc-block label { display: block; font-weight: 600; font-size: 0.85rem; color: #003366; margin-bottom: 4px; }
+.vpc-block .hint { font-size: 0.76rem; color: #555; margin-bottom: 4px; display:block; }
+.vpc-block textarea {
+  width: 100%;
+  min-height: 70px;
+  padding: 8px 10px;
+  border: 1px solid #b6c4d1;
+  border-radius: 6px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.88rem;
+  resize: vertical;
+}
+.vpc-block textarea:focus { outline: 2px solid #003366; }
+
+.btn-secondary, .btn-primary, .btn-reset {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 700;
+  border: none;
+  border-radius: 7px;
+  padding: 11px 22px;
+  cursor: pointer;
+  font-size: 0.92rem;
+  transition: transform 0.1s ease, opacity 0.15s ease;
+}
+.btn-primary { background: #003366; color: #fff; }
+.btn-primary:hover { opacity: 0.88; }
+.btn-secondary { background: #87CEEB; color: #00264d; }
+.btn-secondary:hover { opacity: 0.85; }
+.btn-reset { background: #fff; color: #003366; border: 2px solid #003366; }
+.btn-reset:hover { background: #f0f4f8; }
+.btn-row { display: flex; gap: 12px; flex-wrap: wrap; margin: 16px 0; }
+
+#ejemplo-resuelto { display: none; background: #fff8e6; border: 1px dashed #d9a514; border-radius: 8px; padding: 14px 18px; margin: 14px 0; font-size: 0.9rem; }
+#ejemplo-resuelto.show { display: block; }
+
+.checklist-box { background: #f7f9fb; border: 1px solid #d8dee3; border-radius: 8px; padding: 16px 18px; margin-top: 10px; }
+.checklist-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+.checklist-item input { margin-top: 4px; width: 17px; height: 17px; flex-shrink: 0; }
+#fit-result { margin-top: 14px; padding: 14px; border-radius: 8px; display: none; font-weight: 600; }
+#fit-result.show { display: block; }
+
+/* ============================== */
+/* EJERCICIO / CUESTIONARIO       */
+/* ============================== */
+.q-item {
+  background: #f7f9fb;
+  border: 1px solid #d8dee3;
+  border-radius: 9px;
+  padding: 16px 18px;
+  margin-bottom: 16px;
+}
+.q-item .q-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+.q-item .q-text { font-weight: 600; color: #1a1a1a; }
+.badge { font-size: 0.68rem; font-weight: 700; padding: 3px 10px; border-radius: 12px; text-transform: uppercase; white-space: nowrap; }
+.badge.teorica { background: #d8e9f7; color: #003366; }
+.badge.analisis { background: #fde7d4; color: #9a4d00; }
+.opt-label {
+  display: block;
+  background: #fff;
+  border: 1px solid #c8d3dc;
+  border-radius: 6px;
+  padding: 9px 12px;
+  margin-bottom: 7px;
+  cursor: pointer;
+  font-size: 0.92rem;
+  transition: background 0.15s ease;
+}
+.opt-label:hover { background: #eef4fb; }
+.opt-label input { margin-right: 8px; }
+.q-item.correct { border-color: #2e7d32; background: #edf7ee; }
+.q-item.incorrect { border-color: #c62828; background: #fdecea; }
+.feedback-text { margin-top: 10px; font-size: 0.87rem; padding: 9px 12px; border-radius: 6px; }
+.feedback-text.ok { background: #d7f2db; color: #1b5e20; }
+.feedback-text.bad { background: #fbdcda; color: #8c1d18; }
+
+.result-summary { background: #003366; color: #fff; border-radius: 10px; padding: 22px; margin-top: 20px; text-align: center; display: none; }
+.result-summary.show { display: block; }
+.result-summary .score-num { font-size: 2.4rem; font-family: 'Lora', serif; font-weight: 700; }
+.progress-bar-bg { background: rgba(255,255,255,0.25); border-radius: 20px; height: 16px; margin: 14px 0; overflow: hidden; }
+.progress-bar-fill { background: #87CEEB; height: 100%; width: 0%; border-radius: 20px; transition: width 1s ease; }
+.result-summary .msg { font-size: 1.05rem; margin-top: 8px; }
+.alert-box { background: #fdecea; color: #8c1d18; border: 1px solid #c62828; border-radius: 7px; padding: 11px 16px; margin: 12px 0; font-weight: 600; display: none; }
+.alert-box.show { display: block; }
+
+/* ============================== */
+/* ACTIVIDAD IA                   */
+/* ============================== */
+.ai-box { background: #eef4fb; border: 2px solid #003366; border-radius: 10px; padding: 18px 20px; margin: 14px 0; }
+.ai-prompt-box { background: #00264d; color: #e8f3ff; font-family: 'Source Sans 3', monospace; font-size: 0.87rem; padding: 16px 18px; border-radius: 8px; margin: 12px 0; white-space: pre-wrap; line-height: 1.55; }
+.ai-tool-tag { display: inline-block; background: #003366; color: #fff; padding: 4px 12px; border-radius: 14px; font-size: 0.78rem; font-weight: 700; margin-right: 8px; margin-bottom: 6px; }
+.ai-tool-tag.reco { background: #d9a514; color: #3a2900; }
+.criteria-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
+.criteria-col { padding: 12px 14px; border-radius: 8px; }
+.criteria-col.good { background: #e6f4ea; border-left: 4px solid #2e7d32; }
+.criteria-col.bad { background: #fbe9e7; border-left: 4px solid #c62828; }
+.criteria-col h4 { font-size: 0.92rem; margin-bottom: 6px; }
+.criteria-col ul { margin-left: 18px; font-size: 0.86rem; }
+
+/* ============================== */
+/* REFLEXIÓN                      */
+/* ============================== */
+.reflect-item { background: #fdf3e7; border-left: 5px solid #d9a514; padding: 14px 18px; border-radius: 0 8px 8px 0; margin-bottom: 14px; }
+.reflect-item .num { font-family: 'Lora', serif; font-weight: 700; color: #8a6200; font-size: 1.1rem; }
+.reflect-item textarea { width: 100%; min-height: 55px; margin-top: 8px; border: 1px solid #d9c79a; border-radius: 6px; padding: 8px; font-family: 'Source Sans 3', sans-serif; resize: vertical; }
+.reflect-note { background: #eef4fb; border-radius: 8px; padding: 12px 16px; font-size: 0.86rem; margin-bottom: 18px; }
+
+/* ============================== */
+/* BIBLIOGRAFÍA                   */
+/* ============================== */
+.biblio-card { background: #f7f9fb; border: 1px solid #d8dee3; border-left: 5px solid #003366; border-radius: 0 8px 8px 0; padding: 14px 18px; margin-bottom: 12px; }
+.biblio-card .autor { font-weight: 700; }
+.biblio-card .titulo { font-style: italic; }
+.biblio-footnote { margin-top: 18px; font-size: 0.82rem; color: #555; border-top: 1px solid #d8dee3; padding-top: 12px; }
+
+/* ============================== */
+/* RESPONSIVE                     */
+/* ============================== */
+@media (max-width: 720px) {
+  .vpc-wrapper { grid-template-columns: 1fr; }
+  .criteria-grid { grid-template-columns: 1fr; }
+  header.main-header h1 { font-size: 1.2rem; }
+  .tab-content { padding: 18px 16px 30px; }
+  nav.tabs-nav button { font-size: 0.8rem; padding: 11px 12px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- ============================== -->
+  <!-- ENCABEZADO                      -->
+  <!-- ============================== -->
+  <header class="main-header">
+    <div class="inst">Universidad de Guayaquil · Facultad de Ciencias Administrativas · Carrera de Contabilidad y Auditoría</div>
+    <h1>El Lienzo de la Propuesta de Valor</h1>
+    <div class="meta">
+      <span>📘 Emprendimiento e Innovación</span>
+      <span>📂 Unidad 3: El Corporate Venturing y las Startups</span>
+      <span>🗓️ Semana 13</span>
+    </div>
+  </header>
+
+  <!-- ============================== -->
+  <!-- NAVEGACIÓN                      -->
+  <!-- ============================== -->
+  <nav class="tabs-nav" id="tabsNav">
+    <button class="active" onclick="showTab('repaso', this)">Repaso</button>
+    <button onclick="showTab('tema1', this)">Tema 1</button>
+    <button onclick="showTab('tema2', this)">Tema 2</button>
+    <button onclick="showTab('tema3', this)">Tema 3</button>
+    <button onclick="showTab('tema4', this)">Tema 4</button>
+    <button onclick="showTab('herramienta', this)">Herramienta Guiada</button>
+    <button onclick="showTab('ejercicio', this)">7. Ejercicio Interactivo</button>
+    <button onclick="showTab('cuestionario', this)">8. Cuestionario</button>
+    <button onclick="showTab('ia', this)">9. Actividad con IA</button>
+    <button onclick="showTab('reflexion', this)">10. Reflexión Personal</button>
+    <button onclick="showTab('bibliografia', this)">11. Bibliografía</button>
+  </nav>
+
+  <!-- ============================== -->
+  <!-- REPASO                          -->
+  <!-- ============================== -->
+  <div class="tab-content active" id="repaso">
+    <h2>Repaso: el camino recorrido hasta aquí</h2>
+    <p>Llevamos doce semanas construyendo, paso a paso, la capacidad de transformar ideas en proyectos viables. En la <strong>Semana 9</strong> consolidamos los fundamentos del primer parcial y profundizamos en el <strong>Design Thinking</strong> (pensamiento de diseño), una metodología centrada en las personas que parte de la empatía con el usuario para llegar a soluciones innovadoras. En la <strong>Semana 10</strong> dimos un giro hacia el mundo corporativo con el <strong>Corporate Venturing</strong>: la estrategia mediante la cual empresas grandes y consolidadas generan nuevos negocios —internos o externos— para innovar sin perder su estructura tradicional, muchas veces asociándose con startups jóvenes y ágiles.</p>
+    <p>En la <strong>Semana 11</strong> nos enfocamos en la <strong>naturaleza de las startups</strong> (empresas emergentes de alto potencial de crecimiento que operan bajo condiciones de incertidumbre extrema) y en los factores que explican su éxito: equipo sólido, problema real, modelo de negocio escalable y, sobre todo, una oferta que el mercado realmente desea. La <strong>Semana 12</strong> nos mostró la otra cara de la moneda: las <strong>problemáticas y retos</strong> que enfrentan estos emprendimientos, entre las cuales la causa número uno de fracaso —según datos de CB Insights, firma de análisis de mercado citada en esa semana— es construir un producto que el mercado <em>no necesita</em>.</p>
+    <div class="concept-box">
+      <strong class="term">El hilo conductor:</strong> si la principal causa de fracaso de una startup es no entender a su cliente, entonces necesitamos una herramienta rigurosa para diseñar, desde el inicio, una oferta que sí calce con lo que el cliente busca. Esa herramienta es precisamente el tema de hoy: el <strong>Lienzo de la Propuesta de Valor</strong> (en inglés, <em>Value Proposition Canvas</em>, conocido por su sigla <strong>VPC</strong>).
+    </div>
+    <p>Esta semana aprenderemos a construir, bloque por bloque, una propuesta de valor que conecte de forma comprobable con las necesidades reales del cliente. En la <strong>Semana 14</strong> daremos el siguiente paso lógico: integraremos este lienzo dentro del <strong>Modelo de Negocio Canvas</strong> (BMC, por sus siglas en inglés <em>Business Model Canvas</em>), una herramienta más amplia que describe el negocio completo en nueve bloques. En la <strong>Semana 15</strong> cerraremos la Unidad 4 con la <strong>metodología Lean Startup</strong>, que nos enseñará a validar todas estas hipótesis con el menor desperdicio posible de tiempo y dinero.</p>
+    <div class="conclusion-box"><span class="tag">Idea clave del repaso</span><p style="margin-top:6px;">El Lienzo de Propuesta de Valor no es un tema aislado: es la respuesta metodológica directa al problema número uno de las startups que estudiamos la semana pasada. Dominarlo es pasar de "creo que mi idea es buena" a "tengo evidencia estructurada de que mi idea resuelve algo real".</p></div>
+  </div>
+
+  <!-- ============================== -->
+  <!-- TEMA 1                          -->
+  <!-- ============================== -->
+  <div class="tab-content" id="tema1">
+    <h2>Tema 1. Origen y fundamento del Lienzo de Propuesta de Valor</h2>
+    <p>Antes de entrar en la herramienta misma, necesitamos definir con precisión su objeto de estudio: la <strong>propuesta de valor</strong>. Una propuesta de valor es el conjunto de beneficios que una empresa promete entregar a un segmento específico de clientes para resolver un problema o satisfacer una necesidad, y que constituye la razón principal por la cual ese cliente elige a esa empresa y no a otra. No es un eslogan publicitario ni una lista de características del producto: es la respuesta concreta a la pregunta "¿por qué alguien me compraría a mí?"</p>
+    <div class="concept-box">
+      <strong class="term">Lienzo de Propuesta de Valor (Value Proposition Canvas - VPC):</strong> es una herramienta visual desarrollada por el suizo <strong>Alexander Osterwalder</strong> y sus colegas Yves Pigneur, Greg Bernarda y Alan Smith, publicada en el libro <em>Value Proposition Design</em> (2014). El VPC divide el análisis en dos mitades complementarias: el <strong>Perfil del Cliente</strong> (lo que el cliente piensa, necesita y siente) y el <strong>Mapa de Valor</strong> (lo que la empresa ofrece para responder a ello). El objetivo es lograr que ambas mitades "encajen" como dos piezas de rompecabezas.
+    </div>
+    <p>Este lienzo nació como un complemento del <strong>Modelo de Negocio Canvas</strong> (BMC, <em>Business Model Canvas</em>), que estos mismos autores habían publicado en 2010 y que estudiaremos a profundidad en la Semana 14. Mientras el BMC describe el negocio completo en nueve bloques (clientes, propuesta de valor, canales, relaciones, ingresos, recursos, actividades, socios y costos), Osterwalder notó que uno de esos nueve bloques —la propuesta de valor— era el más crítico y el más frecuentemente mal diseñado, por lo que merecía una "lupa" propia: el VPC.</p>
+    <h3>¿Por qué esta herramienta es indispensable para una startup?</h3>
+    <p>Recordemos el dato de la semana anterior: la mayoría de las startups que fracasan no lo hacen por falta de dinero ni por mala ejecución técnica, sino porque construyeron algo que el mercado no quería. El VPC ataca ese riesgo directamente porque obliga al emprendedor a separar dos preguntas que solemos mezclar peligrosamente: "¿qué quiero ofrecer yo?" y "¿qué necesita realmente mi cliente?". Solo cuando ambas respuestas coinciden, decimos que existe <strong>encaje</strong> (en inglés, <em>fit</em>), concepto que desarrollaremos en el Tema 4.</p>
+    <div class="example-box">
+      <span class="tag">Ejemplo aplicado — Ecuador</span>
+      <p><strong>Kushki</strong>, la fintech ecuatoriana de pagos digitales (fundada en Guayaquil), no comenzó ofreciendo "una pasarela de pagos" porque sí. Sus fundadores identificaron primero que los comercios latinoamericanos pequeños y medianos enfrentaban un dolor concreto: procesos de afiliación bancaria lentos y burocráticos para poder cobrar con tarjeta. Solo después de entender ese dolor diseñaron su propuesta de valor: integración rápida vía código (API) para que cualquier negocio empiece a cobrar en línea en días, no en meses. El producto fue consecuencia del problema, no al revés.</p>
+    </div>
+    <div class="conclusion-box"><span class="tag">Idea clave</span><p style="margin-top:6px;">El VPC no es una plantilla decorativa: es una disciplina de pensamiento que invierte el orden natural en que muchos emprendedores trabajan. En lugar de partir de "tengo una idea genial", el VPC obliga a partir de "este es el cliente y este es su problema verificado".</p></div>
+  </div>
+
+  <!-- ============================== -->
+  <!-- TEMA 2                          -->
+  <!-- ============================== -->
+  <div class="tab-content" id="tema2">
+    <h2>Tema 2. El Perfil del Cliente (Customer Profile)</h2>
+    <p>El lado derecho del lienzo —el círculo— se llama <strong>Perfil del Cliente</strong>. Su función es describir, con la mayor objetividad posible, a un segmento de cliente específico, sin mencionar todavía ningún producto o solución. Se compone de tres bloques: Trabajos, Dolores y Alegrías.</p>
+    <div class="concept-box">
+      <strong class="term">Trabajos del cliente (Customer Jobs):</strong> son las tareas que el cliente intenta realizar, los problemas que intenta resolver o las necesidades que intenta satisfacer en su vida personal o profesional. Existen tres tipos: <strong>funcionales</strong> (una tarea práctica concreta, por ejemplo "declarar impuestos a tiempo"), <strong>sociales</strong> (cómo el cliente quiere ser percibido por otros, por ejemplo "ser visto como un emprendedor confiable") y <strong>emocionales</strong> (cómo el cliente quiere sentirse, por ejemplo "sentirse tranquilo y sin estrés financiero").
+    </div>
+    <div class="concept-box">
+      <strong class="term">Dolores (Pains):</strong> son los resultados negativos, riesgos y obstáculos relacionados con los trabajos del cliente antes, durante o después de realizarlos. Pueden ser <strong>obstáculos</strong> (algo que impide empezar la tarea), <strong>riesgos</strong> (resultados potencialmente malos que el cliente teme) o <strong>resultados no deseados</strong> (problemas, características o efectos secundarios indeseados que ya está experimentando).
+    </div>
+    <div class="concept-box">
+      <strong class="term">Alegrías (Gains):</strong> son los beneficios que el cliente espera, desea o le sorprendería recibir. Se clasifican en <strong>requeridas</strong> (sin las cuales la solución ni se considera), <strong>esperadas</strong> (beneficios básicos que se dan por hecho), <strong>deseadas</strong> (que el cliente apreciaría aunque no las exija) y <strong>inesperadas</strong> (que sorprenden gratamente porque van más allá de lo imaginado).
+    </div>
+    <h3>Aplicación al ejercicio contable</h3>
+    <div class="example-box">
+      <span class="tag">Ejemplo aplicado — pyme ecuatoriana</span>
+      <p>Pensemos en el perfil de una pequeña empresa de Cuenca que es cliente de un estudio contable. Un <em>trabajo funcional</em> sería "presentar correctamente el Impuesto al Valor Agregado <strong>(IVA)</strong> al <strong>Servicio de Rentas Internas (SRI)</strong>, la entidad pública ecuatoriana encargada de la recaudación tributaria". Un <em>dolor</em> sería "el miedo a una multa por una declaración tardía o mal hecha". Una <em>alegría inesperada</em> sería "recibir, además del trámite, una explicación sencilla de cómo esa declaración impacta su flujo de caja del mes".</p>
+    </div>
+    <table class="comp-table">
+      <tr><th>Bloque</th><th>Pregunta guía</th><th>Ejemplo (pyme ecuatoriana)</th></tr>
+      <tr><td>Trabajo funcional</td><td>¿Qué tarea concreta necesita lograr?</td><td>Declarar el IVA a tiempo</td></tr>
+      <tr><td>Trabajo emocional</td><td>¿Cómo quiere sentirse?</td><td>Sentirse tranquilo, sin estrés tributario</td></tr>
+      <tr><td>Dolor (riesgo)</td><td>¿Qué teme que salga mal?</td><td>Recibir una multa del SRI</td></tr>
+      <tr><td>Alegría deseada</td><td>¿Qué le gustaría recibir, aunque no lo exija?</td><td>Un reporte visual fácil de entender</td></tr>
+    </table>
+    <div class="conclusion-box"><span class="tag">Idea clave</span><p style="margin-top:6px;">El Perfil del Cliente se construye con investigación real (entrevistas, observación), nunca con suposiciones de escritorio. Mientras más preciso sea este lado del lienzo, más fácil será diseñar una propuesta de valor que de verdad encaje.</p></div>
+  </div>
+
+  <!-- ============================== -->
+  <!-- TEMA 3                          -->
+  <!-- ============================== -->
+  <div class="tab-content" id="tema3">
+    <h2>Tema 3. El Mapa de Valor (Value Map)</h2>
+    <p>El lado izquierdo del lienzo —el cuadrado— se llama <strong>Mapa de Valor</strong>. Aquí, y solo aquí, describimos la oferta concreta de la empresa: lo que vamos a construir, vender o entregar. Su error de diseño es exactamente igual al del Perfil del Cliente, pero invertido: muchos emprendedores llenan primero el Mapa de Valor (porque ya tienen una idea de producto en la cabeza) y recién después intentan justificar que existe un cliente para ella. El orden correcto es: primero el Perfil del Cliente, después el Mapa de Valor.</p>
+    <div class="concept-box">
+      <strong class="term">Productos y servicios:</strong> es la lista de todo lo que la empresa ofrece: bienes tangibles, servicios digitales, productos financieros, asesorías, etc. En esta etapa no se prioriza nada todavía; es un inventario completo de la oferta.
+    </div>
+    <div class="concept-box">
+      <strong class="term">Aliviadores de dolores (Pain Relievers):</strong> describen específicamente cómo cada producto o servicio elimina o reduce uno o varios de los dolores identificados en el Perfil del Cliente. La pregunta clave es: "¿cómo evita esto que mi cliente sufra ese problema concreto?"
+    </div>
+    <div class="concept-box">
+      <strong class="term">Creadores de alegrías (Gain Creators):</strong> describen cómo cada producto o servicio genera los beneficios que el cliente espera, desea o le sorprendería recibir. La pregunta clave es: "¿cómo produce esto ese beneficio concreto que mi cliente valora?"
+    </div>
+    <div class="example-box">
+      <span class="tag">Ejemplo aplicado — startup ecuatoriana</span>
+      <p><strong>Datil</strong>, plataforma ecuatoriana de infraestructura tecnológica y pagos para negocios digitales, no ofrece simplemente "tecnología". Su <em>producto</em> es una plataforma de gestión de cobros y suscripciones; su <em>aliviador de dolores</em> es automatizar el cobro recurrente para que el emprendedor no tenga que perseguir manualmente a cada cliente moroso (eliminando el dolor de la cobranza); y su <em>creador de alegrías</em> es ofrecer reportes claros de ingresos en tiempo real que generan la alegría de sentir control financiero del negocio sin necesidad de un departamento contable robusto.</p>
+    </div>
+    <table class="comp-table">
+      <tr><th>Bloque del Mapa de Valor</th><th>Función</th><th>Pregunta guía</th></tr>
+      <tr><td>Productos y servicios</td><td>Inventario de la oferta</td><td>¿Qué ofrezco concretamente?</td></tr>
+      <tr><td>Aliviadores de dolores</td><td>Eliminar fricciones</td><td>¿Cómo evito que mi cliente sufra X dolor?</td></tr>
+      <tr><td>Creadores de alegrías</td><td>Generar beneficios</td><td>¿Cómo produzco X beneficio que mi cliente valora?</td></tr>
+    </table>
+    <div class="conclusion-box"><span class="tag">Idea clave</span><p style="margin-top:6px;">Cada elemento del Mapa de Valor debe poder conectarse, con una línea directa, a un Trabajo, Dolor o Alegría específico del Perfil del Cliente. Si un producto no resuelve nada del lado derecho del lienzo, probablemente sobra.</p></div>
+  </div>
+
+  <!-- ============================== -->
+  <!-- TEMA 4                          -->
+  <!-- ============================== -->
+  <div class="tab-content" id="tema4">
+    <h2>Tema 4. El Encaje (Fit): cómo se valida y se logra</h2>
+    <p>Hablamos de <strong>encaje</strong> (en inglés, <em>fit</em>) cuando el Mapa de Valor responde de manera comprobada —no supuesta— a los elementos más importantes del Perfil del Cliente. Osterwalder distingue tres niveles progresivos de encaje, cada uno más exigente que el anterior.</p>
+    <div class="concept-box">
+      <strong class="term">Encaje problema-solución (Problem-Solution Fit):</strong> el nivel más básico. Existe evidencia, mediante entrevistas, de que el problema identificado es real e importante para el cliente, y de que la solución propuesta parece resolverlo, aunque todavía no se haya construido ni vendido nada.
+    </div>
+    <div class="concept-box">
+      <strong class="term">Encaje producto-mercado (Product-Market Fit - PMF):</strong> un nivel más exigente, en el que ya existe un producto real —al menos un <strong>Producto Mínimo Viable (MVP, del inglés <em>Minimum Viable Product</em>)</strong>, es decir, la versión más simple de un producto que permite probarlo con clientes reales con el menor esfuerzo posible— y los clientes lo están usando, comprando o recomendando de forma sostenida.
+    </div>
+    <div class="concept-box">
+      <strong class="term">Encaje del modelo de negocio (Business Model Fit):</strong> el nivel más alto, en el que además de tener clientes satisfechos, el modelo es rentable y escalable: el costo de conseguir y atender clientes es sostenible frente a los ingresos que generan.
+    </div>
+    <h3>¿Cómo se valida el encaje en la práctica?</h3>
+    <p>El encaje no se decide en una sala de reuniones; se valida en la calle. Las herramientas recomendadas por Osterwalder y reforzadas por la metodología Lean Startup (que veremos en la Semana 15) incluyen: entrevistas de descubrimiento de clientes, pruebas con un MVP, observación directa del comportamiento real (no de lo que la gente dice que haría) y métricas de uso. Una propuesta de valor nunca se considera "terminada"; se trata de un documento vivo que se ajusta con cada nueva evidencia.</p>
+    <div class="example-box">
+      <span class="tag">Ejemplo aplicado — Ecuador</span>
+      <p>La startup agrotech ecuatoriana <strong>Siembro</strong> no lanzó su plataforma completa desde el primer día. Antes de construir todas las funcionalidades, validó con agricultores reales si el problema de acceso a financiamiento e insumos agrícolas era tan urgente como suponían, y probó versiones simples de su servicio antes de escalar. Ese proceso iterativo de prueba y ajuste es, precisamente, la búsqueda activa del encaje.</p>
+    </div>
+    <div class="conclusion-box"><span class="tag">Idea clave</span><p style="margin-top:6px;">El encaje es un proceso, no un evento único. Diseñar el lienzo es solo el primer paso; el verdadero trabajo emprendedor consiste en salir a contrastarlo con la realidad y tener la humildad de rediseñarlo cuantas veces sea necesario.</p></div>
+  </div>
+
+  <!-- ============================== -->
+  <!-- HERRAMIENTA GUIADA              -->
+  <!-- ============================== -->
+  <div class="tab-content" id="herramienta">
+    <h2>Herramienta Guiada: construye tu propio Lienzo de Propuesta de Valor</h2>
+    <div class="tool-intro">
+      <strong>Instrucciones de uso:</strong> sigue el orden numerado. Primero completa el <strong>Perfil del Cliente</strong> (lado derecho, en color ámbar) pensando en un cliente real que conozcas. Solo después completa el <strong>Mapa de Valor</strong> (lado izquierdo, en color azul), asegurándote de que cada respuesta conecte directamente con algo que escribiste en el perfil. Puedes usar una idea de negocio propia, un servicio profesional que ofreces (por ejemplo, de contabilidad o auditoría) o un caso hipotético.
+    </div>
+    <div class="btn-row">
+      <button class="btn-secondary" onclick="toggleEjemplo()">👁️ Ver ejemplo resuelto</button>
+    </div>
+    <div id="ejemplo-resuelto">
+      <strong>Ejemplo resuelto — Estudio contable independiente para pymes en Guayaquil</strong>
+      <p style="margin-top:8px;"><strong>Trabajos:</strong> declarar impuestos a tiempo ante el SRI; obtener estados financieros confiables para solicitar crédito bancario; sentirse respaldado legalmente.</p>
+      <p><strong>Dolores:</strong> miedo a multas tributarias; desconocimiento del lenguaje técnico contable; pérdida de tiempo en trámites presenciales.</p>
+      <p><strong>Alegrías:</strong> recibir recordatorios automáticos de fechas clave; entender sus números sin tecnicismos; sentirse acompañado, no solo "atendido".</p>
+      <p style="margin-top:8px;"><strong>Productos/Servicios:</strong> declaración tributaria mensual; asesoría contable vía videollamada; dashboard financiero simple.</p>
+      <p><strong>Aliviadores de dolores:</strong> sistema de alertas previas al vencimiento; explicaciones en lenguaje llano; trámites 100% en línea.</p>
+      <p><strong>Creadores de alegrías:</strong> reporte visual mensual fácil de leer; acompañamiento cercano vía WhatsApp; reconocimiento público de buenas prácticas del cliente.</p>
+    </div>
+
+    <div class="vpc-wrapper">
+      <div class="vpc-side cliente">
+        <h4>① Perfil del Cliente</h4>
+        <span class="sub">Completa primero este lado, sin pensar todavía en tu producto.</span>
+        <div class="vpc-block">
+          <label for="vp-jobs">Trabajos del cliente (Jobs)</label>
+          <span class="hint">¿Qué tareas funcionales, sociales o emocionales intenta lograr tu cliente?</span>
+          <textarea id="vp-jobs" placeholder="Ej: declarar el IVA a tiempo, sentirse seguro frente al SRI..."></textarea>
+        </div>
+        <div class="vpc-block">
+          <label for="vp-pains">Dolores (Pains)</label>
+          <span class="hint">¿Qué obstáculos, riesgos o resultados negativos enfrenta?</span>
+          <textarea id="vp-pains" placeholder="Ej: miedo a una multa, desconocimiento de trámites..."></textarea>
+        </div>
+        <div class="vpc-block">
+          <label for="vp-gains">Alegrías (Gains)</label>
+          <span class="hint">¿Qué beneficios espera, desea o le sorprendería recibir?</span>
+          <textarea id="vp-gains" placeholder="Ej: recibir reportes claros, sentirse acompañado..."></textarea>
+        </div>
+      </div>
+      <div class="vpc-side mapa">
+        <h4>② Mapa de Valor</h4>
+        <span class="sub">Completa este lado solo después del Perfil del Cliente.</span>
+        <div class="vpc-block">
+          <label for="vp-products">Productos y servicios</label>
+          <span class="hint">¿Qué ofreces concretamente?</span>
+          <textarea id="vp-products" placeholder="Ej: declaración tributaria mensual, asesoría virtual..."></textarea>
+        </div>
+        <div class="vpc-block">
+          <label for="vp-relievers">Aliviadores de dolores</label>
+          <span class="hint">¿Cómo elimina cada producto un dolor específico de arriba?</span>
+          <textarea id="vp-relievers" placeholder="Ej: alertas automáticas antes del vencimiento..."></textarea>
+        </div>
+        <div class="vpc-block">
+          <label for="vp-creators">Creadores de alegrías</label>
+          <span class="hint">¿Cómo genera cada producto una alegría específica de arriba?</span>
+          <textarea id="vp-creators" placeholder="Ej: reportes visuales fáciles de entender..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <h3>③ Autoevaluación guiada del Encaje</h3>
+    <p>Responde con honestidad. Esta lista no califica tu nota; te ayuda a detectar qué tan sólido está tu lienzo antes de salir a validarlo con clientes reales.</p>
+    <div class="checklist-box">
+      <div class="checklist-item"><input type="checkbox" id="fit1"><label for="fit1">Cada producto/servicio que escribí responde a un trabajo, dolor o alegría específico (no inventé soluciones sin un problema asociado).</label></div>
+      <div class="checklist-item"><input type="checkbox" id="fit2"><label for="fit2">Identifiqué al menos un dolor importante (no solo molestias menores).</label></div>
+      <div class="checklist-item"><input type="checkbox" id="fit3"><label for="fit3">Identifiqué al menos una alegría que va más allá de lo básico esperado.</label></div>
+      <div class="checklist-item"><input type="checkbox" id="fit4"><label for="fit4">Pienso validar esto con al menos una entrevista o conversación real con un cliente potencial, no solo con mi propia opinión.</label></div>
+      <div class="checklist-item"><input type="checkbox" id="fit5"><label for="fit5">Puedo explicar mi propuesta de valor en una sola frase clara, sin jerga técnica.</label></div>
+      <div class="checklist-item"><input type="checkbox" id="fit6"><label for="fit6">Estoy dispuesto/a a modificar mi Mapa de Valor si la evidencia real contradice mis supuestos.</label></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn-primary" onclick="evaluarFit()">📊 Evaluar mi nivel de Encaje</button>
+      <button class="btn-reset" onclick="resetHerramienta()">↺ Limpiar herramienta</button>
+    </div>
+    <div id="fit-result"></div>
+  </div>
+
+  <!-- ============================== -->
+  <!-- EJERCICIO INTERACTIVO           -->
+  <!-- ============================== -->
+  <div class="tab-content" id="ejercicio">
+    <h2>7. Ejercicio Interactivo: clasifica cada enunciado</h2>
+    <p>Lee cada situación y selecciona a cuál de los seis bloques del Lienzo de Propuesta de Valor corresponde. Responde las 8 situaciones y luego presiona "Verificar respuestas".</p>
+    <div class="alert-box" id="alertEjercicio">⚠️ Debes responder todas las situaciones antes de verificar.</div>
+
+    <div class="q-item" id="q-ei1">
+      <div class="q-head"><span class="q-text">1. Una pequeña empresa de Guayaquil necesita declarar el IVA a tiempo cada mes sin errores.</span></div>
+      <label class="opt-label"><input type="radio" name="ei1" value="a"> a) Trabajo del Cliente</label>
+      <label class="opt-label"><input type="radio" name="ei1" value="b"> b) Dolor</label>
+      <label class="opt-label"><input type="radio" name="ei1" value="c"> c) Alegría</label>
+      <label class="opt-label"><input type="radio" name="ei1" value="d"> d) Producto o Servicio</label>
+      <label class="opt-label"><input type="radio" name="ei1" value="e"> e) Aliviador de Dolores</label>
+      <label class="opt-label"><input type="radio" name="ei1" value="f"> f) Creador de Alegrías</label>
+      <div class="feedback-text" id="fb-ei1" style="display:none;"></div>
+    </div>
+
+    <div class="q-item" id="q-ei2">
+      <div class="q-head"><span class="q-text">2. El contador teme que el SRI le imponga una multa por declaraciones tardías.</span></div>
+      <label class="opt-label"><input type="radio" name="ei2" value="a"> a) Trabajo del Cliente</label>
+      <label class="opt-label"><input type="radio" name="ei2" value="b"> b) Dolor</label>
+      <label class="opt-label"><input type="radio" name="ei2" value="c"> c) Alegría</label>
+      <label class="opt-label"><input type="radio" name="ei2" value="d"> d) Producto o Servicio</label>
+      <label class="opt-label"><input type="radio" name="ei2" value="e"> e) Aliviador de Dolores</label>
+      <label class="opt-label"><input type="radio" name="ei2" value="f"> f) Creador de Alegrías</label>
+      <div class="feedback-text" id="fb-ei2" style="display:none;"></div>
+    </div>
+
+    <div class="q-item" id="q-ei3">
+      <div class="q-head"><span class="q-text">3. El emprendedor sueña con que sus clientes lo recomienden públicamente en redes sociales sin que se lo pida.</span></div>
+      <label class="opt-label"><input type="radio" name="ei3" value="a"> a) Trabajo del Cliente</label>
+      <label class="opt-label"><input type="radio" name="ei3" value="b"> b) Dolor</label>
+      <label class="opt-label"><input type="radio" name="ei3" value="c"> c) Alegría</label>
+      <label class="opt-label"><input type="radio" name="ei3" value="d"> d) Producto o Servicio</label>
+      <label class="opt-label"><input type="radio" name="ei3" value="e"> e) Aliviador de Dolores</label>
+      <label class="opt-label"><input type="radio" name="ei3" value="f"> f) Creador de Alegrías</label>
+      <div class="feedback-text" id="fb-ei3" style="display:none;"></div>
+    </div>
+
+    <div class="q-item" id="q-ei4">
+      <div class="q-head"><span class="q-text">4. Kushki ofrece una pasarela de pagos en línea que permite cobrar con tarjeta de crédito de forma inmediata.</span></div>
+      <label class="opt-label"><input type="radio" name="ei4" value="a"> a) Trabajo del Cliente</label>
+      <label class="opt-label"><input type="radio" name="ei4" value="b"> b) Dolor</label>
+      <label class="opt-label"><input type="radio" name="ei4" value="c"> c) Alegría</label>
+      <label class="opt-label"><input type="radio" name="ei4" value="d"> d) Producto o Servicio</label>
+      <label class="opt-label"><input type="radio" name="ei4" value="e"> e) Aliviador de Dolores</label>
+      <label class="opt-label"><input type="radio" name="ei4" value="f"> f) Creador de Alegrías</label>
+      <div class="feedback-text" id="fb-ei4" style="display:none;"></div>
+    </div>
+
+    <div class="q-item" id="q-ei5">
+      <div class="q-head"><span class="q-text">5. El software contable envía recordatorios automáticos cinco días antes del vencimiento de cada declaración tributaria.</span></div>
+      <label class="opt-label"><input type="radio" name="ei5" value="a"> a) Trabajo del Cliente</label>
+      <label class="opt-label"><input type="radio" name="ei5" value="b"> b) Dolor</label>
+      <label class="opt-label"><input type="radio" name="ei5" value="c"> c) Alegría</label>
+      <label class="opt-label"><input type="radio" name="ei5" value="d"> d) Producto o Servicio</label>
+      <label class="opt-label"><input type="radio" name="ei5" value="e"> e) Aliviador de Dolores</label>
+      <label class="opt-label"><input type="radio" name="ei5" value="f"> f) Creador de Alegrías</label>
+      <div class="feedback-text" id="fb-ei5" style="display:none;"></div>
+    </div>
+
+    <div class="q-item" id="q-ei6">
+      <div class="q-head"><span class="q-text">6. La plataforma genera un reporte visual que el dueño del negocio puede mostrar con orgullo a un banco para solicitar un crédito.</span></div>
+      <label class="opt-label"><input type="radio" name="ei6" value="a"> a) Trabajo del Cliente</label>
+      <label class="opt-label"><input type="radio" name="ei6" value="b"> b) Dolor</label>
+      <label class="opt-label"><input type="radio" name="ei6" value="c"> c) Alegría</label>
+      <label class="opt-label"><input type="radio" name="ei6" value="d"> d) Producto o Servicio</label>
+      <label class="opt-label"><input type="radio" name="ei6" value="e"> e) Aliviador de Dolores</label>
+      <label class="opt-label"><input type="radio" name="ei6" value="f"> f) Creador de Alegrías</label>
+      <div class="feedback-text" id="fb-ei6" style="display:none;"></div>
+    </div>
+
+    <div class="q-item" id="q-ei7">
+      <div class="q-head"><span class="q-text">7. Una startup de logística necesita reducir el tiempo de entrega de sus pedidos en Quito.</span></div>
+      <label class="opt-label"><input type="radio" name="ei7" value="a"> a) Trabajo del Cliente</label>
+      <label class="opt-label"><input type="radio" name="ei7" value="b"> b) Dolor</label>
+      <label class="opt-label"><input type="radio" name="ei7" value="c"> c) Alegría</label>
+      <label class="opt-label"><input type="radio" name="ei7" value="d"> d) Producto o Servicio</label>
+      <label class="opt-label"><input type="radio" name="ei7" value="e"> e) Aliviador de Dolores</label>
+      <label class="opt-label"><input type="radio" name="ei7" value="f"> f) Creador de Alegrías</label>
+      <div class="feedback-text" id="fb-ei7" style="display:none;"></div>
+    </div>
+
+    <div class="q-item" id="q-ei8">
+      <div class="q-head"><span class="q-text">8. El riesgo de perder mercadería por falta de un sistema de inventario adecuado preocupa al gerente de una pyme.</span></div>
+      <label class="opt-label"><input type="radio" name="ei8" value="a"> a) Trabajo del Cliente</label>
+      <label class="opt-label"><input type="radio" name="ei8" value="b"> b) Dolor</label>
+      <label class="opt-label"><input type="radio" name="ei8" value="c"> c) Alegría</label>
+      <label class="opt-label"><input type="radio" name="ei8" value="d"> d) Producto o Servicio</label>
+      <label class="opt-label"><input type="radio" name="ei8" value="e"> e) Aliviador de Dolores</label>
+      <label class="opt-label"><input type="radio" name="ei8" value="f"> f) Creador de Alegrías</label>
+      <div class="feedback-text" id="fb-ei8" style="display:none;"></div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="verificarEjercicio()">✅ Verificar respuestas</button>
+      <button class="btn-reset" onclick="reiniciarEjercicio()">↺ Reiniciar</button>
+    </div>
+    <div class="result-summary" id="resultEjercicio">
+      <div class="score-num" id="scoreEjercicio">0/8</div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="barEjercicio"></div></div>
+      <div class="msg" id="msgEjercicio"></div>
+    </div>
+  </div>
+
+  <!-- ============================== -->
+  <!-- CUESTIONARIO                    -->
+  <!-- ============================== -->
+  <div class="tab-content" id="cuestionario">
+    <h2>8. Cuestionario de la Semana 13</h2>
+    <p>10 preguntas: 7 teóricas y 3 de análisis de caso. Responde todas y luego presiona "Verificar respuestas".</p>
+    <div class="alert-box" id="alertCuestionario">⚠️ Debes responder todas las preguntas antes de verificar.</div>
+
+    <div class="q-item" id="q-qi1">
+      <div class="q-head"><span class="q-text">1. ¿Quiénes son los autores principales del libro <em>Value Proposition Design</em> y del Lienzo de Propuesta de Valor?</span><span class="badge teorica">Teórica</span></div>
+      <label class="opt-label"><input type="radio" name="qi1" value="a"> a) Eric Ries y Steve Blank</label>
+      <label class="opt-label"><input type="radio" name="qi1" value="b"> b) Alexander Osterwalder, Yves Pigneur, Greg Bernarda y Alan Smith</label>
+      <label class="opt-label"><input type="radio" name="qi1" value="c"> c) Peter Drucker y Joseph Schumpeter</label>
+      <label class="opt-label"><input type="radio" name="qi1" value="d"> d) Ash Maurya y Clayton Christensen</label>
+      <div class="feedback-text" id="fb-qi1" style="display:none;"></div>
+    </div>
+
+    <div class="q-item" id="q-qi2">
+      <div class="q-head"><span class="q-text">2. ¿Cuáles son los tres componentes del Perfil del Cliente (Customer Profile)?</span><span class="badge teorica">Teórica</span></div>
+      <label class="opt-label"><input type="radio" name="qi2" value="a"> a) Costos, ingresos y canales</label>
+      <label class="opt-label"><input type="radio" name="qi2" value="b"> b) Segmentos, propuestas y relaciones</label>
+      <label class="opt-label"><input type="radio" name="qi2" value="c"> c) Trabajos, Dolores y Alegrías</label>
+      <label class="opt-label"><input type="radio" name="qi2" value="d"> d) Actividades, recursos y socios clave</label>
+      <div class="feedback-text" id="fb-qi2" style="display:none;"></div>
+    </div>
+
+    <div class="q-item" id="q-qi3">
+      <div class="q-head"><span class="q-text">3. ¿Cuáles son los tres componentes del Mapa de Valor (Value Map)?</span><span class="badge teorica">Teórica</span></div>
+      <label class="opt-label"><input type="radio" name="qi3" value="a"> a) Productos/Servicios, Aliviadores de Dolores y Creadores de Alegrías</label>
+      <label class="opt-label"><input type="radio" name="qi3" value="b"> b) Canales, relaciones y segmentos</label>
+      <label class="opt-label"><input type="radio" name="qi3" value="c"> c) Ingresos, costos y actividades</label>
+      <label class="opt-label"><input type="radio" name="qi3" value="d"> d) Socios clave, recursos clave y actividades clave</label>
+      <div class="feedback-text" id="fb-qi3" style="display:none;"></div>
+    </div>
+
+    <div class="q-item" id="q-qi4">
+      <div class="q-head"><span class="q-text">4. ¿Qué significa el término "Encaje" (Fit) en el contexto del Lienzo de Propuesta de Valor?</span><span class="badge teorica">Teórica</span></div>
+      <label class="opt-label"><input type="radio" name="qi4" value="a"> a) La cantidad de clientes que compran el producto</label>
+      <label class="opt-label"><input type="radio" name="qi4" value="b"> b) El tamaño del equipo emprendedor</label>
+      <label class="opt-label"><input type="radio" name="qi4" value="c"> c) La rentabilidad mensual del negocio</label>
+      <label class="opt-label"><input type="radio" name="qi4" value="d"> d) El grado en que el Mapa de Valor responde efectivamente a los Trabajos, Dolores y Alegrías del Perfil del Cliente</label>
+      <div class="feedback-text" id="fb-qi4" style="display:none;"></div>
+    </div>
+
+    <div class="q-item" id="q-qi5">
+      <div class="q-head"><span class="q-text">5. Un contador necesita sentirse seguro y tranquilo al presentar declaraciones tributarias. ¿Qué tipo de "Trabajo del Cliente" representa esto?</span><span class="badge teorica">Teórica</span></div>
+      <label class="opt-label"><input type="radio" name="qi5" value="a"> a) Trabajo funcional</label>
+      <label class="opt-label"><input type="radio" name="qi5" value="b"> b) Trabajo emocional</label>
+      <label class="opt-label"><input type="radio" name="qi5" value="c"> c) Trabajo social</label>
+      <label class="opt-label"><input type="radio" name="qi5" value="d"> d) Trabajo financiero</label>
+      <div class="feedback-text" id="fb-qi5" style="display:none;"></div>
+    </div>
+
+    <div class="q-item" id="q-qi6">
+      <div class="q-head"><span class="q-text">6. ¿Cuál es la diferencia principal entre el Lienzo de Propuesta de Valor (VPC) y el Modelo de Negocio Canvas (BMC)?</span><span class="badge teorica">Teórica</span></div>
+      <label class="opt-label"><input type="radio" name="qi6" value="a"> a) El VPC y el BMC son exactamente lo mismo, solo cambia el nombre</label>
+      <label class="opt-label"><input type="radio" name="qi6" value="b"> b) El BMC profundiza en el cliente y el VPC describe toda la empresa</label>
+      <label class="opt-label"><input type="radio" name="qi6" value="c"> c) El VPC profundiza específicamente en la relación entre el cliente y la propuesta de valor, mientras que el BMC describe el modelo de negocio completo en sus nueve bloques</label>
+      <label class="opt-label"><input type="radio" name="qi6" value="d"> d) El VPC se usa solo para empresas grandes y el BMC solo para startups</label>
+      <div class="feedback-text" id="fb-qi6" style="display:none;"></div>
+    </div>
+
+    <div class="q-item" id="q-qi7">
+      <div class="q-head"><span class="q-text">7. Según la metodología de Osterwalder, ¿qué se recomienda para validar si la propuesta de valor logra el encaje con el cliente?</span><span class="badge teorica">Teórica</span></div>
+      <label class="opt-label"><input type="radio" name="qi7" value="a"> a) Entrevistas y pruebas con un MVP (Producto Mínimo Viable) con clientes reales</label>
+      <label class="opt-label"><input type="radio" name="qi7" value="b"> b) Encuestas únicamente en redes sociales, sin contacto directo</label>
+      <label class="opt-label"><input type="radio" name="qi7" value="c"> c) Proyecciones financieras a cinco años</label>
+      <label class="opt-label"><input type="radio" name="qi7" value="d"> d) La opinión exclusiva del equipo fundador</label>
+      <div class="feedback-text" id="fb-qi7" style="display:none;"></div>
+    </div>
+
+    <div class="q-item" id="q-qi8">
+      <div class="q-head"><span class="q-text">8. Caso: Un emprendedor ecuatoriano diseña una app de delivery de comida. Al entrevistar a sus clientes, descubre que su mayor preocupación no es la velocidad de entrega, sino que el empaque dañe el sabor de la comida. ¿Qué debería ajustar primero?</span><span class="badge analisis">Análisis de caso</span></div>
+      <label class="opt-label"><input type="radio" name="qi8" value="a"> a) Aumentar el precio del servicio</label>
+      <label class="opt-label"><input type="radio" name="qi8" value="b"> b) Revisar el Aliviador de Dolores en el Mapa de Valor para diseñar una solución de empaque adecuada</label>
+      <label class="opt-label"><input type="radio" name="qi8" value="c"> c) Contratar más repartidores</label>
+      <label class="opt-label"><input type="radio" name="qi8" value="d"> d) Cambiar el logo de la marca</label>
+      <div class="feedback-text" id="fb-qi8" style="display:none;"></div>
+    </div>
+
+    <div class="q-item" id="q-qi9">
+      <div class="q-head"><span class="q-text">9. Caso: Dos socios diseñan su Mapa de Valor antes de entrevistar a un solo cliente real. ¿Qué riesgo principal corre esta decisión?</span><span class="badge analisis">Análisis de caso</span></div>
+      <label class="opt-label"><input type="radio" name="qi9" value="a"> a) Ningún riesgo, el orden no afecta el resultado</label>
+      <label class="opt-label"><input type="radio" name="qi9" value="b"> b) Riesgo exclusivamente legal por falta de registro de marca</label>
+      <label class="opt-label"><input type="radio" name="qi9" value="c"> c) Riesgo exclusivamente de tipo contable</label>
+      <label class="opt-label"><input type="radio" name="qi9" value="d"> d) Riesgo de construir una solución basada en supuestos no validados, lo que puede afectar el encaje producto-mercado</label>
+      <div class="feedback-text" id="fb-qi9" style="display:none;"></div>
+    </div>
+
+    <div class="q-item" id="q-qi10">
+      <div class="q-head"><span class="q-text">10. Caso: Una contadora pública aplica el Lienzo a sus propios servicios de auditoría. Descubre que sus clientes valoran muchísimo que ella les explique los hallazgos con lenguaje sencillo, algo que ningún reglamento exige pero que mencionan con entusiasmo. ¿En qué bloque ubicaría esta información?</span><span class="badge analisis">Análisis de caso</span></div>
+      <label class="opt-label"><input type="radio" name="qi10" value="a"> a) En las Alegrías (Gains), como un beneficio que el cliente valora sin haberlo exigido formalmente</label>
+      <label class="opt-label"><input type="radio" name="qi10" value="b"> b) En los Dolores (Pains)</label>
+      <label class="opt-label"><input type="radio" name="qi10" value="c"> c) En los Trabajos del Cliente (Jobs)</label>
+      <label class="opt-label"><input type="radio" name="qi10" value="d"> d) En los Productos y Servicios del Mapa de Valor</label>
+      <div class="feedback-text" id="fb-qi10" style="display:none;"></div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="verificarCuestionario()">✅ Verificar respuestas</button>
+      <button class="btn-reset" onclick="reiniciarCuestionario()">↺ Reiniciar</button>
+    </div>
+    <div class="result-summary" id="resultCuestionario">
+      <div class="score-num" id="scoreCuestionario">0/10</div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="barCuestionario"></div></div>
+      <div class="msg" id="msgCuestionario"></div>
+    </div>
+  </div>
+
+  <!-- ============================== -->
+  <!-- ACTIVIDAD CON IA                -->
+  <!-- ============================== -->
+  <div class="tab-content" id="ia">
+    <h2>9. Actividad con Inteligencia Artificial</h2>
+    <p>Esta actividad no consiste en copiar lo que la IA te responda. Consiste en usarla como un mentor exigente que pone a prueba tu razonamiento antes de que salgas a validar tu propuesta de valor con clientes reales.</p>
+    <div class="ai-box">
+      <span class="ai-tool-tag reco">⭐ Recomendado: Claude (claude.ai)</span>
+      <span class="ai-tool-tag">ChatGPT (versión gratuita)</span>
+      <span class="ai-tool-tag">Gemini</span>
+      <h3 style="margin-top:10px;">Paso 1 — Completa primero tu lienzo</h3>
+      <p>Antes de usar la IA, completa la herramienta guiada de este widget (pestaña "Herramienta Guiada") con una idea real o hipotética.</p>
+      <h3>Paso 2 — Usa este prompt exacto</h3>
+      <div class="ai-prompt-box">Actúa como un mentor experto en innovación y modelos de negocio, especializado en la metodología de Alexander Osterwalder sobre el Lienzo de Propuesta de Valor. Voy a describirte una idea de negocio (o un servicio profesional que ofrezco) y mi borrador del lienzo.
+
+Quiero que hagas tres cosas:
+1) Identifica qué Trabajos, Dolores o Alegrías de mi cliente NO estoy considerando todavía.
+2) Hazme tres preguntas incómodas que pongan a prueba si mi Mapa de Valor realmente resuelve esos puntos, o si estoy suponiendo cosas sin evidencia.
+3) Sugiéreme una forma concreta de validar mi propuesta de valor con clientes reales en Ecuador en menos de una semana, sin gastar dinero.
+
+Aquí está mi idea de negocio: [DESCRIBE TU IDEA]
+Aquí está mi borrador del Perfil del Cliente (Trabajos, Dolores, Alegrías): [PEGA TU TEXTO]
+Aquí está mi borrador del Mapa de Valor (Productos, Aliviadores, Creadores): [PEGA TU TEXTO]</div>
+      <h3>Paso 3 — Qué hacer con la respuesta</h3>
+      <p>Lee la respuesta con espíritu crítico. Elige la pregunta que más te "incomodó" —la que más te costó responder con seguridad— y respóndela por escrito con honestidad. Luego, modifica al menos un bloque de tu lienzo en la herramienta guiada en función de ese hallazgo, y escribe una justificación de un párrafo explicando por qué hiciste ese cambio.</p>
+    </div>
+    <h3>Criterio de evaluación</h3>
+    <div class="criteria-grid">
+      <div class="criteria-col good">
+        <h4>✅ Evidencia pensamiento crítico</h4>
+        <ul>
+          <li>Documenta qué sugerencia de la IA aceptó y cuál descartó, explicando el porqué.</li>
+          <li>Modifica su lienzo con una justificación propia, no solo copia el texto de la IA.</li>
+          <li>Conecta el cambio con un trabajo, dolor o alegría específico ya identificado.</li>
+        </ul>
+      </div>
+      <div class="criteria-col bad">
+        <h4>❌ Es copia simple</h4>
+        <ul>
+          <li>Pega la respuesta completa de la IA como si fuera su propio lienzo final.</li>
+          <li>No incluye ninguna justificación personal del cambio realizado.</li>
+          <li>No muestra evidencia de haber leído críticamente las preguntas de la IA.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================== -->
+  <!-- REFLEXIÓN PERSONAL              -->
+  <!-- ============================== -->
+  <div class="tab-content" id="reflexion">
+    <h2>10. Reflexión Personal</h2>
+    <div class="reflect-note">En esta sección no hay respuestas correctas ni incorrectas. El objetivo es conectar el contenido académico de hoy con tu vida diaria, tu autoconocimiento y tu inteligencia emocional. Puedes escribir tus respuestas en los espacios provistos como ejercicio personal de introspección.</div>
+
+    <div class="reflect-item">
+      <span class="num">1.</span>
+      <p>Si pensaras en ti mismo/a como una "propuesta de valor", ¿qué "trabajos" cumples hoy para las personas que te rodean (familia, trabajo, estudios)? ¿Te sientes alineado con esos roles, o sientes que cumples papeles que en el fondo no son realmente tuyos?</p>
+      <textarea placeholder="Escribe tu reflexión aquí..."></textarea>
+    </div>
+    <div class="reflect-item">
+      <span class="num">2.</span>
+      <p>¿Cuáles son tus tres mayores "dolores" actuales —esas frustraciones, miedos u obstáculos que enfrentas a diario— y qué estás haciendo (tu propio "aliviador de dolores") para manejarlos?</p>
+      <textarea placeholder="Escribe tu reflexión aquí..."></textarea>
+    </div>
+    <div class="reflect-item">
+      <span class="num">3.</span>
+      <p>Recuerda tu última "alegría inesperada": un reconocimiento, gesto o logro que no esperabas. ¿Qué te dice eso sobre lo que realmente valoras en la vida, más allá de lo material?</p>
+      <textarea placeholder="Escribe tu reflexión aquí..."></textarea>
+    </div>
+    <div class="reflect-item">
+      <span class="num">4.</span>
+      <p>La Programación Neurolingüística (PNL) plantea que el lenguaje que usamos con nosotros mismos moldea nuestra realidad interna. ¿Qué "diálogo interno" tienes cuando algo no te sale bien: es un diálogo que te impulsa (un aliviador de dolores propio) o que te hunde más (otro dolor adicional)?</p>
+      <textarea placeholder="Escribe tu reflexión aquí..."></textarea>
+    </div>
+    <div class="reflect-item">
+      <span class="num">5.</span>
+      <p>Si tuvieras que diseñar tu propio "Mapa de Valor" profesional para presentarte ante un futuro empleador o cliente, ¿qué tres fortalezas destacarías primero? ¿Por qué crees que a veces nos cuesta reconocer nuestras propias fortalezas?</p>
+      <textarea placeholder="Escribe tu reflexión aquí..."></textarea>
+    </div>
+    <div class="reflect-item">
+      <span class="num">6.</span>
+      <p>La inteligencia emocional implica identificar antes de reaccionar. La próxima vez que sientas frustración con un compañero, profesor o familiar, ¿podrías hacer una pausa y preguntarte: "¿cuál es el verdadero trabajo, dolor o alegría que esta persona busca en este momento?" ¿Cómo cambiarían tus relaciones si aplicaras esa empatía estructurada de manera consciente?</p>
+      <textarea placeholder="Escribe tu reflexión aquí..."></textarea>
+    </div>
+  </div>
+
+  <!-- ============================== -->
+  <!-- BIBLIOGRAFÍA                    -->
+  <!-- ============================== -->
+  <div class="tab-content" id="bibliografia">
+    <h2>11. Bibliografía</h2>
+
+    <div class="biblio-card">
+      <p><span class="autor">Osterwalder, A., Pigneur, Y., Bernarda, G., & Smith, A.</span> (2014). <span class="titulo">Value Proposition Design: How to Create Products and Services Customers Want.</span> John Wiley & Sons.</p>
+    </div>
+    <div class="biblio-card">
+      <p><span class="autor">Osterwalder, A., & Pigneur, Y.</span> (2010). <span class="titulo">Business Model Generation: A Handbook for Visionaries, Game Changers, and Challengers.</span> John Wiley & Sons.</p>
+    </div>
+    <div class="biblio-card">
+      <p><span class="autor">Blank, S., & Dorf, B.</span> (2012). <span class="titulo">The Startup Owner's Manual: The Step-by-Step Guide for Building a Great Company.</span> K&S Ranch Publishing.</p>
+    </div>
+    <div class="biblio-card">
+      <p><span class="autor">Ries, E.</span> (2011). <span class="titulo">The Lean Startup: How Today's Entrepreneurs Use Continuous Innovation to Create Radically Successful Businesses.</span> Crown Business.</p>
+    </div>
+    <div class="biblio-card">
+      <p><span class="autor">Maurya, A.</span> (2012). <span class="titulo">Running Lean: Iterate from Plan A to a Plan That Works.</span> O'Reilly Media.</p>
+    </div>
+    <div class="biblio-card">
+      <p><span class="autor">Drucker, P. F.</span> (1985). <span class="titulo">Innovation and Entrepreneurship: Practice and Principles.</span> Harper & Row.</p>
+    </div>
+    <div class="biblio-card">
+      <p><span class="autor">Global Entrepreneurship Monitor (GEM).</span> (2024). <span class="titulo">Global Entrepreneurship Monitor 2023/2024 Global Report.</span> GEM Consortium, London Business School.</p>
+    </div>
+    <div class="biblio-card">
+      <p><span class="autor">Asamblea Nacional del Ecuador.</span> (2020). <span class="titulo">Ley Orgánica de Emprendimiento e Innovación.</span> Registro Oficial, Ecuador.</p>
+    </div>
+
+    <div class="biblio-footnote">Se recomienda verificar cada referencia en Google Scholar (scholar.google.com) o en el repositorio institucional antes de citar en trabajos académicos.</div>
+  </div>
+
+</div>
+
+<!-- ============================== -->
+<!-- JAVASCRIPT                      -->
+<!-- ============================== -->
+<script>
+/* ---------- Navegación de pestañas ---------- */
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('nav.tabs-nav button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(id).scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+/* ---------- Herramienta guiada: ejemplo y reset ---------- */
+function toggleEjemplo() {
+  document.getElementById('ejemplo-resuelto').classList.toggle('show');
+}
+function resetHerramienta() {
+  ['vp-jobs','vp-pains','vp-gains','vp-products','vp-relievers','vp-creators'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  ['fit1','fit2','fit3','fit4','fit5','fit6'].forEach(id => {
+    document.getElementById(id).checked = false;
+  });
+  const r = document.getElementById('fit-result');
+  r.classList.remove('show');
+  r.innerHTML = '';
+}
+function evaluarFit() {
+  const ids = ['fit1','fit2','fit3','fit4','fit5','fit6'];
+  let count = 0;
+  ids.forEach(id => { if (document.getElementById(id).checked) count++; });
+  const r = document.getElementById('fit-result');
+  let nivel, color, texto;
+  if (count <= 2) {
+    nivel = 'Encaje inicial / por construir';
+    color = '#fdecea'; 
+    texto = 'Tu lienzo aún necesita más trabajo de investigación antes de salir al mercado. Revisa especialmente si tus productos responden a dolores y alegrías concretos, y planea al menos una entrevista real con un cliente potencial.';
+  } else if (count <= 4) {
+    nivel = 'Encaje en desarrollo';
+    color = '#fff8e6';
+    texto = 'Vas por buen camino. Tienes una base razonable, pero todavía hay supuestos sin validar. Antes de invertir tiempo o dinero en construir, sal a conversar con clientes reales para confirmar tus hipótesis.';
+  } else {
+    nivel = 'Encaje sólido para iniciar validación';
+    color = '#e6f4ea';
+    texto = 'Tu lienzo muestra una conexión clara entre el Perfil del Cliente y el Mapa de Valor, y tienes disposición a validar y ajustar. El siguiente paso es construir un MVP (Producto Mínimo Viable) sencillo y probarlo con clientes reales.';
+  }
+  r.style.background = color;
+  r.innerHTML = '<strong>' + count + '/6 — ' + nivel + '</strong><p style="margin-top:8px; font-weight:400;">' + texto + '</p>';
+  r.classList.add('show');
+}
+
+/* ---------- Ejercicio Interactivo ---------- */
+const ejercicioCorrects = {
+  ei1: 'a', ei2: 'b', ei3: 'c', ei4: 'd', ei5: 'e', ei6: 'f', ei7: 'a', ei8: 'b'
+};
+const ejercicioFeedbacks = {
+  ei1: 'Es un Trabajo del Cliente (funcional): una tarea concreta que el cliente necesita lograr.',
+  ei2: 'Es un Dolor (tipo riesgo): un resultado negativo que el cliente teme que ocurra.',
+  ei3: 'Es una Alegría (deseada/inesperada): un beneficio que el cliente apreciaría aunque no lo exija.',
+  ei4: 'Es un Producto o Servicio: la oferta concreta de la empresa, en este caso una pasarela de pagos.',
+  ei5: 'Es un Aliviador de Dolores: reduce directamente el riesgo de declarar tarde (el dolor identificado).',
+  ei6: 'Es un Creador de Alegrías: genera el beneficio deseado de mostrar control financiero ante un banco.',
+  ei7: 'Es un Trabajo del Cliente (funcional): una tarea operativa que la startup necesita lograr.',
+  ei8: 'Es un Dolor (tipo riesgo): una preocupación sobre un resultado negativo que el cliente quiere evitar.'
+};
+function verificarEjercicio() {
+  const keys = Object.keys(ejercicioCorrects);
+  let allAnswered = true;
+  keys.forEach(k => {
+    if (!document.querySelector('input[name="' + k + '"]:checked')) allAnswered = false;
+  });
+  const alertBox = document.getElementById('alertEjercicio');
+  if (!allAnswered) {
+    alertBox.classList.add('show');
+    return;
+  }
+  alertBox.classList.remove('show');
+  let score = 0;
+  keys.forEach(k => {
+    const selected = document.querySelector('input[name="' + k + '"]:checked').value;
+    const correct = ejercicioCorrects[k];
+    const qItem = document.getElementById('q-' + k);
+    const fb = document.getElementById('fb-' + k);
+    if (selected === correct) {
+      score++;
+      qItem.classList.add('correct'); qItem.classList.remove('incorrect');
+      fb.className = 'feedback-text ok';
+      fb.innerHTML = '✔️ Correcto. ' + ejercicioFeedbacks[k];
+    } else {
+      qItem.classList.add('incorrect'); qItem.classList.remove('correct');
+      fb.className = 'feedback-text bad';
+      fb.innerHTML = '✘ Incorrecto. ' + ejercicioFeedbacks[k];
+    }
+    fb.style.display = 'block';
+  });
+  const pct = Math.round((score / keys.length) * 100);
+  document.getElementById('scoreEjercicio').textContent = score + '/' + keys.length;
+  document.getElementById('barEjercicio').style.width = pct + '%';
+  let msg;
+  if (pct === 100) msg = '🏆 ¡Excelente! Dominas la clasificación del Lienzo de Propuesta de Valor.';
+  else if (pct >= 80) msg = '🎯 Muy buen desempeño. Repasa los detalles que fallaste.';
+  else if (pct >= 60) msg = '📘 Vas bien, pero conviene reforzar la diferencia entre Perfil del Cliente y Mapa de Valor.';
+  else if (pct >= 40) msg = '⚠️ Necesitas repasar los Temas 2 y 3 antes de avanzar.';
+  else msg = '📖 Te recomendamos releer con calma los Temas 2, 3 y 4 antes de continuar.';
+  document.getElementById('msgEjercicio').textContent = msg;
+  document.getElementById('resultEjercicio').classList.add('show');
+}
+function reiniciarEjercicio() {
+  Object.keys(ejercicioCorrects).forEach(k => {
+    document.querySelectorAll('input[name="' + k + '"]').forEach(r => r.checked = false);
+    const qItem = document.getElementById('q-' + k);
+    qItem.classList.remove('correct','incorrect');
+    document.getElementById('fb-' + k).style.display = 'none';
+  });
+  document.getElementById('resultEjercicio').classList.remove('show');
+  document.getElementById('alertEjercicio').classList.remove('show');
+}
+
+/* ---------- Cuestionario ---------- */
+const quizCorrects = {
+  qi1: 'b', qi2: 'c', qi3: 'a', qi4: 'd', qi5: 'b', qi6: 'c', qi7: 'a', qi8: 'b', qi9: 'd', qi10: 'a'
+};
+const quizFeedbacks = {
+  qi1: 'Correcto: el VPC fue desarrollado por Alexander Osterwalder junto a Yves Pigneur, Greg Bernarda y Alan Smith.',
+  qi2: 'Correcto: el Perfil del Cliente se compone de Trabajos, Dolores y Alegrías.',
+  qi3: 'Correcto: el Mapa de Valor se compone de Productos/Servicios, Aliviadores de Dolores y Creadores de Alegrías.',
+  qi4: 'Correcto: el Encaje (Fit) mide qué tan bien el Mapa de Valor responde al Perfil del Cliente.',
+  qi5: 'Correcto: sentirse seguro y tranquilo es un trabajo emocional, no una tarea práctica concreta.',
+  qi6: 'Correcto: el VPC profundiza en la relación cliente-propuesta de valor; el BMC describe el modelo de negocio completo.',
+  qi7: 'Correcto: las entrevistas y las pruebas con un MVP son las herramientas recomendadas para validar el encaje.',
+  qi8: 'Correcto: el dolor real detectado (daño al sabor por el empaque) debe atenderse en los Aliviadores de Dolores del Mapa de Valor.',
+  qi9: 'Correcto: diseñar el Mapa de Valor sin validar antes con clientes genera el riesgo de construir sobre supuestos no comprobados.',
+  qi10: 'Correcto: un beneficio que el cliente valora sin haberlo exigido formalmente es una Alegría (Gain), no un Trabajo ni un Dolor.'
+};
+function verificarCuestionario() {
+  const keys = Object.keys(quizCorrects);
+  let allAnswered = true;
+  keys.forEach(k => {
+    if (!document.querySelector('input[name="' + k + '"]:checked')) allAnswered = false;
+  });
+  const alertBox = document.getElementById('alertCuestionario');
+  if (!allAnswered) {
+    alertBox.classList.add('show');
+    return;
+  }
+  alertBox.classList.remove('show');
+  let score = 0;
+  keys.forEach(k => {
+    const selected = document.querySelector('input[name="' + k + '"]:checked').value;
+    const correct = quizCorrects[k];
+    const qItem = document.getElementById('q-' + k);
+    const fb = document.getElementById('fb-' + k);
+    if (selected === correct) {
+      score++;
+      qItem.classList.add('correct'); qItem.classList.remove('incorrect');
+      fb.className = 'feedback-text ok';
+      fb.innerHTML = '✔️ ' + quizFeedbacks[k];
+    } else {
+      qItem.classList.add('incorrect'); qItem.classList.remove('correct');
+      fb.className = 'feedback-text bad';
+      fb.innerHTML = '✘ ' + quizFeedbacks[k];
+    }
+    fb.style.display = 'block';
+  });
+  const pct = Math.round((score / keys.length) * 100);
+  document.getElementById('scoreCuestionario').textContent = score + '/' + keys.length;
+  document.getElementById('barCuestionario').style.width = pct + '%';
+  let msg;
+  if (pct === 100) msg = '🏆 ¡Excelente! Dominas por completo el Lienzo de Propuesta de Valor.';
+  else if (pct >= 80) msg = '🎯 Muy buen desempeño. Estás listo/a para aplicar esto a un caso propio.';
+  else if (pct >= 60) msg = '📘 Buen avance. Repasa los temas donde tuviste errores.';
+  else if (pct >= 40) msg = '⚠️ Necesitas reforzar varios conceptos antes de avanzar a la Semana 14.';
+  else msg = '📖 Te recomendamos releer todo el widget con calma antes de continuar.';
+  document.getElementById('msgCuestionario').textContent = msg;
+  document.getElementById('resultCuestionario').classList.add('show');
+}
+function reiniciarCuestionario() {
+  Object.keys(quizCorrects).forEach(k => {
+    document.querySelectorAll('input[name="' + k + '"]').forEach(r => r.checked = false);
+    const qItem = document.getElementById('q-' + k);
+    qItem.classList.remove('correct','incorrect');
+    document.getElementById('fb-' + k).style.display = 'none';
+  });
+  document.getElementById('resultCuestionario').classList.remove('show');
+  document.getElementById('alertCuestionario').classList.remove('show');
+}
+</script>
+</body>
+</html>

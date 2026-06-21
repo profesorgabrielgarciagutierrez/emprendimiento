@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 14 | Presentación de Ideas de Negocio con el Modelo Canvas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#003366;
+  --sky:#87CEEB;
+  --lightblue:#eaf4fb;
+  --text:#1c1c1c;
+  --green:#1e7e34;
+  --red:#b02a2a;
+  --greenbg:#e6f4ea;
+  --redbg:#fbe9e9;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  font-family:'Source Sans 3', sans-serif;
+  color:var(--text);
+  background:#f4f7fa;
+  line-height:1.6;
+}
+h1,h2,h3,h4{font-family:'Lora', serif; color:var(--navy);}
+header.main-header{
+  background:var(--navy);
+  color:#fff;
+  padding:18px 20px;
+}
+header.main-header .inst{
+  font-size:0.95rem;
+  opacity:0.95;
+  margin-bottom:4px;
+}
+header.main-header h1{
+  color:#fff;
+  font-size:1.5rem;
+  margin:6px 0 4px 0;
+}
+header.main-header .meta{
+  font-size:0.9rem;
+  font-weight:600;
+  background:rgba(255,255,255,0.12);
+  display:inline-block;
+  padding:4px 10px;
+  border-radius:4px;
+  margin-top:6px;
+}
+.tabs{
+  display:flex;
+  overflow-x:auto;
+  white-space:nowrap;
+  background:var(--sky);
+  border-bottom:3px solid var(--navy);
+  -webkit-overflow-scrolling:touch;
+}
+.tabs::-webkit-scrollbar{height:8px;}
+.tabs::-webkit-scrollbar-thumb{background:var(--navy); border-radius:4px;}
+.tab-btn{
+  flex:0 0 auto;
+  background:var(--sky);
+  color:#000;
+  border:none;
+  border-right:1px solid rgba(0,51,102,0.25);
+  padding:13px 16px;
+  font-family:'Source Sans 3', sans-serif;
+  font-size:0.88rem;
+  font-weight:600;
+  cursor:pointer;
+}
+.tab-btn:hover{background:#a4dcf2;}
+.tab-btn.active{
+  background:#fff;
+  color:var(--navy);
+  font-weight:700;
+  border-bottom:3px solid var(--navy);
+}
+.tab-content{
+  display:none;
+  max-width:980px;
+  margin:0 auto;
+  padding:24px 20px 50px 20px;
+  background:#fff;
+}
+.tab-content.active{display:block;}
+p{margin:0 0 14px 0;}
+.concept-box{
+  border-left:5px solid var(--navy);
+  background:#f7fafc;
+  padding:14px 18px;
+  margin:18px 0;
+  border-radius:0 6px 6px 0;
+}
+.concept-box strong{color:var(--navy);}
+.example-box{
+  background:var(--lightblue);
+  border:1px solid #bcdcef;
+  padding:14px 18px;
+  margin:18px 0;
+  border-radius:6px;
+}
+.example-box h4{margin-top:0; color:var(--navy);}
+.conclusion-box{
+  background:var(--navy);
+  color:#fff;
+  padding:16px 18px;
+  border-radius:6px;
+  margin:22px 0 10px 0;
+}
+.conclusion-box h4{color:#fff; margin-top:0;}
+table.comp-table{
+  width:100%;
+  border-collapse:collapse;
+  margin:18px 0;
+  font-size:0.92rem;
+}
+table.comp-table th{
+  background:var(--navy);
+  color:#fff;
+  padding:9px 10px;
+  text-align:left;
+  font-family:'Lora',serif;
+}
+table.comp-table td{
+  padding:9px 10px;
+  border-bottom:1px solid #ddd;
+  vertical-align:top;
+}
+table.comp-table tr:nth-child(even){background:#f4f8fb;}
+ul.styled-list li, ol.styled-list li{margin-bottom:8px;}
+.badge{
+  display:inline-block;
+  font-size:0.72rem;
+  font-weight:700;
+  padding:2px 9px;
+  border-radius:12px;
+  margin-bottom:8px;
+  text-transform:uppercase;
+}
+.badge-teorica{background:#dbe9fb; color:var(--navy);}
+.badge-analisis{background:#fde6cf; color:#8a4a00;}
+
+/* Canvas grid (static & interactive share style) */
+.canvas-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  grid-template-rows:auto auto auto;
+  gap:8px;
+  margin:20px 0;
+}
+.canvas-block{
+  border:2px solid var(--navy);
+  border-radius:6px;
+  padding:10px;
+  background:#f5f9fc;
+  font-size:0.82rem;
+}
+.canvas-block h4{
+  margin:0 0 6px 0;
+  color:var(--navy);
+  font-family:'Lora',serif;
+  font-size:0.85rem;
+  border-bottom:1px solid #cfe0ee;
+  padding-bottom:4px;
+}
+.canvas-block textarea{
+  width:100%;
+  min-height:90px;
+  resize:vertical;
+  font-family:'Source Sans 3', sans-serif;
+  font-size:0.82rem;
+  padding:6px;
+  border:1px solid #b9cfe0;
+  border-radius:4px;
+}
+.canvas-block p.static-text{font-size:0.8rem; margin:0;}
+.cb-partners{grid-column:1; grid-row:1/3;}
+.cb-activities{grid-column:2; grid-row:1;}
+.cb-resources{grid-column:2; grid-row:2;}
+.cb-value{grid-column:3; grid-row:1/3; background:#e6f2fa;}
+.cb-relationships{grid-column:4; grid-row:1;}
+.cb-channels{grid-column:4; grid-row:2;}
+.cb-segments{grid-column:5; grid-row:1/3;}
+.cb-costs{grid-column:1/3; grid-row:3; background:#fbeee6;}
+.cb-revenue{grid-column:3/6; grid-row:3; background:#e6fbea;}
+
+@media (max-width:760px){
+  .canvas-grid{grid-template-columns:1fr;}
+  .canvas-grid > div{grid-column:1 !important; grid-row:auto !important;}
+}
+
+.step-guide{
+  background:#fff8ea;
+  border:1px solid #f0d999;
+  border-radius:6px;
+  padding:14px 18px;
+  margin:16px 0;
+}
+.step-guide ol{margin:8px 0 0 18px; padding:0;}
+.btn{
+  background:var(--navy);
+  color:#fff;
+  border:none;
+  padding:10px 18px;
+  border-radius:5px;
+  font-size:0.92rem;
+  font-weight:600;
+  cursor:pointer;
+  margin:6px 6px 6px 0;
+}
+.btn:hover{background:#00509e;}
+.btn-secondary{background:#5a6b7a;}
+.btn-secondary:hover{background:#465562;}
+.tool-actions{margin:16px 0;}
+#pitch-output{
+  width:100%;
+  min-height:260px;
+  font-family:'Source Sans 3',sans-serif;
+  font-size:0.88rem;
+  padding:12px;
+  border:1px solid #bcdcef;
+  border-radius:6px;
+  background:#fafdff;
+  white-space:pre-wrap;
+}
+
+/* Exercise / Quiz */
+.question-card{
+  border:1px solid #d8e3ec;
+  border-radius:6px;
+  padding:14px 16px;
+  margin:14px 0;
+  background:#fbfdfe;
+}
+.question-card p.q-text{font-weight:600; margin-bottom:10px;}
+.option-row{
+  display:block;
+  padding:7px 8px;
+  border-radius:4px;
+  margin-bottom:4px;
+  cursor:pointer;
+}
+.option-row:hover{background:#eef5fb;}
+.option-row input{margin-right:8px;}
+.question-card.correct{border-color:var(--green); background:var(--greenbg);}
+.question-card.incorrect{border-color:var(--red); background:var(--redbg);}
+.feedback-text{
+  margin-top:10px;
+  font-size:0.88rem;
+  padding:8px 10px;
+  border-radius:4px;
+  background:rgba(255,255,255,0.6);
+}
+.feedback-text.fb-correct{color:var(--green); font-weight:600;}
+.feedback-text.fb-incorrect{color:var(--red); font-weight:600;}
+.progress-wrap{
+  background:#e2e8ee;
+  border-radius:10px;
+  height:22px;
+  margin:14px 0;
+  overflow:hidden;
+}
+.progress-bar{
+  height:100%;
+  background:linear-gradient(90deg,var(--navy),#0072c6);
+  width:0%;
+  transition:width 0.8s ease;
+  border-radius:10px;
+}
+.score-panel{
+  text-align:center;
+  padding:18px;
+  border-radius:8px;
+  background:var(--lightblue);
+  margin:18px 0;
+}
+.score-panel .score-num{font-size:2rem; font-weight:700; color:var(--navy); font-family:'Lora',serif;}
+.score-panel .score-msg{font-size:1.05rem; margin-top:6px;}
+
+/* Reflexion */
+.reflex-card{
+  background:var(--lightblue);
+  border-left:5px solid var(--navy);
+  padding:14px 18px;
+  margin:14px 0;
+  border-radius:0 6px 6px 0;
+}
+.reflex-card .num{font-weight:700; color:var(--navy);}
+
+/* Bibliography */
+.biblio-card{
+  border:1px solid #d8e3ec;
+  border-radius:6px;
+  padding:14px 16px;
+  margin:12px 0;
+  background:#fbfdfe;
+}
+.biblio-card .autor{font-weight:700;}
+.biblio-card .titulo{font-style:italic;}
+.footnote{font-size:0.82rem; color:#555; margin-top:20px; border-top:1px solid #ddd; padding-top:12px;}
+
+/* AI Activity */
+.prompt-box{
+  background:#1c2b3a;
+  color:#e8f1f8;
+  padding:16px;
+  border-radius:6px;
+  font-family:'Source Sans 3', monospace;
+  font-size:0.88rem;
+  white-space:pre-wrap;
+  margin:14px 0;
+}
+.rubric-table th{background:var(--navy); color:#fff;}
+</style>
+</head>
+<body>
+
+<header class="main-header">
+  <div class="inst">Universidad de Guayaquil | Facultad de Ciencias Administrativas | Carrera de Contabilidad y Auditoría</div>
+  <h1>Presentación de Ideas de Negocio Aplicando el Modelo Canvas</h1>
+  <div class="meta">Asignatura: Emprendimiento e Innovación &nbsp;|&nbsp; Unidad 4: Desarrollo del Modelo de Negocios &nbsp;|&nbsp; Semana 14</div>
+</header>
+
+<div class="tabs" id="tabsBar">
+  <button class="tab-btn active" onclick="showTab('repaso', this)">Repaso</button>
+  <button class="tab-btn" onclick="showTab('tema1', this)">Tema 1</button>
+  <button class="tab-btn" onclick="showTab('tema2', this)">Tema 2</button>
+  <button class="tab-btn" onclick="showTab('tema2a', this)">Tema 2a</button>
+  <button class="tab-btn" onclick="showTab('tema3', this)">Tema 3</button>
+  <button class="tab-btn" onclick="showTab('tema4', this)">Tema 4</button>
+  <button class="tab-btn" onclick="showTab('herramienta', this)">Herramienta Canvas</button>
+  <button class="tab-btn" onclick="showTab('ejercicio', this)">Ejercicio Interactivo</button>
+  <button class="tab-btn" onclick="showTab('cuestionario', this)">Cuestionario</button>
+  <button class="tab-btn" onclick="showTab('ia', this)">Actividad con IA</button>
+  <button class="tab-btn" onclick="showTab('reflexion', this)">Reflexión Personal</button>
+  <button class="tab-btn" onclick="showTab('biblio', this)">Bibliografía</button>
+</div>
+
+<!-- ============ REPASO ============ -->
+<div class="tab-content active" id="repaso">
+  <h2>Repaso: el camino recorrido hasta la Semana 14</h2>
+  <p>Antes de entrar al tema de hoy, conviene reconstruir el hilo conductor de la materia, porque el Business Model Canvas (Lienzo de Modelo de Negocio, la herramienta central de esta semana) no aparece de la nada: es la síntesis de todo lo que hemos trabajado desde la Semana 1.</p>
+
+  <div class="concept-box">
+    <strong>Unidad 1 (Semanas 1 a 5):</strong> partimos de la teoría del emprendimiento (Cantillon, Say, Schumpeter, Drucker, Shane &amp; Venkataraman) y de la innovación, entendiendo el emprendimiento como la capacidad de identificar y actuar sobre una oportunidad, y la innovación como la introducción de algo nuevo que genera valor. Revisamos la situación mundial del emprendimiento a través del Global Entrepreneurship Monitor (GEM, estudio internacional que mide la actividad emprendedora de los países) y el ecosistema emprendedor ecuatoriano, además de los tipos de emprendedor y las herramientas de análisis de tendencias para detectar oportunidades.
+  </div>
+
+  <div class="concept-box">
+    <strong>Unidad 2 (Semanas 6 y 7):</strong> exploramos herramientas de creatividad, pensamiento sistémico (analizar un problema viendo todas sus partes interconectadas, no de forma aislada) y la metodología Design Thinking (pensamiento de diseño), un proceso de cinco fases —empatizar, definir, idear, prototipar y testear— centrado en comprender profundamente las necesidades humanas antes de proponer soluciones.
+  </div>
+
+  <div class="concept-box">
+    <strong>Unidad 3 (Semanas 9 a 13):</strong> entramos al mundo de las startups (empresas emergentes de alto potencial de crecimiento que operan bajo condiciones de incertidumbre extrema) y del Corporate Venturing (la estrategia mediante la cual grandes corporaciones impulsan iniciativas emprendedoras, propias o externas, para innovar). Analizamos los factores de éxito y las problemáticas y retos típicos de las startups —escasez de financiamiento, fuga de talento, falta de ajuste producto-mercado, entre otros—. La <strong>Semana 13</strong> cerró esta unidad con el <strong>Lienzo de Propuesta de Valor (Value Proposition Canvas)</strong>, una herramienta que profundiza en la relación entre un segmento de clientes específico (sus tareas, frustraciones y alegrías) y la oferta diseñada para ese segmento (productos/servicios, aliviadores de frustraciones y generadores de alegrías), buscando el llamado "encaje" (fit) entre lo que el cliente necesita y lo que la empresa ofrece.
+  </div>
+
+  <div class="example-box">
+    <h4>El puente hacia la Semana 14</h4>
+    <p>El Lienzo de Propuesta de Valor trabajado la semana pasada responde a una sola pregunta: <em>"¿mi oferta realmente encaja con lo que mi cliente necesita?"</em>. Pero una idea de negocio no sobrevive solo por tener una buena propuesta de valor: necesita un modelo completo que explique cómo va a llegar a esos clientes, cómo se va a relacionar con ellos, qué recursos y aliados requiere, y —algo que como futuros contadores y auditores ustedes valorarán especialmente— cómo va a generar ingresos y qué costos va a asumir. Esa fotografía completa del negocio es exactamente lo que entregaremos hoy: el <strong>Business Model Canvas</strong>.</p>
+  </div>
+
+  <p>Iniciamos hoy la <strong>Unidad 4: Desarrollo del Modelo de Negocios</strong>, en la que pasaremos del diseño del modelo (esta semana) a su validación experimental mediante la metodología Lean Startup (Semana 15), antes de cerrar el semestre con el examen del segundo parcial en la Semana 16.</p>
+</div>
+
+<!-- ============ TEMA 1 ============ -->
+<div class="tab-content" id="tema1">
+  <h2>Tema 1: ¿Qué es un Modelo de Negocio? Fundamentos del Business Model Canvas</h2>
+
+  <p>Un <strong>modelo de negocio (business model)</strong> es, en palabras de sus creadores, la lógica mediante la cual una organización crea, entrega y captura valor (Osterwalder &amp; Pigneur, 2010). Esta definición tiene tres verbos clave que conviene separar: <em>crear</em> valor (¿qué ofrezco y para quién?), <em>entregar</em> valor (¿cómo hago que ese valor llegue realmente al cliente?) y <em>capturar</em> valor (¿cómo convierto ese valor entregado en ingresos y sostenibilidad para mi organización?). Una idea de negocio que solo responde la primera pregunta —"tengo un buen producto"— y no las otras dos, no es todavía un modelo de negocio: es apenas una intuición.</p>
+
+  <div class="concept-box">
+    <strong>Business Model Canvas (BMC) / Lienzo de Modelo de Negocio:</strong> es una herramienta estratégica visual, desarrollada por Alexander Osterwalder e Yves Pigneur en su libro <em>Business Model Generation</em> (2010), que organiza la arquitectura de un negocio en <strong>nueve bloques</strong> distribuidos en una sola página (un "lienzo"), permitiendo describir, analizar, cuestionar y rediseñar un modelo de negocio de forma rápida y visual, antes de invertir tiempo y dinero en documentos extensos.
+  </div>
+
+  <p>¿Por qué un lienzo de una sola página y no un documento de cuarenta páginas? Porque en las primeras etapas de una idea, lo más valioso no es la redacción extensa, sino la capacidad de ver el negocio completo de un vistazo, detectar inconsistencias entre sus partes y modificarlo con facilidad. Un <strong>plan de negocios (business plan)</strong> —documento formal y extenso que detalla objetivos, estrategias, proyecciones financieras y operativas de una empresa— sigue siendo necesario más adelante, por ejemplo para solicitar un crédito formal o cumplir requisitos legales; pero escribirlo demasiado pronto, antes de validar el modelo, suele ser tiempo invertido en una versión que cambiará por completo.</p>
+
+  <div class="example-box">
+    <h4>Diferencia entre el Lienzo de Propuesta de Valor y el Business Model Canvas</h4>
+    <p>La semana pasada trabajamos el Lienzo de Propuesta de Valor, que es en realidad un "zoom" o acercamiento a <strong>uno solo</strong> de los nueve bloques que veremos hoy (la relación entre Segmentos de Clientes y Propuesta de Valor). El Business Model Canvas, en cambio, hace un "zoom out" (alejamiento) y muestra la arquitectura completa: no solo qué le ofrezco al cliente, sino también cómo llego a él, qué recursos necesito, con quién me asocio y cómo gano dinero. Por ejemplo, <strong>Kushki</strong> (plataforma ecuatoriana de procesamiento de pagos digitales, reconocida como una de las pocas empresas latinoamericanas que ha alcanzado el estatus de "unicornio" —startup valorada en más de mil millones de dólares—) pudo tener una propuesta de valor excelente desde el inicio, pero su crecimiento sostenido dependió de resolver también los otros ocho bloques: alianzas con bancos, estructura de ingresos por transacción, canales de venta a empresas, entre otros.</p>
+  </div>
+
+  <p>Para quienes se forman en Contabilidad y Auditoría, el modelo de negocio no es un tema ajeno a su profesión: la <strong>Norma Internacional de Auditoría (NIA) 570 sobre Negocio en Marcha</strong> exige que el auditor evalúe si existen condiciones que generen dudas sobre la capacidad de una entidad para continuar operando, y esa evaluación es prácticamente imposible sin comprender la lógica del modelo de negocio: de dónde provienen sus ingresos, qué tan dependiente es de pocos clientes o proveedores, y si su estructura de costos es sostenible. Entender el Canvas, entonces, no es solo una habilidad de emprendedores: es una competencia de análisis que todo contador y auditor debe dominar para evaluar la viabilidad de cualquier organización, propia o ajena.</p>
+
+  <div class="conclusion-box">
+    <h4>Idea clave</h4>
+    <p>El Business Model Canvas no reemplaza al plan de negocios ni al análisis financiero detallado; los precede. Es el mapa que evita construir un edificio completo (plan de negocio, proyecciones, trámites legales) sobre una idea que aún no ha demostrado tener una arquitectura coherente.</p>
+  </div>
+</div>
+
+<!-- ============ TEMA 2 ============ -->
+<div class="tab-content" id="tema2">
+  <h2>Tema 2: Los Nueve Bloques del Canvas (Parte 1) — El lado del cliente</h2>
+  <p>El Business Model Canvas organiza sus nueve bloques en dos grandes zonas: el lado derecho, orientado al <strong>cliente</strong> (emoción, mercado), y el lado izquierdo, orientado a la <strong>infraestructura</strong> (eficiencia, operación). Empezamos por el lado del cliente, que conviene completar primero según la metodología original de Osterwalder y Pigneur (2010).</p>
+
+  <h3>1. Segmentos de Clientes (Customer Segments)</h3>
+  <div class="concept-box">
+    <strong>Definición:</strong> son los distintos grupos de personas u organizaciones que la empresa busca alcanzar y servir. Responde a la pregunta: <em>¿para quién estamos creando valor?</em> Existen tipos como el mercado masivo (sin distinción de segmentos), el nicho de mercado (un segmento muy específico con necesidades particulares), el mercado segmentado (varios segmentos con necesidades ligeramente distintas) y la plataforma multilateral —en inglés, <em>multi-sided platform</em>—, que sirve a dos o más segmentos interdependientes a la vez (por ejemplo, una app de delivery sirve simultáneamente a comensales y a restaurantes).
+  </div>
+  <div class="example-box">
+    <h4>Ejemplo ecuatoriano</h4>
+    <p><strong>Datil</strong> (plataforma ecuatoriana de servicios en la nube —cloud— y herramientas para desarrolladores) no busca atender "a todo el mundo": su segmento de clientes son desarrolladores de software y pequeñas empresas tecnológicas ecuatorianas y latinoamericanas que necesitan infraestructura confiable sin depender de proveedores internacionales con precios en dólares y soporte en otro huso horario.</p>
+  </div>
+
+  <h3>2. Propuesta de Valor (Value Proposition)</h3>
+  <div class="concept-box">
+    <strong>Definición:</strong> es el conjunto de productos y servicios que crean valor para un segmento de clientes específico, resolviendo un problema o satisfaciendo una necesidad. Este bloque es exactamente el resultado del trabajo que hicimos en el <strong>Lienzo de Propuesta de Valor de la Semana 13</strong>: el "Mapa de Valor" (productos/servicios, aliviadores de frustraciones y generadores de alegrías) que diseñamos para encajar con el "Perfil del Cliente" de un segmento determinado.
+  </div>
+  <div class="example-box">
+    <h4>Ejemplo ecuatoriano</h4>
+    <p><strong>Siembro</strong> (plataforma ecuatoriana de agritech —tecnología aplicada al sector agrícola— que conecta a pequeños agricultores con mercados y opciones de financiamiento) ofrece una propuesta de valor clara: reducir la dependencia de intermediarios que pagan precios bajos al agricultor, dándole acceso directo a compradores y datos para tomar mejores decisiones.</p>
+  </div>
+
+  <h3>3. Canales (Channels)</h3>
+  <div class="concept-box">
+    <strong>Definición:</strong> son los puntos de contacto a través de los cuales la empresa se comunica y llega a su segmento de clientes para entregarles la propuesta de valor. Osterwalder y Pigneur (2010) identifican cinco fases del canal: dar a conocer el producto (awareness), ayudar a evaluar la propuesta de valor, permitir la compra, entregar la propuesta de valor y ofrecer soporte posventa. Los canales pueden ser <strong>directos</strong> (fuerza de venta propia, sitio web propio) o <strong>indirectos</strong> (a través de socios, tiendas de terceros), y <strong>propios</strong> o <strong>de socios</strong>.
+  </div>
+  <div class="example-box">
+    <h4>Ejemplo ecuatoriano</h4>
+    <p>Un emprendimiento de café especial en Loja puede usar como canales directos su cuenta de Instagram y un punto de venta físico, y como canal indirecto la venta a través de tiendas gourmet en Quito y Guayaquil que ya tienen una clientela formada.</p>
+  </div>
+
+  <h3>4. Relación con Clientes (Customer Relationships)</h3>
+  <div class="concept-box">
+    <strong>Definición:</strong> describe el tipo de vínculo que la empresa establece con cada segmento de clientes. Categorías principales: asistencia personal (interacción humana directa), asistencia personal dedicada (un representante exclusivo asignado a un cliente, típico en cuentas corporativas grandes), autoservicio (el cliente se atiende solo, sin contacto directo), servicios automatizados (sistemas que reconocen patrones del cliente y responden automáticamente, como recomendaciones), comunidades (espacios donde los clientes interactúan entre sí) y cocreación (el cliente participa activamente en el diseño del producto).
+  </div>
+  <div class="example-box">
+    <h4>Ejemplo ecuatoriano</h4>
+    <p>Siembro construye comunidad entre agricultores que comparten experiencias en grupos de WhatsApp moderados por la plataforma —una relación de tipo comunidad—, mientras que para sus clientes compradores (empresas grandes) ofrece asistencia personal dedicada a través de un ejecutivo de cuenta.</p>
+  </div>
+
+  <div class="conclusion-box">
+    <h4>Idea clave</h4>
+    <p>Estos cuatro bloques responden, en conjunto, a la pregunta "¿cómo nos relacionamos con el mundo exterior?". En la siguiente pestaña (Tema 2a) veremos cómo esa relación se traduce en ingresos, y qué necesita la empresa "puertas adentro" para sostenerla.</p>
+  </div>
+</div>
+
+<!-- ============ TEMA 2a ============ -->
+<div class="tab-content" id="tema2a">
+  <h2>Tema 2a: Los Nueve Bloques del Canvas (Parte 2) — El lado de la infraestructura</h2>
+  <p>Completamos ahora los cinco bloques restantes, que conforman el lado izquierdo del lienzo (infraestructura) y el bloque inferior derecho de ingresos. Estos bloques son particularmente relevantes para la formación de un contador y auditor, porque están directamente conectados con el costeo, la valuación de activos y el reconocimiento de ingresos.</p>
+
+  <h3>5. Fuentes de Ingresos (Revenue Streams)</h3>
+  <div class="concept-box">
+    <strong>Definición:</strong> representan el efectivo que la empresa genera de cada segmento de clientes. Osterwalder y Pigneur (2010) identifican mecanismos como: venta de activos (transferir la propiedad de un bien físico), cuota por uso (se cobra según el uso del servicio), cuota de suscripción (pago periódico por acceso continuo), préstamo/alquiler/leasing (se otorga el derecho temporal a usar un activo), licenciamiento (se otorga permiso de uso de propiedad intelectual a cambio de una tarifa), comisiones de intermediación (corretaje) y publicidad. Cada fuente puede tener precios fijos (lista de precios establecida) o dinámicos (negociación, subasta, mercado en tiempo real).
+  </div>
+  <div class="example-box">
+    <h4>Conexión con Contabilidad</h4>
+    <p>La forma en que se estructura este bloque determina directamente cómo se aplica la <strong>Norma Internacional de Información Financiera (NIIF) 15 — Ingresos de actividades ordinarias procedentes de contratos con clientes</strong>: no es lo mismo reconocer contablemente el ingreso de una venta única de activo que el de una suscripción mensual, donde el ingreso debe reconocerse de forma diferida a lo largo del periodo de servicio.</p>
+  </div>
+
+  <h3>6. Recursos Clave (Key Resources)</h3>
+  <div class="concept-box">
+    <strong>Definición:</strong> son los activos más importantes que requiere el modelo de negocio para funcionar. Se clasifican en físicos (instalaciones, maquinaria, vehículos), intelectuales (marcas, patentes, datos, algoritmos), humanos (equipo de talento) y financieros (efectivo, líneas de crédito disponibles).
+  </div>
+
+  <h3>7. Actividades Clave (Key Activities)</h3>
+  <div class="concept-box">
+    <strong>Definición:</strong> son las acciones más importantes que la empresa debe realizar para que su modelo de negocio funcione. Categorías: producción (diseñar, fabricar y entregar un producto), resolución de problemas (encontrar soluciones a problemas específicos de clientes, típico en consultoría) y plataforma/red (actividades relacionadas con gestionar una plataforma que conecta a varios actores).
+  </div>
+  <div class="example-box">
+    <h4>Ejemplo ecuatoriano (Recursos y Actividades Clave)</h4>
+    <p><strong>Kruger Labs</strong> (estudio ecuatoriano de innovación dedicado al desarrollo de soluciones digitales —software studio—) depende como recurso clave de su talento humano especializado en desarrollo de software (un recurso intelectual y humano, no físico), y su actividad clave principal es el diseño y desarrollo de productos digitales a medida para otras empresas.</p>
+  </div>
+
+  <h3>8. Socios Clave (Key Partners)</h3>
+  <div class="concept-box">
+    <strong>Definición:</strong> es la red de proveedores y socios que hacen que el modelo de negocio funcione. Las empresas forman alianzas por tres motivos principales: optimización y economía de escala (reducir costos compartiendo infraestructura), reducción de riesgo e incertidumbre, y adquisición de recursos o actividades concretas que la empresa no puede o no le conviene desarrollar internamente. Tipos: alianzas estratégicas entre no competidores, "coopetencia" (alianzas estratégicas entre competidores), joint ventures (empresas conjuntas creadas entre dos o más organizaciones) y relaciones comprador-proveedor para asegurar suministros confiables.
+  </div>
+  <div class="example-box">
+    <h4>Conexión con Auditoría</h4>
+    <p>Este bloque conecta directamente con un concepto clave de auditoría: las <strong>partes relacionadas</strong> (entidades o personas que tienen capacidad de ejercer control o influencia significativa sobre otra entidad, como un proveedor estratégico exclusivo o un socio comercial). Cuando los socios clave de un negocio son también partes relacionadas, el auditor debe prestar especial atención a esas transacciones por el riesgo de condiciones no equivalentes a las de mercado.</p>
+  </div>
+
+  <h3>9. Estructura de Costos (Cost Structure)</h3>
+  <div class="concept-box">
+    <strong>Definición:</strong> describe todos los costos en los que incurre la empresa para operar su modelo de negocio. Puede ser <strong>impulsada por costos</strong> (cost-driven, donde el objetivo es minimizar costos siempre que sea posible, típico de modelos de bajo precio) o <strong>impulsada por valor</strong> (value-driven, donde la empresa acepta una estructura de costos más alta porque está enfocada en maximizar la propuesta de valor entregada, típico de modelos premium). Incluye costos fijos (no varían con el volumen de producción, como el alquiler) y costos variables (varían proporcionalmente con el volumen, como la materia prima), además de fenómenos como las economías de escala (el costo por unidad baja a medida que aumenta el volumen producido) y las economías de alcance (una empresa reduce costos al operar en actividades relacionadas entre sí, por ejemplo compartiendo canales de distribución entre varios productos).
+  </div>
+  <div class="example-box">
+    <h4>Conexión con Contabilidad</h4>
+    <p>La diferencia entre costos fijos y variables es la base del <strong>costeo variable</strong> (sistema de costeo que solo asigna al producto los costos que varían con la producción, útil para decisiones de corto plazo) frente al <strong>costeo por absorción</strong> (sistema que asigna también los costos fijos de producción al costo del producto, exigido para la presentación de estados financieros bajo NIIF). Comprender la estructura de costos del Canvas, entonces, es el primer paso para elegir correctamente el sistema de costeo de una empresa real.</p>
+  </div>
+
+  <h3>Resumen comparativo de los nueve bloques</h3>
+  <table class="comp-table">
+    <tr><th>Bloque</th><th>Pregunta que responde</th><th>Lado del lienzo</th></tr>
+    <tr><td>Segmentos de Clientes</td><td>¿Para quién creamos valor?</td><td>Cliente</td></tr>
+    <tr><td>Propuesta de Valor</td><td>¿Qué problema resolvemos y cómo?</td><td>Cliente</td></tr>
+    <tr><td>Canales</td><td>¿Cómo llega la propuesta de valor al cliente?</td><td>Cliente</td></tr>
+    <tr><td>Relación con Clientes</td><td>¿Qué tipo de vínculo establecemos?</td><td>Cliente</td></tr>
+    <tr><td>Fuentes de Ingresos</td><td>¿Cómo y por qué nos paga el cliente?</td><td>Cliente</td></tr>
+    <tr><td>Recursos Clave</td><td>¿Qué activos indispensables necesitamos?</td><td>Infraestructura</td></tr>
+    <tr><td>Actividades Clave</td><td>¿Qué debemos hacer muy bien todos los días?</td><td>Infraestructura</td></tr>
+    <tr><td>Socios Clave</td><td>¿Con quién nos aliamos y por qué?</td><td>Infraestructura</td></tr>
+    <tr><td>Estructura de Costos</td><td>¿Cuáles son nuestros principales egresos?</td><td>Infraestructura</td></tr>
+  </table>
+
+  <div class="conclusion-box">
+    <h4>Idea clave</h4>
+    <p>Un modelo de negocio sólido no es la suma de nueve respuestas aisladas, sino la coherencia entre ellas: la Estructura de Costos debe ser consistente con los Recursos y Actividades Clave necesarios para sostener exactamente la Propuesta de Valor prometida a cada Segmento de Clientes, financiada por las Fuentes de Ingresos correspondientes.</p>
+  </div>
+</div>
+
+<!-- ============ TEMA 3 ============ -->
+<div class="tab-content" id="tema3">
+  <h2>Tema 3: Del Lienzo a la Presentación — Cómo Comunicar tu Idea de Negocio</h2>
+
+  <p>Tener un Business Model Canvas completo no garantiza que una idea de negocio sea comprendida ni respaldada por otros: inversionistas, jurados académicos, posibles socios o clientes piloto. Por eso, la segunda gran competencia de esta semana es aprender a <strong>presentar</strong> el modelo de forma clara, persuasiva y honesta.</p>
+
+  <div class="concept-box">
+    <strong>Pitch:</strong> presentación breve, estructurada y persuasiva de una idea de negocio, dirigida a captar el interés de una audiencia específica (inversionistas, jurados, clientes) en un tiempo limitado. <strong>Elevator pitch (presentación de ascensor):</strong> versión extremadamente corta del pitch, de entre 30 y 90 segundos, llamada así porque debería poder comunicarse en el tiempo que dura un viaje en ascensor. <strong>Pitch deck:</strong> conjunto de diapositivas visuales que acompañan un pitch más extenso, usado típicamente frente a inversionistas. <strong>Demo Day (día de demostración):</strong> evento, frecuente en programas de aceleración de startups, donde varios emprendimientos presentan su modelo de negocio ante un panel de inversionistas y mentores en un tiempo limitado por cada equipo.
+  </div>
+
+  <h3>Estructura recomendada para presentar un modelo basado en el Canvas</h3>
+  <p>No existe una fórmula única, pero la siguiente secuencia —ampliamente usada en programas de emprendimiento— ordena de forma lógica la información del lienzo para que la audiencia entienda primero el "por qué" antes que el "cómo":</p>
+  <ol class="styled-list">
+    <li><strong>Gancho (Hook):</strong> una pregunta, dato o historia breve que capte la atención en los primeros segundos.</li>
+    <li><strong>Problema:</strong> ¿qué dolor real enfrenta el segmento de clientes? (conecta con el Perfil del Cliente trabajado en la Semana 13).</li>
+    <li><strong>Solución / Propuesta de Valor:</strong> cómo resuelve la idea ese problema, en lenguaje simple, sin tecnicismos innecesarios.</li>
+    <li><strong>Modelo de negocio:</strong> resumen de cómo se entrega el valor (canales, relación) y cómo se captura (fuentes de ingresos).</li>
+    <li><strong>Lo que lo hace posible:</strong> recursos, actividades y socios clave, mencionados solo si aportan credibilidad (por ejemplo, una alianza ya firmada).</li>
+    <li><strong>Validación o evidencia:</strong> cualquier dato real —aunque sea una prueba piloto pequeña— que demuestre que la hipótesis del modelo no es solo una suposición.</li>
+    <li><strong>Cierre (Ask):</strong> qué se le pide exactamente a la audiencia: inversión, una alianza, retroalimentación, o simplemente una calificación académica justa.</li>
+  </ol>
+
+  <div class="example-box">
+    <h4>Storytelling aplicado al Canvas</h4>
+    <p>El <strong>storytelling</strong> (arte de estructurar una comunicación como una historia, con un conflicto y una resolución, para generar conexión emocional con la audiencia) es lo que diferencia una enumeración aburrida de los nueve bloques de una presentación memorable. En lugar de decir "mi segmento de clientes son microempresarios de Guayaquil", un buen pitch empieza así: "Conocí a Doña Rosa, dueña de una tienda de barrio en el sur de Guayaquil, que pierde cada mes cerca de cien dólares en productos que se vencen porque no tiene forma de prever su demanda...". El dato técnico (segmento, propuesta de valor) sigue siendo el mismo, pero ahora está encarnado en una historia que la audiencia recuerda.</p>
+  </div>
+
+  <p>Para quienes están formándose como contadores y auditores, conviene además recordar un principio profesional: un pitch nunca debe sacrificar el rigor de los números por el entusiasmo de la historia. Mencionar cifras realistas —aunque sean estimaciones conservadoras— y estar preparado para sustentar cómo se calcularon, genera más confianza ante cualquier audiencia que una proyección optimista sin respaldo. Si el modelo contempla formalizarse legalmente en Ecuador, también es recomendable mencionar el camino regulatorio: por ejemplo, la obtención del <strong>RUC (Registro Único de Contribuyentes)</strong>, documento tributario obligatorio emitido por el <strong>Servicio de Rentas Internas (SRI)</strong> que identifica a toda persona natural o jurídica que realiza actividad económica en el país, así como los beneficios que ofrece la <strong>Ley Orgánica de Emprendimiento e Innovación (2020)</strong>, normativa ecuatoriana que simplifica trámites de constitución y ofrece incentivos para nuevos emprendimientos.</p>
+
+  <div class="conclusion-box">
+    <h4>Idea clave</h4>
+    <p>Un buen pitch no añade información nueva al Canvas: organiza y narra la misma información de forma que genere comprensión y confianza en menos de cinco minutos. Por eso el orden y el énfasis importan tanto como el contenido.</p>
+  </div>
+</div>
+
+<!-- ============ TEMA 4 ============ -->
+<div class="tab-content" id="tema4">
+  <h2>Tema 4: Casos Ecuatorianos y Errores Comunes al Aplicar el Canvas</h2>
+
+  <p>Antes de pasar a la práctica, es útil revisar tanto ejemplos positivos como errores frecuentes, para que la herramienta guiada que usaremos a continuación se aplique con criterio y no de forma mecánica.</p>
+
+  <h3>Casos ilustrativos del ecosistema ecuatoriano</h3>
+  <table class="comp-table">
+    <tr><th>Empresa</th><th>Sector</th><th>Lectura desde el Canvas</th></tr>
+    <tr><td><strong>Kushki</strong></td><td>Fintech (tecnología financiera) de pagos digitales</td><td>Su crecimiento dependió tanto de una propuesta de valor sólida (facilitar cobros digitales a empresas) como de Socios Clave estratégicos (bancos, procesadores de pago) y de Fuentes de Ingresos basadas en comisión por transacción.</td></tr>
+    <tr><td><strong>Datil</strong></td><td>Infraestructura tecnológica (cloud)</td><td>Su Segmento de Clientes nicho (desarrolladores y pymes tecnológicas locales) le permitió diseñar Canales y Relación con Clientes más cercanos que los de proveedores internacionales genéricos.</td></tr>
+    <tr><td><strong>Siembro</strong></td><td>Agritech (tecnología agrícola)</td><td>Conecta dos Segmentos de Clientes distintos (agricultores y compradores), lo que la convierte en una plataforma multilateral; su Propuesta de Valor está directamente ligada a un problema histórico del sector: la intermediación.</td></tr>
+    <tr><td><strong>Kruger Labs</strong></td><td>Estudio de innovación digital (software studio)</td><td>Su modelo depende fuertemente de Recursos Clave intangibles (talento especializado) más que de activos físicos, un patrón típico de empresas de base tecnológica.</td></tr>
+  </table>
+
+  <h3>Errores comunes al aplicar el Business Model Canvas</h3>
+  <div class="example-box">
+    <h4>1. La "falacia de llenar el formulario"</h4>
+    <p>Completar los nueve bloques basándose únicamente en suposiciones propias, sin haber hablado con clientes reales, da una falsa sensación de tener un modelo validado cuando en realidad solo se tiene un conjunto de hipótesis sin probar. El Canvas debe tratarse como un documento vivo, sujeto a revisión constante (idea que retomaremos a fondo la próxima semana con la metodología Lean Startup).</p>
+  </div>
+  <div class="example-box">
+    <h4>2. Confundir el Canvas con el plan de negocios</h4>
+    <p>Algunos estudiantes intentan escribir párrafos extensos dentro de cada bloque, perdiendo la ventaja principal de la herramienta: la síntesis visual. El Canvas debe poder leerse de un vistazo.</p>
+  </div>
+  <div class="example-box">
+    <h4>3. Ignorar la Estructura de Costos por considerarla "el bloque aburrido"</h4>
+    <p>Es común que los bloques de Propuesta de Valor y Segmentos de Clientes reciban toda la atención, mientras que la Estructura de Costos se llena de forma superficial. Sin embargo, desde la perspectiva contable y de auditoría, este es precisamente el bloque que determina si el modelo es sostenible en el tiempo.</p>
+  </div>
+  <div class="example-box">
+    <h4>4. Presentar los nueve bloques con el mismo peso narrativo</h4>
+    <p>Al presentar, enumerar mecánicamente los nueve bloques en el mismo orden y con la misma extensión hace perder a la audiencia. Como vimos en el Tema 3, el pitch debe priorizar el problema, la solución y la evidencia, dejando los detalles operativos para preguntas posteriores.</p>
+  </div>
+
+  <div class="conclusion-box">
+    <h4>Idea clave</h4>
+    <p>El Business Model Canvas es tan útil como crítico sea quien lo usa con su propio trabajo. La herramienta no "valida" automáticamente una idea de negocio: organiza las hipótesis que después deberán probarse con evidencia real.</p>
+  </div>
+</div>
+
+<!-- ============ HERRAMIENTA GUIADA ============ -->
+<div class="tab-content" id="herramienta">
+  <h2>Herramienta Guiada: Construye y Presenta tu Business Model Canvas</h2>
+  <p>Esta es tu herramienta práctica para aplicar todo lo aprendido hoy. Completa los nueve bloques con tu propia idea de negocio (puede ser real o hipotética, incluso puedes continuar con la idea que trabajaste en el Lienzo de Propuesta de Valor de la Semana 13), y luego usa el generador de guion para obtener una base lista para tu presentación.</p>
+
+  <div class="step-guide">
+    <h4>Orden recomendado para llenar el lienzo</h4>
+    <p>Osterwalder y Pigneur (2010) sugieren no llenar los bloques en el orden en que aparecen visualmente, sino seguir esta secuencia lógica:</p>
+    <ol>
+      <li>Segmentos de Clientes — define primero a quién sirves.</li>
+      <li>Propuesta de Valor — qué les ofreces (puedes retomar tu trabajo de la Semana 13).</li>
+      <li>Canales — cómo llegas a ellos.</li>
+      <li>Relación con Clientes — qué tipo de vínculo mantienes.</li>
+      <li>Fuentes de Ingresos — cómo y por qué te pagan.</li>
+      <li>Recursos Clave — qué necesitas tener.</li>
+      <li>Actividades Clave — qué debes hacer muy bien.</li>
+      <li>Socios Clave — con quién te alías.</li>
+      <li>Estructura de Costos — qué te cuesta sostener todo lo anterior.</li>
+    </ol>
+  </div>
+
+  <div class="tool-actions">
+    <button class="btn" onclick="loadExample()">Ver ejemplo resuelto (EcoEmpaques Guayaquil)</button>
+    <button class="btn btn-secondary" onclick="clearCanvas()">Borrar y empezar mi propio Canvas</button>
+  </div>
+
+  <div class="canvas-grid">
+    <div class="canvas-block cb-partners">
+      <h4>8. Socios Clave</h4>
+      <textarea id="blk-par" placeholder="¿Quiénes son tus proveedores y aliados estratégicos? ¿Por qué los necesitas?"></textarea>
+    </div>
+    <div class="canvas-block cb-activities">
+      <h4>7. Actividades Clave</h4>
+      <textarea id="blk-act" placeholder="¿Qué debes hacer muy bien todos los días para que el modelo funcione?"></textarea>
+    </div>
+    <div class="canvas-block cb-resources">
+      <h4>6. Recursos Clave</h4>
+      <textarea id="blk-res" placeholder="¿Qué activos físicos, humanos, intelectuales o financieros necesitas?"></textarea>
+    </div>
+    <div class="canvas-block cb-value">
+      <h4>2. Propuesta de Valor</h4>
+      <textarea id="blk-vp" placeholder="¿Qué problema resuelves y cómo? (puedes retomar tu Lienzo de Propuesta de Valor)"></textarea>
+    </div>
+    <div class="canvas-block cb-relationships">
+      <h4>4. Relación con Clientes</h4>
+      <textarea id="blk-rel" placeholder="¿Qué tipo de vínculo mantienes con cada segmento?"></textarea>
+    </div>
+    <div class="canvas-block cb-channels">
+      <h4>3. Canales</h4>
+      <textarea id="blk-ch" placeholder="¿Cómo das a conocer, vendes y entregas tu propuesta de valor?"></textarea>
+    </div>
+    <div class="canvas-block cb-segments">
+      <h4>1. Segmentos de Clientes</h4>
+      <textarea id="blk-seg" placeholder="¿Para quién creas valor? Describe el grupo de clientes."></textarea>
+    </div>
+    <div class="canvas-block cb-costs">
+      <h4>9. Estructura de Costos</h4>
+      <textarea id="blk-cost" placeholder="¿Cuáles son tus principales costos fijos y variables?"></textarea>
+    </div>
+    <div class="canvas-block cb-revenue">
+      <h4>5. Fuentes de Ingresos</h4>
+      <textarea id="blk-rev" placeholder="¿Cómo y por qué te paga cada segmento de clientes?"></textarea>
+    </div>
+  </div>
+
+  <div class="tool-actions">
+    <button class="btn" onclick="generatePitch()">Generar guion de presentación</button>
+    <button class="btn btn-secondary" onclick="copyPitch()">Copiar guion</button>
+  </div>
+
+  <h3>Tu guion de presentación</h3>
+  <p>El siguiente cuadro se completará automáticamente con tu Canvas, siguiendo la estructura de pitch del Tema 3. Las secciones entre corchetes deberás completarlas tú manualmente, porque dependen de tu reflexión personal y no se deducen directamente del lienzo.</p>
+  <textarea id="pitch-output" readonly placeholder="Presiona 'Generar guion de presentación' después de llenar tu Canvas para ver tu guion aquí..."></textarea>
+</div>
+
+<!-- ============ EJERCICIO INTERACTIVO ============ -->
+<div class="tab-content" id="ejercicio">
+  <h2>Ejercicio Interactivo: Identifica el Bloque del Canvas</h2>
+  <p>Lee cada situación y selecciona el bloque del Business Model Canvas al que corresponde. Responde las 8 situaciones y luego presiona "Verificar respuestas".</p>
+
+  <div class="question-card" id="ei-card-1">
+    <p class="q-text">1. Una startup de delivery decide cobrar una comisión del 15% a los restaurantes aliados por cada pedido entregado a través de su aplicación.</p>
+    <label class="option-row"><input type="radio" name="ei1" value="a"> Fuentes de Ingresos</label>
+    <label class="option-row"><input type="radio" name="ei1" value="b"> Socios Clave</label>
+    <label class="option-row"><input type="radio" name="ei1" value="c"> Canales</label>
+    <label class="option-row"><input type="radio" name="ei1" value="d"> Estructura de Costos</label>
+    <div class="feedback-text" id="ei-fb-1"></div>
+  </div>
+
+  <div class="question-card" id="ei-card-2">
+    <p class="q-text">2. Kushki firma un acuerdo con bancos y procesadores de pago para poder ofrecer su servicio de cobros digitales sin construir toda la infraestructura financiera desde cero.</p>
+    <label class="option-row"><input type="radio" name="ei2" value="a"> Recursos Clave</label>
+    <label class="option-row"><input type="radio" name="ei2" value="b"> Socios Clave</label>
+    <label class="option-row"><input type="radio" name="ei2" value="c"> Actividades Clave</label>
+    <label class="option-row"><input type="radio" name="ei2" value="d"> Relación con Clientes</label>
+    <div class="feedback-text" id="ei-fb-2"></div>
+  </div>
+
+  <div class="question-card" id="ei-card-3">
+    <p class="q-text">3. Una microempresaria de Cuenca que vende ropa decide atender exclusivamente a mujeres profesionales de 25 a 40 años, con poder adquisitivo medio-alto.</p>
+    <label class="option-row"><input type="radio" name="ei3" value="a"> Segmentos de Clientes</label>
+    <label class="option-row"><input type="radio" name="ei3" value="b"> Propuesta de Valor</label>
+    <label class="option-row"><input type="radio" name="ei3" value="c"> Canales</label>
+    <label class="option-row"><input type="radio" name="ei3" value="d"> Relación con Clientes</label>
+    <div class="feedback-text" id="ei-fb-3"></div>
+  </div>
+
+  <div class="question-card" id="ei-card-4">
+    <p class="q-text">4. Una empresa agroexportadora dedica gran parte de su operación diaria a procesar y empacar banano para cumplir con los estándares de exportación: esta es la labor central que realiza todos los días.</p>
+    <label class="option-row"><input type="radio" name="ei4" value="a"> Actividades Clave</label>
+    <label class="option-row"><input type="radio" name="ei4" value="b"> Recursos Clave</label>
+    <label class="option-row"><input type="radio" name="ei4" value="c"> Socios Clave</label>
+    <label class="option-row"><input type="radio" name="ei4" value="d"> Estructura de Costos</label>
+    <div class="feedback-text" id="ei-fb-4"></div>
+  </div>
+
+  <div class="question-card" id="ei-card-5">
+    <p class="q-text">5. Una plataforma de cursos en línea ecuatoriana ofrece soporte mediante un chatbot disponible las 24 horas, sin necesidad de que un asesor humano intervenga.</p>
+    <label class="option-row"><input type="radio" name="ei5" value="a"> Canales</label>
+    <label class="option-row"><input type="radio" name="ei5" value="b"> Relación con Clientes</label>
+    <label class="option-row"><input type="radio" name="ei5" value="c"> Propuesta de Valor</label>
+    <label class="option-row"><input type="radio" name="ei5" value="d"> Segmentos de Clientes</label>
+    <div class="feedback-text" id="ei-fb-5"></div>
+  </div>
+
+  <div class="question-card" id="ei-card-6">
+    <p class="q-text">6. Datil, la plataforma ecuatoriana de servicios en la nube, atrae nuevos usuarios a través de redes sociales, su sitio web y referidos de otros desarrolladores.</p>
+    <label class="option-row"><input type="radio" name="ei6" value="a"> Canales</label>
+    <label class="option-row"><input type="radio" name="ei6" value="b"> Relación con Clientes</label>
+    <label class="option-row"><input type="radio" name="ei6" value="c"> Socios Clave</label>
+    <label class="option-row"><input type="radio" name="ei6" value="d"> Actividades Clave</label>
+    <div class="feedback-text" id="ei-fb-6"></div>
+  </div>
+
+  <div class="question-card" id="ei-card-7">
+    <p class="q-text">7. Lo que distingue a una startup de software de un negocio tradicional de manufactura es que la primera depende principalmente de su equipo de desarrolladores y de su propiedad intelectual (código fuente, algoritmos), mientras que la segunda depende de maquinaria física.</p>
+    <label class="option-row"><input type="radio" name="ei7" value="a"> Recursos Clave</label>
+    <label class="option-row"><input type="radio" name="ei7" value="b"> Actividades Clave</label>
+    <label class="option-row"><input type="radio" name="ei7" value="c"> Estructura de Costos</label>
+    <label class="option-row"><input type="radio" name="ei7" value="d"> Propuesta de Valor</label>
+    <div class="feedback-text" id="ei-fb-7"></div>
+  </div>
+
+  <div class="question-card" id="ei-card-8">
+    <p class="q-text">8. Una panadería artesanal de Guayaquil calcula que sus mayores egresos mensuales son el alquiler del local, los sueldos del personal y la harina, sin importar cuántos panes venda.</p>
+    <label class="option-row"><input type="radio" name="ei8" value="a"> Fuentes de Ingresos</label>
+    <label class="option-row"><input type="radio" name="ei8" value="b"> Estructura de Costos</label>
+    <label class="option-row"><input type="radio" name="ei8" value="c"> Recursos Clave</label>
+    <label class="option-row"><input type="radio" name="ei8" value="d"> Actividades Clave</label>
+    <div class="feedback-text" id="ei-fb-8"></div>
+  </div>
+
+  <button class="btn" onclick="verifyExercise()">Verificar respuestas</button>
+  <button class="btn btn-secondary" onclick="resetExercise()">Reiniciar</button>
+
+  <div class="progress-wrap"><div class="progress-bar" id="ei-progress"></div></div>
+  <div class="score-panel" id="ei-score" style="display:none;"></div>
+</div>
+
+<!-- ============ CUESTIONARIO ============ -->
+<div class="tab-content" id="cuestionario">
+  <h2>Cuestionario</h2>
+  <p>10 preguntas: 7 teóricas (basadas en el contenido de este widget) y 3 de análisis de caso (autónomas). Responde todas y luego presiona "Verificar respuestas".</p>
+
+  <div class="question-card" id="qi-card-1">
+    <span class="badge badge-teorica">Teórica</span>
+    <p class="q-text">1. ¿Quiénes desarrollaron el Business Model Canvas (Lienzo de Modelo de Negocio)?</p>
+    <label class="option-row"><input type="radio" name="qi1" value="a"> Steve Blank y Bob Dorf</label>
+    <label class="option-row"><input type="radio" name="qi1" value="b"> Alexander Osterwalder e Yves Pigneur</label>
+    <label class="option-row"><input type="radio" name="qi1" value="c"> Eric Ries</label>
+    <label class="option-row"><input type="radio" name="qi1" value="d"> Michael Porter</label>
+    <div class="feedback-text" id="qi-fb-1"></div>
+  </div>
+
+  <div class="question-card" id="qi-card-2">
+    <span class="badge badge-teorica">Teórica</span>
+    <p class="q-text">2. ¿Cuál es la diferencia principal entre el Lienzo de Propuesta de Valor (trabajado la semana anterior) y el Business Model Canvas?</p>
+    <label class="option-row"><input type="radio" name="qi2" value="a"> Son el mismo instrumento con nombres distintos</label>
+    <label class="option-row"><input type="radio" name="qi2" value="b"> El Lienzo de Propuesta de Valor profundiza la relación entre un segmento de clientes y la oferta, mientras que el Business Model Canvas describe la arquitectura completa del negocio en nueve bloques</label>
+    <label class="option-row"><input type="radio" name="qi2" value="c"> El Business Model Canvas solo sirve para empresas grandes</label>
+    <label class="option-row"><input type="radio" name="qi2" value="d"> El Lienzo de Propuesta de Valor reemplaza al plan financiero</label>
+    <div class="feedback-text" id="qi-fb-2"></div>
+  </div>
+
+  <div class="question-card" id="qi-card-3">
+    <span class="badge badge-teorica">Teórica</span>
+    <p class="q-text">3. ¿Cuál de las siguientes opciones NO es uno de los nueve bloques del Business Model Canvas?</p>
+    <label class="option-row"><input type="radio" name="qi3" value="a"> Segmentos de Clientes</label>
+    <label class="option-row"><input type="radio" name="qi3" value="b"> Fuentes de Ingresos</label>
+    <label class="option-row"><input type="radio" name="qi3" value="c"> Análisis FODA</label>
+    <label class="option-row"><input type="radio" name="qi3" value="d"> Estructura de Costos</label>
+    <div class="feedback-text" id="qi-fb-3"></div>
+  </div>
+
+  <div class="question-card" id="qi-card-4">
+    <span class="badge badge-teorica">Teórica</span>
+    <p class="q-text">4. Según la teoría del Business Model Canvas, ¿qué pregunta responde principalmente el bloque de "Canales"?</p>
+    <label class="option-row"><input type="radio" name="qi4" value="a"> ¿Cómo se entera, evalúa, compra y recibe el cliente la propuesta de valor?</label>
+    <label class="option-row"><input type="radio" name="qi4" value="b"> ¿Cuánto cuesta producir el bien o servicio?</label>
+    <label class="option-row"><input type="radio" name="qi4" value="c"> ¿Quiénes son los proveedores estratégicos?</label>
+    <label class="option-row"><input type="radio" name="qi4" value="d"> ¿Cuál es la ganancia neta del negocio?</label>
+    <div class="feedback-text" id="qi-fb-4"></div>
+  </div>
+
+  <div class="question-card" id="qi-card-5">
+    <span class="badge badge-teorica">Teórica</span>
+    <p class="q-text">5. Un elevator pitch (presentación de ascensor) se caracteriza principalmente por:</p>
+    <label class="option-row"><input type="radio" name="qi5" value="a"> Durar entre 30 y 90 segundos y comunicar la idea de forma persuasiva y concisa</label>
+    <label class="option-row"><input type="radio" name="qi5" value="b"> Incluir los estados financieros completos de la empresa</label>
+    <label class="option-row"><input type="radio" name="qi5" value="c"> Tener una duración mínima de 20 minutos</label>
+    <label class="option-row"><input type="radio" name="qi5" value="d"> Reemplazar al Business Model Canvas</label>
+    <div class="feedback-text" id="qi-fb-5"></div>
+  </div>
+
+  <div class="question-card" id="qi-card-6">
+    <span class="badge badge-teorica">Teórica</span>
+    <p class="q-text">6. Dentro de la Estructura de Costos, un modelo "impulsado por el valor" (value-driven) se enfoca en:</p>
+    <label class="option-row"><input type="radio" name="qi6" value="a"> Minimizar costos a toda costa, incluso sacrificando la propuesta de valor</label>
+    <label class="option-row"><input type="radio" name="qi6" value="b"> Crear la máxima propuesta de valor posible para el cliente, aceptando una estructura de costos más alta cuando se justifica</label>
+    <label class="option-row"><input type="radio" name="qi6" value="c"> Eliminar por completo los costos fijos</label>
+    <label class="option-row"><input type="radio" name="qi6" value="d"> Cobrar el mismo precio sin importar el segmento de clientes</label>
+    <div class="feedback-text" id="qi-fb-6"></div>
+  </div>
+
+  <div class="question-card" id="qi-card-7">
+    <span class="badge badge-teorica">Teórica</span>
+    <p class="q-text">7. ¿Cuál es el principal error señalado al aplicar el Business Model Canvas sin validación con clientes reales?</p>
+    <label class="option-row"><input type="radio" name="qi7" value="a"> Llenar el lienzo basándose únicamente en suposiciones propias (la "falacia de llenar el formulario")</label>
+    <label class="option-row"><input type="radio" name="qi7" value="b"> Pedir retroalimentación a los clientes antes de presentar el negocio</label>
+    <label class="option-row"><input type="radio" name="qi7" value="c"> Empezar por el bloque de Segmentos de Clientes</label>
+    <label class="option-row"><input type="radio" name="qi7" value="d"> Revisar el lienzo varias veces antes de presentarlo</label>
+    <div class="feedback-text" id="qi-fb-7"></div>
+  </div>
+
+  <div class="question-card" id="qi-card-8">
+    <span class="badge badge-analisis">Análisis de caso</span>
+    <p class="q-text">8. Un emprendedor vende suscripciones mensuales de cajas de café especial a domicilio, cobra una tarifa fija cada mes y mantiene contacto cercano y personalizado vía WhatsApp con cada cliente para conocer sus preferencias. ¿Qué tipo de relación con el cliente describe mejor este caso?</p>
+    <label class="option-row"><input type="radio" name="qi8" value="a"> Servicios automatizados</label>
+    <label class="option-row"><input type="radio" name="qi8" value="b"> Autoservicio</label>
+    <label class="option-row"><input type="radio" name="qi8" value="c"> Asistencia personal directa, con trato cercano y personalizado</label>
+    <label class="option-row"><input type="radio" name="qi8" value="d"> Cocreación con la comunidad de usuarios</label>
+    <div class="feedback-text" id="qi-fb-8"></div>
+  </div>
+
+  <div class="question-card" id="qi-card-9">
+    <span class="badge badge-analisis">Análisis de caso</span>
+    <p class="q-text">9. Una empresa de transporte urbano no cobra directamente a los pasajeros por usar la aplicación; en cambio, genera ingresos cobrando a marcas que pautan publicidad dentro de la app mientras los usuarios esperan su vehículo. ¿Qué fuente de ingresos está utilizando esta empresa?</p>
+    <label class="option-row"><input type="radio" name="qi9" value="a"> Tarifa por uso</label>
+    <label class="option-row"><input type="radio" name="qi9" value="b"> Cuota de suscripción</label>
+    <label class="option-row"><input type="radio" name="qi9" value="c"> Ingresos por publicidad</label>
+    <label class="option-row"><input type="radio" name="qi9" value="d"> Venta de activos</label>
+    <div class="feedback-text" id="qi-fb-9"></div>
+  </div>
+
+  <div class="question-card" id="qi-card-10">
+    <span class="badge badge-analisis">Análisis de caso</span>
+    <p class="q-text">10. Dos empresas, A y B, ofrecen el mismo producto a un precio similar. La empresa A invierte fuertemente en investigación y desarrollo, contratando especialistas y comprando equipos especializados que representan su mayor gasto mensual. La empresa B gasta principalmente en arriendo de bodegas y logística de distribución. Desde la perspectiva del Business Model Canvas, ¿qué bloques explican mejor esta diferencia entre A y B?</p>
+    <label class="option-row"><input type="radio" name="qi10" value="a"> Segmentos de Clientes y Canales</label>
+    <label class="option-row"><input type="radio" name="qi10" value="b"> Recursos Clave / Actividades Clave y Estructura de Costos</label>
+    <label class="option-row"><input type="radio" name="qi10" value="c"> Propuesta de Valor y Relación con Clientes</label>
+    <label class="option-row"><input type="radio" name="qi10" value="d"> Socios Clave y Canales</label>
+    <div class="feedback-text" id="qi-fb-10"></div>
+  </div>
+
+  <button class="btn" onclick="verifyQuiz()">Verificar respuestas</button>
+  <button class="btn btn-secondary" onclick="resetQuiz()">Reiniciar</button>
+
+  <div class="progress-wrap"><div class="progress-bar" id="qi-progress"></div></div>
+  <div class="score-panel" id="qi-score" style="display:none;"></div>
+</div>
+
+<!-- ============ ACTIVIDAD CON IA ============ -->
+<div class="tab-content" id="ia">
+  <h2>Actividad con Inteligencia Artificial</h2>
+  <p>Esta actividad no consiste en pedirle a una IA que "te haga el Canvas". Consiste en usar la IA como un evaluador crítico que ponga a prueba el modelo que tú ya construiste en la pestaña "Herramienta Canvas", para fortalecer tu pensamiento crítico antes de presentarlo.</p>
+
+  <div class="concept-box">
+    <strong>Herramienta recomendada:</strong> Claude, disponible gratuitamente en claude.ai (creado por Anthropic), es la herramienta principal sugerida para esta actividad por su capacidad de mantener una conversación analítica extensa y matizada. También puedes usar la versión gratuita de ChatGPT (OpenAI) o Gemini (Google) si lo prefieres.
+  </div>
+
+  <h3>Paso 1: copia y pega este prompt en la IA</h3>
+  <div class="prompt-box">Eres un inversionista ángel (persona que invierte su propio capital en startups en etapas tempranas a cambio de participación accionaria) experto en modelos de negocio, especializado en mercados latinoamericanos. Te voy a presentar mi Business Model Canvas (Lienzo de Modelo de Negocio) para una idea de negocio en Ecuador. Actúa como un evaluador crítico, no complaciente.
+
+Después de leer mi lienzo:
+1) Identifica el bloque más débil o menos desarrollado de mi modelo y explica por qué.
+2) Hazme 3 preguntas incómodas que un inversionista real me haría sobre la coherencia entre mi Propuesta de Valor y mi Estructura de Costos.
+3) Sugiéreme un riesgo que no haya considerado, relacionado específicamente con el contexto ecuatoriano (regulación, cultura de pago, logística, estacionalidad u otro).
+
+No me digas que mi idea es "muy buena" si no lo justificas con evidencia o lógica de negocio. Sé directo.
+
+Aquí está mi Canvas:
+[Pega aquí los nueve bloques que completaste en la herramienta guiada de este widget]</div>
+
+  <h3>Paso 2: qué hacer con la respuesta de la IA</h3>
+  <ol class="styled-list">
+    <li>Lee completa la respuesta de la IA, sin descartar lo que te incomode.</li>
+    <li>Responde por escrito, en tu cuaderno o portafolio, cada una de las 3 preguntas incómodas con argumentos propios: puedes coincidir, discrepar parcialmente o reconocer que no lo habías pensado, pero siempre con tu razonamiento explícito.</li>
+    <li>Modifica al menos <strong>dos bloques</strong> de tu Canvas en la herramienta guiada, a partir de esta conversación, y anota brevemente por qué los cambiaste.</li>
+    <li>Conserva la conversación completa (captura de pantalla o enlace) como evidencia de tu proceso.</li>
+  </ol>
+
+  <h3>Criterio de evaluación: pensamiento crítico vs. copia simple</h3>
+  <table class="comp-table rubric-table">
+    <tr><th>Indicador</th><th>Copia simple (no cumple)</th><th>Pensamiento crítico (cumple)</th></tr>
+    <tr><td>Uso de la respuesta de la IA</td><td>Se acepta todo lo que dice la IA sin cuestionarlo</td><td>Se contrasta, argumenta a favor o en contra de al menos una sugerencia</td></tr>
+    <tr><td>Cambios al Canvas</td><td>No se modifica nada o se copian frases textuales de la IA dentro del lienzo</td><td>Se modifican al menos dos bloques con justificación propia, en las propias palabras del estudiante</td></tr>
+    <tr><td>Evidencia entregada</td><td>Solo se entrega la respuesta de la IA</td><td>Se entrega la conversación completa más la reflexión escrita del estudiante</td></tr>
+  </table>
+
+  <div class="conclusion-box">
+    <h4>Idea clave</h4>
+    <p>La IA es un excelente interlocutor para presionar los puntos débiles de un modelo de negocio, pero la decisión final sobre qué cambiar —y por qué— siempre debe ser tuya, sustentada con tu propio criterio profesional.</p>
+  </div>
+</div>
+
+<!-- ============ REFLEXIÓN PERSONAL ============ -->
+<div class="tab-content" id="reflexion">
+  <h2>Reflexión Personal</h2>
+  <p>El Business Model Canvas no es solo una herramienta para empresas: es también una forma de pensamiento que puede aplicarse a tu propia vida. No hay respuestas correctas o incorrectas en esta sección; el objetivo es que conectes los conceptos de hoy con tu experiencia cotidiana.</p>
+
+  <div class="reflex-card">
+    <span class="num">1.</span> Si tuvieras que diseñar el "Business Model Canvas de tu vida", ¿quiénes serían tus "segmentos de clientes" —es decir, las personas que más reciben tu tiempo y tu energía hoy: familia, amigos, trabajo, estudios, tú mismo/a—? ¿Sientes que esa distribución está balanceada?
+  </div>
+  <div class="reflex-card">
+    <span class="num">2.</span> ¿Cuál es tu "propuesta de valor" personal, es decir, qué te hace valiosa o valioso para las personas y los proyectos en tu vida? ¿La conoces con claridad, o la das por sentada sin haberla pensado nunca conscientemente?
+  </div>
+  <div class="reflex-card">
+    <span class="num">3.</span> Revisa tu "estructura de costos" personal: ¿en qué inviertes más tu tiempo, tu energía emocional y tu dinero cada semana? ¿Ese gasto está realmente alineado con lo que valoras, o has dejado que otros factores decidan por ti?
+  </div>
+  <div class="reflex-card">
+    <span class="num">4.</span> ¿Quiénes son tus "socios clave" en la vida —personas de confianza, mentores, familia— y con qué frecuencia reconoces y cultivas activamente esas alianzas, en lugar de darlas por sentadas?
+  </div>
+  <div class="reflex-card">
+    <span class="num">5.</span> Piensa en una idea, un proyecto o un sueño que tienes pero que no has "lanzado" por miedo. Si usaras una herramienta de Programación Neurolingüística (PNL, técnica que estudia cómo el lenguaje que usamos con nosotros mismos influye en nuestras emociones y comportamientos) para reformular ese miedo como aprendizaje en lugar de amenaza, ¿qué frase nueva te dirías a ti mismo/a antes de presentarlo, aunque fuera de forma imperfecta?
+  </div>
+  <div class="reflex-card">
+    <span class="num">6.</span> Cuando presentas una idea importante —en clase, en el trabajo, en una conversación difícil— y sientes nervios, ¿qué estrategia de inteligencia emocional usas (o podrías empezar a usar) para regular esa ansiedad y conectar con tu audiencia desde la confianza, en lugar de hacerlo desde el miedo?
+  </div>
+</div>
+
+<!-- ============ BIBLIOGRAFÍA ============ -->
+<div class="tab-content" id="biblio">
+  <h2>Bibliografía</h2>
+
+  <div class="biblio-card">
+    <p><span class="autor">Osterwalder, A., &amp; Pigneur, Y.</span> (2010). <span class="titulo">Business Model Generation: A Handbook for Visionaries, Game Changers, and Challengers</span>. John Wiley &amp; Sons.</p>
+  </div>
+  <div class="biblio-card">
+    <p><span class="autor">Osterwalder, A., Pigneur, Y., Bernarda, G., &amp; Smith, A.</span> (2014). <span class="titulo">Value Proposition Design: How to Create Products and Services Customers Want</span>. John Wiley &amp; Sons.</p>
+  </div>
+  <div class="biblio-card">
+    <p><span class="autor">Blank, S., &amp; Dorf, B.</span> (2012). <span class="titulo">The Startup Owner's Manual: The Step-by-Step Guide for Building a Great Company</span>. K&amp;S Ranch Publishing.</p>
+  </div>
+  <div class="biblio-card">
+    <p><span class="autor">Ries, E.</span> (2011). <span class="titulo">The Lean Startup: How Today's Entrepreneurs Use Continuous Innovation to Create Radically Successful Businesses</span>. Crown Business.</p>
+  </div>
+  <div class="biblio-card">
+    <p><span class="autor">Drucker, P. F.</span> (1985). <span class="titulo">Innovation and Entrepreneurship: Practice and Principles</span>. Harper &amp; Row.</p>
+  </div>
+  <div class="biblio-card">
+    <p><span class="autor">Lasio, V., Amaya, A., Zambrano, J., &amp; Ordeñana, X.</span> (2021). <span class="titulo">Global Entrepreneurship Monitor Ecuador 2020</span>. ESPAE Graduate School of Management, Escuela Superior Politécnica del Litoral (ESPOL).</p>
+  </div>
+  <div class="biblio-card">
+    <p><span class="autor">Asamblea Nacional del Ecuador.</span> (2020). <span class="titulo">Ley Orgánica de Emprendimiento e Innovación</span>. Registro Oficial Suplemento 151.</p>
+  </div>
+  <div class="biblio-card">
+    <p><span class="autor">International Accounting Standards Board (IASB).</span> (2014). <span class="titulo">NIIF 15: Ingresos de Actividades Ordinarias Procedentes de Contratos con Clientes</span>. IFRS Foundation.</p>
+  </div>
+
+  <p class="footnote">Se recomienda verificar cada referencia en Google Scholar (scholar.google.com) o en el repositorio institucional antes de citar en trabajos académicos.</p>
+</div>
+
+<script>
+/* ===================== NAVEGACIÓN DE PESTAÑAS ===================== */
+function showTab(id, btn){
+  document.querySelectorAll('.tab-content').forEach(function(el){ el.classList.remove('active'); });
+  document.querySelectorAll('.tab-btn').forEach(function(el){ el.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  btn.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
+}
+
+/* ===================== HERRAMIENTA CANVAS ===================== */
+var canvasIds = ['blk-seg','blk-vp','blk-ch','blk-rel','blk-rev','blk-res','blk-act','blk-par','blk-cost'];
+
+var ejemploCanvas = {
+  'blk-seg': "Pequeños y medianos restaurantes y emprendimientos de comida en Guayaquil que buscan reducir su uso de plástico de un solo uso, ya sea por exigencia de sus clientes o por convicción ambiental propia.",
+  'blk-vp': "Empaques biodegradables hechos a partir de cáscara de banano y residuos agrícolas locales, a un costo similar al del plástico tradicional, permitiendo a los restaurantes proyectar una imagen ecológica sin sacrificar su margen de ganancia.",
+  'blk-ch': "Venta directa por WhatsApp Business y página web propia, distribución mediante mensajería local, y participación en ferias de emprendimiento sostenible organizadas por la Cámara de Comercio de Guayaquil.",
+  'blk-rel': "Asistencia personal directa durante el primer pedido para asesorar sobre tipos de empaque, y una comunidad en Instagram donde los restaurantes comparten cómo usan los empaques (cocreación de contenido).",
+  'blk-rev': "Venta por unidad de empaque (tarifa por uso) y un plan de suscripción mensual con descuento para los restaurantes que compran volúmenes fijos cada mes.",
+  'blk-res': "Maquinaria de prensado de fibra vegetal, alianza con productores bananeros para el suministro constante de materia prima, y conocimiento técnico en bioprocesos.",
+  'blk-act': "Producción y control de calidad de los empaques, investigación constante para mejorar la resistencia del material, y gestión logística de entregas.",
+  'blk-par': "Asociaciones de productores bananeros de la provincia del Guayas, la Cámara de Comercio de Guayaquil para participar en ferias, y un laboratorio universitario para pruebas de biodegradabilidad.",
+  'blk-cost': "Estructura mayormente impulsada por costos: la materia prima, la mano de obra de producción y la logística representan los mayores egresos fijos y variables cada mes."
+};
+
+function loadExample(){
+  canvasIds.forEach(function(id){
+    document.getElementById(id).value = ejemploCanvas[id];
+  });
+}
+
+function clearCanvas(){
+  canvasIds.forEach(function(id){
+    document.getElementById(id).value = '';
+  });
+  document.getElementById('pitch-output').value = '';
+}
+
+function generatePitch(){
+  function get(id){
+    var v = document.getElementById(id).value.trim();
+    return v.length > 0 ? v : '[Aún no has completado este bloque en la herramienta guiada]';
+  }
+  var seg = get('blk-seg');
+  var vp = get('blk-vp');
+  var ch = get('blk-ch');
+  var rel = get('blk-rel');
+  var rev = get('blk-rev');
+  var res = get('blk-res');
+  var act = get('blk-act');
+  var par = get('blk-par');
+  var cost = get('blk-cost');
+
+  var texto =
+"GUION DE PRESENTACIÓN (PITCH)\n" +
+"=================================\n\n" +
+"1. GANCHO (Hook)\n[Completa aquí: una pregunta, dato o historia breve que capte la atención en los primeros segundos]\n\n" +
+"2. PROBLEMA\n[Completa aquí: ¿qué dolor real enfrenta tu segmento de clientes? Puedes retomar tu Perfil del Cliente de la Semana 13]\n\n" +
+"3. SEGMENTO DE CLIENTES\n" + seg + "\n\n" +
+"4. PROPUESTA DE VALOR (Solución)\n" + vp + "\n\n" +
+"5. CÓMO LLEGAS AL CLIENTE (Canales y Relación con Clientes)\nCanales: " + ch + "\nRelación con Clientes: " + rel + "\n\n" +
+"6. CÓMO GENERAS INGRESOS (Fuentes de Ingresos)\n" + rev + "\n\n" +
+"7. LO QUE LO HACE POSIBLE (Recursos, Actividades y Socios Clave)\nRecursos Clave: " + res + "\nActividades Clave: " + act + "\nSocios Clave: " + par + "\n\n" +
+"8. ESTRUCTURA DE COSTOS\n" + cost + "\n\n" +
+"9. VALIDACIÓN O EVIDENCIA\n[Completa aquí: ¿qué evidencia real tienes de que esto funciona? Encuestas, ventas piloto, conversaciones con clientes, etc.]\n\n" +
+"10. EQUIPO\n[Completa aquí: quién eres tú y/o tu equipo, y por qué son las personas indicadas para esta idea]\n\n" +
+"11. CIERRE (Ask)\n[Completa aquí: ¿qué le pides exactamente a tu audiencia? Inversión, una alianza, retroalimentación, una calificación justa, etc.]";
+
+  document.getElementById('pitch-output').value = texto;
+}
+
+function copyPitch(){
+  var output = document.getElementById('pitch-output');
+  if(!output.value.trim()){
+    alert('Primero genera tu guion presionando "Generar guion de presentación".');
+    return;
+  }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(output.value).then(function(){
+      alert('Guion copiado al portapapeles.');
+    }).catch(function(){
+      output.select();
+      alert('No se pudo copiar automáticamente. El texto ha sido seleccionado: usa Ctrl+C / Cmd+C.');
+    });
+  } else {
+    output.select();
+    alert('Selecciona el texto y usa Ctrl+C / Cmd+C para copiarlo.');
+  }
+}
+
+/* ===================== EJERCICIO INTERACTIVO ===================== */
+var ejercicioCorrects = {
+  ei1:'a', ei2:'b', ei3:'a', ei4:'a', ei5:'b', ei6:'a', ei7:'a', ei8:'b'
+};
+
+var ejercicioFeedbacks = {
+  ei1: "Es Fuentes de Ingresos: cobrar una comisión por cada transacción es un mecanismo de captura de valor (cuota por uso/comisión), no una alianza ni un canal.",
+  ei2: "Es Socios Clave: los bancos y procesadores de pago son aliados externos que permiten operar el negocio sin construir toda la infraestructura desde cero.",
+  ei3: "Es Segmentos de Clientes: se está definiendo un grupo específico de personas (mujeres profesionales de cierta edad y nivel adquisitivo) a quien se quiere servir.",
+  ei4: "Es Actividades Clave: procesar y empacar el producto es la acción central y diaria que la empresa debe ejecutar para que el modelo funcione, no un recurso que posee sino algo que hace.",
+  ei5: "Es Relación con Clientes: un chatbot disponible 24/7 sin intervención humana corresponde a la categoría de 'servicios automatizados' dentro de este bloque.",
+  ei6: "Es Canales: redes sociales, sitio web y referidos son los puntos de contacto mediante los cuales la empresa da a conocer su propuesta de valor y atrae nuevos usuarios.",
+  ei7: "Es Recursos Clave: el equipo de desarrolladores y la propiedad intelectual (código, algoritmos) son activos intangibles indispensables, en contraste con los recursos físicos (maquinaria) de un negocio de manufactura.",
+  ei8: "Es Estructura de Costos: alquiler, sueldos y materia prima son los egresos principales del negocio, independientemente del volumen de ventas en algunos casos (costos fijos)."
+};
+
+function verifyExercise(){
+  var allAnswered = true;
+  for(var key in ejercicioCorrects){
+    var selected = document.querySelector('input[name="' + key + '"]:checked');
+    if(!selected){ allAnswered = false; break; }
+  }
+  if(!allAnswered){
+    alert('Por favor responde todas las situaciones antes de verificar.');
+    return;
+  }
+
+  var score = 0;
+  var index = 1;
+  for(var key in ejercicioCorrects){
+    var selected = document.querySelector('input[name="' + key + '"]:checked');
+    var card = document.getElementById('ei-card-' + index);
+    var fb = document.getElementById('ei-fb-' + index);
+    var isCorrect = selected.value === ejercicioCorrects[key];
+    if(isCorrect) score++;
+    card.classList.remove('correct','incorrect');
+    card.classList.add(isCorrect ? 'correct' : 'incorrect');
+    fb.innerHTML = (isCorrect ? '✔ Correcto. ' : '✘ Incorrecto. ') + ejercicioFeedbacks[key];
+    fb.className = 'feedback-text ' + (isCorrect ? 'fb-correct' : 'fb-incorrect');
+    index++;
+  }
+
+  var total = 8;
+  var pct = Math.round((score/total)*100);
+  document.getElementById('ei-progress').style.width = pct + '%';
+
+  var msg = '';
+  if(pct === 100){ msg = '🏆 ¡Excelente! Dominas la identificación de los nueve bloques del Canvas.'; }
+  else if(pct >= 75){ msg = '🎯 Muy buen trabajo. Tienes una comprensión sólida de los bloques del Canvas.'; }
+  else if(pct >= 50){ msg = '📘 Vas por buen camino. Revisa los bloques en los que fallaste antes de usar la herramienta guiada.'; }
+  else { msg = '📖 Te recomendamos repasar los Temas 2 y 2a antes de continuar con la herramienta guiada.'; }
+
+  var panel = document.getElementById('ei-score');
+  panel.style.display = 'block';
+  panel.innerHTML = '<div class="score-num">' + score + ' / ' + total + ' (' + pct + '%)</div><div class="score-msg">' + msg + '</div>';
+}
+
+function resetExercise(){
+  document.querySelectorAll('input[name^="ei"]').forEach(function(input){ input.checked = false; });
+  for(var i=1; i<=8; i++){
+    var card = document.getElementById('ei-card-' + i);
+    var fb = document.getElementById('ei-fb-' + i);
+    card.classList.remove('correct','incorrect');
+    fb.innerHTML = '';
+  }
+  document.getElementById('ei-progress').style.width = '0%';
+  document.getElementById('ei-score').style.display = 'none';
+}
+
+/* ===================== CUESTIONARIO ===================== */
+var quizCorrects = {
+  qi1:'b', qi2:'b', qi3:'c', qi4:'a', qi5:'a', qi6:'b', qi7:'a', qi8:'c', qi9:'c', qi10:'b'
+};
+
+var quizFeedbacks = {
+  qi1: "Alexander Osterwalder e Yves Pigneur desarrollaron el Business Model Canvas y lo publicaron en su libro 'Business Model Generation' (2010).",
+  qi2: "El Lienzo de Propuesta de Valor profundiza solo en la relación cliente-oferta; el Business Model Canvas describe la arquitectura completa del negocio en nueve bloques.",
+  qi3: "El Análisis FODA (Fortalezas, Oportunidades, Debilidades, Amenazas) es una herramienta distinta de planeación estratégica; no es uno de los nueve bloques del Canvas.",
+  qi4: "El bloque de Canales responde precisamente a cómo el cliente se entera, evalúa, compra, recibe y obtiene soporte sobre la propuesta de valor.",
+  qi5: "El elevator pitch se caracteriza por su brevedad (30 a 90 segundos), pensado para comunicarse en el tiempo de un viaje en ascensor.",
+  qi6: "Un modelo value-driven prioriza maximizar la propuesta de valor entregada al cliente, aceptando una estructura de costos más alta cuando se justifica por ese valor.",
+  qi7: "La 'falacia de llenar el formulario' es completar el lienzo solo con suposiciones propias, sin contrastarlo con clientes reales, lo cual genera una falsa sensación de validación.",
+  qi8: "El contacto cercano y personalizado de un humano con cada cliente (no automatizado, no autoservicio) corresponde a la categoría de asistencia personal directa.",
+  qi9: "Generar ingresos cobrando a terceros (marcas) por publicidad, en lugar de cobrar al usuario final, corresponde al mecanismo de ingresos por publicidad.",
+  qi10: "La diferencia entre invertir en especialistas y equipos (Recursos/Actividades Clave de I+D) frente a invertir en bodegas y logística se explica por diferencias en Recursos Clave, Actividades Clave y, en consecuencia, en la Estructura de Costos de cada empresa."
+};
+
+function verifyQuiz(){
+  var allAnswered = true;
+  for(var key in quizCorrects){
+    var selected = document.querySelector('input[name="' + key + '"]:checked');
+    if(!selected){ allAnswered = false; break; }
+  }
+  if(!allAnswered){
+    alert('Por favor responde las 10 preguntas antes de verificar.');
+    return;
+  }
+
+  var score = 0;
+  var index = 1;
+  for(var key in quizCorrects){
+    var selected = document.querySelector('input[name="' + key + '"]:checked');
+    var card = document.getElementById('qi-card-' + index);
+    var fb = document.getElementById('qi-fb-' + index);
+    var isCorrect = selected.value === quizCorrects[key];
+    if(isCorrect) score++;
+    card.classList.remove('correct','incorrect');
+    card.classList.add(isCorrect ? 'correct' : 'incorrect');
+    fb.innerHTML = (isCorrect ? '✔ Correcto. ' : '✘ Incorrecto. ') + quizFeedbacks[key];
+    fb.className = 'feedback-text ' + (isCorrect ? 'fb-correct' : 'fb-incorrect');
+    index++;
+  }
+
+  var total = 10;
+  var pct = Math.round((score/total)*100);
+  document.getElementById('qi-progress').style.width = pct + '%';
+
+  var emoji = '';
+  var msg = '';
+  if(pct === 100){ emoji = '🏆'; msg = '¡Calificación perfecta! Dominas por completo el Business Model Canvas y su aplicación.'; }
+  else if(pct >= 80){ emoji = '🎯'; msg = 'Muy buen desempeño. Tienes un dominio sólido del tema.'; }
+  else if(pct >= 60){ emoji = '📘'; msg = 'Buen trabajo. Revisa los bloques donde fallaste para reforzar tu comprensión.'; }
+  else if(pct >= 40){ emoji = '⚠️'; msg = 'Vas por la mitad del camino. Te recomendamos repasar los Temas 1, 2 y 2a antes de continuar.'; }
+  else { emoji = '📖'; msg = 'Es necesario repasar el contenido completo del widget antes de avanzar.'; }
+
+  var panel = document.getElementById('qi-score');
+  panel.style.display = 'block';
+  panel.innerHTML = '<div class="score-num">' + emoji + ' ' + score + ' / ' + total + ' (' + pct + '%)</div><div class="score-msg">' + msg + '</div>';
+}
+
+function resetQuiz(){
+  document.querySelectorAll('input[name^="qi"]').forEach(function(input){ input.checked = false; });
+  for(var i=1; i<=10; i++){
+    var card = document.getElementById('qi-card-' + i);
+    var fb = document.getElementById('qi-fb-' + i);
+    card.classList.remove('correct','incorrect');
+    fb.innerHTML = '';
+  }
+  document.getElementById('qi-progress').style.width = '0%';
+  document.getElementById('qi-score').style.display = 'none';
+}
+</script>
+
+</body>
+</html>
